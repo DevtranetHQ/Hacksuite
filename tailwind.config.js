@@ -53,6 +53,7 @@ module.exports = {
             "small": "50%"
         }
     },
+    darkMode: 'class',
     plugins: [
         require("autoprefixer")
     ]
