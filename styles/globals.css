@@ -187,7 +187,7 @@
      * Form components
      */
     form {
-        @apply bg-[#E8E8E8] dark:bg-[#444444] p-10 rounded;
+        @apply bg-[#F4F4F4] dark:bg-[#444444] p-10 rounded-xl;
     }
 
     .form-button {
@@ -195,8 +195,12 @@
         background: linear-gradient(98.64deg, #FFFFFF -26.46%, #03A9F4 56.71%);
     }
 
+    .form-label {
+        @apply text-18px font-semibold;
+    }
+
     .form-input {
-        @apply text-18px bg-white border-[#c1c1c1] border block w-full px-3 py-2 rounded;
+        @apply text-15px bg-white border-[#c9c9c9] border-2 block w-full h-9 px-3 py-2 mt-1 mb-4 rounded;
         outline: none !important;
     }
 
