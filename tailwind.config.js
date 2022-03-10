@@ -2,6 +2,14 @@ module.exports = {
     content: ["./pages/**/*.js", "./components/**/*.js"],
     darkMode: "class",
     theme: {
+        screens: {
+            'xs': '428px',
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+            '2xl': '1536px',
+          },
         extend: {
             colors: {
                 "deep-sky-blue": "#03A9F4",
@@ -36,6 +44,7 @@ module.exports = {
             "30px": ["30px"],
             "24px": ["24px"],
             "18px": ["18px"],
+            "15px": ["15px"],
             "12px": ["12px"]
         },
         maxWidth: {
@@ -45,6 +54,7 @@ module.exports = {
             "small": "50%"
         }
     },
+    darkMode: 'class',
     plugins: [
         require("autoprefixer")
     ]
