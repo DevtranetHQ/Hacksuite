@@ -1,3 +1,5 @@
+import LoggedOutNav from '../components/navbars/LoggedOutNav';
+
 const API = "http://localhost:4000";
 
 export default function SignUp(props){
@@ -6,7 +8,8 @@ export default function SignUp(props){
 
     return(
         <div>
-            <h1 className="heading text-center my-10">SIGN UP</h1>
+            <LoggedOutNav/>
+            <h1 className="heading text-center mb-10">SIGN UP</h1>
             <form endpoint={endpoint} method="POST" className="mx-4">
                 <div>
                     <section>
@@ -58,7 +61,7 @@ export default function SignUp(props){
                                 required/>
                         </div>
                     </section>
-                    <button className="button-small w-full mt-12">Sign up</button>
+                    <button className="button-small button-deep-sky-blue w-full mt-12">Sign up</button>
                 </div>
             </form>
         </div>
