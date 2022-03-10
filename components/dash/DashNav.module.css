@@ -1,0 +1,15 @@
+.nav {
+    @apply flex flex-col gap-5 m-10;
+}
+
+.nav div {
+    @apply flex gap-2;
+}
+
+.nav div span {
+    @apply pt-3 self-end text-24px;
+}
+
+.nav .active {
+    @apply text-orange-peel;
+}

@@ -42,6 +42,10 @@
         @apply text-[20px] md:text-[22px];
     }
 
+    p.sm {
+        @apply text-18px;
+    }
+
     /*
      * Code components
      */
@@ -101,30 +105,62 @@
     /*
      * Buttons
      */
-    .button-big, .button-medium, .button-small {
-        @apply leading-tight flex items-center justify-center bg-deep-sky-blue font-bold px-5 py-2 mr-2 mb-2 rounded-md text-white transition-all hover:scale-105 focus:scale-105;
-    }
+     .button-big, .button-medium, .button-small {
+         @apply leading-tight flex items-center justify-center font-bold px-5 py-2 mr-2 mb-2 rounded-md text-white transition-all hover:scale-105 focus:scale-105;
+     }
 
-    .outline-button-big, .outline-button-medium, .outline-button-small {
-        @apply leading-tight flex items-center justify-center border-[3px] border-deep-sky-blue font-bold px-5 py-2 mr-2 mb-2 rounded-md text-deep-sky-blue transition-all hover:scale-105 focus:scale-105;
-    }
+     .button-big.button-deep-sky-blue, .button-medium.button-deep-sky-blue, .button-small.button-deep-sky-blue {
+         @apply bg-deep-sky-blue;
+     }
 
-    .cta-button-big, .cta-button-medium, .cta-button-small {
-        @apply leading-tight flex items-center justify-center font-bold px-3 py-2 mr-2 mb-2 rounded-md text-white transition-all hover:scale-105 focus:scale-105;
-        background: linear-gradient(98.64deg, #FFFFFF -26.46%, #03A9F4 56.71%);
-    }
+     .button-big.button-fruit-salad, .button-medium.button-fruit-salad, .button-small.button-fruit-salad {
+         @apply bg-fruit-salad;
+     }
 
-    .button-big, .outline-button-big, .cta-button-big {
-        @apply text-30px md:text-36px;
-    }
+     .button-big.button-orange-peel, .button-medium.button-orange-peel, .button-small.button-orange-peel {
+         @apply bg-orange-peel;
+     }
 
-    .button-medium, .outline-button-medium, .cta-button-medium, form button {
-        @apply text-24px;
-    }
+     .button-big.button-link, .button-medium.button-link, .button-small.button-link {
+         @apply bg-link;
+     }
 
-    .button-small, .outline-button-small, .cta-button-small {
-        @apply text-18px;
-    }
+     .outline-button-big, .outline-button-medium, .outline-button-small {
+         @apply leading-tight flex items-center justify-center border-[3px] font-bold px-5 py-2 mr-2 mb-2 rounded-md transition-all hover:scale-105 focus:scale-105;
+     }
+
+     .outline-button-big.button-deep-sky-blue .outline-button-medium.button-deep-sky-blue .outline-button-small.button-deep-sky-blue {
+         @apply border-deep-sky-blue text-deep-sky-blue;
+     }
+
+     .outline-button-big.button-fruit-salad .outline-button-medium.button-fruit-salad .outline-button-small.button-fruit-salad {
+         @apply border-fruit-salad text-fruit-salad;
+     }
+
+     .outline-button-big.button-orange-peel .outline-button-medium.button-orange-peel .outline-button-small.button-orange-peel {
+         @apply border-orange-peel text-orange-peel;
+     }
+
+     .outline-button-big.button-link .outline-button-medium.button-link .outline-button-small.button-link {
+         @apply border-link text-link;
+     }
+
+     .cta-button-big, .cta-button-medium, .cta-button-small {
+         @apply leading-tight flex items-center justify-center font-bold px-3 py-2 mr-2 mb-2 rounded-md text-white transition-all hover:scale-105 focus:scale-105;
+         background: linear-gradient(98.64deg, #FFFFFF -26.46%, #03A9F4 56.71%);
+     }
+
+     .button-big, .outline-button-big, .cta-button-big {
+         @apply text-30px md:text-36px;
+     }
+
+     .button-medium, .outline-button-medium, .cta-button-medium, form button {
+         @apply text-24px;
+     }
+
+     .button-small, .outline-button-small, .cta-button-small {
+         @apply text-18px;
+     }
 
     /*
      * Cards
