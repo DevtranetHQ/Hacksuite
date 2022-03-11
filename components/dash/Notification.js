@@ -30,7 +30,7 @@ export default function Notification({ unread, type, title, description, who, ti
                     <button className={`button-medium ${buttonTheme} relative`} disabled={true}>
                         {type}
                         {unread &&
-                            <span className="absolute bg-black h-4 w-4 rounded-full -top-2 -right-2" />
+                            <span className="absolute bg-black dark:bg-white h-4 w-4 rounded-full -top-2 -right-2" />
                         }
                     </button>
                 </div>
