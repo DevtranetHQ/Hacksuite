@@ -5,14 +5,14 @@ import Logo from "../../public/assets/logo.svg";
 
 export default function DashNav({ active }) {
     return (
-        <nav className="border-r-2 h-screen">
+        <nav className="border-r-2 min-h-screen h-full">
             <div className="relative mx-auto w-[150px]">
                 <Image src={Logo}/>
             </div>
 
             <div className={styles.nav}>
                 <Link href="/">
-                    <div className={active === "/" ? styles.active : "cursor-pointer"}>
+                    <div className={active === "/" ? styles.active : "cursor-pointer hover:text-orange-peel transition"}>
                         <svg width="40" height="40" viewBox="0 0 41 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.5001 6.14292L30.2917 14.9554V30.25H26.3751V18.5H14.6251V30.25H10.7084V14.9554L20.5001 6.14292ZM20.5001 0.875L0.916748 18.5H6.79175V34.1667H18.5417V22.4167H22.4584V34.1667H34.2084V18.5H40.0834L20.5001 0.875Z" fill="#03A9F4"/>
                         </svg>

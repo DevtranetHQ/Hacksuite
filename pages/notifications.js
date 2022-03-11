@@ -28,6 +28,30 @@ export default function Notifications() {
                         who="Elon Musk"
                         time="1:00 PM at March 14, 2022"
                     />
+                    <Notification
+                        unread={true}
+                        type="Announcement"
+                        title="The next edition of Codetivate Hackathon in two months"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        who="Ibrahim Salami"
+                        time="12:00 PM at March 10, 2022"
+                    />
+                    <Notification
+                        unread={false}
+                        type="Event"
+                        title="AMA with Bill Gates, Founder of Microsoft"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        who="Bill Gates"
+                        time="11:00 AM at December 14, 2021"
+                    />
+                    <Notification
+                        unread={false}
+                        type="Feature update"
+                        title="Web-based chat app integration with The Dynamics account"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        who="Engineering Team"
+                        time="1:00 PM at January 19, 2021"
+                    />
                 </div>
             </div>
         </div>
