@@ -84,7 +84,7 @@ export default function Settings() {
                         </div>
                         <div className="form-checkbox mb-10">
                             <input id="checkbox" type="checkbox"/>
-                            <label for="checkbox">Notify me about upcoming events & news</label>
+                            <label htmlFor="checkbox">Notify me about upcoming events & news</label>
                         </div>
                         <h2 className="mb-5 subheadline">Demographic Information</h2>
                         <div className="grid grid-cols-2 gap-x-10 gap-y-5 mb-10">
