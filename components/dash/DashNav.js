@@ -5,7 +5,7 @@ import Logo from "../../public/assets/logo.svg";
 
 export default function DashNav({ active }) {
     return (
-        <nav className="border-r-2 min-h-screen h-full">
+        <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
             <div className="relative mx-auto w-[150px]">
                 <Image src={Logo}/>
             </div>

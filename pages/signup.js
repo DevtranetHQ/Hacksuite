@@ -14,22 +14,22 @@ export default function SignUp(props){
                 <div>
                     <section>
                         <div>
-                            <label className="form-label" for="firstName">First name</label>
-                            <input 
+                            <label className="form-label" htmlFor="firstName">First name</label>
+                            <input
                                 className="form-input"
                                 name="lastName"
-                                id="firstName" 
+                                id="firstName"
                                 type="text"
                                 maxLength="50"
                                 placeholder="First name"
                                 required/>
                         </div>
                         <div>
-                            <label className="form-label" for="lastName">Last name</label>
-                            <input 
+                            <label className="form-label" htmlFor="lastName">Last name</label>
+                            <input
                                 className="form-input"
                                 name="lastName"
-                                id="lastName" 
+                                id="lastName"
                                 type="text"
                                 maxLength="50"
                                 placeholder="Last name"
@@ -38,22 +38,22 @@ export default function SignUp(props){
                     </section>
                     <section>
                         <div>
-                            <label className="form-label" for="email">Email Address</label>
-                            <input 
+                            <label className="form-label" htmlFor="email">Email Address</label>
+                            <input
                                 className="form-input"
                                 name="email"
-                                id="email" 
+                                id="email"
                                 type="email"
                                 maxLength="80"
                                 placeholder="Email Address"
                                 required/>
                         </div>
                         <div>
-                            <label className="form-label" for="password">Password</label>
-                            <input 
+                            <label className="form-label" htmlFor="password">Password</label>
+                            <input
                                 className="form-input"
                                 name="password"
-                                id="password" 
+                                id="password"
                                 type="password"
                                 minLength="6"
                                 maxLength="100"
