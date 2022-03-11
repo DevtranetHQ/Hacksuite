@@ -231,11 +231,11 @@
      * Form components
      */
     form {
-        @apply bg-[#E8E8E8] dark:bg-[#444444] p-10 rounded;
+        @apply bg-[#F4F4F4] dark:bg-[#444444] p-10 rounded-xl;
     }
 
     .form-label {
-        @apply block mb-1 text-18px md:text-[22px];
+        @apply block mb-1 text-18px font-semibold md:text-[22px];
     }
 
     .form-button {
@@ -244,8 +244,12 @@
     }
 
     .form-input {
-        @apply text-18px bg-white border-[#c1c1c1] border-2 block w-full px-3 py-2 rounded;
+        @apply text-18px bg-white border-[#c9c9c9] border-2 block w-full px-3 py-2 mt-1 mb-4 rounded;
         outline: none !important;
+    }
+
+    .form-input.sm {
+        @apply text-15px;
     }
 
     .form-select {
