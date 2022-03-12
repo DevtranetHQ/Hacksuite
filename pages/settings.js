@@ -24,7 +24,7 @@ export default function Settings() {
 
     useEffect(() => {
         intlTelInput(document.querySelector("#phoneNumber"), {
-            customContainer: "!block",
+            customContainer: "!block"
         });
     }, []);
 

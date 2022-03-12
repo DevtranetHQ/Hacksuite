@@ -58,7 +58,7 @@ export async function getServerSideProps(context) {
     // TODO: Alter for login session
     return {
         props: {
-            name: "John",
-        },
+            name: "John"
+        }
     };
 }

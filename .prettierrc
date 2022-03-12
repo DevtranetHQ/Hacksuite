@@ -1,3 +1,6 @@
 {
-  "tabWidth": 4
+    "arrowParens": "avoid",
+    "quoteProps": "consistent",
+    "tabWidth": 4,
+    "trailingComma": none
 }

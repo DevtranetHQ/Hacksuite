@@ -6,7 +6,7 @@ export default function Notification({
     title,
     description,
     who,
-    time,
+    time
 }) {
     let buttonTheme, textTheme;
     switch (type) {

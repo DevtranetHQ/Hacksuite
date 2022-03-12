@@ -74,6 +74,6 @@ export default function Notifications({ darkMode, toggleDarkMode }) {
 export async function getServerSideProps(context) {
     // TODO: Alter to get notifications
     return {
-        props: {},
+        props: {}
     };
 }

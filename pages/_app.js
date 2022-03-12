@@ -6,7 +6,11 @@ export default function App({ Component, pageProps }) {
 
     return (
         <div className={`${darkMode ? "dark" : "false"} min-h-screen`}>
-            <Component darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} {...pageProps}/>
+            <Component
+                darkMode={darkMode}
+                toggleDarkMode={() => setDarkMode(!darkMode)}
+                {...pageProps}
+            />
         </div>
     );
 }
