@@ -1,20 +1,22 @@
-import LoggedOutNav from '../components/navbars/LoggedOutNav';
+import LoggedOutNav from "../components/navbars/LoggedOutNav";
 
 const API = "http://localhost:4000";
 
-export default function SignUp(props){
+export default function SignUp(props) {
     const endpoint = "auth/register";
-    const method = "POST"
+    const method = "POST";
 
-    return(
+    return (
         <div>
-            <LoggedOutNav/>
+            <LoggedOutNav />
             <h1 className="heading text-center mb-10">SIGN UP</h1>
             <form endpoint={endpoint} method="POST" className="mx-4">
                 <div>
                     <section>
                         <div>
-                            <label className="form-label" htmlFor="firstName">First name</label>
+                            <label className="form-label" htmlFor="firstName">
+                                First name
+                            </label>
                             <input
                                 className="form-input"
                                 name="lastName"
@@ -22,10 +24,13 @@ export default function SignUp(props){
                                 type="text"
                                 maxLength="50"
                                 placeholder="First name"
-                                required/>
+                                required
+                            />
                         </div>
                         <div>
-                            <label className="form-label" htmlFor="lastName">Last name</label>
+                            <label className="form-label" htmlFor="lastName">
+                                Last name
+                            </label>
                             <input
                                 className="form-input"
                                 name="lastName"
@@ -33,12 +38,15 @@ export default function SignUp(props){
                                 type="text"
                                 maxLength="50"
                                 placeholder="Last name"
-                                required/>
+                                required
+                            />
                         </div>
                     </section>
                     <section>
                         <div>
-                            <label className="form-label" htmlFor="email">Email Address</label>
+                            <label className="form-label" htmlFor="email">
+                                Email Address
+                            </label>
                             <input
                                 className="form-input"
                                 name="email"
@@ -46,10 +54,13 @@ export default function SignUp(props){
                                 type="email"
                                 maxLength="80"
                                 placeholder="Email Address"
-                                required/>
+                                required
+                            />
                         </div>
                         <div>
-                            <label className="form-label" htmlFor="password">Password</label>
+                            <label className="form-label" htmlFor="password">
+                                Password
+                            </label>
                             <input
                                 className="form-input"
                                 name="password"
@@ -58,10 +69,13 @@ export default function SignUp(props){
                                 minLength="6"
                                 maxLength="100"
                                 placeholder="Password"
-                                required/>
+                                required
+                            />
                         </div>
                     </section>
-                    <button className="button-small button-deep-sky-blue w-full mt-12">Sign up</button>
+                    <button className="button-small button-deep-sky-blue w-full mt-12">
+                        Sign up
+                    </button>
                 </div>
             </form>
         </div>

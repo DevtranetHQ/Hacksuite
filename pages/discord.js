@@ -1,7 +1,3 @@
 export default function Discord() {
-    return (
-        <div>
-            Discord
-        </div>
-    );
+    return <div>Discord</div>;
 }

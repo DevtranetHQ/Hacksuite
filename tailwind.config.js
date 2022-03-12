@@ -3,28 +3,28 @@ module.exports = {
     darkMode: "class",
     theme: {
         screens: {
-            'xs': '428px',
-            'sm': '640px',
-            'md': '768px',
-            'lg': '1024px',
-            'xl': '1280px',
-            '2xl': '1536px',
-          },
+            xs: "428px",
+            sm: "640px",
+            md: "768px",
+            lg: "1024px",
+            xl: "1280px",
+            "2xl": "1536px",
+        },
         extend: {
             colors: {
                 "deep-sky-blue": "#03A9F4",
                 "fruit-salad": "#4CAF50",
                 "orange-peel": "#FF9800",
-                "link": "#3B4FE4",
-                "heading": "#1A1A1A",
-                "body": "#6E7180",
-                "dark": "#202020",
-                "gray-dark": "#2D2D2D"
-            }
+                link: "#3B4FE4",
+                heading: "#1A1A1A",
+                body: "#6E7180",
+                dark: "#202020",
+                "gray-dark": "#2D2D2D",
+            },
         },
         fontFamily: {
-            "sans": ['"Myriad Pro"', "sans-serif"],
-            "body": ['"Myriad Pro"']
+            sans: ['"Myriad Pro"', "sans-serif"],
+            body: ['"Myriad Pro"'],
         },
         fontSize: {
             "198px": ["198px"],
@@ -46,17 +46,15 @@ module.exports = {
             "18px": ["18px"],
             "16px": ["16px"],
             "15px": ["15px"],
-            "12px": ["12px"]
+            "12px": ["12px"],
         },
         maxWidth: {
-            "screen": "100%",
-            "regular": "95%",
-            "medium": "75%",
-            "small": "50%"
-        }
+            screen: "100%",
+            regular: "95%",
+            medium: "75%",
+            small: "50%",
+        },
     },
-    darkMode: 'class',
-    plugins: [
-        require("autoprefixer")
-    ]
+    darkMode: "class",
+    plugins: [require("autoprefixer")],
 };
