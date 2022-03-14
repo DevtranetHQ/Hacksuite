@@ -20,6 +20,9 @@ module.exports = {
                 "body": "#6E7180",
                 "dark": "#202020",
                 "gray-dark": "#2D2D2D"
+            },
+            backgroundImage: {
+                'auth': "url('/public/assets/auth/auth-background.svg')"
             }
         },
         fontFamily: {

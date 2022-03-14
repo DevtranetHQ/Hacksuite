@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
     const [darkMode, setDarkMode] = useState(false);
 
     return (
-        <div className={`${darkMode ? "dark" : "false"} min-h-screen`}>
+        <div className={`${darkMode ? "dark" : "false"}`}>
             <Component
                 darkMode={darkMode}
                 toggleDarkMode={() => setDarkMode(!darkMode)}
