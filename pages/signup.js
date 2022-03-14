@@ -9,13 +9,15 @@ export default function SignUp(props) {
     return (
         <div className="h-screen">
             <LoggedOutNav />
-            <div className=
-                        "h-full bg-[url('../public/assets/auth/auth-background.svg')] bg-cover lg:bg-none">
+            <div className="h-full 
+                            bg-[url('../public/assets/auth/auth-background.svg')] bg-cover
+                            xl:bg-none xl:w-1/2">
                 <h1 className="heading text-center mb-10">SIGN UP</h1>
                 <form endpoint={endpoint} method={method} className="mx-4">
-                    <div>
+                    <div className="w-full
+                                    xl:grid xl:grid-cols-2 xl:gap-8 xl:mb-12">
                         <section>
-                            <div>
+                            <div className="mb-8">
                                 <label className="form-label" htmlFor="firstName">
                                     First name
                                 </label>
@@ -45,7 +47,7 @@ export default function SignUp(props) {
                             </div>
                         </section>
                         <section>
-                            <div>
+                            <div className="mb-8">
                                 <label className="form-label" htmlFor="email">
                                     Email Address
                                 </label>
@@ -75,10 +77,11 @@ export default function SignUp(props) {
                                 />
                             </div>
                         </section>
-                        <button className="button-small button-deep-sky-blue w-full mt-12">
-                            Sign up
-                        </button>
                     </div>
+                    <button className="button-small button-deep-sky-blue w-full mt-12 
+                                        xl:w-64 xl:m-auto">
+                        Sign up
+                    </button>
                 </form>
             </div>
         </div>
