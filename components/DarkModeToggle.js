@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-export default function DarkModeToggle({ darkMode, toggleDarkMode }) {
+export default function DarkModeToggle({ darkMode, toggleDarkMode, isLogin }) {
     if (darkMode) {
         return (
             <svg
                 className="cursor-pointer inline fill-deep-sky-blue mx-2"
                 onClick={toggleDarkMode}
-                width="45"
-                height="43"
+                width={isLogin? "34": "45"}
+                height={isLogin? "31": "43"}
                 viewBox="0 0 45 43"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +24,8 @@ export default function DarkModeToggle({ darkMode, toggleDarkMode }) {
         <svg
             className="cursor-pointer inline fill-deep-sky-blue mx-2"
             onClick={toggleDarkMode}
-            width="32"
-            height="41"
+            width={isLogin? "25": "32"}
+            height={isLogin? "35": "41"}
             viewBox="0 0 32 41"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
