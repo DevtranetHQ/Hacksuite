@@ -1,27 +1,45 @@
-import LoggedOutNav from "../components/navbars/LoggedOutNav";
+// TODO: Add name attribute to checkbox for "Notify me of upcoming events"
+import Image from "next/image";
+import Link from "next/link";
+import DarkModeToggle from "../components/DarkModeToggle";
+import Logo from "../components/Logo";
+import authImage from "../public/assets/auth/auth-background.svg";
 
 const API = "http://localhost:4000";
 
-export default function SignUp(props) {
+export default function Signup({ darkMode, toggleDarkMode }) {
     const endpoint = "auth/register";
     const method = "POST";
 
     return (
-        <div className="h-screen">
-            <LoggedOutNav />
-            <div className="h-full 
-                            bg-[url('../public/assets/auth/auth-background.svg')] bg-cover
-                            xl:bg-none xl:w-1/2">
-                <h1 className="heading text-center mb-10">SIGN UP</h1>
-                <form endpoint={endpoint} method={method} className="mx-4">
-                    <div className="w-full
-                                    xl:grid xl:grid-cols-2 xl:gap-8 xl:mb-12">
-                        <section>
-                            <div className="mb-8">
-                                <label className="form-label" htmlFor="firstName">
+        <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
+            <div className="flex items-center justify-between px-12 py-5">
+                <Logo darkMode={darkMode} />
+                <DarkModeToggle
+                    className="w-[34px] h-[31px]"
+                    darkClassName="w-[25px] h-[35px]"
+                    darkMode={darkMode}
+                    toggleDarkMode={toggleDarkMode}
+                />
+            </div>
+            <div className="flex grow shrink basis-[auto] grid grid-cols-5 h-max">
+                <div className="col-span-2 flex items-end relative">
+                    <Image src={authImage} />
+                </div>
+                <div className="col-span-3 md:p-7">
+                    <h1 className="text-30px font-black mb-3 text-center uppercase TODO">
+                        Sign Up
+                    </h1>
+                    <form endpoint={endpoint} method={method}>
+                        <div className="md:grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    className="form-label"
+                                    htmlFor="firstName">
                                     First name
                                 </label>
                                 <input
+                                    autoComplete="off"
                                     className="form-input"
                                     name="lastName"
                                     id="firstName"
@@ -32,10 +50,13 @@ export default function SignUp(props) {
                                 />
                             </div>
                             <div>
-                                <label className="form-label" htmlFor="lastName">
+                                <label
+                                    className="form-label"
+                                    htmlFor="lastName">
                                     Last name
                                 </label>
                                 <input
+                                    autoComplete="off"
                                     className="form-input"
                                     name="lastName"
                                     id="lastName"
@@ -45,13 +66,14 @@ export default function SignUp(props) {
                                     required
                                 />
                             </div>
-                        </section>
-                        <section>
-                            <div className="mb-8">
+                        </div>
+                        <div className="md:grid md:grid-cols-2 gap-4">
+                            <div>
                                 <label className="form-label" htmlFor="email">
                                     Email Address
                                 </label>
                                 <input
+                                    autoComplete="off"
                                     className="form-input"
                                     name="email"
                                     id="email"
@@ -62,7 +84,9 @@ export default function SignUp(props) {
                                 />
                             </div>
                             <div>
-                                <label className="form-label" htmlFor="password">
+                                <label
+                                    className="form-label"
+                                    htmlFor="password">
                                     Password
                                 </label>
                                 <input
@@ -76,14 +100,33 @@ export default function SignUp(props) {
                                     required
                                 />
                             </div>
-                        </section>
-                    </div>
-                    <button className="button-small button-deep-sky-blue w-full mt-12 
-                                        xl:w-64 xl:m-auto">
-                        Sign up
-                    </button>
-                </form>
+                        </div>
+                        <div className="flex justify-between caption my-5 -mx-10">
+                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                            <div className="dark:text-white">
+                                <div class="form-checkbox">
+                                    <input id="checkbox" type="checkbox" />
+                                    <label>
+                                        Notify me about upcoming events
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                        </div>
+                        <button className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto">
+                            Sign up
+                        </button>
+                    </form>
+                </div>
             </div>
+            <footer className="block bg-deep-sky-blue py-2 lead text-white w-full">
+                <div className="flex items-center justify-center">
+                    Already a member?&nbsp;
+                    <Link href="/login">
+                        <a className="underline text-white">Log in</a>
+                    </Link>
+                </div>
+            </footer>
         </div>
     );
 }

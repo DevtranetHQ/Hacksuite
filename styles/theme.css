@@ -290,7 +290,7 @@
     }
 
     .form-input {
-        @apply text-18px bg-white border-[#c9c9c9] border-2 block w-full px-3 py-2 mt-1 mb-4 rounded;
+        @apply dark:text-black text-18px bg-white border-[#c9c9c9] border-2 block w-full px-3 py-2 mt-1 mb-4 rounded;
         outline: none !important;
     }
 
