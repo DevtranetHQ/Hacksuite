@@ -5,19 +5,27 @@ import Link from "next/link";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
+import LoadingButton from "../components/LoadingButton";
+import {useState} from "react"
 import {axios} from '../config/config';
 
+
 //TODO: display message when user already exists and handle errors
-//TODO: loading icon for after the request is sent
 //TODO: redirect to another page after the request returns suuccessfully
 
 export default function Signup({ darkMode, toggleDarkMode }) {
-    const endpoint = "/auth/register";
+    //states
+    const [isLoading, setIsLoading] = useState(false);
+    
+    //constant values for the request
     const method = "POST";
-
+ 
     async function handleSubmission(e){
         e.preventDefault();
 
+        setIsLoading(true)
+
+        const endpoint = "/auth/register";
         const firstName = e.target.firstName.value;
         const lastName = e.target.lastName.value;
         const password = e.target.password.value;
@@ -142,9 +150,9 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                             </div>
                             <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                         </div>
-                        <button className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto">
+                        <LoadingButton className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto" isLoading={isLoading}>
                             Sign up
-                        </button>
+                        </LoadingButton>
                     </form>
                 </div>
             </div>
