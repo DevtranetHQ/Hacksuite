@@ -2,12 +2,12 @@
 // TODO: Add reCAPTCHA
 import Image from "next/image";
 import Link from "next/link";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import Logo from "../../components/Logo";
+import DarkModeToggle from "../DarkModeToggle";
+import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
-import LoadingButton from "../../components/LoadingButton";
+import LoadingButton from "../LoadingButton";
 
-export default function({handleSubmission, isLoading, darkMode, toggleDarkMode, method}){
+export default function SignupPage({handleSubmission, isLoading, darkMode, toggleDarkMode, method}){
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">

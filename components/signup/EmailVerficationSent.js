@@ -2,7 +2,7 @@
 import sentEmailImage from "../../public/assets/auth/verification.png"
 import Image from "next/image";
 
-export default function(props){
+export default function EmailVerificationSent(props){
     return (
         <div classNanme="w-fit">
             <Image src={sentEmailImage}/>
