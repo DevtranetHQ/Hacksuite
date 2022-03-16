@@ -1,4 +1,5 @@
 // TODO: Add name attribute to checkbox for "Notify me of upcoming events"
+// TODO: Add reCAPTCHA
 import Image from "next/image";
 import Link from "next/link";
 import DarkModeToggle from "../components/DarkModeToggle";
@@ -22,14 +23,12 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                     toggleDarkMode={toggleDarkMode}
                 />
             </div>
-            <div className="flex grow shrink basis-[auto] grid grid-cols-5 h-max">
+            <div className="flex grow shrink basis-[auto] grid grid-cols-5">
                 <div className="col-span-2 flex items-end relative">
                     <Image src={authImage} />
                 </div>
                 <div className="col-span-3 md:p-7">
-                    <h1 className="text-30px font-black mb-3 text-center uppercase TODO">
-                        Sign Up
-                    </h1>
+                    <h1 className="eyebrow text-black text-center">Sign Up</h1>
                     <form endpoint={endpoint} method={method}>
                         <div className="md:grid md:grid-cols-2 gap-4">
                             <div>
@@ -104,7 +103,7 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                         <div className="flex justify-between caption my-5 -mx-10">
                             <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                             <div className="dark:text-white">
-                                <div class="form-checkbox">
+                                <div className="form-checkbox">
                                     <input id="checkbox" type="checkbox" />
                                     <label>
                                         Notify me about upcoming events
