@@ -5,12 +5,42 @@ import Link from "next/link";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
+import {axios} from '../config/config';
 
-const API = "http://localhost:4000";
+//TODO: display message when user already exists and handle errors
+//TODO: loading icon for after the request is sent
+//TODO: redirect to another page after the request returns suuccessfully
 
 export default function Signup({ darkMode, toggleDarkMode }) {
-    const endpoint = "auth/register";
+    const endpoint = "/auth/register";
     const method = "POST";
+
+    async function handleSubmission(e){
+        e.preventDefault();
+
+        const firstName = e.target.firstName.value;
+        const lastName = e.target.lastName.value;
+        const password = e.target.password.value;
+        const email = e.target.email.value;
+
+        try{
+            const response = await axios({
+                url: endpoint,
+                method: method,
+                data: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    password: password,
+                    email: email
+                }
+            })
+            console.log(response.data);
+        }
+        catch(e){
+            console.log("something went wrong");
+            console.log(e.message);
+        }
+    }
 
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
@@ -28,8 +58,8 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                     <Image src={authImage} />
                 </div>
                 <div className="col-span-3 md:p-7">
-                    <h1 className="eyebrow text-black text-center">Sign Up</h1>
-                    <form endpoint={endpoint} method={method}>
+                    <h1 className="eyebrow text-center">Sign Up</h1>
+                    <form onSubmit={handleSubmission} method={method}>
                         <div className="md:grid md:grid-cols-2 gap-4">
                             <div>
                                 <label
@@ -40,7 +70,7 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                                 <input
                                     autoComplete="off"
                                     className="form-input"
-                                    name="lastName"
+                                    name="firstName"
                                     id="firstName"
                                     type="text"
                                     maxLength="50"
