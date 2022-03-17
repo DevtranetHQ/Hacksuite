@@ -1,10 +1,15 @@
 import Image from "next/image";
 
-export default function Avatar({ image }) {
+export default function Avatar({ className, border, image }) {
     return (
-        <div className="relative mb-2 w-[158px] h-[158px]">
+        <div
+            className={`${
+                className ? className : "relative mb-2 w-[158px] h-[158px]"
+            }`}>
             <Image
-                className="!border-solid !border-[5px] !border-orange-peel rounded-full"
+                className={`!border-solid ${
+                    border ? border : "!border-[5px]"
+                } !border-orange-peel rounded-full`}
                 layout="fill"
                 objectFit="cover"
                 src={image}

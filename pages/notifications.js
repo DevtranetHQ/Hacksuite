@@ -4,14 +4,14 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import DashNav from "../components/dash/DashNav";
 import Notification from "../components/dash/Notification";
 
-export default function Notifications() {
+export default function Notifications({ notifications }) {
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2">
                 <DashNav />
             </div>
             <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
-                <div className="border-b-2 flex items-center justify-center pb-10">
+                <header className="border-b-2 flex items-center justify-center pb-10">
                     <h1 className="ml-auto title">Notifications</h1>
                     <div className="ml-auto">
                         <DarkModeToggle />
@@ -27,41 +27,12 @@ export default function Notifications() {
                             </svg>
                         </Link>
                     </div>
-                </div>
-                <div>
-                    <Notification
-                        unread={true}
-                        type="Workshop"
-                        title="Introduction to Robotics and Artificial Intelligence"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                        who="Elon Musk"
-                        time="1:00 PM at March 14, 2022"
-                    />
-                    <Notification
-                        unread={true}
-                        type="Announcement"
-                        title="The next edition of Codetivate Hackathon in two months"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                        who="Ibrahim Salami"
-                        time="12:00 PM at March 10, 2022"
-                    />
-                    <Notification
-                        unread={false}
-                        type="Event"
-                        title="AMA with Bill Gates, Founder of Microsoft"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                        who="Bill Gates"
-                        time="11:00 AM at December 14, 2021"
-                    />
-                    <Notification
-                        unread={false}
-                        type="Feature update"
-                        title="Web-based chat app integration with The Dynamics account"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                        who="Engineering Team"
-                        time="1:00 PM at January 19, 2021"
-                    />
-                </div>
+                </header>
+                <section>
+                    {notifications.map((notification, key) => (
+                        <Notification key={key} {...notification} />
+                    ))}
+                </section>
             </div>
         </div>
     );
@@ -69,7 +40,50 @@ export default function Notifications() {
 
 export async function getServerSideProps(context) {
     // TODO: Alter to get notifications
+    // NOTE: Check /components/dash/Notification.js for types of events
     return {
-        props: {}
+        props: {
+            notifications: [
+                {
+                    unread: true,
+                    type: "Workshop",
+                    title:
+                        "Introduction to Robotics and Artificial Intelligence",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    who: "Elon Musk",
+                    time: "1:00 PM at March 14, 2022"
+                },
+                {
+                    unread: true,
+                    type: "Announcement",
+                    title:
+                        "The next edition of Codetivate Hackathon in two months",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    who: "Ibrahim Salami",
+                    time: "12:00 PM at March 10, 2022"
+                },
+                {
+                    unread: false,
+                    type: "Event",
+                    title: "AMA with Bill Gates, Founder of Microsoft",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    who: "Bill Gates",
+                    time: "11:00 AM at December 14, 2021"
+                },
+                {
+                    unread: false,
+                    type: "Feature update",
+                    title:
+                        "Web-based chat app integration with The Dynamics account",
+                    description:
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    who: "Engineering Team",
+                    time: "1:00 PM at January 19, 2021"
+                }
+            ]
+        }
     };
 }
