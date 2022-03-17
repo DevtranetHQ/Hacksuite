@@ -192,20 +192,20 @@
     .button-big,
     .outline-button-big,
     .cta-button-big {
-        @apply text-30px md:text-36px;
+        @apply text-30px md:text-36px h-[58px] md:h-[64px];
     }
 
     .button-medium,
     .outline-button-medium,
     .cta-button-medium,
     form button {
-        @apply text-24px;
+        @apply text-24px h-[44px];
     }
 
     .button-small,
     .outline-button-small,
     .cta-button-small {
-        @apply text-18px;
+        @apply text-18px h-[42px];
     }
 
     /*
