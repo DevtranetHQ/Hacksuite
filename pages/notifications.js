@@ -4,20 +4,17 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import DashNav from "../components/dash/DashNav";
 import Notification from "../components/dash/Notification";
 
-export default function Notifications({ darkMode, toggleDarkMode }) {
+export default function Notifications() {
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2">
-                <DashNav darkMode={darkMode} />
+                <DashNav />
             </div>
             <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
                 <div className="border-b-2 flex items-center justify-center pb-10">
                     <h1 className="ml-auto title">Notifications</h1>
                     <div className="ml-auto">
-                        <DarkModeToggle
-                            darkMode={darkMode}
-                            toggleDarkMode={toggleDarkMode}
-                        />
+                        <DarkModeToggle />
                         <Link href="/notifications">
                             <svg
                                 className="cursor-pointer inline fill-deep-sky-blue mx-2"

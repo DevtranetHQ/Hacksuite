@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
+import DarkModeContext from "./DarkModeContext";
 
-export default function DarkModeToggle({
-    className,
-    darkClassName,
-    darkMode,
-    toggleDarkMode
-}) {
+export default function DarkModeToggle({ className, darkClassName }) {
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
     if (darkMode) {
         return (
             <svg

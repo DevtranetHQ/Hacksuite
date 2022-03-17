@@ -6,16 +6,14 @@ import Logo from "../components/Logo";
 import TelInput from "../components/form/TelInput";
 import authImage from "../public/assets/auth/auth-background.svg";
 
-export default function Complete({ darkMode, toggleDarkMode }) {
+export default function Complete() {
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">
-                <Logo darkMode={darkMode} />
+                <Logo />
                 <DarkModeToggle
                     className="w-[34px] h-[31px]"
                     darkClassName="w-[25px] h-[35px]"
-                    darkMode={darkMode}
-                    toggleDarkMode={toggleDarkMode}
                 />
             </div>
             <div className="flex grow shrink basis-[auto] justify-center">

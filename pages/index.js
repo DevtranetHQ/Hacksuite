@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import DashNav from "../components/dash/DashNav";
+import DarkModeContext from "../components/DarkModeContext";
 import DarkModeToggle from "../components/DarkModeToggle";
 import placeholder from "../public/assets/dash/placeholder.png";
 import robotLight from "../public/assets/dash/robotLight.svg";
 import robotDark from "../public/assets/dash/robotDark.svg";
 
-export default function Dash({ darkMode, toggleDarkMode, name }) {
+export default function Dash({ name }) {
+    const { darkMode } = useContext(DarkModeContext);
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2">
-                <DashNav active="/" darkMode={darkMode} />
+                <DashNav active="/" />
             </div>
             <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
                 <div className="text-right">
-                    <DarkModeToggle
-                        darkMode={darkMode}
-                        toggleDarkMode={toggleDarkMode}
-                    />
+                    <DarkModeToggle />
                     <Link href="/notifications">
                         <svg
                             className="cursor-pointer inline fill-deep-sky-blue mx-2"

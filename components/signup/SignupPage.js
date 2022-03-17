@@ -7,16 +7,14 @@ import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
 import LoadingButton from "../LoadingButton";
 
-export default function SignupPage({handleSubmission, isLoading, darkMode, toggleDarkMode, method}){
+export default function SignupPage({ handleSubmission, isLoading, method }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">
-                <Logo darkMode={darkMode} />
+                <Logo />
                 <DarkModeToggle
                     className="w-[34px] h-[31px]"
                     darkClassName="w-[25px] h-[35px]"
-                    darkMode={darkMode}
-                    toggleDarkMode={toggleDarkMode}
                 />
             </div>
             <div className="flex grow shrink basis-[auto] grid grid-cols-5">
@@ -108,7 +106,9 @@ export default function SignupPage({handleSubmission, isLoading, darkMode, toggl
                             </div>
                             <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                         </div>
-                        <LoadingButton className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto" isLoading={isLoading}>
+                        <LoadingButton
+                            className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto"
+                            isLoading={isLoading}>
                             Sign up
                         </LoadingButton>
                     </form>

@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import styles from "./DashNav.module.css";
+import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
 
-export default function DashNav({ active, darkMode }) {
+export default function DashNav({ active }) {
+    const { darkMode } = useContext(DarkModeContext);
     return (
         <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
             <Logo className="mx-auto pt-10 w-[120px]" darkMode={darkMode} />

@@ -7,7 +7,7 @@ import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
 
-export default function Login({ darkMode, toggleDarkMode }) {
+export default function Login() {
     const [revealPassword, setRevealPassword] = useState(false);
 
     const toggleReveal = () => {
@@ -18,13 +18,11 @@ export default function Login({ darkMode, toggleDarkMode }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white relative">
             <div className="flex items-center justify-between pl-8 pr-12">
-                <Logo darkMode={darkMode} className="w-[120px] pt-5" />
+                <Logo className="w-[120px] pt-5" />
                 <div className="pt-2">
                     <DarkModeToggle
                         className="w-[34px] h-[31px]"
                         darkClassName="w-[25px] h-[35px]"
-                        darkMode={darkMode}
-                        toggleDarkMode={toggleDarkMode}
                     />
                 </div>
             </div>

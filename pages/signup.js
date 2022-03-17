@@ -1,23 +1,21 @@
 //TODO: display message when user already exists and handle errors (pass states to signup?)
 import EmailVerficationSent from "../components/signup/EmailVerficationSent";
-import SignupPage from "../components/signup/signupPage";
-import {axios} from '../config/config';
-import {useState} from "react"
+import SignupPage from "../components/signup/SignupPage";
+import { axios } from "../config/config";
+import { useState } from "react";
 
-
-
-export default function Signup({ darkMode, toggleDarkMode }) {
+export default function Signup() {
     //states
     const [isLoading, setIsLoading] = useState(false);
     const [sentEmail, setSentEmail] = useState(false);
 
     //constant values for the request
     const method = "POST";
- 
-    async function handleSubmission(e){
+
+    async function handleSubmission(e) {
         e.preventDefault();
 
-        setIsLoading(true)
+        setIsLoading(true);
 
         const endpoint = "/auth/register";
         const firstName = e.target.firstName.value;
@@ -25,7 +23,7 @@ export default function Signup({ darkMode, toggleDarkMode }) {
         const password = e.target.password.value;
         const email = e.target.email.value;
 
-        try{
+        try {
             const response = await axios({
                 url: endpoint,
                 method: method,
@@ -35,17 +33,25 @@ export default function Signup({ darkMode, toggleDarkMode }) {
                     password: password,
                     email: email
                 }
-            })
+            });
             console.log(response.data);
             setSentEmail(true);
             setIsLoading(false);
-        }
-        catch(e){
+        } catch (e) {
             console.log("something went wrong");
             console.log(e.message);
         }
     }
 
-    if(!sentEmail){return <SignupPage handleSubmission={handleSubmission} isLoading={isLoading} darkMode={darkMode} toggleDarkMode={toggleDarkMode} method={method}/>}
-    else {return (<EmailVerficationSent/>)}
+    if (!sentEmail) {
+        return (
+            <SignupPage
+                handleSubmission={handleSubmission}
+                isLoading={isLoading}
+                method={method}
+            />
+        );
+    } else {
+        return <EmailVerficationSent />;
+    }
 }

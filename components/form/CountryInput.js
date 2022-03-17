@@ -1,6 +1,6 @@
-export default function CountryInput() {
+export default function CountryInput({ onChange }) {
     return (
-        <select className="form-select" id="country">
+        <select className="form-select" id="country" onChange={onChange}>
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>
             <option value="Algeria">Algeria</option>
