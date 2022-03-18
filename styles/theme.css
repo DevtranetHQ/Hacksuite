@@ -140,6 +140,12 @@
         @apply bg-link;
     }
 
+    .button-big.button-heading,
+    .button-medium.button-heading,
+    .button-small.button-heading {
+        @apply bg-heading;
+    }
+
     .outline-button-big,
     .outline-button-medium,
     .outline-button-small {
@@ -168,6 +174,12 @@
         .outline-button-medium.button-link
         .outline-button-small.button-link {
         @apply border-link text-link;
+    }
+
+    .outline-button-big.button-heading,
+    .outline-button-medium.button-heading,
+    .outline-button-small.button-heading {
+        @apply border-heading text-heading;
     }
 
     .cta-button-big,

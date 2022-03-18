@@ -2,8 +2,9 @@ import Link from "next/link";
 import { useState } from "react";
 import DashNav from "../components/dash/DashNav";
 import DarkModeToggle from "../components/DarkModeToggle";
+import ProjectCard from "../components/project/ProjectCard";
 
-export default function PersonalProjects({ name }) {
+export default function PersonalProjects({ name, projects }) {
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2">
@@ -37,6 +38,9 @@ export default function PersonalProjects({ name }) {
                     <button className="button-small button-orange-peel ml-auto">
                         Add new
                     </button>
+                    {projects.map((project, key) => (
+                        <ProjectCard key={key} {...project} />
+                    ))}
                 </section>
             </div>
         </div>
@@ -54,8 +58,8 @@ export async function getServerSideProps(context) {
                     description:
                         "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
                     image:
-                        "https://s3-alpha-sig.figma.com/img/4b43/2034/088ffd519dbd6fbc1ff2b2dd85131fd3?Expires=1648425600&Signature=XODy7DnFDhubGjAjTs3UCGIBblCDNnjhygPLf3uIKnE~K8aCArScubdCNbyCr9SH81HEYTo66E58V6-bjqhetPXCKxnVlaNL~yjgKLxPOO4uWKxc0wf5f6q7EbM40ShRH8egwNVyyr~htvSadFIt-9wQlsrqhsNwApTjKq9P5tNJx7w2HEtHzXIulzvg1R9BkwnOiRJDyMGzYBIe0eYW4xTjclvw1c6D0FGJP4Tv0oT5PlzeF-1gJh4KTi0M6EQxw92jfO-THopNYL1VSYfbUF2ncDAaWd7ZA2pWWDEct8vhrpriADLEtgCD~WXSljG8hyypfvZ26o1oMc0owZHdEQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                    published: false,
+                        "https://s3-alpha-sig.figma.com/img/ed76/0bd2/dc09e6a239152f3692e81f49e87d94ed?Expires=1648425600&Signature=SH5jfL4wpxDK9owW63TVmcEX50ridBg7eLXkDa3RhBiCnTR~2WNrtBk-msr4RNRoYYRS~YfdposbXQqU2mLbWTCPk1plAnY~NIGg5moaKvRmYS4dKsHLvWmw~yE6R948kU4fRb8jhHgyIImyeTcoTL3UUZAv~ndSe31W4mvwqM~ov6NodRIFLDB02PEGoMdpERHVv-iXJ4dOS~k3DW06B0VDzNDhPfG543D0fzBcub7DGou7ocYkBOpC-Majx6amUPGcV5oyc5JVFEZCqH226y2dfm-J-7izNcd0vhQLp8ByDmP0FLjmotz7jLcCeyW-ZcIrufurzmSJRHEBmNhWvQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+                    published: true,
                     date: "11:00 am, Today",
                     id: "123"
                 },
@@ -64,8 +68,8 @@ export async function getServerSideProps(context) {
                     description:
                         "The world’s largest diversity-focused hackhon web application built for this fall 2022",
                     image:
-                        "https://s3-alpha-sig.figma.com/img/d5cd/5303/2cfc66bf4ed9c71318278d2bbcd726f4?Expires=1648425600&Signature=ebU9EXir-LL-popFV~g0vc7e2JXCbTSCnnppiBpSdIOQsEr58yGcD8s0ZKPfTZpkhIsPuNeWf2oe7wOBTDV5tYev6SsY1SkvVjJprO76p-vHw4jw~TMxAD7X1AflPSGhPMmwBpHqmHGUTmovPl7QgjejNpOWzKSlDBtlGzsX7Z2IzDO98hyIoGqq-x564cl9MnZsDA6otCcBJ2UwddLErsFkDQFpU1JdEaFQ29MIs-WFRwEJLjdqEiQMYxtUnrmfG9yvkBodae1yJZlTpF4wU0SIBOwQLr11iGEqkqPg8S9r20EcD4MAu2VwBP~IfaJHXuBifUuvMhcJAGNfMSXdVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                    published: false,
+                        "https://s3-alpha-sig.figma.com/img/78d4/efac/c44a334a75277618bda0bcfd3c0ea43f?Expires=1648425600&Signature=NGSq08i8rz6k5PmaI9uOm0CC3vr3IZ0te7X5mhawjdGTQl31rxHGmZxf~hupMD7MdPgRhR90F5efysOVBSCDuhxho0dq5aOmqvpSc89LB3yqgK1pBwBiUVpdEWnXBIL2cOLjDR34skpohhkXk~0qyagq~fOAxkG0bn~VJBu3EpNEbuQyVamfZHGpHqzcgAIz7wa1CFMpx1yim7cZRpEavFQRZqMbBD68LI1PFOnCU9dUygOMNlNnN4ekTQBUjr17fkh3tHKSIhNbXYa0e~dV-pRfAbKIIGBLRpdQHePTX9vUrGKaSxLqDfekYUI~~SXDHy9GMMI6xR-iDnY0Olft3g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+                    published: true,
                     date: "February 28, 2022",
                     id: "456"
                 },
@@ -74,7 +78,7 @@ export async function getServerSideProps(context) {
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
                     image:
-                        "https://s3-alpha-sig.figma.com/img/ad1d/7340/a52269411e7ca1737a4c593411722416?Expires=1648425600&Signature=Kw9kRFXH2B5MOD3HrJyiFA58FqWGRJSeEQRq56Pz-WNvWyY1zzBfq6aHcDvQs4SqUyRp9SPA5VeBWJSYjfUcytVWLyq6euaXg8kgvU45BmtYh1YYudGVPpRk8L0nXbIl1UQdf5hM88QUJRgu1ZtmFOxRFzxjnnBOjPRUFXWrDAl2Yq7dUmd1PxqOZhjXZdrN3qZKtxsYwMvGWYiegx6NQenCtpgcGngLW64RekdMyIgmqkekKjisqEs2Kk7RI~AiVZInqOqL0GGBFLgfIV7UG2Dgt1~oR-b2wlgTD39AqwnZM5Za5IPwWk04ssX5AuHRNNrBHnDklGTmb9yOjwxNxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+                        "https://s3-alpha-sig.figma.com/img/351b/8a4f/c18dfbda233aa2436e53dcd3628893ee?Expires=1648425600&Signature=a6Z0G2v2~LL4qz-0CtyuBrCthVZcOfuSoAel6n7xhAn6vzEaL8NEEYUdifr8wmoIbelcyupc2s0c1qsT2Vt~PELGoIQGRpNYno17AvB7EMAR3yGgjjjw6ABr4kw8Un1c7YYi7FpoBIzNpBnQ4jZTikLqtsBm2OqWId5jEAzNas~yBBgTBWLUw0JVdx-IDGVjWzWXRACD2~~ei6jK~abVX58zGegK4EiDzAXl9GOpaSR9xtolt4ivjljmI-afMS2BogEX9nHOxBqaLYQ3MasXASN9yzEvNSoDbYIRuQlu5vhMQOt-GGLDrFWU1GBtxj7jFbI1WrFfUQiq73b4t54kyg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
                     published: false,
                     date: "January 1, 2022",
                     id: "789"
