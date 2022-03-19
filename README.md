@@ -3,6 +3,7 @@
 -   TODO: Replace SVG icons with either icons from "@iconfiy/react" or without library
 -   TODO: Update links when done
 -   TODO: Somehow store whether user is logged in or not
+-   TODO: If not dealing with dates locally before updated in database (i.e. date is not string in database), dates will have to be converted when retrieving from database
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

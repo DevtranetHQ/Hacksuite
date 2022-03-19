@@ -72,6 +72,19 @@
         max-width: none !important;
     }
 
+    .prose a {
+        @apply text-link;
+    }
+
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose h5,
+    .prose h6 {
+        @apply my-0 !important;
+    }
+
     /*
      * Typography
      */
@@ -108,7 +121,7 @@
     }
 
     .caption {
-        @apply text-18px text-body;
+        @apply text-18px text-body dark:text-white;
     }
 
     /*
