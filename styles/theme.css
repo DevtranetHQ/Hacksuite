@@ -36,18 +36,21 @@
 
     body,
     html {
-        @apply overflow-x-hidden;
+        @apply overflow-x-hidden scroll-smooth;
     }
 
-    p {
+    p,
+    ul {
         @apply text-[20px] md:text-[22px];
     }
 
-    p.sm {
+    p.sm,
+    ul.sm {
         @apply text-18px;
     }
 
-    p.xs {
+    p.xs,
+    ul.xs {
         @apply text-16px;
     }
 
@@ -76,12 +79,7 @@
         @apply text-link;
     }
 
-    .prose h1,
-    .prose h2,
-    .prose h3,
-    .prose h4,
-    .prose h5,
-    .prose h6 {
+    .prose p {
         @apply my-0 !important;
     }
 

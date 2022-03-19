@@ -145,7 +145,7 @@ export default function Event({ loggedIn, event }) {
                             <div className="text-center">
                                 <ReCAPTCHA
                                     className="inline-block mb-3"
-                                    sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                                    sitekey="6LexReUeAAAAABJtO1V9DownsApMHsmIoRBJGvRV"
                                     onChange={i => console.log(i)}
                                 />
                                 <button
@@ -192,7 +192,6 @@ export default function Event({ loggedIn, event }) {
 
 export async function getServerSideProps(context) {
     // TODO: Use id to get event info from database
-    // TODO: Don't use context.query.loggedIn
     const { id } = context.query;
     return {
         props: {
