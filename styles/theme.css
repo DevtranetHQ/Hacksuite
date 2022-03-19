@@ -68,6 +68,10 @@
 }
 
 @layer components {
+    .prose {
+        max-width: none !important;
+    }
+
     /*
      * Typography
      */

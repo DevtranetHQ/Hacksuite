@@ -3,9 +3,6 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import EventCard from "../components/event/EventCard";
 import Logo from "../components/Logo";
 
-// TODO: Use real avatars
-import avatarImage from "../public/assets/TEST/profile.jpg";
-
 export default function Events({ events }) {
     // TODO: Replace const with actual state (whether that be React context, getServerSideProps, etc.)
     const loggedIn = false;

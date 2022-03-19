@@ -2,6 +2,7 @@
 
 -   TODO: Replace SVG icons with either icons from "@iconfiy/react" or without library
 -   TODO: Update links when done
+-   TODO: Somehow store whether user is logged in or not
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

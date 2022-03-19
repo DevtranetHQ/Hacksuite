@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import DashNav from "../components/dash/DashNav";
 import DarkModeToggle from "../components/DarkModeToggle";
-import ProjectCard from "../components/project/ProjectCard";
+import PersonalProjectCard from "../components/project/PersonalProjectCard";
 
 export default function PersonalProjects({ name, projects }) {
     return (
@@ -39,7 +39,7 @@ export default function PersonalProjects({ name, projects }) {
                         Add new
                     </button>
                     {projects.map((project, key) => (
-                        <ProjectCard key={key} {...project} />
+                        <PersonalProjectCard key={key} {...project} />
                     ))}
                 </section>
             </div>

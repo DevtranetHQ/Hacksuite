@@ -56,5 +56,5 @@ module.exports = {
             small: "50%"
         }
     },
-    plugins: [require("autoprefixer")]
+    plugins: [require("@tailwindcss/typography"), require("autoprefixer")]
 };
