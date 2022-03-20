@@ -5,10 +5,10 @@ import Avatar from "../../components/Avatar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import ArrowIcon from "../../components/icons/Arrow";
-import CalendarIcon from "../../components/icons/CalendarIcon";
-import GithubIcon from "../../components/icons/GithubIcon";
+import CalendarIcon from "../../components/icons/Calendar";
+import GithubIcon from "../../components/icons/Github";
 
-export default function Profile({ id }) {
+export default function Profile({ loggedIn }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white min-h-screen">
             <nav className="flex items-center justify-between pl-8 pr-12">
@@ -33,4 +33,10 @@ export default function Profile({ id }) {
     );
 }
 
-export async function
+export async function getServerSideProps(context) {
+    return {
+        props: {
+            loggedIn: false
+        }
+    };
+}
