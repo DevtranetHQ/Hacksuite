@@ -1,21 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
 
-export default function DashNav({ active }) {
+export default function DashNav({ admin }) {
+    const router = useRouter();
+    const { pathname } = router;
     const { darkMode } = useContext(DarkModeContext);
     return (
         <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
             <Logo className="mx-auto pt-10 w-[120px]" darkMode={darkMode} />
-
             <div className={styles.nav}>
                 <Link href="/">
                     <div
                         className={
-                            active === "/"
+                            pathname === "/"
                                 ? styles.active
                                 : "cursor-pointer hover:text-orange-peel transition"
                         }>
@@ -33,10 +35,77 @@ export default function DashNav({ active }) {
                         <span>Home</span>
                     </div>
                 </Link>
+                {admin && (
+                    <>
+                        <Link href="/tickets">
+                            <div
+                                className={
+                                    pathname === "/tickets"
+                                        ? styles.active
+                                        : "cursor-pointer hover:text-orange-peel transition"
+                                }>
+                                <svg
+                                    width="35"
+                                    height="38"
+                                    viewBox="0 0 35 38"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22.75 3.8V17.1H5.5475L4.515 18.221L3.5 19.323V3.8H22.75ZM24.5 0H1.75C0.7875 0 0 0.855 0 1.9V28.5L7 20.9H24.5C25.4625 20.9 26.25 20.045 26.25 19V1.9C26.25 0.855 25.4625 0 24.5 0ZM33.25 7.6H29.75V24.7H7V28.5C7 29.545 7.7875 30.4 8.75 30.4H28L35 38V9.5C35 8.455 34.2125 7.6 33.25 7.6Z"
+                                        fill="#03A9F4"
+                                    />
+                                </svg>
+                                <span>Tickets</span>
+                            </div>
+                        </Link>
+                        <Link href="/members">
+                            <div
+                                className={
+                                    pathname === "/members"
+                                        ? styles.active
+                                        : "cursor-pointer hover:text-orange-peel transition"
+                                }>
+                                <svg
+                                    width="50"
+                                    height="50"
+                                    viewBox="0 0 42 34"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14.7 17C18.753 17 22.05 13.1871 22.05 8.5C22.05 3.81286 18.753 0 14.7 0C10.647 0 7.35 3.81286 7.35 8.5C7.35 13.1871 10.647 17 14.7 17ZM14.7 4.85714C16.443 4.85714 17.85 6.48429 17.85 8.5C17.85 10.5157 16.443 12.1429 14.7 12.1429C12.957 12.1429 11.55 10.5157 11.55 8.5C11.55 6.48429 12.957 4.85714 14.7 4.85714ZM14.805 29.1429H5.817C7.896 27.9286 11.487 26.7143 14.7 26.7143C14.931 26.7143 15.183 26.7386 15.414 26.7386C16.128 24.9657 17.367 23.5086 18.858 22.3429C17.325 22.0271 15.876 21.8571 14.7 21.8571C9.786 21.8571 0 24.6986 0 30.3571V34H14.7V30.3571C14.7 29.9443 14.742 29.5314 14.805 29.1429ZM30.45 23.0714C26.586 23.0714 18.9 25.5243 18.9 30.3571V34H42V30.3571C42 25.5243 34.314 23.0714 30.45 23.0714ZM32.991 18.6514C34.587 17.6071 35.7 15.64 35.7 13.3571C35.7 10.0057 33.348 7.28571 30.45 7.28571C27.552 7.28571 25.2 10.0057 25.2 13.3571C25.2 15.64 26.313 17.6071 27.909 18.6514C28.665 19.1371 29.526 19.4286 30.45 19.4286C31.374 19.4286 32.235 19.1371 32.991 18.6514Z"
+                                        fill="#03A9F4"
+                                    />
+                                </svg>
+                                <span>Members</span>
+                            </div>
+                        </Link>
+                        <Link href="/statistics">
+                            <div
+                                className={
+                                    pathname === "/statistics"
+                                        ? styles.active
+                                        : "cursor-pointer hover:text-orange-peel transition"
+                                }>
+                                <svg
+                                    width="40"
+                                    height="40"
+                                    viewBox="0 0 43 40"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0.308594 36.8388L16.2345 21.0116L24.7283 29.4415L39.7837 12.6449L42.7777 15.6164L24.7283 35.764L16.2345 27.334L3.49378 40L0.308594 36.8388ZM3.49378 27.3551L16.2345 14.6891L24.7283 23.1191L42.7777 2.97155L39.7837 0L24.7283 16.7966L16.2345 8.3667L0.308594 24.1939L3.49378 27.3551Z"
+                                        fill="#03A9F4"
+                                    />
+                                </svg>
+                                <span>Statistics</span>
+                            </div>
+                        </Link>
+                    </>
+                )}
                 <Link href="/personal-projects">
                     <div
                         className={
-                            active === "/personal-projects"
+                            pathname === "/personal-projects"
                                 ? styles.active
                                 : "cursor-pointer hover:text-orange-peel transition"
                         }>
@@ -57,7 +126,7 @@ export default function DashNav({ active }) {
                 <Link href="/events">
                     <div
                         className={
-                            active === "/events"
+                            pathname === "/events"
                                 ? styles.active
                                 : "cursor-pointer hover:text-orange-peel transition"
                         }>
@@ -75,31 +144,33 @@ export default function DashNav({ active }) {
                         <span>Events</span>
                     </div>
                 </Link>
-                <Link href="/discord">
-                    <div
-                        className={
-                            active === "/discord"
-                                ? styles.active
-                                : "cursor-pointer hover:text-orange-peel transition"
-                        }>
-                        <svg
-                            width="40"
-                            height="40"
-                            viewBox="0 0 41 46"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M40.0834 46L29.8022 36.2083L31.0359 40.125H5.81258C4.51413 40.125 3.26885 39.6092 2.3507 38.691C1.43256 37.7729 0.916748 36.5276 0.916748 35.2292V5.85416C0.916748 4.55571 1.43256 3.31043 2.3507 2.39228C3.26885 1.47414 4.51413 0.958328 5.81258 0.958328H35.1876C36.486 0.958328 37.7313 1.47414 38.6495 2.39228C39.5676 3.31043 40.0834 4.55571 40.0834 5.85416V46ZM20.5001 12.3167C15.2517 12.3167 11.5701 14.5687 11.5701 14.5687C13.5872 12.7671 17.1122 11.7292 17.1122 11.7292L16.7792 11.3962C13.4697 11.455 10.4734 13.7462 10.4734 13.7462C7.10508 20.7767 7.3205 26.8475 7.3205 26.8475C10.0622 30.3921 14.1355 30.1375 14.1355 30.1375L15.5259 28.375C13.078 27.8462 11.5309 25.6725 11.5309 25.6725C11.5309 25.6725 15.2126 28.1792 20.5001 28.1792C25.7876 28.1792 29.4692 25.6725 29.4692 25.6725C29.4692 25.6725 27.9222 27.8462 25.4742 28.375L26.8647 30.1375C26.8647 30.1375 30.938 30.3921 33.6797 26.8475C33.6797 26.8475 33.8951 20.7767 30.5268 13.7462C30.5268 13.7462 27.5305 11.455 24.2209 11.3962L23.888 11.7292C23.888 11.7292 27.413 12.7671 29.4301 14.5687C29.4301 14.5687 25.7484 12.3167 20.5001 12.3167ZM16.4463 19.7387C17.7192 19.7387 18.7572 20.855 18.7376 22.2258C18.7376 23.5771 17.7192 24.7129 16.4463 24.7129C15.193 24.7129 14.1747 23.5771 14.1747 22.2258C14.1747 20.855 15.1734 19.7387 16.4463 19.7387ZM24.6126 19.7387C25.8855 19.7387 26.9038 20.855 26.9038 22.2258C26.9038 23.5771 25.8855 24.7129 24.6126 24.7129C23.3592 24.7129 22.3409 23.5771 22.3409 22.2258C22.3409 20.855 23.3397 19.7387 24.6126 19.7387Z"
-                                fill="#03A9F4"
-                            />
-                        </svg>
-                        <span>Discord</span>
-                    </div>
-                </Link>
+                {!admin && (
+                    <Link href="/discord">
+                        <div
+                            className={
+                                pathname === "/discord"
+                                    ? styles.active
+                                    : "cursor-pointer hover:text-orange-peel transition"
+                            }>
+                            <svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 41 46"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M40.0834 46L29.8022 36.2083L31.0359 40.125H5.81258C4.51413 40.125 3.26885 39.6092 2.3507 38.691C1.43256 37.7729 0.916748 36.5276 0.916748 35.2292V5.85416C0.916748 4.55571 1.43256 3.31043 2.3507 2.39228C3.26885 1.47414 4.51413 0.958328 5.81258 0.958328H35.1876C36.486 0.958328 37.7313 1.47414 38.6495 2.39228C39.5676 3.31043 40.0834 4.55571 40.0834 5.85416V46ZM20.5001 12.3167C15.2517 12.3167 11.5701 14.5687 11.5701 14.5687C13.5872 12.7671 17.1122 11.7292 17.1122 11.7292L16.7792 11.3962C13.4697 11.455 10.4734 13.7462 10.4734 13.7462C7.10508 20.7767 7.3205 26.8475 7.3205 26.8475C10.0622 30.3921 14.1355 30.1375 14.1355 30.1375L15.5259 28.375C13.078 27.8462 11.5309 25.6725 11.5309 25.6725C11.5309 25.6725 15.2126 28.1792 20.5001 28.1792C25.7876 28.1792 29.4692 25.6725 29.4692 25.6725C29.4692 25.6725 27.9222 27.8462 25.4742 28.375L26.8647 30.1375C26.8647 30.1375 30.938 30.3921 33.6797 26.8475C33.6797 26.8475 33.8951 20.7767 30.5268 13.7462C30.5268 13.7462 27.5305 11.455 24.2209 11.3962L23.888 11.7292C23.888 11.7292 27.413 12.7671 29.4301 14.5687C29.4301 14.5687 25.7484 12.3167 20.5001 12.3167ZM16.4463 19.7387C17.7192 19.7387 18.7572 20.855 18.7376 22.2258C18.7376 23.5771 17.7192 24.7129 16.4463 24.7129C15.193 24.7129 14.1747 23.5771 14.1747 22.2258C14.1747 20.855 15.1734 19.7387 16.4463 19.7387ZM24.6126 19.7387C25.8855 19.7387 26.9038 20.855 26.9038 22.2258C26.9038 23.5771 25.8855 24.7129 24.6126 24.7129C23.3592 24.7129 22.3409 23.5771 22.3409 22.2258C22.3409 20.855 23.3397 19.7387 24.6126 19.7387Z"
+                                    fill="#03A9F4"
+                                />
+                            </svg>
+                            <span>Discord</span>
+                        </div>
+                    </Link>
+                )}
                 <Link href="/settings">
                     <div
                         className={
-                            active === "/settings"
+                            pathname === "/settings"
                                 ? styles.active
                                 : "cursor-pointer hover:text-orange-peel transition"
                         }>

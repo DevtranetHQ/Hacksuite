@@ -167,27 +167,27 @@
         @apply leading-tight flex items-center justify-center border-[3px] font-bold px-5 py-2 mr-2 mb-2 rounded-md transition-all;
     }
 
-    .outline-button-big.button-deep-sky-blue
-        .outline-button-medium.button-deep-sky-blue
-        .outline-button-small.button-deep-sky-blue {
+    .outline-button-big.button-deep-sky-blue,
+    .outline-button-medium.button-deep-sky-blue,
+    .outline-button-small.button-deep-sky-blue {
         @apply border-deep-sky-blue text-deep-sky-blue;
     }
 
-    .outline-button-big.button-fruit-salad
-        .outline-button-medium.button-fruit-salad
-        .outline-button-small.button-fruit-salad {
+    .outline-button-big.button-fruit-salad,
+    .outline-button-medium.button-fruit-salad,
+    .outline-button-small.button-fruit-salad {
         @apply border-fruit-salad text-fruit-salad;
     }
 
-    .outline-button-big.button-orange-peel
-        .outline-button-medium.button-orange-peel
-        .outline-button-small.button-orange-peel {
+    .outline-button-big.button-orange-peel,
+    .outline-button-medium.button-orange-peel,
+    .outline-button-small.button-orange-peel {
         @apply border-orange-peel text-orange-peel;
     }
 
-    .outline-button-big.button-link
-        .outline-button-medium.button-link
-        .outline-button-small.button-link {
+    .outline-button-big.button-link,
+    .outline-button-medium.button-link,
+    .outline-button-small.button-link {
         @apply border-link text-link;
     }
 

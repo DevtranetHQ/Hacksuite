@@ -9,12 +9,12 @@ import placeholder from "../public/assets/dash/placeholder.svg";
 import robotLight from "../public/assets/dash/robotLight.svg";
 import robotDark from "../public/assets/dash/robotDark.svg";
 
-export default function Dash({ name, unread }) {
+export default function Dash({ loggedIn, admin, name, unread }) {
     const { darkMode } = useContext(DarkModeContext);
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2">
-                <DashNav active="/" />
+                <DashNav admin={admin} />
             </div>
             <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
                 <div className="text-right">
@@ -45,9 +45,11 @@ export default function Dash({ name, unread }) {
 }
 
 export async function getServerSideProps(context) {
-    // TODO: Alter for login session
+    // TODO: Figure out better user schema for use across entire app (React contexts again from _app.js with localStorage?)
     return {
         props: {
+            loggedIn: true,
+            admin: true,
             name: "John",
             unread: true
         }

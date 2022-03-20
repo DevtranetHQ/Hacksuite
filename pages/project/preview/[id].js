@@ -5,13 +5,16 @@ import Avatar from "../../../components/Avatar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
 import Logo from "../../../components/Logo";
 import showdownConverter from "../../../components/showdownConverter";
+import AdobeIcon from "../../../components/icons/Adobe";
 import ArrowIcon from "../../../components/icons/Arrow";
 import CommentIcon from "../../../components/icons/Comment";
-import ExternalIcon from "../../../components/icons/External";
+import ShareIcon from "../../../components/icons/Share";
 import FacebookIcon from "../../../components/icons/Facebook";
+import FigmaIcon from "../../../components/icons/Figma";
 import FollowerIcon from "../../../components/icons/Follower";
 import GithubIcon from "../../../components/icons/Github";
 import HeartIcon from "../../../components/icons/Heart";
+import LinkIcon from "../../../components/icons/Link";
 import LinkedinIcon from "../../../components/icons/Linkedin";
 import TimeIcon from "../../../components/icons/Time";
 import TwitterIcon from "../../../components/icons/Twitter";
@@ -149,32 +152,67 @@ export default function Project({ loggedIn, project }) {
                             <h1 className="heading leading-loose">
                                 Check it out
                             </h1>
-                            {project.links.map((link, key) => {
-                                switch (link.type) {
-                                    case "github":
-                                        return (
-                                            <div
-                                                className="inline-flex gap-x-2 items-center"
-                                                key={key}>
-                                                <GithubIcon
-                                                    width={50}
-                                                    height={50}
-                                                />
-                                                <a
-                                                    className="subheadline underline"
-                                                    href={link.link}>
-                                                    on GitHub
-                                                </a>
-                                            </div>
-                                        );
-                                    case "figma":
-                                    // TODO
-                                    case "adobe":
-                                    // TODO
-                                    default:
-                                        return <p key={key}>In progress</p>;
-                                }
-                            })}
+                            <div className="flex flex-col gap-y-4">
+                                {project.links.map((link, key) => {
+                                    switch (link.type) {
+                                        case "github":
+                                            return (
+                                                <div
+                                                    className="inline-flex gap-x-2 items-center"
+                                                    key={key}>
+                                                    <GithubIcon
+                                                        width={50}
+                                                        height={50}
+                                                    />
+                                                    <a
+                                                        className="subheadline underline"
+                                                        href={link.link}>
+                                                        on GitHub
+                                                    </a>
+                                                </div>
+                                            );
+                                        case "figma":
+                                            return (
+                                                <div
+                                                    className="inline-flex gap-x-2 items-center"
+                                                    key={key}>
+                                                    <FigmaIcon />
+                                                    <a
+                                                        className="subheadline underline"
+                                                        href={link.link}>
+                                                        on Figma
+                                                    </a>
+                                                </div>
+                                            );
+                                        case "adobe":
+                                            return (
+                                                <div
+                                                    className="inline-flex gap-x-2 items-center"
+                                                    key={key}>
+                                                    <AdobeIcon />
+                                                    <a
+                                                        className="subheadline underline"
+                                                        href={link.link}>
+                                                        on AdobeXD
+                                                    </a>
+                                                </div>
+                                            );
+                                        default:
+                                            return (
+                                                <div
+                                                    className="inline-flex gap-x-2 items-center"
+                                                    key={key}>
+                                                    <LinkIcon />
+                                                    <a
+                                                        className="subheadline underline"
+                                                        href={link.link}>
+                                                        via link
+                                                    </a>
+                                                </div>
+                                            );
+                                    }
+                                })}
+                            </div>
                         </div>
                         <div>
                             <h1 className="heading leading-loose">Share it</h1>
@@ -189,10 +227,15 @@ export default function Project({ loggedIn, project }) {
                                     <LinkedinIcon />
                                 </a>
                                 <a onClick={() => console.log("pain")}>
-                                    <ExternalIcon fill="fill-black dark:fill-white" />
+                                    <ShareIcon fill="fill-black dark:fill-white" />
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <h1 className="heading leading-loose">Comments</h1>
+                    <div className="flex justify-betweeen">
+                        <div></div>
+                        <div></div>
                     </div>
                 </aside>
             </div>
