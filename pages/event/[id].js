@@ -13,7 +13,7 @@ import GithubIcon from "../../components/icons/Github";
 // NOTE: TESTING
 import { useRouter } from "next/router";
 
-export default function Event({ loggedIn, event }) {
+export default function Event({ loggedIn, recaptchaSitekey, event }) {
     const router = useRouter();
     loggedIn = router.query.ref === "dash" ? true : loggedIn;
 
@@ -145,7 +145,7 @@ export default function Event({ loggedIn, event }) {
                             <div className="text-center">
                                 <ReCAPTCHA
                                     className="inline-block mb-3"
-                                    sitekey="6LexReUeAAAAABJtO1V9DownsApMHsmIoRBJGvRV"
+                                    sitekey={recaptchaSitekey}
                                     onChange={i => console.log(i)}
                                 />
                                 <button
@@ -195,6 +195,7 @@ export async function getServerSideProps(context) {
     const { id } = context.query;
     return {
         props: {
+            recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
             loggedIn: false,
             event: {
                 name: "Hackathon on Elon Musk's private jet",

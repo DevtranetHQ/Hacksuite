@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             loggedIn: true,
-            admin: true,
+            admin: false,
             name: "John",
             unread: true
         }
