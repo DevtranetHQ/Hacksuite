@@ -8,15 +8,15 @@
 ```json
 // Not logged in
 {
-    loggedIn: false
+    "loggedIn": false
 }
 
 {
-    loggedIn: {
-        admin: true,
-        name: "<profile name>",
-        image: "<profile image>",
-        unread: true
+    "loggedIn": {
+        "admin": true,
+        "name": "<profile name>",
+        "image": "<profile image>",
+        "unread": true
     }
 }
 ```

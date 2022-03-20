@@ -3,7 +3,7 @@ import "intl-tel-input/build/js/utils.js";
 import "intl-tel-input/build/css/intlTelInput.css";
 import { useEffect } from "react";
 
-export default function TelInput({ onChange }) {
+export default function TelInput() {
     // TODO: Validate phone number
     let iti;
     useEffect(() => {
@@ -11,12 +11,6 @@ export default function TelInput({ onChange }) {
             customContainer: "!block"
         });
     }, []);
-
-    const passPhoneNumber = () => {
-        if (iti) {
-            onChange(iti.getNumber());
-        }
-    };
 
     return (
         <>
@@ -29,7 +23,7 @@ export default function TelInput({ onChange }) {
                 autoComplete="off"
                 className="form-input"
                 id="phoneNumber"
-                onChange={passPhoneNumber}
+                name="phoneNumber"
                 type="tel"
             />
         </>
