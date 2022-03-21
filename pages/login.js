@@ -28,7 +28,7 @@ export default function Login() {
             </div>
             <div className="flex flex-col">
                 <div className="flex">
-                    <div className="w-1/2 hidden xs:block p-0 lg:pl-4 xl:pl-20 2xl:pl-0 mx-auto 2xl:mx-0">
+                    <div className="w-1/2 -m-[1px] hidden xs:block p-0 lg:pl-4 xl:pl-20 2xl:pl-0 mx-auto 2xl:mx-0 pt-9">
                         <Image src={authImage} layout="responsive" alt="Dash" />
                     </div>
                     <div className="w-full xs:w-1/2 sm:w-2/5 lg:w-1/3 2xl:w-1/4 sm:mx-12 lg:mx-20 xl:ml-44 xl:mr-40 2xl:mx-auto 2xl:mt-20">
@@ -62,7 +62,7 @@ export default function Login() {
                                         </label>
                                         <a
                                             href="#"
-                                            className="text-gray-500 text-8px md:text-12px font-bold pt-2">
+                                            className="text-[#595959] dark:text-[#DDDDDD] text-8px md:text-12px font-bold pt-2">
                                             Forgot Password?
                                         </a>
                                     </div>
@@ -77,7 +77,7 @@ export default function Login() {
                                         required
                                     />
                                     <Icon
-                                        className="-mt-11 mr-4 float-right inline text-gray-500"
+                                        className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
                                         onClick={toggleReveal}
                                         width="1.3em"
                                         height="1.3em"
@@ -89,20 +89,20 @@ export default function Login() {
                                     />
                                 </div>
                                 <button
-                                    className="w-1/2 button-small button-deep-sky-blue mx-auto text-12px md:text-16px py-1 rounded-sm mt-8"
+                                    className="w-36 button-small button-deep-sky-blue mx-auto text-12px md:text-16px py-1 rounded mt-8 h-8"
                                     type="submit">
                                     Log in
                                 </button>
-                                <div className="flex justify-between caption -mx-10 lg:-mx-12 my-8">
-                                    <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                                    <div className="text-12px md:text-18px">
+                                <div className="flex justify-between -mx-10 lg:-mx-12 my-8">
+                                    <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
+                                    <div className="text-[#595959] dark:text-[#FFFFFF] text-12px md:text-18px">
                                         Or log in with
                                     </div>
-                                    <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                                    <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                                 </div>
                                 <a
                                     href="#"
-                                    className="button-small button-deep-sky-blue rounded-sm mx-auto text-12px lg:text-16px pl-8 sm:pr-0 lg:pr-auto">
+                                    className="button-small button-deep-sky-blue rounded-md mx-auto text-12px lg:text-16px pl-8 sm:pr-0 lg:pr-auto">
                                     The Dynamics Discord
                                     <Image src={discordImage} height={24} />
                                 </a>
