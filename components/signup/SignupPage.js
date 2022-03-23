@@ -137,7 +137,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                         <ReCAPTCHA
                             className="w-fit mx-auto"
                             sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
-                            size="normal"
+                            size="compact"
                             theme={darkMode? "dark": "light"}
                         />
                         <LoadingButton
