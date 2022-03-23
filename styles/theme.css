@@ -336,7 +336,7 @@
 
     .form-checkbox,
     .form-radio {
-        @apply cursor-pointer flex gap-1 md:gap-2 items-center text-18px leading-[18px];
+        @apply cursor-pointer flex gap-1 md:gap-2 items-center text-16px leading-[18px];
     }
 
     .form-checkbox label {
@@ -344,7 +344,7 @@
     }
 
     .form-checkbox input[type="checkbox"] {
-        @apply dark:bg-white appearance-none h-[20px] w-[20px] border-2 border-[#1a1a1a] rounded-sm bg-transparent checked:bg-deep-sky-blue checked:dark:bg-deep-sky-blue checked:border-deep-sky-blue focus:outline-none bg-no-repeat bg-center bg-contain float-left cursor-pointer;
+        @apply dark:bg-white appearance-none h-[20px] w-[20px] border-2 border-[#1a1a1a] rounded-sm bg-[#E8E8E8] checked:bg-deep-sky-blue checked:dark:bg-deep-sky-blue checked:border-deep-sky-blue focus:outline-none bg-no-repeat bg-center bg-contain float-left cursor-pointer;
     }
 
     .form-checkbox input[type="checkbox"]:checked {

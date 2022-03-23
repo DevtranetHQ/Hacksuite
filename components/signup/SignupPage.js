@@ -2,7 +2,7 @@
 // TODO: Add reCAPTCHA
 import Image from "next/image";
 import Link from "next/link";
-import ReCAPTCHA from 'react-google-recaptcha';
+import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import DarkModeToggle from "../DarkModeToggle";
@@ -24,7 +24,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between pl-8 pr-12">
-                <Logo className="w-[120px] pt-5"/>
+                <Logo className="w-[120px] pt-5" />
                 <div className="pt-2">
                     <DarkModeToggle
                         className="w-[34px] h-[31px]"
@@ -37,12 +37,14 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
                 <div className="col-span-full md:col-span-11 sm:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
-                    <h1 className="text-42px text-center mb-10 font-bold">SIGN UP</h1>
-                    <form className="rounded-3xl pl-10 pr-8 lg:pt-14 lg:pb-9"
+                    <h1 className="text-42px text-center mb-10 font-bold">
+                        SIGN UP
+                    </h1>
+                    <form
+                        className="rounded-3xl pl-10 pr-8 lg:pt-14 lg:pb-9"
                         onSubmit={handleSubmission}
                         method={method}
-                        encType='multipart/form-data'
-                    >
+                        encType="multipart/form-data">
                         <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>
                                 <label
@@ -91,7 +93,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                     id="email"
                                     type="email"
                                     maxLength="80"
-                                    placeholder="Email Address"
+                                    placeholder="Email address"
                                     required
                                 />
                             </div>
@@ -124,24 +126,26 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-between mt-12 mb-6 -mr-8 -ml-10">
-                            <div className="w-36 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
-                            <div className="form-checkbox mt-1 2xl:ml-4">
+                        <div className="flex justify-between mt-12 mb-5 -mr-8 -ml-10">
+                            <div className="w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
+                            <div className="form-checkbox mt-1 2xl:ml-4 text-center">
                                 <input id="checkbox" type="checkbox" />
-                                <label>
+                                <label htmlFor="checkbox">
                                     Notify me about upcoming events & news
                                 </label>
                             </div>
-                            <div className="w-36 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
+                            <div className="w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
                         </div>
-                        <ReCAPTCHA
-                            className="w-fit mx-auto"
-                            sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
-                            size="normal"
-                            theme={darkMode? "dark": "light"}
-                        />
+                        <div className="relative scale-75 xl:scale-80">
+                            <ReCAPTCHA
+                                className="w-fit mx-auto"
+                                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                                size="normal"
+                                theme={darkMode ? "dark" : "light"}
+                            />
+                        </div>
                         <LoadingButton
-                            className="w-40 lg:w-80 button-small button-deep-sky-blue mt-6 mx-auto"
+                            className="w-56 lg:w-80 button-small button-deep-sky-blue mt-5 mx-auto"
                             isLoading={isLoading}>
                             Sign up
                         </LoadingButton>
