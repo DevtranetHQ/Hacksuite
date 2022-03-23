@@ -2,29 +2,54 @@
 // TODO: Add reCAPTCHA
 import Image from "next/image";
 import Link from "next/link";
+import ReCAPTCHA from 'react-google-recaptcha';
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 import DarkModeToggle from "../DarkModeToggle";
 import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
 import LoadingButton from "../LoadingButton";
+import { useContext } from "react";
+import DarkModeContext from "../DarkModeContext";
 
 export default function SignupPage({ handleSubmission, isLoading, method }) {
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const [revealPassword, setRevealPassword] = useState(false);
+
+    const toggleReveal = () => {
+        setRevealPassword(!revealPassword);
+        var id = document.getElementById("password");
+        id.type = id.type === "password" ? "text" : "password";
+    };
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
-            <div className="flex items-center justify-between px-12 py-5">
-                <Logo />
-                <DarkModeToggle
-                    className="w-[34px] h-[31px]"
-                    darkClassName="w-[25px] h-[35px]"
-                />
-            </div>
-            <div className="flex grow shrink basis-[auto] grid grid-cols-5">
-                <div className="col-span-2 flex items-end relative">
-                    <Image src={authImage} />
+            <div className="flex items-center justify-between pl-8 pr-12">
+                <Logo className="w-[120px] pt-5"/>
+                <div className="pt-2">
+                    <DarkModeToggle
+                        className="w-[34px] h-[31px]"
+                        darkClassName="w-[25px] h-[35px]"
+                    />
                 </div>
-                <div className="col-span-3 md:p-7">
-                    <h1 className="eyebrow text-center">Sign Up</h1>
-                    <form onSubmit={handleSubmission} method={method}>
-                        <div className="md:grid md:grid-cols-2 gap-4">
+            </div>
+            <div className="flex grow shrink grid grid-cols-20">
+                <div className="hidden md:block md:col-span-9 mt-48 xl:mt-36 sm:ml-2 lg:ml-6 -mb-0.5 self-end xl:self-auto">
+                    <Image src={authImage} layout="responsive" alt="Dash" />
+                </div>
+                <div className="col-span-full md:col-span-11 sm:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
+                    <h1 className="text-42px text-center mb-10 font-bold">SIGN UP</h1>
+                    <form className="rounded-3xl pl-10 pr-8 lg:pt-14 lg:pb-9"
+                        onSubmit={handleSubmission}
+                        method={method}
+                        enctype='multipart/form-data'
+                        onSubmit={event => {
+                            if (grecaptcha.getResponse() === '') {
+                              event.preventDefault()
+                              alert("Please click <I'm not a robot> before sending the job")
+                            }
+                        }}
+                    >
+                        <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>
                                 <label
                                     className="form-label"
@@ -60,10 +85,10 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 />
                             </div>
                         </div>
-                        <div className="md:grid md:grid-cols-2 gap-4">
+                        <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>
                                 <label className="form-label" htmlFor="email">
-                                    Email Address
+                                    Email address
                                 </label>
                                 <input
                                     autoComplete="off"
@@ -92,22 +117,37 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                     placeholder="Password"
                                     required
                                 />
+                                <Icon
+                                    className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-12 mr-4 float-right inline"
+                                    onClick={toggleReveal}
+                                    width="1.3em"
+                                    height="1.3em"
+                                    icon={
+                                        revealPassword
+                                            ? "ant-design:eye-invisible-outlined"
+                                            : "ant-design:eye-outlined"
+                                    }
+                                />
                             </div>
                         </div>
-                        <div className="flex justify-between caption my-5 -mx-10">
-                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                            <div className="dark:text-white">
-                                <div className="form-checkbox">
-                                    <input id="checkbox" type="checkbox" />
-                                    <label>
-                                        Notify me about upcoming events
-                                    </label>
-                                </div>
+                        <div className="flex justify-between mt-12 mb-6 -mr-8 -ml-10">
+                            <div className="w-36 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
+                            <div className="form-checkbox mt-1 2xl:ml-4">
+                                <input id="checkbox" type="checkbox" />
+                                <label>
+                                    Notify me about upcoming events & news
+                                </label>
                             </div>
-                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                            <div className="w-36 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
                         </div>
+                        <ReCAPTCHA
+                            className="w-fit mx-auto"
+                            sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                            size="normal"
+                            theme={darkMode? "dark": "light"}
+                        />
                         <LoadingButton
-                            className="button-small button-deep-sky-blue w-full mt-12 xl:w-64 xl:m-auto"
+                            className="w-40 lg:w-80 button-small button-deep-sky-blue mt-6 mx-auto"
                             isLoading={isLoading}>
                             Sign up
                         </LoadingButton>

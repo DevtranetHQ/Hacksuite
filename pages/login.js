@@ -39,7 +39,7 @@ export default function Login() {
                             <div>
                                 <div>
                                     <label
-                                        className="text-12px md:text-18px font-bold"
+                                        className="text-12px md:text-18px font-bold mb-1"
                                         htmlFor="email">
                                         Email Address
                                     </label>
@@ -56,7 +56,7 @@ export default function Login() {
                                 <div>
                                     <div className="flex justify-between">
                                         <label
-                                            className="text-12px md:text-18px font-bold"
+                                            className="text-12px md:text-18px font-bold mb-1"
                                             htmlFor="password">
                                             Password
                                         </label>
