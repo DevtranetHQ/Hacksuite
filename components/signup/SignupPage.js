@@ -32,7 +32,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     />
                 </div>
             </div>
-            <div className="flex grow shrink grid grid-cols-20">
+            <div className="flex grow shrink grid grid-cols-1 md:grid-cols-20">
                 <div className="hidden md:block md:col-span-9 mt-48 xl:mt-36 sm:ml-2 lg:ml-6 -mb-0.5 self-end xl:self-auto">
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
@@ -41,13 +41,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     <form className="rounded-3xl pl-10 pr-8 lg:pt-14 lg:pb-9"
                         onSubmit={handleSubmission}
                         method={method}
-                        enctype='multipart/form-data'
-                        onSubmit={event => {
-                            if (grecaptcha.getResponse() === '') {
-                              event.preventDefault()
-                              alert("Please click <I'm not a robot> before sending the job")
-                            }
-                        }}
+                        encType='multipart/form-data'
                     >
                         <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>

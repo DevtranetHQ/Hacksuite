@@ -15,6 +15,11 @@ export default function Signup() {
     async function handleSubmission(e) {
         e.preventDefault();
 
+        if (grecaptcha.getResponse() === '') {
+            alert("Please click <I'm not a robot> before sending the job");
+            return false;
+        }
+
         setIsLoading(true);
 
         const endpoint = "/auth/register";
