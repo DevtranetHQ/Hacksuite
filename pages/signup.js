@@ -15,7 +15,7 @@ export default function Signup() {
     async function handleSubmission(e) {
         e.preventDefault();
 
-        if (grecaptcha.getResponse() === '') {
+        if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === '') {
             alert("Please click <I'm not a robot> before sending the job");
             return false;
         }
@@ -43,8 +43,8 @@ export default function Signup() {
             setSentEmail(true);
             setIsLoading(false);
         } catch (e) {
-            console.log("something went wrong");
-            console.log(e.message);
+            console.log(e.response.data ? e.response.data.message : e.message);
+            setIsLoading(false);
         }
     }
 
