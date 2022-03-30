@@ -6,7 +6,7 @@ import Logo from "../components/Logo";
 import CountryInput from "../components/form/CountryInput";
 import TelInput from "../components/form/TelInput";
 
-export default function Login() {
+export default function Profile() {
     return (
         <div className="dark:bg-[#202020] dark:text-white relative">
             <div className="flex items-center justify-between pl-8 pr-12">
@@ -19,16 +19,16 @@ export default function Login() {
                 </div>
             </div>
 
-            <div className="rounded-3xl bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 pl-14 pr-6 mx-8 lg:mx-32 xl:mx-64 mt-12 mb-20">
-                <p className="text-42px font-bold text-center">
+            <div className="rounded-3xl bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 xs:pl-14 xs:pr-6 mx-6 xs:mx-8 lg:mx-32 xl:mx-64 mt-12 mb-20">
+                <p className="text-24px xs:text-42px font-bold text-center">
                     Complete your profile{" "}
                     <span className="text-[#4cb050]">John</span>
                 </p>
-                <p className="text-30px font-semibold mt-16 mb-9 text-center">
+                <p className="text-18px xs:text-30px font-semibold mt-16 mb-9 xs:text-center">
                     Demographic information
                 </p>
 
-                <div className="grid grid-cols-2 gap-x-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 sm:gap-y-0">
                     <div>
                         <label className="form-label font-normal" htmlFor="dob">
                             Date of birth*
@@ -77,11 +77,11 @@ export default function Login() {
                     </div>
                 </div>
 
-                <p className="text-30px font-semibold my-12 text-center">
+                <p className="text-18px xs:text-30px font-semibold my-12 xs:text-center">
                     Work and education
                 </p>
 
-                <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
                     <div>
                         <label
                             className="form-label font-normal"
@@ -123,9 +123,9 @@ export default function Login() {
                 </div>
 
                 <div className="flex justify-between">
-                    <div className="-ml-14 w-14 border-b-4 border-[#A0A0A0] z-0"></div>
+                    <div className="-ml-6 w-6 xs:-ml-14 xs:w-14 border-b-4 border-[#A0A0A0] z-0"></div>
                     <div className="w-full border-b-4 border-[#A0A0A0] z-0">
-                        <button className="button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-24px py-2">
+                        <button className="button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-16px xs:text-24px py-2">
                             Complete your profile
                         </button>
                     </div>
