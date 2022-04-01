@@ -397,4 +397,8 @@
     .container-gray-dark {
         @apply dark:bg-gray-dark;
     }
+
+    .iti ul {
+        @apply dark:bg-dark;
+    }
 }
