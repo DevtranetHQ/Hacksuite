@@ -31,14 +31,25 @@ export default function Profile() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4 sm:gap-y-0">
                     <div>
                         <label className="form-label font-normal" htmlFor="dob">
-                            Date of birth*
+                            Date of birth
+                            <span className="text-[#ff0000]">*</span>
                         </label>
                         <input
-                            className="form-input"
+                            className="form-input unstyled text-[#6e7180]"
                             id="dob"
                             name="dob"
-                            type="date"
+                            type="text"
+                            placeholder="MM/DD/YYYY"
+                            onFocus={e => (e.target.type = "date")}
+                            // onBlur={(e) => (e.target.type = "text")}
                         />
+                        <style jsx>{`
+                            .unstyled::-webkit-inner-spin-button,
+                            .unstyled::-webkit-calendar-picker-indicator {
+                                display: none;
+                                -webkit-appearance: none;
+                            }
+                        `}</style>
                     </div>
                     <div>
                         <label
@@ -48,9 +59,12 @@ export default function Profile() {
                         </label>
                         <select
                             className="form-select"
-                            defaultValue="Prefer not to say"
+                            defaultValue="Select gender"
                             id="gender"
                             name="gender">
+                            <option value="Select gender" disabled hidden>
+                                Select gender
+                            </option>
                             <option value="Prefer not to say">
                                 Prefer not to say
                             </option>
@@ -63,7 +77,8 @@ export default function Profile() {
                         <label
                             className="form-label font-normal"
                             htmlFor="country">
-                            Country of residence*
+                            Country of residence
+                            <span className="text-[#ff0000]">*</span>
                         </label>
                         <CountryInput />
                     </div>
@@ -86,7 +101,8 @@ export default function Profile() {
                         <label
                             className="form-label font-normal"
                             htmlFor="personalDescription">
-                            What describes you the best?*
+                            What describes you the best?
+                            <span className="text-[#ff0000]">*</span>
                         </label>
                         <select
                             className="form-select"
@@ -98,7 +114,8 @@ export default function Profile() {
                         <label
                             className="form-label font-normal"
                             htmlFor="skillsAndInterests">
-                            Skills and interests*
+                            Skills and interests
+                            <span className="text-[#ff0000]">*</span>
                         </label>
                         <select className="form-select" id="skillsAndInterests">
                             <option value="some option">Skipping</option>
@@ -108,7 +125,8 @@ export default function Profile() {
                         <label
                             className="form-label font-normal"
                             htmlFor="levelOfStudy">
-                            Level of study?*
+                            Level of study?
+                            <span className="text-[#ff0000]">*</span>
                         </label>
                         <select
                             className="form-select"
@@ -125,7 +143,7 @@ export default function Profile() {
                 <div className="flex justify-between">
                     <div className="-ml-6 w-6 xs:-ml-14 xs:w-14 border-b-4 border-[#A0A0A0] z-0"></div>
                     <div className="w-full border-b-4 border-[#A0A0A0] z-0">
-                        <button className="button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-16px xs:text-24px py-2">
+                        <button className="w-5/6 md:w-1/2 button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-16px xs:text-24px py-2">
                             Complete your profile
                         </button>
                     </div>
@@ -137,7 +155,7 @@ export default function Profile() {
                 <div className="flex items-center justify-center">
                     Need to edit something?&nbsp;
                     <a className="underline text-white" href="#">
-                        Go back!
+                        Go back
                     </a>
                 </div>
             </footer>

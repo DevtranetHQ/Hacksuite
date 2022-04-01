@@ -25,6 +25,7 @@ export default function TelInput() {
                 id="phoneNumber"
                 name="phoneNumber"
                 type="tel"
+                placeholder="Enter number"
             />
         </>
     );
