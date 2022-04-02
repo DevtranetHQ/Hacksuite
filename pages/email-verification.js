@@ -1,19 +1,18 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { axios } from "../config/config";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-
-export default function EmailVerificationRes(props){
+export default function EmailVerificationRes(props) {
     const endpoint = "/auth/verify-email";
     const method = "POST";
 
     const [data, setData] = useState("");
     const router = useRouter();
 
-    useEffect(()=>{
+    useEffect(() => {
         const params = router.query;
         console.log(router.query);
-        async function verifyEmail(){
+        async function verifyEmail() {
             try {
                 await axios({
                     url: endpoint,
@@ -29,8 +28,6 @@ export default function EmailVerificationRes(props){
             }
         }
         verifyEmail();
-    }, [])
-    return(
-        <h2>{data}</h2>
-    )
+    }, []);
+    return <h2>{data}</h2>;
 }

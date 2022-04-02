@@ -1,4 +1,4 @@
-export default function Members() {
+export default function CreateEvent() {
     return <div>WIP</div>;
 }
 

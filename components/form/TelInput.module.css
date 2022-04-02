@@ -1,0 +1,3 @@
+.telinput li {
+    @apply !text-black;
+}

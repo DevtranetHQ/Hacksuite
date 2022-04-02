@@ -1,21 +1,24 @@
-//TODO: display message when user already exists and handle errors (pass states to signup?)
+// TODO: display message when user already exists and handle errors (pass states to signup?)
 import EmailVerficationSent from "../components/signup/EmailVerficationSent";
 import SignupPage from "../components/signup/SignupPage";
 import { axios } from "../config/config";
 import { useState } from "react";
 
 export default function Signup() {
-    //states
+    // States
     const [isLoading, setIsLoading] = useState(false);
     const [sentEmail, setSentEmail] = useState(false);
 
-    //constant values for the request
+    // Constant values for the request
     const method = "POST";
 
     async function handleSubmission(e) {
         e.preventDefault();
 
-        if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === '') {
+        if (
+            window.location.hostname !== "localhost" &&
+            grecaptcha.getResponse() === ""
+        ) {
             alert("Please click <I'm not a robot> before sending the job");
             return false;
         }

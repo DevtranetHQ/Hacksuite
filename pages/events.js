@@ -114,6 +114,7 @@ export default function Events({ events }) {
 
 export async function getServerSideProps(context) {
     // TODO: Update with actual information from database
+    // TODO: Change page based on whether user is administrator or not
     return {
         props: {
             events: [

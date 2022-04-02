@@ -1,7 +1,9 @@
+import classnames from "classnames";
 import intlTelInput from "intl-tel-input";
 import "intl-tel-input/build/js/utils.js";
 import "intl-tel-input/build/css/intlTelInput.css";
 import { useEffect } from "react";
+import styles from "./TelInput.module.css";
 
 export default function TelInput() {
     // TODO: Validate phone number
@@ -13,7 +15,7 @@ export default function TelInput() {
     }, []);
 
     return (
-        <>
+        <div className={styles.telinput}>
             <style jsx global>{`
                 .iti {
                     margin-bottom: 1rem !important;
@@ -27,6 +29,6 @@ export default function TelInput() {
                 type="tel"
                 placeholder="Enter number"
             />
-        </>
+        </div>
     );
 }

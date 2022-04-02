@@ -12,6 +12,7 @@
     "@iconify/react": "^3.1.4",
     "@tailwindcss/typography": "^0.5.2",
     "axios": "^0.26.1",
+    "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "intl-tel-input": "^17.0.15",
     "next": "12.1.0",
