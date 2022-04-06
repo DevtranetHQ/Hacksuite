@@ -114,9 +114,11 @@ export default function Login() {
             <footer className="bg-deep-sky-blue text-white py-1.5 xs:py-3">
                 <div className="flex items-center justify-center mxs:text-12px xs:lead">
                     Don&#x27;t have an account?&nbsp;
-                    <a className="underline text-white" href="/signup">
-                        Become a member!
-                    </a>
+                    <Link href="/signup">
+                        <a className="underline text-white">
+                            Become a member!
+                        </a>
+                    </Link>
                 </div>
             </footer>
         </div>
