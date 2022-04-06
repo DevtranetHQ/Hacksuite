@@ -23,25 +23,25 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
     };
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
-            <div className="flex items-center justify-between pl-8 pr-12">
-                <Logo className="w-[120px] pt-5" />
+            <div className="flex items-center justify-between px-8 xs:pl-8 xs:pr-12">
+                <Logo className="w-[60px] xs:w-[120px] pt-5" />
                 <div className="pt-2">
                     <DarkModeToggle
-                        className="w-[34px] h-[31px]"
-                        darkClassName="w-[25px] h-[35px]"
+                        className="w-[24px] h-[22px] xs:w-[34px] xs:h-[31px]"
+                        darkClassName="w-[18px] h-[25px] xs:w-[25px] xs:h-[35px]"
                     />
                 </div>
             </div>
-            <div className="flex grow shrink grid grid-cols-1 md:grid-cols-20">
-                <div className="hidden md:block md:col-span-9 mt-48 xl:mt-36 sm:ml-2 lg:ml-6 -mb-0.5 self-end xl:self-auto">
+            <div className="flex grow shrink grid grid-cols-1 md:grid-cols-20 mxs:bg-mobile-login">
+                <div className="hidden xs:mt-48 xs:-mb-0.5 xs:self-end md:block md:col-span-9 sm:ml-2 lg:ml-6 xl:mt-36 xl:self-auto">
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
-                <div className="col-span-full md:col-span-11 sm:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
-                    <h1 className="text-42px text-center mb-10 font-bold">
+                <div className="col-span-full mxs:mb-48 mxs:mt-12 md:col-span-11 xs:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
+                    <h1 className="text-42px text-center mb-12 xs:mb-10 font-bold">
                         SIGN UP
                     </h1>
                     <form
-                        className="rounded-3xl pl-10 pr-8 lg:pt-14 lg:pb-9"
+                        className="rounded-3xl mxs:pb-6 mxs:mx-1 xs:pl-10 xs:pr-8 lg:pt-14 lg:pb-9"
                         onSubmit={handleSubmission}
                         method={method}
                         encType="multipart/form-data">
@@ -54,7 +54,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input"
+                                    className="form-input mxs:rounded-md mxs:text-16px"
                                     name="firstName"
                                     id="firstName"
                                     type="text"
@@ -71,7 +71,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input"
+                                    className="form-input mxs:rounded-md mxs:text-16px"
                                     name="lastName"
                                     id="lastName"
                                     type="text"
@@ -88,7 +88,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input"
+                                    className="form-input mxs:rounded-md mxs:text-16px"
                                     name="email"
                                     id="email"
                                     type="email"
@@ -104,7 +104,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                     Password
                                 </label>
                                 <input
-                                    className="form-input"
+                                    className="form-input mxs:rounded-md mxs:text-16px"
                                     name="password"
                                     id="password"
                                     type="password"
@@ -126,17 +126,17 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-between mt-12 mb-5 -mr-8 -ml-10">
-                            <div className="w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
-                            <div className="form-checkbox mt-1 2xl:ml-4 text-center">
+                        <div className="mxs:-mx-10 flex justify-between mt-12 mb-5 -mr-8 -ml-10">
+                            <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
+                            <div className="mxs:text-8px form-checkbox mt-1 2xl:ml-4 text-center">
                                 <input id="checkbox" type="checkbox" />
                                 <label htmlFor="checkbox">
                                     Notify me about upcoming events & news
                                 </label>
                             </div>
-                            <div className="w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
+                            <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
                         </div>
-                        <div className="relative scale-75 xl:scale-80">
+                        <div className="mxs:mr-14 relative scale-50 xs:scale-75 xl:scale-80 mx-auto">
                             <ReCAPTCHA
                                 className="w-fit mx-auto"
                                 sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
@@ -145,15 +145,15 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                             />
                         </div>
                         <LoadingButton
-                            className="w-56 lg:w-80 button-small button-deep-sky-blue mt-5 mx-auto"
+                            className="w-full mxs:rounded mxs:text-15px mxs:h-9 xs:w-56 lg:w-80 button-small button-deep-sky-blue mt-5 mx-auto"
                             isLoading={isLoading}>
                             Sign up
                         </LoadingButton>
                     </form>
                 </div>
             </div>
-            <footer className="block bg-deep-sky-blue py-2 lead text-white w-full">
-                <div className="flex items-center justify-center">
+            <footer className="block bg-deep-sky-blue py-1.5 xs:py-2 text-white w-full">
+                <div className="mxs:text-12px flex items-center justify-center xs:lead">
                     Already a member?&nbsp;
                     <Link href="/login">
                         <a className="underline text-white">Log in</a>

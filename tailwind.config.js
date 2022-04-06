@@ -15,12 +15,12 @@ module.exports = {
             },
             gridTemplateColumns: {
                 // Simple 16 column grid
-                '20': 'repeat(20, minmax(0, 1fr))',
+                20: "repeat(20, minmax(0, 1fr))"
             },
             scale: {
-                '80': '0.80',
-                '85': '0.85',
-            },
+                80: "0.80",
+                85: "0.85"
+            }
         },
         fontFamily: {
             sans: ['"Myriad Pro"', "sans-serif"],
@@ -55,7 +55,8 @@ module.exports = {
             "md": "768px",
             "lg": "1024px",
             "xl": "1280px",
-            "2xl": "1536px"
+            "2xl": "1536px",
+            "mxs": { max: "428px" }
         },
         maxWidth: {
             screen: "100%",

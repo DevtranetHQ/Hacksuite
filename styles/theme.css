@@ -397,4 +397,12 @@
     .container-gray-dark {
         @apply dark:bg-gray-dark;
     }
+
+    .bg-mobile-login {
+        background-image: url("../public/assets/auth/auth-background.svg");
+        background-position: left 45% bottom -1%;
+        background-repeat: no-repeat;
+        background-size: 170%;
+        position: relative;
+    }
 }
