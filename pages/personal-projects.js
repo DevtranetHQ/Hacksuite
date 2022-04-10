@@ -30,14 +30,11 @@ export default function PersonalProjects({ name, projects }) {
                 </header>
                 <section className="pt-7 px-7">
                     <p>
-                        Hey <span className="text-fruit-salad">{name}</span>,
-                        here are all the cool things you’ve built, launched,
-                        designed, and shared with The Dynamics Community. We’re
-                        proud of you!
+                        Hey <span className="text-fruit-salad">{name}</span>, here are all the cool
+                        things you’ve built, launched, designed, and shared with The Dynamics
+                        Community. We’re proud of you!
                     </p>
-                    <button className="button-small button-orange-peel ml-auto">
-                        Add new
-                    </button>
+                    <button className="button-small button-orange-peel ml-auto">Add new</button>
                     {projects.map((project, key) => (
                         <PersonalProjectCard key={key} {...project} />
                     ))}

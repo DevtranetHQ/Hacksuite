@@ -11,40 +11,25 @@ export default function Complete() {
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">
                 <Logo />
-                <DarkModeToggle
-                    className="w-[34px] h-[31px]"
-                    darkClassName="w-[25px] h-[35px]"
-                />
+                <DarkModeToggle className="w-[34px] h-[31px]" darkClassName="w-[25px] h-[35px]" />
             </div>
             <div className="flex grow shrink basis-[auto] justify-center">
                 <form className="min-w-[60%] mb-14">
                     <h1 className="headline text-center">
-                        Complete your profile{" "}
-                        <span className="text-fruit-salad">John</span>
+                        Complete your profile <span className="text-fruit-salad">John</span>
                     </h1>
                     <section className="my-5">
-                        <h2 className="subheadline text-center">
-                            Demographic information
-                        </h2>
+                        <h2 className="subheadline text-center">Demographic information</h2>
                         <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="dob">
+                                <label className="form-label font-normal" htmlFor="dob">
                                     Date of birth
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    className="form-input"
-                                    id="dob"
-                                    required
-                                    type="date"
-                                />
+                                <input className="form-input" id="dob" required type="date" />
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="gender">
+                                <label className="form-label font-normal" htmlFor="gender">
                                     Gender
                                     <span className="text-red-500">*</span>
                                 </label>
@@ -53,9 +38,7 @@ export default function Complete() {
                                     defaultValue="Prefer not to say"
                                     id="gender"
                                     required>
-                                    <option value="Prefer not to say">
-                                        Prefer not to say
-                                    </option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="Other">Other</option>
@@ -64,9 +47,7 @@ export default function Complete() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="country">
+                                <label className="form-label font-normal" htmlFor="country">
                                     Country of residence
                                     <span className="text-red-500">*</span>
                                 </label>
@@ -74,9 +55,7 @@ export default function Complete() {
                                 <CountryInput />
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="phoneNumber">
+                                <label className="form-label font-normal" htmlFor="phoneNumber">
                                     Phone number
                                 </label>
                                 <TelInput />
@@ -84,9 +63,7 @@ export default function Complete() {
                         </div>
                     </section>
                     <section className="my-5">
-                        <h2 className="subheadline text-center">
-                            Work and education
-                        </h2>
+                        <h2 className="subheadline text-center">Work and education</h2>
                         <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
                             <div>
                                 <label
@@ -121,23 +98,16 @@ export default function Complete() {
                                     <option disabled value="N/A">
                                         Select your skills and interests
                                     </option>
-                                    <option value="Web development">
-                                        Web development
-                                    </option>
+                                    <option value="Web development">Web development</option>
                                     <option value="UI/UX">UI/UX</option>
                                 </select>
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="study-level">
+                                <label className="form-label font-normal" htmlFor="study-level">
                                     Level of study
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <select
-                                    className="form-select"
-                                    defaultValue="N/A"
-                                    id="study-level">
+                                <select className="form-select" defaultValue="N/A" id="study-level">
                                     <option disabled value="N/A">
                                         Select level
                                     </option>

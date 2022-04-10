@@ -46,21 +46,14 @@ export default function Events({ events }) {
                 </div>
             </nav>
             <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-2xl text-center">
-                <h1 className="text-deep-sky-blue title">
-                    The Dynamics Events
-                </h1>
+                <h1 className="text-deep-sky-blue title">The Dynamics Events</h1>
                 <h2 className="lead mb-2">
-                    Don’t miss any workshop, hackathon, AMA, networking event,
-                    mentorship program, and more! Events dates and times are in
-                    your local timezone.
+                    Don’t miss any workshop, hackathon, AMA, networking event, mentorship program,
+                    and more! Events dates and times are in your local timezone.
                 </h2>
                 <div className="inline-flex">
-                    <button className="button-medium button-fruit-salad">
-                        All events
-                    </button>
-                    <button className="button-medium button-deep-sky-blue">
-                        Host with us
-                    </button>
+                    <button className="button-medium button-fruit-salad">All events</button>
+                    <button className="button-medium button-deep-sky-blue">Host with us</button>
                 </div>
             </header>
             <nav className="border-b-2 flex gap-x-2 items-center justify-center pt-7 pb-3 heading">
@@ -78,10 +71,7 @@ export default function Events({ events }) {
                 <span className="pt-3">Upcoming Events</span>
             </nav>
             <section>
-                {events &&
-                    events.map((event, key) => (
-                        <EventCard key={key} {...event} />
-                    ))}
+                {events && events.map((event, key) => <EventCard key={key} {...event} />)}
             </section>
             <section className="p-14 text-center">
                 <button className="button-big button-deep-sky-blue inline-flex gap-2">
@@ -100,9 +90,8 @@ export default function Events({ events }) {
             </section>
             <footer className="bg-[#f4f4f4] dark:bg-[#444444] px-14 py-7 text-center">
                 <p className="sm">
-                    All events are hosted and maintained by The Dynamics, the
-                    official network of young makers, developers, innovators,
-                    and founders using our{" "}
+                    All events are hosted and maintained by The Dynamics, the official network of
+                    young makers, developers, innovators, and founders using our{" "}
                     <Link href="/">
                         <a>Code of Conduct</a>
                     </Link>

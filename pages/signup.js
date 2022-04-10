@@ -15,10 +15,7 @@ export default function Signup() {
     async function handleSubmission(e) {
         e.preventDefault();
 
-        if (
-            window.location.hostname !== "localhost" &&
-            grecaptcha.getResponse() === ""
-        ) {
+        if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === "") {
             alert("Please click <I'm not a robot> before sending the job");
             return false;
         }
@@ -53,11 +50,7 @@ export default function Signup() {
 
     if (!sentEmail) {
         return (
-            <SignupPage
-                handleSubmission={handleSubmission}
-                isLoading={isLoading}
-                method={method}
-            />
+            <SignupPage handleSubmission={handleSubmission} isLoading={isLoading} method={method} />
         );
     } else {
         return <EmailVerficationSent />;

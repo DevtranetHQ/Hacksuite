@@ -65,8 +65,7 @@ export default function Project({ loggedIn, project }) {
                 <div className="inline-flex my-2">
                     <button className="button-medium button-fruit-salad inline-flex gap-x-2">
                         <span className="pt-1">
-                            {project.likes}{" "}
-                            {project.likes === 1 ? "Like" : "Likes"}
+                            {project.likes} {project.likes === 1 ? "Like" : "Likes"}
                         </span>
                         <HeartIcon />
                     </button>
@@ -75,9 +74,7 @@ export default function Project({ loggedIn, project }) {
                         href="#comments">
                         <span className="pt-1">
                             {project.comments.length}{" "}
-                            {project.comments.length === 1
-                                ? "Comment"
-                                : "Comments"}
+                            {project.comments.length === 1 ? "Comment" : "Comments"}
                         </span>
                         <CommentIcon />
                     </a>
@@ -85,20 +82,14 @@ export default function Project({ loggedIn, project }) {
             </header>
             <section className="grid grid-cols-3 gap-x-2 py-7">
                 <div className="col-span-2 mx-14 my-7 relative min-h-[400px]">
-                    <Image
-                        layout="fill"
-                        objectFit="cover"
-                        src={project.image}
-                    />
+                    <Image layout="fill" objectFit="cover" src={project.image} />
                 </div>
                 <div className="col-span-1 py-7">
                     <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 rounded-l-md h-full">
                         <div>
                             <h1 className="headline font-normal">Made By</h1>
                             {project.creators.map((creator, key) => (
-                                <div
-                                    className="inline-flex gap-2 items-center"
-                                    key={key}>
+                                <div className="inline-flex gap-2 items-center" key={key}>
                                     <Avatar
                                         className="relative w-[60px] h-[60px]"
                                         border="!border-[3px]"
@@ -149,9 +140,7 @@ export default function Project({ loggedIn, project }) {
                     </div>
                     <div className="flex justify-between">
                         <div>
-                            <h1 className="heading leading-loose">
-                                Check it out
-                            </h1>
+                            <h1 className="heading leading-loose">Check it out</h1>
                             <div className="flex flex-col gap-y-4">
                                 {project.links.map((link, key) => {
                                     switch (link.type) {
@@ -160,10 +149,7 @@ export default function Project({ loggedIn, project }) {
                                                 <div
                                                     className="inline-flex gap-x-2 items-center"
                                                     key={key}>
-                                                    <GithubIcon
-                                                        width={50}
-                                                        height={50}
-                                                    />
+                                                    <GithubIcon width={50} height={50} />
                                                     <a
                                                         className="subheadline underline"
                                                         href={link.link}>

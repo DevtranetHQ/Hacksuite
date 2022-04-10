@@ -67,9 +67,7 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                         }
                     `}</style>
                     <header className="absolute -bottom-14 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r w-1/2">
-                        <h1 className="title text-deep-sky-blue">
-                            {event.name}
-                        </h1>
+                        <h1 className="title text-deep-sky-blue">{event.name}</h1>
                         <div className="flex gap-2 items-center">
                             <Avatar
                                 className="relative w-[50px] h-[50px]"
@@ -77,8 +75,7 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                                 image={event.organizerImage}
                             />
                             <p className="caption font-bold text-[#a5a5a5]">
-                                Posted by {event.organizerName} |{" "}
-                                {event.datePosted}
+                                Posted by {event.organizerName} | {event.datePosted}
                             </p>
                         </div>
                     </header>
@@ -113,9 +110,7 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                             className="bg-transparent dark:bg-transparent mt-14 w-1/2"
                             onSubmit={register}>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="name">
+                                <label className="form-label font-normal" htmlFor="name">
                                     Name *
                                 </label>
                                 <input
@@ -128,9 +123,7 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                                 />
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="email">
+                                <label className="form-label font-normal" htmlFor="email">
                                     Email Address *
                                 </label>
                                 <input
@@ -152,17 +145,13 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                                     className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
                                     type="submit">
                                     <CalendarIcon width={32} height={32} />
-                                    <span className="pt-2">
-                                        Register for this event
-                                    </span>
+                                    <span className="pt-2">Register for this event</span>
                                 </button>
                             </div>
                         </form>
                         <div className="flex justify-between caption w-screen">
                             <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                            <div className="text-12px md:text-18px">
-                                Or register using
-                            </div>
+                            <div className="text-12px md:text-18px">Or register using</div>
                             <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                         </div>
                         <div className="my-10">
@@ -178,9 +167,8 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
             </section>
             <footer className="bg-[#f4f4f4] dark:bg-[#444444] px-14 py-3 text-center">
                 <p className="sm">
-                    All events are hosted and maintained by The Dynamics, the
-                    official network of young makers, developers, innovators,
-                    and founders using our{" "}
+                    All events are hosted and maintained by The Dynamics, the official network of
+                    young makers, developers, innovators, and founders using our{" "}
                     <Link href="/">
                         <a>Code of Conduct</a>
                     </Link>

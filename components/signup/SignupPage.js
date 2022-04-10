@@ -37,9 +37,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
                 <div className="col-span-full mxs:mb-48 mxs:mt-12 md:col-span-11 xs:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
-                    <h1 className="text-42px text-center mb-12 xs:mb-10 font-bold">
-                        SIGN UP
-                    </h1>
+                    <h1 className="text-42px text-center mb-12 xs:mb-10 font-bold">SIGN UP</h1>
                     <form
                         className="rounded-3xl mxs:pb-6 mxs:mx-1 xs:pl-10 xs:pr-8 lg:pt-14 lg:pb-9"
                         onSubmit={handleSubmission}
@@ -47,9 +45,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                         encType="multipart/form-data">
                         <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>
-                                <label
-                                    className="form-label"
-                                    htmlFor="firstName">
+                                <label className="form-label" htmlFor="firstName">
                                     First name
                                 </label>
                                 <input
@@ -64,9 +60,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 />
                             </div>
                             <div>
-                                <label
-                                    className="form-label"
-                                    htmlFor="lastName">
+                                <label className="form-label" htmlFor="lastName">
                                     Last name
                                 </label>
                                 <input
@@ -98,9 +92,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 />
                             </div>
                             <div>
-                                <label
-                                    className="form-label"
-                                    htmlFor="password">
+                                <label className="form-label" htmlFor="password">
                                     Password
                                 </label>
                                 <input

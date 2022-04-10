@@ -21,8 +21,7 @@ export default function Profile() {
 
             <div className="rounded-3xl bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 xs:pl-14 xs:pr-6 mx-6 xs:mx-8 lg:mx-32 xl:mx-64 mt-12 mb-20">
                 <p className="text-24px xs:text-42px font-bold text-center">
-                    Complete your profile{" "}
-                    <span className="text-[#4cb050]">John</span>
+                    Complete your profile <span className="text-[#4cb050]">John</span>
                 </p>
                 <p className="text-18px xs:text-30px font-semibold mt-16 mb-9 xs:text-center">
                     Demographic information
@@ -52,9 +51,7 @@ export default function Profile() {
                         `}</style>
                     </div>
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="gender">
+                        <label className="form-label font-normal" htmlFor="gender">
                             Gender
                         </label>
                         <select
@@ -65,27 +62,21 @@ export default function Profile() {
                             <option value="Select gender" disabled hidden>
                                 Select gender
                             </option>
-                            <option value="Prefer not to say">
-                                Prefer not to say
-                            </option>
+                            <option value="Prefer not to say">Prefer not to say</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="country">
+                        <label className="form-label font-normal" htmlFor="country">
                             Country of residence
                             <span className="text-[#ff0000]">*</span>
                         </label>
                         <CountryInput />
                     </div>
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="phoneNumber">
+                        <label className="form-label font-normal" htmlFor="phoneNumber">
                             Phone number
                         </label>
                         <TelInput />
@@ -98,22 +89,16 @@ export default function Profile() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="personalDescription">
+                        <label className="form-label font-normal" htmlFor="personalDescription">
                             What describes you the best?
                             <span className="text-[#ff0000]">*</span>
                         </label>
-                        <select
-                            className="form-select"
-                            id="personalDescription">
+                        <select className="form-select" id="personalDescription">
                             <option>Mentor</option>
                         </select>
                     </div>
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="skillsAndInterests">
+                        <label className="form-label font-normal" htmlFor="skillsAndInterests">
                             Skills and interests
                             <span className="text-[#ff0000]">*</span>
                         </label>
@@ -122,9 +107,7 @@ export default function Profile() {
                         </select>
                     </div>
                     <div>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="levelOfStudy">
+                        <label className="form-label font-normal" htmlFor="levelOfStudy">
                             Level of study?
                             <span className="text-[#ff0000]">*</span>
                         </label>

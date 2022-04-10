@@ -1,11 +1,4 @@
-export default function Notification({
-    unread,
-    type,
-    title,
-    description,
-    who,
-    time
-}) {
+export default function Notification({ unread, type, title, description, who, time }) {
     let buttonTheme, textTheme;
     switch (type) {
         // Tailwind doesn't use template literal concatenation so this is the only choice
@@ -32,9 +25,7 @@ export default function Notification({
         <div className="border-b-2 p-5">
             <div className="grid grid-cols-2">
                 <div>
-                    <button
-                        className={`button-medium ${buttonTheme} relative`}
-                        disabled={true}>
+                    <button className={`button-medium ${buttonTheme} relative`} disabled={true}>
                         {type}
                         {unread && (
                             <span className="absolute bg-black dark:bg-white h-4 w-4 rounded-full -top-2 -right-2" />

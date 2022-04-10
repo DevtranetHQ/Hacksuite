@@ -44,20 +44,14 @@ export default function ProjectGallery() {
                 </div>
             </nav>
             <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-2xl text-center">
-                <h1 className="text-deep-sky-blue title">
-                    The Dynamics Projects
-                </h1>
+                <h1 className="text-deep-sky-blue title">The Dynamics Projects</h1>
                 <h2 className="lead mb-2">
-                    A gallery of all the awesome things the makers at The
-                    Dynamics are building and launching everyday.
+                    A gallery of all the awesome things the makers at The Dynamics are building and
+                    launching everyday.
                 </h2>
                 <div className="inline-flex">
-                    <button className="button-medium button-fruit-salad">
-                        All projects
-                    </button>
-                    <button className="button-medium button-deep-sky-blue">
-                        Add your project
-                    </button>
+                    <button className="button-medium button-fruit-salad">All projects</button>
+                    <button className="button-medium button-deep-sky-blue">Add your project</button>
                 </div>
             </header>
         </div>

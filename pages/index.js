@@ -23,8 +23,7 @@ export default function Dash({ loggedIn, admin, name, unread }) {
                 </div>
                 <div className="text-center">
                     <h1 className="title">
-                        Hey there,{" "}
-                        <span className="text-fruit-salad">{name}.</span>
+                        Hey there, <span className="text-fruit-salad">{name}.</span>
                     </h1>
                     <div className="mx-auto relative w-8/12">
                         <Image src={placeholder} />
@@ -33,11 +32,7 @@ export default function Dash({ loggedIn, admin, name, unread }) {
                     <h1 className="title uppercase">The Dynamics</h1>
                 </div>
                 <div className="fixed bottom-0 right-0 pb-3 pr-3 z-20">
-                    {darkMode ? (
-                        <Image src={robotDark} />
-                    ) : (
-                        <Image src={robotLight} />
-                    )}
+                    {darkMode ? <Image src={robotDark} /> : <Image src={robotLight} />}
                 </div>
             </div>
         </div>

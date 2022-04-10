@@ -41,17 +41,15 @@ export default function Discord() {
                     }
                 `}</style>
                 <h1 className="title">
-                    A place for every{" "}
-                    <span className="text-orange-peel">int</span>
+                    A place for every <span className="text-orange-peel">int</span>
                     <span className="text-deep-sky-blue">ere</span>
                     <span className="text-fruit-salad">st</span>
                 </h1>
                 <p>
-                    With more than 40 channels on our Discord server, you’ll fit
-                    in somewhere perfectly! Whether you are looking for
-                    developers to collaborate with, seeking for start-up
-                    fundrasing advice, or just simply interested in hanging out
-                    with makers like you.
+                    With more than 40 channels on our Discord server, you’ll fit in somewhere
+                    perfectly! Whether you are looking for developers to collaborate with, seeking
+                    for start-up fundrasing advice, or just simply interested in hanging out with
+                    makers like you.
                 </p>
                 <div className="py-24">
                     <div className="mb-7">
@@ -61,70 +59,52 @@ export default function Discord() {
                     </div>
                     <div className="grid grid-cols-3">
                         <div>
-                            <button
-                                className="button-big button-deep-sky-blue"
-                                disabled={true}>
+                            <button className="button-big button-deep-sky-blue" disabled={true}>
                                 #startups
                             </button>
                         </div>
                         <div className="pt-24">
-                            <button
-                                className="button-big button-orange-peel"
-                                disabled={true}>
+                            <button className="button-big button-orange-peel" disabled={true}>
                                 #job-chat
                             </button>
                         </div>
                         <div>
-                            <button
-                                className="button-big button-link"
-                                disabled={true}>
+                            <button className="button-big button-link" disabled={true}>
                                 #robotics
                             </button>
                         </div>
                     </div>
                     <div className="grid grid-cols-3">
                         <div>
-                            <button
-                                className="button-big bg-[#ED4245]"
-                                disabled={true}>
+                            <button className="button-big bg-[#ED4245]" disabled={true}>
                                 #web-dev
                             </button>
                         </div>
                         <div className="pt-24">
-                            <button
-                                className="button-big bg-[#FEE75C]"
-                                disabled={true}>
+                            <button className="button-big bg-[#FEE75C]" disabled={true}>
                                 #design
                             </button>
                         </div>
                         <div>
-                            <button
-                                className="button-big button-fruit-salad"
-                                disabled={true}>
+                            <button className="button-big button-fruit-salad" disabled={true}>
                                 #game-dev
                             </button>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 mb-7">
                         <div>
-                            <button
-                                className="button-big bg-[#57F287]"
-                                disabled={true}>
+                            <button className="button-big bg-[#57F287]" disabled={true}>
                                 #prototyping
                             </button>
                         </div>
                         <div>
-                            <button
-                                className="button-big bg-[#EB459E]"
-                                disabled={true}>
+                            <button className="button-big bg-[#EB459E]" disabled={true}>
                                 #app-dev
                             </button>
                         </div>
                     </div>
                     <div>
-                        <button
-                            className="button-big bg-[#A633D6]"
-                            disabled={true}>
+                        <button className="button-big bg-[#A633D6]" disabled={true}>
                             #bot-commands
                         </button>
                     </div>
@@ -136,9 +116,8 @@ export default function Discord() {
                     ...
                 </h1>
                 <p className="mb-7">
-                    Stuck with something? Looking for constructive project
-                    feedbacks? Want to make friends with like-minded makers?
-                    You’ll find amazing people to chat with here!
+                    Stuck with something? Looking for constructive project feedbacks? Want to make
+                    friends with like-minded makers? You’ll find amazing people to chat with here!
                 </p>
                 <button className="button-big button-deep-sky-blue inline-flex gap-x-2 w-fit">
                     Join right now
