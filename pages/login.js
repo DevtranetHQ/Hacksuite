@@ -115,9 +115,7 @@ export default function Login() {
                 <div className="flex items-center justify-center mxs:text-12px xs:lead">
                     Don&#x27;t have an account?&nbsp;
                     <Link href="/signup">
-                        <a className="underline text-white">
-                            Become a member!
-                        </a>
+                        <a className="underline text-white">Become a member!</a>
                     </Link>
                 </div>
             </footer>
