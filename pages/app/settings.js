@@ -2,16 +2,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import CountryInput from "../components/form/CountryInput";
-import TelInput from "../components/form/TelInput";
-import DashNav from "../components/dash/DashNav";
-import DarkModeToggle from "../components/DarkModeToggle";
-import NotificationsLink from "../components/dash/NotificationsLink";
-import Avatar from "../components/Avatar";
-import GithubIcon from "../components/icons/Github";
-import LinkedinIcon from "../components/icons/Linkedin";
-import TwitterIcon from "../components/icons/Twitter";
-import UploadIcon from "../components/icons/Upload";
+import CountryInput from "../../components/form/CountryInput";
+import TelInput from "../../components/form/TelInput";
+import DashNav from "../../components/dash/DashNav";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import NotificationsLink from "../../components/dash/NotificationsLink";
+import Avatar from "../../components/Avatar";
+import GithubIcon from "../../components/icons/Github";
+import LinkedinIcon from "../../components/icons/Linkedin";
+import TwitterIcon from "../../components/icons/Twitter";
+import UploadIcon from "../../components/icons/Upload";
 
 export default function Settings({ recaptchaSitekey, choices, profileImage }) {
     const [personalDescription, setPersonalDescription] = useState(new Set());

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
-import DashNav from "../components/dash/DashNav";
-import DarkModeToggle from "../components/DarkModeToggle";
-import PersonalProjectCard from "../components/project/PersonalProjectCard";
+import DashNav from "../../components/dash/DashNav";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import PersonalProjectCard from "../../components/project/PersonalProjectCard";
 
 export default function PersonalProjects({ name, projects }) {
     return (

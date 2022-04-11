@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import CountryInput from "../components/form/CountryInput";
-import DarkModeToggle from "../components/DarkModeToggle";
-import Logo from "../components/Logo";
-import TelInput from "../components/form/TelInput";
-import authImage from "../public/assets/auth/auth-background.svg";
+import CountryInput from "../../components/form/CountryInput";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../../components/Logo";
+import TelInput from "../../components/form/TelInput";
+import authImage from "../../public/assets/auth/auth-background.svg";
 
 export default function Complete() {
     return (

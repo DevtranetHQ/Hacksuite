@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import DarkModeToggle from "../components/DarkModeToggle";
-import Logo from "../components/Logo";
-import CountryInput from "../components/form/CountryInput";
-import TelInput from "../components/form/TelInput";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../../components/Logo";
+import CountryInput from "../../components/form/CountryInput";
+import TelInput from "../../components/form/TelInput";
 
 export default function Profile() {
     return (

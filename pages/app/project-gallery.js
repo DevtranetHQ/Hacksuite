@@ -1,6 +1,6 @@
 import Link from "next/link";
-import DarkModeToggle from "../components/DarkModeToggle";
-import Logo from "../components/Logo";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../../components/Logo";
 
 export default function ProjectGallery() {
     const loggedIn = false;

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import DarkModeToggle from "../components/DarkModeToggle";
-import DashNav from "../components/dash/DashNav";
-import Notification from "../components/dash/Notification";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import DashNav from "../../components/dash/DashNav";
+import Notification from "../../components/dash/Notification";
 
 export default function Notifications({ notifications }) {
     return (

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Avatar from "../../components/Avatar";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import Logo from "../../components/Logo";
-import ArrowIcon from "../../components/icons/Arrow";
-import CalendarIcon from "../../components/icons/Calendar";
-import GithubIcon from "../../components/icons/Github";
+import Avatar from "../../../components/Avatar";
+import DarkModeToggle from "../../../components/DarkModeToggle";
+import Logo from "../../../components/Logo";
+import ArrowIcon from "../../../components/icons/Arrow";
+import CalendarIcon from "../../../components/icons/Calendar";
+import GithubIcon from "../../../components/icons/Github";
 
 export default function Profile({ loggedIn }) {
     return (

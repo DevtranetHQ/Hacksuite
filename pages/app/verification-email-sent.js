@@ -1,12 +1,12 @@
 import Image from "next/image";
-import verificationImage from "../public/assets/auth/verification.png";
-import InboxIcon from "../components/icons/Inbox";
+import verificationImage from "../../public/assets/auth/verification.png";
+import InboxIcon from "../../components/icons/Inbox";
 
 export default function VerificationSent() {
     return (
         <div className="flex flex-col text-center">
             <div className="mx-auto w-full lg:w-3/5 z-0">
-                <Image layout="responsive" src={verificationImage} />
+                <Image layout="responsive" src={verificationImage} alt="" />
             </div>
             <div className="xs:-mt-6 z-10">
                 <p className="mx-auto text-8px lg:text-18px">
