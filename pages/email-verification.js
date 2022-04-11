@@ -28,6 +28,6 @@ export default function EmailVerificationRes(props) {
             }
         }
         verifyEmail();
-    }, []);
+    }, [router.query]);
     return <h2>{data}</h2>;
 }

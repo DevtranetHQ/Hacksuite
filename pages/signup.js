@@ -56,3 +56,16 @@ export default function Signup() {
         return <EmailVerficationSent />;
     }
 }
+
+export async function getServerSideProps(context) {
+    if (context.req.cookies.token) {
+        context.res.writeHead(302, {
+            Location: `/app`
+        });
+        context.res.end();
+    }
+
+    return {
+        props: {}
+    };
+}

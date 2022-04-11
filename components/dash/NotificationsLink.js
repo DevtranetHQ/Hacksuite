@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotificationsLink({ unread }) {
     return (
-        <Link href="/notifications">
+        <Link href="/app/notifications">
             <div className="inline relative">
                 <svg
                     className="cursor-pointer inline fill-deep-sky-blue mx-2"

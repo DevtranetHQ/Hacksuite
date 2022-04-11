@@ -15,7 +15,7 @@ export default function PersonalProjects({ name, projects }) {
                     <h1 className="ml-auto title">Projects</h1>
                     <div className="ml-auto">
                         <DarkModeToggle />
-                        <Link href="/notifications">
+                        <Link href="/app/notifications">
                             <svg
                                 className="cursor-pointer inline fill-deep-sky-blue mx-2"
                                 width="37"

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
+import { useCookies } from "react-cookie";
 import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
@@ -10,6 +11,14 @@ export default function DashNav({ admin }) {
     const router = useRouter();
     const { pathname } = router;
     const { darkMode } = useContext(DarkModeContext);
+    const [, , removeCookie] = useCookies([]);
+
+    const onLogout = () => {
+        console.log("logout");
+        removeCookie("token", { path: "/" });
+        router.push("/");
+    };
+
     return (
         <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
             <Logo className="mx-auto pt-10 w-[120px]" darkMode={darkMode} />
@@ -188,7 +197,7 @@ export default function DashNav({ admin }) {
                         <span>Settings</span>
                     </div>
                 </Link>
-                <Link href="/">
+                <button onClick={onLogout}>
                     <div className="cursor-pointer hover:text-orange-peel transition">
                         <svg
                             width="40"
@@ -203,7 +212,7 @@ export default function DashNav({ admin }) {
                         </svg>
                         <span>Logout</span>
                     </div>
-                </Link>
+                </button>
             </div>
         </nav>
     );
