@@ -15,6 +15,7 @@
     "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "intl-tel-input": "^17.0.15",
+    "jwt-decode": "^3.1.2",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-cookie": "^4.1.1",
