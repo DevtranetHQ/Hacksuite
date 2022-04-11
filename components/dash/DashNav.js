@@ -14,7 +14,6 @@ export default function DashNav({ admin }) {
     const [, , removeCookie] = useCookies([]);
 
     const onLogout = () => {
-        console.log("logout");
         removeCookie("token", { path: "/" });
         router.push("/");
     };

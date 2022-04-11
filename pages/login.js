@@ -19,15 +19,15 @@ export default function Login() {
     const [revealPassword, setRevealPassword] = useState(false);
     const [, setCookie] = useCookies([]);
 
-    const { execute, error, status } = useAsync(
+    const { execute, status } = useAsync(
         async (email, password) => {
-            const {
-                data: { token }
-            } = await axios({
+            const res = await axios({
                 url: endpoint,
                 method: method,
                 data: { email, password }
             });
+
+            const token = res.data.data.token;
 
             setCookie("token", token, { path: "/" });
             router.push("/");

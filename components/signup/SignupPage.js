@@ -13,7 +13,7 @@ import { useContext } from "react";
 import DarkModeContext from "../DarkModeContext";
 
 export default function SignupPage({ handleSubmission, isLoading, method }) {
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const { darkMode } = useContext(DarkModeContext);
     const [revealPassword, setRevealPassword] = useState(false);
 
     const toggleReveal = () => {

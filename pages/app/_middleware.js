@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
-    console.log(req.cookies);
     if (req.cookies.token) {
         return NextResponse.next();
     }
