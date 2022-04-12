@@ -15,11 +15,6 @@ export default function Login() {
         var id = document.getElementById("password");
         id.type = id.type === "password" ? "text" : "password";
     };
-
-    let width = 428;
-    if (typeof window !== "undefined") {
-        width = window.screen.width || window.minWidth;
-    }
     return (
         <div className="dark:bg-[#202020] dark:text-white relative">
             <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -109,10 +104,7 @@ export default function Login() {
                                 href="#"
                                 className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
                                 The Dynamics Discord
-                                <Image
-                                    src={discordImage}
-                                    height={width > 428 ? 24 : 20}
-                                />
+                                <Image src={discordImage} height={24} />
                             </a>
                         </div>
                     </form>
