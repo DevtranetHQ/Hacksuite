@@ -23,8 +23,8 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
     };
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
-            <div className="flex items-center justify-between px-8 xs:pl-8 xs:pr-12">
-                <Logo className="w-[60px] xs:w-[120px] pt-5" />
+            <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
+                <Logo className="w-[80px] xs:w-[120px] pt-5" />
                 <div className="pt-2">
                     <DarkModeToggle
                         className="w-[24px] h-[22px] xs:w-[34px] xs:h-[31px]"
@@ -32,12 +32,12 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     />
                 </div>
             </div>
-            <div className="flex grow shrink grid grid-cols-1 md:grid-cols-20 mxs:bg-mobile-login">
+            <div className="flex grow shrink grid grid-cols-1 md:grid-cols-20 mxs:bg-mobile-login mxs:mobile-signup">
                 <div className="hidden xs:mt-48 xs:-mb-0.5 xs:self-end md:block md:col-span-9 sm:ml-2 lg:ml-6 xl:mt-36 xl:self-auto">
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
                 <div className="col-span-full mxs:mb-48 mxs:mt-12 md:col-span-11 xs:mx-4 lg:mx-12 2xl:w-1/2 2xl:mx-auto">
-                    <h1 className="text-42px text-center mb-12 xs:mb-10 font-bold">
+                    <h1 className="text-42px text-center mb-14 xs:mb-10 font-bold">
                         SIGN UP
                     </h1>
                     <form
@@ -54,7 +54,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input mxs:rounded-md mxs:text-16px"
+                                    className="form-input mxs:rounded-md mxs:text-16px dark:bg-[#E9E9E9]"
                                     name="firstName"
                                     id="firstName"
                                     type="text"
@@ -71,7 +71,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input mxs:rounded-md mxs:text-16px"
+                                    className="form-input mxs:rounded-md mxs:text-16px dark:bg-[#E9E9E9]"
                                     name="lastName"
                                     id="lastName"
                                     type="text"
@@ -88,7 +88,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                 </label>
                                 <input
                                     autoComplete="off"
-                                    className="form-input mxs:rounded-md mxs:text-16px"
+                                    className="form-input mxs:rounded-md mxs:text-16px dark:bg-[#E9E9E9]"
                                     name="email"
                                     id="email"
                                     type="email"
@@ -104,7 +104,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                                     Password
                                 </label>
                                 <input
-                                    className="form-input mxs:rounded-md mxs:text-16px"
+                                    className="form-input mxs:rounded-md mxs:text-16px dark:bg-[#E9E9E9]"
                                     name="password"
                                     id="password"
                                     type="password"
@@ -128,15 +128,19 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                         </div>
                         <div className="mxs:-mx-10 flex justify-between mt-12 mb-5 -mr-8 -ml-10">
                             <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
-                            <div className="mxs:text-8px form-checkbox mt-1 2xl:ml-4 text-center">
-                                <input id="checkbox" type="checkbox" />
+                            <div className="mxs:text-12px form-checkbox mt-1 2xl:ml-4 text-center">
+                                <input
+                                    className="mxs:ml-0.5 mxs:mr-1"
+                                    id="checkbox"
+                                    type="checkbox"
+                                />
                                 <label htmlFor="checkbox">
                                     Notify me about upcoming events & news
                                 </label>
                             </div>
                             <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
                         </div>
-                        <div className="mxs:mr-14 relative scale-50 xs:scale-75 xl:scale-80 mx-auto">
+                        <div className="mxs:mr-14 relative scale-67 xs:scale-75 xl:scale-80 mx-auto">
                             <ReCAPTCHA
                                 className="w-fit mx-auto"
                                 sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
@@ -153,7 +157,7 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                 </div>
             </div>
             <footer className="block bg-deep-sky-blue py-1.5 xs:py-2 text-white w-full">
-                <div className="mxs:text-12px flex items-center justify-center xs:lead">
+                <div className="mxs:text-16px flex items-center justify-center xs:lead">
                     Already a member?&nbsp;
                     <Link href="/login">
                         <a className="underline text-white">Log in</a>
