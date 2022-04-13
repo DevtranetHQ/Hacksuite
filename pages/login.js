@@ -3,44 +3,23 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import { useCookies } from "react-cookie";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
-import { axios } from "../config/config";
-import { useAsync } from "../hooks/useAsync";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Login() {
-    const endpoint = "/auth/login";
-    const method = "POST";
-
-    const router = useRouter();
     const [revealPassword, setRevealPassword] = useState(false);
-    const [, setCookie] = useCookies([]);
 
-    const { execute, status } = useAsync(
-        async (email, password) => {
-            const res = await axios({
-                url: endpoint,
-                method: method,
-                data: { email, password }
-            });
-
-            const token = res.data.data.token;
-
-            setCookie("token", token, { path: "/" });
-            router.push("/");
-        },
-        [endpoint, method]
-    );
+    const { login } = useAuth();
 
     const onLogin = async e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        await execute(email, password);
+        await login.execute(email, password);
     };
 
     const toggleReveal = () => {
@@ -126,7 +105,7 @@ export default function Login() {
                             <button
                                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                                 type="submit"
-                                disabled={status === `pending`}>
+                                disabled={login.status === `pending`}>
                                 Log in
                             </button>
                             <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">

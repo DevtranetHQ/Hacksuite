@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import jwt_decode from "jwt-decode";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import authImage from "../../public/assets/auth/auth-background.svg";
 
-export default function Complete() {
+export default function Complete({ user }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">
@@ -16,7 +17,8 @@ export default function Complete() {
             <div className="flex grow shrink basis-[auto] justify-center">
                 <form className="min-w-[60%] mb-14">
                     <h1 className="headline text-center">
-                        Complete your profile <span className="text-fruit-salad">John</span>
+                        Complete your profile{" "}
+                        <span className="text-fruit-salad">{user.firstName}</span>
                     </h1>
                     <section className="my-5">
                         <h2 className="subheadline text-center">Demographic information</h2>
@@ -130,14 +132,21 @@ export default function Complete() {
                     </div>
                 </form>
             </div>
-            <footer className="block bg-deep-sky-blue py-2 lead text-white w-full">
+            {/* <footer className="block bg-deep-sky-blue py-2 lead text-white w-full">
                 <div className="flex items-center justify-center">
                     Need to edit something?&nbsp;
                     <Link href="/signup">
                         <a className="underline text-white">Go back</a>
                     </Link>
                 </div>
-            </footer>
+            </footer> */}
         </div>
     );
 }
+
+export const getServerSideProps = async ({ req }) => {
+    const token = req.cookies.token;
+    const user = jwt_decode(token);
+
+    return { props: { user } };
+};

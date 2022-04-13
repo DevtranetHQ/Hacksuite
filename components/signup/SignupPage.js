@@ -12,7 +12,7 @@ import LoadingButton from "../LoadingButton";
 import { useContext } from "react";
 import DarkModeContext from "../DarkModeContext";
 
-export default function SignupPage({ handleSubmission, isLoading, method }) {
+export default function SignupPage({ handleSubmission, isLoading }) {
     const { darkMode } = useContext(DarkModeContext);
     const [revealPassword, setRevealPassword] = useState(false);
 
@@ -41,7 +41,6 @@ export default function SignupPage({ handleSubmission, isLoading, method }) {
                     <form
                         className="rounded-3xl mxs:pb-6 mxs:mx-1 xs:pl-10 xs:pr-8 lg:pt-14 lg:pb-9"
                         onSubmit={handleSubmission}
-                        method={method}
                         encType="multipart/form-data">
                         <div className="xs:grid xs:grid-cols-2 gap-4">
                             <div>
