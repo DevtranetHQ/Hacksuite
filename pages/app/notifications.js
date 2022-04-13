@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import DarkModeToggle from "../components/DarkModeToggle";
-import DashNav from "../components/dash/DashNav";
-import Notification from "../components/dash/Notification";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import DashNav from "../../components/dash/DashNav";
+import Notification from "../../components/dash/Notification";
 
 export default function Notifications({ notifications }) {
     return (
@@ -15,7 +15,7 @@ export default function Notifications({ notifications }) {
                     <h1 className="ml-auto title">Notifications</h1>
                     <div className="ml-auto">
                         <DarkModeToggle />
-                        <Link href="/notifications">
+                        <Link href="/app/notifications">
                             <svg
                                 className="cursor-pointer inline fill-deep-sky-blue mx-2"
                                 width="37"
@@ -47,8 +47,7 @@ export async function getServerSideProps(context) {
                 {
                     unread: true,
                     type: "Workshop",
-                    title:
-                        "Introduction to Robotics and Artificial Intelligence",
+                    title: "Introduction to Robotics and Artificial Intelligence",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                     who: "Elon Musk",
@@ -57,8 +56,7 @@ export async function getServerSideProps(context) {
                 {
                     unread: true,
                     type: "Announcement",
-                    title:
-                        "The next edition of Codetivate Hackathon in two months",
+                    title: "The next edition of Codetivate Hackathon in two months",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                     who: "Ibrahim Salami",
@@ -76,8 +74,7 @@ export async function getServerSideProps(context) {
                 {
                     unread: false,
                     type: "Feature update",
-                    title:
-                        "Web-based chat app integration with The Dynamics account",
+                    title: "Web-based chat app integration with The Dynamics account",
                     description:
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                     who: "Engineering Team",

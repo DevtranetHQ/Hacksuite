@@ -1,14 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function PersonalProjectCard({
-    name,
-    description,
-    image,
-    published,
-    date,
-    id
-}) {
+export default function PersonalProjectCard({ name, description, image, published, date, id }) {
     const previewRoute = `/project/preview/${id}`;
     return (
         <>
@@ -108,9 +101,7 @@ export default function PersonalProjectCard({
                             Unpublish
                         </button>
                     ) : (
-                        <button className="button-small button-orange-peel">
-                            Publish
-                        </button>
+                        <button className="button-small button-orange-peel">Publish</button>
                     )}
                 </div>
             </article>

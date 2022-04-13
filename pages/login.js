@@ -1,14 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Login() {
     const [revealPassword, setRevealPassword] = useState(false);
+
+    const { login } = useAuth();
+
+    const onLogin = async e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        await login.execute(email, password);
+    };
 
     const toggleReveal = () => {
         setRevealPassword(!revealPassword);
@@ -35,7 +47,9 @@ export default function Login() {
                     <h1 className="text-36px mb-14 text-center font-black xs:text-30px xs:mb-1">
                         LOG IN
                     </h1>
-                    <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-12 lg:pb-6 lg:px-12">
+                    <form
+                        className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-12 lg:pb-6 lg:px-12"
+                        onSubmit={onLogin}>
                         <div>
                             <div>
                                 <label
@@ -90,7 +104,8 @@ export default function Login() {
                             </div>
                             <button
                                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
-                                type="submit">
+                                type="submit"
+                                disabled={login.status === `pending`}>
                                 Log in
                             </button>
                             <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
@@ -104,7 +119,11 @@ export default function Login() {
                                 href="#"
                                 className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
                                 The Dynamics Discord
-                                <Image src={discordImage} height={24} />
+                                <Image
+                                    src={discordImage}
+                                    height={24}
+                                    alt="Join The Dynamics Discord"
+                                />
                             </a>
                         </div>
                     </form>
@@ -121,4 +140,17 @@ export default function Login() {
             </footer>
         </div>
     );
+}
+
+export async function getServerSideProps(context) {
+    if (context.req.cookies.token) {
+        context.res.writeHead(302, {
+            Location: `/app`
+        });
+        context.res.end();
+    }
+
+    return {
+        props: {}
+    };
 }

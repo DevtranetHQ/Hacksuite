@@ -2,16 +2,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import CountryInput from "../components/form/CountryInput";
-import TelInput from "../components/form/TelInput";
-import DashNav from "../components/dash/DashNav";
-import DarkModeToggle from "../components/DarkModeToggle";
-import NotificationsLink from "../components/dash/NotificationsLink";
-import Avatar from "../components/Avatar";
-import GithubIcon from "../components/icons/Github";
-import LinkedinIcon from "../components/icons/Linkedin";
-import TwitterIcon from "../components/icons/Twitter";
-import UploadIcon from "../components/icons/Upload";
+import CountryInput from "../../components/form/CountryInput";
+import TelInput from "../../components/form/TelInput";
+import DashNav from "../../components/dash/DashNav";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import NotificationsLink from "../../components/dash/NotificationsLink";
+import Avatar from "../../components/Avatar";
+import GithubIcon from "../../components/icons/Github";
+import LinkedinIcon from "../../components/icons/Linkedin";
+import TwitterIcon from "../../components/icons/Twitter";
+import UploadIcon from "../../components/icons/Upload";
 
 export default function Settings({ recaptchaSitekey, choices, profileImage }) {
     const [personalDescription, setPersonalDescription] = useState(new Set());
@@ -103,9 +103,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                     <h2 className="mb-5 subheadline">Personal Information</h2>
                     <section className="grid grid-cols-2 gap-x-10">
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="firstName">
+                            <label className="form-label font-normal" htmlFor="firstName">
                                 First name
                             </label>
                             <input
@@ -118,9 +116,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                             />
                         </div>
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="lastName">
+                            <label className="form-label font-normal" htmlFor="lastName">
                                 Last name
                             </label>
                             <input
@@ -134,9 +130,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                         </div>
                     </section>
                     <section>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="email">
+                        <label className="form-label font-normal" htmlFor="email">
                             Email address
                         </label>
                         <input
@@ -149,18 +143,14 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                         />
                     </section>
                     <section>
-                        <label
-                            className="form-label font-normal"
-                            htmlFor="phoneNumber">
+                        <label className="form-label font-normal" htmlFor="phoneNumber">
                             Phone number
                         </label>
                         <TelInput />
                     </section>
                     <section className="grid grid-cols-2 gap-x-10 mb-5">
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="password">
+                            <label className="form-label font-normal" htmlFor="password">
                                 Password
                             </label>
                             <input
@@ -171,8 +161,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                                 type="password"
                             />
                             <p className="caption xs mt-1.5">
-                                Leave blank if you don't want to change your
-                                password
+                                Leave blank if you don't want to change your password
                             </p>
                         </div>
                         <div>
@@ -191,36 +180,19 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                         </div>
                     </section>
                     <section className="form-checkbox mb-10">
-                        <input
-                            id="checkbox"
-                            name="receiveEmails"
-                            type="checkbox"
-                        />
-                        <label htmlFor="checkbox">
-                            Notify me about upcoming news & events
-                        </label>
+                        <input id="checkbox" name="receiveEmails" type="checkbox" />
+                        <label htmlFor="checkbox">Notify me about upcoming news & events</label>
                     </section>
-                    <h2 className="mb-5 subheadline">
-                        Demographic Information
-                    </h2>
+                    <h2 className="mb-5 subheadline">Demographic Information</h2>
                     <section className="grid grid-cols-2 gap-x-10 mb-10">
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="dob">
+                            <label className="form-label font-normal" htmlFor="dob">
                                 Date of birth
                             </label>
-                            <input
-                                className="form-input"
-                                id="dob"
-                                name="dob"
-                                type="date"
-                            />
+                            <input className="form-input" id="dob" name="dob" type="date" />
                         </div>
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="gender">
+                            <label className="form-label font-normal" htmlFor="gender">
                                 Gender
                             </label>
                             <select
@@ -228,18 +200,14 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                                 defaultValue="Prefer not to say"
                                 id="gender"
                                 name="gender">
-                                <option value="Prefer not to say">
-                                    Prefer not to say
-                                </option>
+                                <option value="Prefer not to say">Prefer not to say</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
                         <div>
-                            <label
-                                className="form-label font-normal"
-                                htmlFor="country">
+                            <label className="form-label font-normal" htmlFor="country">
                                 Country of residence
                             </label>
                             <CountryInput />
@@ -256,55 +224,44 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                                 </label>
                                 <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
                                     <div className="col-span-11 flex flex-wrap gap-2 z-[2]">
-                                        {Array.from(personalDescription).map(
-                                            (value, key) => (
-                                                <button
-                                                    className="bg-[#E6E6E6] border border-[#442929] cursor-default inline-flex gap-x-4 items-center justify-between px-3 rounded text-15px h-fit"
-                                                    key={key}>
-                                                    <span className="pt-0.5">
-                                                        {value}
-                                                    </span>
-                                                    <span
-                                                        className="cursor-pointer"
-                                                        onClick={() =>
-                                                            removePersonalDescription(
-                                                                value
-                                                            )
-                                                        }>
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            )
-                                        )}
+                                        {Array.from(personalDescription).map((value, key) => (
+                                            <button
+                                                className="bg-[#E6E6E6] border border-[#442929] cursor-default inline-flex gap-x-4 items-center justify-between px-3 rounded text-15px h-fit"
+                                                key={key}>
+                                                <span className="pt-0.5">{value}</span>
+                                                <span
+                                                    className="cursor-pointer"
+                                                    onClick={() =>
+                                                        removePersonalDescription(value)
+                                                    }>
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        ))}
                                     </div>
                                     <select
                                         className="absolute top-0 right-2 col-span-1 form-select bg-transparent border-0 text-transparent w-fit z-[1]"
                                         id="personalDescription">
-                                        {choices.personalDescription.map(
-                                            (value, key) => (
-                                                <option
-                                                    key={key}
-                                                    onClick={event =>
-                                                        setPersonalDescription(
-                                                            new Set([
-                                                                ...personalDescription,
-                                                                event.target
-                                                                    .value
-                                                            ])
-                                                        )
-                                                    }
-                                                    value={value}>
-                                                    {value}
-                                                </option>
-                                            )
-                                        )}
+                                        {choices.personalDescription.map((value, key) => (
+                                            <option
+                                                key={key}
+                                                onClick={event =>
+                                                    setPersonalDescription(
+                                                        new Set([
+                                                            ...personalDescription,
+                                                            event.target.value
+                                                        ])
+                                                    )
+                                                }
+                                                value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="levelOfStudy">
+                                <label className="form-label font-normal" htmlFor="levelOfStudy">
                                     Level of study
                                 </label>
                                 <select
@@ -312,9 +269,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                                     defaultValue="High school"
                                     id="levelOfStudy"
                                     name="levelOfStudy">
-                                    <option value="High school">
-                                        High school
-                                    </option>
+                                    <option value="High school">High school</option>
                                     <option value="College">College</option>
                                     <option value="Other">Other</option>
                                 </select>
@@ -329,55 +284,42 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                                 </label>
                                 <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
                                     <div className="col-span-11 flex flex-wrap gap-2 z-[2]">
-                                        {Array.from(skillsAndInterests).map(
-                                            (value, key) => (
-                                                <button
-                                                    className="bg-[#E6E6E6] border border-[#442929] cursor-default inline-flex gap-x-4 items-center justify-between px-3 rounded text-15px h-fit"
-                                                    key={key}>
-                                                    <span className="pt-0.5">
-                                                        {value}
-                                                    </span>
-                                                    <span
-                                                        className="cursor-pointer"
-                                                        onClick={() =>
-                                                            removeSkillsAndInterests(
-                                                                value
-                                                            )
-                                                        }>
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            )
-                                        )}
+                                        {Array.from(skillsAndInterests).map((value, key) => (
+                                            <button
+                                                className="bg-[#E6E6E6] border border-[#442929] cursor-default inline-flex gap-x-4 items-center justify-between px-3 rounded text-15px h-fit"
+                                                key={key}>
+                                                <span className="pt-0.5">{value}</span>
+                                                <span
+                                                    className="cursor-pointer"
+                                                    onClick={() => removeSkillsAndInterests(value)}>
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        ))}
                                     </div>
                                     <select
                                         className="absolute top-0 right-2 col-span-1 form-select bg-transparent border-0 text-transparent w-fit z-[1]"
                                         id="skillsAndInterests">
-                                        {choices.skillsAndInterests.map(
-                                            (value, key) => (
-                                                <option
-                                                    key={key}
-                                                    onClick={event =>
-                                                        setSkillsAndInterests(
-                                                            new Set([
-                                                                ...skillsAndInterests,
-                                                                event.target
-                                                                    .value
-                                                            ])
-                                                        )
-                                                    }
-                                                    value={value}>
-                                                    {value}
-                                                </option>
-                                            )
-                                        )}
+                                        {choices.skillsAndInterests.map((value, key) => (
+                                            <option
+                                                key={key}
+                                                onClick={event =>
+                                                    setSkillsAndInterests(
+                                                        new Set([
+                                                            ...skillsAndInterests,
+                                                            event.target.value
+                                                        ])
+                                                    )
+                                                }
+                                                value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="resume">
+                                <label className="form-label font-normal" htmlFor="resume">
                                     Upload Resume/CV
                                 </label>
                                 <div className="flex form-input">

@@ -2,13 +2,13 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Avatar from "../../components/Avatar";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import Logo from "../../components/Logo";
-import showdownConverter from "../../components/showdownConverter";
-import ArrowIcon from "../../components/icons/Arrow";
-import CalendarIcon from "../../components/icons/Calendar";
-import GithubIcon from "../../components/icons/Github";
+import Avatar from "../../../components/Avatar";
+import DarkModeToggle from "../../../components/DarkModeToggle";
+import Logo from "../../../components/Logo";
+import showdownConverter from "../../../components/showdownConverter";
+import ArrowIcon from "../../../components/icons/Arrow";
+import CalendarIcon from "../../../components/icons/Calendar";
+import GithubIcon from "../../../components/icons/Github";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";

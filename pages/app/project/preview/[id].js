@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Avatar from "../../../components/Avatar";
-import DarkModeToggle from "../../../components/DarkModeToggle";
-import Logo from "../../../components/Logo";
-import showdownConverter from "../../../components/showdownConverter";
-import AdobeIcon from "../../../components/icons/Adobe";
-import ArrowIcon from "../../../components/icons/Arrow";
-import CommentIcon from "../../../components/icons/Comment";
-import ShareIcon from "../../../components/icons/Share";
-import FacebookIcon from "../../../components/icons/Facebook";
-import FigmaIcon from "../../../components/icons/Figma";
-import FollowerIcon from "../../../components/icons/Follower";
-import GithubIcon from "../../../components/icons/Github";
-import HeartIcon from "../../../components/icons/Heart";
-import LinkIcon from "../../../components/icons/Link";
-import LinkedinIcon from "../../../components/icons/Linkedin";
-import TimeIcon from "../../../components/icons/Time";
-import TwitterIcon from "../../../components/icons/Twitter";
+import Avatar from "../../../../components/Avatar";
+import DarkModeToggle from "../../../../components/DarkModeToggle";
+import Logo from "../../../../components/Logo";
+import showdownConverter from "../../../../components/showdownConverter";
+import AdobeIcon from "../../../../components/icons/Adobe";
+import ArrowIcon from "../../../../components/icons/Arrow";
+import CommentIcon from "../../../../components/icons/Comment";
+import ShareIcon from "../../../../components/icons/Share";
+import FacebookIcon from "../../../../components/icons/Facebook";
+import FigmaIcon from "../../../../components/icons/Figma";
+import FollowerIcon from "../../../../components/icons/Follower";
+import GithubIcon from "../../../../components/icons/Github";
+import HeartIcon from "../../../../components/icons/Heart";
+import LinkIcon from "../../../../components/icons/Link";
+import LinkedinIcon from "../../../../components/icons/Linkedin";
+import TimeIcon from "../../../../components/icons/Time";
+import TwitterIcon from "../../../../components/icons/Twitter";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
@@ -82,7 +82,7 @@ export default function Project({ loggedIn, project }) {
             </header>
             <section className="grid grid-cols-3 gap-x-2 py-7">
                 <div className="col-span-2 mx-14 my-7 relative min-h-[400px]">
-                    <Image layout="fill" objectFit="cover" src={project.image} />
+                    <Image layout="fill" objectFit="cover" src={project.image} alt="" />
                 </div>
                 <div className="col-span-1 py-7">
                     <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 rounded-l-md h-full">

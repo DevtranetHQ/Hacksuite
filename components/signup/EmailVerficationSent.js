@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function EmailVerificationSent() {
     return (
-        <div classNanme="w-fit">
-            <Image src={sentEmailImage} />
+        <div className="w-fit">
+            <Image src={sentEmailImage} alt="" />
         </div>
     );
 }

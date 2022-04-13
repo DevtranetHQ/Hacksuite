@@ -1,7 +1,7 @@
 import Link from "next/link";
-import DarkModeToggle from "../components/DarkModeToggle";
-import EventCard from "../components/event/EventCard";
-import Logo from "../components/Logo";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import EventCard from "../../components/event/EventCard";
+import Logo from "../../components/Logo";
 
 export default function Events({ events }) {
     // TODO: Replace const with actual state (whether that be React context, getServerSideProps, etc.)
@@ -46,21 +46,14 @@ export default function Events({ events }) {
                 </div>
             </nav>
             <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-2xl text-center">
-                <h1 className="text-deep-sky-blue title">
-                    The Dynamics Events
-                </h1>
+                <h1 className="text-deep-sky-blue title">The Dynamics Events</h1>
                 <h2 className="lead mb-2">
-                    Don’t miss any workshop, hackathon, AMA, networking event,
-                    mentorship program, and more! Events dates and times are in
-                    your local timezone.
+                    Don’t miss any workshop, hackathon, AMA, networking event, mentorship program,
+                    and more! Events dates and times are in your local timezone.
                 </h2>
                 <div className="inline-flex">
-                    <button className="button-medium button-fruit-salad">
-                        All events
-                    </button>
-                    <button className="button-medium button-deep-sky-blue">
-                        Host with us
-                    </button>
+                    <button className="button-medium button-fruit-salad">All events</button>
+                    <button className="button-medium button-deep-sky-blue">Host with us</button>
                 </div>
             </header>
             <nav className="border-b-2 flex gap-x-2 items-center justify-center pt-7 pb-3 heading">
@@ -78,10 +71,7 @@ export default function Events({ events }) {
                 <span className="pt-3">Upcoming Events</span>
             </nav>
             <section>
-                {events &&
-                    events.map((event, key) => (
-                        <EventCard key={key} {...event} />
-                    ))}
+                {events && events.map((event, key) => <EventCard key={key} {...event} />)}
             </section>
             <section className="p-14 text-center">
                 <button className="button-big button-deep-sky-blue inline-flex gap-2">
@@ -100,9 +90,8 @@ export default function Events({ events }) {
             </section>
             <footer className="bg-[#f4f4f4] dark:bg-[#444444] px-14 py-7 text-center">
                 <p className="sm">
-                    All events are hosted and maintained by The Dynamics, the
-                    official network of young makers, developers, innovators,
-                    and founders using our{" "}
+                    All events are hosted and maintained by The Dynamics, the official network of
+                    young makers, developers, innovators, and founders using our{" "}
                     <Link href="/">
                         <a>Code of Conduct</a>
                     </Link>
@@ -128,8 +117,7 @@ export async function getServerSideProps(context) {
                     datePosted: "December 30, 2022",
                     dateEvent: "January 15, 2:00-3:00 PM",
                     id: "123",
-                    image:
-                        "https://s3-alpha-sig.figma.com/img/4b43/2034/088ffd519dbd6fbc1ff2b2dd85131fd3?Expires=1648425600&Signature=XODy7DnFDhubGjAjTs3UCGIBblCDNnjhygPLf3uIKnE~K8aCArScubdCNbyCr9SH81HEYTo66E58V6-bjqhetPXCKxnVlaNL~yjgKLxPOO4uWKxc0wf5f6q7EbM40ShRH8egwNVyyr~htvSadFIt-9wQlsrqhsNwApTjKq9P5tNJx7w2HEtHzXIulzvg1R9BkwnOiRJDyMGzYBIe0eYW4xTjclvw1c6D0FGJP4Tv0oT5PlzeF-1gJh4KTi0M6EQxw92jfO-THopNYL1VSYfbUF2ncDAaWd7ZA2pWWDEct8vhrpriADLEtgCD~WXSljG8hyypfvZ26o1oMc0owZHdEQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                    image: "https://s3-alpha-sig.figma.com/img/4b43/2034/088ffd519dbd6fbc1ff2b2dd85131fd3?Expires=1648425600&Signature=XODy7DnFDhubGjAjTs3UCGIBblCDNnjhygPLf3uIKnE~K8aCArScubdCNbyCr9SH81HEYTo66E58V6-bjqhetPXCKxnVlaNL~yjgKLxPOO4uWKxc0wf5f6q7EbM40ShRH8egwNVyyr~htvSadFIt-9wQlsrqhsNwApTjKq9P5tNJx7w2HEtHzXIulzvg1R9BkwnOiRJDyMGzYBIe0eYW4xTjclvw1c6D0FGJP4Tv0oT5PlzeF-1gJh4KTi0M6EQxw92jfO-THopNYL1VSYfbUF2ncDAaWd7ZA2pWWDEct8vhrpriADLEtgCD~WXSljG8hyypfvZ26o1oMc0owZHdEQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 },
                 {
                     name: "Women in Tech mentorship program this fall",
@@ -141,8 +129,7 @@ export async function getServerSideProps(context) {
                     datePosted: "March 10, 2023",
                     dateEvent: "August 12, 1:00-2:00 PM",
                     id: "456",
-                    image:
-                        "https://s3-alpha-sig.figma.com/img/d5cd/5303/2cfc66bf4ed9c71318278d2bbcd726f4?Expires=1648425600&Signature=ebU9EXir-LL-popFV~g0vc7e2JXCbTSCnnppiBpSdIOQsEr58yGcD8s0ZKPfTZpkhIsPuNeWf2oe7wOBTDV5tYev6SsY1SkvVjJprO76p-vHw4jw~TMxAD7X1AflPSGhPMmwBpHqmHGUTmovPl7QgjejNpOWzKSlDBtlGzsX7Z2IzDO98hyIoGqq-x564cl9MnZsDA6otCcBJ2UwddLErsFkDQFpU1JdEaFQ29MIs-WFRwEJLjdqEiQMYxtUnrmfG9yvkBodae1yJZlTpF4wU0SIBOwQLr11iGEqkqPg8S9r20EcD4MAu2VwBP~IfaJHXuBifUuvMhcJAGNfMSXdVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                    image: "https://s3-alpha-sig.figma.com/img/d5cd/5303/2cfc66bf4ed9c71318278d2bbcd726f4?Expires=1648425600&Signature=ebU9EXir-LL-popFV~g0vc7e2JXCbTSCnnppiBpSdIOQsEr58yGcD8s0ZKPfTZpkhIsPuNeWf2oe7wOBTDV5tYev6SsY1SkvVjJprO76p-vHw4jw~TMxAD7X1AflPSGhPMmwBpHqmHGUTmovPl7QgjejNpOWzKSlDBtlGzsX7Z2IzDO98hyIoGqq-x564cl9MnZsDA6otCcBJ2UwddLErsFkDQFpU1JdEaFQ29MIs-WFRwEJLjdqEiQMYxtUnrmfG9yvkBodae1yJZlTpF4wU0SIBOwQLr11iGEqkqPg8S9r20EcD4MAu2VwBP~IfaJHXuBifUuvMhcJAGNfMSXdVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 },
                 {
                     name: "Maintaining good work-life balance as parents",
@@ -154,8 +141,7 @@ export async function getServerSideProps(context) {
                     datePosted: "June 25, 2022",
                     dateEvent: "December 19, 10:00 AM-3:00 PM",
                     id: "789",
-                    image:
-                        "https://s3-alpha-sig.figma.com/img/ad1d/7340/a52269411e7ca1737a4c593411722416?Expires=1648425600&Signature=Kw9kRFXH2B5MOD3HrJyiFA58FqWGRJSeEQRq56Pz-WNvWyY1zzBfq6aHcDvQs4SqUyRp9SPA5VeBWJSYjfUcytVWLyq6euaXg8kgvU45BmtYh1YYudGVPpRk8L0nXbIl1UQdf5hM88QUJRgu1ZtmFOxRFzxjnnBOjPRUFXWrDAl2Yq7dUmd1PxqOZhjXZdrN3qZKtxsYwMvGWYiegx6NQenCtpgcGngLW64RekdMyIgmqkekKjisqEs2Kk7RI~AiVZInqOqL0GGBFLgfIV7UG2Dgt1~oR-b2wlgTD39AqwnZM5Za5IPwWk04ssX5AuHRNNrBHnDklGTmb9yOjwxNxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                    image: "https://s3-alpha-sig.figma.com/img/ad1d/7340/a52269411e7ca1737a4c593411722416?Expires=1648425600&Signature=Kw9kRFXH2B5MOD3HrJyiFA58FqWGRJSeEQRq56Pz-WNvWyY1zzBfq6aHcDvQs4SqUyRp9SPA5VeBWJSYjfUcytVWLyq6euaXg8kgvU45BmtYh1YYudGVPpRk8L0nXbIl1UQdf5hM88QUJRgu1ZtmFOxRFzxjnnBOjPRUFXWrDAl2Yq7dUmd1PxqOZhjXZdrN3qZKtxsYwMvGWYiegx6NQenCtpgcGngLW64RekdMyIgmqkekKjisqEs2Kk7RI~AiVZInqOqL0GGBFLgfIV7UG2Dgt1~oR-b2wlgTD39AqwnZM5Za5IPwWk04ssX5AuHRNNrBHnDklGTmb9yOjwxNxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 }
             ]
         }

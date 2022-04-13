@@ -1,33 +1,25 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { axios } from "../config/config";
-import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
-export default function EmailVerificationRes(props) {
-    const endpoint = "/auth/verify-email";
-    const method = "POST";
-
-    const [data, setData] = useState("");
+export default function EmailVerificationRes() {
     const router = useRouter();
 
+    const { verifyEmail } = useAuth();
+
     useEffect(() => {
-        const params = router.query;
-        console.log(router.query);
-        async function verifyEmail() {
-            try {
-                await axios({
-                    url: endpoint,
-                    method: method,
-                    data: {
-                        userId: params.uid,
-                        verifyToken: params.verifyToken
-                    }
-                });
-                setData("cool");
-            } catch (e) {
-                setData(e.response.data ? e.response.data.message : e.message);
-            }
+        if (router.query.uid && router.query.verifyToken) {
+            verifyEmail.execute(router.query.uid, router.query.verifyToken);
         }
-        verifyEmail();
-    }, []);
-    return <h2>{data}</h2>;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [router.query.uid, router.query.verifyToken]);
+
+    return (
+        <h2>
+            Email Verification <br />
+            {verifyEmail.status === "loading" && <>Verifying...</>}
+            {verifyEmail.status === "success" && <>Email verified! Redirecting to app...</>}
+            {verifyEmail.status === "error" && <>{verifyEmail.error?.response.data.message}</>}
+        </h2>
+    );
 }
