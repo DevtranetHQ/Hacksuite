@@ -19,7 +19,7 @@ export default function Optional({ profileImage }) {
 
     let handleUpfile = () => {
         document.querySelector("#getFile").onchange = function(){
-          document.querySelector("#fileName").innerText = this.files[0].name;
+          document.querySelector("#fileName").innerText = "browse [ " + this.files[0].name + " ]";
         }
     }
     return (
