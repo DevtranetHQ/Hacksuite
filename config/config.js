@@ -1,9 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://api.thedynamics.tech";
-const config = {
-    API_URL: API_URL,
-    axios: axios.create({ baseURL: API_URL })
-};
-
-module.exports = config;
+export const API_URL = `/api`;
+export const axios = Axios.create({ baseURL: API_URL });
