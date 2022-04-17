@@ -11,6 +11,22 @@ import { config } from "./../config";
 const { JWT_SECRET, BCRYPT_SALT, url } = config;
 
 class AuthService {
+    _getLoginToken(user) {
+        const token = JWT.sign(
+            {
+                id: user._id,
+                role: user.role,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                isCompleted: user.isCompleted
+            },
+            JWT_SECRET,
+            { expiresIn: 60 * 60 }
+        );
+
+        return token;
+    }
+
     async register(data) {
         let user = await User.findOne({ email: data.email });
         if (user) throw new CustomError("Email already exists");
@@ -45,16 +61,7 @@ class AuthService {
         // check if user is verified
         if (!user.isVerified) throw new CustomError("User is not verified");
 
-        const token = JWT.sign(
-            {
-                id: user._id,
-                role: user.role,
-                firstName: user.firstName,
-                lastName: user.lastName
-            },
-            JWT_SECRET,
-            { expiresIn: 60 * 60 }
-        );
+        const token = this._getLoginToken(user);
 
         return (data = {
             uid: user._id,
@@ -83,16 +90,7 @@ class AuthService {
         await VToken.deleteOne();
 
         if (login) {
-            const loginToken = JWT.sign(
-                {
-                    id: user._id,
-                    role: user.role,
-                    firstName: user.firstName,
-                    lastName: user.lastName
-                },
-                JWT_SECRET,
-                { expiresIn: 60 * 60 }
-            );
+            const loginToken = this._getLoginToken(user);
 
             return { loginToken };
         }
