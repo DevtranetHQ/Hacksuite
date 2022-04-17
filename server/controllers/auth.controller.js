@@ -3,7 +3,6 @@ import AuthService from "../services/auth.service";
 
 class AuthContoller {
     async register(req, res) {
-        console.log({ body: req.body });
         const result = await AuthService.register(req.body);
         res.status(201).send(response("new user registered successfully", result));
     }
