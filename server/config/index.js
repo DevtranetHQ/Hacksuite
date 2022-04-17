@@ -11,10 +11,10 @@ export const config = {
         CLIENT_URL: process.env.CLIENT_URL || "http://localhost:3000"
     },
     mailer: {
-        HOST: process.env.HOST,
-        USER: process.env.USER,
-        PASSWORD: process.env.PASSWORD,
-        PORT: process.env.PORT,
+        HOST: process.env.SMTP_HOST,
+        USER: process.env.SMTP_USER,
+        PASSWORD: process.env.SMTP_PASSWORD,
+        PORT: process.env.SMTP_PORT,
         SECURE: true
     }
 };
