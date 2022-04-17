@@ -32,22 +32,16 @@ export const useAuth = () => {
     });
 
     const verifyEmail = useAsync(async (userId, verifyToken) => {
-        try {
-            const res = await axios({
-                url: "/auth/verify-email",
-                method: "POST",
-                data: { userId, verifyToken, login: true }
-            });
+        const res = await axios({
+            url: "/auth/verify-email",
+            method: "POST",
+            data: { userId, verifyToken, login: true }
+        });
 
-            const loginToken = res.data.data.loginToken;
-            console.log(res.data);
+        const loginToken = res.data.data.loginToken;
 
-            setCookie("token", loginToken, { path: "/" });
-            router.push("/app/complete");
-        } catch (error) {
-            console.log({ error });
-            throw error;
-        }
+        setCookie("token", loginToken, { path: "/" });
+        router.push("/app/complete");
     });
 
     return { login, logout, signup, verifyEmail };
