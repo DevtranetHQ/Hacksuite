@@ -17,6 +17,11 @@ class UserContoller {
         res.status(200).send(response("user data", result));
     }
 
+    async registerForEvent(req, res){
+        const result = await UserService.registerForEvent(req.$user._id, req.params.eventId);
+        res.status(200).send(response("user registered for event", result));
+    }
+
     async update(req, res) {
         const result = await UserService.update(req.params.userId, req.body);
         res.status(200).send(response("user updated", result));
