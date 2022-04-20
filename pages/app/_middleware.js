@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-import jwt_decode from "jwt-decode";
+import { withAuth } from "./../../server/middlewares/auth.middleware";
 
-export function middleware(req) {
-    const token = req.cookies.token;
-    if (token) {
-        const user = jwt_decode(token);
-
+export const middleware = withAuth(req => {
+    const user = req.$user;
+    if (user) {
         const completePage = `${req.nextUrl.origin}/app/complete`;
 
         if (!user.isCompleted && req.url !== completePage) {
@@ -16,4 +14,4 @@ export function middleware(req) {
     }
 
     return NextResponse.redirect(`${req.nextUrl.origin}/login`);
-}
+});

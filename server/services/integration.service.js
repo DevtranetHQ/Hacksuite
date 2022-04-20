@@ -1,6 +1,6 @@
 import userService from "./user.service";
 import authService from "./auth.service";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "./../utils/custom-error";
 
 class IntegrationService {
     async discordEmailCheck(data) {

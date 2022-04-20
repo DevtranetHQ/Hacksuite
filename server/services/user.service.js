@@ -1,5 +1,5 @@
 import User from "./../models/user.model";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
 
 class UserService {
     async create(data) {

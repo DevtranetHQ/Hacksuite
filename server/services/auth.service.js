@@ -4,7 +4,7 @@ import JWT from "jsonwebtoken";
 
 import User from "./../models/user.model";
 import Token from "./../models/token.model";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
 import MailService from "./../services/mail.service";
 import { config } from "./../config";
 
