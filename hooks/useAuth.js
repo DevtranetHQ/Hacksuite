@@ -7,6 +7,10 @@ export const useAuth = () => {
     const [, setCookie, removeCookie] = useCookies([`token`]);
     const router = useRouter();
 
+    const setToken = token => {
+        setCookie("token", token, { path: "/" });
+    };
+
     const login = useAsync(async (email, password) => {
         const res = await axios({
             url: "/auth/login",
@@ -14,7 +18,7 @@ export const useAuth = () => {
             data: { email, password }
         });
 
-        setCookie("token", res.data.data.token, { path: "/" });
+        setToken(res.data.data.token);
         router.push("/");
     });
 
@@ -40,9 +44,9 @@ export const useAuth = () => {
 
         const loginToken = res.data.data.loginToken;
 
-        setCookie("token", loginToken, { path: "/" });
+        setToken(loginToken);
         router.push("/app/complete");
     });
 
-    return { login, logout, signup, verifyEmail };
+    return { login, logout, signup, verifyEmail, setToken };
 };

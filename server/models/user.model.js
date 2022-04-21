@@ -67,6 +67,16 @@ const userSchema = new Schema(
                 message: "{VALUE is not a valid country}"
             }
         },
+        describe: {
+            type: String
+        },
+        phoneNumber: {
+            type: String,
+            trim: true
+        },
+        skills: {
+            type: String
+        },
         birthdate: {
             type: Date,
             max: Date.now()

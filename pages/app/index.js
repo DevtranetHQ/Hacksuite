@@ -45,7 +45,7 @@ export default function Dash({ admin, name, unread }) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    const user = withAuth(req => req.$user)(req, res);
+    const user = await withAuth(req => req.$user)(req, res);
 
     return {
         props: {

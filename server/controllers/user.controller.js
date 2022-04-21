@@ -13,22 +13,22 @@ class UserContoller {
     }
 
     async getOne(req) {
-        const result = await UserService.getOne(req.params.userId);
+        const result = await UserService.getOne(req.query.userId);
         return new CustomResponse(200, "user data", result);
     }
 
     async registerForEvent(req) {
-        const result = await UserService.registerForEvent(req.$user._id, req.params.eventId);
+        const result = await UserService.registerForEvent(req.$user._id, req.query.eventId);
         return new CustomResponse(200, "user registered for event", result);
     }
 
     async update(req) {
-        const result = await UserService.update(req.params.userId, req.body);
+        const result = await UserService.update(req.query.userId, req.body);
         return new CustomResponse(200, "user updated", result);
     }
 
     async delete(req) {
-        const result = await UserService.delete(req.params.userId);
+        const result = await UserService.delete(req.query.userId);
         return new CustomResponse(200, "user deleted", result);
     }
 }

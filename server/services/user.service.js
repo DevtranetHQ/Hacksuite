@@ -1,5 +1,6 @@
 import User from "./../models/user.model";
 import { CustomError } from "../utils/customError";
+import authService from "./auth.service";
 
 class UserService {
     async create(data) {
@@ -38,13 +39,11 @@ class UserService {
             { _id: userId },
             { $set: { isCompleted: true, ...data } }
         );
-        console.log({ oldUser });
         if (!oldUser) throw new CustomError("User dosen't exist", 404);
 
         if (!oldUser.isCompleted) {
             const newUser = await User.findById(userId);
-            console.log({ newUser });
-            const newToken = await this._getLoginToken(newUser);
+            const newToken = await authService._getLoginToken(newUser);
             return {
                 newToken,
                 ...newUser
