@@ -91,7 +91,7 @@ export default function Login() {
                                     required
                                 />
                                 <Icon
-                                    className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
+                                    className="dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
                                     onClick={toggleReveal}
                                     width="1.3em"
                                     height="1.3em"
