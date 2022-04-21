@@ -1,8 +1,10 @@
 import { UserCtrl } from "../../../../server/controllers/user.controller";
+import { withGlobalMiddleware } from "./../../../../server/middlewares/global.middleware";
 
-export default async function handler(req, res) {
+async function handler(req, res) {
     if (req.method === "POST") {
         return UserCtrl.registerForEvent(req, res);
     }
 }
 
+export default withGlobalMiddleware(handler);
