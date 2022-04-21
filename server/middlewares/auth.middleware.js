@@ -14,10 +14,11 @@ export function withAuth(handler) {
 
         if (!token) return handler(req, res);
 
-        const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
-
-        req.$user = decoded;
-
-        return handler(req, res);
+        try {
+            const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+            req.$user = decoded;
+        } finally {
+            return handler(req, res);
+        }
     };
 }

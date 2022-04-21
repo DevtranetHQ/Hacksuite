@@ -13,5 +13,5 @@ export const middleware = withAuth(req => {
         return NextResponse.next();
     }
 
-    return NextResponse.redirect(`${req.nextUrl.origin}/login`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/login`).clearCookie("token");
 });
