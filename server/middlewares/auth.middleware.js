@@ -1,4 +1,4 @@
-import JWT from "jsonwebtoken";
+import { jwtVerify } from "jose";
 import { config } from "./../config";
 
 const { JWT_SECRET } = config;
@@ -9,12 +9,12 @@ const { JWT_SECRET } = config;
  * @returns Composed handler function
  */
 export function withAuth(handler) {
-    return (req, res) => {
+    return async (req, res) => {
         const token = req.cookies.token;
 
         if (!token) return handler(req, res);
 
-        const decoded = JWT.verify(token, JWT_SECRET);
+        const decoded = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
 
         req.$user = decoded;
 
