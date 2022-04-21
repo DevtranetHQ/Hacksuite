@@ -35,7 +35,7 @@ export default class MailService {
                 subject,
                 text: content
             });
-        } catch {
+        } catch (err) {
             throw new CustomError("Cannot send email. Invalid transporter.");
         }
 

@@ -32,7 +32,12 @@ class AuthService {
         user = new User(data);
         await user.save();
         // Request email verification
-        await this.requestEmailVerification(user.email);
+        try {
+            await this.requestEmailVerification(user.email);
+        } catch (error) {
+            await user.remove();
+            throw new CustomError("Email verification failed");
+        }
 
         return (data = {
             uid: user._id,

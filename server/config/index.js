@@ -13,7 +13,7 @@ export const config = {
     mailer: {
         HOST: process.env.SMTP_HOST,
         USER: process.env.SMTP_USER,
-        PASSWORD: process.env.SMTP_PASSWORD,
+        PASSWORD: process.env.SMTP_PASS,
         PORT: process.env.SMTP_PORT,
         SECURE: true
     }
