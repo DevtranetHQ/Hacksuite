@@ -1,19 +1,19 @@
 import trimObjectStrings from "../utils/trimObjectStrings";
 
-function trimIncomingRequests(req, res, next) {
-    if (req.body) {
-        req.body = trimObjectStrings(req.body);
-    }
+export function withTrimIncomingRequests(handler) {
+    return (req, res) => {
+        if (req.body) {
+            req.body = trimObjectStrings(req.body);
+        }
 
-    if (req.query) {
-        req.query = trimObjectStrings(req.query);
-    }
+        if (req.query) {
+            req.query = trimObjectStrings(req.query);
+        }
 
-    if (req.params) {
-        req.params = trimObjectStrings(req.params);
-    }
+        if (req.params) {
+            req.params = trimObjectStrings(req.params);
+        }
 
-    next();
+        return handler(req, res);
+    };
 }
-
-export default trimIncomingRequests;

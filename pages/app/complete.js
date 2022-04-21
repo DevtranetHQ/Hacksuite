@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import jwt_decode from "jwt-decode";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import authImage from "../../public/assets/auth/auth-background.svg";
+import { withAuth } from "../../server/middlewares/auth.middleware";
 
 export default function Complete({ user }) {
     return (
@@ -144,9 +144,8 @@ export default function Complete({ user }) {
     );
 }
 
-export const getServerSideProps = async ({ req }) => {
-    const token = req.cookies.token;
-    const user = jwt_decode(token);
+export const getServerSidePropsHandler = async ({ req, res }) => {
+    const user = withAuth(req => req.$user)(req, res);
 
     return { props: { user } };
 };
