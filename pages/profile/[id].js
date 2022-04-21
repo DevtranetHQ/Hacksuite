@@ -6,7 +6,7 @@ import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import ArrowIcon from "../../components/icons/Arrow";
-import CalendarIcon from "../../components/icons/Calendar";
+import FollowerIcon from "../../components/icons/Follower";
 import GithubIcon from "../../components/icons/Github";
 
 export default function Profile({ loggedIn, user }) {
@@ -59,13 +59,18 @@ export default function Profile({ loggedIn, user }) {
                     <h2 className="text-deep-sky-blue subtitle">
                         {user.no_of_followers} followers
                     </h2>
-                    <span className="flex align-center pt-2  ">
+                    <span className="flex align-center pt-4 gap-3 cursor-pointer ">
                         {user &&
                             bubbleTrimmer(user.followers, 0, 6).map((follower, index) => {
                                 return (
-                                    <Avatar {...follower} className="-m-2 relative h-14 w-14 " />
+                                    <Avatar
+                                        {...follower}
+                                        className="-m-4 relative h-11 w-11 hover:scale-105"
+                                        key={index}
+                                    />
                                 );
                             })}
+                        <FollowerIcon className="ml-4" />
                     </span>
                 </div>
             </div>
