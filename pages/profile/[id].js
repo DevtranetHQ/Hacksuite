@@ -4,28 +4,31 @@ import { useState } from "react";
 import Avatar from "../../components/Avatar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
+import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import ArrowIcon from "../../components/icons/Arrow";
 import CalendarIcon from "../../components/icons/Calendar";
 import GithubIcon from "../../components/icons/Github";
 
 export default function Profile({ loggedIn, user }) {
+    // ======= Tab state -->
+    const [curTab, setCurTab] = useState("projects");
+
     /**
      * takes initial array and returns trimmed array
+     * @function
      *
      * @param {*[]} bubbles - Object array to be trimmed
      * @param {Number} [start = 0] - Start value for trim
      * @param {NUmber} [end = 0] - end value for trim
-     * @returns {*[]}
+     * @returns {*[]} trimmed array
      */
 
     const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
         // prettier-ignore
-        return bubbles && bubbles.length > 6
+        return bubbles && bubbles.length > end
             ? bubbles.slice(start, end)
             : bubbles
     };
-
-    console.log(bubbleTrimmer([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], 0, 6));
     return (
         <div className="dark:bg-[#202020] dark:text-white h-screen ">
             {/* ====== NavBar start */}
@@ -50,14 +53,27 @@ export default function Profile({ loggedIn, user }) {
 
             {/* ====== #profile head start */}
             <div className=" flex items-center justify-center  w-1/1 h-2/6 gap-2 relative bg-[#f8fbff]">
-                <div className="relative flex  w-60 h-60 bg-green-600 rounded-full"></div>
-                <div className="bg-yellow-500 w-2/5 h-60 flex p-2 flex-col justify-center">
+                <Avatar image={ProfileImg} className="h-64 relative w-64" />
+                <div className=" h-60 flex p-2 flex-col justify-center">
                     <h1 className="text-heading title">{user.name} </h1>
                     <h2 className="text-deep-sky-blue subtitle">
                         {user.no_of_followers} followers
                     </h2>
+                    <span className="flex align-center pt-2  ">
+                        {user &&
+                            bubbleTrimmer(user.followers, 0, 6).map((follower, index) => {
+                                return (
+                                    <Avatar {...follower} className="-m-2 relative h-14 w-14 " />
+                                );
+                            })}
+                    </span>
                 </div>
             </div>
+
+            {/* ====== #tab section start */}
+            <section>
+                <div className="w1/1 bg-green-600 h-64"></div>
+            </section>
         </div>
     );
 }
@@ -68,7 +84,20 @@ export async function getServerSideProps(context) {
             loggedIn: false,
             user: {
                 name: "Zach Latter",
-                no_of_followers: 10
+                no_of_followers: 10,
+                followers: [
+                    { image: "/assets/TEST/img-1.jpg" },
+                    { image: "/assets/TEST/img-2.jpg" },
+                    { image: "/assets/TEST/img-3.jpg" },
+                    { image: "/assets/TEST/img-4.jpg" },
+                    { image: "/assets/TEST/img-5.jpg" },
+                    { image: "/assets/TEST/img-6.jpg" },
+                    { image: "/assets/TEST/img-7.jpg" },
+                    { image: "/assets/TEST/img-8.jpg" },
+                    { image: "/assets/TEST/img-9.jpg" },
+                    { image: "/assets/TEST/img-10.jpg" }
+                ],
+                projects: []
             }
         }
     };
