@@ -9,28 +9,30 @@ import ArrowIcon from "../../components/icons/Arrow";
 import FollowerIcon from "../../components/icons/Follower";
 import GithubIcon from "../../components/icons/Github";
 import TwitterIcon from "../../components/icons/Twitter";
+import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
+
+/**
+ * takes initial array and returns trimmed array
+ * @function
+ *
+ * @param {*[]} bubbles - Object array to be trimmed
+ * @param {Number} [start = 0] - Start value for trim
+ * @param {NUmber} [end = 0] - end value for trim
+ * @returns {*[]} trimmed array
+ */
+
+const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
+    // prettier-ignore
+    return bubbles && bubbles.length > end
+            ? bubbles.slice(start, end)
+            : bubbles
+};
 
 export default function Profile({ loggedIn, user }) {
     // ======= Tab state -->
     const [curTab, setCurTab] = useState("projects");
 
-    /**
-     * takes initial array and returns trimmed array
-     * @function
-     *
-     * @param {*[]} bubbles - Object array to be trimmed
-     * @param {Number} [start = 0] - Start value for trim
-     * @param {NUmber} [end = 0] - end value for trim
-     * @returns {*[]} trimmed array
-     */
-
-    const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
-        // prettier-ignore
-        return bubbles && bubbles.length > end
-            ? bubbles.slice(start, end)
-            : bubbles
-    };
     return (
         <div className="dark:bg-[#202020] dark:text-white h-screen ">
             {/* ====== NavBar start */}
@@ -54,9 +56,9 @@ export default function Profile({ loggedIn, user }) {
             </nav>
 
             {/* ====== #PROFILE head start */}
-            <div className=" flex items-center justify-center  w-1/1 h-2/6 gap-2 relative bg-[#f8fbff]">
-                <Avatar image={ProfileImg} className="h-64 relative w-64" />
-                <div className=" h-60 flex p-2 flex-col justify-center">
+            <div className=" flex items-center justify-center  w-1/1 h-3/6 gap-10 relative bg-[#f8fbff]">
+                <Avatar image={ProfileImg} className="h-72 relative w-72" />
+                <div className=" h-60 flex p-2 flex-col justify-center gap-2">
                     <h1 className="text-heading title">{user.name} </h1>
                     <h2 className="text-deep-sky-blue subtitle">
                         {user.no_of_followers} followers
@@ -74,21 +76,27 @@ export default function Profile({ loggedIn, user }) {
                             })}
                         <FollowerIcon className="ml-4 hover:scale-110" />
                     </span>
-                    <span className="flex gap-3 items-center h-16 ">
-                        <GithubIcon className=" h-8 w-8 hover:scale-110" />
-                        <TwitterIcon className="  h-8 w-8 hover:scale-110" />
-                        <LinkedinIcon className=" h-8 w-8 hover:scale-110" />
+                    <span className="flex gap-2 items-center h-16 mt-2 ">
+                        <GithubIcon className=" h-6 w-6 hover:scale-110" />
+                        <TwitterIcon className="  h-6 w-6 hover:scale-110" />
+                        <LinkedinIcon className=" h-6 w-6 hover:scale-110" />
                     </span>
                 </div>
             </div>
 
             {/* ====== #TAB section start */}
             <section>
-                <div className="w1/1 bg-green-600 h-64 flex items-center flex-col pt-8 gap-3">
-                    <nav className="flex gap-3">
-                        <h1>PROJECTS</h1>
-                        <h1>SCRAPBOOK</h1>
+                <div className="w1/1  flex items-center flex-col pt-8 gap-5">
+                    <nav className="flex justify-between w-2/6 items-center">
+                        <h1 className="headline cursor-pointer">PROJECTS</h1>
+                        <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
                     </nav>
+                    <div className="grid grid-cols-2 gap-10">
+                        <ProfileProjectCard />
+                        <ProfileProjectCard />
+                        <ProfileProjectCard />
+                        <ProfileProjectCard />
+                    </div>
                 </div>
             </section>
         </div>
