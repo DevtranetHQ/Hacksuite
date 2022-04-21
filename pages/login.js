@@ -39,12 +39,12 @@ export default function Login() {
                 </div>
             </div>
 
-            <div className="flex mmd:bg-mobile-login justify-center">
-                <div className="md:block md:w-1/2 md:-m-[1px] md:p-0 xs:pt-9 md:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
+            <div className="flex mxs:bg-mobile-login">
+                <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
-                <div className="w-full mmd:mb-[10.8rem] px-6 pb-8 mxs:mt-12 sm:w-4/5 lg:w-3/6 2xl:w-1/4 sm:mx-12 lg:mx-20 xl:ml-44 xl:mr-40 2xl:mx-auto 2xl:mt-20">
-                    <h1 className="text-36px mb-14 text-center font-black xs:text-30px xs:mb-10">
+                <div className="w-full mxs:mb-[10.8rem] mxs:mt-12 xs:w-1/2 sm:w-2/5 lg:w-1/3 2xl:w-1/4 sm:mx-12 lg:mx-20 xl:ml-44 xl:mr-40 2xl:mx-auto 2xl:mt-20">
+                    <h1 className="text-36px mb-14 text-center font-black xs:text-30px xs:mb-1">
                         LOG IN
                     </h1>
                     <form
@@ -91,7 +91,7 @@ export default function Login() {
                                     required
                                 />
                                 <Icon
-                                    className="dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
+                                    className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
                                     onClick={toggleReveal}
                                     width="1.3em"
                                     height="1.3em"
@@ -117,7 +117,7 @@ export default function Login() {
                             </div>
                             <a
                                 href="#"
-                                className="button-small button-deep-sky-blue rounded-md mx-auto text-14px pr-0.5 lg:text-15px xs:pl-8 lg:pr-auto">
+                                className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
                                 The Dynamics Discord
                                 <Image
                                     src={discordImage}

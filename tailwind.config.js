@@ -61,10 +61,7 @@ module.exports = {
             "lg": "1024px",
             "xl": "1280px",
             "2xl": "1536px",
-            "mxs": { max: "428px" },
-            "msm": { max: "640px" },
-            "mmd": { max: "768px" },
-            "mlg": { max: "1024px" }
+            "mxs": { max: "428px" }
         },
         maxWidth: {
             screen: "100%",
