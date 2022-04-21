@@ -1,7 +1,10 @@
 import { AuthCtrl } from "../../../server/controllers/auth.controller";
+import { withGlobalMiddleware } from "./../../../server/middlewares/global.middleware";
 
-export default function handler(req, res) {
+function handler(req, res) {
     if (req.method === "POST") return AuthCtrl.requestEmailVerification(req, res);
 
     res.status(405).send("Method not allowed");
 }
+
+export default withGlobalMiddleware(handler);

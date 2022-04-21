@@ -1,5 +1,5 @@
 import { IntegrationCtrl } from "../../../../server/controllers/integration.controller";
-import { withCors } from "../../../../server/middlewares/pre-route.middleware";
+import { withCors } from "../../../../server/middlewares/cors.middleware";
 
 function handler(req, res) {
     if (req.method === "POST") {
