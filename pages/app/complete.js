@@ -144,7 +144,7 @@ export default function Complete({ user }) {
     );
 }
 
-export const getServerSidePropsHandler = async ({ req, res }) => {
+export const getServerSideProps = async ({ req, res }) => {
     const user = withAuth(req => req.$user)(req, res);
 
     return { props: { user } };
