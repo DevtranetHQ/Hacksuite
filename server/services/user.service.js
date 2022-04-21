@@ -26,7 +26,7 @@ class UserService {
 
     async registerForEvent(userId, eventId) {
         const user = await this.getOne(userId);
- 
+
         user.events.push(eventId);
         await user.save();
 
@@ -34,11 +34,24 @@ class UserService {
     }
 
     async update(userId, data) {
-        const user = await User.findByIdAndUpdate({ _id: userId }, { $set: data }, { new: true });
+        const oldUser = await User.findByIdAndUpdate(
+            { _id: userId },
+            { $set: { isCompleted: true, ...data } }
+        );
+        console.log({ oldUser });
+        if (!oldUser) throw new CustomError("User dosen't exist", 404);
 
-        if (!user) throw new CustomError("User dosen't exist", 404);
+        if (!oldUser.isCompleted) {
+            const newUser = await User.findById(userId);
+            console.log({ newUser });
+            const newToken = await this._getLoginToken(newUser);
+            return {
+                newToken,
+                ...newUser
+            };
+        }
 
-        return user;
+        return { user: oldUser };
     }
 
     async delete(userId) {

@@ -1,5 +1,5 @@
 import { handleAuth } from "../utils/auth";
-import { config } from "./../config";
+import { middlewareLogger } from "./../utils/debug";
 
 /**
  * Decodes the token and calls the next handler with the user object in `req.$user`.
@@ -8,6 +8,7 @@ import { config } from "./../config";
  */
 export function withAuth(handler) {
     return async (req, res) => {
+        middlewareLogger(`withAuth(${handler.name})`);
         try {
             const decoded = await handleAuth(req, res);
             req.$user = decoded;

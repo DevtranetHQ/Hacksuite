@@ -18,6 +18,7 @@ export class CustomError extends Error {
  * @param {Error} error Error object
  */
 export function handleError(req, res, error) {
+    console.error(error);
     if (error instanceof CustomError) {
         res.status(error.status).send({ message: error.message });
         return;

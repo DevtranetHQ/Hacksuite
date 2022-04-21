@@ -19,8 +19,10 @@ class AuthService {
             lastName: user.lastName,
             isCompleted: user.isCompleted
         })
-            .setExpirationTime(60 * 60)
-            .sign(JWT_SECRET);
+            .setProtectedHeader({ alg: "HS256" })
+            .setIssuedAt()
+            .setExpirationTime("2h")
+            .sign(new TextEncoder().encode(JWT_SECRET));
 
         return token;
     }

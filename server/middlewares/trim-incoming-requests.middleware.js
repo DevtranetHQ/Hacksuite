@@ -1,7 +1,9 @@
 import trimObjectStrings from "../utils/trimObjectStrings";
+import { middlewareLogger } from "./../utils/debug";
 
 export function withTrimIncomingRequests(handler) {
     return (req, res) => {
+        middlewareLogger(`withTrimIncomingRequests(${handler.name})`);
         if (req.body) {
             req.body = trimObjectStrings(req.body);
         }

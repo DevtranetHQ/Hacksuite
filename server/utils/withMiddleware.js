@@ -1,3 +1,5 @@
+import { middlewareLogger } from "./debug";
+
 /**
  * Composes handler function with express style middleware.
  * @param {Function} middleware Express middleware function
@@ -6,12 +8,13 @@
  */
 export function withMiddleware(middleware, handler) {
     return function (req, res) {
-        middleware(req, res, result => {
+        middlewareLogger(`withMiddleware(${middleware.name}, ${handler.name})`);
+        return middleware(req, res, result => {
             if (result instanceof Error) {
                 throw result;
             }
 
-            handler(req, res);
+            return handler(req, res);
         });
     };
 }

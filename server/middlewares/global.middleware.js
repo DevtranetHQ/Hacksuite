@@ -8,5 +8,11 @@ import { withPreRouteHandlers } from "./pre-route.middleware";
  * @returns Composed handler function
  */
 export function withGlobalMiddleware(handler) {
-    return withPreRouteHandlers(withTrimIncomingRequests(withErrorAndResponse(handler)));
+    return (req, res) => {
+        console.log(`withGlobalMiddleware()`);
+        return withPreRouteHandlers(withTrimIncomingRequests(withErrorAndResponse(handler)))(
+            req,
+            res
+        );
+    };
 }
