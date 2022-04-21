@@ -8,6 +8,8 @@ import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import ArrowIcon from "../../components/icons/Arrow";
 import FollowerIcon from "../../components/icons/Follower";
 import GithubIcon from "../../components/icons/Github";
+import TwitterIcon from "../../components/icons/Twitter";
+import LinkedinIcon from "../../components/icons/Linkedin";
 
 export default function Profile({ loggedIn, user }) {
     // ======= Tab state -->
@@ -51,7 +53,7 @@ export default function Profile({ loggedIn, user }) {
                 </div>
             </nav>
 
-            {/* ====== #profile head start */}
+            {/* ====== #PROFILE head start */}
             <div className=" flex items-center justify-center  w-1/1 h-2/6 gap-2 relative bg-[#f8fbff]">
                 <Avatar image={ProfileImg} className="h-64 relative w-64" />
                 <div className=" h-60 flex p-2 flex-col justify-center">
@@ -59,25 +61,35 @@ export default function Profile({ loggedIn, user }) {
                     <h2 className="text-deep-sky-blue subtitle">
                         {user.no_of_followers} followers
                     </h2>
-                    <span className="flex align-center pt-4 gap-3 cursor-pointer ">
+                    <span className="flex pt-4 gap-3 cursor-pointer h-16">
                         {user &&
                             bubbleTrimmer(user.followers, 0, 6).map((follower, index) => {
                                 return (
                                     <Avatar
                                         {...follower}
-                                        className="-m-4 relative h-11 w-11 hover:scale-105"
+                                        className="-m-4 relative h-11 w-11 hover:scale-110"
                                         key={index}
                                     />
                                 );
                             })}
-                        <FollowerIcon className="ml-4" />
+                        <FollowerIcon className="ml-4 hover:scale-110" />
+                    </span>
+                    <span className="flex gap-3 items-center h-16 ">
+                        <GithubIcon className=" h-8 w-8 hover:scale-110" />
+                        <TwitterIcon className="  h-8 w-8 hover:scale-110" />
+                        <LinkedinIcon className=" h-8 w-8 hover:scale-110" />
                     </span>
                 </div>
             </div>
 
-            {/* ====== #tab section start */}
+            {/* ====== #TAB section start */}
             <section>
-                <div className="w1/1 bg-green-600 h-64"></div>
+                <div className="w1/1 bg-green-600 h-64 flex items-center flex-col pt-8 gap-3">
+                    <nav className="flex gap-3">
+                        <h1>PROJECTS</h1>
+                        <h1>SCRAPBOOK</h1>
+                    </nav>
+                </div>
             </section>
         </div>
     );

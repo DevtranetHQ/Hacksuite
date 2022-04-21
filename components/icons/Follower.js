@@ -1,3 +1,13 @@
+/**
+ * Icon Component
+ *
+ * @name FollowerIcon
+ * @param {String} fill - Icon fill color
+ * @param {Number} width - Icon width
+ * @param {Height} height - Icon height
+ * @param {String | Object} className - styles
+ */
+
 export default function FollowerIcon({ fill, width, height, className }) {
     return (
         <svg
