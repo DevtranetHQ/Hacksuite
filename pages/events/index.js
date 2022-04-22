@@ -2,10 +2,10 @@ import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import EventCard from "../../components/event/EventCard";
 import Logo from "../../components/Logo";
+import eventService from "../../server/services/event.service";
+import { withAuth } from "./../../server/middlewares/auth.middleware";
 
-export default function Events({ events }) {
-    // TODO: Replace const with actual state (whether that be React context, getServerSideProps, etc.)
-    const loggedIn = false;
+export default function Events({ events, loggedIn }) {
     return (
         <div className="dark:bg-[#202020] dark:text-white">
             <nav className="flex items-center justify-between pl-8 pr-12">
@@ -101,49 +101,16 @@ export default function Events({ events }) {
     );
 }
 
-export async function getServerSideProps(context) {
-    // TODO: Update with actual information from database
+export async function getServerSideProps({ req, res }) {
+    const user = await withAuth(req => req.$user)(req, res);
+
+    const events = await eventService.getAll();
+
     // TODO: Change page based on whether user is administrator or not
     return {
         props: {
-            events: [
-                {
-                    name: "Hackathon on Elon Musk's private jet",
-                    description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                    organizerName: "Zach Latta",
-                    organizerImage:
-                        "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1648425600&Signature=BHMNOhVF9EQOSs09rh7Ot1GJBIjwiP1Vm86GNt~do1Zj5KFVYaVo0uCaL6umlWfrzhuOZ-tt3VaDqA-JSAU1PJGCMLnJWU2gXn6fZR4vPExQY2yPduYPxctiooLF7qJKEnw3RJS9GSH~pcr-7Ux5nb6FG40z799PuKbiSjbq0E5mB8~0FlOolFN62nQ9~BD6K4FNrr9FXBYV~k4gpSEW-YFCDwE0vi8PnDD0baN-J0JddjcDEwF6QnL6K9cJ5~Jxtc6qTaBpvnHPZOMLtnydOuiGK43Gys2fJBI60FMxtaNx5hsm4REJG396RsXKmvuVGbFh08i6uM~SdGeCU4feOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                    datePosted: "December 30, 2022",
-                    dateEvent: "January 15, 2:00-3:00 PM",
-                    id: "123",
-                    image: "https://s3-alpha-sig.figma.com/img/4b43/2034/088ffd519dbd6fbc1ff2b2dd85131fd3?Expires=1648425600&Signature=XODy7DnFDhubGjAjTs3UCGIBblCDNnjhygPLf3uIKnE~K8aCArScubdCNbyCr9SH81HEYTo66E58V6-bjqhetPXCKxnVlaNL~yjgKLxPOO4uWKxc0wf5f6q7EbM40ShRH8egwNVyyr~htvSadFIt-9wQlsrqhsNwApTjKq9P5tNJx7w2HEtHzXIulzvg1R9BkwnOiRJDyMGzYBIe0eYW4xTjclvw1c6D0FGJP4Tv0oT5PlzeF-1gJh4KTi0M6EQxw92jfO-THopNYL1VSYfbUF2ncDAaWd7ZA2pWWDEct8vhrpriADLEtgCD~WXSljG8hyypfvZ26o1oMc0owZHdEQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                },
-                {
-                    name: "Women in Tech mentorship program this fall",
-                    description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                    organizerName: "Kim Kardashian",
-                    organizerImage:
-                        "https://s3-alpha-sig.figma.com/img/d918/ced4/d006edb135bca7573615fc4beb6858bc?Expires=1648425600&Signature=Btn3yFOVIOTBiQXdIbLyLbskqCIX3n45E7cqQVRGiLek98AmMBCe8IcPBWvJm9wtvlMVh0BknU1cvbYXOqtLRkmE1-Ov2oufJBueslamDuJZGAJWd5sYEAC65CEm41ClkvS-qrXcaPspT6SiGFd7J6vigA2T07Nr5GC3Ui8ppj6Jg-WlAnZ3y0HAUuZ11gBS7uY8BfzWFCr7jq8wSlc8FDa3EflixoQW7bcK3FK4Jr6lJn41P-jXa72t2W1dcCYmA1mNNJIvNcKKwFjIpELuLNtlMlur7TpTa-BUjuh0LgrLAQwjxL1KvmFkXv2PYtylurNHBSM3gOu3PxwvFtlMww__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                    datePosted: "March 10, 2023",
-                    dateEvent: "August 12, 1:00-2:00 PM",
-                    id: "456",
-                    image: "https://s3-alpha-sig.figma.com/img/d5cd/5303/2cfc66bf4ed9c71318278d2bbcd726f4?Expires=1648425600&Signature=ebU9EXir-LL-popFV~g0vc7e2JXCbTSCnnppiBpSdIOQsEr58yGcD8s0ZKPfTZpkhIsPuNeWf2oe7wOBTDV5tYev6SsY1SkvVjJprO76p-vHw4jw~TMxAD7X1AflPSGhPMmwBpHqmHGUTmovPl7QgjejNpOWzKSlDBtlGzsX7Z2IzDO98hyIoGqq-x564cl9MnZsDA6otCcBJ2UwddLErsFkDQFpU1JdEaFQ29MIs-WFRwEJLjdqEiQMYxtUnrmfG9yvkBodae1yJZlTpF4wU0SIBOwQLr11iGEqkqPg8S9r20EcD4MAu2VwBP~IfaJHXuBifUuvMhcJAGNfMSXdVQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                },
-                {
-                    name: "Maintaining good work-life balance as parents",
-                    description:
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                    organizerName: "Jeff Bezos",
-                    organizerImage:
-                        "https://s3-alpha-sig.figma.com/img/939f/d722/70ffd81364346efa0b542910aed37b59?Expires=1648425600&Signature=JBOyrw8Rhjy0NI1VJQSWri3z81wIC1CdUQj17FOXRW53R9nBiovIs7CtVSc5SJqgpWC6EoM~4Ut9C2sCOkApOU3RTP7GZkpGWoe5N3rOdH3bB30hdSomKiWPoTMRP0Nc0MJz~lgzvX5BJydkgNVqY5KJ22N9uTRbUbJJTigmj5WcKT3SW7S-J5mTErkgBkLfj8-junvZhrjofqTykyLbKJvqQnOQXeoawBdotCGILvI8n9gmUPiiyStRatiT6u9NfrI-41I3jYQu-RzCVFO6pJP0F5xLv1kLADLe7qk8gdnEunQ6fyEwJdhPBRoCrKCL~JMHbvTViQ-FfO29sK3-aw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                    datePosted: "June 25, 2022",
-                    dateEvent: "December 19, 10:00 AM-3:00 PM",
-                    id: "789",
-                    image: "https://s3-alpha-sig.figma.com/img/ad1d/7340/a52269411e7ca1737a4c593411722416?Expires=1648425600&Signature=Kw9kRFXH2B5MOD3HrJyiFA58FqWGRJSeEQRq56Pz-WNvWyY1zzBfq6aHcDvQs4SqUyRp9SPA5VeBWJSYjfUcytVWLyq6euaXg8kgvU45BmtYh1YYudGVPpRk8L0nXbIl1UQdf5hM88QUJRgu1ZtmFOxRFzxjnnBOjPRUFXWrDAl2Yq7dUmd1PxqOZhjXZdrN3qZKtxsYwMvGWYiegx6NQenCtpgcGngLW64RekdMyIgmqkekKjisqEs2Kk7RI~AiVZInqOqL0GGBFLgfIV7UG2Dgt1~oR-b2wlgTD39AqwnZM5Za5IPwWk04ssX5AuHRNNrBHnDklGTmb9yOjwxNxQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-                }
-            ]
+            loggedIn: !!user,
+            events
         }
     };
 }
