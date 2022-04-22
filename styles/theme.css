@@ -19,7 +19,7 @@
 @font-face {
     font-family: "Myriad Pro";
     font-weight: 700;
-    src: url("../public/fonts/MyriadPro-Bold.woff") format("woff");
+    src: url("../public/fonts/MyriadPro-Bold.woff") format("woff"); 
 }
 
 @font-face {
@@ -399,20 +399,12 @@
     }
 
     .bg-mobile-login {
-        background-image: linear-gradient(
-                to bottom,
-                rgba(235, 235, 235, 0.6),
-                rgba(235, 235, 235, 0.6)
-            ),
-            url("../public/assets/auth/auth-background.svg");
         background-position: left 45% bottom -1%;
         background-repeat: no-repeat;
         background-size: 180%;
         position: relative;
     }
     .bg-mobile-login-dark {
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url("../public/assets/auth/auth-background.svg");
         background-position: left 45% bottom -1%;
         background-repeat: no-repeat;
         background-size: 180%;
