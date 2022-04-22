@@ -93,16 +93,22 @@ export default function Profile({ loggedIn, user }) {
                         <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
                     </nav>
                     <div className="grid grid-cols-2 gap-10">
-                        <ProfileProjectCard
-                            bubbles={bubbleTrimmer([1, 2, 3], 0, 3)}
-                            date="ferbrary 28, 2020"
-                            title="Web Scrapper"
-                            tags={bubbleTrimmer(["NextJs", "HTML", "CSS", "Linux"], 0, 4)} // trimmed to max of 4 tags
-                            desc="A chrome extension that gathers vital information a the tap of a button, easy as ABC"
-                        />
-                        <ProfileProjectCard />
-                        <ProfileProjectCard />
-                        <ProfileProjectCard />
+                        {user &&
+                            user.projects.map((project, index) => {
+                                return (
+                                    <ProfileProjectCard
+                                        key={index}
+                                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                                        date="ferbrary 28, 2020"
+                                        title="Web Scrapper"
+                                        likes={93}
+                                        image={project.image}
+                                        comments={27}
+                                        tags={bubbleTrimmer(project.tags, 0, 4)}
+                                        desc={project.desc}
+                                    />
+                                );
+                            })}
                     </div>
                 </div>
             </section>
@@ -130,7 +136,68 @@ export async function getServerSideProps(context) {
                     { image: "/assets/TEST/img-9.jpg" },
                     { image: "/assets/TEST/img-10.jpg" }
                 ],
-                projects: []
+                projects: [
+                    {
+                        bubbles: [1, 2, 3, 4, 5, 6],
+                        date: "ferbrary 28, 2020",
+                        title: "Web Scrapper",
+                        desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
+                        image: "/assets/TEST/user_projects/img-1.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["NextJs", "Figma"]
+                    },
+                    {
+                        bubbles: [1, 2, 3],
+                        date: "ferbrary 28, 2020",
+                        title: "Tesla",
+                        desc: "Launched the first prototype of the world’s firts self-driving vehicle. Best part: 100% AI",
+                        image: "/assets/TEST/user_projects/img-2.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["React", "Vue", "Express", "Laravel"]
+                    },
+                    {
+                        bubbles: [2],
+                        date: "ferbrary 28, 2020",
+                        title: "Codetivate",
+                        desc: "The world’s largest diversity-focused hackhon web application built for this fall 2022",
+                        image: "/assets/TEST/user_projects/img-3.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["PHP", "Golang", "Adobe XD"]
+                    },
+                    {
+                        bubbles: [],
+                        date: "ferbrary 28, 2020",
+                        title: "Command tech",
+                        desc: "Advancing the partcipation of non-binary and female students in STEM worlwide ",
+                        image: "/assets/TEST/user_projects/img-4.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["Python"]
+                    },
+                    {
+                        bubbles: [1, 2, 3, 4, 5, 6],
+                        date: "ferbrary 28, 2020",
+                        title: "Frelapay",
+                        desc: "Get payments from all your freelance work converted into the highest selling cryptos",
+                        image: "/assets/TEST/user_projects/img-5.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["HTML", "CSS", "JSON"]
+                    },
+                    {
+                        bubbles: [1, 2],
+                        date: "ferbrary 28, 2020",
+                        title: "Microsoft",
+                        desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
+                        image: "/assets/TEST/user_projects/img-6.png",
+                        comments: 22222,
+                        likes: 33333333,
+                        tags: ["Git", "Flask", "Django"]
+                    }
+                ]
             }
         }
     };

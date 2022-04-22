@@ -1,6 +1,8 @@
-import { bubbleTrimmer } from "../../pages/profile/[id]";
+import HeartIcon from "../../components/icons/Heart";
+import CommentIcon from "../../components/icons/Comment";
 import Image from "next/image";
 import Avatar from "../Avatar";
+import React from "react";
 
 /**
  * User profile project Card component
@@ -37,7 +39,7 @@ export default function ProfileProjectCard({ ...props }) {
 
             {/* ====== #IMAGE */}
             <div className="w-full h-[60%]  flex items-center justify-center relative">
-                <Image src="/assets/TEST/img-8.jpg" alt="" layout="fill" className="object-cover" />
+                <Image src={image} alt="" layout="fill" className="object-cover" />
             </div>
 
             {/* ====== #TEXT SECTION */}
@@ -47,8 +49,33 @@ export default function ProfileProjectCard({ ...props }) {
             </div>
 
             {/* ====== #BOTTOM SECTION */}
-            <div className="w-full h-[7%] ">
-                <p className="caption">tags: {tags}</p>
+            <div className="flex w-full h-[7%] gap-2 items-center justify-between">
+                <span className="flex items-center gap-2">
+                    <p className="caption">tags:</p>
+                    {tags &&
+                        tags.map((tag, index) => {
+                            let color;
+                            if (index === 0) color = "bg-blue-600";
+                            if (index === 1) color = "bg-orange-400";
+                            if (index === 2) color = "bg-green-500";
+                            if (index === 3) color = "bg-cyan-400";
+                            return (
+                                <p
+                                    key={index}
+                                    className={`pl-2  pr-2 pt-1 pb-1 text-white ${color} caption`}>
+                                    {tag}
+                                </p>
+                            );
+                        })}
+                </span>
+                <span>
+                    <span className="flex items-center justify-center gap-3">
+                        <HeartIcon width="30px" height="30px" fill="#C50000" />
+                        <p>{likes}</p>
+                        <CommentIcon width="30px" height="30px" fill="#000000" />
+                        <p>{comments}</p>
+                    </span>
+                </span>
             </div>
         </div>
     );
