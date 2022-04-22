@@ -20,6 +20,8 @@ export const useAuth = () => {
 
         setToken(res.data.data.token);
         router.push("/");
+
+        return res.data;
     });
 
     const logout = () => {
@@ -28,11 +30,23 @@ export const useAuth = () => {
     };
 
     const signup = useAsync(async ({ firstName, lastName, password, email }) => {
-        return await axios({
+        const res = await axios({
             url: "/auth/register",
             method: "POST",
             data: { firstName, lastName, password, email }
         });
+
+        return res.data;
+    });
+
+    const resendEmailVerification = useAsync(async email => {
+        const res = await axios({
+            url: "/auth/request-email-verification",
+            method: "POST",
+            params: { email }
+        });
+
+        return res.data;
     });
 
     const verifyEmail = useAsync(async (userId, verifyToken) => {
@@ -46,7 +60,9 @@ export const useAuth = () => {
 
         setToken(loginToken);
         router.push("/app/complete");
+
+        return res.data;
     });
 
-    return { login, logout, signup, verifyEmail, setToken };
+    return { login, logout, signup, verifyEmail, setToken, resendEmailVerification };
 };

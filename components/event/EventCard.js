@@ -1,27 +1,21 @@
-import Image from "next/image";
 import Link from "next/link";
 import Avatar from "../Avatar";
+import avatarImage from "../../public/assets/avatar.webp";
+import EventTime from "./EventTime";
+import DisplayDate from "../DisplayDate";
 
-export default function EventCard({
-    name,
-    description,
-    organizerName,
-    organizerImage,
-    datePosted,
-    dateEvent,
-    id,
-    image
-}) {
+export default function EventCard({ _id, name, image, description, start, end, creator, posted }) {
     // TODO: Replace const with actual state (whether that be React context, getServerSideProps, etc.)
     const loggedIn = false;
-    const route = `/event/${id}`;
+    const route = `/events/${_id}`;
     return (
         <article className="border-b-2 grid grid-cols-3 items-center p-7">
             <div className="col-span-1 relative">
-                <img className="rounded-md w-full" src={image} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="rounded-md w-full" src={image} alt={`image for event ${name}`} />
                 <Avatar
                     className="absolute -top-5 -left-5 w-[90px] h-[90px]"
-                    image={organizerImage}
+                    image={creator.image || avatarImage}
                 />
             </div>
             <div className="col-span-2 px-7">
@@ -34,7 +28,8 @@ export default function EventCard({
                         </Link>
                     </p>
                     <p className="font-bold caption text-[#a5a5a5]">
-                        Posted by {organizerName} | {datePosted}
+                        Posted by {creator.firstName} {creator.lastName} |{" "}
+                        <DisplayDate date={new Date(posted)} show="date" />
                     </p>
                 </section>
                 <section className="flex justify-between">
@@ -50,7 +45,9 @@ export default function EventCard({
                                 fill="#FF9700"
                             />
                         </svg>
-                        <p className="subheadline">{dateEvent}</p>
+                        <p className="subheadline">
+                            <EventTime start={start} end={end} />
+                        </p>
                     </div>
                     <Link href={route}>
                         <button className="button-small button-deep-sky-blue">
