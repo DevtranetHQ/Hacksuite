@@ -22,7 +22,7 @@ import LinkedinIcon from "../../components/icons/Linkedin";
  * @returns {*[]} trimmed array
  */
 
-const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
+export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
     // prettier-ignore
     return bubbles && bubbles.length > end
             ? bubbles.slice(start, end)
@@ -31,6 +31,7 @@ const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 
 export default function Profile({ loggedIn, user }) {
     // ======= Tab state -->
+    // TODO: Set nav state for project and scrapbook
     const [curTab, setCurTab] = useState("projects");
 
     return (
@@ -56,7 +57,7 @@ export default function Profile({ loggedIn, user }) {
             </nav>
 
             {/* ====== #PROFILE head start */}
-            <div className=" flex items-center justify-center  w-1/1 h-3/6 gap-10 relative bg-[#f8fbff]">
+            <div className=" flex items-center justify-center  w-1/1 h-[350px] gap-10 relative bg-[#f8fbff]">
                 <Avatar image={ProfileImg} className="h-72 relative w-72" />
                 <div className=" h-60 flex p-2 flex-col justify-center gap-2">
                     <h1 className="text-heading title">{user.name} </h1>
@@ -87,12 +88,18 @@ export default function Profile({ loggedIn, user }) {
             {/* ====== #TAB section start */}
             <section>
                 <div className="w1/1  flex items-center flex-col pt-8 gap-5">
-                    <nav className="flex justify-between w-2/6 items-center">
+                    <nav className="flex justify-between w-2/6 items-center pb-24">
                         <h1 className="headline cursor-pointer">PROJECTS</h1>
                         <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
                     </nav>
                     <div className="grid grid-cols-2 gap-10">
-                        <ProfileProjectCard />
+                        <ProfileProjectCard
+                            bubbles={bubbleTrimmer([1, 2, 3], 0, 3)}
+                            date="ferbrary 28, 2020"
+                            title="Web Scrapper"
+                            tags={bubbleTrimmer(["NextJs", "HTML", "CSS", "Linux"], 0, 4)} // trimmed to max of 4 tags
+                            desc="A chrome extension that gathers vital information a the tap of a button, easy as ABC"
+                        />
                         <ProfileProjectCard />
                         <ProfileProjectCard />
                         <ProfileProjectCard />
@@ -104,6 +111,7 @@ export default function Profile({ loggedIn, user }) {
 }
 
 export async function getServerSideProps(context) {
+    // TODO: Call API for User profile data
     return {
         props: {
             loggedIn: false,
