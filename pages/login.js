@@ -74,11 +74,12 @@ export default function Login() {
                                         htmlFor="password">
                                         Password
                                     </label>
-                                    <a
-                                        href="#"
-                                        className="text-[#595959] dark:text-[#DDDDDD] text-8px font-bold pt-2 md:text-12px">
-                                        Forgot Password?
-                                    </a>
+                                    <Link href="forget-password">
+                                        <a
+                                            className="text-[#595959] dark:text-[#DDDDDD] text-8px font-bold pt-2 md:text-12px">
+                                            Forgot Password?
+                                        </a>
+                                    </Link>
                                 </div>
                                 <input
                                     className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
