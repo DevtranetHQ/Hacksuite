@@ -39,7 +39,7 @@ export default function Login() {
                 </div>
             </div>
 
-            <div className="flex mxs:bg-mobile-login">
+            <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark">
                 <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
                     <Image src={authImage} layout="responsive" alt="Dash" />
                 </div>
