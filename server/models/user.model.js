@@ -98,6 +98,13 @@ const userSchema = new Schema(
         isCompleted: {
             type: Boolean,
             default: false
+        },
+        image: {
+            type: String,
+            match: [
+                /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+                "{VALUE isnt a valid link}"
+            ]
         }
     },
     {

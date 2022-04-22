@@ -7,7 +7,9 @@ class EventService {
     }
 
     async getAll() {
-        return await Event.find({});
+        const events = await Event.find({}).populate("creator", "_id firstName lastName image");
+        // TODO this is a hack-ish way to deal with objectid and date object, find a better way
+        return events.map(event => JSON.parse(JSON.stringify(event)));
     }
 
     async getOne(eventId) {
