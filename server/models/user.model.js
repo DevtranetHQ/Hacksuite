@@ -99,6 +99,10 @@ const userSchema = new Schema(
             type: Boolean,
             default: false
         },
+        socialLinks: [{
+            siteName: { type: String },
+            link: { type: String }
+        }],
         image: {
             type: String,
             match: [
