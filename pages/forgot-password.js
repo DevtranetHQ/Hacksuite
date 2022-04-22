@@ -1,14 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import discordImage from "../public/assets/discord.svg";
 import rightArrow from "../public/assets/auth/right-arrow.svg";
-import { useAuth } from "../hooks/useAuth";
 
 export default function ForgetPassword() {
     return (
