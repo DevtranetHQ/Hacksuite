@@ -86,30 +86,28 @@ export default function Profile({ loggedIn, user }) {
             </div>
 
             {/* ====== #TAB section start */}
-            <section>
-                <div className="w1/1  flex items-center flex-col pt-8 gap-5">
-                    <nav className="flex justify-between w-2/6 items-center pb-24">
-                        <h1 className="headline cursor-pointer">PROJECTS</h1>
-                        <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
-                    </nav>
-                    <div className="grid grid-cols-2 gap-10">
-                        {user &&
-                            user.projects.map((project, index) => {
-                                return (
-                                    <ProfileProjectCard
-                                        key={index}
-                                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                                        date="ferbrary 28, 2020"
-                                        title="Web Scrapper"
-                                        likes={93}
-                                        image={project.image}
-                                        comments={27}
-                                        tags={bubbleTrimmer(project.tags, 0, 4)}
-                                        desc={project.desc}
-                                    />
-                                );
-                            })}
-                    </div>
+            <section className="flex itens-center flex-col pb-16 items-center">
+                <nav className="flex justify-between w-2/6 items-center pb-24">
+                    <h1 className="headline cursor-pointer">PROJECTS</h1>
+                    <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
+                </nav>
+                <div className="grid grid-cols-2 gap-10  content-center justify-center">
+                    {user &&
+                        user.projects.map((project, index) => {
+                            return (
+                                <ProfileProjectCard
+                                    key={index}
+                                    bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                                    date="ferbrary 28, 2020"
+                                    title="Web Scrapper"
+                                    likes={93}
+                                    image={project.image}
+                                    comments={27}
+                                    tags={bubbleTrimmer(project.tags, 0, 4)}
+                                    desc={project.desc}
+                                />
+                            );
+                        })}
                 </div>
             </section>
         </div>

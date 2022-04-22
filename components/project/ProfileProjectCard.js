@@ -14,12 +14,18 @@ import React from "react";
  * @param {String[]} tags - Array of related project tags
  * @param {Number} likes - Number of like
  * @param {Number} comments - Number of comments
+ * @param {String} className - Optional classname for card
  * @returns  Card Component
  */
 export default function ProfileProjectCard({ ...props }) {
-    const { date, image, title, desc, tags, likes, comments, bubbles } = props;
+    const { date, image, title, desc, tags, likes, comments, bubbles, className } = props;
     return (
-        <div className="w-[800px] h-[550px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl">
+        <div
+            className={
+                className
+                    ? className
+                    : "w-[800px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl"
+            }>
             {/* ====== #TOP SECTION */}
             <div className="w-full h-[20%]  flex items-center justify-between relative pl-4 pr-4 ">
                 <span className="relative flex gap-4 items-center">
@@ -27,6 +33,7 @@ export default function ProfileProjectCard({ ...props }) {
                         bubbles.map((bubble, index) => {
                             return (
                                 <Avatar
+                                    key={index}
                                     image="/assets/TEST/img-8.jpg"
                                     className="w-11 h-11 relative -m-4"
                                 />
