@@ -1,4 +1,5 @@
 import mongoose from "../database";
+import User from "./user.model";
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
@@ -23,19 +24,22 @@ const eventSchema = new Schema(
             minlength: [10, "description has to be more than 10 characters"],
             maxLength: [3000, "description has to be less than 10 characters"]
         },
-        date: {
+        start: {
             type: Date,
-            min: Date.now(),
+            required: true
+        },
+        end: {
+            type: Date,
             required: true
         },
         creator: {
             type: Schema.Types.ObjectId,
-            ref: "users",
+            ref: User,
             required: ["creator is required"]
         },
-        attendees: {
-            type: [Schema.Types.ObjectId],
-            ref: "users"
+        posted: {
+            type: Date,
+            default: Date.now
         }
     },
     {

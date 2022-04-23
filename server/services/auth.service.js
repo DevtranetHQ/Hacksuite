@@ -1,28 +1,28 @@
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import JWT from "jsonwebtoken";
+import { SignJWT } from "jose";
 
 import User from "./../models/user.model";
 import Token from "./../models/token.model";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
 import MailService from "./../services/mail.service";
 import { config } from "./../config";
 
 const { JWT_SECRET, BCRYPT_SALT, url } = config;
 
 class AuthService {
-    _getLoginToken(user) {
-        const token = JWT.sign(
-            {
-                id: user._id,
-                role: user.role,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                isCompleted: user.isCompleted
-            },
-            JWT_SECRET,
-            { expiresIn: 60 * 60 }
-        );
+    async _getLoginToken(user) {
+        const token = await new SignJWT({
+            id: user._id,
+            role: user.role,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            isCompleted: user.isCompleted
+        })
+            .setProtectedHeader({ alg: "HS256" })
+            .setIssuedAt()
+            .setExpirationTime("2h")
+            .sign(new TextEncoder().encode(JWT_SECRET));
 
         return token;
     }
@@ -32,17 +32,20 @@ class AuthService {
         if (user) throw new CustomError("Email already exists");
 
         user = new User(data);
-        const token = JWT.sign({ id: user._id, role: user.role }, JWT_SECRET);
         await user.save();
         // Request email verification
-        await this.requestEmailVerification(user.email);
+        try {
+            await this.requestEmailVerification(user.email);
+        } catch (error) {
+            await user.remove();
+            throw new CustomError("Email verification failed");
+        }
 
         return (data = {
             uid: user._id,
             email: user.email,
             role: user.role,
-            verified: user.isVerified,
-            token: token
+            verified: user.isVerified
         });
     }
 
@@ -61,7 +64,7 @@ class AuthService {
         // check if user is verified
         if (!user.isVerified) throw new CustomError("User is not verified");
 
-        const token = this._getLoginToken(user);
+        const token = await this._getLoginToken(user);
 
         return (data = {
             uid: user._id,
@@ -90,7 +93,7 @@ class AuthService {
         await VToken.deleteOne();
 
         if (login) {
-            const loginToken = this._getLoginToken(user);
+            const loginToken = await this._getLoginToken(user);
 
             return { loginToken };
         }
@@ -99,6 +102,7 @@ class AuthService {
     }
 
     async requestEmailVerification(email) {
+        console.log({ email });
         const user = await User.findOne({ email });
         if (!user) throw new CustomError("Email does not exist");
         if (user.isVerified) throw new CustomError("Email is already verified");

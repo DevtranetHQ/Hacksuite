@@ -1,6 +1,6 @@
 export default function CountryInput() {
     return (
-        <select className="form-select" id="country" name="country">
+        <select className="form-select" id="countryOfResidence" name="countryOfResidence">
             <option value="" disabled selected>
                 Select country
             </option>

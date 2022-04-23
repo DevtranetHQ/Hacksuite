@@ -1,30 +1,35 @@
-import response from "./../utils/response";
+import { CustomResponse } from "./../utils/customResponse";
 import UserService from "./../services/user.service";
 
 class UserContoller {
-    async create(req, res) {
+    async create(req) {
         const result = await UserService.create(req.body);
-        res.status(200).send(response("User created", result));
+        return new CustomResponse(200, "User created", result);
     }
 
-    async getAll(req, res) {
+    async getAll(req) {
         const result = await UserService.getAll();
-        res.status(200).send(response("all users", result));
+        return new CustomResponse(200, "all users", result);
     }
 
-    async getOne(req, res) {
-        const result = await UserService.getOne(req.params.userId);
-        res.status(200).send(response("user data", result));
+    async getOne(req) {
+        const result = await UserService.getOne(req.query.userId);
+        return new CustomResponse(200, "user data", result);
     }
 
-    async update(req, res) {
-        const result = await UserService.update(req.params.userId, req.body);
-        res.status(200).send(response("user updated", result));
+    async registerForEvent(req) {
+        const result = await UserService.registerForEvent(req.$user._id, req.query.eventId);
+        return new CustomResponse(200, "user registered for event", result);
     }
 
-    async delete(req, res) {
-        const result = await UserService.delete(req.params.userId);
-        res.status(200).send(response("user deleted", result));
+    async update(req) {
+        const result = await UserService.update(req.query.userId, req.body);
+        return new CustomResponse(200, "user updated", result);
+    }
+
+    async delete(req) {
+        const result = await UserService.delete(req.query.userId);
+        return new CustomResponse(200, "user deleted", result);
     }
 }
 

@@ -1,30 +1,30 @@
-import response from "./../utils/response";
+import { CustomResponse } from "./../utils/customResponse";
 import EventService from "./../services/event.service";
 
 class EventContoller {
-    async create(req, res) {
+    async create(req) {
         const result = await EventService.create(req.body);
-        res.status(201).send(response("event created", result));
+        return new CustomResponse(201, "event created", result);
     }
 
-    async getAll(req, res) {
+    async getAll(req) {
         const result = await EventService.getAll();
-        res.status(200).send(response("All event", result));
+        return new CustomResponse(200, "All event", result);
     }
 
-    async getOne(req, res) {
+    async getOne(req) {
         const result = await EventService.getOne(req.params.eventId);
-        res.status(200).send(response("event data", result));
+        return new CustomResponse(200, "event data", result);
     }
 
-    async update(req, res) {
+    async update(req) {
         const result = await EventService.update(req.params.eventId, req.body);
-        res.status(200).send(response("event updated", result));
+        return new CustomResponse(200, "event updated", result);
     }
 
-    async delete(req, res) {
+    async delete(req) {
         const result = await EventService.delete(req.params.eventId);
-        res.status(200).send(response("event deleted", result));
+        return new CustomResponse(200, "event deleted", result);
     }
 }
 

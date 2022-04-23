@@ -1,5 +1,4 @@
 import ReCAPTCHA from "react-google-recaptcha";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Avatar from "../../components/Avatar";
@@ -9,14 +8,14 @@ import showdownConverter from "../../components/showdownConverter";
 import ArrowIcon from "../../components/icons/Arrow";
 import CalendarIcon from "../../components/icons/Calendar";
 import GithubIcon from "../../components/icons/Github";
+import avatarImage from "../../public/assets/avatar.webp";
+import { withAuth } from "../../server/middlewares/auth.middleware";
+import eventService from "../../server/services/event.service";
+import DisplayDate from "../../components/DisplayDate";
+import EventTime from "../../components/event/EventTime";
+import Image from "next/image";
 
-// NOTE: TESTING
-import { useRouter } from "next/router";
-
-export default function Event({ loggedIn, recaptchaSitekey, event }) {
-    const router = useRouter();
-    loggedIn = router.query.ref === "dash" ? true : loggedIn;
-
+export default function Event({ loggedIn, event }) {
     const eventDescription = () => {
         return {
             __html: showdownConverter.makeHtml(event.description)
@@ -60,7 +59,7 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
             </nav>
             <div className="pb-14">
                 <div className="pt-14 relative">
-                    <Image layout="fill" objectFit="cover" src={event.image} />
+                    <Image layout="fill" objectFit="cover" src={event.image} alt={`image for event ${name}`} />
                     <style jsx>{`
                         header {
                             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -72,10 +71,11 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                             <Avatar
                                 className="relative w-[50px] h-[50px]"
                                 border="!border-[3px]"
-                                image={event.organizerImage}
+                                image={event.creator.image || avatarImage}
                             />
                             <p className="caption font-bold text-[#a5a5a5]">
-                                Posted by {event.organizerName} | {event.datePosted}
+                            Posted by {event.creator.firstName} {event.creator.lastName} |{" "}
+                        <DisplayDate date={new Date(event.posted)} show="date" />
                             </p>
                         </div>
                     </header>
@@ -84,7 +84,9 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
             <section className="flex flex-col gap-y-3 items-center px-24 py-10">
                 <h1 className="flex gap-x-2 items-center headline">
                     <CalendarIcon fill="#FF9700" width={100} height={100} />
-                    <span className="pt-3">{event.date}</span>
+                    <span className="pt-3">
+                    <EventTime start={event.start} end={event.end} />
+                    </span>
                 </h1>
                 <div
                     className="prose prose-lg dark:prose-invert"
@@ -138,9 +140,10 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
                             <div className="text-center">
                                 <ReCAPTCHA
                                     className="inline-block mb-3"
-                                    sitekey={recaptchaSitekey}
+                                    sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                                     onChange={i => console.log(i)}
                                 />
+                                <br />
                                 <button
                                     className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
                                     type="submit">
@@ -178,23 +181,15 @@ export default function Event({ loggedIn, recaptchaSitekey, event }) {
     );
 }
 
-export async function getServerSideProps(context) {
-    // TODO: Use id to get event info from database
-    const { id } = context.query;
+export async function getServerSideProps({ req, res, query }) {
+    const user = await withAuth(req => req.$user)(req, res);
+    const { id } = query;
+    const event = await eventService.getOne(id);
+
     return {
         props: {
-            recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
-            loggedIn: false,
-            event: {
-                name: "Hackathon on Elon Musk's private jet",
-                description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, [sed do eiusmod](https://github.com) tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-                image: "https://s3-alpha-sig.figma.com/img/4b43/2034/088ffd519dbd6fbc1ff2b2dd85131fd3?Expires=1648425600&Signature=XODy7DnFDhubGjAjTs3UCGIBblCDNnjhygPLf3uIKnE~K8aCArScubdCNbyCr9SH81HEYTo66E58V6-bjqhetPXCKxnVlaNL~yjgKLxPOO4uWKxc0wf5f6q7EbM40ShRH8egwNVyyr~htvSadFIt-9wQlsrqhsNwApTjKq9P5tNJx7w2HEtHzXIulzvg1R9BkwnOiRJDyMGzYBIe0eYW4xTjclvw1c6D0FGJP4Tv0oT5PlzeF-1gJh4KTi0M6EQxw92jfO-THopNYL1VSYfbUF2ncDAaWd7ZA2pWWDEct8vhrpriADLEtgCD~WXSljG8hyypfvZ26o1oMc0owZHdEQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                date: "January 15, 2:00-3:00 PM",
-                datePosted: "December 30, 2022",
-                organizerName: "Zach Latta",
-                organizerImage:
-                    "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1648425600&Signature=BHMNOhVF9EQOSs09rh7Ot1GJBIjwiP1Vm86GNt~do1Zj5KFVYaVo0uCaL6umlWfrzhuOZ-tt3VaDqA-JSAU1PJGCMLnJWU2gXn6fZR4vPExQY2yPduYPxctiooLF7qJKEnw3RJS9GSH~pcr-7Ux5nb6FG40z799PuKbiSjbq0E5mB8~0FlOolFN62nQ9~BD6K4FNrr9FXBYV~k4gpSEW-YFCDwE0vi8PnDD0baN-J0JddjcDEwF6QnL6K9cJ5~Jxtc6qTaBpvnHPZOMLtnydOuiGK43Gys2fJBI60FMxtaNx5hsm4REJG396RsXKmvuVGbFh08i6uM~SdGeCU4feOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-            }
+            event,
+            loggedIn: !!user,
         }
     };
 }

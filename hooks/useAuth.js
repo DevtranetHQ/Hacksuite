@@ -7,6 +7,10 @@ export const useAuth = () => {
     const [, setCookie, removeCookie] = useCookies([`token`]);
     const router = useRouter();
 
+    const setToken = token => {
+        setCookie("token", token, { path: "/" });
+    };
+
     const login = useAsync(async (email, password) => {
         const res = await axios({
             url: "/auth/login",
@@ -14,8 +18,10 @@ export const useAuth = () => {
             data: { email, password }
         });
 
-        setCookie("token", res.data.data.token, { path: "/" });
+        setToken(res.data.data.token);
         router.push("/");
+
+        return res.data;
     });
 
     const logout = () => {
@@ -24,11 +30,23 @@ export const useAuth = () => {
     };
 
     const signup = useAsync(async ({ firstName, lastName, password, email }) => {
-        return await axios({
+        const res = await axios({
             url: "/auth/register",
             method: "POST",
             data: { firstName, lastName, password, email }
         });
+
+        return res.data;
+    });
+
+    const resendEmailVerification = useAsync(async email => {
+        const res = await axios({
+            url: "/auth/request-email-verification",
+            method: "POST",
+            params: { email }
+        });
+
+        return res.data;
     });
 
     const verifyEmail = useAsync(async (userId, verifyToken) => {
@@ -40,9 +58,11 @@ export const useAuth = () => {
 
         const loginToken = res.data.data.loginToken;
 
-        setCookie("token", loginToken, { path: "/" });
+        setToken(loginToken);
         router.push("/app/complete");
+
+        return res.data;
     });
 
-    return { login, logout, signup, verifyEmail };
+    return { login, logout, signup, verifyEmail, setToken, resendEmailVerification };
 };

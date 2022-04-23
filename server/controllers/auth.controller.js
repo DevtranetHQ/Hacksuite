@@ -1,40 +1,40 @@
-import response from "../utils/response";
+import { CustomResponse } from "../utils/customResponse";
 import AuthService from "../services/auth.service";
 
 class AuthContoller {
-    async register(req, res) {
+    async register(req) {
         const result = await AuthService.register(req.body);
-        res.status(201).send(response("new user registered successfully", result));
+        return new CustomResponse(201, "user registered successfully", result);
     }
 
-    async login(req, res) {
+    async login(req) {
         const result = await AuthService.login(req.body);
-        res.status(200).send(response("user login successful", result));
+        return new CustomResponse(200, "user login successful", result);
     }
 
-    async verifyEmail(req, res) {
+    async verifyEmail(req) {
         const result = await AuthService.verifyEmail(req.body);
-        res.status(200).send(response("email verified successfully", result));
+        return new CustomResponse(200, "email verified successfully", result);
     }
 
-    async requestEmailVerification(req, res) {
+    async requestEmailVerification(req) {
         const result = await AuthService.requestEmailVerification(req.query.email);
-        res.status(200).send(response("email verfication link sent", result));
+        return new CustomResponse(200, "email verification link sent", result);
     }
 
-    async requestPasswordReset(req, res) {
+    async requestPasswordReset(req) {
         const result = await AuthService.requestPasswordReset(req.query.email);
-        res.status(200).send(response("password reset link sent", result));
+        return new CustomResponse(200, "password reset link sent", result);
     }
 
-    async resetPassword(req, res) {
+    async resetPassword(req) {
         const result = await AuthService.resetPassword(req.body);
-        res.status(200).send(response("password updated", result));
+        return new CustomResponse(200, "password updated", result);
     }
 
-    async updatePassword(req, res) {
+    async updatePassword(req) {
         const result = await AuthService.updatePassword(req.params.userId, req.body);
-        res.status(200).send(response("password updated", result));
+        return new CustomResponse(200, "password updated", result);
     }
 }
 

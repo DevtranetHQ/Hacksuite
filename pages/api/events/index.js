@@ -1,6 +1,7 @@
 import { EventCtrl } from "../../../server/controllers/event.controller";
+import { withGlobalMiddleware } from "./../../../server/middlewares/global.middleware";
 
-export default function handler(req, res) {
+function handler(req, res) {
     if (req.method === "GET") {
         return EventCtrl.getAll(req, res);
     }
@@ -9,3 +10,5 @@ export default function handler(req, res) {
         return EventCtrl.create(req, res);
     }
 }
+
+export default withGlobalMiddleware(handler);

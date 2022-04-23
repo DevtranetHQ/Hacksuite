@@ -1,13 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import jwt_decode from "jwt-decode";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import authImage from "../../public/assets/auth/auth-background.svg";
+import { withAuth } from "../../server/middlewares/auth.middleware";
+import { useProfile } from "./../../hooks/useProfile";
 
 export default function Complete({ user }) {
+    const { completeProfile } = useProfile();
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const data = {
+            dob: formData.get("dob"),
+            gender: formData.get("gender"),
+            countryOfResidence: formData.get("countryOfResidence"),
+            phoneNumber: formData.get("phoneNumber"),
+            describe: formData.get("describe"),
+            skills: formData.get("skills"),
+            levelOfStudy: formData.get("levelOfStudy")
+        };
+
+        completeProfile.execute(user.id, data);
+    };
+
     return (
         <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-12 py-5">
@@ -15,7 +36,7 @@ export default function Complete({ user }) {
                 <DarkModeToggle className="w-[34px] h-[31px]" darkClassName="w-[25px] h-[35px]" />
             </div>
             <div className="flex grow shrink basis-[auto] justify-center">
-                <form className="min-w-[60%] mb-14">
+                <form className="min-w-[60%] mb-14" onSubmit={onSubmit}>
                     <h1 className="headline text-center">
                         Complete your profile{" "}
                         <span className="text-fruit-salad">{user.firstName}</span>
@@ -49,7 +70,9 @@ export default function Complete({ user }) {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
                             <div>
-                                <label className="form-label font-normal" htmlFor="country">
+                                <label
+                                    className="form-label font-normal"
+                                    htmlFor="countryOfResidence">
                                     Country of residence
                                     <span className="text-red-500">*</span>
                                 </label>
@@ -68,16 +91,14 @@ export default function Complete({ user }) {
                         <h2 className="subheadline text-center">Work and education</h2>
                         <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="personal-describe">
+                                <label className="form-label font-normal" htmlFor="describe">
                                     What describes you the best?
                                     <span className="text-red-500">*</span>
                                 </label>
                                 <select
                                     className="form-select"
                                     defaultValue="N/A"
-                                    id="personal-describe"
+                                    id="describe"
                                     required>
                                     <option disabled value="N/A">
                                         Tell us who you are
@@ -87,16 +108,11 @@ export default function Complete({ user }) {
                                 </select>
                             </div>
                             <div>
-                                <label
-                                    className="form-label font-normal"
-                                    htmlFor="personal-skills-and-interests">
+                                <label className="form-label font-normal" htmlFor="skills">
                                     Skills and interests
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <select
-                                    className="form-select"
-                                    defaultValue="N/A"
-                                    id="personal-skills-and-interests">
+                                <select className="form-select" defaultValue="N/A" id="skills">
                                     <option disabled value="N/A">
                                         Select your skills and interests
                                     </option>
@@ -105,11 +121,14 @@ export default function Complete({ user }) {
                                 </select>
                             </div>
                             <div>
-                                <label className="form-label font-normal" htmlFor="study-level">
+                                <label className="form-label font-normal" htmlFor="levelOfStudy">
                                     Level of study
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <select className="form-select" defaultValue="N/A" id="study-level">
+                                <select
+                                    className="form-select"
+                                    defaultValue="N/A"
+                                    id="levelOfStudy">
                                     <option disabled value="N/A">
                                         Select level
                                     </option>
@@ -144,9 +163,8 @@ export default function Complete({ user }) {
     );
 }
 
-export const getServerSideProps = async ({ req }) => {
-    const token = req.cookies.token;
-    const user = jwt_decode(token);
+export const getServerSideProps = async ({ req, res }) => {
+    const user = await withAuth(req => req.$user)(req, res);
 
     return { props: { user } };
 };

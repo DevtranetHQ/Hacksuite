@@ -1,5 +1,5 @@
 import Event from "./../models/event.model";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
 
 class EventService {
     async create(data) {
@@ -7,14 +7,16 @@ class EventService {
     }
 
     async getAll() {
-        return await Event.find({});
+        const events = await Event.find({}).populate("creator", "_id firstName lastName image");
+        // TODO this is a hack-ish way to deal with objectid and date object, find a better way
+        return events.map(event => JSON.parse(JSON.stringify(event)));
     }
 
     async getOne(eventId) {
-        const event = await Event.findOne({ _id: eventId });
+        const event = await Event.findOne({ _id: eventId }).populate("creator", "_id firstName lastName image");
         if (!event) throw new CustomError("Event does not exists");
 
-        return event;
+        return JSON.parse(JSON.stringify(event));
     }
 
     async update(eventId, data) {

@@ -1,5 +1,6 @@
 import User from "./../models/user.model";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
+import authService from "./auth.service";
 
 class UserService {
     async create(data) {
@@ -24,12 +25,32 @@ class UserService {
         return user;
     }
 
-    async update(userId, data) {
-        const user = await User.findByIdAndUpdate({ _id: userId }, { $set: data }, { new: true });
+    async registerForEvent(userId, eventId) {
+        const user = await this.getOne(userId);
 
-        if (!user) throw new CustomError("User dosen't exist", 404);
+        user.events.push(eventId);
+        await user.save();
 
         return user;
+    }
+
+    async update(userId, data) {
+        const oldUser = await User.findByIdAndUpdate(
+            { _id: userId },
+            { $set: { isCompleted: true, ...data } }
+        );
+        if (!oldUser) throw new CustomError("User dosen't exist", 404);
+
+        if (!oldUser.isCompleted) {
+            const newUser = await User.findById(userId);
+            const newToken = await authService._getLoginToken(newUser);
+            return {
+                newToken,
+                ...newUser
+            };
+        }
+
+        return { user: oldUser };
     }
 
     async delete(userId) {
