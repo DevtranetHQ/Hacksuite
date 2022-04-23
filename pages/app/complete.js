@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
-import authImage from "../../public/assets/auth/auth-background.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { useProfile } from "./../../hooks/useProfile";
 
@@ -151,14 +148,6 @@ export default function Complete({ user }) {
                     </div>
                 </form>
             </div>
-            {/* <footer className="block bg-deep-sky-blue py-2 lead text-white w-full">
-                <div className="flex items-center justify-center">
-                    Need to edit something?&nbsp;
-                    <Link href="/signup">
-                        <a className="underline text-white">Go back</a>
-                    </Link>
-                </div>
-            </footer> */}
         </div>
     );
 }
