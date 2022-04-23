@@ -77,16 +77,17 @@ export default function ForgetPassword() {
                                 </div>
                                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                             </div>
-                            <a
-                                href="#"
-                                className="button-small button-deep-sky-blue rounded-md mx-auto text-14px pr-0.5 lg:text-15px xs:pl-8 lg:pr-auto">
-                                Sign back in &nbsp;&nbsp;
-                                <Image
-                                    src={rightArrow}
-                                    height={24}
-                                    alt="Join The Dynamics Discord"
-                                />
-                            </a>
+                            <Link href="login">
+                                <a
+                                    className="button-small button-deep-sky-blue rounded-md mx-auto text-14px pr-0.5 lg:text-15px xs:pl-8 lg:pr-auto">
+                                    Sign back in &nbsp;&nbsp;
+                                    <Image
+                                        src={rightArrow}
+                                        height={24}
+                                        alt="Join The Dynamics Discord"
+                                        />
+                                </a>
+                            </Link>
                         </div>
                     </form>
                 </div>
