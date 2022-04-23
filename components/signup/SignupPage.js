@@ -22,7 +22,7 @@ export default function SignupPage({ handleSubmission, isLoading }) {
         id.type = id.type === "password" ? "text" : "password";
     };
     return (
-        <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
+        <div className="dark:bg-[#000000] dark:text-white flex flex-col min-h-screen">
             <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
                 <Logo className="w-[80px] xs:w-[120px] pt-5" />
                 <div className="pt-2">
