@@ -24,7 +24,7 @@ export default function ProfileProjectCard({ ...props }) {
             className={
                 className
                     ? className
-                    : "w-[800px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl"
+                    : "w-[800px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-1/1 lg:w-[550px] xl:w-[680px] 2xl-[800px] "
             }>
             {/* ====== #TOP SECTION */}
             <div className="w-full h-[20%]  flex items-center justify-between relative pl-4 pr-4 ">

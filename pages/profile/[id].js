@@ -57,14 +57,14 @@ export default function Profile({ loggedIn, user }) {
             </nav>
 
             {/* ====== #PROFILE head start */}
-            <div className=" flex items-center justify-center  w-1/1 h-[350px] gap-10 relative bg-[#f8fbff]">
+            <div className=" flex items-center justify-center  w-1/1 h-[350px] gap-10 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
                 <Avatar image={ProfileImg} className="h-72 relative w-72" />
                 <div className=" h-60 flex p-2 flex-col justify-center gap-2">
-                    <h1 className="text-heading title">{user.name} </h1>
+                    <h1 className="text-heading title dark:text-white">{user.name} </h1>
                     <h2 className="text-deep-sky-blue subtitle">
                         {user.no_of_followers} followers
                     </h2>
-                    <span className="flex pt-4 gap-3 cursor-pointer h-16">
+                    <span className="flex pt-4 gap-3 cursor-pointer h-16 pl-4">
                         {user &&
                             bubbleTrimmer(user.followers, 0, 6).map((follower, index) => {
                                 return (
@@ -77,7 +77,7 @@ export default function Profile({ loggedIn, user }) {
                             })}
                         <FollowerIcon className="ml-4 hover:scale-110" />
                     </span>
-                    <span className="flex gap-2 items-center h-16 mt-2 ">
+                    <span className="flex gap-2 items-center h-16 mt-4 ">
                         <GithubIcon className=" h-6 w-6 hover:scale-110" />
                         <TwitterIcon className="  h-6 w-6 hover:scale-110" />
                         <LinkedinIcon className=" h-6 w-6 hover:scale-110" />
@@ -86,12 +86,12 @@ export default function Profile({ loggedIn, user }) {
             </div>
 
             {/* ====== #TAB section start */}
-            <section className="flex itens-center flex-col pb-16 items-center">
+            <section className="flex itens-center flex-col pb-16 items-center dark:bg-[#202020]">
                 <nav className="flex justify-between w-2/6 items-center pb-24">
-                    <h1 className="headline cursor-pointer">PROJECTS</h1>
-                    <h1 className="headline cursor-pointer">SCRAPBOOK</h1>
+                    <h1 className="headline cursor-pointer tab-option relative">PROJECTS</h1>
+                    <h1 className="headline cursor-pointer tab-option relative">SCRAPBOOK</h1>
                 </nav>
-                <div className="grid grid-cols-2 gap-10  content-center justify-center">
+                <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  content-center justify-center">
                     {user &&
                         user.projects.map((project, index) => {
                             return (
