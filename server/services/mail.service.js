@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import CustomError from "./../utils/custom-error";
+import { CustomError } from "../utils/customError";
 import { config } from "./../config";
 
 const { mailer, APP_NAME } = config;
@@ -35,7 +35,7 @@ export default class MailService {
                 subject,
                 text: content
             });
-        } catch {
+        } catch (err) {
             throw new CustomError("Cannot send email. Invalid transporter.");
         }
 

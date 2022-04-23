@@ -1,10 +1,12 @@
 // TODO: display message when user already exists and handle errors (pass states to signup?)
-import EmailVerficationSent from "../components/signup/EmailVerficationSent";
+import { useState } from "react";
+import VerificationSent from "../components/signup/VerificationSent";
 import SignupPage from "../components/signup/SignupPage";
 import { useAuth } from "../hooks/useAuth";
 
 export default function Signup() {
     const { signup } = useAuth();
+    const [email, setEmail] = useState("");
 
     function handleSubmission(e) {
         e.preventDefault();
@@ -20,6 +22,8 @@ export default function Signup() {
         const email = e.target.email.value;
 
         signup.execute({ firstName, lastName, password, email });
+
+        setEmail(email);
     }
 
     if (signup.status !== "success") {
@@ -30,7 +34,7 @@ export default function Signup() {
             />
         );
     } else {
-        return <EmailVerficationSent />;
+        return <VerificationSent email={email} />;
     }
 }
 

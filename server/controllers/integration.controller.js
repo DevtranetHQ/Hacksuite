@@ -1,15 +1,15 @@
-import response from "./../utils/response";
+import { CustomResponse } from "./../utils/customResponse";
 import IntegrationService from "./../services/integration.service";
 
 class IntegrationContoller {
-    async discordEmailCheck(req, res) {
+    async discordEmailCheck(req) {
         const result = await IntegrationService.discordEmailCheck(req.body);
-        res.status(201).send(response("email check verified", result));
+        return new CustomResponse(201, "email check verified", result);
     }
 
-    async discordResendVerificationEmail(req, res) {
+    async discordResendVerificationEmail(req) {
         const result = await IntegrationService.discordResendVerificationEmail(req.body);
-        res.status(201).send(response("email verification sent", result));
+        return new CustomResponse(201, "email verification sent", result);
     }
 }
 

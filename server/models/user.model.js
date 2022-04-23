@@ -67,6 +67,16 @@ const userSchema = new Schema(
                 message: "{VALUE is not a valid country}"
             }
         },
+        describe: {
+            type: String
+        },
+        phoneNumber: {
+            type: String,
+            trim: true
+        },
+        skills: {
+            type: String
+        },
         birthdate: {
             type: Date,
             max: Date.now()
@@ -88,6 +98,17 @@ const userSchema = new Schema(
         isCompleted: {
             type: Boolean,
             default: false
+        },
+        socialLinks: [{
+            siteName: { type: String },
+            link: { type: String }
+        }],
+        image: {
+            type: String,
+            match: [
+                /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+                "{VALUE isnt a valid link}"
+            ]
         }
     },
     {
