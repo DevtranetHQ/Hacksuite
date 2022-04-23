@@ -18,7 +18,7 @@ export const useProfile = () => {
 
         setToken(newToken);
 
-        router.push("/app");
+        router.push("/app/optional-profile");
     });
 
     return { completeProfile };

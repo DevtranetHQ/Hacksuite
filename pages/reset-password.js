@@ -1,13 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import discordImage from "../public/assets/discord.svg";
-import { useAuth } from "../hooks/useAuth";
 
 export default function ResetPassword() {
     const [revealPassword, setRevealPassword] = useState(false);
