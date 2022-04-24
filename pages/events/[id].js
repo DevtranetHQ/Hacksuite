@@ -14,8 +14,14 @@ import eventService from "../../server/services/event.service";
 import DisplayDate from "../../components/DisplayDate";
 import EventTime from "../../components/event/EventTime";
 import Image from "next/image";
+import registrationService from "../../server/modules/registration/registration.service";
+import { useRegistration } from "./../../hooks/useRegistration";
+import { useRouter } from "next/router";
 
-export default function Event({ loggedIn, event }) {
+export default function Event({ loggedIn, event, isRegistered }) {
+    const router = useRouter();
+    const { register } = useRegistration();
+
     const eventDescription = () => {
         return {
             __html: showdownConverter.makeHtml(event.description)
@@ -23,17 +29,29 @@ export default function Event({ loggedIn, event }) {
     };
 
     const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
-    async function register(e) {
+
+    function registerWithAccount(e) {
         e.preventDefault();
         if (loggedIn) {
-            // TODO: Register logged in user
-            setRegistrationSuccessful(true);
+            register.execute(event._id);
         } else {
-            // TODO: Register not logged in user
-            const name = e.target.name.value;
-            const email = e.target.email.value;
-            if (!name || !email) {
-            }
+            router.push("/login");
+        }
+    }
+
+    function registerWithEmail(e) {
+        e.preventDefault();
+
+        if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === "") {
+            alert("Please click <I'm not a robot> before sending the job");
+            return false;
+        }
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+
+        if (email && name) {
+            register.execute(event._id, name, email);
         }
     }
 
@@ -59,7 +77,12 @@ export default function Event({ loggedIn, event }) {
             </nav>
             <div className="pb-14">
                 <div className="pt-14 relative">
-                    <Image layout="fill" objectFit="cover" src={event.image} alt={`image for event ${name}`} />
+                    <Image
+                        layout="fill"
+                        objectFit="cover"
+                        src={event.image}
+                        alt={`image for event ${event.name}`}
+                    />
                     <style jsx>{`
                         header {
                             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -74,8 +97,8 @@ export default function Event({ loggedIn, event }) {
                                 image={event.creator.image || avatarImage}
                             />
                             <p className="caption font-bold text-[#a5a5a5]">
-                            Posted by {event.creator.firstName} {event.creator.lastName} |{" "}
-                        <DisplayDate date={new Date(event.posted)} show="date" />
+                                Posted by {event.creator.firstName} {event.creator.lastName} |{" "}
+                                <DisplayDate date={new Date(event.posted)} show="date" />
                             </p>
                         </div>
                     </header>
@@ -85,32 +108,28 @@ export default function Event({ loggedIn, event }) {
                 <h1 className="flex gap-x-2 items-center headline">
                     <CalendarIcon fill="#FF9700" width={100} height={100} />
                     <span className="pt-3">
-                    <EventTime start={event.start} end={event.end} />
+                        <EventTime start={event.start} end={event.end} />
                     </span>
                 </h1>
                 <div
                     className="prose prose-lg dark:prose-invert"
                     dangerouslySetInnerHTML={eventDescription()}
                 />
-                {loggedIn ? (
-                    <>
-                        {registrationSuccessful && (
-                            <h2 className="heading text-fruit-salad">
-                                Registration successful! 🎉
-                            </h2>
-                        )}
-                        <button
-                            className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px h-[54px]"
-                            onClick={register}>
-                            <CalendarIcon width={32} height={32} />
-                            <span className="pt-2">Add to my calendar</span>
-                        </button>
-                    </>
+                <button className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px h-[54px]">
+                    <CalendarIcon width={32} height={32} />
+                    <span className="pt-2">Add to my calendar</span>
+                </button>
+                {isRegistered ? (
+                    <h2 className="heading text-fruit-salad">You are registered for this event.</h2>
+                ) : register.status === "success" ? (
+                    <h2 className="heading text-fruit-salad">Registration successful! 🎉</h2>
+                ) : register.status === "pending" ? (
+                    <h2 className="heading text-fruit-salad">Registering you for the event...</h2>
                 ) : (
                     <>
                         <form
                             className="bg-transparent dark:bg-transparent mt-14 w-1/2"
-                            onSubmit={register}>
+                            onSubmit={registerWithEmail}>
                             <div>
                                 <label className="form-label font-normal" htmlFor="name">
                                     Name *
@@ -160,7 +179,7 @@ export default function Event({ loggedIn, event }) {
                         <div className="my-10">
                             <button
                                 className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
-                                onClick={register}>
+                                onClick={registerWithAccount}>
                                 The Dynamics account
                                 <ArrowIcon />
                             </button>
@@ -186,10 +205,13 @@ export async function getServerSideProps({ req, res, query }) {
     const { id } = query;
     const event = await eventService.getOne(id);
 
+    const isRegistered = user && (await registrationService.checkRegistration(user.id, event._id));
+
     return {
         props: {
             event,
-            loggedIn: !!user,
+            isRegistered: !!isRegistered,
+            loggedIn: !!user
         }
     };
 }

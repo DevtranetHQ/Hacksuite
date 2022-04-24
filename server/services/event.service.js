@@ -13,7 +13,10 @@ class EventService {
     }
 
     async getOne(eventId) {
-        const event = await Event.findOne({ _id: eventId }).populate("creator", "_id firstName lastName image");
+        const event = await Event.findOne({ _id: eventId }).populate(
+            "creator",
+            "_id firstName lastName image"
+        );
         if (!event) throw new CustomError("Event does not exists");
 
         return JSON.parse(JSON.stringify(event));
