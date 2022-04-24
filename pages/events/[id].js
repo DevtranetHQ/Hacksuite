@@ -17,6 +17,7 @@ import Image from "next/image";
 import registrationService from "../../server/modules/registration/registration.service";
 import { useRegistration } from "./../../hooks/useRegistration";
 import { useRouter } from "next/router";
+import { AddToCalendar } from "../../components/event/AddToCalendar";
 
 export default function Event({ loggedIn, event, isRegistered }) {
     const router = useRouter();
@@ -115,10 +116,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                     className="prose prose-lg dark:prose-invert"
                     dangerouslySetInnerHTML={eventDescription()}
                 />
-                <button className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px h-[54px]">
-                    <CalendarIcon width={32} height={32} />
-                    <span className="pt-2">Add to my calendar</span>
-                </button>
+                <AddToCalendar event={event} />
                 {isRegistered ? (
                     <h2 className="heading text-fruit-salad">You are registered for this event.</h2>
                 ) : register.status === "success" ? (
