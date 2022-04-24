@@ -3,9 +3,29 @@ import Link from "next/link";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import rightArrow from "../public/assets/auth/right-arrow.svg";
+import discordImage from "../public/assets/discord.svg";
+import rightArrow from "../public/assets/right-arrow.svg";
+import { useAuth } from "../hooks/useAuth";
+import VerificationSent from "../components/signup/VerificationSent";
 
 export default function ForgetPassword() {
+
+    const {PasswordEmailVerification} = useAuth();
+    const onReset = async e => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const dob = e.target.dob.value;
+
+        await PasswordEmailVerification.execute(email);
+
+        console.log(PasswordEmailVerification.status);
+    }
+
+    if (PasswordEmailVerification.status === "success") {
+        return <VerificationSent email={email} />;
+    } 
+
     return (
         <div className="dark:bg-[#202020] dark:text-white relative">
             <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -28,7 +48,7 @@ export default function ForgetPassword() {
                     </h1>
                     <form
                         className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-12 lg:pb-6 lg:px-12"
-                        onSubmit="">
+                        onSubmit={onReset}>
                         <div>
                             <div>
                                 <label

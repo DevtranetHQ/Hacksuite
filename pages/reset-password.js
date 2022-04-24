@@ -5,8 +5,11 @@ import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
+import { useAuth } from "../hooks/useAuth";
+import { useRouter } from "next/router";
 
 export default function ResetPassword() {
+    const router = useRouter();
     const [revealPassword, setRevealPassword] = useState(false);
 
     const toggleReveal = () => {
@@ -14,6 +17,30 @@ export default function ResetPassword() {
         var id = document.getElementById("password");
         id.type = id.type === "password" ? "text" : "password";
     };
+
+    const { ResetPassword } = useAuth();
+    const submitReset = async e => {
+        e.preventDefault();
+
+        const pass1 = e.target.password.value;
+        const pass2 = e.target.password2.value;
+
+        // TODO: Add the function to reset the password from the backend
+        if (router.query.uid && router.query.verifyToken && pass1 == pass2) {
+            const data = {
+                userId: router.query.uid, 
+                resetToken: router.query.verifyToken, 
+                password: pass1
+            }
+
+            await ResetPassword.execute(data);
+        }
+
+    }
+
+    if (ResetPassword.status === "success") {
+        return "Password Reset Successfully";
+    } 
     return (
         <div className="dark:bg-[#202020] dark:text-white relative">
             <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -36,7 +63,7 @@ export default function ResetPassword() {
                     </h1>
                     <form
                         className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-12 lg:pb-6 lg:px-12"
-                        onSubmit="">
+                        onSubmit={submitReset}>
                         <div>
                             <div>
                                 <div className="flex justify-between">

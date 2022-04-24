@@ -60,9 +60,30 @@ export const useAuth = () => {
 
         setToken(loginToken);
         router.push("/app/complete");
+        // TODO: router redirect should be dynamic, for reset password also
 
         return res.data;
     });
 
-    return { login, logout, signup, verifyEmail, setToken, resendEmailVerification };
+    const PasswordEmailVerification = useAsync(async email => {
+        const res = await axios({
+            url: "/auth/request-password-reset",
+            method: "POST",
+            data: { email }
+        });
+
+        return res.data;
+    });
+
+    const ResetPassword = useAsync(async data => {
+        const res = await axios({
+            url: "/auth/reset-password",
+            method: "POST",
+            data: { data }
+        });
+
+        return res.data;
+    })
+
+    return { login, logout, signup, verifyEmail, setToken, resendEmailVerification, PasswordEmailVerification, ResetPassword };
 };
