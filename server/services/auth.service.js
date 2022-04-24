@@ -7,6 +7,7 @@ import Token from "./../models/token.model";
 import { CustomError } from "../utils/customError";
 import MailService from "./../services/mail.service";
 import { config } from "./../config";
+import registrationService from "../modules/registration/registration.service";
 
 const { JWT_SECRET, BCRYPT_SALT, url } = config;
 
@@ -92,6 +93,8 @@ class AuthService {
 
         await VToken.deleteOne();
 
+        await registrationService.updateRegistrationsToUser(user);
+
         if (login) {
             const loginToken = await this._getLoginToken(user);
 
@@ -102,7 +105,6 @@ class AuthService {
     }
 
     async requestEmailVerification(email) {
-        console.log({ email });
         const user = await User.findOne({ email });
         if (!user) throw new CustomError("Email does not exist");
         if (user.isVerified) throw new CustomError("Email is already verified");
