@@ -1,9 +1,9 @@
 {
-    "arrowParens": "avoid",
-    "bracketSameLine": true,
-    "jsxBracketSameLine": true,
-    "quoteProps": "consistent",
-    "tabWidth": 4,
-    "trailingComma": "none",
-    "printWidth": 100
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "jsxBracketSameLine": true,
+  "quoteProps": "consistent",
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "printWidth": 100
 }

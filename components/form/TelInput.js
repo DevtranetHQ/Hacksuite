@@ -6,29 +6,29 @@ import { useEffect } from "react";
 import styles from "./TelInput.module.css";
 
 export default function TelInput() {
-    // TODO: Validate phone number
-    let iti;
-    useEffect(() => {
-        iti = intlTelInput(document.querySelector("#phoneNumber"), {
-            customContainer: "!block"
-        });
-    }, []);
+  // TODO: Validate phone number
+  let iti;
+  useEffect(() => {
+    iti = intlTelInput(document.querySelector("#phoneNumber"), {
+      customContainer: "!block"
+    });
+  }, []);
 
-    return (
-        <div className={styles.telinput}>
-            <style jsx global>{`
-                .iti {
-                    margin-bottom: 1rem !important;
-                }
-            `}</style>
-            <input
-                autoComplete="off"
-                className="form-input"
-                id="phoneNumber"
-                name="phoneNumber"
-                type="tel"
-                placeholder="Enter number"
-            />
-        </div>
-    );
+  return (
+    <div className={styles.telinput}>
+      <style jsx global>{`
+        .iti {
+          margin-bottom: 1rem !important;
+        }
+      `}</style>
+      <input
+        autoComplete="off"
+        className="form-input"
+        id="phoneNumber"
+        name="phoneNumber"
+        type="tel"
+        placeholder="Enter number"
+      />
+    </div>
+  );
 }

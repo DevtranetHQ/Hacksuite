@@ -2,40 +2,40 @@ import { CustomResponse } from "../utils/customResponse";
 import AuthService from "../services/auth.service";
 
 class AuthContoller {
-    async register(req) {
-        const result = await AuthService.register(req.body);
-        return new CustomResponse(201, "user registered successfully", result);
-    }
+  async register(req) {
+    const result = await AuthService.register(req.body);
+    return new CustomResponse(201, "user registered successfully", result);
+  }
 
-    async login(req) {
-        const result = await AuthService.login(req.body);
-        return new CustomResponse(200, "user login successful", result);
-    }
+  async login(req) {
+    const result = await AuthService.login(req.body);
+    return new CustomResponse(200, "user login successful", result);
+  }
 
-    async verifyEmail(req) {
-        const result = await AuthService.verifyEmail(req.body);
-        return new CustomResponse(200, "email verified successfully", result);
-    }
+  async verifyEmail(req) {
+    const result = await AuthService.verifyEmail(req.body);
+    return new CustomResponse(200, "email verified successfully", result);
+  }
 
-    async requestEmailVerification(req) {
-        const result = await AuthService.requestEmailVerification(req.query.email);
-        return new CustomResponse(200, "email verification link sent", result);
-    }
+  async requestEmailVerification(req) {
+    const result = await AuthService.requestEmailVerification(req.query.email);
+    return new CustomResponse(200, "email verification link sent", result);
+  }
 
-    async requestPasswordReset(req) {
-        const result = await AuthService.requestPasswordReset(req.query.email);
-        return new CustomResponse(200, "password reset link sent", result);
-    }
+  async requestPasswordReset(req) {
+    const result = await AuthService.requestPasswordReset(req.query.email);
+    return new CustomResponse(200, "password reset link sent", result);
+  }
 
-    async resetPassword(req) {
-        const result = await AuthService.resetPassword(req.body);
-        return new CustomResponse(200, "password updated", result);
-    }
+  async resetPassword(req) {
+    const result = await AuthService.resetPassword(req.body);
+    return new CustomResponse(200, "password updated", result);
+  }
 
-    async updatePassword(req) {
-        const result = await AuthService.updatePassword(req.params.userId, req.body);
-        return new CustomResponse(200, "password updated", result);
-    }
+  async updatePassword(req) {
+    const result = await AuthService.updatePassword(req.params.userId, req.body);
+    return new CustomResponse(200, "password updated", result);
+  }
 }
 
 const AuthCtrl = new AuthContoller();

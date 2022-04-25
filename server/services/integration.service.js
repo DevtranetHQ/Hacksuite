@@ -3,23 +3,23 @@ import authService from "./auth.service";
 import { CustomError } from "./../utils/customError";
 
 class IntegrationService {
-    async discordEmailCheck(data) {
-        if (!data.email) throw new CustomError("email is required");
+  async discordEmailCheck(data) {
+    if (!data.email) throw new CustomError("email is required");
 
-        const user = await userService.getOneByEmail(data.email);
+    const user = await userService.getOneByEmail(data.email);
 
-        if (!user.isVerified) throw new CustomError("User Email is not verified");
+    if (!user.isVerified) throw new CustomError("User Email is not verified");
 
-        return user;
-    }
+    return user;
+  }
 
-    async discordResendVerificationEmail(data) {
-        if (!data.email) throw new CustomError("email is required");
+  async discordResendVerificationEmail(data) {
+    if (!data.email) throw new CustomError("email is required");
 
-        await authService.requestEmailVerification(data.email);
+    await authService.requestEmailVerification(data.email);
 
-        return true;
-    }
+    return true;
+  }
 }
 
 export default new IntegrationService();

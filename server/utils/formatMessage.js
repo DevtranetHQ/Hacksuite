@@ -1,6 +1,6 @@
 export function formatMessage(str) {
-    if (!str) return "";
+  if (!str) return "";
 
-    // Make first letter capital
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  // Make first letter capital
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

@@ -9,11 +9,8 @@ import { middlewareLogger } from "./../utils/debug";
  * @returns Composed handler function
  */
 export function withGlobalMiddleware(handler) {
-    return (req, res) => {
-        middlewareLogger(`withGlobalMiddleware(${handler.name})`);
-        return withPreRouteHandlers(withTrimIncomingRequests(withErrorAndResponse(handler)))(
-            req,
-            res
-        );
-    };
+  return (req, res) => {
+    middlewareLogger(`withGlobalMiddleware(${handler.name})`);
+    return withPreRouteHandlers(withTrimIncomingRequests(withErrorAndResponse(handler)))(req, res);
+  };
 }
