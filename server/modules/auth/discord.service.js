@@ -57,7 +57,7 @@ class DiscordAuthService {
   }
 
   async addDiscordUser(discordId, email) {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, isVerified: true });
     if (!user) throw new Error("User does not exist");
 
     user.discordId = discordId;

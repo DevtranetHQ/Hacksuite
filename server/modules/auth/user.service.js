@@ -19,7 +19,7 @@ class UserService {
   }
 
   async getOneByEmail(email) {
-    const user = await User.findOne({ email }, { password: 0, __v: 0 });
+    const user = await User.findOne({ email, isVerified: true }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist", 404);
 
     return user;
