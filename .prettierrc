@@ -1,7 +1,6 @@
 {
   "arrowParens": "avoid",
   "bracketSameLine": true,
-  "jsxBracketSameLine": true,
   "quoteProps": "consistent",
   "tabWidth": 2,
   "trailingComma": "none",
