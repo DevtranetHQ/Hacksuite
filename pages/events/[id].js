@@ -116,69 +116,81 @@ export default function Event({ loggedIn, event, isRegistered }) {
                     className="prose prose-lg dark:prose-invert"
                     dangerouslySetInnerHTML={eventDescription()}
                 />
-                <AddToCalendar event={event} />
+
                 {isRegistered ? (
-                    <h2 className="heading text-fruit-salad">You are registered for this event.</h2>
+                    <>
+                        <h2 className="heading text-fruit-salad">
+                            You are registered for this event.
+                        </h2>
+                        <AddToCalendar event={event} />
+                    </>
                 ) : register.status === "success" ? (
-                    <h2 className="heading text-fruit-salad">Registration successful! 🎉</h2>
+                    <>
+                        <h2 className="heading text-fruit-salad">Registration successful! 🎉</h2>
+                        <AddToCalendar event={event} />
+                    </>
                 ) : register.status === "pending" ? (
                     <h2 className="heading text-fruit-salad">Registering you for the event...</h2>
                 ) : (
                     <>
-                        <form
-                            className="bg-transparent dark:bg-transparent mt-14 w-1/2"
-                            onSubmit={registerWithEmail}>
-                            <div>
-                                <label className="form-label font-normal" htmlFor="name">
-                                    Name *
-                                </label>
-                                <input
-                                    className="form-input px-5 py-3"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Name"
-                                    required
-                                    type="text"
-                                />
-                            </div>
-                            <div>
-                                <label className="form-label font-normal" htmlFor="email">
-                                    Email Address *
-                                </label>
-                                <input
-                                    className="form-input px-5 py-3"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    required
-                                    type="email"
-                                />
-                            </div>
-                            <div className="text-center">
-                                <ReCAPTCHA
-                                    className="inline-block mb-3"
-                                    sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
-                                    onChange={i => console.log(i)}
-                                />
-                                <br />
-                                <button
-                                    className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
-                                    type="submit">
-                                    <CalendarIcon width={32} height={32} />
-                                    <span className="pt-2">Register for this event</span>
-                                </button>
-                            </div>
-                        </form>
-                        <div className="flex justify-between caption w-screen">
-                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                            <div className="text-12px md:text-18px">Or register using</div>
-                            <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                        </div>
+                        {!loggedIn && (
+                            <>
+                                <form
+                                    className="bg-transparent dark:bg-transparent mt-14 w-1/2"
+                                    onSubmit={registerWithEmail}>
+                                    <div>
+                                        <label className="form-label font-normal" htmlFor="name">
+                                            Name *
+                                        </label>
+                                        <input
+                                            className="form-input px-5 py-3"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Name"
+                                            required
+                                            type="text"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="form-label font-normal" htmlFor="email">
+                                            Email Address *
+                                        </label>
+                                        <input
+                                            className="form-input px-5 py-3"
+                                            id="email"
+                                            name="email"
+                                            placeholder="Email"
+                                            required
+                                            type="email"
+                                        />
+                                    </div>
+                                    <div className="text-center">
+                                        <ReCAPTCHA
+                                            className="inline-block mb-3"
+                                            sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                                            onChange={i => console.log(i)}
+                                        />
+                                        <br />
+                                        <button
+                                            className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
+                                            type="submit">
+                                            <CalendarIcon width={32} height={32} />
+                                            <span className="pt-2">Register for this event</span>
+                                        </button>
+                                    </div>
+                                </form>
+                                <div className="flex justify-between caption w-screen">
+                                    <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                                    <div className="text-12px md:text-18px">OR</div>
+                                    <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
+                                </div>
+                            </>
+                        )}
                         <div className="my-10">
                             <button
                                 className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
                                 onClick={registerWithAccount}>
-                                The Dynamics account
+                                Register with The Dynamics account
                                 <ArrowIcon />
                             </button>
                         </div>
