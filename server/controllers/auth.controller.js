@@ -1,5 +1,5 @@
 import { CustomResponse } from "../utils/customResponse";
-import AuthService from "../services/auth.service";
+import AuthService from "../modules/auth/auth.service";
 
 class AuthContoller {
   async register(req) {
