@@ -129,12 +129,12 @@ export default function Login({ discordLoginError, token }) {
                 </div>
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
               </div>
-              <a
-                href="/discord/login"
-                className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
-                The Dynamics Discord
-                <Image src={discordImage} height={24} alt="Join The Dynamics Discord" />
-              </a>
+              <Link href="/discord/login">
+                <a className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
+                  The Dynamics Discord
+                  <Image src={discordImage} height={24} alt="Join The Dynamics Discord" />
+                </a>
+              </Link>
             </div>
           </form>
         </div>
