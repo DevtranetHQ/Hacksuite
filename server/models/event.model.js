@@ -40,6 +40,9 @@ const eventSchema = new Schema(
         posted: {
             type: Date,
             default: Date.now
+        },
+        link: {
+            type: String
         }
     },
     {

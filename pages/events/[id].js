@@ -29,8 +29,6 @@ export default function Event({ loggedIn, event, isRegistered }) {
         };
     };
 
-    const [registrationSuccessful, setRegistrationSuccessful] = useState(false);
-
     function registerWithAccount(e) {
         e.preventDefault();
         if (loggedIn) {

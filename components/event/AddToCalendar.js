@@ -3,7 +3,21 @@ import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
 
-const outlookLink = ({ name, description, start, end }, url) => {
+const getEventDescriptionHTML = ({ name, description, link, url }) => {
+    const linkText = `<strong>Link to Event Conferencing: <a href="${link}">${link}</a></strong>`;
+    const urlText = `<strong>Link to Event Details: <a href="${url}">${url}</a></strong>`;
+
+    return `<h2>${name}</h2>${description}<br><br>${linkText}<br><br>${urlText}`;
+};
+
+const getEventDescriptionText = ({ name, description, link, url }) => {
+    const linkText = `Link to Event Conferencing: ${link}`;
+    const urlText = `Link to Event Details: ${url}`;
+
+    return `${name}\\n${description}\\n\\n${linkText}\\n\\n${urlText}`;
+};
+
+const outlookLink = ({ name, description, start, end, link }, url) => {
     const rootUrl = "https://outlook.office.com/calendar/0/deeplink/compose";
 
     const params = new URLSearchParams({
@@ -12,13 +26,13 @@ const outlookLink = ({ name, description, start, end }, url) => {
         startdt: start,
         enddt: end,
         subject: name,
-        body: `<h2>${name}</h2>${description}<br><br><strong>Link to Event: <a href="${url}">${url}</a>`
+        body: getEventDescriptionHTML({ name, description, link, url })
     });
 
     return `${rootUrl}?${params}`;
 };
 
-const gcalLink = ({ name, description, start, end }, url) => {
+const gcalLink = ({ name, description, start, end, link }, url) => {
     const rootUrl = "https://calendar.google.com/calendar/render";
 
     const startDate = dayjs(start).format("YYYYMMDDTHHmmSSZ");
@@ -28,14 +42,14 @@ const gcalLink = ({ name, description, start, end }, url) => {
         action: "TEMPLATE",
         text: name,
         dates: `${startDate}/${endDate}`,
-        details: `<h2>${name}</h2>${description}<br><br><strong>Link to Event: <a href="${url}">${url}</a>`,
+        details: getEventDescriptionHTML({ name, description, link, url }),
         sprop: `website:${url}`
     });
 
     return `${rootUrl}?${params}`;
 };
 
-const icsFile = ({ name, description, start, end }, url) => {
+const icsFile = ({ name, description, start, end, link }, url) => {
     const startDate = dayjs(start).format("YYYYMMDDTHHmmss");
     const endDate = dayjs(end).format("YYYYMMDDTHHmmss");
 
@@ -46,7 +60,7 @@ BEGIN:VEVENT
 DTSTART:${startDate}
 DTEND:${endDate}
 SUMMARY:${name}
-DESCRIPTION:${description}
+DESCRIPTION:${getEventDescriptionText({ name, description, link, url })}
 URL:${url}
 END:VEVENT
 END:VCALENDAR`;
