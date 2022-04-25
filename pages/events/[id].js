@@ -190,7 +190,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                             <button
                                 className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
                                 onClick={registerWithAccount}>
-                                Register with The Dynamics account
+                                {loggedIn ? "Register now" : "Register with The Dynamics account"}
                                 <ArrowIcon />
                             </button>
                         </div>
