@@ -4,14 +4,14 @@ import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
-  const linkText = `<strong>Link to Event Conferencing: <a href="${link}">${link}</a></strong>`;
+  const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
   const urlText = `<strong>Link to Event Details: <a href="${url}">${url}</a></strong>`;
 
   return `<h2>${name}</h2>${description}<br><br>${linkText}<br><br>${urlText}`;
 };
 
 const getEventDescriptionText = ({ name, description, link, url }) => {
-  const linkText = `Link to Event Conferencing: ${link}`;
+  const linkText = `Join the Event here: ${link}`;
   const urlText = `Link to Event Details: ${url}`;
 
   return `${name}\\n${description}\\n\\n${linkText}\\n\\n${urlText}`;
