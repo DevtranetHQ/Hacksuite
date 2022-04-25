@@ -1,5 +1,5 @@
-import User from "./../models/user.model";
-import { CustomError } from "../utils/customError";
+import User from "./user.model";
+import { CustomError } from "../../utils/customError";
 import authService from "./auth.service";
 
 class UserService {

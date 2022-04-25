@@ -1,6 +1,6 @@
 import mongoose from "../../database";
 import Event from "../../models/event.model";
-import User from "../../models/user.model";
+import User from "../../modules/auth/user.model";
 const Schema = mongoose.Schema;
 
 const registrationSchema = new Schema(

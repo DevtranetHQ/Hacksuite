@@ -1,5 +1,5 @@
 import Event from "../../models/event.model";
-import User from "../../models/user.model";
+import User from "../../modules/auth/user.model";
 import Registration from "./registration.model";
 import { CustomError } from "./../../utils/customError";
 

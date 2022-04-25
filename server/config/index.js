@@ -16,5 +16,11 @@ export const config = {
     PASSWORD: process.env.SMTP_PASS,
     PORT: process.env.SMTP_PORT,
     SECURE: true
+  },
+  discord: {
+    clientID: process.env.DISCORD_CLIENT_ID,
+    clientSecret: process.env.DISCORD_CLIENT_SECRET,
+    callbackURL: process.env.DISCORD_CALLBACK_URL,
+    scope: ["identify", "email", "guilds"]
   }
 };

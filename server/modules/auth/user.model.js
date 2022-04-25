@@ -1,7 +1,7 @@
-import mongoose from "../database";
+import mongoose from "../../database";
 import bcrypt from "bcryptjs";
-import { config } from "../config";
-import { countryNames } from "../utils/countryNames";
+import { config } from "../../config";
+import { countryNames } from "../../utils/countryNames";
 
 const { BCRYPT_SALT } = config;
 
@@ -108,7 +108,8 @@ const userSchema = new Schema(
         /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
         "{VALUE isnt a valid link}"
       ]
-    }
+    },
+    discordId: String
   },
   {
     timestamps: true

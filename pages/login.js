@@ -1,18 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
 import { useAuth } from "../hooks/useAuth";
+import authService from "../server/modules/auth/auth.service";
+import { useRouter } from "next/router";
 
-export default function Login() {
+export default function Login({ discordLoginError, token }) {
   const [revealPassword, setRevealPassword] = useState(false);
-
-  const { login } = useAuth();
+  const router = useRouter();
+  const { login, setToken } = useAuth();
 
   const onLogin = async e => {
     e.preventDefault();
@@ -27,6 +28,23 @@ export default function Login() {
     var id = document.getElementById("password");
     id.type = id.type === "password" ? "text" : "password";
   };
+
+  useEffect(() => {
+    if (discordLoginError) {
+      alert(
+        `Cannot login with Discord - Make sure you are a verified member of The Dynamics Discord Server`
+      );
+    }
+  }, [discordLoginError]);
+
+  useEffect(() => {
+    if (token) {
+      alert(`Discord login successful!`);
+      setToken(token);
+      router.push("/");
+    }
+  }, [token, setToken, router]);
+
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -112,7 +130,7 @@ export default function Login() {
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
               </div>
               <a
-                href="#"
+                href="/discord/login"
                 className="button-small button-deep-sky-blue rounded-md mx-auto text-15px pr-0.5 lg:text-16px xs:pl-8 lg:pr-auto">
                 The Dynamics Discord
                 <Image src={discordImage} height={24} alt="Join The Dynamics Discord" />
@@ -134,15 +152,32 @@ export default function Login() {
   );
 }
 
-export async function getServerSideProps(context) {
-  if (context.req.cookies.token) {
-    context.res.writeHead(302, {
+export async function getServerSideProps({ req, res, query }) {
+  if (req.cookies.token) {
+    res.writeHead(302, {
       Location: `/app`
     });
-    context.res.end();
+    res.end();
   }
 
-  return {
-    props: {}
-  };
+  if (query.discordLoginError === ``) {
+    return {
+      props: {
+        discordLoginError: true
+      }
+    };
+  }
+
+  if (query.token) {
+    const valid = await authService.verifyLoginToken(query.token);
+    if (valid) {
+      return {
+        props: {
+          token: query.token
+        }
+      };
+    }
+  }
+
+  return { props: {} };
 }

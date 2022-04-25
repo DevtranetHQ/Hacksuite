@@ -1,13 +1,13 @@
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { SignJWT } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 
-import User from "./../models/user.model";
-import Token from "./../models/token.model";
-import { CustomError } from "../utils/customError";
-import MailService from "./../services/mail.service";
-import { config } from "./../config";
-import registrationService from "../modules/registration/registration.service";
+import User from "./user.model";
+import Token from "../../models/token.model";
+import { CustomError } from "../../utils/customError";
+import MailService from "../../services/mail.service";
+import { config } from "../../config";
+import registrationService from "../registration/registration.service";
 
 const { JWT_SECRET, BCRYPT_SALT, url } = config;
 
@@ -184,6 +184,14 @@ class AuthService {
     await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
 
     return;
+  }
+
+  async verifyLoginToken(token) {
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
+    const user = await User.findById(payload.id);
+    if (!user) throw new CustomError("Invalid token");
+
+    return user;
   }
 }
 
