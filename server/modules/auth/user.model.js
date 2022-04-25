@@ -88,10 +88,6 @@ const userSchema = new Schema(
       type: Boolean,
       default: false
     },
-    events: {
-      type: [Schema.Types.ObjectId],
-      ref: "events"
-    },
     isCompleted: {
       type: Boolean,
       default: false

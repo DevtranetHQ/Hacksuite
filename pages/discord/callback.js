@@ -1,8 +1,7 @@
 import authService from "../../server/modules/auth/auth.service";
 import discordAuthService from "../../server/modules/auth/discord.service";
 
-export default function Callback({ user }) {
-  console.log({ user });
+export default function Callback() {
   return <></>;
 }
 

@@ -25,15 +25,6 @@ class UserService {
     return user;
   }
 
-  async registerForEvent(userId, eventId) {
-    const user = await this.getOne(userId);
-
-    user.events.push(eventId);
-    await user.save();
-
-    return user;
-  }
-
   async update(userId, data) {
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
