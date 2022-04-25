@@ -4,7 +4,7 @@ import { CustomError } from "./../utils/customError";
 
 class IntegrationService {
   async discordEmailCheck(email) {
-    if (!email) throw new CustomError("email is required");
+    if (!email) throw new CustomError("email is required", 404);
 
     const user = await userService.getOneByEmail(data.email);
 
