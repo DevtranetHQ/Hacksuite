@@ -139,6 +139,13 @@ export function AddToCalendar({ event }) {
                     rel="noopener noreferrer">
                     iCal
                 </a>
+                <br />
+                <a
+                    href={icsFile(event, url)}
+                    download={`${event.name}.ics`}
+                    rel="noopener noreferrer">
+                    Other Calendars
+                </a>
                 <div ref={setArrowElement} style={styles.arrow} className="arrow" />
             </div>
         </>
