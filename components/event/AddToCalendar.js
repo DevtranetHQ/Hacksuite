@@ -137,7 +137,7 @@ export function AddToCalendar({ event }) {
           className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
           <Image src={applelogo} alt="Apple" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
-          </span>{" "}
+          </span>
           Apple Calendar
         </a>
         <br />
