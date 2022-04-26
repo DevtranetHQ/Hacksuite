@@ -12,9 +12,9 @@ export default function VerificationSent({ email }) {
     <div className="flex flex-col h-screen justify-center mx-auto w-full xs:w-[57%] xs:z-0">
       
       {/* Email Verification Failed Triggger Message */}
-      <Fade top>
-        <p className="font-body font-semibold text-20px text-white bg-[#D0342C] mx-auto flex items-center justify-center">Email Verification Failed!</p>
-      </Fade>
+      {/* <Fade top>
+        <p className="font-body font-semibold text-20px text-white bg-[#D0342C] text-center w-screen mb-5">Email Verification Failed!</p>
+      </Fade> */}
 
       <Image layout="responsive" src={verificationImage} alt="" />
       <div className="xs:-mt-4 xs:z-10 w-3/4 xs:w-3/5 mx-auto text-center px-4">
