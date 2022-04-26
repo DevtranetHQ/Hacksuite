@@ -1,0 +1,95 @@
+.form-checkbox,
+.form-radio {
+  @apply cursor-pointer flex gap-1 md:gap-2 items-center text-16px leading-[18px];
+}
+
+.form-checkbox input[type="checkbox"] {
+  @apply dark:bg-white appearance-none h-[20px] w-[20px] border-2 border-[#1a1a1a] rounded-sm bg-[#E8E8E8] checked:bg-deep-sky-blue checked:dark:bg-deep-sky-blue checked:border-deep-sky-blue focus:outline-none bg-no-repeat bg-center bg-contain float-left cursor-pointer;
+}
+
+.bg-mobile-login {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    url("../public/assets/auth/auth-background.svg");
+  background-position: left 45% bottom -1%;
+  background-repeat: no-repeat;
+  background-size: 180%;
+  position: relative;
+}
+
+.bg-mobile-login-dark {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../public/assets/auth/auth-background.svg");
+  background-position: left 45% bottom -1%;
+  background-repeat: no-repeat;
+  background-size: 180%;
+  position: relative;
+}
+
+.mobile-signup {
+  background-position: left 41% bottom -2px;
+  background-size: 150%;
+}
+
+/* used in pages/profile/[id]---- line 91 & 92 */
+.tab-option::before {
+  content: "";
+  width: 140px;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  bacground-color: #ff9700;
+  transition: 300ms all ease-in-out;
+}
+
+.tab-option:hover::after {
+  width: 100px;
+}
+
+.popper {
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  display: none;
+}
+
+.popper[data-show="true"] {
+  display: block;
+}
+
+.popper .arrow,
+.popper .arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+.popper .arrow {
+  visibility: hidden;
+}
+
+.popper .arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
+
+.popper[data-popper-placement^="top"] > .arrow {
+  bottom: -4px;
+}
+
+.popper[data-popper-placement^="bottom"] > .arrow {
+  top: -4px;
+}
+
+.popper[data-popper-placement^="left"] > .arrow {
+  right: -4px;
+}
+
+.popper[data-popper-placement^="right"] > .arrow {
+  left: -4px;
+}
