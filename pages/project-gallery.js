@@ -64,6 +64,12 @@ export default function ProjectGallery({user, project}) {
               );
             })}
         </div>
+        <div className="flex justify-center mt-[167px] mb-[90px]">
+            <button className="button-big button-deep-sky-blue inline-flex gap-x-3 mx-auto">
+                View more Projects 
+                <ArrowIcon />
+            </button>
+        </div>
 
         </div>
     )
