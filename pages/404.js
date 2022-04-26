@@ -1,6 +1,5 @@
 import Image from "next/image";
 import errorImage from "../public/assets/404.svg";
-import HomeImage from "../public/assets/home.jpg";
 
 export default function Error() {
   return (

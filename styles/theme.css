@@ -55,8 +55,8 @@
   }
 
   /*
-     * Code components
-     */
+   * Code components
+   */
   code {
     @apply bg-[#ededed] dark:bg-[#1c1c1c] rounded px-1 pt-1 font-sans text-deep-sky-blue;
   }
@@ -71,6 +71,7 @@
 }
 
 @layer components {
+  /* For TailwindCSS typography plugin */
   .prose {
     max-width: none !important;
   }
@@ -84,8 +85,8 @@
   }
 
   /*
-     * Typography
-     */
+   * Typography
+   */
   .heading {
     @apply font-bold text-36px md:text-42px md:leading-[100px];
   }
@@ -123,14 +124,22 @@
   }
 
   /*
-     * Buttons
-     */
+   * Buttons
+   */
   .button-big,
   .button-medium,
   .button-small {
     @apply leading-tight flex items-center justify-center font-bold px-5 py-2 mr-2 mb-2 rounded-md text-white transition-all;
   }
 
+  /*
+   * Set up background colors for buttons
+   * button-deep-sky-blue
+   * button-fruit-salad
+   * button-orange-peel
+   * button-link
+   * button-heading
+   */
   .button-big.button-deep-sky-blue,
   .button-medium.button-deep-sky-blue,
   .button-small.button-deep-sky-blue {
@@ -164,9 +173,13 @@
   .outline-button-big,
   .outline-button-medium,
   .outline-button-small {
+    /* Outline buttons */
     @apply leading-tight flex items-center justify-center border-[3px] font-bold px-5 py-2 mr-2 mb-2 rounded-md transition-all;
   }
 
+  /*
+   * Colors for outline buttons, where text and outline have a color
+   */
   .outline-button-big.button-deep-sky-blue,
   .outline-button-medium.button-deep-sky-blue,
   .outline-button-small.button-deep-sky-blue {
@@ -200,6 +213,7 @@
   .cta-button-big,
   .cta-button-medium,
   .cta-button-small {
+    /* Buttons with gradients */
     @apply leading-tight flex items-center justify-center font-bold px-3 py-2 mr-2 mb-2 rounded-md text-white transition-all;
     background: linear-gradient(98.64deg, #ffffff -26.46%, #03a9f4 56.71%);
   }
@@ -213,9 +227,13 @@
   .cta-button-big:not(:disabled),
   .cta-button-medium:not(:disabled),
   .cta-button-small:not(:disabled) {
+    /* Hover and zoom effect for buttons */
     @apply hover:scale-105 focus:scale-105;
   }
 
+  /*
+   * Button font sizes
+   */
   .button-big,
   .outline-button-big,
   .cta-button-big {
@@ -236,8 +254,13 @@
   }
 
   /*
-     * Cards
-     */
+   * Cards
+   * primary
+   * sunken
+   * interactive
+   * gradient text
+   * gradient background
+   */
   .card-primary,
   .card-sunken,
   .card-interactive,
@@ -290,8 +313,8 @@
   }
 
   /*
-     * Badges
-     */
+   * Badges
+   */
   .pill-badge {
     @apply border-deep-sky-blue border-[3px] bg-deep-sky-blue inline-block mb-2 mr-2 px-10 py-3 rounded-full text-center font-bold text-[14px] md:text-18px text-white;
   }
@@ -301,31 +324,36 @@
   }
 
   /*
-     * Form components
-     */
+   * Form components
+   */
   form {
     @apply bg-[#F4F4F4] dark:bg-[#444444] p-10 rounded-xl;
   }
 
   .form-label {
+    /* Labels */
     @apply block mb-1 text-18px font-semibold md:text-[22px];
   }
 
   .form-button {
+    /* Buttons */
     @apply flex items-center justify-center min-w-[64%] bg-deep-sky-blue font-bold px-5 py-1 mx-auto rounded-md text-white text-24px transition-all hover:scale-105 focus:scale-105;
     background: linear-gradient(98.64deg, #ffffff -26.46%, #03a9f4 56.71%);
   }
 
   .form-input {
+    /* General input */
     @apply dark:text-black text-18px bg-white border-[#c9c9c9] border-2 block w-full px-3 py-2 mt-1 mb-4 rounded-lg;
     outline: none !important;
   }
 
   .form-input.sm {
+    /* Small input */
     @apply text-15px;
   }
 
   .form-select {
+    /* Selects */
     @apply appearance-none text-18px text-body bg-white border-[#c1c1c1] border-2 block w-full px-3 py-2 rounded;
     background-image: url("data:image/svg+xml,%3Csvg width='21' height='25' viewBox='0 0 19 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.5 16L0.406734 0.25L18.5933 0.25L9.5 16Z' fill='%238A8A8A'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -336,9 +364,13 @@
 
   .form-checkbox,
   .form-radio {
+    /* Checkboxes and radio buttons */
     @apply cursor-pointer flex gap-1 md:gap-2 items-center text-16px leading-[18px];
   }
 
+  /*
+   * Checkboxes
+   */
   .form-checkbox label {
     @apply cursor-pointer self-end;
   }
@@ -352,6 +384,9 @@
     background-size: 18px 18px;
   }
 
+  /*
+   * Radio buttons
+   */
   .form-radio input[type="radio"] {
     @apply dark:bg-white appearance-none rounded-full h-[20px] w-[20px] border-2 border-[#1a1a1a] bg-transparent checked:bg-deep-sky-blue checked:dark:bg-deep-sky-blue checked:border-deep-sky-blue focus:outline-none bg-no-repeat bg-center bg-contain float-left cursor-pointer;
   }
@@ -361,6 +396,9 @@
     background-size: 18px 18px;
   }
 
+  /*
+   * Sliders
+   */
   .form-range {
     @apply appearance-none w-full h-[6px] rounded p-0 bg-[#a0a0a0] focus:outline-none focus:ring-0 focus:shadow-none;
   }
@@ -376,8 +414,8 @@
 
 @layer utilities {
   /*
-     * Containers
-     */
+   * Containers
+   */
   .container-screen {
     @apply box-border mx-auto my-3 w-full md:max-w-screen p-5 md:p-3 dark:bg-dark dark:text-white;
   }
@@ -396,92 +434,5 @@
 
   .container-gray-dark {
     @apply dark:bg-gray-dark;
-  }
-
-  .bg-mobile-login {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-      url("../public/assets/auth/auth-background.svg");
-    background-position: left 45% bottom -1%;
-    background-repeat: no-repeat;
-    background-size: 180%;
-    position: relative;
-  }
-
-  .bg-mobile-login-dark {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("../public/assets/auth/auth-background.svg");
-    background-position: left 45% bottom -1%;
-    background-repeat: no-repeat;
-    background-size: 180%;
-    position: relative;
-  }
-
-  .mobile-signup {
-    background-position: left 41% bottom -2px;
-    background-size: 150%;
-  }
-
-  /* used in pages/profile/[id]---- line 91 & 92 */
-  .tab-option::before {
-    content: "";
-    width: 140px;
-    height: 15px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    bacground-color: #ff9700;
-    transition: 300ms all ease-in-out;
-  }
-
-  .tab-option:hover::after {
-    width: 100px;
-  }
-
-  .popper {
-    background: #333;
-    color: white;
-    font-weight: bold;
-    padding: 4px 8px;
-    font-size: 13px;
-    border-radius: 4px;
-    display: none;
-  }
-
-  .popper[data-show="true"] {
-    display: block;
-  }
-
-  .popper .arrow,
-  .popper .arrow::before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: inherit;
-  }
-
-  .popper .arrow {
-    visibility: hidden;
-  }
-
-  .popper .arrow::before {
-    visibility: visible;
-    content: "";
-    transform: rotate(45deg);
-  }
-
-  .popper[data-popper-placement^="top"] > .arrow {
-    bottom: -4px;
-  }
-
-  .popper[data-popper-placement^="bottom"] > .arrow {
-    top: -4px;
-  }
-
-  .popper[data-popper-placement^="left"] > .arrow {
-    right: -4px;
-  }
-
-  .popper[data-popper-placement^="right"] > .arrow {
-    left: -4px;
   }
 }
