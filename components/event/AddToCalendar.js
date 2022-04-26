@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
+import outlooklogo from "../../public/assets/outlooklogo.svg"
+import applelogo from "../../public/assets/outlooklogo.svg"
+import googlelogo from "../../public/assets/outlooklogo.svg"
+import calenderlogo from "../../public/assets/outlooklogo.svg"
+// import outlooklogo from "../public/assets/outlooklogo.svg";
+import Image from "next/image";
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
   const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
@@ -118,7 +124,7 @@ export function AddToCalendar({ event }) {
         <span className="pt-2">Add to my calendar</span>
       </button>
       <div
-        className="popper bg-transparent"
+        className="popper bg-slate-50"
         ref={setPopperElement}
         style={{
           ...styles.popper
@@ -129,54 +135,42 @@ export function AddToCalendar({ event }) {
           href={gcalLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-            <img
-              src="/assets/applelogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+          <Image src={applelogo} alt="Apple" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
           </span>{" "}
-          Google Calendar
+          Apple Calendar
         </a>
         <br />
         <a
           href={outlookLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-            <img
-              src="/assets/googlelogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+          <Image src={googlelogo} alt="Google" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
           </span>
-          Outlook
+          Google Calender
         </a>
         <br />
         <a
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-            <img
-              src="/assets/outlooklogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+            <Image src={outlooklogo} alt="Outlook" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
           </span>
-          iCal
+          Outlook Calender
         </a>
         <br />
         <a
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-            <img
-              src="/assets/calenderlogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+          <Image src={calenderlogo} alt="Calender" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
           </span>
           Other Calendars
         </a>
