@@ -2,17 +2,17 @@ import Image from "next/image";
 import verificationImage from "../../public/assets/auth/verification.png";
 import InboxIcon from "../../components/icons/Inbox";
 // Animation Package for the trigger messages
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 
 export default function VerificationSent() {
   return (
     <div className="flex flex-col h-screen justify-center mx-auto w-full xs:w-[57%] xs:z-0">
-
-      {/* Email Verification Failed Triggger Message */}
-      <Fade top>
-        <p className="font-body font-semibold text-20px text-white bg-[#D0342C] mx-auto flex items-center justify-center">Email Verification Failed!</p>
-      </Fade>
       
+      {/* Email Verification Failed Triggger Message */}
+      {/* <Fade top>
+        <p className="font-body font-semibold text-center text-20px text-white bg-[#D0342C] mx-auto w-screen mb-5">Email Verification Failed!</p>
+      </Fade> */}
+
       <Image layout="responsive" src={verificationImage} alt="" />
       <div className="xs:-mt-4 xs:z-10 w-3/4 xs:w-3/5 mx-auto text-center px-4">
         <p className="text-10px xs:text-20px">

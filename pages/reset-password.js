@@ -49,20 +49,6 @@ export default function ResetPassword() {
     return "Password Reset Successfully";
   }
 
-  // Trigger Messages
-
-  // <Fade top>
-  //   //  <div className="bg-[#D0342C] flex items-center justify-center text-white p-1 font-semibold md:text-36px text-16px mt-3">
-  //   //       <p>Password Reset Failed! Try again...</p>
-  //   //     </div>
-  // </Fade>
-
-  //     <Fade top>
-  //     <div className="bg-green-500 flex items-center justify-center text-white p-1 font-semibold md:text-36px text-16px mt-3 ">
-  //       <p>Password Successfully Changed! Redirceting...</p>
-  //     </div>
-  //     </Fade>
-
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -74,6 +60,19 @@ export default function ResetPassword() {
           />
         </div>
       </div>
+
+      {/* Trigger Messages
+      <Fade top>
+        <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
+          <p>Password Reset Failed! Try again...</p>
+        </div>
+      </Fade>
+      <Fade top>
+      <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+        <p>Password Successfully Changed! Redirceting...</p>
+      </div>
+      </Fade> */}
+      
 
       <div className="flex mmd:bg-mobile-login justify-center">
         <div className="md:block md:w-1/2 md:-m-[1px] md:p-0 xs:pt-9 md:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
@@ -161,7 +160,6 @@ export default function ResetPassword() {
           </form>
         </div>
       </div>
-
       <footer className="bg-deep-sky-blue text-white py-1.5 xs:py-3">
         <div className="flex items-center justify-center mxs:text-16px xs:lead">
           Don&#x27;t have an account?&nbsp;

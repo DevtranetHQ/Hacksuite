@@ -69,7 +69,7 @@ export default function Login({ discordLoginError, token }) {
       {/* Discord Failed login Trigger Message
       
       <Fade top>
-      <p className="font-body font-semibold text-20px text-white bg-[#D0342C] mx-auto flex items-center justify-center mb-3">Login Failed! try gain after joining our Discord server, Redirecting...</p>      
+      <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">Login Failed! try gain after joining our Discord server, Redirecting...</p>      
       </Fade> */}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
@@ -130,6 +130,13 @@ export default function Login({ discordLoginError, token }) {
                     revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
                   }
                 />
+                <div className="flex items-center mx-auto justify-center">
+                  {loggedErr && (
+                    <p className="font-body font-normal text-15px text-[#D0342C]  -mt-3 ">
+                      Incorrect password or email entered
+                    </p>
+                  )}
+                </div>
               </div>
               <button
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
@@ -151,11 +158,6 @@ export default function Login({ discordLoginError, token }) {
                 </a>
               </Link>
             </div>
-            {loggedErr && (
-              <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
-                Incorrect password or email entered
-              </p>
-            )}
           </form>
         </div>
       </div>
