@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
+import { Icon } from '@iconify/react';
+
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
   const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
@@ -118,26 +120,54 @@ export function AddToCalendar({ event }) {
         <span className="pt-2">Add to my calendar</span>
       </button>
       <div
-        className="popper"
+        className="popper bg-slate-50"
         ref={setPopperElement}
         style={{
           ...styles.popper
         }}
         {...attributes.popper}
         data-show={showPopper}>
-        <a href={gcalLink(event, url)} target="_blank" rel="noopener noreferrer">
-          Google Calendar
+        <a
+          href={gcalLink(event, url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
+          <span>
+          <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="ml-3"/>
+          </span>
+          Apple Calendar
         </a>
         <br />
-        <a href={outlookLink(event, url)} target="_blank" rel="noopener noreferrer">
-          Outlook
+        <a
+          href={outlookLink(event, url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
+          <span>
+          <Icon icon="mdi:google" color="#03a9f4" inline={true} className="ml-3"/>
+          </span>
+          Google Calender
         </a>
         <br />
-        <a href={icsFile(event, url)} download={`${event.name}.ics`} rel="noopener noreferrer">
-          iCal
+        <a
+          href={icsFile(event, url)}
+          download={`${event.name}.ics`}
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
+          <span>
+          <Icon icon="mdi:microsoft-windows" color="#03a9f4" inline={true} className="ml-3"/>
+          </span>
+          Outlook Calender
         </a>
         <br />
-        <a href={icsFile(event, url)} download={`${event.name}.ics`} rel="noopener noreferrer">
+        <a
+          href={icsFile(event, url)}
+          download={`${event.name}.ics`}
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
+          <span>
+          <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="ml-3"/>
+          </span>
           Other Calendars
         </a>
         <div ref={setArrowElement} style={styles.arrow} className="arrow" />

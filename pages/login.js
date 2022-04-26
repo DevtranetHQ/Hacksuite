@@ -9,11 +9,16 @@ import discordImage from "../public/assets/discord.svg";
 import { useAuth } from "../hooks/useAuth";
 import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
+// Animation Package for the trigger messages
+import Fade from "react-reveal/Fade";
 
 export default function Login({ discordLoginError, token }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
   const { login, setToken } = useAuth();
+
+  // Throw error user details isnt correct
+  const [loggedErr, setLoggedErr] = useState(false);
 
   const onLogin = async e => {
     e.preventDefault();
@@ -21,6 +26,10 @@ export default function Login({ discordLoginError, token }) {
     const password = e.target.password.value;
 
     await login.execute(email, password);
+
+    if (login.status !== 200) {
+      setLoggedErr(true);
+    }
   };
 
   const toggleReveal = () => {
@@ -56,6 +65,12 @@ export default function Login({ discordLoginError, token }) {
           />
         </div>
       </div>
+
+      {/* Discord Failed login Trigger Message
+      
+      <Fade top>
+      <p className="font-body font-semibold text-20px text-white bg-[#D0342C] mx-auto flex items-center justify-center mb-3">Login Failed! try gain after joining our Discord server, Redirecting...</p>      
+      </Fade> */}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
         <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
@@ -136,6 +151,11 @@ export default function Login({ discordLoginError, token }) {
                 </a>
               </Link>
             </div>
+            {loggedErr && (
+              <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
+                Incorrect password or email entered
+              </p>
+            )}
           </form>
         </div>
       </div>
