@@ -7,10 +7,13 @@ import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import { useAuth } from "../hooks/useAuth";
 import { useRouter } from "next/router";
+// Animation Package for the trigger messages
+import Fade from "react-reveal/Fade";
 
 export default function ResetPassword() {
   const router = useRouter();
   const [revealPassword, setRevealPassword] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const toggleReveal = () => {
     setRevealPassword(!revealPassword);
@@ -35,11 +38,31 @@ export default function ResetPassword() {
 
       await ResetPassword.execute(data);
     }
+
+    // If Password and Confirm Passowrd do not match
+    if (pass1 !== pass2) {
+      setPasswordMismatch(true);
+    }
   };
 
   if (ResetPassword.status === "success") {
     return "Password Reset Successfully";
   }
+
+  // Trigger Messages
+
+  // <Fade top>
+  //   //  <div className="bg-[#D0342C] flex items-center justify-center text-white p-1 font-semibold md:text-36px text-16px mt-3">
+  //   //       <p>Password Reset Failed! Try again...</p>
+  //   //     </div>
+  // </Fade>
+
+  //     <Fade top>
+  //     <div className="bg-green-500 flex items-center justify-center text-white p-1 font-semibold md:text-36px text-16px mt-3 ">
+  //       <p>Password Successfully Changed! Redirceting...</p>
+  //     </div>
+  //     </Fade>
+
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -101,7 +124,11 @@ export default function ResetPassword() {
                   </label>
                 </div>
                 <input
-                  className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                  className={
+                    !passwordMismatch
+                      ? "form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                      : "border-2 border-red-600 form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                  }
                   name="password2"
                   id="password2"
                   type="password"
@@ -119,9 +146,14 @@ export default function ResetPassword() {
                     revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
                   }
                 />
+                {passwordMismatch && (
+                  <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
+                    Password must match!
+                  </p>
+                )}
               </div>
               <button
-                className="w-3/5 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
+                className="w-4/5 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit">
                 Update my password
               </button>
