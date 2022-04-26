@@ -477,6 +477,7 @@
   }
 
   .popper {
+    /* Background Color changed to transparent for the Calender menu in Events page */
     background: transparent;
     color: white;
     font-weight: bold;

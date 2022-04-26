@@ -2,11 +2,8 @@ import { useState, useEffect } from "react";
 import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
-import outlooklogo from "../../public/assets/outlooklogo.svg"
-import applelogo from "../../public/assets/applelogo.svg"
-import googlelogo from "../../public/assets/googlelogo.svg"
-import calenderlogo from "../../public/assets/calenderlogo.svg"
-import Image from "next/image";
+import { Icon } from '@iconify/react';
+
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
   const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
@@ -136,7 +133,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-          <Image src={applelogo} alt="Apple" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
+          <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
           Apple Calendar
         </a>
@@ -147,7 +144,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-          <Image src={googlelogo} alt="Google" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
+          <Icon icon="mdi:google" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
           Google Calender
         </a>
@@ -158,7 +155,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-            <Image src={outlooklogo} alt="Outlook" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
+          <Icon icon="mdi:microsoft-windows" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
           Outlook Calender
         </a>
@@ -169,7 +166,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="text-[#03A9F4] font-body font-bold md:text-20px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center">
           <span>
-          <Image src={calenderlogo} alt="Calender" className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"/>
+          <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
           Other Calendars
         </a>
