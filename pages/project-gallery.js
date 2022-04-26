@@ -29,7 +29,7 @@ export default function ProjectGallery({user, project}) {
             <Link href="/profile/1">
                 <button className="px-[10px] py-[6px] bg-[#03a9f4] text-white rounded-[3px] text-[12px] md:button-medium button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0">
                     Go back home
-                <div class="scale-75 md:scale-100">
+                <div className="scale-75 md:scale-100">
                     <ArrowIcon />
                 </div>
                 </button>
