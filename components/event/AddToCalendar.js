@@ -118,26 +118,66 @@ export function AddToCalendar({ event }) {
         <span className="pt-2">Add to my calendar</span>
       </button>
       <div
-        className="popper"
+        className="popper bg-transparent"
         ref={setPopperElement}
         style={{
           ...styles.popper
         }}
         {...attributes.popper}
         data-show={showPopper}>
-        <a href={gcalLink(event, url)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={gcalLink(event, url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          <span>
+            <img
+              src="/assets/applelogo.svg"
+              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
+            />
+          </span>{" "}
           Google Calendar
         </a>
         <br />
-        <a href={outlookLink(event, url)} target="_blank" rel="noopener noreferrer">
+        <a
+          href={outlookLink(event, url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          <span>
+            <img
+              src="/assets/googlelogo.svg"
+              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
+            />
+          </span>
           Outlook
         </a>
         <br />
-        <a href={icsFile(event, url)} download={`${event.name}.ics`} rel="noopener noreferrer">
+        <a
+          href={icsFile(event, url)}
+          download={`${event.name}.ics`}
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          <span>
+            <img
+              src="/assets/outlooklogo.svg"
+              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
+            />
+          </span>
           iCal
         </a>
         <br />
-        <a href={icsFile(event, url)} download={`${event.name}.ics`} rel="noopener noreferrer">
+        <a
+          href={icsFile(event, url)}
+          download={`${event.name}.ics`}
+          rel="noopener noreferrer"
+          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          <span>
+            <img
+              src="/assets/calenderlogo.svg"
+              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
+            />
+          </span>
           Other Calendars
         </a>
         <div ref={setArrowElement} style={styles.arrow} className="arrow" />
