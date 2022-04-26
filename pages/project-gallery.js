@@ -16,37 +16,39 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 export default function ProjectGallery({user, project}) {
     return (
         <div className="dark:bg-[#202020] dark:text-white">
-            <nav className="flex items-center justify-between pl-8 pr-12">
-            <Logo className="w-[120px] py-5" />
-            <div className="flex gap-x-2">
+            <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
+            <Logo className="w-[80px] md:w-[120px] py-5" />
+            <div className="flex gap-x-[0px] md:gap-x-2 items-center">
             <DarkModeToggle
-                className="mx-0 w-[40px] h-[40px]"
-                darkClassName="mx-0 w-[40px] h-[42px]"
+                className="mx-0 md:w-[40px] md:h-[40px]"
+                darkClassName="mx-0 w-[25px] md:w-[40px] h-[25px] md:h-[42px]"
             />
-            <a href="https://github.com/TheDynamics">
+            <a href="https://github.com/TheDynamics" className="scale-75 md:scale-100">
                 <GithubIcon />
             </a>
             <Link href="/profile/1">
-                <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
+                <button className="px-[10px] py-[6px] bg-[#03a9f4] text-white rounded-[3px] text-[12px] md:button-medium button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0">
                     Go back home
-                <ArrowIcon />
+                <div class="scale-75 md:scale-100">
+                    <ArrowIcon />
+                </div>
                 </button>
             </Link>
             </div>
         </nav>
         <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-b-2xl text-center">
-            <h1 className="title text-deep-sky-blue">The Dynamics Projects</h1>
-            <h2 className="lead mb-2">A gallery of all the awesome things the makers at The Dynamics are building and launching everyday.</h2>
-            <div className="inline-flex my-2">
-            <button className="button-medium button-fruit-salad inline-flex gap-x-2">
+            <h1 className="text-[30px] font-bold lg:title text-deep-sky-blue">The Dynamics Projects</h1>
+            <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px]">A gallery of all the awesome things the makers at The Dynamics are building and launching everyday.</h2>
+            <div className="inline-flex my-2 gap-x-4 mt-[20px]">
+            <button className="button-small py-[15px] text-[16px] px-[15px] lg:button-medium button-fruit-salad inline-flex gap-x-2">
                 All Projects
             </button>
-            <a className="button-medium button-deep-sky-blue inline-flex gap-x-2" href="#comments">
+            <a className="button-small py-[15px] text-[16px] px-[15px] lg:button-medium button-deep-sky-blue inline-flex gap-x-2" href="#comments">
                 Add your project
             </a>
             </div>
       </header>
-        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px]">
+        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] lg:px-[32px]">
           {user &&
             user.projects.map((project, index) => {
               return (
@@ -65,14 +67,14 @@ export default function ProjectGallery({user, project}) {
               );
             })}
         </div>
-        <div className="flex justify-center mt-[167px] mb-[90px]">
-            <button className="button-big button-deep-sky-blue inline-flex gap-x-3 mx-auto">
+        <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
+            <button className="button-medium lg:button-big button-deep-sky-blue inline-flex gap-x-3">
                 View more Projects 
                 <ArrowIcon />
             </button>
         </div>
         <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
-            <p className="text-[32px] px-[40px] text-center">You’ve reached the end, why not <a href="">become a member</a> and show us all the cool things you’ve made?</p>
+            <p className="text-[16px] lg:text-[32px] px-[40px] text-center">You’ve reached the end, why not <a href="">become a member</a> and show us all the cool things you’ve made?</p>
         </footer>
         </div>
     )

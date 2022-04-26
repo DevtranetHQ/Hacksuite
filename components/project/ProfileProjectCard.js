@@ -45,7 +45,7 @@ export default function ProfileProjectCard({ ...props }) {
       </div>
 
       {/* ====== #IMAGE */}
-      <div className="w-full h-[60%]  flex items-center justify-center relative">
+      <div className="w-full h-[50%]  flex items-center justify-center relative">
         <Image src={image} alt="" layout="fill" className="object-cover" />
       </div>
 
@@ -56,7 +56,7 @@ export default function ProfileProjectCard({ ...props }) {
       </div>
 
       {/* ====== #BOTTOM SECTION */}
-      <div className="flex w-full gap-2 items-center justify-between">
+      <div className="flex w-full mt-[10px] gap-2 items-center justify-between">
         <span className="flex items-center gap-2">
           <p className="caption">tags:</p>
           {tags &&
