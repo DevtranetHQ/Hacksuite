@@ -70,7 +70,9 @@ export default function ProjectGallery({user, project}) {
                 <ArrowIcon />
             </button>
         </div>
-
+        <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+            <p className="text-[32px] px-[40px] text-center">You’ve reached the end, why not <a href="">become a member</a> and show us all the cool things you’ve made?</p>
+        </footer>
         </div>
     )
 }
