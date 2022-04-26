@@ -3,10 +3,9 @@ import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
 import outlooklogo from "../../public/assets/outlooklogo.svg"
-import applelogo from "../../public/assets/outlooklogo.svg"
-import googlelogo from "../../public/assets/outlooklogo.svg"
-import calenderlogo from "../../public/assets/outlooklogo.svg"
-// import outlooklogo from "../public/assets/outlooklogo.svg";
+import applelogo from "../../public/assets/applelogo.svg"
+import googlelogo from "../../public/assets/googlelogo.svg"
+import calenderlogo from "../../public/assets/calenderlogo.svg"
 import Image from "next/image";
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
