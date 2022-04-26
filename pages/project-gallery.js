@@ -60,6 +60,7 @@ export default function ProjectGallery({user, project}) {
                   comments={27}
                   tags={bubbleTrimmer(project.tags, 0, 4)}
                   desc={project.desc}
+                  className="w-full h-[580px] flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
                 />
               );
             })}

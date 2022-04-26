@@ -50,13 +50,13 @@ export default function ProfileProjectCard({ ...props }) {
       </div>
 
       {/* ====== #TEXT SECTION */}
-      <div className="w-full h-[13%] ">
+      <div className="w-full ">
         <h4 className="subheadline">{title}</h4>
         <p className="caption">{desc}</p>
       </div>
 
       {/* ====== #BOTTOM SECTION */}
-      <div className="flex w-full h-[7%] gap-2 items-center justify-between">
+      <div className="flex w-full gap-2 items-center justify-between">
         <span className="flex items-center gap-2">
           <p className="caption">tags:</p>
           {tags &&
