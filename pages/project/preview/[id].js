@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -77,22 +78,22 @@ export default function Project({ loggedIn, project }) {
           </a>
         </div>
       </header>
-      <section className="grid grid-cols-3 gap-x-2 py-7">
-        <div className="col-span-2 mx-14 my-7 relative min-h-[400px]">
+      <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
+        <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
         </div>
-        <div className="col-span-1 py-7">
+        <div className="absolute right-0 bottom-0 w-50 md:w-fit md:relative col-span-1 py-7">
           <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 rounded-l-md h-full">
             <div>
               <h1 className="headline font-normal">Made By</h1>
               {project.creators.map((creator, key) => (
                 <div className="inline-flex gap-2 items-center" key={key}>
                   <Avatar
-                    className="relative w-[60px] h-[60px]"
+                    className="relative w-[45px] h-[45px]"
                     border="!border-[3px]"
                     image={creator.image}
                   />
-                  <h2 className="inline-flex gap-2 items-center pt-3 headline">
+                  <h2 className="inline-flex gap-2 items-center pt-3 subheadline">
                     {creator.name}
                     <Link href={`/profile/${creator.id}`}>
                       <a className="cursor-pointer">
@@ -103,7 +104,7 @@ export default function Project({ loggedIn, project }) {
                 </div>
               ))}
             </div>
-            <div className="inline-flex gap-2 items-center">
+            <div className="inline-flex gap-2 items-center mt-1">
               <TimeIcon />
               <h2 className="caption">{project.date}</h2>
             </div>
@@ -195,10 +196,6 @@ export default function Project({ loggedIn, project }) {
             </div>
           </div>
           <h1 className="heading leading-loose">Comments</h1>
-          <div className="flex justify-betweeen">
-            <div></div>
-            <div></div>
-          </div>
         </aside>
       </div>
       {!loggedIn && (
@@ -226,7 +223,7 @@ export async function getServerSideProps(context) {
         name: "Web scraper",
         date: "11:00 am, Today",
         image:
-          "https://s3-alpha-sig.figma.com/img/ed76/0bd2/dc09e6a239152f3692e81f49e87d94ed?Expires=1648425600&Signature=SH5jfL4wpxDK9owW63TVmcEX50ridBg7eLXkDa3RhBiCnTR~2WNrtBk-msr4RNRoYYRS~YfdposbXQqU2mLbWTCPk1plAnY~NIGg5moaKvRmYS4dKsHLvWmw~yE6R948kU4fRb8jhHgyIImyeTcoTL3UUZAv~ndSe31W4mvwqM~ov6NodRIFLDB02PEGoMdpERHVv-iXJ4dOS~k3DW06B0VDzNDhPfG543D0fzBcub7DGou7ocYkBOpC-Majx6amUPGcV5oyc5JVFEZCqH226y2dfm-J-7izNcd0vhQLp8ByDmP0FLjmotz7jLcCeyW-ZcIrufurzmSJRHEBmNhWvQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+          "https://s3-alpha-sig.figma.com/img/ed76/0bd2/dc09e6a239152f3692e81f49e87d94ed?Expires=1652054400&Signature=W2SlpLtGHfaojO7jy~8a9edb8-CpirVJVvEFCPrKewoLEH9Z8GL0GsecHR~Q4S4gTd6vk~myv6Mr7jEdMb4QnHjlPJeGqtgPwNKzZW9EK7lydNkJ1T3rAal6zVuRsr4LGkVIwa-np~CmcpehZ5nJNo2BBvyQ29wGDzPDFafpK57XCI83p9cHNiKTFzhZ9W6Hao8uYeUjl~-D49Xv3K3eGHdPeWohDDqNsNkw-8jtVAdkXBrGmT2wtFAC4T~0-XxUgx-Jax3gSrUQotz8fKMkkWhNUhPeFrytc-B26DWiRS~oYE5Lcc3DccQfbkmo5sa-7MThTxHfL6AGwng~rADD-g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
         description:
           "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
         information: `# OfficeHours
@@ -314,8 +311,32 @@ At this point, OfficeHours is simply an MVP. There are so many more features tha
           {
             name: "Zach Latta",
             image:
-              "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1648425600&Signature=BHMNOhVF9EQOSs09rh7Ot1GJBIjwiP1Vm86GNt~do1Zj5KFVYaVo0uCaL6umlWfrzhuOZ-tt3VaDqA-JSAU1PJGCMLnJWU2gXn6fZR4vPExQY2yPduYPxctiooLF7qJKEnw3RJS9GSH~pcr-7Ux5nb6FG40z799PuKbiSjbq0E5mB8~0FlOolFN62nQ9~BD6K4FNrr9FXBYV~k4gpSEW-YFCDwE0vi8PnDD0baN-J0JddjcDEwF6QnL6K9cJ5~Jxtc6qTaBpvnHPZOMLtnydOuiGK43Gys2fJBI60FMxtaNx5hsm4REJG396RsXKmvuVGbFh08i6uM~SdGeCU4feOQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+              "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1652054400&Signature=NfH3KTrkcZqbX21dkEqKT7VnO9svLoWnAgoC1mMjqHWmv1euOMfbm0IdLHjP-0nf9PqDL1SuRzRgPHDgRrzKyDetqGyaX0SzgGY6puHLfn519ibMQc37Ty1k1y2nAe0LQiDNSjcdyhq~U2h8kRoNitY-L19zgDEOdfqlAVT0M-dfVsb5JgzxlaioOaN3pSFxJT4H5CbMEv54FgEjWmOrPP0z9OBtzecdcnqsNFTR7AMJXOkUi78O311-GYFCV~GVZdMPKnMlbCyyHaVH7UTjippO0dv7fQafoueOlRAji-oeVrAU5wzjsha1nIKTasM7uMOUeGXKRLLsaXeBY-XtWg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
             id: "123"
+          },
+          {
+            name: "Bella See",
+            image:
+              "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            id: "345"
+          },
+          {
+            name: "Eniola Osabiya",
+            image:
+              "https://s3-alpha-sig.figma.com/img/d918/ced4/d006edb135bca7573615fc4beb6858bc?Expires=1652054400&Signature=ccMSO6IDqGORy88iMPYA61h2f9WLPw234-dbeimD0-wcKirPzEyXLF9odiq5va6yoms~EZ81lVsDAjEVa6~BnTb0PmRG4UTE4L5JBYkd29x3DIRjyj0yuUcdj8Kt0EWbJrkjs0EC4qwKSZzjjD7ZY79lCnTPqau4bpF9TwLTB3pPJKVKYOXxYFDbHwsC6DRXY6CZNykdHsmGUhgy3Q7pO88F1unwmt2YA0vjVbjpeK3OrCcSwuq0EHEjnpxHHvET6bVYwO0cWEHF8qt0O3BUBguHM0XWmh4gb62LzinsER~DnNKL6LjSi-m2-1VHOMlCnoNQM87vyqsfMzU4hZ11hw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            id: "456"
+          },
+          {
+            name: "Bill Gates",
+            image:
+              "https://s3-alpha-sig.figma.com/img/9c1a/b700/6fc120580122cc5c1443394d7cbd3883?Expires=1652054400&Signature=To05JpnUL4VNdO~OgIUj-B15TGrsqawljpk7A3Xb0RuHBWH-HyPCdhHPXWIRNx6u2Jpvj3rPUxtEQi8hRpxxVWuCJbGkGyLuQ5xoH7w-pHAbDv1LjwP7E3~63-D8-jsXRyYdM~Ivy1QJOaXo8wFgyE0WPyaZZ11U-E-dOhaJqb9SI5OLkL2h8I1ddeKWCJw6AafTOGyI46b9p-lk8SB6ZIpof46yMZEymgeKAM7kdm8xgTlEhqHOuTXHb8FWtJNoVaxFw1fljmpsxbGr3Pkcmh11f41Rz-D4OeR2Iqq07J4f6c42B8udlU098KqSIt--j1N30YQa3m9~Dt8P0ZmG1g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            id: "2234"
+          },
+          {
+            name: "Stephanie Su",
+            image:
+              "https://s3-alpha-sig.figma.com/img/b784/3879/68ae447ee1c119fe0d99cc44e30cc3dc?Expires=1652054400&Signature=eeZLzGrZBygfcDgQXKfkczSp9~hkjhsLPrvFMmp~ZGajtKWwyfqIWl7SRptB8bG-cqsWbCdFnxMl1EOhEHm5oYzI5sgURmnFQlWr5Ymfw3LZWmqdAiK0wpoSZdIhL0P26~QmyA5lYEIQw3FOdpnHPFUTjKRqBfYm90qsvDLwBsudjYWv6chBq2LH9Zv-SD8TQ90FNUFDelMc-YpGfZIUcGG8ENgiudNMyklU4BG5cEZcvCF7Bpqdo59QwsasiXLylMULZ-K~VrZzNT37mR7TBv--0nFyAblRDwS1Vo6Z15mAIc2HsFBCafkib-Qg~f3uFkn2YikLWN1Iciuuz2GNFA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+            id: "342"
           }
         ]
       }

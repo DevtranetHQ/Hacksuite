@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
+import ExitIcon from "../components/icons/Exit";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
-import rightArrow from "../public/assets/right-arrow.svg";
 import { useAuth } from "../hooks/useAuth";
 import VerificationSent from "../components/signup/VerificationSent";
 
@@ -99,7 +99,7 @@ export default function ForgetPassword() {
               <Link href="login">
                 <a className="button-small button-deep-sky-blue rounded-md mx-auto text-14px pr-0.5 lg:text-15px xs:pl-8 lg:pr-auto">
                   Sign back in &nbsp;&nbsp;
-                  <Image src={rightArrow} height={24} alt="Join The Dynamics Discord" />
+                  <ExitIcon />
                 </a>
               </Link>
             </div>
