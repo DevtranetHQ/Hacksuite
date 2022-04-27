@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 import Fade from "react-reveal/Fade";
 
 export default function VerificationSent() {
+  const verifyEmail = ``;
   return (
     <div className="h-screen">
       {/* Email Verification Failed/Successful Triggger Message */}
