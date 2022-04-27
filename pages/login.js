@@ -66,11 +66,15 @@ export default function Login({ discordLoginError, token }) {
         </div>
       </div>
 
-      {/* Discord Failed login Trigger Message
-      
-      <Fade top>
-      <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">Login Failed! try gain after joining our Discord server, Redirecting...</p>      
-      </Fade> */}
+      {/* Discord Failed login Trigger Message */}
+
+      {discordLoginError && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+            Login Failed! try gain after joining our Discord server, Redirecting...
+          </p>
+        </Fade>
+      )}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
         <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">

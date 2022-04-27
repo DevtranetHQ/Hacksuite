@@ -24,7 +24,7 @@ export default function ProfileProjectCard({ ...props }) {
       className={
         className
           ? className
-          : "w-[800px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-1/1 lg:w-[550px] xl:w-[680px] 2xl-[800px] "
+          : "w-[370px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-1/1 lg:w-[520px] xl:w-[600px] 2xl-[700px]"
       }>
       {/* ====== #TOP SECTION */}
       <div className="w-full h-[20%]  flex items-center justify-between relative pl-4 pr-4 ">
@@ -56,7 +56,7 @@ export default function ProfileProjectCard({ ...props }) {
       </div>
 
       {/* ====== #BOTTOM SECTION */}
-      <div className="flex w-full h-[7%] gap-2 items-center justify-between">
+      <div className="flex w-full h-[7%] gap-2 items-center justify-between mt-5">
         <span className="flex items-center gap-2">
           <p className="caption">tags:</p>
           {tags &&
