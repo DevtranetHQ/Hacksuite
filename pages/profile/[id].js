@@ -141,7 +141,7 @@ export async function getServerSideProps(context) {
     props: {
       loggedIn: false,
       user: {
-        name: "Zach Latter",
+        name: "Zach Latta",
         no_of_followers: 10,
         followers: [
           { image: "/assets/TEST/img-1.jpg" },
