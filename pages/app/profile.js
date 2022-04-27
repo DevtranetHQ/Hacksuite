@@ -5,8 +5,9 @@ import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import CountryInput from "../../components/form/CountryInput";
 import TelInput from "../../components/form/TelInput";
+import { useAuth } from "../../hooks/useAuth";
 // Animation Package for the trigger messages
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 
 export default function Profile() {
   return (
@@ -18,11 +19,15 @@ export default function Profile() {
         </div>
       </div>
 
-       {/* Successful Email Verification Trigger Message */}
-       <Fade top >
-         <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">Email Verification Successful!</p> 
-       </Fade>
-       
+      {/* Successful Email Verification Trigger Message */}
+      {verifyEmail !== "success" && (
+        <Fade top>
+          <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
+            Email Verification Successful!
+          </p>
+        </Fade>
+      )}
+
       <div className="rounded-3xl bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 xs:pl-14 xs:pr-6 mx-6 xs:mx-8 lg:mx-32 xl:mx-64 mt-12 mb-20">
         <p className="text-24px xs:text-42px font-bold text-center">
           Complete your profile <span className="text-[#4cb050]">John</span>

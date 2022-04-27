@@ -10,7 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
-// import Fade from "react-reveal/Fade";
+import Fade from "react-reveal/Fade";
 
 export default function Login({ discordLoginError, token }) {
   const [revealPassword, setRevealPassword] = useState(false);
@@ -27,9 +27,9 @@ export default function Login({ discordLoginError, token }) {
 
     await login.execute(email, password);
 
-    // if (login.status !== "success") {
-    //   setLoggedErr(true);
-    // }
+    if (login.status !== "success") {
+      setLoggedErr(true);
+    }
   };
 
   const toggleReveal = () => {
@@ -66,7 +66,7 @@ export default function Login({ discordLoginError, token }) {
         </div>
       </div>
 
-      {/* Discord Failed login Trigger Message
+      {/* Discord Failed login Trigger Message */}
 
       {discordLoginError && (
         <Fade top>
@@ -74,7 +74,7 @@ export default function Login({ discordLoginError, token }) {
             Login Failed! try gain after joining our Discord server, Redirecting...
           </p>
         </Fade>
-      )} */}
+      )}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
         <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
@@ -134,13 +134,13 @@ export default function Login({ discordLoginError, token }) {
                     revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
                   }
                 />
-                {/* <div className="flex items-center mx-auto justify-center">
+                <div className="flex items-center mx-auto justify-center">
                   {loggedErr && (
                     <p className="font-body font-normal text-15px text-[#D0342C]  -mt-3 ">
                       Incorrect password or email entered
                     </p>
                   )}
-                </div> */}
+                </div>
               </div>
               <button
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
