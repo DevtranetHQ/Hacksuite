@@ -47,7 +47,9 @@ export default function Optional({ user }) {
           <span className="">Upload a picture</span>
         </label>
         <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
-        <p className="text-18px xs:text-30px font-semibold mt-14 mb-8">Social or portfolio links</p>
+        <p className="text-18px xs:text-30px font-semibold mt-14 mb-8">
+          Social and portfolio links
+        </p>
 
         <div className="grid grid-cols-1 gap-x-4 gap-y-4 xs:grid-cols-2 xs:gap-y-0 xs:gap-x-16 pl-1 pr-24">
           <div className="flex">
@@ -123,12 +125,14 @@ export default function Optional({ user }) {
             />
           </div>
         </div>
-        <p className="text-18px xs:text-24px mt-7 font-light">
+        <p className="text-18px xs:text-24px mt-7 font-extralight">
           Max of 3 social or portfolio links please.
         </p>
         <p className="text-18px xs:text-30px font-semibold mt-11 mb-7">Upload your resume</p>
         <div className="h-52 h-[214px] mx-1 border-[3px] border-dashed border-[#A5A5A5] bg-white rounded-xl dark:bg-[#E9E9E9]">
-          <div className="h-full flex flex-col justify-center items-center text-center gap-y-4">
+          <div
+            onClick={() => document.getElementById("getFile").click()}
+            className="h-full flex flex-col justify-center items-center text-center gap-y-4 cursor-pointer">
             <svg
               width="81"
               height="52"
@@ -146,14 +150,14 @@ export default function Optional({ user }) {
               <span
                 id="fileName"
                 className="text-deep-sky-blue cursor-pointer"
-                onClick={() => document.getElementById("getFile").click()}>
+              >
                 browse
               </span>
               <input onClick={handleUpfile} className="hidden" type="file" id="getFile" />
             </p>
           </div>
         </div>
-        <p className="text-18px xs:text-24px mt-5 mt-[22px] mb-20 font-light">
+        <p className="text-18px xs:text-24px mt-5 mt-[22px] mb-20 font-extralight">
           Max file size: 10MB (.pdf, .doc or .docx files only)
         </p>
         <div className="flex justify-center gap-x-10 mx-32">
@@ -166,7 +170,7 @@ export default function Optional({ user }) {
         </div>
       </div>
       <footer className="">
-        <div className="h-16 h-[68px] flex items-center justify-center bg-deep-sky-blue text-30px font-semibold text-white">
+        <div className="h-16 h-[68px] flex items-center justify-center bg-deep-sky-blue text-30px font-medium text-white">
           Need to edit something?&nbsp;
           <a className="underline text-white" href="#">
             Go back

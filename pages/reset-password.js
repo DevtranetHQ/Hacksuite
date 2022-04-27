@@ -15,6 +15,9 @@ export default function ResetPassword() {
   const [revealPassword, setRevealPassword] = useState(false);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
+  // To enable trigger message for the password reset
+  const [passwordReset, setPasswordReset] = useState();
+
   const toggleReveal = () => {
     setRevealPassword(!revealPassword);
     var id = document.getElementById("password");
@@ -43,11 +46,17 @@ export default function ResetPassword() {
     if (pass1 !== pass2) {
       setPasswordMismatch(true);
     }
+
+    // Condition for the trigger message 
+    if (ResetPassword.status === "success") {
+      setPasswordReset(true);
+    }
   };
 
   if (ResetPassword.status === "success") {
     return "Password Reset Successfully";
   }
+  
 
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
@@ -61,18 +70,20 @@ export default function ResetPassword() {
         </div>
       </div>
 
-      {/* Trigger Messages
-      <Fade top>
-        <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
-          <p>Password Reset Failed! Try again...</p>
-        </div>
-      </Fade>
-      <Fade top>
-      <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
-        <p>Password Successfully Changed! Redirceting...</p>
-      </div>
-      </Fade> */}
-      
+      {/* Trigger Messages for successful pasword reset and for failed reset
+      {passwordReset ? (
+        <Fade top>
+          <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+            <p>Password Successfully Changed! Redirceting...</p>
+          </div>
+        </Fade>
+      ) : (
+        <Fade top>
+          <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
+            <p>Password Reset Failed! Try again...</p>
+          </div>
+        </Fade>
+      )} */}
 
       <div className="flex mmd:bg-mobile-login justify-center">
         <div className="md:block md:w-1/2 md:-m-[1px] md:p-0 xs:pt-9 md:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
