@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import debug from "debug";
 import { config } from "../config";
 
+console.log({ config });
+
 const { MONGODB_URI } = config;
 
 const log = debug(`app:database`);
