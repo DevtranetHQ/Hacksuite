@@ -23,7 +23,7 @@ class AuthContoller {
   }
 
   async requestPasswordReset(req) {
-    const result = await AuthService.requestPasswordReset(req.query.email);
+    const result = await AuthService.requestPasswordReset(req.body.email);
     return new CustomResponse(200, "password reset link sent", result);
   }
 
