@@ -55,7 +55,7 @@ export default class MailService {
 
   async sendPasswordResetMail(link) {
     const subject = "Reset password";
-    const content = `Hey ${this.user.name}, Please click on the link to reset your password ${link}`;
+    const content = `Hey ${this.user.firstName}, Please click on the link to reset your password ${link}`;
     const recipient = this.user.email;
 
     return await this.send(subject, content, recipient);
