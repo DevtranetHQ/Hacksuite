@@ -129,6 +129,7 @@ class AuthService {
     return;
   }
 
+  
   async requestPasswordReset(email) {
     const user = await User.findOne({ email });
     if (!user) throw new CustomError("Email does not exist");

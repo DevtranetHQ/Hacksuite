@@ -36,6 +36,7 @@ export default function ResetPassword() {
         setPasswordMismatch(true);
     }
 
+    
     if (router.query.uid && router.query.resetToken) {
       const data = {
         userId: router.query.uid,
