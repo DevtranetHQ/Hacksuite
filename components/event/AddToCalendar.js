@@ -128,10 +128,10 @@ export function AddToCalendar({ event }) {
         {...attributes.popper}
         data-show={showPopper}>
         <a
-          href={gcalLink(event, url)}
+          href={icsFile(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
           <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
@@ -139,10 +139,10 @@ export function AddToCalendar({ event }) {
         </a>
         <br />
         <a
-          href={outlookLink(event, url)}
+          href={gcalLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
           <Icon icon="mdi:google" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
@@ -150,10 +150,10 @@ export function AddToCalendar({ event }) {
         </a>
         <br />
         <a
-          href={icsFile(event, url)}
+          href={outlookLink(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
           <Icon icon="mdi:microsoft-windows" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
@@ -164,7 +164,7 @@ export function AddToCalendar({ event }) {
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
           <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="ml-3"/>
           </span>
