@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import Avatar from "../../components/Avatar";
@@ -26,22 +24,25 @@ export default function Optional({ user }) {
   };
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
-      <div className="flex items-center justify-between pt-5 mx-9">
-        <Logo className="w-[140px] pt-4" />
-        <div className="pr-5">
-          <DarkModeToggle className="w-[30px] h-[30px]" darkClassName="w-[26px] h-[40px]" />
+      <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
+        <Logo className="w-[80px] xs:w-[120px] pt-5" />
+        <div className="pt-2">
+          <DarkModeToggle
+            className="w-[24px] h-[22px] xs:w-[34px] xs:h-[31px]"
+            darkClassName="w-[18px] h-[25px] xs:w-[25px] xs:h-[35px]"
+          />
         </div>
       </div>
 
-      <div className="rounded-3xl bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 mx-6 xs:pl-14 xs:pr-6 xs:mx-8 lg:mx-32 xl:p-11 xl:ml-[17rem] xl:mr-60 mt-16 mb-20">
-        <div className="flex justify-start items-center">
+      <div className="mxs:pt-7 mxs:pb-8 rounded-[20px] bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 mx-4 xs:pl-14 xs:pr-6 xs:mx-8 lg:mx-32 xl:p-11 xl:ml-[17rem] xl:mr-60 mt-16 mb-20">
+        <div className="flex mxs:flex-col-reverse justify-start items-center">
           <Avatar className="relative w-[164px] h-[166px]" image={user.image || avatarImage} />
-          <p className="text-24px xs:text-36px font-bold text-center pl-12">
+          <p className="mxs:mb-8 text-24px xs:text-36px font-bold text-center xs:pl-12">
             <span className="text-[#4cb050]">{user.firstName},</span> Can we know you better?
           </p>
         </div>
         <label
-          className="button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 mt-3.5 h-14 w-52"
+          className="mxs:mx-10 mxs:mt-5 button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 mt-3.5 h-14 xs:w-52"
           htmlFor="profile-upload">
           <UploadIcon />
           <span className="">Upload a picture</span>
@@ -51,13 +52,13 @@ export default function Optional({ user }) {
           Social and portfolio links
         </p>
 
-        <div className="grid grid-cols-1 gap-x-4 gap-y-4 xs:grid-cols-2 xs:gap-y-0 xs:gap-x-16 pl-1 pr-24">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-4 xs:grid-cols-2 xs:gap-y-0 xs:gap-x-16 pl-1 pr-24 mxs:pr-2">
           <div className="flex">
             <span className="cursor-pointer">
               <LinkedinIcon width={37} height={37} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="linkedin"
               name="linkedin"
               type="text"
@@ -69,7 +70,7 @@ export default function Optional({ user }) {
               <RedditIcon width={41} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="reddit"
               name="reddit"
               type="text"
@@ -81,7 +82,7 @@ export default function Optional({ user }) {
               <TwitterIcon width={41} height={35} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="twitter"
               name="twitter"
               type="text"
@@ -93,7 +94,7 @@ export default function Optional({ user }) {
               <FacebookIcon width={41} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="facebook"
               name="facebook"
               type="text"
@@ -105,7 +106,7 @@ export default function Optional({ user }) {
               <GithubIcon width={41} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="github"
               name="github"
               type="text"
@@ -117,7 +118,7 @@ export default function Optional({ user }) {
               <InstagramIcon width={41} />
             </span>
             <input
-              className="form-input w-64 h-9 ml-5 text-18px font-normal dark:bg-[#E9E9E9]"
+              className="form-input w-64 h-9 ml-5 mxs:text-16px text-18px font-normal dark:bg-[#E9E9E9]"
               id="instagram"
               name="instagram"
               type="text"
@@ -125,7 +126,7 @@ export default function Optional({ user }) {
             />
           </div>
         </div>
-        <p className="text-18px xs:text-24px mt-7 font-extralight">
+        <p className="text-18px xs:text-24px mt-4 xs:mt-7 font-extralight">
           Max of 3 social or portfolio links please.
         </p>
         <p className="text-18px xs:text-30px font-semibold mt-11 mb-7">Upload your resume</p>
@@ -147,32 +148,29 @@ export default function Optional({ user }) {
             <p className="text-18px font-normal">Drag and drop</p>
             <p className="text-18px text-[#A5A5A5] font-light">
               your file here, or{" "}
-              <span
-                id="fileName"
-                className="text-deep-sky-blue cursor-pointer"
-              >
+              <span id="fileName" className="text-deep-sky-blue cursor-pointer">
                 browse
               </span>
               <input onClick={handleUpfile} className="hidden" type="file" id="getFile" />
             </p>
           </div>
         </div>
-        <p className="text-18px xs:text-24px mt-5 mt-[22px] mb-20 font-extralight">
+        <p className="mxs:text-18px text-24px mxs:mt-4 mt-[22px] mxs:mb-9 mb-20 font-extralight">
           Max file size: 10MB (.pdf, .doc or .docx files only)
         </p>
-        <div className="flex justify-center gap-x-10 mx-32">
-          <button className="w-64 h-16 h-[74px] rounded-md text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
+        <div className="flex justify-center gap-x-5 xs:gap-x-10 xs:mx-32">
+          <button className="mxs:py-2.5 w-[88%] xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
             Skip for now
           </button>
-          <button className="w-64 h-16 h-[74px] rounded-md text-24px text-white bg-[#03A9F4] transition-all font-bold hover:scale-105 focus:scale-105">
+          <button className="mxs:py-2.5 mxs:px-1.5 w-full xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#03A9F4] transition-all font-bold hover:scale-105 focus:scale-105">
             Update my profile
           </button>
         </div>
       </div>
       <footer className="">
-        <div className="h-16 h-[68px] flex items-center justify-center bg-deep-sky-blue text-30px font-medium text-white">
+        <div className="mxs:py-1.5 mxs:text-18px text-30px xs:h-[68px] flex items-center justify-center bg-deep-sky-blue font-medium text-white">
           Need to edit something?&nbsp;
-          <a className="underline text-white" href="#">
+          <a className="underline text-white" href="/app/profile">
             Go back
           </a>
         </div>
