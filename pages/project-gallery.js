@@ -3,7 +3,7 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import GithubIcon from "../components/icons/Github";
 import Link from "next/link";
 import ArrowIcon from "../components/icons/Arrow";
-import ProfileProjectCard from "../components/project/ProfileProjectCard";
+import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
     // prettier-ignore
@@ -36,7 +36,7 @@ export default function ProjectGallery({user, project}) {
             </Link>
             </div>
         </nav>
-        <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-b-2xl text-center">
+        <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center">
             <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">The Dynamics Projects</h1>
             <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">A gallery of all the awesome things the makers at The Dynamics are building and launching everyday.</h2>
             <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
@@ -48,21 +48,24 @@ export default function ProjectGallery({user, project}) {
             </a>
             </div>
       </header>
-        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] lg:px-[32px]">
+        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] md:px-[32px]">
           {user &&
             user.projects.map((project, index) => {
               return (
-                <ProfileProjectCard
+                <ProjectGalleryProjectCard
                   key={index}
+                  name={project.name}
+                  tools={project.tools}
                   bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                  date="ferbrary 28, 2020"
+                  bubbleNumber={project.bubbles.length}
+                  date={project.date}
                   title="Web Scrapper"
                   likes={93}
                   image={project.image}
                   comments={27}
                   tags={bubbleTrimmer(project.tags, 0, 4)}
                   desc={project.desc}
-                  className="w-full h-[580px] flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
+                  className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
                 />
               );
             })}
@@ -76,7 +79,7 @@ export default function ProjectGallery({user, project}) {
             </button>
         </div>
         <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
-            <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[40px] text-center">You’ve reached the end, why not <a href="">become a member</a> and show us all the cool things you’ve made?</p>
+            <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[40px] 2xl:px-[100px] text-center">You’ve reached the end, why not <a href="">become a member</a> and show us all the cool things you’ve made?</p>
         </footer>
         </div>
     )
@@ -104,8 +107,10 @@ export async function getServerSideProps(context) {
           ],
           projects: [
             {
-              bubbles: [1, 2, 3, 4, 5, 6],
-              date: "ferbrary 28, 2020",
+              name: "Zach Latta",
+              tools: ['github'],
+              bubbles: [1],
+              date: "11:00 am, Today",
               title: "Web Scrapper",
               desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
               image: "/assets/TEST/user_projects/img-1.png",
@@ -114,18 +119,22 @@ export async function getServerSideProps(context) {
               tags: ["NextJs", "Figma"]
             },
             {
-              bubbles: [1, 2, 3],
-              date: "ferbrary 28, 2020",
+              name: "Elon Musk",
+              tools: ['figma', 'github'],
+              bubbles: [1, 2, 3, 4, 5],
+              date: "12:00 pm, Today, 2020",
               title: "Tesla",
               desc: "Launched the first prototype of the world’s firts self-driving vehicle. Best part: 100% AI",
               image: "/assets/TEST/user_projects/img-2.png",
               comments: 22222,
               likes: 33333333,
-              tags: ["React", "Vue", "Express", "Laravel"]
+              tags: ["React", "Vue", "Laravel"]
             },
             {
+              name: "Dora Palfi",
+              tools: ['figma', 'github'],
               bubbles: [2],
-              date: "ferbrary 28, 2020",
+              date: "2:00 pm, Today",
               title: "Codetivate",
               desc: "The world’s largest diversity-focused hackhon web application built for this fall 2022",
               image: "/assets/TEST/user_projects/img-3.png",
@@ -134,8 +143,10 @@ export async function getServerSideProps(context) {
               tags: ["PHP", "Golang", "Adobe XD"]
             },
             {
-              bubbles: [],
-              date: "ferbrary 28, 2020",
+              name: "Bill gates",
+              tools: ['adobexd', 'github'],
+              bubbles: [1],
+              date: "February 28, 2022",
               title: "Command tech",
               desc: "Advancing the partcipation of non-binary and female students in STEM worlwide ",
               image: "/assets/TEST/user_projects/img-4.png",
@@ -144,8 +155,10 @@ export async function getServerSideProps(context) {
               tags: ["Python"]
             },
             {
+              name: "Ronald",
+              tools: ['figma', 'github'],
               bubbles: [1, 2, 3, 4, 5, 6],
-              date: "ferbrary 28, 2020",
+              date: "February 27, 2022",
               title: "Frelapay",
               desc: "Get payments from all your freelance work converted into the highest selling cryptos",
               image: "/assets/TEST/user_projects/img-5.png",
@@ -154,15 +167,53 @@ export async function getServerSideProps(context) {
               tags: ["HTML", "CSS", "JSON"]
             },
             {
-              bubbles: [1, 2],
-              date: "ferbrary 28, 2020",
+              name: "Mark Zuckerburg",
+              tools: ['adobexd', 'github'],
+              bubbles: [1],
+              date: "February 28, 2020",
               title: "Microsoft",
               desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
               image: "/assets/TEST/user_projects/img-6.png",
               comments: 22222,
               likes: 33333333,
               tags: ["Git", "Flask", "Django"]
-            }
+            },
+            {
+              name: "Mark Zuckerburg",
+              tools: ['adobexd', 'github'],
+              bubbles: [1],
+              date: "February 28, 2020",
+              title: "Microsoft",
+              desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
+              image: "/assets/TEST/user_projects/img-6.png",
+              comments: 22222,
+              likes: 33333333,
+              tags: ["Git", "Flask", "Django"]
+            },
+            {
+              name: "Mark Zuckerburg",
+              tools: ['adobexd', 'github'],
+              bubbles: [1],
+              date: "February 28, 2020",
+              title: "Microsoft",
+              desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
+              image: "/assets/TEST/user_projects/img-6.png",
+              comments: 22222,
+              likes: 33333333,
+              tags: ["Git", "Flask", "Django"]
+            },
+            {
+              name: "Mark Zuckerburg",
+              tools: ['adobexd', 'github'],
+              bubbles: [1],
+              date: "February 28, 2020",
+              title: "Microsoft",
+              desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
+              image: "/assets/TEST/user_projects/img-6.png",
+              comments: 22222,
+              likes: 33333333,
+              tags: ["Git", "Flask", "Django"]
+            },
           ]
         }
       }
