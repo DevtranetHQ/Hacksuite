@@ -8,6 +8,7 @@ import { useProfile } from "./../../hooks/useProfile";
 import Fade from "react-reveal/Fade";
 
 export default function Profile({ user }) {
+  const verifyEmail = "success";
   const { completeProfile } = useProfile();
 
   const onSubmit = e => {

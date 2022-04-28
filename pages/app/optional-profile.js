@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import Avatar from "../../components/Avatar";
@@ -170,9 +171,11 @@ export default function Optional({ user }) {
       <footer className="">
         <div className="mxs:py-1.5 mxs:text-18px text-30px xs:h-[68px] flex items-center justify-center bg-deep-sky-blue font-medium text-white">
           Need to edit something?&nbsp;
-          <a className="underline text-white" href="/app/profile">
-            Go back
-          </a>
+          <Link href="/app/profile">
+            <a className="underline text-white">
+              Go back
+            </a>
+          </Link>
         </div>
       </footer>
     </div>
