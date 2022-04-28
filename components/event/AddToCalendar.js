@@ -133,7 +133,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="ml-3"/>
+          <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Apple Calendar
         </a>
@@ -144,7 +144,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:google" color="#03a9f4" inline={true} className="ml-3"/>
+          <Icon icon="mdi:google" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Google Calender
         </a>
@@ -155,7 +155,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:microsoft-windows" color="#03a9f4" inline={true} className="ml-3"/>
+          <Icon icon="mdi:microsoft" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Outlook Calender
         </a>
@@ -166,7 +166,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="ml-3"/>
+          <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Other Calendars
         </a>
