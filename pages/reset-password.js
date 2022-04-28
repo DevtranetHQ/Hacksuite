@@ -31,11 +31,10 @@ export default function ResetPassword() {
     const pass1 = e.target.password.value;
     const pass2 = e.target.password2.value;
 
-    // TODO: Add the function to reset the password from the backend
-    if (router.query.uid && router.query.verifyToken && pass1 == pass2) {
+    if (router.query.uid && router.query.resetToken) {
       const data = {
         userId: router.query.uid,
-        resetToken: router.query.verifyToken,
+        resetToken: router.query.resetToken,
         password: pass1
       };
 
