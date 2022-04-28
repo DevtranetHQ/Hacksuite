@@ -31,6 +31,11 @@ export default function ResetPassword() {
     const pass1 = e.target.password.value;
     const pass2 = e.target.password2.value;
 
+    // If Password and Confirm Passowrd do not match
+    if (pass1 !== pass2) {
+        setPasswordMismatch(true);
+    }
+
     if (router.query.uid && router.query.resetToken) {
       const data = {
         userId: router.query.uid,
@@ -39,11 +44,6 @@ export default function ResetPassword() {
       };
 
       await ResetPassword.execute(data);
-    }
-
-    // If Password and Confirm Passowrd do not match
-    if (pass1 !== pass2) {
-      setPasswordMismatch(true);
     }
 
     // Condition for the trigger message 

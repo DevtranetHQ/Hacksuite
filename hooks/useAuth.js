@@ -69,7 +69,7 @@ export const useAuth = () => {
     const res = await axios({
       url: "/auth/request-password-reset",
       method: "POST",
-      params: { email }
+      data: { email }
     });
 
     return res.data;
