@@ -6,7 +6,7 @@ export const middleware = withAuth(req => {
   if (user) {
     const completePage = `${req.nextUrl.origin}/app/complete`;
 
-    if (!user.isCompleted && req.url !== completePage) {
+    if (!user.isCompleted && !req.url.includes(completePage)) {
       return NextResponse.redirect(completePage);
     }
 

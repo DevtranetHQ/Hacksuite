@@ -1,19 +1,19 @@
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useAuth } from "../components/AuthContext";
+import { LoadingPage } from "../components/loading-page";
+
 export default function Index() {
-  return <></>;
-}
+  const auth = useAuth();
+  const router = useRouter();
 
-export async function getServerSideProps({ req, res }) {
-  const token = req.cookies.token;
+  useEffect(() => {
+    if (auth.user) {
+      router.push("/app");
+    } else {
+      router.push("/login");
+    }
+  }, [auth.user, router]);
 
-  if (token) {
-    res.writeHead(302, { Location: "/app" });
-    res.end();
-
-    return { props: {} };
-  } else {
-    res.writeHead(302, { Location: "/login" });
-    res.end();
-
-    return { props: {} };
-  }
+  return <LoadingPage />;
 }

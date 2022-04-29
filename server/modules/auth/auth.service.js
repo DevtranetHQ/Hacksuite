@@ -38,8 +38,9 @@ class AuthService {
     try {
       await this.requestEmailVerification(user.email);
     } catch (error) {
+      console.error(error);
       await user.remove();
-      throw new CustomError("Email verification failed");
+      throw new CustomError("Server error");
     }
 
     return (data = {

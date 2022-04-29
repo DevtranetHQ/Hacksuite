@@ -73,7 +73,7 @@ export default function Profile({ user }) {
               type="text"
               placeholder="MM/DD/YYYY"
               onFocus={e => (e.target.type = "date")}
-              // onBlur={(e) => (e.target.type = "text")}
+              onBlur={e => (e.target.type = "text")}
             />
             <style jsx>{`
               .unstyled::-webkit-inner-spin-button,

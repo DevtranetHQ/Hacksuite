@@ -1,8 +1,7 @@
-// TODO: display message when user already exists and handle errors (pass states to signup?)
 import { useState } from "react";
 import VerificationSent from "../components/signup/VerificationSent";
 import SignupPage from "../components/signup/SignupPage";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../components/AuthContext";
 
 export default function Signup() {
   const { signup } = useAuth();
@@ -10,11 +9,6 @@ export default function Signup() {
 
   function handleSubmission(e) {
     e.preventDefault();
-
-    if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === "") {
-      alert("Please click <I'm not a robot> before sending the job");
-      return false;
-    }
 
     const firstName = e.target.firstName.value;
     const lastName = e.target.lastName.value;
@@ -28,7 +22,7 @@ export default function Signup() {
 
   if (signup.status !== "success") {
     return (
-      <SignupPage handleSubmission={handleSubmission} isLoading={signup.status === "pending"} />
+      <SignupPage handleSubmission={handleSubmission} signup={signup} isLoading={signup.status === "pending"} />
     );
   } else {
     return <VerificationSent email={email} />;

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
-import { useAuth } from "./../../hooks/useAuth";
+import { useAuth } from "../AuthContext";
 
 export default function DashNav({ admin }) {
   const router = useRouter();

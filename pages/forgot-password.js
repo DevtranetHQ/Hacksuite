@@ -6,30 +6,23 @@ import ExitIcon from "../components/icons/Exit";
 import authImage from "../public/assets/auth/auth-background.svg";
 import LoadingButton from "../components/LoadingButton";
 import discordImage from "../public/assets/discord.svg";
-import { useAuth } from "../hooks/useAuth";
 import VerificationSent from "../components/signup/VerificationSent";
+import { useAuth } from "../components/AuthContext";
 
 export default function ForgetPassword() {
-  const { PasswordEmailVerification } = useAuth();
-  let isLoading = false;
-
+  const { passwordEmailVerification } = useAuth();
   const onReset = async e => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const dob = e.target.dob.value;
 
-    await PasswordEmailVerification.execute(email);
+    await passwordEmailVerification.execute(email);
 
-    console.log(PasswordEmailVerification.status);
-
-    
+    console.log(passwordEmailVerification.status);
   };
 
-  if(PasswordEmailVerification.status === "pending"){
-    isLoading = true;
-  }
-  else if(PasswordEmailVerification.status === "success") {
+  if (passwordEmailVerification.status === "success") {
     return <VerificationSent email={email} />;
   }
 

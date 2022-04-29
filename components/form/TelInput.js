@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import intlTelInput from "intl-tel-input";
 import "intl-tel-input/build/js/utils.js";
 import "intl-tel-input/build/css/intlTelInput.css";
@@ -7,11 +6,8 @@ import styles from "./TelInput.module.css";
 
 export default function TelInput() {
   // TODO: Validate phone number
-  let iti;
   useEffect(() => {
-    iti = intlTelInput(document.querySelector("#phoneNumber"), {
-      customContainer: "!block"
-    });
+    intlTelInput(document.querySelector("#phoneNumber"), { customContainer: "!block" });
   }, []);
 
   return (
