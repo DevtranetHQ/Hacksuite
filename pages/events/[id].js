@@ -18,6 +18,7 @@ import registrationService from "../../server/modules/registration/registration.
 import { useRegistration } from "./../../hooks/useRegistration";
 import { useRouter } from "next/router";
 import { AddToCalendar } from "../../components/event/AddToCalendar";
+import { JoinHere } from "../../components/event/JoinHere";
 
 export default function Event({ loggedIn, event, isRegistered }) {
   const router = useRouter();
@@ -119,11 +120,13 @@ export default function Event({ loggedIn, event, isRegistered }) {
           <>
             <h2 className="heading text-fruit-salad">You are registered for this event.</h2>
             <AddToCalendar event={event} />
+            <JoinHere event={event} />
           </>
         ) : register.status === "success" ? (
           <>
             <h2 className="heading text-fruit-salad">Registration successful! 🎉</h2>
             <AddToCalendar event={event} />
+            <JoinHere event={event} />
           </>
         ) : register.status === "pending" ? (
           <h2 className="heading text-fruit-salad">Registering you for the event...</h2>
