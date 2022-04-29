@@ -12,6 +12,8 @@ import TwitterIcon from "../../components/icons/Twitter";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
+import { useRouter } from "next/router";
+import Scrapbook from "../app/scrapbook";
 
 /**
  * takes initial array and returns trimmed array
@@ -34,24 +36,29 @@ export default function Profile({ loggedIn, user }) {
   // ======= Tab state -->
   // TODO: Set nav state for project and scrapbook
   const [curTab, setCurTab] = useState("projects");
+  const router = useRouter();
 
   return (
     <div className="dark:bg-[#202020] dark:text-white h-screen ">
       {/* ====== NavBar start */}
-      <nav className="flex items-center justify-between md:pl-8 md:pr-12 pl-3 pr-2 ">
+      <nav className="flex items-center justify-between md:pl-8 md:pr-5 pl-3 pr-2 ">
         <Logo className="md:w-[120px] py-5 w-[100px]" />
-        <div className="flex md:gap-x-2 gap-x-1 items-center">
+        <div className="flex md:gap-x-4 gap-x-3 items-center">
           <DarkModeToggle
-            className="mx-0 md:w-[40px] md:h-[40px] h-[30px] w-[33px]"
-            darkClassName="mx-0 md:w-[40px] md:h-[42px] h-[30px] w-[33px]"
+            className=" md:w-[40px] md:h-[40px] h-[63px] w-[42px] -mx-1"
+            darkClassName=" md:w-[40px] md:h-[42px] h-[40px] w-[42px] -mx-1"
           />
           <a href="https://github.com/TheDynamics">
-            <GithubIcon className="md:h-[40px] md:w-[40px] h-[30px] w-[33px] " />
+            <GithubIcon className="md:h-[40px] md:w-[40px] h-[63px] w-[42px] " />
           </a>
           <Link href="/">
-            <button className="md:button-medium button-small button-deep-sky-blue inline-flex md:gap-x-3 gap-x-1 px-3 py-2 items-center mx-2 md:text-30px text-15px h-[35px]">
-              {loggedIn ? "Go back home" : "All Events"}
-              <ArrowIcon className="md:h-[50px] md:w-[17px] w-[20px] h-[6px]" />
+            <button className="md:button-medium button-small button-deep-sky-blue mr-0 mb-0">
+              <p className="nd:mr-3 mr-1 text-12px md:text-30px">
+                {loggedIn ? "Go back" : "All Events"}
+              </p>
+              <span className="md:mt-1">
+                <ArrowIcon />
+              </span>
             </button>
           </Link>
         </div>
@@ -60,11 +67,11 @@ export default function Profile({ loggedIn, user }) {
       {/* ====== #PROFILE head start */}
       <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
         <Avatar image={ProfileImg} className="md:h-72 relative md:w-72 h-[170px] w-[170px]" />
-        <div className=" h-60 flex p-2 flex-col justify-center md:gap-2 gap-0">
+        <div className=" h-60 flex p-2 flex-col justify-center md:gap-2 gap-0 items-start">
           <h1 className="text-heading md:title subtitle dark:text-white">{user.name} </h1>
           {user.no_of_followers === 0 ? (
             <div className="flex items-center">
-              <h2 className="text-deep-sky-blue text-16px">
+              <h2 className="text-deep-sky-blue text-16px font-semibold mb-2">
                 Follow {user.name}{" "}
                 <span>
                   <FollowerIcon className="md:ml-4 hover:scale-110  md:inline-flex hidden" />
@@ -73,7 +80,7 @@ export default function Profile({ loggedIn, user }) {
             </div>
           ) : (
             <div>
-              <h2 className="text-deep-sky-blue md:subtitle text-16px">
+              <h2 className="text-deep-sky-blue md:subtitle text-16px font-semibold mb-2">
                 {user.no_of_followers} followers
               </h2>
               <span className="flex pt-4 gap-3 cursor-pointer h-16 pl-4">
@@ -103,15 +110,33 @@ export default function Profile({ loggedIn, user }) {
       {/* ====== #TAB section start */}
       <section className="flex itens-center flex-col pb-16 items-center dark:bg-[#202020]">
         <nav className="flex justify-between w-3/6 items-center md:pb-24 md:pt-24 pb-12 pt-12">
-          <h1 className="md:headline font-bold cursor-pointer tab-option relative border-b-4 border-orange-peel">
-            PROJECTS
-          </h1>
-          <h1 className="md:headline font-bold cursor-pointer tab-option relative">SCRAPBOOK</h1>
+          <Link href="/profile/[id]">
+            <a
+              className={
+                router.pathname == "/profile/[id]"
+                  ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white"
+                  : " md:headline font-bold cursor-pointer relative text-[#7D7D7D]"
+              }>
+              PROJECTS
+            </a>
+          </Link>
+
+          <Link href="/app/scrapbook">
+            <a
+              className={
+                router.pathname == "/app/scrapbook"
+                  ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white"
+                  : " md:headline font-bold cursor-pointer relative text-[#7D7D7D]"
+              }>
+              SCRAPBOOK
+            </a>
+          </Link>
         </nav>
+
         {user.projects.length === 0 ? (
           <Empty />
         ) : (
-          <div className="grid gap-5  xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  content-center justify-center">
+          <div className="grid gap-5 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 content-center justify-center rounded-lg ">
             {user &&
               user.projects.map((project, index) => {
                 return (
@@ -139,7 +164,7 @@ export async function getServerSideProps(context) {
   // TODO: Call API for User profile data
   return {
     props: {
-      loggedIn: false,
+      loggedIn: true,
       user: {
         name: "Zach Latta",
         no_of_followers: 10,
@@ -164,7 +189,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-1.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["NextJs", "Figma"]
+            tags: ["NextJs", "Figma"],
           },
           {
             bubbles: [1, 2, 3],
