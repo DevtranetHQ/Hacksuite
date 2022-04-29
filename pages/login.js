@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
 
-export default function Login({ discordLoginError, token }) {
+export default function Login({ discordLoginError, token, resetError }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
   const { login, setToken } = useAuth();
@@ -45,6 +45,12 @@ export default function Login({ discordLoginError, token }) {
       );
     }
   }, [discordLoginError]);
+
+  useEffect(() => {
+    if (resetError) {
+      alert(resetError);
+    }
+  }, [resetError]);
 
   useEffect(() => {
     if (token) {
@@ -190,6 +196,14 @@ export async function getServerSideProps({ req, res, query }) {
     return {
       props: {
         discordLoginError: true
+      }
+    };
+  }
+
+  if (query.resetError) {
+    return {
+      props: {
+        resetError: query.resetError
       }
     };
   }
