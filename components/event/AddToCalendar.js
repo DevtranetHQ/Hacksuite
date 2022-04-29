@@ -151,7 +151,7 @@ export function AddToCalendar({ event }) {
         <br />
         <a
           href={outlookLink(event, url)}
-          download={`${event.name}.ics`}
+          target="_blank"
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
