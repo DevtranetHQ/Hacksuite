@@ -2,7 +2,7 @@
 import { useState } from "react";
 import VerificationSent from "../components/signup/VerificationSent";
 import SignupPage from "../components/signup/SignupPage";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../components/AuthContext";
 
 export default function Signup() {
   const { signup } = useAuth();
@@ -21,7 +21,7 @@ export default function Signup() {
     const password = e.target.password.value;
     const email = e.target.email.value;
 
-    signup.execute({ firstName, lastName, password, email });
+    signup.execute({ firstName: firstName, lastName, password, email });
 
     setEmail(email);
   }

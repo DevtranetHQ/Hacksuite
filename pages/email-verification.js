@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../components/AuthContext";
 
 export default function EmailVerificationRes() {
   const router = useRouter();

@@ -1,13 +1,14 @@
 import { CustomResponse } from "../utils/customResponse";
 import AuthService from "../modules/auth/auth.service";
 
-class AuthContoller {
+class AuthController {
   async register(req) {
     const result = await AuthService.register(req.body);
     return new CustomResponse(201, "user registered successfully", result);
   }
 
   async login(req) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const result = await AuthService.login(req.body);
     return new CustomResponse(200, "user login successful", result);
   }
@@ -38,6 +39,6 @@ class AuthContoller {
   }
 }
 
-const AuthCtrl = new AuthContoller();
+const AuthCtrl = new AuthController();
 
 export { AuthCtrl };

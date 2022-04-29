@@ -1,12 +1,12 @@
 import { Icon } from "@iconify/react";
 
-export default function LoadingButton(props) {
+export default function LoadingButton({ isLoading, children, ...props }) {
   let buttonContent;
-  if (props.isLoading) {
+  if (isLoading) {
     buttonContent = <Icon icon="eos-icons:loading" />;
   } else {
-    buttonContent = props.children;
+    buttonContent = children;
   }
 
-  return <button className={props.className}>{buttonContent}</button>;
+  return <button {...props}>{buttonContent}</button>;
 }

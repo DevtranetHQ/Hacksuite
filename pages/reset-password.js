@@ -5,10 +5,10 @@ import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import { useAuth } from "../hooks/useAuth";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
+import { useAuth } from "../components/AuthContext";
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function ResetPassword() {
     id.type = id.type === "password" ? "text" : "password";
   };
 
-  const { ResetPassword } = useAuth();
+  const { resetPassword } = useAuth();
   const submitReset = async e => {
     e.preventDefault();
 
@@ -43,16 +43,16 @@ export default function ResetPassword() {
         password: pass1
       };
 
-      await ResetPassword.execute(data);
+      await resetPassword.execute(data);
     }
 
     // Condition for the trigger message 
-    if (ResetPassword.status === "success") {
+    if (resetPassword.status === "success") {
       setPasswordReset(false);
     }
   };
 
-  if (ResetPassword.status === "success") {
+  if (resetPassword.status === "success") {
     return "Password Reset Successfully";
   }
   

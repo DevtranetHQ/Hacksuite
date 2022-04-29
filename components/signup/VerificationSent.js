@@ -1,9 +1,9 @@
 import Image from "next/image";
 import verificationImage from "../../public/assets/auth/verification.png";
 import InboxIcon from "../icons/Inbox";
-import { useAuth } from "../../hooks/useAuth";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
+import { useAuth } from "../AuthContext";
 
 export default function VerificationSent({ email }) {
   const { resendEmailVerification, verifyEmail } = useAuth();

@@ -6,53 +6,39 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
-import { useAuth } from "../hooks/useAuth";
 import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
+import { Loader } from "../components/loader";
+import { useAuth } from "../components/AuthContext";
+import LoadingButton from "../components/LoadingButton";
 
-export default function Login({ discordLoginError, token }) {
+export default function Login({ loginError, discordLoginToken }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
   const { login, setToken } = useAuth();
-
-  // Throw error if user details isnt correct
-  const [loggedErr, setLoggedErr] = useState(false);
 
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    await login.execute(email, password);
-
-    if (login.status !== "success") {
-      setLoggedErr(true);
-    }
+    login.execute(email, password);
   };
 
   const toggleReveal = () => {
-    setRevealPassword(!revealPassword);
-    var id = document.getElementById("password");
+    setRevealPassword(r => !r);
+    const id = document.getElementById("password");
     id.type = id.type === "password" ? "text" : "password";
   };
 
   useEffect(() => {
-    if (discordLoginError) {
-      alert(
-        `Cannot login with Discord - Make sure you are a verified member of The Dynamics Discord Server`
-      );
-    }
-  }, [discordLoginError]);
-
-  useEffect(() => {
-    if (token) {
-      alert(`Discord login successful!`);
-      setToken(token);
+    if (discordLoginToken) {
+      setToken(discordLoginToken);
       router.push("/");
     }
-  }, [token, setToken, router]);
+  }, [discordLoginToken, setToken, router]);
 
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
@@ -65,13 +51,31 @@ export default function Login({ discordLoginError, token }) {
           />
         </div>
       </div>
-
-      {/* Discord Failed login Trigger Message */}
-
-      {discordLoginError && (
+      {login.status === "success" && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+            Login Successful!
+          </p>
+        </Fade>
+      )}
+      {login.status === "error" && (
         <Fade top>
           <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
-            Login Failed! try gain after joining our Discord server, Redirecting...
+            Login Failed! {login.error.response.data.message || login.error.message}
+          </p>
+        </Fade>
+      )}
+      {discordLoginToken && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+            Discord login successful! Redirecting...
+          </p>
+        </Fade>
+      )}
+      {loginError && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+            {loginError}
           </p>
         </Fade>
       )}
@@ -134,20 +138,12 @@ export default function Login({ discordLoginError, token }) {
                     revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
                   }
                 />
-                <div className="flex items-center mx-auto justify-center">
-                  {loggedErr && (
-                    <p className="font-body font-normal text-15px text-[#D0342C]  -mt-3 ">
-                      Incorrect password or email entered
-                    </p>
-                  )}
-                </div>
               </div>
-              <button
+              <LoadingButton
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit"
-                disabled={login.status === `pending`}>
-                Log in
-              </button>
+                isLoading={login.status === "loading"}
+              >Login</LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                 <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
@@ -186,20 +182,20 @@ export async function getServerSideProps({ req, res, query }) {
     res.end();
   }
 
-  if (query.discordLoginError === ``) {
+  if (query.loginError) {
     return {
       props: {
-        discordLoginError: true
+        loginError: query.loginError
       }
     };
   }
 
-  if (query.token) {
-    const valid = await authService.verifyLoginToken(query.token);
+  if (query.discordLoginToken) {
+    const valid = await authService.verifyLoginToken(query.discordLoginToken);
     if (valid) {
       return {
         props: {
-          token: query.token
+          discordLoginToken: query.discordLoginToken
         }
       };
     }

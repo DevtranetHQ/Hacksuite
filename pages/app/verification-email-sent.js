@@ -1,7 +1,6 @@
 import Image from "next/image";
 import verificationImage from "../../public/assets/auth/verification.png";
 import InboxIcon from "../../components/icons/Inbox";
-import { useAuth } from "../../hooks/useAuth";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
 
