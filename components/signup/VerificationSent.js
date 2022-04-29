@@ -1,26 +1,19 @@
 import Image from "next/image";
+import Fade from "react-reveal/Fade";
 import verificationImage from "../../public/assets/auth/verification.png";
 import InboxIcon from "../icons/Inbox";
-// Animation Package for the trigger messages
-import Fade from "react-reveal/Fade";
 import { useAuth } from "../AuthContext";
+import LoadingButton from "../LoadingButton";
 
 export default function VerificationSent({ email }) {
-  const { resendEmailVerification, verifyEmail } = useAuth();
+  const { resendEmailVerification } = useAuth();
 
   return (
     <div className="h-screen">
-      {/* Email Verification Failed/Successful Triggger Message */}
-      {verifyEmail !== "success" ? (
+      {resendEmailVerification.status === "success" && (
         <Fade top>
           <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
-            Email Verification Successful!
-          </p>
-        </Fade>
-      ) : (
-        <Fade top>
-          <p className="font-body font-semibold text-center text-20px text-white bg-[#D0342C] mx-auto w-screen mb-5">
-            Email Verification Failed!
+            Verification Email Resent!
           </p>
         </Fade>
       )}
@@ -31,14 +24,15 @@ export default function VerificationSent({ email }) {
             <span className="font-semibold">Can't find it?</span>
             &nbsp;Check your spam, junk, and promotions folder or click the resend button
           </p>
-          <div
+          <LoadingButton
             className="button-small button-fruit-salad text-12px xs:text-24px w-fit mx-auto mt-4 xs:mt-5 rounded xs:rounded-md px-3 xs:px-8 cursor-pointer h-6 xs:h-12"
+            isLoading={resendEmailVerification.status === "loading"}
             onClick={() => resendEmailVerification.execute(email)}>
             <span className="relative mt-0.5 xs:mt-1">
               <InboxIcon />
             </span>
             &ensp;resend email
-          </div>
+          </LoadingButton>
         </div>
       </div>
     </div>

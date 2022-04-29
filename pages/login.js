@@ -61,7 +61,7 @@ export default function Login({ loginError, discordLoginToken }) {
       {login.status === "error" && (
         <Fade top>
           <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
-            Login Failed! {login.error.response.data.message || login.error.message}
+            Login Failed! {login.error.response?.data.message || login.error.message}
           </p>
         </Fade>
       )}

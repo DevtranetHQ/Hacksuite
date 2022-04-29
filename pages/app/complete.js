@@ -1,27 +1,22 @@
+import Fade from "react-reveal/Fade";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import { withAuth } from "../../server/middlewares/auth.middleware";
-import { useProfile } from "./../../hooks/useProfile";
+import { useAuth } from "../../components/AuthContext";
+import { useRouter } from "next/router";
 
 export default function Complete({ user }) {
-  const { completeProfile } = useProfile();
+  const { completeProfile } = useAuth();
+  const router = useRouter();
 
   const onSubmit = e => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
 
-    const data = {
-      dob: formData.get("dob"),
-      gender: formData.get("gender"),
-      countryOfResidence: formData.get("countryOfResidence"),
-      phoneNumber: formData.get("phoneNumber"),
-      describe: formData.get("describe"),
-      skills: formData.get("skills"),
-      levelOfStudy: formData.get("levelOfStudy")
-    };
+    const data = Object.fromEntries(formData.entries());
 
     completeProfile.execute(user.id, data);
   };
@@ -32,6 +27,13 @@ export default function Complete({ user }) {
         <Logo />
         <DarkModeToggle className="w-[34px] h-[31px]" darkClassName="w-[25px] h-[35px]" />
       </div>
+      {router.query.verified && (
+        <Fade top>
+          <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
+            Email Verification Successful!
+          </p>
+        </Fade>
+      )}
       <div className="flex grow shrink basis-[auto] justify-center">
         <form className="min-w-[60%] mb-14" onSubmit={onSubmit}>
           <h1 className="headline text-center">
@@ -45,7 +47,7 @@ export default function Complete({ user }) {
                   Date of birth
                   <span className="text-red-500">*</span>
                 </label>
-                <input className="form-input" id="dob" required type="date" />
+                <input className="form-input" id="dob" name="dob" required type="date" />
               </div>
               <div>
                 <label className="form-label font-normal" htmlFor="gender">
@@ -55,6 +57,7 @@ export default function Complete({ user }) {
                 <select
                   className="form-select"
                   defaultValue="Prefer not to say"
+                  name="gender"
                   id="gender"
                   required>
                   <option value="Prefer not to say">Prefer not to say</option>
@@ -102,7 +105,12 @@ export default function Complete({ user }) {
                   Skills and interests
                   <span className="text-red-500">*</span>
                 </label>
-                <select className="form-select" defaultValue="N/A" id="skills">
+                <select
+                  className="form-select"
+                  defaultValue="N/A"
+                  id="skills"
+                  name="skills"
+                  required>
                   <option disabled value="N/A">
                     Select your skills and interests
                   </option>
@@ -115,7 +123,12 @@ export default function Complete({ user }) {
                   Level of study
                   <span className="text-red-500">*</span>
                 </label>
-                <select className="form-select" defaultValue="N/A" id="levelOfStudy">
+                <select
+                  className="form-select"
+                  defaultValue="N/A"
+                  id="levelOfStudy"
+                  name="levelOfStudy"
+                  required>
                   <option disabled value="N/A">
                     Select level
                   </option>

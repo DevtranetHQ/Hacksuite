@@ -67,6 +67,11 @@ export const AuthProvider = ({ children }) => {
     }),
 
     signup: useAsync(async (data: SignupDTO) => {
+      // @ts-expect-error grecaptcha will be available in localhost
+      if (window.location.hostname !== "localhost" && grecaptcha.getResponse() === "") {
+        throw new Error("Please verify that you are not a robot");
+      }
+
       const res = await axios({
         url: "/auth/register",
         method: "POST",
@@ -85,7 +90,7 @@ export const AuthProvider = ({ children }) => {
       const loginToken = res.data.data.loginToken;
 
       setToken(loginToken);
-      router.push("/app/complete");
+      router.push("/app/complete?verified=true");
       // TODO: router redirect should be dynamic, for reset password also
 
       return res.data;
@@ -164,7 +169,7 @@ export const useProtectedRoute = () => {
 
   useEffect(() => {
     if (!auth.user) {
-      router.push("/");
+      router.push("/login?redirect=" + router.pathname);
     }
-  }, [auth.user]);
+  }, [auth.user, router]);
 }

@@ -57,7 +57,7 @@ const userSchema = new Schema(
       type: String,
       enum: ["Female", "Male", "Non-binary", "Other"]
     },
-    countryofResidence: {
+    countryOfResidence: {
       type: String,
       enum: {
         values: countryNames,
@@ -74,7 +74,7 @@ const userSchema = new Schema(
     skills: {
       type: String
     },
-    birthdate: {
+    dob: {
       type: Date,
       max: Date.now()
     },
