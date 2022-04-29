@@ -129,7 +129,7 @@ export function AddToCalendar({ event }) {
         data-show={showPopper}>
         <a
           href={icsFile(event, url)}
-          target="_blank"
+          download={`${event.name}.ics`}
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
