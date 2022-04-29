@@ -21,9 +21,9 @@ export default function ProjectGallery({user, project}) {
             <div className="flex gap-x-[0px] md:gap-x-2 lg:gap-x-4 items-center">
             <DarkModeToggle
                 className="mx-0 md:w-[40px] md:h-[40px]"
-                darkClassName="mx-0 w-[25px] md:w-[44px] lg:w-[48px] h-[25px] md:h-[44px] lg:h-[76px]"
+                darkClassName="mx-0 w-[25px] md:w-[44px] lg:w-[44px] h-[25px] md:h-[44px] lg:h-[70px]"
             />
-            <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.6] md:scale-[1.15]">
+            <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.55] md:scale-[1.15]">
                 <GithubIcon />
             </a>
             <Link href="https://thedynamics.tech">
