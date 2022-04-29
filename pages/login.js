@@ -10,7 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
-// import Fade from "react-reveal/Fade";
+import Fade from "react-reveal/Fade";
 
 export default function Login({ discordLoginError, token }) {
   const [revealPassword, setRevealPassword] = useState(false);
