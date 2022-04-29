@@ -37,8 +37,8 @@ const outlookLink = ({ name, description, start, end, link }, url) => {
 const gcalLink = ({ name, description, start, end, link }, url) => {
   const rootUrl = "https://calendar.google.com/calendar/render";
 
-  const startDate = dayjs(start).format("YYYYMMDDTHHmmSSZ");
-  const endDate = dayjs(end).format("YYYYMMDDTHHmmSSZ");
+  const startDate = dayjs(start).format("YYYYMMDDTHHmmssZ");
+  const endDate = dayjs(end).format("YYYYMMDDTHHmmssZ");
 
   const params = new URLSearchParams({
     action: "TEMPLATE",
