@@ -4,12 +4,10 @@ import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import CountryInput from "../../components/form/CountryInput";
 import { withAuth } from "../../server/middlewares/auth.middleware";
-import { useProfile } from "./../../hooks/useProfile";
 import Fade from "react-reveal/Fade";
 
 export default function Profile({ user }) {
   const verifyEmail = "success";
-  const { completeProfile } = useProfile();
 
   const onSubmit = e => {
     e.preventDefault();
@@ -26,7 +24,7 @@ export default function Profile({ user }) {
       levelOfStudy: formData.get("levelOfStudy")
     };
 
-    completeProfile.execute(user.id, data);
+    console.log(data)
   };
 
   return (
