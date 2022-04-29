@@ -77,7 +77,7 @@ export default function ProjectGalleryProjectCard({ ...props }) {
       {/* ====== #TEXT SECTION */}
       <div className="w-full mt-[5px]">
         <h4 className=" text-[20.3px] font-semibold">{title}</h4>
-        <p className="text-[11.6px] font-semibold italic mt-[10px]">{desc}</p>
+        <p className="text-[11.6px] mt-[10px]">{desc}</p>
       </div>
 
       {/* ====== #BOTTOM SECTION */}
