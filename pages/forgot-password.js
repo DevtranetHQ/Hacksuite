@@ -4,12 +4,15 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import ExitIcon from "../components/icons/Exit";
 import authImage from "../public/assets/auth/auth-background.svg";
+import LoadingButton from "../components/LoadingButton";
 import discordImage from "../public/assets/discord.svg";
 import { useAuth } from "../hooks/useAuth";
 import VerificationSent from "../components/signup/VerificationSent";
 
 export default function ForgetPassword() {
   const { PasswordEmailVerification } = useAuth();
+  let isLoading = false;
+
   const onReset = async e => {
     e.preventDefault();
 
@@ -19,9 +22,14 @@ export default function ForgetPassword() {
     await PasswordEmailVerification.execute(email);
 
     console.log(PasswordEmailVerification.status);
+
+    
   };
 
-  if (PasswordEmailVerification.status === "success") {
+  if(PasswordEmailVerification.status === "pending"){
+    isLoading = true;
+  }
+  else if(PasswordEmailVerification.status === "success") {
     return <VerificationSent email={email} />;
   }
 
@@ -84,11 +92,12 @@ export default function ForgetPassword() {
                   required
                 />
               </div>
-              <button
+              <LoadingButton
                 className="w-1/2 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
-                type="submit">
+                type="submit"
+                isLoading={isLoading}>
                 Reset password
-              </button>
+              </LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                 <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
