@@ -61,7 +61,7 @@ class DiscordAuthService {
     if (!user) throw new Error("User does not exist");
 
     user.discordId = discordId;
-    await user.save();
+    await user.save({ validateBeforeSave: false });
 
     return user;
   }
