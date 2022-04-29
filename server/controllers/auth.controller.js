@@ -24,7 +24,7 @@ class AuthController {
   }
 
   async requestPasswordReset(req) {
-    const result = await AuthService.requestPasswordReset(req.body.email);
+    const result = await AuthService.requestPasswordReset(req.body);
     return new CustomResponse(200, "password reset link sent", result);
   }
 

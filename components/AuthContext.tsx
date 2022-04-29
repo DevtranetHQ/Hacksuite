@@ -7,7 +7,7 @@ import { UseAsync, useAsync } from "../hooks/useAsync";
 import { axios } from "../config/config";
 
 interface SignupDTO { firstName: string, lastName: string, password: string, email: string }
-interface ResetDTO { userId: string, resetToken: string, password: string }
+interface ResetDTO { userId: string, resetToken: string, password: string, confirmPassword: string }
 interface IUser {
   id: string;
   role: string;
@@ -22,7 +22,7 @@ interface IAuthContext {
   signup: UseAsync<[SignupDTO], void, AxiosError>;
   resendEmailVerification: UseAsync<[email: string], void, AxiosError>;
   verifyEmail: UseAsync<[userId: string, verifyToken: string], void, AxiosError>;
-  passwordEmailVerification: UseAsync<[email: string], void, AxiosError>;
+  passwordEmailVerification: UseAsync<[email: string, dob: string], void, AxiosError>;
   resetPassword: UseAsync<[ResetDTO], void, AxiosError>;
   completeProfile: UseAsync<[userId: string, profile: any], void, AxiosError>;
 
@@ -106,22 +106,28 @@ export const AuthProvider = ({ children }) => {
       return res.data;
     }),
 
-    passwordEmailVerification: useAsync(async email => {
+    passwordEmailVerification: useAsync(async (email, dob) => {
       const res = await axios({
         url: "/auth/request-password-reset",
         method: "POST",
-        data: { email }
+        data: { email, dob }
       });
 
       return res.data;
     }),
 
     resetPassword: useAsync(async data => {
+      if(data.password !== data.confirmPassword) {
+        throw new Error("Passwords do not match");
+      }
+
       const res = await axios({
         url: "/auth/reset-password",
         method: "POST",
         data
       });
+
+      router.push("/login?reset=true");
 
       return res.data;
     }),

@@ -13,7 +13,7 @@ import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import LoadingButton from "../components/LoadingButton";
 
-export default function Login({ loginError, token, resetError }) {
+export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
   const { login, setToken } = useAuth();
@@ -75,6 +75,13 @@ export default function Login({ loginError, token, resetError }) {
         <Fade top>
           <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
             {loginError}
+          </p>
+        </Fade>
+      )}
+      {reset && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+            Password reset successful! Login with your new password.
           </p>
         </Fade>
       )}
@@ -200,6 +207,14 @@ export async function getServerSideProps({ req, res, query }) {
     return {
       props: {
         resetError: query.resetError
+      }
+    };
+  }
+
+  if (query.reset) {
+    return {
+      props: {
+        reset: true
       }
     };
   }
