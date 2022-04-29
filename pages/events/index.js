@@ -4,8 +4,8 @@ import EventCard from "../../components/event/EventCard";
 import Logo from "../../components/Logo";
 import eventService from "../../server/services/event.service";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
-import GithubIcon from "../components/icons/Github";
-import ArrowIcon from "../components/icons/Arrow";
+import GithubIcon from "../../components/icons/Github";
+import ArrowIcon from "../../components/icons/Arrow";
 
 
 export default function Events({ events, loggedIn }) {
