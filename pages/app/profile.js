@@ -24,7 +24,7 @@ export default function Profile({ user }) {
       levelOfStudy: formData.get("levelOfStudy")
     };
 
-    console.log(data)
+    console.log(data);
   };
 
   return (
