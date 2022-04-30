@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "server/modules/registration/registration.service.js"  ],
   "exclude": [
     "node_modules"
   ]

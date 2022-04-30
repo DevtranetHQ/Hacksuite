@@ -15,7 +15,7 @@ import DisplayDate from "../../components/DisplayDate";
 import EventTime from "../../components/event/EventTime";
 import Image from "next/image";
 import registrationService from "../../server/modules/registration/registration.service";
-import { useRegistration } from "./../../hooks/useRegistration";
+import { useRegistration } from "../../hooks/useRegistration";
 import { useRouter } from "next/router";
 import { AddToCalendar } from "../../components/event/AddToCalendar";
 import { JoinHere } from "../../components/event/JoinHere";
@@ -25,15 +25,13 @@ export default function Event({ loggedIn, event, isRegistered }) {
   const { register } = useRegistration();
 
   const eventDescription = () => {
-    return {
-      __html: showdownConverter.makeHtml(event.description)
-    };
+    return { __html: showdownConverter.makeHtml(event.description) };
   };
 
   function registerWithAccount(e) {
     e.preventDefault();
     if (loggedIn) {
-      register.execute(event._id);
+      register.execute(event.uniqueId);
     } else {
       router.push("/login");
     }
@@ -209,12 +207,11 @@ export default function Event({ loggedIn, event, isRegistered }) {
   );
 }
 
-export async function getServerSideProps({ req, res, query }) {
+export async function getServerSideProps({ req, res, query: { uniqueId } }) {
   const user = await withAuth(req => req.$user)(req, res);
-  const { id } = query;
-  const event = await eventService.getOne(id);
+  const event = await eventService.getOne(uniqueId);
 
-  const isRegistered = user && (await registrationService.checkRegistration(user.id, event._id));
+  const isRegistered = user && (await registrationService.checkRegistration(user.id, uniqueId));
 
   return {
     props: {

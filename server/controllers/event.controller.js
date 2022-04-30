@@ -1,7 +1,7 @@
 import { CustomResponse } from "./../utils/customResponse";
 import EventService from "./../services/event.service";
 
-class EventContoller {
+class EventController {
   async create(req) {
     const result = await EventService.create(req.body);
     return new CustomResponse(201, "event created", result);
@@ -13,21 +13,21 @@ class EventContoller {
   }
 
   async getOne(req) {
-    const result = await EventService.getOne(req.params.eventId);
+    const result = await EventService.getOne(req.params.uniqueId);
     return new CustomResponse(200, "event data", result);
   }
 
   async update(req) {
-    const result = await EventService.update(req.params.eventId, req.body);
+    const result = await EventService.update(req.params.uniqueId, req.body);
     return new CustomResponse(200, "event updated", result);
   }
 
   async delete(req) {
-    const result = await EventService.delete(req.params.eventId);
+    const result = await EventService.delete(req.params.uniqueId);
     return new CustomResponse(200, "event deleted", result);
   }
 }
 
-const EventCtrl = new EventContoller();
+const EventCtrl = new EventController();
 
 export { EventCtrl };
