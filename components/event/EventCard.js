@@ -16,6 +16,7 @@ export default function EventCard({ _id, name, image, description, start, end, c
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image || avatarImage}
+          border='!border-[5px]'
         />
       </div>
       <div className="col-span-2 px-7">
@@ -35,8 +36,8 @@ export default function EventCard({ _id, name, image, description, start, end, c
         <section className="flex justify-between">
           <div className="inline-flex gap-2 py-2">
             <svg
-              width="28"
-              height="28"
+              width="33"
+              height="38"
               viewBox="0 0 34 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
