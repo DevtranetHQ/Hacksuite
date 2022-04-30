@@ -18,18 +18,18 @@ export default function ProjectGallery({user, project}) {
         <div className="dark:bg-[#202020] dark:text-white">
             <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
             <Logo className="w-[80px] md:w-[120px] py-5" />
-            <div className="flex gap-x-[0px] md:gap-x-2 lg:gap-x-4 items-center">
+            <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
             <DarkModeToggle
-                className="mx-0 md:w-[40px] md:h-[40px]"
-                darkClassName="mx-0 w-[25px] md:w-[44px] lg:w-[44px] h-[25px] md:h-[44px] lg:h-[70px]"
+                className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+                darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
             />
-            <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.55] md:scale-[1.15]">
+            <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
                 <GithubIcon />
             </a>
             <Link href="https://thedynamics.tech">
-                <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0">
+                <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
                     Go back home
-                <div className="scale-75 md:scale-100">
+                <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
                     <ArrowIcon />
                 </div>
                 </button>
@@ -40,10 +40,10 @@ export default function ProjectGallery({user, project}) {
             <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">The Dynamics Projects</h1>
             <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">A gallery of all the awesome things the makers at The Dynamics are building and launching everyday.</h2>
             <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
-            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06]">
+            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
                 All Projects
             </button>
-            <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06]">
+            <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
                 Add your project
             </a>
             </div>
