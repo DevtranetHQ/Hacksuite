@@ -44,7 +44,7 @@ export default function Events({ events, loggedIn }) {
             </a>
         </div>
       </header>
-      <nav className="border-b-2 flex gap-x-2 items-center justify-center mt-7 mb-3 heading">
+      <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-7 mb-3 heading">
         <svg
           width="42"
           height="42"
@@ -57,7 +57,7 @@ export default function Events({ events, loggedIn }) {
             fill="#03A9F4"
           />
         </svg>
-        <span className="pt-3 sm:text-[36px] lg:text-[66px]">Upcoming Events</span>
+        <span className="sm:text-[36px] lg:text-[66px]">Upcoming Events</span>
       </nav>
       <section>{events && events.map((event, key) => <EventCard key={key} {...event} />)}</section>
       <section className="p-14 text-center">
