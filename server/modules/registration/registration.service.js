@@ -28,20 +28,19 @@ class RegistrationService {
     if (existingRegistrationWithEmail) return existingRegistrationWithEmail;
 
     const existingUser = await User.findOne({ email, isCompleted: true });
+    if (existingUser) {
+      const existingRegistrationWithUser = await Registration.findOne({
+        user: existingUser._id,
+        event: uniqueId
+      });
+      if (existingRegistrationWithUser) return existingRegistrationWithUser;
 
-    const existingWithUser = await Registration.findOne({ user: existingUser._id, event: uniqueId });
-    if (existingWithUser) return existingWithUser;
-
-    const registration = new Registration({ event: uniqueId });
-
-    if (!existingUser) {
-      registration.email = email;
-      registration.name = name;
-    } else {
-      registration.user = existingUser._id;
+      const registration = new Registration({ user: existingUser._id, event: uniqueId });
+      return registration.save();
     }
 
-    await registration.save();
+    const registration = new Registration({ name, email, event: uniqueId });
+    return registration.save();
   }
 
   async checkRegistration(userId, uniqueId) {

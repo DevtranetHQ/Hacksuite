@@ -49,7 +49,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
     const email = e.target.email.value;
 
     if (email && name) {
-      register.execute(event._id, name, email);
+      register.execute(event.uniqueId, name, email);
     }
   }
 
