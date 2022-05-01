@@ -7,6 +7,7 @@ import { middlewareLogger } from "./../utils/debug";
  * @returns Composed handler function
  */
 export function withAuth(handler) {
+  
   return async (req, res) => {
     middlewareLogger(`withAuth(${handler.name})`);
     try {
