@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
   {
+    uniqueId: {
+      type: String,
+      required: true,
+      unique: true
+    },
     name: {
       type: String,
       maxLength: [100, "name can't be more than 100 characters"],
@@ -49,6 +54,13 @@ const eventSchema = new Schema(
     timestamps: true
   }
 );
+
+eventSchema.query.withCreator = function() {
+  return this.populate(
+    "creator",
+    "_id firstName lastName image"
+  )
+};
 
 const Event = mongoose.models.event || mongoose.model("event", eventSchema);
 

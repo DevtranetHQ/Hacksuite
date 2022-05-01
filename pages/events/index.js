@@ -6,7 +6,7 @@ import eventService from "../../server/services/event.service";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
 import GithubIcon from "../../components/icons/Github";
 import ArrowIcon from "../../components/icons/Arrow";
-
+import registrationService from "../../server/modules/registration/registration.service";
 
 export default function Events({ events, loggedIn }) {
   return (
@@ -32,7 +32,9 @@ export default function Events({ events, loggedIn }) {
         </div>
       </nav>
       <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center">
-        <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">The Dynamics Events</h1>
+        <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">
+          The Dynamics Events
+        </h1>
         <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
           <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Don’t miss any workshop, hackathon, AMA, networking event, mentorship program, and more!</p>
           <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Events dates and times are in your local timezone.</p>
@@ -84,13 +86,19 @@ export default function Events({ events, loggedIn }) {
 export async function getServerSideProps({ req, res }) {
   const user = await withAuth(req => req.$user)(req, res);
 
-  const events = await eventService.getAll();
+  const events = await eventService.getUpcomingEvents();
+
+  if (user) {
+    const eventsWithRegistration = await Promise.all(
+      events.map(async event => {
+        const isRegistered = await registrationService.checkRegistration(user.id, event.uniqueId);
+        return { ...event, isRegistered };
+      })
+    );
+
+    return { props: { events: eventsWithRegistration, loggedIn: true } };
+  }
 
   // TODO: Change page based on whether user is administrator or not
-  return {
-    props: {
-      loggedIn: !!user,
-      events
-    }
-  };
+  return { props: { events } };
 }
