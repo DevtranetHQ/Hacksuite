@@ -1,9 +1,11 @@
 import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
+import { projectService } from './../../server/modules/projects/project.service';
+import { withAuth } from './../../server/middlewares/auth.middleware';
+import { IPayload } from "../../server/utils/auth";
 
-export default function ProjectGallery() {
-  const loggedIn = false;
+export default function ProjectGallery({ projects, loggedIn }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-8 pr-12">
@@ -56,4 +58,16 @@ export default function ProjectGallery() {
       </header>
     </div>
   );
+}
+
+export const getServerSideProps = async ({ req, res }) => {
+  const user = await withAuth<IPayload>(req => req.$user)(req, res);
+  const projects = await projectService.getPublishedProjects({});
+
+  return {
+    props: {
+      projects,
+      loggedIn: !!user
+    }
+  };
 }

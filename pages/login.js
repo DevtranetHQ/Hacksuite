@@ -6,12 +6,13 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
-import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import LoadingButton from "../components/LoadingButton";
+import { decodeToken } from "../server/utils/auth";
+
 export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
@@ -44,13 +45,6 @@ export default function Login({ loginError, token, resetError, reset }) {
           />
         </div>
       </div>
-      {login.status === "success" && (
-        <Fade top>
-          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
-            Login Successful!
-          </p>
-        </Fade>
-      )}
       {login.status === "error" && (
         <Fade top>
           <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
@@ -148,8 +142,9 @@ export default function Login({ loginError, token, resetError, reset }) {
               <LoadingButton
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit"
-                isLoading={login.status === "loading"}
-              >Login</LoadingButton>
+                isLoading={login.status === "loading"}>
+                Login
+              </LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                 <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
@@ -207,13 +202,17 @@ export async function getServerSideProps({ req, res, query }) {
     };
   }
   if (query.token) {
-    const valid = await authService.verifyLoginToken(query.token);
-    if (valid) {
-      return {
-        props: {
-          token: query.token
-        }
-      };
+    try {
+      const valid = await decodeToken(query.token);
+      if (valid) {
+        return {
+          props: {
+            token: query.token
+          }
+        };
+      }
+    } catch (error) {
+      return { props: {} };
     }
   }
   return { props: {} };

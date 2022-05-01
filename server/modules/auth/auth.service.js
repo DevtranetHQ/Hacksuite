@@ -8,22 +8,19 @@ import { CustomError } from "../../utils/customError";
 import MailService from "../../services/mail.service";
 import { config } from "../../config";
 import registrationService from "../registration/registration.service";
+import { decodeToken, signToken } from "../../utils/auth";
 
 const { JWT_SECRET, BCRYPT_SALT, url } = config;
 
 class AuthService {
   async _getLoginToken(user) {
-    const token = await new SignJWT({
+    const token = await signToken({
       id: user._id,
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
       isCompleted: user.isCompleted
-    })
-      .setProtectedHeader({ alg: "HS256" })
-      .setIssuedAt()
-      .setExpirationTime("2h")
-      .sign(new TextEncoder().encode(JWT_SECRET));
+    });
 
     return token;
   }
@@ -173,7 +170,7 @@ class AuthService {
 
     const RToken = await Token.findOne({ userId });
     if (!RToken) throw new CustomError("Invalid or expired password reset token");
-    console.log(resetToken,RToken);
+    console.log(resetToken, RToken);
     const isValid = await bcrypt.compare(resetToken, RToken.token);
     if (!isValid) throw new CustomError("Invalid or expired password reset token");
 
@@ -193,14 +190,6 @@ class AuthService {
     await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
 
     return;
-  }
-
-  async verifyLoginToken(token) {
-    const { payload } = await jwtVerify(token, new TextEncoder().encode(JWT_SECRET));
-    const user = await User.findById(payload.id);
-    if (!user) throw new CustomError("Invalid token");
-
-    return user;
   }
 }
 

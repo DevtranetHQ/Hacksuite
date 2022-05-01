@@ -26,10 +26,7 @@ import Scrapbook from "../app/scrapbook";
  */
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
-  // prettier-ignore
-  return bubbles && bubbles.length > end
-            ? bubbles.slice(start, end)
-            : bubbles
+  return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
 export default function Profile({ loggedIn, user }) {
@@ -189,7 +186,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-1.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["NextJs", "Figma"],
+            tags: ["NextJs", "Figma"]
           },
           {
             bubbles: [1, 2, 3],
