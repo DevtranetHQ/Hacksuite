@@ -17,7 +17,7 @@ export default function VerificationSent({ email }) {
           </p>
         </Fade>
       )}
-      <div className="flex flex-col  justify-center mx-auto w-full xs:w-[57%] xs:z-0">
+      <div className="flex flex-col h-[80%] justify-center mx-auto w-full xs:w-[57%] xs:z-0">
         <Image layout="responsive" src={verificationImage} alt="" />
         <div className="xs:-mt-4 xs:z-10 w-3/4 xs:w-3/5 mx-auto text-center px-4">
           <p className="text-10px xs:text-20px">
@@ -25,13 +25,13 @@ export default function VerificationSent({ email }) {
             &nbsp;Check your spam, junk, and promotions folder or click the resend button
           </p>
           <LoadingButton
-            className="button-small button-fruit-salad text-12px xs:text-24px w-fit mx-auto mt-4 xs:mt-5 rounded xs:rounded-md px-3 xs:px-8 cursor-pointer h-6 xs:h-12"
+            className="mxs:pl-2 mxs:pr-3 mxs:py-3 button-small button-fruit-salad text-14px xs:text-24px w-fit mx-auto mt-4 xs:mt-5 rounded xs:rounded-md xs:px-8 cursor-pointer xs:h-12"
             isLoading={resendEmailVerification.status === "loading"}
             onClick={() => resendEmailVerification.execute(email)}>
-            <span className="relative mt-0.5 xs:mt-1">
+            <span className="mxs:scale-50 relative mt-0.5 xs:mt-1 xs:mr-2">
               <InboxIcon />
             </span>
-            &ensp;resend email
+            &nbsp;resend email
           </LoadingButton>
         </div>
       </div>
