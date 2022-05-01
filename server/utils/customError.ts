@@ -1,33 +1,29 @@
+import { NextApiRequest } from "next";
+import { NextApiResponse } from "next";
+
 export class CustomError extends Error {
   /**
    * Create custom error
    *
-   * @param {*} message Error message for request response
-   * @param {number} statusCode HTTP status code. Default is 400
+   * @param {string} message Error message for request response
+   * @param {number} status HTTP status code. Default is 400
    */
-  constructor(message, statusCode) {
+  constructor(public message: string, public status: number) {
     super(message);
-    this.status = statusCode || 400;
+    this.status = status || 400;
   }
 }
 
 /**
  * Handles thrown errors in controller functions and returns an error HTTP response
- * @param {Request} req HTTP request object
- * @param {Response} res HTTP response object
+ * @param {NextApiRequest} req HTTP request object
+ * @param {NextApiResponse} res HTTP response object
  * @param {Error} error Error object
  */
-export function handleError(req, res, error) {
+export function handleError(req: NextApiRequest, res: NextApiResponse, error: Error) {
   console.error(error);
   if (error instanceof CustomError) {
     res.status(error.status).send({ message: error.message });
-    return;
-  }
-
-  if (error.constructor.name == "MongoError" && error.code == 11000) {
-    // Catch duplicate key field error
-    const field = Object.entries(error.keyValue)[0][0];
-    res.status(400).send({ message: `${field} already exists` });
     return;
   }
 

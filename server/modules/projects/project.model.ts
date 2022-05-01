@@ -4,6 +4,7 @@ import User from "../auth/user.model";
 const { Schema, model, models } = mongoose;
 
 export interface IProject {
+  uniqueId: ProjectId;
   name: string;
   description: string;
   image: string;
@@ -18,8 +19,15 @@ export interface IProject {
   published: boolean;
 }
 
+export type ProjectId = string & { __isProjectId: never };
+
 const projectSchema = new Schema<IProject>(
   {
+    uniqueId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     name: {
       type: String,
       maxLength: [100, "name can't be more than 100 characters"],

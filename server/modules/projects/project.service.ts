@@ -1,4 +1,5 @@
-import { Project, IProject } from './project.model';
+import { Project, IProject, ProjectId } from './project.model';
+import { CustomError } from './../../utils/customError';
 
 interface IQueryProjects {
   limit?: number;
@@ -8,7 +9,7 @@ interface IQueryProjects {
 }
 
 class ProjectService {
-  async draftProject(project: IProject) {
+  async draftProject(project: Partial<IProject>) {
     const newProject = new Project(project);
     return newProject.save({ validateBeforeSave: false });
   }
@@ -29,24 +30,41 @@ class ProjectService {
     })
   }
 
-  async getProject(id: string) {
-    return Project.findById(id);
+  async getProject(uniqueId: ProjectId) {
+    return Project.findOne({ uniqueId });
   }
 
-  async updateProject(id: string, project: IProject) {
-    return Project.findByIdAndUpdate(id, project, { new: true });
+  async updateProject(uniqueId: ProjectId, project: IProject) {
+    return Project.findOneAndUpdate({ uniqueId }, project, { new: true });
   }
 
-  async publishProject(id: string) {
-    return Project.findByIdAndUpdate(id, { published: true });
+  async publishProject(uniqueId: ProjectId, userId: string) {
+    const project = await Project.findOne({ uniqueId, creator: userId, published: false });
+    if (!project) {
+      throw new CustomError(`Project not found`, 404);
+    }
+
+    project.published = true;
+    return project.save();
   }
 
-  async unpublishProject(id: string) {
-    return Project.findByIdAndUpdate(id, { published: false });
+  async unpublishProject(uniqueId: ProjectId, userId: string) {
+    const project = await Project.findOne({ uniqueId, creator: userId, published: true });
+    if (!project) {
+      throw new CustomError(`Project not found`, 404);
+    }
+
+    project.published = false;
+    return project.save();
   }
 
-  async deleteProject(id: string) {
-    return Project.findByIdAndDelete(id);
+  async deleteProject(uniqueId: ProjectId, userId: string) {
+    const project = await Project.findOne({ uniqueId, creator: userId });
+    if (!project) {
+      throw new CustomError(`Project not found`, 404);
+    }
+
+    return project.remove();
   }
 
   async getProjectsByUser(userId: string) {
