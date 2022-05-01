@@ -5,18 +5,17 @@ import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import { useAuth } from "../hooks/useAuth";
 import { useRouter } from "next/router";
 // Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
+import { useAuth } from "../components/AuthContext";
+import authService from "../server/modules/auth/auth.service";
 
 export default function ResetPassword() {
   const router = useRouter();
+  const { resetPassword } = useAuth();
   const [revealPassword, setRevealPassword] = useState(false);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-
-  // To enable trigger message for the password reset
-  const [passwordReset, setPasswordReset] = useState(true);
 
   const toggleReveal = () => {
     setRevealPassword(!revealPassword);
@@ -24,38 +23,25 @@ export default function ResetPassword() {
     id.type = id.type === "password" ? "text" : "password";
   };
 
-  const { ResetPassword } = useAuth();
   const submitReset = async e => {
     e.preventDefault();
 
     const pass1 = e.target.password.value;
     const pass2 = e.target.password2.value;
 
-    // If Password and Confirm Passowrd do not match
-    if (pass1 !== pass2) {
-        setPasswordMismatch(true);
-    }
-
     if (router.query.uid && router.query.resetToken) {
-      const data = {
+      await resetPassword.execute({
         userId: router.query.uid,
         resetToken: router.query.resetToken,
-        password: pass1
-      };
-
-      await ResetPassword.execute(data);
-    }
-
-    // Condition for the trigger message 
-    if (ResetPassword.status === "success") {
-      setPasswordReset(false);
+        password: pass1,
+        confirmPassword: pass2
+      });
     }
   };
 
-  if (ResetPassword.status === "success") {
+  if (resetPassword.status === "success") {
     return "Password Reset Successfully";
   }
-  
 
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
@@ -69,16 +55,17 @@ export default function ResetPassword() {
         </div>
       </div>
 
-      {/* Trigger Messages for successful/failed pasword */}    
-      {/* // <Fade top>
-      //   <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
-      //     <p>Password Successfully Changed! Redirceting...</p>
-      //   </div>
-      // </Fade> */}
-      {!passwordReset && (
+      {resetPassword.status === "success" && (
+        <Fade top>
+          <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+            <p>Password Successfully Changed! Redirecting...</p>
+          </div>
+        </Fade>
+      )}
+      {resetPassword.status === "error" && (
         <Fade top>
           <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
-            <p>Password Reset Failed! Try again...</p>
+            <p>{resetPassword.error.response?.data.message || resetPassword.error.message}</p>
           </div>
         </Fade>
       )}
@@ -181,12 +168,24 @@ export default function ResetPassword() {
   );
 }
 
-export async function getServerSideProps(context) {
-  if (context.req.cookies.token) {
-    context.res.writeHead(302, {
+export async function getServerSideProps({ query, req, res }) {
+  if (req.cookies.token) {
+    res.writeHead(302, {
       Location: `/app`
     });
-    context.res.end();
+    res.end();
+  }
+
+  try {
+    await authService.verifyResetToken({ userId: query.uid, resetToken: query.resetToken });
+  } catch (err) {
+    console.error(err);
+    const params = new URLSearchParams({ resetError: `Invalid or expired reset link.` });
+
+    res.writeHead(302, {
+      Location: `/login?${params}`
+    });
+    res.end();
   }
 
   return {

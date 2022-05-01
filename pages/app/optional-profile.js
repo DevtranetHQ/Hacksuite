@@ -160,9 +160,11 @@ export default function Optional({ user }) {
           Max file size: 10MB (.pdf, .doc or .docx files only)
         </p>
         <div className="flex justify-center gap-x-5 xs:gap-x-10 xs:mx-32">
-          <button className="mxs:py-2.5 w-[88%] xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
-            Skip for now
-          </button>
+          <Link href="/app">
+            <button className="mxs:py-2.5 w-[88%] xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
+              Skip for now
+            </button>
+          </Link>
           <button className="mxs:py-2.5 mxs:px-1.5 w-full xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#03A9F4] transition-all font-bold hover:scale-105 focus:scale-105">
             Update my profile
           </button>
@@ -172,9 +174,7 @@ export default function Optional({ user }) {
         <div className="mxs:py-1.5 mxs:text-18px text-30px xs:h-[68px] flex items-center justify-center bg-deep-sky-blue font-medium text-white">
           Need to edit something?&nbsp;
           <Link href="/app/profile">
-            <a className="underline text-white">
-              Go back
-            </a>
+            <a className="underline text-white">Go back</a>
           </Link>
         </div>
       </footer>

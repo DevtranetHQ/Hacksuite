@@ -1,5 +1,5 @@
 import { EventCtrl } from "../../../server/controllers/event.controller";
-import { withGlobalMiddleware } from "./../../../server/middlewares/global.middleware";
+import { withGlobalMiddleware } from "../../../server/middlewares/global.middleware";
 
 function handler(req, res) {
   if (req.method === "GET") {

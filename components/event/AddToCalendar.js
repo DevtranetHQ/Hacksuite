@@ -37,8 +37,8 @@ const outlookLink = ({ name, description, start, end, link }, url) => {
 const gcalLink = ({ name, description, start, end, link }, url) => {
   const rootUrl = "https://calendar.google.com/calendar/render";
 
-  const startDate = dayjs(start).format("YYYYMMDDTHHmmSSZ");
-  const endDate = dayjs(end).format("YYYYMMDDTHHmmSSZ");
+  const startDate = dayjs(start).format("YYYYMMDDTHHmmssZ");
+  const endDate = dayjs(end).format("YYYYMMDDTHHmmssZ");
 
   const params = new URLSearchParams({
     action: "TEMPLATE",
@@ -129,7 +129,7 @@ export function AddToCalendar({ event }) {
         data-show={showPopper}>
         <a
           href={icsFile(event, url)}
-          target="_blank"
+          download={`${event.name}.ics`}
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
@@ -151,7 +151,7 @@ export function AddToCalendar({ event }) {
         <br />
         <a
           href={outlookLink(event, url)}
-          download={`${event.name}.ics`}
+          target="_blank"
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>

@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
 const registrationSchema = new Schema(
   {
     event: {
-      type: Schema.Types.ObjectId,
-      ref: Event
+      type: String,
+      required: true
     },
     user: {
       type: Schema.Types.ObjectId,
@@ -29,6 +29,12 @@ const registrationSchema = new Schema(
     timestamps: true
   }
 );
+
+registrationSchema.query.withEvent = async function() {
+  const event = await Event.findOne({ uniqueId: this.event });
+  this.event = event;
+  return this;
+};
 
 const Registration =
   mongoose.models.registration || mongoose.model("registration", registrationSchema);

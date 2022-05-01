@@ -5,6 +5,7 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import Fade from "react-reveal/Fade";
 import DarkModeToggle from "../DarkModeToggle";
 import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
@@ -12,7 +13,7 @@ import LoadingButton from "../LoadingButton";
 import { useContext } from "react";
 import DarkModeContext from "../DarkModeContext";
 
-export default function SignupPage({ handleSubmission, isLoading }) {
+export default function SignupPage({ handleSubmission, isLoading, signup }) {
   const { darkMode } = useContext(DarkModeContext);
   const [revealPassword, setRevealPassword] = useState(false);
 
@@ -32,6 +33,13 @@ export default function SignupPage({ handleSubmission, isLoading }) {
           />
         </div>
       </div>
+      {signup.status === "error" && (
+        <Fade top>
+          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+            Signup Failed! {signup.error.response?.data.message || signup.error.message}
+          </p>
+        </Fade>
+      )}
       <div className=" grow shrink grid grid-cols-1 md:grid-cols-20 dark:mxs:bg-mobile-login-dark mxs:bg-mobile-login mxs:mobile-signup">
         <div className="hidden xs:mt-48 xs:-mb-0.5 xs:self-end md:block md:col-span-9 sm:ml-2 lg:ml-6 xl:mt-36 xl:self-auto">
           <Image src={authImage} layout="responsive" alt="Dash" />

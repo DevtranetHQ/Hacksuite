@@ -1,47 +1,50 @@
 import Event from "../../models/event.model";
-import User from "../../modules/auth/user.model";
+import User from "../auth/user.model";
 import Registration from "./registration.model";
-import { CustomError } from "./../../utils/customError";
+import { CustomError } from "../../utils/customError";
 
 class RegistrationService {
-  async registerWithUserId(userId, eventId) {
-    const user = await User.findById(userId);
-
-    if (!user) throw new CustomError("User does not exist", 404);
-
-    const event = await Event.findById(eventId);
-
+  async registerWithUserId(userId, uniqueId) {
+    const event = await Event.findOne({ uniqueId });
     if (!event) throw new CustomError("Event does not exist", 404);
 
-    const existing = await Registration.findOne({ user: userId, event: eventId });
-    if (existing) throw new CustomError("Already registered", 400);
+    const user = await User.findById(userId);
+    if (!user) throw new CustomError("User does not exist", 404);
 
-    const registration = new Registration({ user: userId, event: eventId });
+    const existing = await Registration.findOne({ user: userId, event: uniqueId });
+    if (existing) return existing;
+
+    const registration = new Registration({ user: userId, event: uniqueId });
     await registration.save();
 
     return registration;
   }
 
-  async registerWithEmail(email, name, eventId) {
+  async registerWithEmail(email, name, uniqueId) {
+    const event = await Event.findOne({ uniqueId });
+    if (!event) throw new CustomError("Event does not exist", 404);
+
+    const existingRegistrationWithEmail = await Registration.findOne({ email, event: uniqueId });
+    if (existingRegistrationWithEmail) return existingRegistrationWithEmail;
+
     const existingUser = await User.findOne({ email, isCompleted: true });
+    if (existingUser) {
+      const existingRegistrationWithUser = await Registration.findOne({
+        user: existingUser._id,
+        event: uniqueId
+      });
+      if (existingRegistrationWithUser) return existingRegistrationWithUser;
 
-    const existing = await Registration.findOne({ email, event: eventId });
-    if (existing) throw new CustomError("Already registered", 400);
-
-    const registration = new Registration({ event: eventId });
-
-    if (!existingUser) {
-      registration.email = email;
-      registration.name = name;
-    } else {
-      registration.user = existingUser._id;
+      const registration = new Registration({ user: existingUser._id, event: uniqueId });
+      return registration.save();
     }
 
-    await registration.save();
+    const registration = new Registration({ name, email, event: uniqueId });
+    return registration.save();
   }
 
-  async checkRegistration(userId, eventId) {
-    const registration = await Registration.findOne({ user: userId, event: eventId });
+  async checkRegistration(userId, uniqueId) {
+    const registration = await Registration.findOne({ user: userId, event: uniqueId });
 
     return !!registration;
   }

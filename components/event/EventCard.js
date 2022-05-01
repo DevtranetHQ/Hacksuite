@@ -3,11 +3,12 @@ import Avatar from "../Avatar";
 import avatarImage from "../../public/assets/avatar.webp";
 import EventTime from "./EventTime";
 import DisplayDate from "../DisplayDate";
+import { AddToCalendar } from "./AddToCalendar";
 
-export default function EventCard({ _id, name, image, description, start, end, creator, posted }) {
-  // TODO: Replace const with actual state (whether that be React context, getServerSideProps, etc.)
-  const loggedIn = false;
-  const route = `/events/${_id}`;
+export default function EventCard(event) {
+  const { uniqueId, name, image, description, start, end, creator, posted, isRegistered } = event;
+
+  const route = `/events/${uniqueId}`;
   return (
     <article className="border-b-2 grid grid-cols-3 items-center p-7">
       <div className="col-span-1 relative">
@@ -16,13 +17,14 @@ export default function EventCard({ _id, name, image, description, start, end, c
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image || avatarImage}
+          border='!border-[5px]'
         />
       </div>
       <div className="col-span-2 px-7">
         <section className="mb-2">
           <h1 className="headline">{name}</h1>
           <p className="caption text-black dark:text-white">
-            {description}
+            {description.substring(0, 200)}...
             <Link href={route}>
               <a className="mx-1 italic underline">Read more</a>
             </Link>
@@ -33,10 +35,10 @@ export default function EventCard({ _id, name, image, description, start, end, c
           </p>
         </section>
         <section className="flex justify-between">
-          <div className="inline-flex gap-2 py-2">
+          <div className="inline-flex gap-8 py-2">
             <svg
-              width="28"
-              height="28"
+              width="33"
+              height="38"
               viewBox="0 0 34 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -49,11 +51,15 @@ export default function EventCard({ _id, name, image, description, start, end, c
               <EventTime start={start} end={end} />
             </p>
           </div>
-          <Link href={route}>
-            <button className="button-small button-deep-sky-blue">
-              {loggedIn ? "Add to my calendar" : "Register now"}
-            </button>
-          </Link>
+          {isRegistered ? (
+            <AddToCalendar event={event} />
+          ) : (
+            <Link href={route}>
+              <button className="button-small button-deep-sky-blue">
+                Register now
+              </button>
+            </Link>
+          )}
         </section>
       </div>
     </article>
