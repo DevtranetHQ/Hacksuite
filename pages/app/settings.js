@@ -231,6 +231,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                     id="personalDescription">
                     {choices.personalDescription.map((value, key) => (
                       <option
+                        className="text-black"
                         key={key}
                         onClick={event =>
                           setPersonalDescription(
@@ -284,6 +285,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                     id="skillsAndInterests">
                     {choices.skillsAndInterests.map((value, key) => (
                       <option
+                        className="text-black"
                         key={key}
                         onClick={event =>
                           setSkillsAndInterests(

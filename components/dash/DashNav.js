@@ -37,10 +37,10 @@ export default function DashNav({ admin }) {
         </Link>
         {admin && (
           <>
-            <Link href="/tickets">
+            <Link href="/app/tickets">
               <div
                 className={
-                  pathname === "/tickets"
+                  pathname === "/app/tickets"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition"
                 }>
@@ -58,10 +58,10 @@ export default function DashNav({ admin }) {
                 <span>Tickets</span>
               </div>
             </Link>
-            <Link href="/members">
+            <Link href="/app/members">
               <div
                 className={
-                  pathname === "/members"
+                  pathname === "/app/members"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition"
                 }>
@@ -79,10 +79,10 @@ export default function DashNav({ admin }) {
                 <span>Members</span>
               </div>
             </Link>
-            <Link href="/statistics">
+            <Link href="/app/statistics">
               <div
                 className={
-                  pathname === "/statistics"
+                  pathname === "/app/statistics"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition"
                 }>
@@ -102,10 +102,10 @@ export default function DashNav({ admin }) {
             </Link>
           </>
         )}
-        <Link href="/personal-projects">
+        <Link href="/app/personal-projects">
           <div
             className={
-              pathname === "/personal-projects"
+              pathname === "/app/personal-projects"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition"
             }>
@@ -123,10 +123,10 @@ export default function DashNav({ admin }) {
             <span>Projects</span>
           </div>
         </Link>
-        <Link href="/events">
+        <Link href="/app/events">
           <div
             className={
-              pathname === "/events"
+              pathname === "/app/events"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition"
             }>
@@ -145,10 +145,10 @@ export default function DashNav({ admin }) {
           </div>
         </Link>
         {!admin && (
-          <Link href="/discord">
+          <Link href="/app/discord">
             <div
               className={
-                pathname === "/discord"
+                pathname === "/app/discord"
                   ? styles.active
                   : "cursor-pointer hover:text-orange-peel transition"
               }>
@@ -167,10 +167,10 @@ export default function DashNav({ admin }) {
             </div>
           </Link>
         )}
-        <Link href="/settings">
+        <Link href="/app/settings">
           <div
             className={
-              pathname === "/settings"
+              pathname === "/app/settings"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition"
             }>

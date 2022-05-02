@@ -5,7 +5,7 @@ import Avatar from "../../components/Avatar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
-import ArrowIcon from "../../components/icons/Arrow";
+import ArrowRightIcon from "../../components/icons/ArrowRight";
 import FollowerIcon from "../../components/icons/Follower";
 import GithubIcon from "../../components/icons/Github";
 import TwitterIcon from "../../components/icons/Twitter";
@@ -50,7 +50,7 @@ export default function Profile({ loggedIn, user }) {
           <Link href="/">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               {loggedIn ? "Go back home" : "All Events"}
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>

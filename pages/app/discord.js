@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
-import ArrowIcon from "../../components/icons/Arrow";
+import ArrowRightIcon from "../../components/icons/ArrowRight";
 import GithubIcon from "../../components/icons/Github";
 import foxImage from "../../public/assets/discord/fox.svg";
 
@@ -26,7 +26,7 @@ export default function Discord() {
           <Link href="/">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               Go back
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>
@@ -120,7 +120,7 @@ export default function Discord() {
         </p>
         <button className="button-big button-deep-sky-blue inline-flex gap-x-2 w-fit">
           Join right now
-          <ArrowIcon width={56} height={36} />
+          <ArrowRightIcon width={56} height={36} />
         </button>
       </section>
       <footer className="bg-[#f4f4f4] dark:bg-[#444444] px-14 py-7 text-center">

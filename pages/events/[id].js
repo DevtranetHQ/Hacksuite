@@ -5,7 +5,7 @@ import Avatar from "../../components/Avatar";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import showdownConverter from "../../components/showdownConverter";
-import ArrowIcon from "../../components/icons/Arrow";
+import ArrowRightIcon from "../../components/icons/ArrowRight";
 import CalendarIcon from "../../components/icons/Calendar";
 import GithubIcon from "../../components/icons/Github";
 import avatarImage from "../../public/assets/avatar.webp";
@@ -69,7 +69,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
           <Link href="/">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               {loggedIn ? "Go back home" : "All Events"}
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>
@@ -187,7 +187,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                 className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
                 onClick={registerWithAccount}>
                 {loggedIn ? "Register now" : "Register with The Dynamics account"}
-                <ArrowIcon />
+                <ArrowRightIcon />
               </button>
             </div>
           </>

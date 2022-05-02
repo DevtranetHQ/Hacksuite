@@ -6,7 +6,7 @@ import DarkModeToggle from "../../../../components/DarkModeToggle";
 import Logo from "../../../../components/Logo";
 import showdownConverter from "../../../../components/showdownConverter";
 import AdobeIcon from "../../../../components/icons/Adobe";
-import ArrowIcon from "../../../../components/icons/Arrow";
+import ArrowRightIcon from "../../../../components/icons/ArrowRight";
 import CommentIcon from "../../../../components/icons/Comment";
 import ShareIcon from "../../../../components/icons/Share";
 import FacebookIcon from "../../../../components/icons/Facebook";
@@ -54,7 +54,7 @@ export default function Project({ loggedIn, project }) {
           <Link href="/project-gallery">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               Other projects
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>

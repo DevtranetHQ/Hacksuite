@@ -7,7 +7,8 @@ import DarkModeToggle from "../../../components/DarkModeToggle";
 import Logo from "../../../components/Logo";
 import showdownConverter from "../../../components/showdownConverter";
 import AdobeIcon from "../../../components/icons/Adobe";
-import ArrowIcon from "../../../components/icons/Arrow";
+import ArrowRightIcon from "../../../components/icons/ArrowRight";
+import ArrowDownIcon from "../../../components/icons/ArrowDown";
 import CommentIcon from "../../../components/icons/Comment";
 import ShareIcon from "../../../components/icons/Share";
 import FacebookIcon from "../../../components/icons/Facebook";
@@ -26,6 +27,9 @@ import { useRouter } from "next/router";
 export default function Project({ loggedIn, project }) {
   const router = useRouter();
   loggedIn = router.query.ref === "dash" ? true : loggedIn;
+
+  // URL for sharing
+  const url = `https://app.thedynamics.tech/project/preview/${project.id}`;
 
   const projectInformation = () => {
     return {
@@ -55,7 +59,7 @@ export default function Project({ loggedIn, project }) {
           <Link href="/project-gallery">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               Other projects
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>
@@ -64,13 +68,15 @@ export default function Project({ loggedIn, project }) {
         <h1 className="title text-deep-sky-blue">{project.name}</h1>
         <h2 className="lead mb-2">{project.description}</h2>
         <div className="inline-flex my-2">
-          <button className="button-medium button-fruit-salad inline-flex gap-x-2">
+          <button className="button-medium button-fruit-salad inline-flex gap-x-2 items-end">
             <span className="pt-1">
               {project.likes} {project.likes === 1 ? "Like" : "Likes"}
             </span>
             <HeartIcon />
           </button>
-          <a className="button-medium button-deep-sky-blue inline-flex gap-x-2" href="#comments">
+          <a
+            className="button-medium button-deep-sky-blue inline-flex gap-x-2 items-end"
+            href="#comments">
             <span className="pt-1">
               {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
             </span>
@@ -180,22 +186,123 @@ export default function Project({ loggedIn, project }) {
             <div>
               <h1 className="heading leading-loose">Share it</h1>
               <div className="flex gap-x-4 items-center">
-                <a href="https://twitter.com">
+                <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank">
                   <TwitterIcon />
                 </a>
-                <a href="https://facebook.com">
+                <a href={`https://www.facebook.com/sharer.php?u=${url}`} target="_blank">
                   <FacebookIcon />
                 </a>
-                <a href="https://linkedin.com">
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+                  target="_blank">
                   <LinkedinIcon />
                 </a>
-                <a onClick={() => console.log("pain")}>
+                <a
+                  className="cursor-pointer"
+                  onClick={() => navigator.clipboard.writeText(url)}
+                  title="Copy link">
                   <ShareIcon fill="fill-black dark:fill-white" />
                 </a>
               </div>
             </div>
           </div>
           <h1 className="heading leading-loose">Comments</h1>
+          <div className="grid grid-cols-12 mx-14 items-center">
+            <div className="col-span-1">
+              <Avatar
+                border="!border-[3px]"
+                className="relative w-[80px] h-[80px]"
+                image={project.owner.image}
+              />
+            </div>
+            <div className="col-span-10 px-3">
+              <h1>
+                <span className="headline">{project.owner.name}</span>{" "}
+                <span className="lead ml-1">Made this project - {project.date}</span>
+              </h1>
+              <h1 className="subheadline italic text-[#515151]">Leave feedback in the comments!</h1>
+            </div>
+            <div className="col-span-1">
+              <ArrowDownIcon />
+            </div>
+          </div>
+          <div className="grid grid-cols-12 mx-14 mb-14">
+            <div className="col-span-1" />
+            <div className="col-span-10 px-3">
+              <div className="bg-[#f5f5f7] rounded-md">
+                {project.comments.map((comment, key) => (
+                  <div className="border-b-4 px-7 py-5" key={key}>
+                    <div className="grid grid-cols-12 items-center">
+                      <div className="col-span-1">
+                        <Avatar
+                          border="!border-[3px]"
+                          className="relative w-[50px] h-[50px]"
+                          image={comment.image}
+                        />
+                      </div>
+                      <div className="col-span-11">
+                        <h1>
+                          <span className="subheadline">{comment.name}</span>{" "}
+                          <span className="caption ml-1">{comment.date}</span>
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-12 items-center">
+                      <div className="col-span-1" />
+                      <div className="col-span-10">
+                        <p>{comment.comment}</p>
+                        <p className="caption inline-flex gap-x-1 items-center">
+                          Like{" "}
+                          <span className="cursor-pointer">
+                            <HeartIcon fill="#C50000" width={20} height={20} />
+                          </span>{" "}
+                          {comment.likes}
+                        </p>
+                      </div>
+                      <div className="col-span-1" />
+                    </div>
+                  </div>
+                ))}
+                <div className="px-7 py-5">
+                  {loggedIn ? (
+                    <div className="grid grid-cols-12">
+                      <div className="col-span-1 py-3">
+                        <Avatar
+                          border="!border-[3px]"
+                          className="relative w-[50px] h-[50px]"
+                          image={loggedIn.image}
+                        />
+                      </div>
+                      <div className="col-span-11">
+                        <form className="!p-0">
+                          <textarea
+                            className="form-input resize-none"
+                            name="comment"
+                            placeholder="Write a comment"
+                          />
+                          <button className="button-small button-deep-sky-blue" onSubmit={comment}>
+                            Post comment
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-center">
+                      <Link href="/login">
+                        <a>Log in</a>
+                      </Link>{" "}
+                      or{" "}
+                      <Link href="/signup">
+                        <a>Sign up</a>
+                      </Link>{" "}
+                      to add a comment to this project.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="col-span-1" />
+          </div>
         </aside>
       </div>
       {!loggedIn && (
@@ -218,8 +325,12 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   return {
     props: {
-      loggedIn: false,
+      loggedIn: {
+        image:
+          "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      },
       project: {
+        id: id,
         name: "Web scraper",
         date: "11:00 am, Today",
         image:
@@ -259,6 +370,11 @@ Overall, I'm proud of what I was able to create during my first hackathon. I lea
 
 ## What's next for OfficeHours
 
+\`\`\`python
+def func():
+  print("Just testing")
+\`\`\`
+
 At this point, OfficeHours is simply an MVP. There are so many more features that could be added to it in order to make it more usable. By features, I don't mean making it more complicated. That only causes problems. Rather, here are some of the features I would consider adding:
 
 * Public announcements to everyone in a group
@@ -293,7 +409,7 @@ At this point, OfficeHours is simply an MVP. There are so many more features tha
           {
             name: "Dora Palfi",
             image:
-              "https://s3-alpha-sig.figma.com/img/8b67/0b55/e794d296ad1112b8c3d9a61cc83abe91?Expires=1648425600&Signature=Q8kNPcS7IrL5jEouDI0HPV3lbwAj30IYOFrN-CFMPy6mtZXs8VADSy8UGrzmksl~DSBXi-gUgVr5OIrugmbedWThA79WKvaTsN2HsnJmOl4ZR7Xhh~XKx2vPTqPTXvH3VKpyp3HYJv1qRw1ROWqdDHRlQ5wFiMLECmLLUNDFZOTxedOXxzh67BC6bwgJ~5WG~41evv7ZH0pYmQCWTOw72EdMA5mZykZhLUwbhcPsz7HPi5I4ZlqbI-xMRdHHYHqOELZYKbvdMPG0NLGcIt0IQnSKTqJNcAlycOYhlRXS3jZ0kGlq-u~dkVngc5u6TuOtGX-X9H9dOfzijJsE3yri1A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+              "https://s3-alpha-sig.figma.com/img/8b67/0b55/e794d296ad1112b8c3d9a61cc83abe91?Expires=1652054400&Signature=K-3h9l76-m0MrUpxeQKY2cQIy8FtGYgi~~eTXcWkSHophZD69tTPgH5SjrVtUKKaZ4X2KdwyeYwoeWb-p59GvoG6i7hvMEKXGAWawRCwOfq~KuIheoXcuT4io5VpqK-30cQH4HdpbpJhMBGNmO-El5sn9dvgigFy1JO6rxlpOeLOKbK3ADoBLLgWYJ4WpLdIJeyg-ybUjus7xIh6GVoNV3oYT0moADfTdF9AlAK2WPhtCDCmiGFd1UoL12BlwQDlPsdzAPsDrqpw~qdcdo4S-7eRGvWsJehuF~D49ROXBylLASPE-3fSonDFlVemubzMKFhvQxUYYah~bxttXbIIrg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
             date: "1:00 pm, Today",
             comment: "Great Project!",
             likes: 1
@@ -301,12 +417,18 @@ At this point, OfficeHours is simply an MVP. There are so many more features tha
           {
             name: "Bill Gates",
             image:
-              "https://s3-alpha-sig.figma.com/img/9c1a/b700/6fc120580122cc5c1443394d7cbd3883?Expires=1648425600&Signature=Z25Tpe97DPmMlDE0NoosTHwMoU~CS~WKfBi~aTS4Y6JMeseTUifDZ5A~Hfq7ue78zOxPVHKXIb3~J9ewChkxYt9ATzRjuccQVacZqGngIGZ7L186rJNxFMDqDbi4L66JL76vHpJ0tC01wQXRVU4eNkcFLBhyedrpiR4sLGGQLphPU~2R64inbhg~TARR6u5jrAwvHJDfG4VQNMWkszEsKE7oxfgVjUR5NFaWhAPS~VEW22sExY3tNX3ZCTuXvF4U9~51B3I39CxC72y5UQB8y2uSoUWJfJ-PH~xc2OYyWvp-NHrSV6wfAIQHC5p9xaVF2CEIW7YYmq40YjcxwB7v2w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+              "https://s3-alpha-sig.figma.com/img/9c1a/b700/6fc120580122cc5c1443394d7cbd3883?Expires=1652054400&Signature=To05JpnUL4VNdO~OgIUj-B15TGrsqawljpk7A3Xb0RuHBWH-HyPCdhHPXWIRNx6u2Jpvj3rPUxtEQi8hRpxxVWuCJbGkGyLuQ5xoH7w-pHAbDv1LjwP7E3~63-D8-jsXRyYdM~Ivy1QJOaXo8wFgyE0WPyaZZ11U-E-dOhaJqb9SI5OLkL2h8I1ddeKWCJw6AafTOGyI46b9p-lk8SB6ZIpof46yMZEymgeKAM7kdm8xgTlEhqHOuTXHb8FWtJNoVaxFw1fljmpsxbGr3Pkcmh11f41Rz-D4OeR2Iqq07J4f6c42B8udlU098KqSIt--j1N30YQa3m9~Dt8P0ZmG1g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
             date: "2:00 pm, Today",
             comment: "Amazing Project!",
             likes: 1
           }
         ],
+        owner: {
+          name: "Zach Latta",
+          image:
+            "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1652054400&Signature=NfH3KTrkcZqbX21dkEqKT7VnO9svLoWnAgoC1mMjqHWmv1euOMfbm0IdLHjP-0nf9PqDL1SuRzRgPHDgRrzKyDetqGyaX0SzgGY6puHLfn519ibMQc37Ty1k1y2nAe0LQiDNSjcdyhq~U2h8kRoNitY-L19zgDEOdfqlAVT0M-dfVsb5JgzxlaioOaN3pSFxJT4H5CbMEv54FgEjWmOrPP0z9OBtzecdcnqsNFTR7AMJXOkUi78O311-GYFCV~GVZdMPKnMlbCyyHaVH7UTjippO0dv7fQafoueOlRAji-oeVrAU5wzjsha1nIKTasM7uMOUeGXKRLLsaXeBY-XtWg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+          id: "123"
+        },
         creators: [
           {
             name: "Zach Latta",

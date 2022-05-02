@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "_app.css";
 
 /*
  * Set up font families
@@ -40,17 +41,20 @@
   }
 
   p,
-  ul {
+  ul,
+  ol {
     @apply text-[20px] md:text-[22px];
   }
 
   p.sm,
-  ul.sm {
+  ul.sm,
+  ol.sm {
     @apply text-18px;
   }
 
   p.xs,
-  ul.xs {
+  ul.xs,
+  ol.sm {
     @apply text-16px;
   }
 
@@ -82,6 +86,10 @@
 
   .prose p {
     @apply my-0 !important;
+  }
+
+  .prose code {
+    @apply text-[20px] md:text-[22px];
   }
 
   /*
