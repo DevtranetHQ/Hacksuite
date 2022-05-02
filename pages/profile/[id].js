@@ -13,7 +13,6 @@ import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
 import { useRouter } from "next/router";
-import Scrapbook from "../app/scrapbook";
 
 /**
  * takes initial array and returns trimmed array

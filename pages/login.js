@@ -16,7 +16,7 @@ import { decodeToken } from "../server/utils/auth";
 export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
-  const { login, setToken } = useAuth();
+  const { login, loginWithToken } = useAuth();
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -30,10 +30,10 @@ export default function Login({ loginError, token, resetError, reset }) {
   };
   useEffect(() => {
     if (token) {
-      setToken(token);
+      loginWithToken(token);
       router.push("/");
     }
-  }, [setToken, router, token]);
+  }, [loginWithToken, router, token]);
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -217,9 +217,3 @@ export async function getServerSideProps({ req, res, query }) {
   }
   return { props: {} };
 }
-
-
-
-
-
-
