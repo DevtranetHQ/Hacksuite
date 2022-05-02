@@ -231,7 +231,7 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
                   </option>
                 ))}
               </select>
-              <label className="font-bold italic text-[#A5A5A5]" for="choices">
+              <label className="font-bold italic text-[#A5A5A5]" htmlFor="choices">
                 Tell us about the current state of this project, e.g beta, feature update,
                 completed, bug fixes, etc.
               </label>

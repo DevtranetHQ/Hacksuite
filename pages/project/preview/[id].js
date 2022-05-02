@@ -186,15 +186,13 @@ export default function Project({ loggedIn, project }) {
             <div>
               <h1 className="heading leading-loose">Share it</h1>
               <div className="flex gap-x-4 items-center">
-                <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank">
+                <a href={`https://twitter.com/intent/tweet?url=${url}`}>
                   <TwitterIcon />
                 </a>
-                <a href={`https://www.facebook.com/sharer.php?u=${url}`} target="_blank">
+                <a href={`https://www.facebook.com/sharer.php?u=${url}`}>
                   <FacebookIcon />
                 </a>
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-                  target="_blank">
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}>
                   <LinkedinIcon />
                 </a>
                 <a
