@@ -13,7 +13,6 @@ import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
 import { useRouter } from "next/router";
-import Scrapbook from "../app/scrapbook";
 
 /**
  * takes initial array and returns trimmed array
@@ -189,7 +188,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-1.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["NextJs", "Figma"],
+            tags: ["NextJs", "Figma"]
           },
           {
             bubbles: [1, 2, 3],
