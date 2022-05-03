@@ -34,7 +34,7 @@ export default function EventCard({ _id, name, image, description, start, end, c
           </p>
         </section>
         <section className="flex justify-between">
-          <div className="inline-flex gap-8 py-2">
+          <div className="inline-flex gap-4 py-2 items-center">
             <svg
               width="33"
               height="38"
