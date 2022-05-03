@@ -61,6 +61,7 @@ export default function ProjectGallery({user, project}) {
                   date={project.date}
                   title="Web Scrapper"
                   likes={93}
+                  liked={project.liked}
                   image={project.image}
                   comments={27}
                   tags={bubbleTrimmer(project.tags, 0, 4)}
@@ -116,7 +117,8 @@ export async function getServerSideProps(context) {
               image: "/assets/TEST/user_projects/img-1.png",
               comments: 22222,
               likes: 33333333,
-              tags: ["NextJs", "Figma"]
+              tags: ["NextJs", "Figma"], 
+              liked: true
             },
             {
               name: "Elon Musk",

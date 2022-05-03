@@ -1,4 +1,4 @@
-import HeartIcon from "../../components/icons/Heart";
+import Like from "../../components/Like";
 import CommentIcon from "../../components/icons/Comment";
 import Image from "next/image";
 import Avatar from "../Avatar";
@@ -7,7 +7,7 @@ import TimeIcon from "../icons/Time";
 import GithubIcon from "../icons/Github";
 import FigmaIcon from "../icons/Figma";
 import AdobeIcon from "../icons/Adobe";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import DarkModeContext from "../DarkModeContext";
 
 /**
@@ -24,9 +24,9 @@ import DarkModeContext from "../DarkModeContext";
  * @returns  Card Component
  */
 export default function ProjectGalleryProjectCard({ ...props }) {
-  const {name, date, image, title, desc, tags, likes, tools, comments, bubbles, className, bubbleNumber } = props;
+  const {name, date, image, title, desc, tags, likes, tools, comments, bubbles, className, bubbleNumber, liked } = props;
   const { darkMode } = useContext(DarkModeContext);
-
+  const [isLiked, setLiked] = useState(liked);
   return (
     <div
       className={
@@ -107,8 +107,8 @@ export default function ProjectGalleryProjectCard({ ...props }) {
         </span>
         <span>
           <span className="flex items-center justify-center gap-[8px]">
-            <HeartIcon width="20px" height="20px" fill="#C50000" className='transition-all hover:scale-[1.2]'/>
-            <p className="font-semibold text-[17px]">{likes}</p>
+            <Like width="20px" height="20px" fill="#C50000" className='transition-all hover:scale-[1.2]' liked={isLiked} setLiked={setLiked}/>
+            <p className="font-semibold text-[17px]">{isLiked? likes + 1 : likes}</p>
             <CommentIcon width="20px" height="20px" fill={darkMode ? "white" : "black"} className='transition-all hover:scale-[1.2]'/>
             <p className="font-semibold text-[17px]">{comments}</p>
           </span>
