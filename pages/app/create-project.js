@@ -8,7 +8,7 @@ import showdownConverter from "../../components/showdownConverter";
 import LinkIcon from "../../components/icons/Link";
 import UploadIcon from "../../components/icons/Upload";
 import SearchIcon from "../../components/icons/Search";
-import GitHubIcon from "../../components/icons/GitHub";
+import GitHubIcon from "../../components/icons/Github";
 import FigmaIcon from "../../components/icons/Figma";
 import AdobeIcon from "../../components/icons/Adobe";
 
