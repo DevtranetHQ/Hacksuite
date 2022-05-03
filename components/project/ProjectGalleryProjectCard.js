@@ -90,7 +90,7 @@ export default function ProjectGalleryProjectCard({ ...props }) {
 
       
         <span className="flex items-center gap-2">
-          <p className="caption">Tags:</p>
+          <p className="caption dark:text-[#B4B4B4]">Tags:</p>
           {tags &&
             tags.map((tag, index) => {
               let color;
