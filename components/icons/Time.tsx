@@ -1,4 +1,4 @@
-export default function TimeIcon({ fill, width, height }) {
+export default function TimeIcon({ fill, width, height }: any) {
   return (
     <svg
       width={width ? width : 24}

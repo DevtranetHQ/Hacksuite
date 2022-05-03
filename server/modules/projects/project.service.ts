@@ -22,12 +22,14 @@ class ProjectService {
     })
   }
 
-  getPublishedProjects(query: IQueryProjects) {
-    return Project.find({ published: true }, query.fields, {
+  async getPublishedProjects(query: IQueryProjects) {
+    const projects = await Project.find({ published: true }, query.fields, {
       skip: query.skip,
       limit: query.limit,
       sort: query.sort,
-    })
+    });
+
+    return projects.map(p => JSON.parse(JSON.stringify(p)));
   }
 
   async getProject(uniqueId: ProjectId) {
@@ -45,6 +47,7 @@ class ProjectService {
     }
 
     project.published = true;
+    project.publishedAt = new Date();
     return project.save();
   }
 

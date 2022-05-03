@@ -17,6 +17,7 @@ export interface IProject {
     url: string;
   }[];
   published: boolean;
+  publishedAt: Date;
 }
 
 export type ProjectId = string & { __isProjectId: never };
@@ -26,7 +27,7 @@ const projectSchema = new Schema<IProject>(
     uniqueId: {
       type: String,
       required: true,
-      unique: true,
+      unique: true
     },
     name: {
       type: String,
@@ -51,38 +52,45 @@ const projectSchema = new Schema<IProject>(
     creator: {
       type: Schema.Types.ObjectId,
       ref: User,
-      required: [true, "creator is required"]
+      // required: [true, "creator is required"]
     },
-    collaborators: [{
-      type: Schema.Types.ObjectId,
-      ref: User,
-    }],
-    tools: [{
-      type: String,
-      required: true,
-    }],
+    collaborators: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: User
+      }
+    ],
+    tools: [
+      {
+        type: String,
+        required: true
+      }
+    ],
     stage: {
       type: String,
-      required: true,
+      // required: true
     },
-    links: [{
-      kind: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-        match: [
-          /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-          "{VALUE isnt a valid link}"
-        ]
+    links: [
+      {
+        kind: {
+          type: String,
+          required: true
+        },
+        url: {
+          type: String,
+          required: true,
+          match: [
+            /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+            "{VALUE isnt a valid link}"
+          ]
+        }
       }
-    }],
+    ],
     published: {
       type: Boolean,
       default: false
-    }
+    },
+    publishedAt: Date
   },
   {
     timestamps: true
