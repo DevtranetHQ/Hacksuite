@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Avatar from "../../components/Avatar";
@@ -12,7 +11,9 @@ import TwitterIcon from "../../components/icons/Twitter";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
-import { useRouter } from "next/router";
+
+import Scrapbook from "./Scrapbook";
+
 
 /**
  * takes initial array and returns trimmed array
@@ -34,25 +35,25 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 export default function Profile({ loggedIn, user }) {
   // ======= Tab state -->
   // TODO: Set nav state for project and scrapbook
-  const [curTab, setCurTab] = useState("projects");
-  const router = useRouter();
+  const [openTab, setOpenTab] = useState(1);
+  
 
   return (
     <div className="dark:bg-[#202020] dark:text-white h-screen ">
       {/* ====== NavBar start */}
-      <nav className="flex items-center justify-between md:pl-8 md:pr-5 pl-3 pr-2 ">
-        <Logo className="md:w-[120px] py-5 w-[100px]" />
-        <div className="flex md:gap-x-4 gap-x-3 items-center">
+      <nav className="flex items-center justify-between md:pl-8 md:pr-8 pl-3 pr-3">
+        <Logo className="w-[120px] py-5" />
+        <div className="flex gap-x-2">
           <DarkModeToggle
-            className=" md:w-[40px] md:h-[40px] h-[63px] w-[42px] -mx-1"
-            darkClassName=" md:w-[40px] md:h-[42px] h-[40px] w-[42px] -mx-1"
+            className="md:mx-0 -mx-0 w-[40px] h-[40px]"
+            darkClassName="md:mx-0 -mx-0 w-[40px] h-[42px]"
           />
           <a href="https://github.com/TheDynamics">
-            <GithubIcon className="md:h-[40px] md:w-[40px] h-[63px] w-[42px] " />
+            <GithubIcon className="md:mx-2 mx-0"/>
           </a>
           <Link href="/">
-            <button className="md:button-medium button-small button-deep-sky-blue mr-0 mb-0">
-              <p className="nd:mr-3 mr-1 text-12px md:text-30px">
+            <button className="md:button-medium button-small button-deep-sky-blue mr-0 mb-0 flex items-center ">
+              <p className="md:mr-3 mr-1 text-12px md:text-30px">
                 {loggedIn ? "Go back" : "All Events"}
               </p>
               <span className="md:mt-1">
@@ -62,11 +63,11 @@ export default function Profile({ loggedIn, user }) {
           </Link>
         </div>
       </nav>
-
+      
       {/* ====== #PROFILE head start */}
       <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
         <Avatar image={ProfileImg} className="md:h-72 relative md:w-72 h-[170px] w-[170px]" />
-        <div className=" h-60 flex p-2 flex-col justify-center md:gap-2 gap-0 items-start">
+        <div className=" h-60 flex p-2 flex-col justify-center  gap-0 items-start">
           <h1 className="text-heading md:title subtitle dark:text-white">{user.name} </h1>
           {user.no_of_followers === 0 ? (
             <div className="flex items-center">
@@ -79,8 +80,8 @@ export default function Profile({ loggedIn, user }) {
             </div>
           ) : (
             <div>
-              <h2 className="text-deep-sky-blue md:subtitle text-16px font-semibold mb-2">
-                {user.no_of_followers} followers
+              <h2 className="text-deep-sky-blue md:subtitle text-30px font-semibold mb-2">
+                {user.no_of_followers} Followers
               </h2>
               <span className="flex pt-4 gap-3 cursor-pointer h-16 pl-4">
                 {user &&
@@ -98,60 +99,120 @@ export default function Profile({ loggedIn, user }) {
             </div>
           )}
 
-          <span className="flex gap-2 items-center h-16 md:mt-4 mt-0 ">
-            <GithubIcon className=" h-6 w-6 hover:scale-110" />
-            <TwitterIcon className="  h-6 w-6 hover:scale-110" />
-            <LinkedinIcon className=" h-6 w-6 hover:scale-110" />
+          <span className="flex gap-3 items-center h-16  mt-0 ">
+            <GithubIcon className=" h-9 w-9 hover:scale-110" />
+            <TwitterIcon className="  h-9 w-9 hover:scale-110" />
+            <LinkedinIcon className=" h-9 w-9 hover:scale-110" />
           </span>
         </div>
       </div>
 
       {/* ====== #TAB section start */}
-      <section className="flex itens-center flex-col pb-16 items-center dark:bg-[#202020]">
-        <nav className="flex justify-between w-3/6 items-center md:pb-24 md:pt-24 pb-12 pt-12">
-          <Link href="/profile/[id]">
-            <a
-              className={
-                router.pathname == "/profile/[id]"
-                  ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white"
-                  : " md:headline font-bold cursor-pointer relative text-[#7D7D7D]"
-              }>
-              PROJECTS
-            </a>
-          </Link>
+      <section className="flex itens-center flex-col pb-16 items-center dark:bg-[#202020] transition-all w-full p-5">
+        <nav className="flex justify-between items-center md:pb-24 md:pt-24 pb-12 pt-12 gap-10 transition-all">
+          <p
+            onClick={e => {
+              e.preventDefault();
+              setOpenTab(1);
+            }}
+            className={
+              openTab === 1
+                ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white transition-all duration-250"
+                : "md:headline font-bold cursor-pointer relative  text-[#6E7180] border-b-4 border-transparent transition-all duration-250"
+            }>
+            PROJECTS
+          </p>
 
-          <Link href="/app/scrapbook">
-            <a
-              className={
-                router.pathname == "/app/scrapbook"
-                  ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white"
-                  : " md:headline font-bold cursor-pointer relative text-[#7D7D7D]"
-              }>
-              SCRAPBOOK
-            </a>
-          </Link>
+          <p
+            onClick={e => {
+              e.preventDefault();
+              setOpenTab(2);
+            }}
+            className={
+              openTab === 2
+                ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white transition-all duration-250"
+                : "md:headline font-bold cursor-pointer relative  text-[#6E7180] border-b-4 border-transparent transition-all duration-250"
+            }>
+            SCRAPBOOK
+          </p>
         </nav>
 
-        {user.projects.length === 0 ? (
-          <Empty />
-        ) : (
-          <div className="grid gap-5 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 content-center justify-center rounded-lg ">
-            {user &&
-              user.projects.map((project, index) => {
-                return (
-                  <ProfileProjectCard
-                    key={index}
-                    bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                    date="ferbrary 28, 2020"
-                    title="Web Scrapper"
-                    likes={93}
-                    image={project.image}
-                    comments={27}
-                    tags={bubbleTrimmer(project.tags, 0, 4)}
-                    desc={project.desc}
-                  />
-                );
-              })}
+        {openTab === 1 && (
+          <div>
+            {user.projects.length === 0 ? (
+              <Empty />
+            ) : (
+              <div className="grid gap-5 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 content-center justify-center items-center place-content-center  rounded-lg">
+                {user &&
+                  user.projects.map((project, index) => {
+                    return (
+                      <ProfileProjectCard
+                        key={index}
+                        bubbles={project.bubbles}
+                        date="ferbrary 28, 2020"
+                        title="Web Scrapper"
+                        likes={93}
+                        image={project.image}
+                        comments={27}
+                        tags={bubbleTrimmer(project.tags, 0, 4)}
+                        desc={project.desc}
+                      />
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+        )}
+        {openTab === 2 && (
+          <div>
+            {user.projects.length === 0 ? (
+              <Empty />
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 md:space-x-5 p-5 dark:text-white">
+                <div className="dark:text-white">
+                  {user &&
+                    user.scrapbookItem.map((scrapbookItem, index) => {
+                      if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 0)
+                        return (
+                          <Scrapbook
+                            time={scrapbookItem.time}
+                            text={scrapbookItem.text}
+                            
+                            image={scrapbookItem.image}
+                          />
+                        );
+                    })}
+                </div>
+
+                <div className="dark:text-white">
+                  {user.scrapbookItem.map((scrapbookItem, index) => {
+                    if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 1)
+                      return (
+                        <Scrapbook
+                          time={scrapbookItem.time}
+                          text={scrapbookItem.text}
+                          
+                          image={scrapbookItem.image}
+                        />
+                      );
+                  })}
+                </div>
+
+                <div className="dark:text-white">
+                  {user.scrapbookItem.map((scrapbookItem, index) => {
+                    if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 2)
+                      return (
+                        <Scrapbook
+                          time={scrapbookItem.time}
+                          text={scrapbookItem.text}
+                          
+                          image={scrapbookItem.image}
+                        />
+                      );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </section>
@@ -160,6 +221,10 @@ export default function Profile({ loggedIn, user }) {
 }
 
 export async function getServerSideProps(context) {
+  // Code in the scrapbook
+  const code = `.nav-link-home::before {
+    content : "Javier's"
+}`;
   // TODO: Call API for User profile data
   return {
     props: {
@@ -221,7 +286,7 @@ export async function getServerSideProps(context) {
             tags: ["Python"]
           },
           {
-            bubbles: [1, 2, 3, 4, 5, 6],
+            bubbles: [1, 2, 3, 4],
             date: "ferbrary 28, 2020",
             title: "Frelapay",
             desc: "Get payments from all your freelance work converted into the highest selling cryptos",
@@ -240,6 +305,63 @@ export async function getServerSideProps(context) {
             likes: 33333333,
             tags: ["Git", "Flask", "Django"]
           }
+        ],
+        scrapbookItem: [
+          {
+            time: "12:00 pm",
+            text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit ame
+            
+            `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
+          {
+            time: "2:30pm",
+            text: `Earliert today @Elytgy, @Bonsai and I created this wordle game clone together in #game-dev 
+
+            we only changed this small code 
+            
+            
+            
+
+            
+            
+            in the footer and we kinda duplicated this too
+            
+            
+            `,
+            
+            image: "/assets/TEST/user_projects/img-6.png",
+            
+          },
+          {
+            time: "3:15pm",
+            text: `Can’t believe I just got into MIT btw, guess who has a date with Elon Musk later today.
+            `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
+          {
+            time: "6:15pm",
+            text: `Can’t believe I just got into MIT btw, guess who has a date with Elon Musk later today.
+            `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
+          {
+            time: "7:00 pm",
+            text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+
+            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit ame.
+            `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
+          {
+            time: "8 :03pm",
+            text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
         ]
       }
     }
