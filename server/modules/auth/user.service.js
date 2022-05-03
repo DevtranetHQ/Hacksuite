@@ -29,7 +29,7 @@ class UserService {
     console.log(userId, data);
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
-      { $set: { isCompleted: true, ...data } }
+      { $set: { isCompleted: true, ...data } },
     );
     if (!oldUser) throw new CustomError("User dosen't exist", 404);
 

@@ -166,6 +166,7 @@ export function AddToCalendar({ event }) {
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
             <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4" />
+          <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Other Calendars
         </a>
