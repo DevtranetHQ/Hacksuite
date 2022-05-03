@@ -16,29 +16,24 @@ import LoadingButton from "../components/LoadingButton";
 export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
-  const { login, setToken } = useAuth();
-
+  const { login, loginWithToken } = useAuth();
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
     login.execute(email, password);
   };
-
   const toggleReveal = () => {
     setRevealPassword(r => !r);
     const id = document.getElementById("password");
     id.type = id.type === "password" ? "text" : "password";
   };
-
   useEffect(() => {
     if (token) {
-      setToken(token);
+      loginWithToken(token);
       router.push("/");
     }
-  }, [setToken, router, token]);
-
+  }, [loginWithToken, router, token]);
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -92,7 +87,6 @@ export default function Login({ loginError, token, resetError, reset }) {
           </p>
         </Fade>
       )}
-
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
         <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
           <Image src={authImage} layout="responsive" alt="Dash" />
@@ -155,8 +149,9 @@ export default function Login({ loginError, token, resetError, reset }) {
               <LoadingButton
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit"
-                isLoading={login.status === "loading"}
-              >Login</LoadingButton>
+                isLoading={login.status === "loading"}>
+                Login
+              </LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                 <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
@@ -174,7 +169,6 @@ export default function Login({ loginError, token, resetError, reset }) {
           </form>
         </div>
       </div>
-
       <footer className="bg-deep-sky-blue text-white py-1.5 xs:py-3">
         <div className="flex items-center justify-center mxs:text-16px xs:lead">
           Don&#x27;t have an account?&nbsp;
@@ -186,7 +180,6 @@ export default function Login({ loginError, token, resetError, reset }) {
     </div>
   );
 }
-
 export async function getServerSideProps({ req, res, query }) {
   if (req.cookies.token) {
     res.writeHead(302, {
@@ -194,7 +187,6 @@ export async function getServerSideProps({ req, res, query }) {
     });
     res.end();
   }
-
   if (query.loginError) {
     return {
       props: {
@@ -202,7 +194,6 @@ export async function getServerSideProps({ req, res, query }) {
       }
     };
   }
-
   if (query.resetError) {
     return {
       props: {
@@ -210,7 +201,6 @@ export async function getServerSideProps({ req, res, query }) {
       }
     };
   }
-
   if (query.reset) {
     return {
       props: {
@@ -218,7 +208,6 @@ export async function getServerSideProps({ req, res, query }) {
       }
     };
   }
-
   if (query.token) {
     const valid = await authService.verifyLoginToken(query.token);
     if (valid) {
@@ -229,6 +218,5 @@ export async function getServerSideProps({ req, res, query }) {
       };
     }
   }
-
   return { props: {} };
 }
