@@ -5,7 +5,7 @@ export default function Avatar({ className, border, image }) {
     <div className={`${className ? className : "relative mb-2 w-[158px] h-[158px]"}`}>
       <Image
         className={`!border-solid ${
-          border ? border : "!border-[1.5px]"
+          border ? border : "!border-[2.67px]"
         } !border-orange-peel rounded-full`}
         layout="fill"
         objectFit="cover"
@@ -14,3 +14,4 @@ export default function Avatar({ className, border, image }) {
     </div>
   );
 }
+

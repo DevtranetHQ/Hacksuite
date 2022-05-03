@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "server/modules/registration/registration.service.js"  ],
+, "server/modules/registration/registration.service.js", "components/AuthContext.tsx"  ],
   "exclude": [
     "node_modules"
   ]
