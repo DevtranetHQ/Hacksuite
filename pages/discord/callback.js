@@ -6,24 +6,27 @@ export default function Callback() {
 }
 
 export const getServerSideProps = async ({ query, res }) => {
-  const discordUser = await discordAuthService.handleCallback(query.code);
-  const existingUser = await discordAuthService.checkExistingUser(discordUser);
+  try {
+    if (query.error === "access_denied") {
+      throw new Error("Discord authorization failed.");
+    }
 
-  if (!existingUser) {
-    res.writeHead(302, {
-      Location: `/login?discordLoginError`
-    });
+    const discordUser = await discordAuthService.handleCallback(query.code);
+    const existingUser = await discordAuthService.checkExistingUser(discordUser);
+
+    if (!existingUser) {
+      throw new Error("Try gain after joining our Discord server.");
+    }
+
+    const token = await authService._getLoginToken(existingUser);
+
+    res.writeHead(302, { Location: `/login?token=${token}` });
     res.end();
 
-    return { props: {} };
+    return { props: { user: discordUser } };
+  } catch (err) {
+    const params = new URLSearchParams({ loginError: `Login error: ${err.message}` });
+    res.writeHead(302, { Location: `/login?${params}` });
+    res.end();
   }
-
-  const token = await authService._getLoginToken(existingUser);
-
-  res.writeHead(302, {
-    Location: `/login?token=${token}`
-  });
-  res.end();
-
-  return { props: { user: discordUser } };
 };

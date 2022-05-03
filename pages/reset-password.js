@@ -5,12 +5,17 @@ import { Icon } from "@iconify/react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
-import { useAuth } from "../hooks/useAuth";
 import { useRouter } from "next/router";
+// Animation Package for the trigger messages
+import Fade from "react-reveal/Fade";
+import { useAuth } from "../components/AuthContext";
+import authService from "../server/modules/auth/auth.service";
 
 export default function ResetPassword() {
   const router = useRouter();
+  const { resetPassword } = useAuth();
   const [revealPassword, setRevealPassword] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   const toggleReveal = () => {
     setRevealPassword(!revealPassword);
@@ -18,28 +23,26 @@ export default function ResetPassword() {
     id.type = id.type === "password" ? "text" : "password";
   };
 
-  const { ResetPassword } = useAuth();
   const submitReset = async e => {
     e.preventDefault();
 
     const pass1 = e.target.password.value;
     const pass2 = e.target.password2.value;
 
-    // TODO: Add the function to reset the password from the backend
-    if (router.query.uid && router.query.verifyToken && pass1 == pass2) {
-      const data = {
+    if (router.query.uid && router.query.resetToken) {
+      await resetPassword.execute({
         userId: router.query.uid,
-        resetToken: router.query.verifyToken,
-        password: pass1
-      };
-
-      await ResetPassword.execute(data);
+        resetToken: router.query.resetToken,
+        password: pass1,
+        confirmPassword: pass2
+      });
     }
   };
 
-  if (ResetPassword.status === "success") {
+  if (resetPassword.status === "success") {
     return "Password Reset Successfully";
   }
+
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -51,6 +54,21 @@ export default function ResetPassword() {
           />
         </div>
       </div>
+
+      {resetPassword.status === "success" && (
+        <Fade top>
+          <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+            <p>Password Successfully Changed! Redirecting...</p>
+          </div>
+        </Fade>
+      )}
+      {resetPassword.status === "error" && (
+        <Fade top>
+          <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
+            <p>{resetPassword.error.response?.data.message || resetPassword.error.message}</p>
+          </div>
+        </Fade>
+      )}
 
       <div className="flex mmd:bg-mobile-login justify-center">
         <div className="md:block md:w-1/2 md:-m-[1px] md:p-0 xs:pt-9 md:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
@@ -101,7 +119,11 @@ export default function ResetPassword() {
                   </label>
                 </div>
                 <input
-                  className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                  className={
+                    !passwordMismatch
+                      ? "form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                      : "border-2 border-red-600 form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                  }
                   name="password2"
                   id="password2"
                   type="password"
@@ -119,9 +141,14 @@ export default function ResetPassword() {
                     revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
                   }
                 />
+                {passwordMismatch && (
+                  <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
+                    Password must match!
+                  </p>
+                )}
               </div>
               <button
-                className="w-3/5 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
+                className="w-4/5 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit">
                 Update my password
               </button>
@@ -129,7 +156,6 @@ export default function ResetPassword() {
           </form>
         </div>
       </div>
-
       <footer className="bg-deep-sky-blue text-white py-1.5 xs:py-3">
         <div className="flex items-center justify-center mxs:text-16px xs:lead">
           Don&#x27;t have an account?&nbsp;
@@ -142,12 +168,24 @@ export default function ResetPassword() {
   );
 }
 
-export async function getServerSideProps(context) {
-  if (context.req.cookies.token) {
-    context.res.writeHead(302, {
+export async function getServerSideProps({ query, req, res }) {
+  if (req.cookies.token) {
+    res.writeHead(302, {
       Location: `/app`
     });
-    context.res.end();
+    res.end();
+  }
+
+  try {
+    await authService.verifyResetToken({ userId: query.uid, resetToken: query.resetToken });
+  } catch (err) {
+    console.error(err);
+    const params = new URLSearchParams({ resetError: `Invalid or expired reset link.` });
+
+    res.writeHead(302, {
+      Location: `/login?${params}`
+    });
+    res.end();
   }
 
   return {

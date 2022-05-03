@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
+import { Icon } from "@iconify/react";
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
   const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
@@ -35,8 +36,8 @@ const outlookLink = ({ name, description, start, end, link }, url) => {
 const gcalLink = ({ name, description, start, end, link }, url) => {
   const rootUrl = "https://calendar.google.com/calendar/render";
 
-  const startDate = dayjs(start).format("YYYYMMDDTHHmmSSZ");
-  const endDate = dayjs(end).format("YYYYMMDDTHHmmSSZ");
+  const startDate = dayjs(start).format("YYYYMMDDTHHmmssZ");
+  const endDate = dayjs(end).format("YYYYMMDDTHHmmssZ");
 
   const params = new URLSearchParams({
     action: "TEMPLATE",
@@ -118,7 +119,7 @@ export function AddToCalendar({ event }) {
         <span className="pt-2">Add to my calendar</span>
       </button>
       <div
-        className="popper bg-transparent"
+        className="popper bg-slate-50"
         ref={setPopperElement}
         style={{
           ...styles.popper
@@ -126,57 +127,45 @@ export function AddToCalendar({ event }) {
         {...attributes.popper}
         data-show={showPopper}>
         <a
+          href={icsFile(event, url)}
+          download={`${event.name}.ics`}
+          rel="noopener noreferrer"
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
+          <span>
+            <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="mr-4" />
+          </span>
+          Apple Calendar
+        </a>
+        <br />
+        <a
           href={gcalLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-            <img
-              src="/assets/applelogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
-          </span>{" "}
-          Google Calendar
+            <Icon icon="mdi:google" color="#03a9f4" inline={true} className="mr-4" />
+          </span>
+          Google Calender
         </a>
         <br />
         <a
           href={outlookLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-            <img
-              src="/assets/googlelogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+            <Icon icon="mdi:microsoft" color="#03a9f4" inline={true} className="mr-4" />
           </span>
-          Outlook
+          Outlook Calender
         </a>
         <br />
         <a
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-            <img
-              src="/assets/outlooklogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
-          </span>
-          iCal
-        </a>
-        <br />
-        <a
-          href={icsFile(event, url)}
-          download={`${event.name}.ics`}
-          rel="noopener noreferrer"
-          className="text-[#03A9F4] font-body font-bold md:text-54px text-16px bg-white md:border-[5px] border-[1.5px] border-[#03A9F4] p-2 rounded-lg flex items-center mb-4">
-          <span>
-            <img
-              src="/assets/calenderlogo.svg"
-              className="md:w-[40px] md:h-[50px] h-[14px] w-[18px] ml-3"
-            />
+            <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4" />
           </span>
           Other Calendars
         </a>

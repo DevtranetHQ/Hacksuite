@@ -38,8 +38,9 @@ class AuthService {
     try {
       await this.requestEmailVerification(user.email);
     } catch (error) {
+      console.error(error);
       await user.remove();
-      throw new CustomError("Email verification failed");
+      throw new CustomError("Server error");
     }
 
     return (data = {
@@ -129,9 +130,9 @@ class AuthService {
     return;
   }
 
-  async requestPasswordReset(email) {
-    const user = await User.findOne({ email });
-    if (!user) throw new CustomError("Email does not exist");
+  async requestPasswordReset({ email, dob }) {
+    const user = await User.findOne({ email, dob });
+    if (!user) throw new CustomError("User does not exist");
 
     const token = await Token.findOne({ userId: user._id });
     if (token) await token.deleteOne();
@@ -156,11 +157,7 @@ class AuthService {
   async resetPassword(data) {
     const { userId, resetToken, password } = data;
 
-    const RToken = await Token.findOne({ userId });
-    if (!RToken) throw new CustomError("Invalid or expired password reset token");
-
-    const isValid = await bcrypt.compare(resetToken, RToken.token);
-    if (!isValid) throw new CustomError("Invalid or expired password reset token");
+    const RToken = await this.verifyResetToken({ userId, resetToken });
 
     const hash = await bcrypt.hash(password, BCRYPT_SALT);
 
@@ -169,6 +166,18 @@ class AuthService {
     await RToken.deleteOne();
 
     return;
+  }
+
+  async verifyResetToken(data) {
+    const { userId, resetToken } = data;
+
+    const RToken = await Token.findOne({ userId });
+    if (!RToken) throw new CustomError("Invalid or expired password reset token");
+    console.log(resetToken, RToken);
+    const isValid = await bcrypt.compare(resetToken, RToken.token);
+    if (!isValid) throw new CustomError("Invalid or expired password reset token");
+
+    return RToken;
   }
 
   async updatePassword(userId, data) {

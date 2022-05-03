@@ -44,6 +44,8 @@ module.exports = {
       "42px": ["42px"],
       "36px": ["36px"],
       "30px": ["30px"],
+      "28px": ["28px"],
+      "26px": ["26px"],
       "24px": ["24px"],
       "22px": ["22px"],
       "20px": ["20px"],
@@ -61,7 +63,12 @@ module.exports = {
       "lg": "1024px",
       "xl": "1280px",
       "2xl": "1536px",
-      "mxs": { max: "428px" }
+      "mxs": { max: "428px" },
+      "msm": { max: "640px" },
+      "mmd": { max: "768px" },
+      "mlg": { max: "1024px" },
+      "mxl": { max: "1280px" },
+      "m2xl": { max: "1536px" }
     },
     maxWidth: {
       screen: "100%",

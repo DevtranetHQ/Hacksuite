@@ -1,0 +1,115 @@
+@font-face {
+    font-family: "Myriad Pro";
+    src: url('../../components/Scrapbook/fonts/MYRIADPRO-REGULAR.woff') format("woff");
+  }
+  
+  @font-face {
+    font-family: "Myriad Pro";
+    font-style: italic;
+    src: url('../../components/Scrapbook/fonts/MYRIADPRO-REGULAR.woff') format("woff");
+  }
+  
+  @font-face {
+    font-family: "Myriad Pro";
+    font-weight: 700;
+    src: url('../../components/Scrapbook/fonts/MYRIADPRO-REGULAR.woff') format("woff");
+  }
+  
+  @font-face {
+    font-family: "Myriad Pro";
+    font-style: italic;
+    font-weight: 700;
+    src: url('../../components/Scrapbook/fonts/MYRIADPRO-REGULAR.woff') format("woff");
+  }
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.home{
+    display: flex;
+    border: none;
+    height: 73.40239715576172px;
+width: 292.00048828125px;
+left: 1111px;
+top: 72px;
+border-radius: 4.645669460296631px;
+background: #03A9F4;
+font-family: Myriad Pro;
+font-size: 30px;
+font-weight: 700;
+line-height: 36px;
+letter-spacing: 0em;
+text-align: center;
+color: #FFFFFF;
+margin-right: 20px;
+padding-left: 10px;
+}
+.img3{
+    content: url('./images/Vector\ \(7\).png');
+    height: 63.2203369140625px;
+width: 52.5px;
+left: 6.25px;
+top: 6.47900390625px;
+border-radius: 0px;
+margin-right: 30px;
+padding-top: 20px;
+margin-bottom: -20px;
+}
+@media only screen and (min-width: 1024px) {
+    .img1{
+        content: url('./images/logo\ \(1\).png');
+        height: 132px;
+        width: 245.18919372558594px;
+        left: 14px;
+        top: 14px;
+        border-radius: 0px;
+        
+    
+    }
+}
+
+
+.thedynamics{
+    height: 24px;
+width: 226.70269775390625px;
+left: 39.296875px;
+top: 146px;
+border-radius: nullpx;
+font-family: Myriad Pro;
+font-size: 31px;
+font-weight: 700;
+line-height: 37px;
+letter-spacing: 0em;
+text-align: center;
+
+}
+.img2{
+    content: url('./images/Vector\ \(6\).png');
+    height: 59.21497502178475px;
+width: 33.43613583434083px;
+left: 61%;
+top: 57.62213134765625px;
+border-radius: 0px;
+transform: matrix(0.97, -0.27, 0.25, 0.96, 0, 0);
+margin-right: 20px;
+padding-top: 20px;
+margin-bottom: -20px;
+position: absolute;
+cursor: pointer;
+}
+.img4{
+    content: url('./images/Vector\ \(9\).png');
+    height: 17.600000381469727px;
+width: 47.45000076293945px;
+left: -1.921875px;
+top: 7.2000732421875px;
+border-radius: 0px;
+ margin-top: 30px;
+margin-left: 18px;
+}
+.right__side{
+    margin-top: 20px;
+    display: flex;
+    margin-top: 50px;
+}

@@ -6,14 +6,33 @@ class EventService {
     return await new Event(data).save();
   }
 
-  async getAll() {
-    const events = await Event.find({}).populate("creator", "_id firstName lastName image");
+  async getUpcomingEvents() {
+    const now = new Date();
+    const events = await Event.find({ startDate: { $gt: now } }).withCreator();
+
     // TODO this is a hack-ish way to deal with objectid and date object, find a better way
     return events.map(event => JSON.parse(JSON.stringify(event)));
   }
 
-  async getOne(eventId) {
-    const event = await Event.findOne({ _id: eventId }).populate(
+  async getPastEvents() {
+    const now = new Date();
+    const events = await Event.find({ endDate: { $lt: now } }).withCreator();
+
+    return events.map(event => JSON.parse(JSON.stringify(event)));
+  }
+
+  async getOngoingEvents() {
+    const now = new Date();
+    const events = await Event.find({
+      startDate: { $lte: now },
+      endDate: { $gte: now }
+    }).withCreator();
+
+    return events.map(event => JSON.parse(JSON.stringify(event)));
+  }
+
+  async getOne(uniqueId) {
+    const event = await Event.findOne({ uniqueId }).populate(
       "creator",
       "_id firstName lastName image"
     );
@@ -22,16 +41,16 @@ class EventService {
     return JSON.parse(JSON.stringify(event));
   }
 
-  async update(eventId, data) {
-    const event = await Event.findByIdAndUpdate({ _id: eventId }, { $set: data }, { new: true });
+  async update(uniqueId, data) {
+    const event = await Event.findByIdAndUpdate({ uniqueId }, { $set: data }, { new: true });
 
     if (!event) throw new CustomError("Event dosen't exist", 404);
 
     return event;
   }
 
-  async delete(eventId) {
-    const event = await Event.findOne({ _id: eventId });
+  async delete(uniqueId) {
+    const event = await Event.findOne({ uniqueId });
     event.remove();
     return event;
   }

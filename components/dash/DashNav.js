@@ -4,13 +4,11 @@ import { useContext } from "react";
 import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
-import { useAuth } from "./../../hooks/useAuth";
 
 export default function DashNav({ admin }) {
   const router = useRouter();
   const { pathname } = router;
   const { darkMode } = useContext(DarkModeContext);
-  const { logout } = useAuth();
 
   return (
     <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
@@ -188,7 +186,7 @@ export default function DashNav({ admin }) {
             <span>Settings</span>
           </div>
         </Link>
-        <button onClick={logout}>
+        <Link href="/logout">
           <div className="cursor-pointer hover:text-orange-peel transition">
             <svg
               width="40"
@@ -203,7 +201,7 @@ export default function DashNav({ admin }) {
             </svg>
             <span>Logout</span>
           </div>
-        </button>
+        </Link>
       </div>
     </nav>
   );

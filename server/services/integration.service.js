@@ -6,7 +6,7 @@ class IntegrationService {
   async discordEmailCheck(email) {
     if (!email) throw new CustomError("email is required", 404);
 
-    const user = await userService.getOneByEmail(data.email);
+    const user = await userService.getOneByEmail(email);
 
     if (!user.isVerified) throw new CustomError("User with email does not exist");
 

@@ -26,6 +26,7 @@ class UserService {
   }
 
   async update(userId, data) {
+    console.log(userId, data);
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
       { $set: { isCompleted: true, ...data } }
