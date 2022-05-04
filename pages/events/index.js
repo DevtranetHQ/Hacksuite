@@ -46,7 +46,7 @@ export default function Events({ events, loggedIn }) {
             </a>
         </div>
       </header>
-      <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-7 mb-3 heading">
+      <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-10 lg:mt-24 mb-5 lg:mb-[50px]  heading">
         <svg
           width="42"
           height="42"
@@ -62,7 +62,7 @@ export default function Events({ events, loggedIn }) {
         <span className="sm:text-[36px] lg:text-[66px]">Upcoming Events</span>
       </nav>
       <section>{events && events.map((event, key) => <EventCard key={key} {...event} />)}</section>
-      <section className="p-14 text-center">
+      <section className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
         <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
           <span>View past events</span>
           <div className="lg:scale-[2] relative lg:top-1">
