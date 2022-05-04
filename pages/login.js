@@ -17,7 +17,6 @@ export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
   const { login, setToken } = useAuth();
-
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
