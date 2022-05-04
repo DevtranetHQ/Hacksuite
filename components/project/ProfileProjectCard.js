@@ -30,11 +30,11 @@ export default function ProfileProjectCard({ ...props }) {
       className={
         className
           ? className
-          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-80 lg:w-[520px] xl:w-[600px] 2xl-[700px]"
+          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] justify-between p-5"
       }>
       {/* ====== #TOP SECTION */}
       {bubbles.length === 0 ? (
-        <div className="w-full h-[20%]  flex items-center justify-between relative  pr-4 ">
+        <div className="w-full h-[20%]  flex items-center justify-between relative ">
           <span className="relative flex items-center">
             <p className="caption flex items-center gap-2 text-12px md:text-16px lg-text-18px">
               <Icon icon="mdi:clock-time-four-outline" color="#03a9f4" inline={true} />
@@ -63,7 +63,7 @@ export default function ProfileProjectCard({ ...props }) {
                   <Avatar
                     key={index}
                     image="/assets/TEST/img-8.jpg"
-                    className="w-11 h-11 relative -m-4"
+                    className="w-11 h-11 relative -m-3"
                   />
                 );
               }): bubbleTrimmer(bubbles, 0, 3).map((bubble, index) => {
@@ -99,12 +99,12 @@ export default function ProfileProjectCard({ ...props }) {
       )}
 
       {/* ====== #IMAGE */}
-      <div className="w-full h-[50%]  flex items-center justify-center relative">
+      <div className="w-full h-[50%] flex items-center justify-center relative">
         <Image src={image} alt="" layout="fill" className="object-cover" />
       </div>
 
       {/* ====== #TEXT SECTION */}
-      <div className="w-full pl-3 pr-3">
+      <div className="">
         <h4 className="subheadline font-semibold">{title}</h4>
         <p className="caption font-semibold italic">{desc}</p>
       </div>
