@@ -44,7 +44,7 @@ export default function Events({ events, loggedIn }) {
             </a>
         </div>
       </header>
-      <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-10 lg:mt-24 mb-5 lg:mb-[50px]  heading">
+      <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-10 lg:mt-24 mb-5 lg:pb-[50px]  heading">
         <svg
           width="42"
           height="42"
