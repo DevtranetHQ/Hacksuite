@@ -40,7 +40,7 @@ export default function Profile({ loggedIn, user }) {
     <div className="dark:bg-[#202020] dark:text-white">
       {/* ====== NavBar start */}
       
-      <nav className="flex items-center justify-between pl-8 pr-12">
+      {/* <nav className="flex items-center justify-between pl-8 pr-12">
         <Logo className="w-[120px] py-5" />
         <div className="flex gap-x-2">
           <DarkModeToggle
@@ -62,7 +62,6 @@ export default function Profile({ loggedIn, user }) {
           </a>
           <Link href="/">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
-              {loggedIn ? "Go back" : "All Events"}
               <svg
                 width="41"
                 height="16"
@@ -76,7 +75,28 @@ export default function Profile({ loggedIn, user }) {
             </button>
           </Link>
         </div>
-      </nav>
+      </nav> */}
+      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
+            <Logo className="w-[80px] md:w-[120px] py-5" />
+            <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
+            <DarkModeToggle
+                className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+                darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            />
+            <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+                <GithubIcon />
+            </a>
+            <Link href="https://thedynamics.tech">
+                <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
+                {loggedIn ? "Go back" : "All Events"}
+                <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
+                    <ArrowIcon />
+                </div>
+                </button>
+            </Link>
+            </div>
+        </nav>
+                 
 
       {/* ====== #PROFILE head start */}
       <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
@@ -103,7 +123,7 @@ export default function Profile({ loggedIn, user }) {
                     return (
                       <Avatar
                         {...follower}
-                        className="-m-3 relative h-10 w-10 hover:scale-110 "
+                        className="-m-3 relative h-9 w-9 p-0 hover:scale-110 "
                         key={index}
                       />
                     );
