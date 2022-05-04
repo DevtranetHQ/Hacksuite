@@ -20,7 +20,7 @@ export const getServerSideProps = async ({ query, res }) => {
 
     const token = await authService._getLoginToken(existingUser);
 
-    res.writeHead(302, { Location: `/login?discordLoginToken=${token}` });
+    res.writeHead(302, { Location: `/login?token=${token}` });
     res.end();
 
     return { props: { user: discordUser } };

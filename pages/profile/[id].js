@@ -11,7 +11,9 @@ import TwitterIcon from "../../components/icons/Twitter";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
+
 import Scrapbook from "./Scrapbook";
+
 
 /**
  * takes initial array and returns trimmed array
