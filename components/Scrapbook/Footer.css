@@ -1,0 +1,27 @@
+.footer{
+    height: 134px;
+width: 100%;
+left: 0px;
+top: 5066px;
+border-radius: 0px;
+background: #F4F4F4;
+
+}
+.footer__body{
+    height: 63px;
+    padding-top: 20px;
+width: 1214px;
+left: 81px;
+top: 5094px;
+border-radius: nullpx;
+font-family: Myriad Pro;
+font-size: 36px;
+font-weight: 400;
+line-height: 43px;
+letter-spacing: 0em;
+text-align: center;
+
+}
+.member{
+    color: blue;
+}
