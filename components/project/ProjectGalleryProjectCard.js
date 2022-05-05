@@ -35,9 +35,9 @@ export default function ProjectGalleryProjectCard({ ...props }) {
           : "w-[370px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-1/1 lg:w-[520px] xl:w-[600px] 2xl-[700px]"
       }>
       {/* ====== #TOP SECTION */}
-      <div className="w-full flex items-center justify-between relative pl-4 pr-4 pt-[8px] pb-[20px]">
-        <div className="flex justify-between items-center w-full">
-            <div className="relative flex gap-4 items-center">
+      <div className="w-full flex items-center justify-between relative pr-4 pt-[8px] pb-[20px]">
+        <div className="flex justify-between items-center w-full h-[52.2px]">
+            <div className="relative flex gap-4 items-center pl-4">
               {bubbles &&
                 bubbles.map((bubble, index) => {
                   return (
@@ -50,8 +50,8 @@ export default function ProjectGalleryProjectCard({ ...props }) {
                   );
                 })}
               <div>
-                  {bubbles.length === 1 ? <p className="ml-4 font-semibold text-[23.2px]">{name}</p> : <p className="ml-4 font-semibold text-[23.2px]">{`+ ${bubbleNumber - 3} more`}</p>}
-                  <p className="ml-4 caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]"><TimeIcon width={10} height={10} /> <span>{date}</span></p>
+                  {bubbles.length === 1 ? <p className="ml-4 font-semibold text-[23.2px]">{name}</p> : (bubbles.length === 0 ? '' : <p className="ml-4 font-semibold text-[23.2px]">{`+ ${bubbleNumber - 3} more`}</p>)}
+                  <p style={{paddingLeft: bubbles.length === 0 ? 0 : 16, top: bubbles.length === 0 ? 12 : 0 }} className="relative caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]"><TimeIcon width={10} height={10} /> <span>{date}</span></p>
               </div>
             </div>
             <div className="flex gap-[10px]">
