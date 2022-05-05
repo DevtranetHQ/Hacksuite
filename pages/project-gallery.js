@@ -16,7 +16,7 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 export default function ProjectGallery({user, project}) {
     return (
         <div className="dark:bg-[#202020] dark:text-white">
-            <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
+            <nav className="flex items-center justify-between pl-[10px] lg:pl-[37px] pr-[10px] lg:pr-[37px]">
             <Logo className="w-[80px] md:w-[120px] py-5" />
             <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
             <DarkModeToggle
@@ -27,7 +27,7 @@ export default function ProjectGallery({user, project}) {
                 <GithubIcon />
             </a>
             <Link href="https://thedynamics.tech">
-                <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
+                <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-0 my-0 md:my-0 focus:outline-none">
                     Go back home
                 <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
                     <ArrowIcon />

@@ -11,7 +11,7 @@ import ArrowIcon from "../../components/icons/Arrow";
 export default function Events({ events, loggedIn }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white">
-      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
+      <nav className="flex items-center justify-between pl-[10px] lg:pl-[37px] pr-[10px] lg:pr-[37px]">
         <Logo className="w-[80px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-2 lg:gap-x-4 items-center">
           <DarkModeToggle
@@ -22,7 +22,7 @@ export default function Events({ events, loggedIn }) {
             <GithubIcon />
           </a>
           <Link href="/">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:py-[10px] button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0">
+            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back home" : "Join us"}
               <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
                   <ArrowIcon />
