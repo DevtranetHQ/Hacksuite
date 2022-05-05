@@ -63,7 +63,7 @@ class DiscordAuthService {
     user.discordId = discordId;
     await user.save({ validateBeforeSave: false });
 
-    return user;
+    return true;
   }
 }
 
