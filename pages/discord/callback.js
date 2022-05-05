@@ -29,6 +29,6 @@ export const getServerSideProps = async ({ query, res }) => {
     res.writeHead(302, { Location: `/login?${params}` });
     res.end();
 
-    return {};
+    return { props: {} };
   }
 };
