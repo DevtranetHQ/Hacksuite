@@ -22,7 +22,7 @@ export default function Dash({ admin, name, unread }) {
       <div className="md:col-span-2 hidden md:block">
         {/* <DashNav admin={admin} unread={unread}/> */}
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-12 md:col-span-10 md:p-10 py-12 px-5 relative">
+      <div className="dark:bg-[#202020] dark:text-white col-span-12 md:col-span-10 md:p-10 py-12 px-5 relative md:w-[83%] lg:w-[93%] md:ml-auto">
         {/* <div className="text-right flex items-center justify-end">
         <DarkModeToggle
                 className="h-[30px]"
@@ -46,7 +46,7 @@ export default function Dash({ admin, name, unread }) {
         </div>
 
         
-        <div className="fixed bottom-0 right-0 pr-3 z-20 w-[100%]">
+        <div className="fixed block md:hidden bottom-0 right-0 pr-3 z-20 w-[100%]">
          <div className="flex w-[100%] justify-between items-center px-4 bg-[#F8FBFF] py-4">
         <Link href="/workshop">
           <div
