@@ -11,7 +11,7 @@ export default function Error() {
 
         <div className="button-small md:button-medium button-fruit-salad text-12px  w-fit mx-auto">
           <Link href="/">
-            <p className="text-white dark:text-dark flex items-center">
+            <p className="text-white dark:text-white flex items-center">
               <Icon icon="mdi:home" className="mr-2" />
               Go back home
             </p>
