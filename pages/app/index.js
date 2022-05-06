@@ -13,19 +13,21 @@ import { withAuth } from "./../../server/middlewares/auth.middleware";
 export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
   return (
+    <>
+    <DashNav admin={admin} unread={unread}/>
     <div className="grid grid-cols-12 relative">
-      <div className="col-span-2 ">
-        <DashNav admin={admin} />
+      <div className="md:col-span-2 hidden md:block">
+        {/* <DashNav admin={admin} unread={unread}/> */}
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
-        <div className="text-right flex items-center justify-end">
+      <div className="dark:bg-[#202020] dark:text-white col-span-12 md:col-span-10 p-10 relative">
+        {/* <div className="text-right flex items-center justify-end">
         <DarkModeToggle
                 className="h-[30px]"
                 darkClassName="h-[30px]"
             />
           <NotificationsLink unread={unread} className="h-[25px]"/>
-        </div>
-        <div className="text-center">
+        </div> */}
+        <div className="text-center mt-20">
           <h1 className="font-semibold text-42px">
             Hey there, <span className="text-fruit-salad">{name}.</span>
           </h1>
@@ -40,6 +42,7 @@ export default function Dash({ admin, name, unread }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

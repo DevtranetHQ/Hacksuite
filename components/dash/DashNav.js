@@ -4,13 +4,16 @@ import { useContext } from "react";
 import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
+import TopNav from './TopNav';
 
-export default function DashNav({ admin }) {
+export default function DashNav({ admin, unread }) {
   const router = useRouter();
   const { pathname } = router;
   const { darkMode } = useContext(DarkModeContext);
   return (
-    <nav className="border-r-2 h-full container-gray-dark dark:text-white dark:border-r-0 fixed top-0 left-0 pr-11 ">
+      <>
+      <TopNav unread={unread}/>
+    <nav className="border-r-2 h-full container-gray-dark dark:text-white dark:border-r-0 fixed top-0 left-0 pr-11 hidden md:block">
       <Logo className="mx-auto pt-10 w-[100px]" darkMode={darkMode} />
       <div className={styles.nav}>
         <Link href="/index">
@@ -223,5 +226,6 @@ export default function DashNav({ admin }) {
         </Link>
       </div>
     </nav>
+    </>
   );
 }
