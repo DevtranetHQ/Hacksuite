@@ -17,12 +17,12 @@ export default function DashNav({ admin }) {
         <Link href="/app">
           <div    
             className={
-              router.pathname === "/app" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-center"
+              router.pathname === "/app" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-end"
             }>
             <svg
               width="25"
-              height="25"
-              viewBox="0 0 41 35"
+              height="40"
+              viewBox="0 0 41 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -30,7 +30,7 @@ export default function DashNav({ admin }) {
                 fill="#03A9F4"
               />
             </svg>
-            <span className="mt-1">Home</span>
+            <span>Home</span>
           </div>
         </Link>
         <Link href="/workshop">
