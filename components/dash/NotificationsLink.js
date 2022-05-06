@@ -5,7 +5,7 @@ export default function NotificationsLink({ unread, className }) {
     <Link href="/app/notifications">
       <div className="inline relative md:mt-[.2rem]">
         <svg
-          className="cursor-pointer inline fill-deep-sky-blue mx-2 md:h-[26px] h-[20px]"
+          className={`cursor-pointer inline fill-deep-sky-blue mx-2 md:h-[26px] h-[20px] ${className}`}
           width="30"
           height="30"
           viewBox="0 0 37 43"
