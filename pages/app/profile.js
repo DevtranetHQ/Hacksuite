@@ -7,24 +7,17 @@ import { withAuth } from "../../server/middlewares/auth.middleware";
 import Fade from "react-reveal/Fade";
 
 export default function Profile({ user }) {
-  const verifyEmail = "success";
+  const { completeProfile } = useAuth();
+  const router = useRouter();
 
   const onSubmit = e => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
 
-    const data = {
-      dob: formData.get("dob"),
-      gender: formData.get("gender"),
-      countryOfResidence: formData.get("countryOfResidence"),
-      phoneNumber: formData.get("phoneNumber"),
-      describe: formData.get("personalDescription"),
-      skills: formData.get("skillsAndInterests"),
-      levelOfStudy: formData.get("levelOfStudy")
-    };
+    const data = Object.fromEntries(formData.entries());
 
-    console.log(data);
+    completeProfile.execute(user.id, data);
   };
 
   return (
@@ -39,8 +32,7 @@ export default function Profile({ user }) {
         </div>
       </div>
 
-      {/* Successful Email Verification Trigger Message */}
-      {verifyEmail !== "success" && (
+      {router.query.verified && (
         <Fade top>
           <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
             Email Verification Successful!
@@ -116,11 +108,11 @@ export default function Profile({ user }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
           <div>
-            <label className="form-label font-normal" htmlFor="personalDescription">
+            <label className="form-label font-normal" htmlFor="describe">
               What describes you the best?
               <span className="text-[#ff0000]">*</span>
             </label>
-            <select className="form-select" defaultValue="N/A" id="personalDescription" required>
+            <select className="form-select" defaultValue="N/A" id="describe" required>
               <option disabled value="N/A">
                 Tell us who you are
               </option>
@@ -129,11 +121,11 @@ export default function Profile({ user }) {
             </select>
           </div>
           <div>
-            <label className="form-label font-normal" htmlFor="skillsAndInterests">
+            <label className="form-label font-normal" htmlFor="skills">
               Skills and interests
               <span className="text-[#ff0000]">*</span>
             </label>
-            <select className="form-select" defaultValue="N/A" id="skillsAndInterests">
+            <select className="form-select" defaultValue="N/A" id="skills">
               <option disabled value="N/A">
                 Select your skills and interests
               </option>
@@ -169,9 +161,9 @@ export default function Profile({ user }) {
 
       <footer className="bg-deep-sky-blue py-1.5 xs:py-3">
         <div className="mxs:text-18px text-28px flex items-center justify-center text-white font-medium xs:font-semibold">
-          Need to edit something?&nbsp;
-          <Link href="#">
-            <a className="underline text-white">Go back</a>
+          Need help with something?&nbsp;
+          <Link href="mailto:team@thedynamics.tech">
+            <a className="underline text-white">Contact us</a>
           </Link>
         </div>
       </footer>

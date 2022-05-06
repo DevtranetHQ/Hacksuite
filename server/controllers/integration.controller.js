@@ -2,7 +2,7 @@ import { CustomResponse } from "./../utils/customResponse";
 import IntegrationService from "./../services/integration.service";
 import discordAuthService from "../modules/auth/discord.service";
 
-class IntegrationContoller {
+class IntegrationController {
   async discordEmailCheck(req) {
     const result = await IntegrationService.discordEmailCheck(req.body.email);
     return new CustomResponse(200, "user exists", result);
@@ -10,8 +10,8 @@ class IntegrationContoller {
 
   async addDiscordUser(req) {
     const { discordId, email } = req.body;
-    const user = await discordAuthService.addDiscordUser(discordId, email);
-    return new CustomResponse(201, "discord user added", user);
+    const result = await discordAuthService.addDiscordUser(discordId, email);
+    return new CustomResponse(201, "discord user added", result);
   }
 
   async discordResendVerificationEmail(req) {
@@ -20,6 +20,6 @@ class IntegrationContoller {
   }
 }
 
-const IntegrationCtrl = new IntegrationContoller();
+const IntegrationCtrl = new IntegrationController();
 
 export { IntegrationCtrl };
