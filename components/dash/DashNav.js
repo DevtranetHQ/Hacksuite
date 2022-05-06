@@ -11,13 +11,13 @@ export default function DashNav({ admin }) {
   const { darkMode } = useContext(DarkModeContext);
   
   return (
-    <nav className="border-r-2 h-full container-gray-dark dark:text-white dark:border-r-0 fixed top-0 left-0 pr-11 ">
-      <Logo className="ml-10 pt-5 w-[100px]" darkMode={darkMode} />
+    <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center  fixed top-0 left-0 mx-auto">
+      <Logo className="mx-auto pt-5 w-[100px]" darkMode={darkMode} />
       <div className={styles.nav}>
-        <Link href="/app/index">
+        <Link href="/app">
           <div    
             className={
-              router.pathname === "/app/index" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-center"
+              router.pathname === "/app" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
               width="25"
@@ -30,7 +30,7 @@ export default function DashNav({ admin }) {
                 fill="#03A9F4"
               />
             </svg>
-            <span>Home</span>
+            <span className="mt-1">Home</span>
           </div>
         </Link>
         <Link href="/workshop">

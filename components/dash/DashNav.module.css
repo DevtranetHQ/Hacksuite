@@ -1,9 +1,9 @@
 .nav {
-  @apply flex flex-col gap-5 ml-10 mr-10 mt-14 ;
+  @apply flex flex-col gap-5 mx-auto mt-14 ;
 }
 
 .nav div {
-  @apply flex gap-1 ;
+  @apply flex gap-1;
 }
 
 .nav div span {

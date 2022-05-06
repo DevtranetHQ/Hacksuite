@@ -14,30 +14,30 @@ export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
   
   return (
-    <div className="grid grid-cols-12 relative">
-      <div className="col-span-2 ">
+    <div className="grid grid-cols-12 ">
+      <div className="col-span-1 mx-auto">
         <DashNav admin={admin} />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative mx-auto content-center ">
-        <div className="text-right flex items-end justify-end  mt-5">
+      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10 relative mx-auto content-center w-full h-full">
+        <div className="text-right flex items-end justify-end  mt-4">
         <DarkModeToggle
                 className="h-[30px]"
                 darkClassName="h-[30px]"
             />
           <NotificationsLink unread={unread} className="h-[25px]"/>
         </div>
-        {}
         <div>
         <div className="text-center">
           <h1 className="font-semibold text-42px -mt-3">
             Hey there, <span className="text-fruit-salad">{name}.</span>
           </h1>
-          <div className="mx-auto relative w-[70%] -mt-14">
-            <Image src={placeholder} alt="" />
+          <div className="mx-auto  -mt-14">
+            <Image src={placeholder} alt="" width={700} height={500}/>
           </div>
-          <div className=" -mt-16">
-          <h1 className="text-42px -rotate-6">Welcome to</h1>
-          <h1 className="text-54px font-semibold uppercase -mt-6">The Dynamics</h1>
+          <div className="-mt-20">
+          <h1 className="text-54px -rotate-6">Welcome to</h1>
+          <h1 className="text-54px font-semibold uppercase -mt-3">The Dynamics</h1>
+          
           </div>
         </div>
         <div className="fixed bottom-0 right-0 pb-3 pr-3 z-20">
