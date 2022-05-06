@@ -14,12 +14,12 @@ export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
   
   return (
-    <div className="grid grid-cols-12 ">
+    <div className="grid grid-cols-12 dark:bg-[#202020]">
       <div className="col-span-1 mx-auto">
         <DashNav admin={admin} />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10 relative mx-auto content-center w-full h-full">
-        <div className="text-right flex items-end justify-end  mt-4">
+      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10  mx-auto content-center min-w-full min-h-screen">
+        <div className="text-right flex items-end justify-end  mt-3">
         <DarkModeToggle
                 className="h-[30px]"
                 darkClassName="h-[30px]"
@@ -31,10 +31,10 @@ export default function Dash({ admin, name, unread }) {
           <h1 className="font-semibold text-42px -mt-3">
             Hey there, <span className="text-fruit-salad">{name}.</span>
           </h1>
-          <div className="mx-auto  -mt-14">
-            <Image src={placeholder} alt="" width={700} height={500}/>
+          <div className="mx-auto -mt-8">
+            <Image src={placeholder} alt="" width={700} height={430}/>
           </div>
-          <div className="-mt-20">
+          <div className="-mt-14">
           <h1 className="text-54px -rotate-6">Welcome to</h1>
           <h1 className="text-54px font-semibold uppercase -mt-3">The Dynamics</h1>
           
