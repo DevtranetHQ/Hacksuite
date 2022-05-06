@@ -6,8 +6,8 @@ export default function NotificationsLink({ unread }) {
       <div className="inline relative">
         <svg
           className="cursor-pointer inline fill-deep-sky-blue mx-2"
-          width="37"
-          height="43"
+          width="30"
+          height="30"
           viewBox="0 0 37 43"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
