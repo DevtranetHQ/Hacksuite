@@ -6,20 +6,24 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import { useRouter } from "next/router";
-// Animation Package for the trigger messages
 import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import authService from "../server/modules/auth/auth.service";
+import ReCAPTCHA from "react-google-recaptcha";
+import DarkModeContext from "../components/DarkModeContext";
+import { useContext } from "react";
 
 export default function ResetPassword() {
   const router = useRouter();
   const { resetPassword } = useAuth();
-  const [revealPassword, setRevealPassword] = useState(false);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
+  const { darkMode } = useContext(DarkModeContext);
+  const [revealPassword, setRevealPassword] = useState(false);
+
   const toggleReveal = () => {
-    setRevealPassword(!revealPassword);
-    var id = document.getElementById("password");
+    setRevealPassword(r => !r);
+    const id = document.getElementById("password");
     id.type = id.type === "password" ? "text" : "password";
   };
 
@@ -44,7 +48,7 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="dark:bg-[#202020] dark:text-white relative">
+    <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
         <Logo className="w-[80px] xs:w-[120px] pt-5" />
         <div className="pt-1.5">
@@ -70,12 +74,12 @@ export default function ResetPassword() {
         </Fade>
       )}
 
-      <div className="flex mmd:bg-mobile-login justify-center">
-        <div className="md:block md:w-1/2 md:-m-[1px] md:p-0 xs:pt-9 md:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
+      <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
+        <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">
           <Image src={authImage} layout="responsive" alt="Dash" />
         </div>
-        <div className="w-full mmd:mb-[10.8rem] px-6 pb-8 mxs:mt-12 sm:w-4/5 lg:w-3/6 2xl:w-1/4 sm:mx-12 lg:mx-20 xl:ml-44 xl:mr-40 2xl:mx-auto 2xl:mt-20">
-          <h1 className="text-36px mb-14 text-center font-black xs:text-30px xs:mb-10">
+        <div className="w-full mxs:mb-[10.8rem] mxs:mt-12 xs:w-1/2 sm:w-2/5 lg:w-1/3 2xl:w-1/4 sm:mx-12 lg:mx-20 xl:ml-44 xl:mr-40 2xl:mx-auto 2xl:mt-20">
+          <h1 className="text-36px mb-14 text-center font-black xs:text-30px xs:mb-4">
             RESET PASSWORD
           </h1>
           <form
@@ -83,13 +87,11 @@ export default function ResetPassword() {
             onSubmit={submitReset}>
             <div>
               <div>
-                <div className="flex justify-between">
-                  <label
-                    className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1"
-                    htmlFor="password">
-                    New Password
-                  </label>
-                </div>
+                <label
+                  className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1"
+                  htmlFor="password">
+                  New Password
+                </label>
                 <input
                   className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
                   name="password"
@@ -97,11 +99,11 @@ export default function ResetPassword() {
                   type="password"
                   minLength="6"
                   maxLength="100"
-                  placeholder="Password"
+                  placeholder="Enter new password"
                   required
                 />
                 <Icon
-                  className="dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
+                  className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
                   onClick={toggleReveal}
                   width="1.3em"
                   height="1.3em"
@@ -111,13 +113,11 @@ export default function ResetPassword() {
                 />
               </div>
               <div>
-                <div className="flex justify-between">
-                  <label
-                    className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1"
-                    htmlFor="password2">
-                    Confirm Password
-                  </label>
-                </div>
+                <label
+                  className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1"
+                  htmlFor="password2">
+                  Confirm Password
+                </label>
                 <input
                   className={
                     !passwordMismatch
@@ -129,17 +129,8 @@ export default function ResetPassword() {
                   type="password"
                   minLength="6"
                   maxLength="100"
-                  placeholder="Confirm New Password"
+                  placeholder="Confirm new password"
                   required
-                />
-                <Icon
-                  className="dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
-                  onClick={toggleReveal}
-                  width="1.3em"
-                  height="1.3em"
-                  icon={
-                    revealPassword ? "ant-design:eye-invisible-outlined" : "ant-design:eye-outlined"
-                  }
                 />
                 {passwordMismatch && (
                   <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
@@ -147,8 +138,16 @@ export default function ResetPassword() {
                   </p>
                 )}
               </div>
+              <div className="mxs:mr-14 relative scale-50 md:scale-67 xl:scale-70 mx-auto mt-6">
+                <ReCAPTCHA
+                  className="w-fit mx-auto"
+                  sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                  size="normal"
+                  theme={darkMode ? "dark" : "light"}
+                />
+              </div>
               <button
-                className="w-4/5 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
+                className="rounded-md button-small button-deep-sky-blue mx-auto text-15px md:text-16px mt-5 h-8 py-0 xs:py-1 px-6 md:px-10"
                 type="submit">
                 Update my password
               </button>
