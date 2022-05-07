@@ -35,7 +35,7 @@ const TopNav = ({ unread }) => {
                 <MenuBar className="md:w-[25px] md:h-[30px] w-[21px] h-[21px] mx-2 md:hidden" darkClassName="md:w-[25px] md:h-[30px] w-[21px] h-[21px] mx-2 md:hidden" openNav={openNavbarHandler} />
             </div>
             {
-                openNavbar ? <div className="w-[100%] text-[14px] mt-[4.5rem] flex flex-col gap-3 absolute bg-white z-10 pb-5 transition duration-150 ease-out md:hidden">
+                openNavbar ? <div className="w-[100%] text-[14px] mt-[6rem] flex flex-col gap-3 absolute bg-white z-10 pb-5 transition duration-150 ease-out md:hidden">
                     <button className="w-[max-content] justify-self-end self-end mr-6" onClick={closeNavbarHandler}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-3 h-3">
                         <path d="M1.62405 0L0 1.62405L8.37595 10L0 18.376L1.62405 20L10 11.624L18.376 20L20 18.376L11.624 10L20 1.62405L18.376 0L10 8.37595L1.62405 0Z" fill="#03A9F4" />
                     </svg>
