@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Fade from "react-reveal/Fade";
-import verificationImage from "../../public/assets/auth/verification.png";
+import verificationImage from "../../public/assets/auth/verification-email-sent.svg";
 import InboxIcon from "../icons/Inbox";
 import { useAuth } from "../AuthContext";
 import LoadingButton from "../LoadingButton";
@@ -17,18 +17,18 @@ export default function VerificationSent({ email }) {
           </p>
         </Fade>
       )}
-      <div className="flex flex-col h-[80%] justify-center mx-auto w-full sm:w-[57%] sm:z-0">
+      <div className="flex flex-col mxs:h-[80%] mx-auto w-full sm:w-[57%] sm:z-0">
         <Image layout="responsive" src={verificationImage} alt="" />
-        <div className="sm:-mt-4 sm:z-10 w-3/4 sm:w-3/5 mx-auto text-center px-4">
-          <p className="text-10px sm:text-20px">
+        <div className="sm:-mt-3 sm:z-10 w-3/4 sm:w-3/5 mx-auto text-center px-4">
+          <p className="text-10px sm:text-18px sm:mb-1.5">
             <span className="font-semibold">Can't find it?</span>
             &nbsp;Check your spam, junk, and promotions folder or click the resend button
           </p>
           <LoadingButton
-            className="msm:pl-2 msm:pr-3.5 w-fit button-small msm:py-0 button-fruit-salad rounded sm:rounded-md cursor-pointer text-14px sm:text-24px mx-auto mt-4 sm:mt-5 sm:px-8 h-8 sm:h-12"
+            className="msm:pl-2 msm:pr-3.5 w-fit button-small msm:py-0 button-fruit-salad rounded sm:rounded-md cursor-pointer text-14px sm:text-24px mx-auto mt-4 sm:mt-5 sm:px-6 h-8 sm:h-12"
             isLoading={resendEmailVerification.status === "loading"}
             onClick={() => resendEmailVerification.execute(email)}>
-            <span className="msm:scale-50 relative mt-0.5 sm:mt-1 sm:mr-2">
+            <span className="relative msm:scale-50 scale-75 mt-0.5 sm:mt-1.5 sm:mr-2">
               <InboxIcon />
             </span>
             &nbsp;resend email
