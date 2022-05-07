@@ -17,9 +17,9 @@ export default function VerificationSent({ email }) {
           </p>
         </Fade>
       )}
-      <div className="flex flex-col msm:justify-center msm:h-[80%] mx-auto w-full sm:w-[57%] sm:z-0">
-        <Image layout="responsive" src={verificationImage} alt="" />
-        <div className="sm:-mt-3 sm:z-10 w-3/4 sm:w-3/5 mx-auto text-center px-4">
+      <div className="flex flex-col justify-center msm:h-[80%] h-[95%] mx-auto w-full sm:w-[57%] sm:z-0">
+        <Image className="sm:scale-90" layout="responsive" src={verificationImage} alt="" />
+        <div className="sm:-mt-8 sm:z-10 w-3/4 sm:w-3/5 mx-auto text-center px-4">
           <p className="text-10px sm:text-18px sm:mb-1.5">
             <span className="font-semibold">Can't find it?</span>
             &nbsp;Check your spam, junk, and promotions folder or click the resend button
