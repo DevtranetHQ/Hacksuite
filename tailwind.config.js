@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.js", "./components/**/*.js"],
+  content: ["./pages/**/*.js", "./components/**/*.{js,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -14,7 +14,7 @@ module.exports = {
         "gray-dark": "#2D2D2D"
       },
       gridTemplateColumns: {
-        // Simple 16 column grid
+        // Simple 20 column grid
         20: "repeat(20, minmax(0, 1fr))"
       },
       scale: {

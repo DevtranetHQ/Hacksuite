@@ -23,7 +23,10 @@ class EventService {
 
   async getOngoingEvents() {
     const now = new Date();
-    const events = await Event.find({ startDate: { $lte: now }, endDate: { $gte: now } }).withCreator();
+    const events = await Event.find({
+      startDate: { $lte: now },
+      endDate: { $gte: now }
+    }).withCreator();
 
     return events.map(event => JSON.parse(JSON.stringify(event)));
   }

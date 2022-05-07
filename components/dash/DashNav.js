@@ -11,18 +11,20 @@ export default function DashNav({ admin }) {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-    <nav className="border-r-2 min-h-screen h-full container-gray-dark dark:text-white dark:border-0">
-      <Logo className="mx-auto pt-10 w-[120px]" darkMode={darkMode} />
+    <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center fixed top-0 left-0 mx-auto right-auto">
+      <Logo className="mx-auto pt-5 w-[100px]" darkMode={darkMode} />
       <div className={styles.nav}>
-        <Link href="/">
+        <Link href="/app">
           <div
             className={
-              pathname === "/" ? styles.active : "cursor-pointer hover:text-orange-peel transition"
+              router.pathname === "/app"
+                ? styles.active
+                : "cursor-pointer hover:text-orange-peel transition flex items-end"
             }>
             <svg
-              width="40"
+              width="25"
               height="40"
-              viewBox="0 0 41 35"
+              viewBox="0 0 41 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path
@@ -33,18 +35,40 @@ export default function DashNav({ admin }) {
             <span>Home</span>
           </div>
         </Link>
+        <Link href="/workshop">
+          <div
+            className={
+              router.pathname === "/workshop"
+                ? styles.active
+                : "cursor-pointer hover:text-orange-peel transition flex items-center"
+            }>
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 39 37"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M22.9861 24.9625L34.7361 36.7125L38.8682 32.4825L27.1182 20.7325L22.9861 24.9625V24.9625ZM30.2711 14.7792C29.5073 14.7792 28.6848 14.6812 28.0386 14.4071L5.73316 36.6146L1.60107 32.4825L16.1123 17.9908L12.6461 14.505L11.2361 15.8758L8.39649 13.1146V18.7154L7.02566 20.0862L0.132324 13.1146L1.50316 11.7437H7.00607L4.26441 8.9825L11.2361 2.01083C11.7777 1.46633 12.4215 1.03424 13.1306 0.739388C13.8398 0.444541 14.6002 0.292755 15.3682 0.292755C16.1361 0.292755 16.8965 0.444541 17.6057 0.739388C18.3148 1.03424 18.9587 1.46633 19.5002 2.01083L15.3682 6.24083L18.1294 8.9825L16.739 10.3729L20.2444 13.8587L23.8086 10.1771C23.5344 9.53083 23.4169 8.70833 23.4169 7.98375C23.4091 7.07964 23.5808 6.18297 23.922 5.34568C24.2633 4.50839 24.7672 3.74712 25.4047 3.10598C26.0422 2.46483 26.8006 1.95655 27.6359 1.61057C28.4713 1.26459 29.3669 1.08779 30.2711 1.09041C31.4265 1.09041 32.4448 1.36458 33.3652 1.91291L28.1365 7.14166L31.074 10.0792L36.3027 4.85041C36.8511 5.77083 37.1252 6.75 37.1252 7.98375C37.1252 11.7437 34.0898 14.7792 30.2711 14.7792Z"
+                fill="#03A9F4"
+              />
+            </svg>
+
+            <span>Workshops</span>
+          </div>
+        </Link>
         {admin && (
           <>
-            <Link href="/tickets">
+            <Link href="/app/tickets">
               <div
                 className={
-                  pathname === "/tickets"
+                  pathname === "/app/tickets"
                     ? styles.active
-                    : "cursor-pointer hover:text-orange-peel transition"
+                    : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  width="35"
-                  height="38"
+                  width="25"
+                  height="25"
                   viewBox="0 0 35 38"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -56,16 +80,16 @@ export default function DashNav({ admin }) {
                 <span>Tickets</span>
               </div>
             </Link>
-            <Link href="/members">
+            <Link href="/app/members">
               <div
                 className={
-                  pathname === "/members"
+                  pathname === "/app/members"
                     ? styles.active
-                    : "cursor-pointer hover:text-orange-peel transition"
+                    : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  width="50"
-                  height="50"
+                  width="25"
+                  height="25"
                   viewBox="0 0 42 34"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -77,16 +101,16 @@ export default function DashNav({ admin }) {
                 <span>Members</span>
               </div>
             </Link>
-            <Link href="/statistics">
+            <Link href="/app/statistics">
               <div
                 className={
-                  pathname === "/statistics"
+                  pathname === "/app/statistics"
                     ? styles.active
-                    : "cursor-pointer hover:text-orange-peel transition"
+                    : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  width="40"
-                  height="40"
+                  width="25"
+                  height="25"
                   viewBox="0 0 43 40"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -100,16 +124,16 @@ export default function DashNav({ admin }) {
             </Link>
           </>
         )}
-        <Link href="/personal-projects">
+        <Link href="/app/personal-projects">
           <div
             className={
-              pathname === "/personal-projects"
+              pathname === "/app/personal-projects"
                 ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition"
+                : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              width="40"
-              height="40"
+              width="25"
+              height="25"
               viewBox="0 0 40 43"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -121,16 +145,16 @@ export default function DashNav({ admin }) {
             <span>Projects</span>
           </div>
         </Link>
-        <Link href="/events">
+        <Link href="/app/events">
           <div
             className={
-              pathname === "/events"
+              pathname === "/app/events"
                 ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition"
+                : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              width="40"
-              height="40"
+              width="25"
+              height="25"
               viewBox="0 0 37 41"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -143,16 +167,16 @@ export default function DashNav({ admin }) {
           </div>
         </Link>
         {!admin && (
-          <Link href="/discord">
+          <Link href="/app/discord">
             <div
               className={
-                pathname === "/discord"
+                pathname === "/app/discord"
                   ? styles.active
-                  : "cursor-pointer hover:text-orange-peel transition"
+                  : "cursor-pointer hover:text-orange-peel transition flex items-center"
               }>
               <svg
-                width="40"
-                height="40"
+                width="25"
+                height="25"
                 viewBox="0 0 41 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -165,16 +189,16 @@ export default function DashNav({ admin }) {
             </div>
           </Link>
         )}
-        <Link href="/settings">
+        <Link href="/app/settings">
           <div
             className={
-              pathname === "/settings"
+              pathname === "/app/settings"
                 ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition"
+                : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              width="40"
-              height="40"
+              width="25"
+              height="25"
               viewBox="0 0 39 41"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -187,10 +211,10 @@ export default function DashNav({ admin }) {
           </div>
         </Link>
         <Link href="/logout">
-          <div className="cursor-pointer hover:text-orange-peel transition">
+          <div className="cursor-pointer hover:text-orange-peel transition flex items-center">
             <svg
-              width="40"
-              height="40"
+              width="25"
+              height="25"
               viewBox="0 0 37 41"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">

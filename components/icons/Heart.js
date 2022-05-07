@@ -1,9 +1,10 @@
-export default function HeartIcon({ fill, width, height }) {
+export default function HeartIcon({ fill, width, height, className }) {
   return (
     <svg
       width={width ? width : 24}
       height={height ? height : 24}
       viewBox="0 0 43 39"
+      className={className ? className : ''}
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path

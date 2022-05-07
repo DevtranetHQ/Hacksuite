@@ -17,7 +17,7 @@ export default function EventCard(event) {
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image || avatarImage}
-          border='!border-[5px]'
+          border="!border-[5px]"
         />
       </div>
       <div className="col-span-2 px-7">
@@ -35,7 +35,7 @@ export default function EventCard(event) {
           </p>
         </section>
         <section className="flex justify-between">
-          <div className="inline-flex gap-8 py-2">
+          <div className="inline-flex gap-4 py-2 items-center">
             <svg
               width="33"
               height="38"
@@ -55,9 +55,7 @@ export default function EventCard(event) {
             <AddToCalendar event={event} />
           ) : (
             <Link href={route}>
-              <button className="button-small button-deep-sky-blue">
-                Register now
-              </button>
+              <button className="button-small button-deep-sky-blue">Register now</button>
             </Link>
           )}
         </section>

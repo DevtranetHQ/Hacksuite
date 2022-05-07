@@ -16,7 +16,7 @@ import { decodeToken } from "../server/utils/auth";
 export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
-  const { login, loginWithToken } = useAuth();
+  const { login, setToken } = useAuth();
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -30,10 +30,10 @@ export default function Login({ loginError, token, resetError, reset }) {
   };
   useEffect(() => {
     if (token) {
-      loginWithToken(token);
+      setToken(token);
       router.push("/");
     }
-  }, [loginWithToken, router, token]);
+  }, [setToken, router, token]);
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
