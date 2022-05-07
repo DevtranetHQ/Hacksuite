@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Fade from "react-reveal/Fade";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
 import CountryInput from "../../components/form/CountryInput";
 import { withAuth } from "../../server/middlewares/auth.middleware";
-import Fade from "react-reveal/Fade";
+import { useAuth } from "../../components/AuthContext";
+import { useRouter } from "next/router";
 
 export default function Profile({ user }) {
   const { completeProfile } = useAuth();
@@ -159,8 +161,8 @@ export default function Profile({ user }) {
         </div>
       </form>
 
-      <footer className="bg-deep-sky-blue py-1.5 xs:py-3">
-        <div className="mxs:text-18px text-28px flex items-center justify-center text-white font-medium xs:font-semibold">
+      <footer className="">
+        <div className="mxs:text-18px text-28px py-1.5 xs:py-3 bg-deep-sky-blue flex items-center justify-center text-white font-medium xs:font-semibold">
           Need help with something?&nbsp;
           <Link href="mailto:team@thedynamics.tech">
             <a className="underline text-white">Contact us</a>
