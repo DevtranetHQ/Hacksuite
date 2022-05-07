@@ -24,7 +24,7 @@ const TopNav = ({ unread }) => {
     }
     return (
         <>
-            <div className="w-[100%] flex items-center justify-end fixed md:right-[2.5rem] right-[1rem] md:top-[2.5rem] top-[1.5rem] z-10" >
+            <div className="w-[100%] flex items-center justify-end fixed md:right-[2.5rem] right-[1rem] md:top-[2.5rem] top-[.9rem] z-10" >
                 <img src="/assets/logo.svg" alt="Dynamics Logo" className={`md:hidden mr-auto ml-7 w-[4rem] h-[max-content] ${darkMode ? "hidden" : ""}`} />
                 <img src="/assets/logo-dark.svg" alt="Dynamics Logo" className={`md:hidden mr-auto ml-7 w-[4rem] h-[max-content] ${!darkMode ? "hidden" : ""}`} />
                 <DarkModeToggle
