@@ -37,7 +37,7 @@ export default function Dash({ admin, name, unread }) {
             />
           <NotificationsLink unread={unread} className="h-[25px]"/>
         </div> */}
-          <div className="text-center md:mt-20 mt-[5rem]">
+          <div className="text-center md:mt-20 mt-[3rem]">
             <h1 className="font-semibold md:text-42px text-30px">
               Hey there, <span className="text-fruit-salad">{name}.</span>
             </h1>
