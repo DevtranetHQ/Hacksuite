@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Fade from "react-reveal/Fade";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
@@ -23,9 +24,14 @@ export default function Complete({ user }) {
 
   return (
     <div className="dark:bg-[#202020] dark:text-white flex flex-col min-h-screen">
-      <div className="flex items-center justify-between px-12 py-5">
-        <Logo />
-        <DarkModeToggle className="w-[34px] h-[31px]" darkClassName="w-[25px] h-[35px]" />
+      <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
+        <Logo className="w-[80px] xs:w-[120px] pt-5" />
+        <div className="pt-2">
+          <DarkModeToggle
+            className="w-[24px] h-[22px] xs:w-[34px] xs:h-[31px]"
+            darkClassName="w-[18px] h-[25px] xs:w-[25px] xs:h-[35px]"
+          />
+        </div>
       </div>
       {router.query.verified && (
         <Fade top>
@@ -35,19 +41,28 @@ export default function Complete({ user }) {
         </Fade>
       )}
       <div className="flex grow shrink basis-[auto] justify-center">
-        <form className="min-w-[60%] mb-14" onSubmit={onSubmit}>
+        <form className="mxs:my-16 mxs:mx-4 min-w-[60%] mb-14 pb-20" onSubmit={onSubmit}>
           <h1 className="headline text-center">
             Complete your profile <span className="text-fruit-salad">{user.firstName}</span>
           </h1>
           <section className="my-5">
-            <h2 className="subheadline text-center">Demographic information</h2>
-            <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
+            <h2 className="subheadline text-center mt-16 mb-9">Demographic information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
               <div>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                   <span className="text-red-500">*</span>
                 </label>
-                <input className="form-input" id="dob" name="dob" required type="date" />
+                <input
+                  className="form-input text-[#A5A5A5]"
+                  id="dob"
+                  name="dob"
+                  type="text"
+                  placeholder="MM/DD/YYYY"
+                  onFocus={e => (e.target.type = "date")}
+                  onBlur={e => (e.target.type = "text")}
+                  required
+                />
               </div>
               <div>
                 <label className="form-label font-normal" htmlFor="gender">
@@ -66,8 +81,7 @@ export default function Complete({ user }) {
                   <option value="Other">Other</option>
                 </select>
               </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
+
               <div>
                 <label className="form-label font-normal" htmlFor="countryOfResidence">
                   Country of residence
@@ -85,8 +99,8 @@ export default function Complete({ user }) {
             </div>
           </section>
           <section className="my-5">
-            <h2 className="subheadline text-center">Work and education</h2>
-            <div className="md:grid md:grid-cols-2 md:gap-4 my-4">
+            <h2 className="subheadline text-center my-12">Work and education</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
               <div>
                 <label className="form-label font-normal" htmlFor="describe">
                   What describes you the best?
@@ -138,15 +152,26 @@ export default function Complete({ user }) {
               </div>
             </div>
           </section>
-          <div className="flex my-5 -mx-10">
-            <div className="w-1/2 h-4 border-gray-400 border-b-4"></div>
-            <button className="button-small button-deep-sky-blue block w-full self-center">
-              Complete your profile
-            </button>
-            <div className="w-1/2 h-4 border-gray-400 border-b-4"></div>
+
+          <div className="flex justify-between -mx-10">
+            <div className="w-8 xs:w-14 border-b-4 border-[#A0A0A0] z-0"></div>
+            <div className="w-full border-b-4 border-[#A0A0A0] z-0">
+              <button className="w-full md:w-1/2 button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-16px xs:text-24px py-2">
+                Complete your profile
+              </button>
+            </div>
+            <div className="w-8 xs:w-6 border-b-4 border-[#A0A0A0] z-0"></div>
           </div>
         </form>
       </div>
+      <footer className="">
+        <div className="mxs:text-18px text-28px py-1.5 xs:py-3 bg-deep-sky-blue flex items-center justify-center text-white font-medium">
+          Need help with something?&nbsp;
+          <Link href="mailto:team@thedynamics.tech">
+            <a className="underline text-white">Contact us</a>
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }

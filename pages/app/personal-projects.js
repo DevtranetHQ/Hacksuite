@@ -10,10 +10,10 @@ export default function PersonalProjects({ name, projects }) {
 
   return (
     <div className="grid grid-cols-12">
-      <div className="col-span-2">
+      <div className="col-span-1">
         <DashNav active="/personal-projects" />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
+      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10 relative min-w-full min-h-screen">
         <header className="border-b-2 flex items-center justify-center pb-10">
           <h1 className="ml-auto title">Projects</h1>
           <div className="ml-auto">

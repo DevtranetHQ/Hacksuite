@@ -1,4 +1,4 @@
-import HeartIcon from "../../components/icons/Heart";
+import Like from "../../components/Like";
 import CommentIcon from "../../components/icons/Comment";
 import Image from "next/image";
 import Avatar from "../Avatar";
@@ -7,6 +7,8 @@ import TimeIcon from "../icons/Time";
 import GithubIcon from "../icons/Github";
 import FigmaIcon from "../icons/Figma";
 import AdobeIcon from "../icons/Adobe";
+import { useState, useContext } from "react";
+import DarkModeContext from "../DarkModeContext";
 
 /**
  * User profile project Card component
@@ -22,7 +24,9 @@ import AdobeIcon from "../icons/Adobe";
  * @returns  Card Component
  */
 export default function ProjectGalleryProjectCard({ ...props }) {
-  const {name, date, image, title, desc, tags, likes, tools, comments, bubbles, className, bubbleNumber } = props;
+  const {name, date, image, title, desc, tags, likes, tools, comments, bubbles, className, bubbleNumber, liked } = props;
+  const { darkMode } = useContext(DarkModeContext);
+  const [isLiked, setLiked] = useState(liked);
   return (
     <div
       className={
@@ -54,11 +58,11 @@ export default function ProjectGalleryProjectCard({ ...props }) {
                 {tools && tools.map(tool => {
                     switch (tool) {
                         case 'github':
-                            return <GithubIcon fill="black" width={21} height={21} />
+                            return <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
                         case 'figma':
-                            return <FigmaIcon fill="black" width={21} height={21} />
+                            return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
                         case 'adobexd':
-                            return <AdobeIcon fill="black" width={21} height={21} />
+                            return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
                         default:
                             break;
                     }
@@ -77,7 +81,7 @@ export default function ProjectGalleryProjectCard({ ...props }) {
       {/* ====== #TEXT SECTION */}
       <div className="w-full mt-[5px]">
         <h4 className=" text-[20.3px] font-semibold">{title}</h4>
-        <p className="text-[11.6px] mt-[10px]">{desc}</p>
+        <p className="text-[13.5px] mt-[10px]">{desc}</p>
       </div>
 
       {/* ====== #BOTTOM SECTION */}
@@ -86,7 +90,7 @@ export default function ProjectGalleryProjectCard({ ...props }) {
 
       
         <span className="flex items-center gap-2">
-          <p className="caption">Tags:</p>
+          <p className="caption dark:text-[#B4B4B4]">Tags:</p>
           {tags &&
             tags.map((tag, index) => {
               let color;
@@ -102,10 +106,10 @@ export default function ProjectGalleryProjectCard({ ...props }) {
             })}
         </span>
         <span>
-          <span className="flex items-center justify-center gap-[5px]">
-            <HeartIcon width="20px" height="20px" fill="#C50000" />
-            <p className="font-semibold text-[17px]">{likes}</p>
-            <CommentIcon width="20px" height="20px" fill="#000000" />
+          <span className="flex items-center justify-center gap-[8px]">
+            <Like width="20px" height="20px" fill="#C50000" className='transition-all hover:scale-[1.2]' liked={isLiked} setLiked={setLiked}/>
+            <p className="font-semibold text-[17px]">{isLiked? likes + 1 : likes}</p>
+            <CommentIcon width="20px" height="20px" fill={darkMode ? "white" : "black"} className='transition-all hover:scale-[1.2]'/>
             <p className="font-semibold text-[17px]">{comments}</p>
           </span>
         </span>
