@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
     }),
 
     resetPassword: useAsync(async data => {
-      if(data.password !== data.confirmPassword) {
+      if (data.password !== data.confirmPassword) {
         throw new Error("Passwords do not match");
       }
 
@@ -138,11 +138,11 @@ export const AuthProvider = ({ children }) => {
         method: "PUT",
         data
       });
-  
+
       const newToken = res.data.data.newToken;
-  
+
       setToken(newToken);
-  
+
       router.push("/app/optional-profile");
     }),
 

@@ -36,12 +36,15 @@
     "react-popper": "^2.2.5",
     "react-reveal": "^1.2.2",
     "showdown": "^2.0.3",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "web-push": "^3.5.0"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.1",
     "@types/lodash": "^4.14.182",
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.44",
+    "@types/web-push": "^3.3.2",
     "autoprefixer": "^10.4.2",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",

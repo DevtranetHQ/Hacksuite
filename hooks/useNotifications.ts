@@ -1,0 +1,51 @@
+import { useAsync } from "./useAsync";
+import { axios } from "../config/config";
+
+const subscribeOptions: PushSubscriptionOptionsInit = {
+  userVisibleOnly: true,
+  applicationServerKey: Buffer.from(
+    `BPQNTUOaUCBQF3gYh3etoz2jFDo62RwJufsGex8Kby7ECGXSwoD1vxBumRtzmGy3O9bmOVqfXoRaI_bhvmY_j8c`,
+    "base64"
+  )
+};
+
+const getSubscription = async () => {
+  const registration = await navigator.serviceWorker.ready;
+
+  const existing = await registration.pushManager.getSubscription();
+  if (existing) throw new Error(`Push subscription already exists`);
+
+  return registration.pushManager.subscribe(subscribeOptions);
+};
+
+const removeSubscription = async () => {
+  const registration = await navigator.serviceWorker.ready;
+
+  const subscription = await registration.pushManager.getSubscription();
+  if (!subscription) throw new Error(`Push subscription does not exist`);
+
+  await subscription.unsubscribe();
+
+  return subscription;
+};
+
+export const useNotifications = () => {
+  const subscribe = useAsync(async () => {
+    const subscription = await getSubscription();
+    const res = await axios.post("/push/subscribe", { subscription: subscription.toJSON() });
+    return res.data;
+  });
+
+  const unsubscribe = useAsync(async () => {
+    const subscription = await removeSubscription();
+    const res = await axios.post("/push/unsubscribe", { subscription: subscription.toJSON() });
+    return res.data;
+  });
+
+  const requestPermission = useAsync(async () => {
+    const res = window.Notification.requestPermission();
+    return res;
+  });
+
+  return { subscribe, unsubscribe, requestPermission };
+};
