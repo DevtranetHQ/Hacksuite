@@ -1,19 +1,18 @@
 import mongoose from "../../../database";
-import User from "../../auth/user.model";
+import { UserId } from "../../auth/user.model";
 import { PushSubscription } from "web-push";
 
 const { Schema, model, models } = mongoose;
 
 export interface ISubscription {
-  userId: string;
+  userId: UserId;
   subscription: PushSubscription;
 }
 
 const SubscriptionSchema = new Schema<ISubscription>(
   {
     userId: {
-      type: Schema.Types.ObjectId,
-      ref: User,
+      type: String,
       required: true
     },
     subscription: {

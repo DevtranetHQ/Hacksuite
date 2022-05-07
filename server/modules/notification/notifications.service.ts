@@ -5,6 +5,7 @@ import {
   NotificationTypeId,
   NotificationTypeModel
 } from "./notification-type.model";
+import { UserId } from "../auth/user.model";
 
 class NotificationService {
   async getNotificationTypes(): Promise<INotificationType[]> {
@@ -41,7 +42,7 @@ class NotificationService {
     title: string;
     message: string;
     type: NotificationTypeId;
-    for: string;
+    for: UserId;
     by: string;
   }): Promise<INotification> {
     const notificationType = await NotificationTypeModel.findById(data.type);

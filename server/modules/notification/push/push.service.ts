@@ -1,7 +1,8 @@
 import { INotification } from "../notification.model";
 import { setVapidDetails, sendNotification, PushSubscription } from "web-push";
 import { config } from "../../../config";
-import { SubscriptionModel } from "./subscription.model";
+import { ISubscription, SubscriptionModel } from "./subscription.model";
+import { UserId } from "../../auth/user.model";
 
 const { vapid } = config;
 
@@ -23,13 +24,16 @@ class PushService {
     );
   }
 
-  async subscribeUser(userId: string, subscription: PushSubscription) {
-    const newSubscription = new SubscriptionModel({ userId, subscription });
+  async subscribeUser(userId: UserId, subscription: PushSubscription) {
+    const newSubscription = new SubscriptionModel<ISubscription>({ userId, subscription });
     return newSubscription.save();
   }
 
-  async unsubscribeUser(userId: string, endpoint: string) {
-    const subscription = await SubscriptionModel.findOne({ userId, subscription: { endpoint } });
+  async unsubscribeUser(userId: UserId, endpoint: string) {
+    const subscription = await SubscriptionModel.findOne({
+      userId,
+      subscription: { endpoint }
+    });
     if (!subscription) {
       throw new Error(`Subscription not found for user ${userId}`);
     }
