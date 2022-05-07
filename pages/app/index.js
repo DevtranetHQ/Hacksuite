@@ -75,7 +75,7 @@ export default function Dash({ admin, name, unread }) {
                   <span className="font-semibold text-[14px]">Workshops</span>
                 </div>
               </Link>
-              <Link href="app/personal-projects">
+              <Link href="/personal-projects">
                 <div
                   className="cursor-pointer hover:text-orange-peel transition flex items-center flex-col"
                 >
