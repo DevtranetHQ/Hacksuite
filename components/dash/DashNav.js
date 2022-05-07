@@ -126,10 +126,10 @@ export default function DashNav({ admin, unread }) {
             </>
           )}
 
-          <Link href="/personal-projects">
+          <Link href="app/personal-projects">
             <div
               className={
-                router.pathname === "/personal-projects"
+                router.pathname === "app/personal-projects"
                   ? styles.active
                   : "cursor-pointer hover:text-orange-peel transition flex items-center"
               }>
