@@ -20,16 +20,10 @@ export default function ResetPassword() {
 
   const { darkMode } = useContext(DarkModeContext);
   const [revealPassword, setRevealPassword] = useState(false);
-  const [revealPassword1, setRevealPassword1] = useState(false);
 
   const toggleReveal = () => {
     setRevealPassword(r => !r);
     const id = document.getElementById("password");
-    id.type = id.type === "password" ? "text" : "password";
-  };
-  const toggleReveal1 = () => {
-    setRevealPassword1(r => !r);
-    const id = document.getElementById("password2");
     id.type = id.type === "password" ? "text" : "password";
   };
 
@@ -138,17 +132,6 @@ export default function ResetPassword() {
                   placeholder="Confirm new password"
                   required
                 />
-                <Icon
-                  className="text-[#A5A5A5] dark:text-[#7D7D7D] -mt-11 mr-4 float-right inline text-gray-500"
-                  onClick={toggleReveal1}
-                  width="1.3em"
-                  height="1.3em"
-                  icon={
-                    revealPassword1
-                      ? "ant-design:eye-invisible-outlined"
-                      : "ant-design:eye-outlined"
-                  }
-                />
                 {passwordMismatch && (
                   <p className="font-body font-normal text-18px text-[#D0342C] flex items-center mx-auto justify-center -mt-3">
                     Password must match!
@@ -165,8 +148,7 @@ export default function ResetPassword() {
               </div>
               <button
                 className="rounded-md button-small button-deep-sky-blue mx-auto text-15px md:text-16px mt-5 h-8 py-0 xs:py-1 px-6 md:px-10"
-                type="submit"
-                isLoading={false}>
+                type="submit">
                 Update my password
               </button>
             </div>

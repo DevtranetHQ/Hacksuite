@@ -15,6 +15,7 @@ export default function Dash({ admin, name, unread }) {
   const router = useRouter();
   const { pathname } = router
   const { darkMode } = useContext(DarkModeContext);
+  
   return (
     <>
       <DashNav admin={admin} unread={unread} />
@@ -24,6 +25,12 @@ export default function Dash({ admin, name, unread }) {
         </div>
         <div className="dark:bg-[#202020] dark:text-white col-span-12 md:col-span-10 md:p-10 py-12 px-5 relative md:w-[83%] lg:w-[93%] md:ml-auto">
           {/* <div className="text-right flex items-center justify-end">
+    <div className="grid grid-cols-12 dark:bg-[#202020]">
+      <div className="col-span-1 mx-auto">
+        <DashNav admin={admin} />
+      </div>
+      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10  mx-auto content-center min-w-full min-h-screen">
+        <div className="text-right flex items-end justify-end  mt-3">
         <DarkModeToggle
                 className="h-[30px]"
                 darkClassName="h-[30px]"
@@ -127,7 +134,7 @@ export default function Dash({ admin, name, unread }) {
               )}
             </div>
           </div>
-        </div>
+        </div>                
       </div>
     </>
   );

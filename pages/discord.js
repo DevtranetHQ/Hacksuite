@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../../components/Logo";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import ArrowIcon from "../../components/icons/Arrow";
-import GithubIcon from "../../components/icons/Github";
-import foxImage from "../../public/assets/discord/fox.svg";
+import Logo from "../components/Logo";
+import DarkModeToggle from "../components/DarkModeToggle";
+import ArrowIcon from "../components/icons/Arrow";
+import GithubIcon from "../components/icons/Github";
+// import foxImage from "../../public/assets/discord/fox.svg";
 
 export default function Discord() {
   async function handleSubmission(e) {

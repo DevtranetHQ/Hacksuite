@@ -1,13 +1,13 @@
 .nav {
-  @apply flex flex-col gap-5 ml-10 mt-5 ;
+  @apply flex flex-col gap-5 mx-auto mt-14 ;
 }
 
 .nav div {
-  @apply flex gap-1 ;
+  @apply flex gap-1 items-center;
 }
 
 .nav div span {
-  @apply p-2 text-20px ;
+  @apply p-2 text-16px;
 }
 
 .nav .active {
