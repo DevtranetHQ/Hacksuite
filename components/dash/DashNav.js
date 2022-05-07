@@ -11,7 +11,7 @@ export default function DashNav({ admin }) {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-    <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center  fixed top-0 left-0 mx-auto">
+    <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center fixed top-0 left-0 mx-auto right-auto">
       <Logo className="mx-auto pt-5 w-[100px]" darkMode={darkMode} />
       <div className={styles.nav}>
         <Link href="/app">
