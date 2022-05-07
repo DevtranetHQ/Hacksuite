@@ -11,11 +11,11 @@ export default function VerificationSent({ email }) {
   return (
     <div className="h-screen">
       {resendEmailVerification.status === "success" && (
-        <Fade top>
-          <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
+       
+          <p className="font-body slide-bottom font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
             Verification Email Resent!
           </p>
-        </Fade>
+        
       )}
       <div className="flex flex-col justify-center msm:h-[80%] h-[95%] mx-auto w-full sm:w-[57%] sm:z-0">
         <Image className="sm:scale-90" layout="responsive" src={verificationImage} alt="" />
