@@ -30,7 +30,7 @@ const registrationSchema = new Schema(
   }
 );
 
-registrationSchema.query.withEvent = async function() {
+registrationSchema.query.withEvent = async function () {
   const event = await Event.findOne({ uniqueId: this.event });
   this.event = event;
   return this;
