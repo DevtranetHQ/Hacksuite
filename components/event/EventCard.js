@@ -17,7 +17,7 @@ export default function EventCard(event) {
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image || avatarImage}
-          border='!border-[5px]'
+          border="!border-[5px]"
         />
       </div>
       <div className="col-span-2 px-7">
@@ -55,9 +55,7 @@ export default function EventCard(event) {
             <AddToCalendar event={event} />
           ) : (
             <Link href={route}>
-              <button className="button-small button-deep-sky-blue">
-                Register now
-              </button>
+              <button className="button-small button-deep-sky-blue">Register now</button>
             </Link>
           )}
         </section>

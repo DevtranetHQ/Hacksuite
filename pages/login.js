@@ -12,11 +12,10 @@ import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import LoadingButton from "../components/LoadingButton";
-
 export default function Login({ loginError, token, resetError, reset }) {
   const [revealPassword, setRevealPassword] = useState(false);
   const router = useRouter();
-  const { login, loginWithToken } = useAuth();
+  const { login, setToken } = useAuth();
   const onLogin = async e => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -30,10 +29,10 @@ export default function Login({ loginError, token, resetError, reset }) {
   };
   useEffect(() => {
     if (token) {
-      loginWithToken(token);
+      setToken(token);
       router.push("/");
     }
-  }, [loginWithToken, router, token]);
+  }, [setToken, router, token]);
   return (
     <div className="dark:bg-[#000000] dark:text-white relative">
       <div className="flex items-center justify-between px-6 xs:pl-8 xs:pr-12">
@@ -149,9 +148,8 @@ export default function Login({ loginError, token, resetError, reset }) {
               <LoadingButton
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                 type="submit"
-                isLoading={login.status === "loading"}>
-                Login
-              </LoadingButton>
+                isLoading={login.status === "loading"}
+              >Login</LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
                 <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                 <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
@@ -220,3 +218,9 @@ export async function getServerSideProps({ req, res, query }) {
   }
   return { props: {} };
 }
+
+
+
+
+
+

@@ -5,7 +5,7 @@ import Logo from "../../components/Logo";
 import eventService from "../../server/services/event.service";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
 import GithubIcon from "../../components/icons/Github";
-import ArrowIcon from "../../components/icons/Arrow";
+import ArrowRightIcon from "../../components/icons/ArrowRight";
 import registrationService from "../../server/modules/registration/registration.service";
 
 export default function Events({ events, loggedIn }) {
@@ -18,14 +18,16 @@ export default function Events({ events, loggedIn }) {
             className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
             darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
-          <a href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+          <a
+            href="https://github.com/TheDynamics"
+            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href="/">
             <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:py-[10px] button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0">
               {loggedIn ? "Go back home" : "Join us"}
               <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
-                  <ArrowIcon />
+                <ArrowRightIcon />
               </div>
             </button>
           </Link>
@@ -36,14 +38,20 @@ export default function Events({ events, loggedIn }) {
           The Dynamics Events
         </h1>
         <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
-          <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Don’t miss any workshop, hackathon, AMA, networking event, mentorship program, and more!</p>
-          <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Events dates and times are in your local timezone.</p>
+          <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
+            Don’t miss any workshop, hackathon, AMA, networking event, mentorship program, and more!
+          </p>
+          <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
+            Events dates and times are in your local timezone.
+          </p>
         </h2>
         <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
-          <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">All events</button>
+          <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+            All events
+          </button>
           <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
-                Host with us
-            </a>
+            Host with us
+          </a>
         </div>
       </header>
       <nav className="border-b-2 flex gap-x-2 lg:gap-x-7 items-center justify-center mt-10 lg:mt-24 pb-5 lg:pb-[50px]  heading">
@@ -66,14 +74,15 @@ export default function Events({ events, loggedIn }) {
         <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
           <span>View past events</span>
           <div className="lg:scale-[2] relative lg:top-1">
-            <ArrowIcon />
+            <ArrowRightIcon />
           </div>
         </button>
       </section>
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
           All events are hosted and maintained by The Dynamics, the official network of young
-          makers, <br className="hidden md:block"></br>developers, innovators, and founders using our{" "}
+          makers, <br className="hidden md:block"></br>developers, innovators, and founders using
+          our{" "}
           <Link href="/">
             <a>Code of Conduct</a>
           </Link>

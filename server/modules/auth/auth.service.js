@@ -173,7 +173,7 @@ class AuthService {
 
     const RToken = await Token.findOne({ userId });
     if (!RToken) throw new CustomError("Invalid or expired password reset token");
-    console.log(resetToken,RToken);
+    console.log(resetToken, RToken);
     const isValid = await bcrypt.compare(resetToken, RToken.token);
     if (!isValid) throw new CustomError("Invalid or expired password reset token");
 

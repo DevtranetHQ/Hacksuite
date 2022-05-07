@@ -14,7 +14,7 @@ module.exports = {
         "gray-dark": "#2D2D2D"
       },
       gridTemplateColumns: {
-        // Simple 16 column grid
+        // Simple 20 column grid
         20: "repeat(20, minmax(0, 1fr))"
       },
       scale: {
