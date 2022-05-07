@@ -109,7 +109,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
           </div>
         </div>
         <hr className="mb-5"/>
-        <Avatar image={profileImage} className="h-24 w-24 "/>
+        <Avatar image={profileImage}/>
         <label
           className="button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 "
           htmlFor="profile-upload">
