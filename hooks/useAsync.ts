@@ -9,8 +9,9 @@ export interface UseAsync<Args extends Array<unknown>, Return = any, Err = Error
   execute: (...args: Args) => Promise<Return>;
 }
 
-export function useAsync<Args extends Array<unknown>, Return = any, Err = Error>
-  (asyncFunction: (...args: Args) => Promise<Return>): UseAsync<Args, Return, Err> {
+export function useAsync<Args extends Array<unknown>, Return = any, Err = Error>(
+  asyncFunction: (...args: Args) => Promise<Return>
+): UseAsync<Args, Return, Err> {
   const [status, setStatus] = useState<AsyncStatus>("idle");
   const [value, setValue] = useState<Return>(null);
   const [error, setError] = useState<Err>(null);
@@ -35,4 +36,4 @@ export function useAsync<Args extends Array<unknown>, Return = any, Err = Error>
   );
 
   return { execute, status, value, error };
-};
+}

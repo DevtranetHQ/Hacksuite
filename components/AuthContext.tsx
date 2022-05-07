@@ -1,13 +1,23 @@
 import { useRouter } from "next/router";
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 import { AxiosError } from "axios";
 import { UseAsync, useAsync } from "../hooks/useAsync";
 import { axios } from "../config/config";
 
-interface SignupDTO { firstName: string, lastName: string, password: string, email: string }
-interface ResetDTO { userId: string, resetToken: string, password: string, confirmPassword: string }
+interface SignupDTO {
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+}
+interface ResetDTO {
+  userId: string;
+  resetToken: string;
+  password: string;
+  confirmPassword: string;
+}
 interface IUser {
   id: string;
   role: string;
@@ -117,7 +127,7 @@ export const AuthProvider = ({ children }) => {
     }),
 
     resetPassword: useAsync(async data => {
-      if(data.password !== data.confirmPassword) {
+      if (data.password !== data.confirmPassword) {
         throw new Error("Passwords do not match");
       }
 
@@ -138,11 +148,11 @@ export const AuthProvider = ({ children }) => {
         method: "PUT",
         data
       });
-  
+
       const newToken = res.data.data.newToken;
-  
+
       setToken(newToken);
-  
+
       router.push("/app/optional-profile");
     }),
 
@@ -154,11 +164,11 @@ export const AuthProvider = ({ children }) => {
     logout: () => {
       removeCookie("token", { path: "/" });
       router.push("/");
-    },
+    }
   };
 
-  return <authContext.Provider value={value}>{children}</authContext.Provider>
-}
+  return <authContext.Provider value={value}>{children}</authContext.Provider>;
+};
 
 export const useAuth = () => {
   const context = useContext(authContext);
@@ -167,7 +177,7 @@ export const useAuth = () => {
   }
 
   return context;
-}
+};
 
 export const useProtectedRoute = () => {
   const auth = useAuth();
@@ -178,4 +188,4 @@ export const useProtectedRoute = () => {
       router.push("/login?redirect=" + router.pathname);
     }
   }, [auth.user, router]);
-}
+};

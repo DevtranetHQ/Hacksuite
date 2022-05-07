@@ -41,13 +41,17 @@ export default function Complete({ user }) {
         </Fade>
       )}
       <div className="flex grow shrink basis-[auto] justify-center">
-        <form className="mxs:my-16 mxs:mx-4 min-w-[60%] mb-14 pb-20" onSubmit={onSubmit}>
+        <form
+          className="mxs:my-16 mxs:mx-4 mxs:px-8 mxs:pt-7 mxs:pb-14 xs:min-w-[60%] mb-14 pb-20"
+          onSubmit={onSubmit}>
           <h1 className="headline text-center">
             Complete your profile <span className="text-fruit-salad">{user.firstName}</span>
           </h1>
-          <section className="my-5">
-            <h2 className="subheadline text-center mt-16 mb-9">Demographic information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <section className="">
+            <h2 className="mxs:-mr-6 text-24px font-semibold xs:font-bold xs:text-center mt-16 mb-9">
+              Demographic information
+            </h2>
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-y-4 xs:gap-x-4">
               <div>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
@@ -98,9 +102,11 @@ export default function Complete({ user }) {
               </div>
             </div>
           </section>
-          <section className="my-5">
-            <h2 className="subheadline text-center my-12">Work and education</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <section className="">
+            <h2 className="text-24px mxs:mb-9 font-semibold xs:font-bold xs:text-center my-12">
+              Work and education
+            </h2>
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-y-4 xs:gap-x-4">
               <div>
                 <label className="form-label font-normal" htmlFor="describe">
                   What describes you the best?
@@ -153,7 +159,7 @@ export default function Complete({ user }) {
             </div>
           </section>
 
-          <div className="flex justify-between -mx-10">
+          <div className="flex justify-between mxs:-mx-8 -mx-10">
             <div className="w-8 xs:w-14 border-b-4 border-[#A0A0A0] z-0"></div>
             <div className="w-full border-b-4 border-[#A0A0A0] z-0">
               <button className="w-full md:w-1/2 button-medium button-deep-sky-blue rounded-md mt-12 mx-auto z-10 -mb-6 text-16px xs:text-24px py-2">
@@ -164,8 +170,8 @@ export default function Complete({ user }) {
           </div>
         </form>
       </div>
-      <footer className="bg-deep-sky-blue py-1.5 xs:py-3">
-        <div className="mxs:text-18px text-28px flex items-center justify-center text-white font-medium xs:font-semibold">
+      <footer className="">
+        <div className="mxs:text-18px text-28px py-1.5 xs:py-3 bg-deep-sky-blue flex items-center justify-center text-white font-medium">
           Need help with something?&nbsp;
           <Link href="mailto:team@thedynamics.tech">
             <a className="underline text-white">Contact us</a>

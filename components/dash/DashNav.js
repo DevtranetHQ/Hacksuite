@@ -9,15 +9,17 @@ export default function DashNav({ admin }) {
   const router = useRouter();
   const { pathname } = router;
   const { darkMode } = useContext(DarkModeContext);
-  
+
   return (
     <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center fixed top-0 left-0 mx-auto right-auto">
       <Logo className="mx-auto pt-5 w-[100px]" darkMode={darkMode} />
       <div className={styles.nav}>
         <Link href="/app">
-          <div    
+          <div
             className={
-              router.pathname === "/app" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-end"
+              router.pathname === "/app"
+                ? styles.active
+                : "cursor-pointer hover:text-orange-peel transition flex items-end"
             }>
             <svg
               width="25"
@@ -36,7 +38,9 @@ export default function DashNav({ admin }) {
         <Link href="/workshop">
           <div
             className={
-              router.pathname === "/workshop" ? styles.active : "cursor-pointer hover:text-orange-peel transition flex items-center"
+              router.pathname === "/workshop"
+                ? styles.active
+                : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
               width="25"
@@ -55,10 +59,10 @@ export default function DashNav({ admin }) {
         </Link>
         {admin && (
           <>
-            <Link href="/tickets">
+            <Link href="/app/tickets">
               <div
                 className={
-                  pathname === "/tickets"
+                  pathname === "/app/tickets"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
@@ -76,10 +80,10 @@ export default function DashNav({ admin }) {
                 <span>Tickets</span>
               </div>
             </Link>
-            <Link href="/members">
+            <Link href="/app/members">
               <div
                 className={
-                  router.pathname === "/members"
+                  pathname === "/app/members"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
@@ -97,10 +101,10 @@ export default function DashNav({ admin }) {
                 <span>Members</span>
               </div>
             </Link>
-            <Link href="/statistics">
+            <Link href="/app/statistics">
               <div
                 className={
-                  router.pathname === "/statistics"
+                  pathname === "/app/statistics"
                     ? styles.active
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
@@ -123,7 +127,7 @@ export default function DashNav({ admin }) {
         <Link href="/app/personal-projects">
           <div
             className={
-              router.pathname === "/app/personal-projects"
+              pathname === "/app/personal-projects"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
@@ -141,10 +145,10 @@ export default function DashNav({ admin }) {
             <span>Projects</span>
           </div>
         </Link>
-        <Link href="/events">
+        <Link href="/app/events">
           <div
             className={
-              router.pathname === "/events"
+              pathname === "/app/events"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
@@ -163,10 +167,10 @@ export default function DashNav({ admin }) {
           </div>
         </Link>
         {!admin && (
-          <Link href="/discord">
+          <Link href="/app/discord">
             <div
               className={
-                router.pathname === "/discord"
+                pathname === "/app/discord"
                   ? styles.active
                   : "cursor-pointer hover:text-orange-peel transition flex items-center"
               }>
@@ -188,7 +192,7 @@ export default function DashNav({ admin }) {
         <Link href="/app/settings">
           <div
             className={
-              router.pathname === "/app/settings"
+              pathname === "/app/settings"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
