@@ -17,7 +17,7 @@ export default function VerificationSent({ email }) {
           </p>
         </Fade>
       )}
-      <div className="flex flex-col mxs:h-[80%] mx-auto w-full sm:w-[57%] sm:z-0">
+      <div className="flex flex-col msm:justify-center msm:h-[80%] mx-auto w-full sm:w-[57%] sm:z-0">
         <Image layout="responsive" src={verificationImage} alt="" />
         <div className="sm:-mt-3 sm:z-10 w-3/4 sm:w-3/5 mx-auto text-center px-4">
           <p className="text-10px sm:text-18px sm:mb-1.5">
