@@ -55,14 +55,14 @@ export default function ProjectGalleryProjectCard({ ...props }) {
               </div>
             </div>
             <div className="flex gap-[10px]">
-                {tools && tools.map(tool => {
+                {tools && tools.map((tool, index) => {
                     switch (tool) {
                         case 'github':
-                            return <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                            return <GithubIcon key={index} fill={darkMode ? "white" : "black"} width={21} height={21} />
                         case 'figma':
-                            return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                            return <FigmaIcon key={index} fill={darkMode ? "white" : "black"} width={21} height={21} />
                         case 'adobexd':
-                            return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                            return <AdobeIcon key={index} fill={darkMode ? "white" : "black"} width={21} height={21} />
                         default:
                             break;
                     }
