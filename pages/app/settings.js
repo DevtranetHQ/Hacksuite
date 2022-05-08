@@ -362,11 +362,11 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
             </div>
           </section>
           <section className="text-center mt-10">
-            {/* <ReCAPTCHA
+            <ReCAPTCHA
               className="inline-block mb-3"
               sitekey={recaptchaSitekey}
               onChange={i => console.log(i)}
-            /> */}
+            />
             <button
               className="button-big button-deep-sky-blue mx-auto px-14 text-24px"
               type="submit">
@@ -382,7 +382,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
 export async function getServerSideProps(context) {
   return {
     props: {
-      // recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [
