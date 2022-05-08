@@ -111,10 +111,12 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
         <hr className="mb-5"/>
         <Avatar image={profileImage}/>
         <label
-          className="button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 "
+          className="cursor-pointer flex mt-5"
           htmlFor="profile-upload">
+            <div className="button-small button-deep-sky-blue gap-x-2">
           <UploadIcon />
-          <span className="">Upload a picture</span>
+          <span>Upload a picture</span>
+            </div>
         </label>
         <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
         <div className="flex gap-5 items-center my-3">
@@ -354,17 +356,17 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
                 </label>
                 <div className="flex form-input items-center justify-between">
                   <input className="text-18px" id="resume" name="resume" type="file" ref={ref}/>
-                  <span><Icon icon="iconoir:cancel" width={25} height={25} inline={true}  onClick={reset}/></span>
+                  <span className="cursor-pointer"><Icon icon="iconoir:cancel" width={25} height={25} inline={true}  onClick={reset}/></span>
                 </div>
               </div>
             </div>
           </section>
           <section className="text-center mt-10">
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               className="inline-block mb-3"
               sitekey={recaptchaSitekey}
               onChange={i => console.log(i)}
-            />
+            /> */}
             <button
               className="button-big button-deep-sky-blue mx-auto px-14 text-24px"
               type="submit">
@@ -380,7 +382,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage }) {
 export async function getServerSideProps(context) {
   return {
     props: {
-      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      // recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [

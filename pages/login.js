@@ -8,8 +8,6 @@ import authImage from "../public/assets/auth/auth-background.svg";
 import discordImage from "../public/assets/discord.svg";
 import authService from "../server/modules/auth/auth.service";
 import { useRouter } from "next/router";
-// Animation Package for the trigger messages
-import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import LoadingButton from "../components/LoadingButton";
 export default function Login({ loginError, token, resetError, reset }) {
@@ -146,7 +144,7 @@ export default function Login({ loginError, token, resetError, reset }) {
                 />
               </div>
               <LoadingButton
-                className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
+                className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1 "
                 type="submit"
                 isLoading={login.status === "loading"}
               >Login</LoadingButton>

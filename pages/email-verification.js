@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import { LoadingPage } from "../components/loading-page";
 

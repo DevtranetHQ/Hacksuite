@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Fade from "react-reveal/Fade";
 import verificationImage from "../../public/assets/auth/verification-email-sent.svg";
 import InboxIcon from "../icons/Inbox";
 import { useAuth } from "../AuthContext";

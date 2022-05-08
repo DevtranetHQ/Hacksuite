@@ -6,7 +6,6 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import { useRouter } from "next/router";
-import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import authService from "../server/modules/auth/auth.service";
 import ReCAPTCHA from "react-google-recaptcha";

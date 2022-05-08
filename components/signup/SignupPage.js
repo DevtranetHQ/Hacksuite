@@ -34,11 +34,11 @@ export default function SignupPage({ handleSubmission, isLoading, signup }) {
         </div>
       </div>
       {signup.status === "error" && (
-        <Fade top>
-          <p className="font-body font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+        
+          <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
             Signup Failed! {signup.error.response?.data.message || signup.error.message}
           </p>
-        </Fade>
+        
       )}
       <div className=" grow shrink grid grid-cols-1 md:grid-cols-20 dark:mxs:bg-mobile-login-dark mxs:bg-mobile-login mxs:mobile-signup">
         <div className="hidden xs:mt-48 xs:-mb-0.5 xs:self-end md:block md:col-span-9 sm:ml-2 lg:ml-6 xl:mt-36 xl:self-auto">
