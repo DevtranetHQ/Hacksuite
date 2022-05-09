@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Fade from "react-reveal/Fade";
 import CountryInput from "../../components/form/CountryInput";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
@@ -34,11 +33,9 @@ export default function Complete({ user }) {
         </div>
       </div>
       {router.query.verified && (
-        <Fade top>
           <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
             Email Verification Successful!
           </p>
-        </Fade>
       )}
       <div className="flex grow shrink basis-[auto] justify-center">
         <form
