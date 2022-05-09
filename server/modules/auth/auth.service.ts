@@ -9,6 +9,7 @@ import { config } from "../../config";
 import registrationService from "../registration/registration.service";
 import { signToken } from "../../utils/auth";
 import { generateUniqueIdFromName } from "./../../utils/generateUniqueIdFromName";
+import { authNotificationsService } from "./auth-notifications.service";
 
 const { BCRYPT_SALT, url } = config;
 
@@ -16,6 +17,7 @@ class AuthService {
   async _getLoginToken(user: IUser) {
     const token = await signToken({
       id: user._id,
+      uniqueId: user.uniqueId,
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -29,12 +31,13 @@ class AuthService {
     let user = await User.findOne({ email: data.email });
     if (user) throw new CustomError("Email already exists");
 
-    const uniqueId = await generateUniqueIdFromName<UserId>(user.fullName, async uniqueId => {
+    user = new User(data);
+
+    user.uniqueId = await generateUniqueIdFromName<UserId>(user.fullName, async uniqueId => {
       const exists = await User.exists({ uniqueId });
       return !!exists;
     });
 
-    user = new User({ ...data, uniqueId });
     await user.save();
     // Request email verification
     try {
@@ -97,6 +100,8 @@ class AuthService {
     await VToken.deleteOne();
 
     await registrationService.updateRegistrationsToUser(user);
+
+    await authNotificationsService.joinDiscordNotification(user);
 
     if (login) {
       const loginToken = await this._getLoginToken(user);

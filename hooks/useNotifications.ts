@@ -3,10 +3,7 @@ import { axios } from "../config/config";
 
 const subscribeOptions: PushSubscriptionOptionsInit = {
   userVisibleOnly: true,
-  applicationServerKey: Buffer.from(
-    `BPQNTUOaUCBQF3gYh3etoz2jFDo62RwJufsGex8Kby7ECGXSwoD1vxBumRtzmGy3O9bmOVqfXoRaI_bhvmY_j8c`,
-    "base64"
-  )
+  applicationServerKey: Buffer.from(process.env.NEXT_PUBLIC_VAPID_KEY, "base64")
 };
 
 const getSubscription = async () => {
@@ -47,5 +44,10 @@ export const useNotifications = () => {
     return res;
   });
 
-  return { subscribe, unsubscribe, requestPermission };
+  const removeNotification = useAsync(async (id: string) => {
+    const res = await axios.delete(`/notifications/${id}`);
+    return res.data;
+  });
+
+  return { subscribe, unsubscribe, requestPermission, removeNotification };
 };

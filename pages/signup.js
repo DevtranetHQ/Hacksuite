@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import VerificationSent from "../components/signup/VerificationSent";
 import SignupPage from "../components/signup/SignupPage";
 import { useAuth } from "../components/AuthContext";
 
 export default function Signup() {
-  const { signup } = useAuth();
+  const { signup, resendEmailVerification } = useAuth();
   const [email, setEmail] = useState("");
 
   function handleSubmission(e) {
@@ -22,7 +22,11 @@ export default function Signup() {
 
   if (signup.status !== "success") {
     return (
-      <SignupPage handleSubmission={handleSubmission} signup={signup} isLoading={signup.status === "pending"} />
+      <SignupPage
+        handleSubmission={handleSubmission}
+        signup={signup}
+        isLoading={signup.status === "pending"}
+      />
     );
   } else {
     return <VerificationSent email={email} />;

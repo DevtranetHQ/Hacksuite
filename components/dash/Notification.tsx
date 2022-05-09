@@ -1,25 +1,42 @@
-export default function Notification({ unread, type, title, description, who, time }) {
-  let buttonTheme, textTheme;
-  switch (type) {
-    // Tailwind doesn't use template literal concatenation so this is the only choice
-    case "Workshop":
-      buttonTheme = "button-fruit-salad";
-      textTheme = "text-fruit-salad";
-      break;
-    case "Event":
-      buttonTheme = "button-orange-peel";
-      textTheme = "text-orange-peel";
-      break;
-    case "Feature update":
-      buttonTheme = "button-link";
-      textTheme = "text-link";
-      break;
-    default:
-      buttonTheme = "button-deep-sky-blue";
-      textTheme = "text-deep-sky-blue";
-  }
+import dayjs from "dayjs";
+import { useMemo } from "react";
+import { INotification } from "../../server/modules/notification/notification.model";
+import showdownConverter from './../showdownConverter';
 
-  // TODO: Parse JavaScript time object instead of using string
+interface Props {
+  notification: INotification;
+  handleRemove: (id: string) => Promise<void>;
+}
+
+export default function Notification(props: Props) {
+  const { _id, read, type, title, message, by, createdAt } = props.notification;
+
+  const { buttonTheme, textTheme } = useMemo(() => {
+    switch (type) {
+      case "Workshop":
+        return {
+          buttonTheme: "button-fruit-salad",
+          textTheme: "text-fruit-salad"
+        }
+      case "Event":
+        return {
+          buttonTheme: "button-orange-peel",
+          textTheme: "text-orange-peel"
+        }
+      case "Feature update":
+        return {
+          buttonTheme: "button-link",
+          textTheme: "text-link"
+        }
+      default:
+        return {
+          buttonTheme: "button-deep-sky-blue",
+          textTheme: "text-deep-sky-blue"
+        }
+    }
+  }, [type]);
+
+  const notificationMessage = showdownConverter.makeHtml(message);
 
   return (
     <div className="border-b-2 p-5">
@@ -27,15 +44,15 @@ export default function Notification({ unread, type, title, description, who, ti
         <div>
           <button className={`button-medium ${buttonTheme} relative`} disabled={true}>
             {type}
-            {unread && (
+            {!read && (
               <span className="absolute bg-black dark:bg-white h-4 w-4 rounded-full -top-2 -right-2" />
             )}
           </button>
         </div>
         <div className="flex flex-row-reverse gap-10 items-center">
-          <div className="cursor-pointer block border-2 leading-none w-[30px] h-[30px] text-[26px] text-center">
+          <button onClick={() => props.handleRemove(_id)} className="block cursor-pointer block border-2 leading-none w-[30px] h-[30px] text-[26px] text-center">
             &times;
-          </div>
+          </button>
           <div className="flex gap-2">
             <svg
               width="18"
@@ -48,15 +65,15 @@ export default function Notification({ unread, type, title, description, who, ti
                 fill="black"
               />
             </svg>
-            {time}
+            {dayjs(createdAt).format("m:ss a, MMM D YYYY")}
           </div>
         </div>
       </div>
       <div className="mb-2">
         <h2 className="subheadline">{title}</h2>
-        <p className="sm">{description}</p>
+        <div className="sm" dangerouslySetInnerHTML={{ __html: notificationMessage }} />
       </div>
-      <p className={`font-bold sm ${textTheme}`}>{who}</p>
+      <p className={`font-bold sm ${textTheme}`}>{by}</p>
     </div>
   );
 }

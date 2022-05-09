@@ -13,7 +13,8 @@ class NotificationService {
   }
 
   async getNotificationsForUser(userId: string): Promise<INotification[]> {
-    return NotificationModel.find({ for: userId });
+    const notifs = await NotificationModel.find({ for: userId });
+    return notifs.map(notif => JSON.parse(JSON.stringify(notif)));
   }
 
   async getUnreadNotificationCountForUser(userId: string): Promise<number> {
@@ -29,8 +30,11 @@ class NotificationService {
     return notification.save();
   }
 
-  async removeNotification(notificationId: string): Promise<INotification> {
-    const notification = await NotificationModel.findById(notificationId);
+  async removeNotification(notificationId: string, userId: UserId): Promise<INotification> {
+    const notification = await NotificationModel.findOne({
+      _id: notificationId,
+      for: userId
+    });
     if (!notification) {
       throw new Error("Notification not found");
     }
@@ -38,14 +42,13 @@ class NotificationService {
   }
 
   async createNotification(data: {
-    id: string;
     title: string;
     message: string;
     type: NotificationTypeId;
     for: UserId;
     by: string;
   }): Promise<INotification> {
-    const notificationType = await NotificationTypeModel.findById(data.type);
+    const notificationType = await NotificationTypeModel.findOne({ uniqueId: data.type });
     if (!notificationType) {
       throw new Error("Notification type not found");
     }

@@ -2,7 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { handleAuth, IPayload } from "../utils/auth";
 import { middlewareLogger } from "../utils/debug";
 
-export type RequestWithUser<Body = any> = NextApiRequest & { $user?: IPayload; body?: Body };
+export type RequestWithUser<Body = any, Params = any> = NextApiRequest & {
+  $user?: IPayload;
+  body?: Body;
+  query?: Params;
+};
 type HandlerWithUser<T> = (req: RequestWithUser, res: NextApiResponse) => T | Promise<T>;
 
 /**

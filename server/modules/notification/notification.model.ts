@@ -1,11 +1,11 @@
 import mongoose from "../../database";
-import User, { UserId } from "../auth/user.model";
+import { UserId } from "../auth/user.model";
 import { NotificationTypeId } from "./notification-type.model";
 
 const { Schema, model, models } = mongoose;
 
 export interface INotification {
-  id: string;
+  _id: string;
   title: string;
   message: string;
   type: NotificationTypeId;
@@ -30,8 +30,7 @@ const NotificationSchema = new Schema<INotification>(
       required: true
     },
     for: {
-      type: Schema.Types.ObjectId,
-      ref: User,
+      type: String,
       required: true
     },
     by: {

@@ -1,8 +1,23 @@
+import { ObjectId } from "mongoose";
 import mongoose from "../database";
 import User from "../modules/auth/user.model";
 const Schema = mongoose.Schema;
 
-const eventSchema = new Schema(
+export type EventId = string & { __isEventId: true };
+
+export interface IEvent {
+  uniqueId: EventId;
+  name: string;
+  description: string;
+  image: string;
+  start: Date;
+  end: Date;
+  creator: ObjectId;
+  posted: Date;
+  link: string;
+}
+
+const eventSchema = new Schema<IEvent>(
   {
     uniqueId: {
       type: String,
@@ -54,13 +69,6 @@ const eventSchema = new Schema(
     timestamps: true
   }
 );
-
-eventSchema.query.withCreator = function() {
-  return this.populate(
-    "creator",
-    "_id firstName lastName image"
-  )
-};
 
 const Event = mongoose.models.event || mongoose.model("event", eventSchema);
 
