@@ -55,7 +55,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
 
   return (
     <div className="dark:bg-[#202020] dark:text-white min-h-screen">
-      <nav className="flex items-center justify-between pl-8 pr-12">
+      <nav className="flex items-center justify-between pl-[10px] lg:pl-[37px] pr-[10px] lg:pr-[37px]">
         <Logo className="w-[120px] py-5" />
         <div className="flex gap-x-2">
           <DarkModeToggle
