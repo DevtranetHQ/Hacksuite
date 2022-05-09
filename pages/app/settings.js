@@ -52,6 +52,14 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
       },
       padding : 3
     }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ':hover': {
+        backgroundColor:" #03A9F4",
+        color: 'white',
+      },
+    }),
   }
   const CaretDownIcon = () => {
     return <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />;
