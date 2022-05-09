@@ -5,7 +5,6 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import Fade from "react-reveal/Fade";
 import DarkModeToggle from "../DarkModeToggle";
 import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
