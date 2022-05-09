@@ -11,9 +11,65 @@ import SearchIcon from "../../components/icons/Search";
 import GitHubIcon from "../../components/icons/Github";
 import FigmaIcon from "../../components/icons/Figma";
 import AdobeIcon from "../../components/icons/Adobe";
+import NotificationsLink from "../../components/dash/NotificationsLink";
+import Select, { components } from 'react-select';
+import { Icon } from '@iconify/react';
 
-export default function CreateProject({ recaptchaSitekey, choices }) {
+export default function CreateProject({ recaptchaSitekey, choices, unread }) {
   // TODO: Work on adding colloborators
+  const handleSubmission = () => {
+
+  }
+
+  // Multiple Select Functions
+  const options = [
+    { value: 'Developer', label: 'Developer' },
+    { value: 'Founder', label: 'Founder' },
+    { value: 'Student', label: 'Student' },
+    { value: 'Designer', label: 'Designer' },
+  ];
+  const options2 = [
+    { value: 'TypeScripts', label: 'Typescripts' },
+    { value: 'Python', label: 'Python' },
+    { value: 'React', label: 'React' },
+    { value: 'Robotics', label: 'Robotics' },
+    { value: 'Angular', label: 'Angular' },
+  ];
+  const styles = {
+    control: (provided) => ({
+      ...provided,
+      border: 0,
+      outline: "none",
+      boxShadow: "none"
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      "&:hover" : {
+        backgroundColor : "#03A9F4",
+        color: "white",
+      },
+      padding : 3
+    }),
+    multiValueRemove: (styles, { data }) => ({
+      ...styles,
+      color: data.color,
+      ':hover': {
+        backgroundColor:" #03A9F4",
+        color: 'white',
+      },
+    }),
+  }
+  const CaretDownIcon = () => {
+    return <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />;
+  };
+  
+  const DropdownIndicator = props => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <CaretDownIcon />
+      </components.DropdownIndicator>
+    );
+  };
 
   const [name, setName] = useState("");
   const updateName = e => {
@@ -106,30 +162,23 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
   }
 
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-2">
+    <div className="grid grid-cols-12 dark:bg-[#202020]">
+      <div className="col-span-1 mx-auto">
         <DashNav active="/personal-projects" />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-10 p-10 relative">
-        <header className="border-b-2 flex items-center justify-center pb-10">
-          <h1 className="ml-auto title">Projects</h1>
-          <div className="ml-auto">
-            <DarkModeToggle />
+      <div className="dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
+        <header className="flex items-center justify-center pb-10">
+          <h1 className="mx-auto font-semibold text-42px">Projects</h1>
+          <div className="text-right flex items-end justify-end  mt-3">
+            <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
             <Link href="/app/notifications">
-              <svg
-                className="cursor-pointer inline fill-deep-sky-blue mx-2"
-                width="37"
-                height="43"
-                viewBox="0 0 37 43"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.5833 38.125H22.4167C22.4167 40.2792 20.6542 42.0417 18.5 42.0417C16.3458 42.0417 14.5833 40.2792 14.5833 38.125ZM36.125 34.2084V36.1667H0.875V34.2084L4.79167 30.2917V18.5417C4.79167 12.4709 8.70833 7.18335 14.5833 5.42085V4.83335C14.5833 2.67919 16.3458 0.916687 18.5 0.916687C20.6542 0.916687 22.4167 2.67919 22.4167 4.83335V5.42085C28.2917 7.18335 32.2083 12.4709 32.2083 18.5417V30.2917L36.125 34.2084ZM28.2917 18.5417C28.2917 13.0584 23.9833 8.75002 18.5 8.75002C13.0167 8.75002 8.70833 13.0584 8.70833 18.5417V32.25H28.2917V18.5417Z" />
-              </svg>
+            <NotificationsLink className="h-[25px]" unread={unread}/>
             </Link>
           </div>
         </header>
+        <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]"/>
         <section className="pt-7 px-7">
-          <p>
+          <p className="text-center">
             Here you can share all the cool things you’re making and launching with The Dynamics
             Community, and beyond!
           </p>
@@ -187,8 +236,19 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
             <h2 className="mb-5 subheadline">
               Technology/tools used or project domain<span className="text-[#ff0000]">*</span>
             </h2>
+            
             <section className="mb-5">
-              <div className="form-input flex flex-wrap gap-2 relative z-[2] min-h-[47px]">
+              <div className="mb-4">
+                <Select
+                className="form-select p-1 m-0 rounded-lg"
+                  styles={styles}
+                  components={{ DropdownIndicator }}
+                  isMulti
+                  options={options2}
+                />
+              </div>
+            
+              {/* <div className="form-input flex flex-wrap gap-2 relative z-[2] min-h-[47px]">
                 {Array.from(technologies).map((value, key) => (
                   <button
                     className="bg-[#E6E6E6] border border-[#442929] cursor-default inline-flex gap-x-4 items-center justify-between px-3 rounded text-15px h-fit"
@@ -214,7 +274,7 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
               <label className="font-bold italic text-[#A5A5A5]">
                 Select in order of relevance, the first four will be displayed on the project
                 preview page.
@@ -241,7 +301,7 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
             </h2>
             <section className="mb-5">
               <div className="form-input">
-                <div className="flex flex-col gap-y-4 items-center w-fit">
+                <div className="flex flex-col gap-y-6 items-center w-fit mb-4">
                   <style jsx>{`
                     .default-input::-webkit-input-placeholder {
                       color: black;
@@ -277,10 +337,10 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
                       type="text"
                     />
                   </div>
-                  <div className="inline-flex gap-x-2 items-center">
-                    <FigmaIcon width={22.67} height={34} />
+                  <div className="flex items-center gap-x-5">
+                    <FigmaIcon width={22.67} height={34}/>
                     <input
-                      className="default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px"
+                      className="default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px "
                       placeholder="Figma..."
                       type="text"
                     />
@@ -311,7 +371,7 @@ export default function CreateProject({ recaptchaSitekey, choices }) {
                 sitekey={recaptchaSitekey}
                 onChange={i => console.log(i)}
               />
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center gap-x-16">
                 <button className="button-medium button-orange-peel" type="submit">
                   Save for later
                 </button>
@@ -332,6 +392,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      unread: true,
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],
         stages: [
