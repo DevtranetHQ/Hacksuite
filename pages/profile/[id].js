@@ -54,7 +54,7 @@ export default function Profile({ loggedIn, user }) {
             <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-0 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back" : "All Events"}
               <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
-                  <ArrowRightIcon />
+                  <ArrowIcon />
               </div>
             </button>
           </Link>
