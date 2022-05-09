@@ -34,11 +34,9 @@ export default function Profile({ user }) {
       </div>
 
       {router.query.verified && (
-        
-          <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
-            Email Verification Successful!
-          </p>
-        
+        <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
+          Email Verification Successful!
+        </p>
       )}
 
       <form
