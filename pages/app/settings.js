@@ -386,7 +386,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
               onChange={i => console.log(i)}
             />
             <button
-              className="button-medium button-deep-sky-blue mx-auto px-20 w-[255px] text-24px mt-3"
+              className="button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
               type="submit">
               Save
             </button>
@@ -401,6 +401,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      unread: true,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [
