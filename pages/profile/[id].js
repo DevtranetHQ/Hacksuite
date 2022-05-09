@@ -11,7 +11,7 @@ import TwitterIcon from "../../components/icons/Twitter";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
-import ProjectGalleryProjectCard from "../../components/project/ProjectGalleryProjectCard";
+
 import Scrapbook from "./Scrapbook";
 
 /**
@@ -39,7 +39,7 @@ export default function Profile({ loggedIn, user }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       {/* ====== NavBar start */}
-      <nav className="flex items-center justify-between pl-[10px] lg:pl-[37px] pr-[10px] lg:pr-[37px]">
+      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
         <Logo className="w-[80px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
@@ -47,15 +47,16 @@ export default function Profile({ loggedIn, user }) {
             darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
-            href="https://github.com/TheDynamics" className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+            href="https://github.com/TheDynamics"
+            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href="https://thedynamics.tech">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-0 my-0 md:my-0 focus:outline-none">
+            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back" : "All Events"}
-              <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
-                  <ArrowIcon />
-              </div>
+              <span className="md:mt-1">
+                <ArrowRightIcon />
+              </span>
             </button>
           </Link>
         </div>
@@ -143,19 +144,16 @@ export default function Profile({ loggedIn, user }) {
                 {user &&
                   user.projects.map((project, index) => {
                     return (
-                      <ProjectGalleryProjectCard
+                      <ProfileProjectCard
                         key={index}
-                        name={project.name}
-                    tools={project.tools}
-                    bubbleNumber={project.bubbles.length}
-                    date={project.date}
+                        bubbles={project.bubbles}
+                        date="ferbrary 28, 2020"
                         title="Web Scrapper"
                         likes={93}
                         image={project.image}
                         comments={27}
                         tags={bubbleTrimmer(project.tags, 0, 4)}
                         desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
                       />
                     );
                   })}
@@ -243,29 +241,24 @@ export async function getServerSideProps(context) {
         ],
         projects: [
           {
-            name: "Zach Latta",
-            tools: ['github'],
-            bubbles: [],
-            date: "11:00 am, Today",
+            bubbles: [1, 2, 3, 4, 5, 6],
+            date: "ferbrary 28, 2020",
             title: "Web Scrapper",
             desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
             image: "/assets/TEST/user_projects/img-1.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["NextJs", "Figma"], 
-            liked: true
+            tags: ["NextJs", "Figma"]
           },
           {
-            name: "Elon Musk",
-            tools: ['figma', 'github'],
-            bubbles: [],
-            date: "12:00 pm, Today, 2020",
+            bubbles: [1, 2, 3],
+            date: "ferbrary 28, 2020",
             title: "Tesla",
             desc: "Launched the first prototype of the world’s firts self-driving vehicle. Best part: 100% AI",
             image: "/assets/TEST/user_projects/img-2.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["React", "Vue", "Laravel"]
+            tags: ["React", "Vue", "Express", "Laravel"]
           },
           {
             bubbles: [2],
@@ -278,10 +271,8 @@ export async function getServerSideProps(context) {
             tags: ["PHP", "Golang", "Adobe XD"]
           },
           {
-            name: "Bill gates",
-            tools: ['adobexd', 'github'],
             bubbles: [],
-            date: "February 28, 2022",
+            date: "ferbrary 28, 2020",
             title: "Command tech",
             desc: "Advancing the partcipation of non-binary and female students in STEM worlwide ",
             image: "/assets/TEST/user_projects/img-4.png",
@@ -290,10 +281,8 @@ export async function getServerSideProps(context) {
             tags: ["Python"]
           },
           {
-            name: "Ronald",
-            tools: ['figma', 'github'],
-            bubbles: [],
-            date: "February 27, 2022",
+            bubbles: [1, 2, 3, 4],
+            date: "ferbrary 28, 2020",
             title: "Frelapay",
             desc: "Get payments from all your freelance work converted into the highest selling cryptos",
             image: "/assets/TEST/user_projects/img-5.png",
@@ -302,17 +291,15 @@ export async function getServerSideProps(context) {
             tags: ["HTML", "CSS", "JSON"]
           },
           {
-            name: "Mark Zuckerburg",
-            tools: ['adobexd', 'github'],
-            bubbles: [],
-            date: "February 28, 2020",
+            bubbles: [1, 2],
+            date: "ferbrary 28, 2020",
             title: "Microsoft",
             desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
             image: "/assets/TEST/user_projects/img-6.png",
             comments: 22222,
             likes: 33333333,
             tags: ["Git", "Flask", "Django"]
-          },
+          }
         ],
         scrapbookItem: [
           {
