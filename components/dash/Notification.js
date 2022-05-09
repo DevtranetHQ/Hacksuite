@@ -33,7 +33,7 @@ export default function Notification({ unread, type, title, description, who, ti
           </button>
         </div>
         <div className="flex flex-row-reverse gap-10 items-center">
-          <div className="cursor-pointer  border-2 leading-none w-[30px] h-[30px] text-[26px] text-center border-black text-black  bg-[#F9F9F9] flex items-center justify-center">
+          <div className="cursor-pointer border-2 leading-none w-[30px] h-[30px] text-[26px] text-center border-black text-black  bg-[#F9F9F9] flex items-center justify-center dark:bg-black dark:text-white dark:border-white">
             &times;
           </div>
           <div className="flex gap-2 items-center">
