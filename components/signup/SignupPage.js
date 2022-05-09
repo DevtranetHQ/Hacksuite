@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
-import { Icon } from "@iconify/react"
+import { Icon } from "@iconify/react";
 import DarkModeToggle from "../DarkModeToggle";
 import Logo from "../Logo";
 import authImage from "../../public/assets/auth/auth-background.svg";
