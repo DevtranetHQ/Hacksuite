@@ -401,6 +401,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      unread: true,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [
