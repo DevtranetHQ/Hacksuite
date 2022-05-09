@@ -6,7 +6,7 @@ import PersonalProjectCard from "../../components/project/PersonalProjectCard";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
 import NotificationsLink from "../../components/dash/NotificationsLink";
 
-export default function PersonalProjects({ name, projects }) {
+export default function PersonalProjects({ name, projects, unread }) {
   // NOTE: The project cards are inside /components/project/PersonalProjectCard, so the unpublish, publish, and delete functions will be there as well
 
   return (
@@ -20,7 +20,7 @@ export default function PersonalProjects({ name, projects }) {
           <div className="text-right flex items-end justify-end  mt-3">
             <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]"/>
             <Link href="/app/notifications">
-            <NotificationsLink className="h-[25px]"/>
+            <NotificationsLink className="h-[25px]" unread={unread}/>
             </Link>
           </div>
         </header>
@@ -50,6 +50,7 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       name: user.firstName,
+      unread : true,
       projects: [
         {
           name: "Web scraper",
