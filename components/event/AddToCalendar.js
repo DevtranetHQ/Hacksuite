@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { usePopper } from "react-popper";
 import dayjs from "dayjs";
 import CalendarIcon from "./../icons/Calendar";
-import { Icon } from '@iconify/react';
-
+import { Icon } from "@iconify/react";
 
 const getEventDescriptionHTML = ({ name, description, link, url }) => {
   const linkText = `<strong>Join the Event here: <a href="${link}">${link}</a></strong>`;
@@ -133,7 +132,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="mr-4"/>
+            <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="mr-4" />
           </span>
           Apple Calendar
         </a>
@@ -144,7 +143,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:google" color="#03a9f4" inline={true} className="mr-4"/>
+            <Icon icon="mdi:google" color="#03a9f4" inline={true} className="mr-4" />
           </span>
           Google Calender
         </a>
@@ -155,7 +154,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
-          <Icon icon="mdi:microsoft" color="#03a9f4" inline={true} className="mr-4"/>
+            <Icon icon="mdi:microsoft" color="#03a9f4" inline={true} className="mr-4" />
           </span>
           Outlook Calender
         </a>
@@ -166,6 +165,7 @@ export function AddToCalendar({ event }) {
           rel="noopener noreferrer"
           className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
           <span>
+            <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4" />
           <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Other Calendars

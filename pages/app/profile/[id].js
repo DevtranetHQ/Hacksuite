@@ -4,7 +4,7 @@ import { useState } from "react";
 import Avatar from "../../../components/Avatar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
 import Logo from "../../../components/Logo";
-import ArrowIcon from "../../../components/icons/Arrow";
+import ArrowRightIcon from "../../../components/icons/ArrowRight";
 import CalendarIcon from "../../../components/icons/Calendar";
 import GithubIcon from "../../../components/icons/Github";
 
@@ -24,7 +24,7 @@ export default function Profile({ loggedIn }) {
           <Link href="/">
             <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
               {loggedIn ? "Go back home" : "All Events"}
-              <ArrowIcon />
+              <ArrowRightIcon />
             </button>
           </Link>
         </div>

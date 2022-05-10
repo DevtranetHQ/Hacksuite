@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./pages/**/*.js", "./components/**/*.js"],
+  content: ["./pages/**/*.js", "./components/**/*.{js,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -52,6 +52,7 @@ module.exports = {
       "18px": ["18px"],
       "16px": ["16px"],
       "15px": ["15px"],
+      "14px": ["14px"],
       "12px": ["12px"],
       "10px": ["10px"],
       "8px": ["8px"]

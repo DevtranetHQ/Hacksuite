@@ -1,8 +1,9 @@
-export default function CommentIcon({ fill, width, height }) {
+export default function CommentIcon({ fill, width, height, className }) {
   return (
     <svg
       width={width ? width : 24}
       height={height ? height : 24}
+      className={className ? className : ''}
       viewBox="0 0 44 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

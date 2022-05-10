@@ -37,17 +37,22 @@ export default function Optional({ user }) {
 
       <div className="mxs:pt-7 mxs:pb-8 rounded-[20px] bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 mx-4 xs:pl-14 xs:pr-6 xs:mx-8 lg:mx-32 xl:p-11 xl:ml-[17rem] xl:mr-60 mt-16 mb-20">
         <div className="flex mxs:flex-col-reverse justify-start items-center">
-          <Avatar className="relative w-[164px] h-[166px]" image={user.image || avatarImage} />
+          <Avatar
+            className="relative mxs:h-[164px] w-[164px] h-[166px]"
+            image={user.image || avatarImage}
+          />
           <p className="mxs:mb-8 text-24px xs:text-36px font-bold text-center xs:pl-12">
-            <span className="text-[#4cb050]">{user.firstName},</span> Can we know you better?
+            <span className="text-[#4cb050]">{user.firstName},</span> can we know you better?
           </p>
         </div>
-        <label
-          className="mxs:mx-10 mxs:mt-5 button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 mt-3.5 h-14 xs:w-52"
-          htmlFor="profile-upload">
-          <UploadIcon />
-          <span className="">Upload a picture</span>
-        </label>
+        <div className="mxs:w-full">
+          <label
+            className="button-small button-deep-sky-blue cursor-pointer mxs:mx-auto mxs:w-fit mxs:mt-5 mt-3.5 xs:gap-x-3 h-14 xs:inline-flex xs:w-52"
+            htmlFor="profile-upload">
+            <UploadIcon />
+            <span className="mxs:ml-3 text-18px">Upload a picture</span>
+          </label>
+        </div>
         <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
         <p className="text-18px xs:text-30px font-semibold mt-14 mb-8">
           Social and portfolio links
@@ -127,7 +132,7 @@ export default function Optional({ user }) {
             />
           </div>
         </div>
-        <p className="text-18px xs:text-24px mt-4 xs:mt-7 font-extralight">
+        <p className="text-14px xs:text-24px mt-4 xs:mt-4 font-extralight">
           Max of 3 social or portfolio links please.
         </p>
         <p className="text-18px xs:text-30px font-semibold mt-11 mb-7">Upload your resume</p>
@@ -146,7 +151,7 @@ export default function Optional({ user }) {
                 fill="#A5A5A5"
               />
             </svg>
-            <p className="text-18px font-normal">Drag and drop</p>
+            <p className="text-18px font-normal dark:text-black">Drag and drop</p>
             <p className="text-18px text-[#A5A5A5] font-light">
               your file here, or{" "}
               <span id="fileName" className="text-deep-sky-blue cursor-pointer">
@@ -156,12 +161,12 @@ export default function Optional({ user }) {
             </p>
           </div>
         </div>
-        <p className="mxs:text-18px text-24px mxs:mt-4 mt-[22px] mxs:mb-9 mb-20 font-extralight">
+        <p className="mxs:text-14px text-24px mxs:mt-4 mt-4 mxs:mb-9 mb-20 font-extralight">
           Max file size: 10MB (.pdf, .doc or .docx files only)
         </p>
-        <div className="flex justify-center gap-x-5 xs:gap-x-10 xs:mx-32">
+        <div className="flex justify-center xs:gap-x-10 xs:mx-32">
           <Link href="/app">
-            <button className="mxs:py-2.5 w-[88%] xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
+            <button className="mxs:mr-5 mxs:py-2.5 w-[88%] xs:w-64 xs:h-[74px] rounded-md text-16px xs:text-24px text-white bg-[#FF9700] transition-all font-bold hover:scale-105 focus:scale-105">
               Skip for now
             </button>
           </Link>
