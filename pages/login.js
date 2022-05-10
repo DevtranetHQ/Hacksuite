@@ -130,7 +130,7 @@ export default function Login({ loginError, token, resetError, reset }) {
               <LoadingButton
                 className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1 "
                 type="submit"
-                isLoading={login.status === "loading"}>
+                isLoading={login.status === "pending"}>
                 Login
               </LoadingButton>
               <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
