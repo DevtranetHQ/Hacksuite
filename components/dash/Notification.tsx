@@ -65,7 +65,7 @@ export default function Notification(props: Props) {
                 fill="currentcolor"
               />
             </svg>
-            {dayjs(createdAt).format("m:ss a, MMM D YYYY")}
+            {dayjs(createdAt).format("hh:mm a, MMM D YYYY")}
           </div>
         </div>
       </div>

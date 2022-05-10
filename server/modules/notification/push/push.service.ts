@@ -1,12 +1,12 @@
 import { INotification } from "../notification.model";
-import { setVapidDetails, sendNotification, PushSubscription } from "web-push";
+import webPush, { PushSubscription } from "web-push";
 import { config } from "../../../config";
 import { ISubscription, SubscriptionModel } from "./subscription.model";
 import { UserId } from "../../auth/user.model";
 
 const { vapid } = config;
 
-setVapidDetails("https://thedynamics.tech", vapid.publicKey, vapid.privateKey);
+webPush.setVapidDetails("https://thedynamics.tech", vapid.publicKey, vapid.privateKey);
 
 class PushService {
   async sendPushNotification(notification: INotification) {
@@ -19,7 +19,7 @@ class PushService {
 
     return Promise.all(
       subscriptions.map(subscription => {
-        return sendNotification(subscription.subscription, JSON.stringify(notification));
+        return webPush.sendNotification(subscription.subscription, JSON.stringify(notification));
       })
     );
   }
