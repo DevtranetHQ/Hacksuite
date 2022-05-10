@@ -2,48 +2,61 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import DashNav from "../../components/dash/DashNav";
+import DashNavMobile from "../../components/dash/DashNavMobile";
 import DarkModeContext from "../../components/DarkModeContext";
 import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../../components/Logo";
 import NotificationsLink from "../../components/dash/NotificationsLink";
 import placeholder from "../../public/assets/dash/placeholder.svg";
 import robotLight from "../../public/assets/dash/robotLight.svg";
 import robotDark from "../../public/assets/dash/robotDark.svg";
+import bars from "../../public/assets/dash/bars-solid.svg";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
 
 export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
-  
+
   return (
-    <div className="grid grid-cols-12 dark:bg-[#202020]">
-      <div className="col-span-1 mx-auto">
+    <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
+      <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav admin={admin} />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-11 p-10  mx-auto content-center min-w-full min-h-screen">
-        <div className="text-right flex items-end justify-end  mt-3">
-        <DarkModeToggle
-                className="h-[30px]"
-                darkClassName="h-[30px]"
-            />
-          <NotificationsLink unread={unread} className="h-[25px]"/>
+      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 mx-auto content-center min-w-full min-h-screen">
+        <div className="mxs:flex items-center justify-between mxs:px-5">
+          <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
+          <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
+            <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
+            <NotificationsLink unread={unread} />
+            <div className="xs:hidden relative w-[22px] -mb-1 ml-1">
+              <Image src={bars} alt="bars-solid" />
+            </div>
+          </div>
         </div>
-        <div>
+
         <div className="text-center">
-          <h1 className="font-semibold text-42px -mt-3">
+          <h1 className="mxs:text-24px font-semibold text-42px -mt-3">
             Hey there, <span className="text-fruit-salad">{name}.</span>
           </h1>
-          <div className="mx-auto -mt-8">
-            <Image src={placeholder} alt="" width={700} height={430}/>
+          <div className="mx-auto -mt-2 xs:-mt-8">
+            <Image src={placeholder} alt="" width={700} height={430} />
           </div>
-          <div className="-mt-14">
-          <h1 className="text-54px -rotate-6">Welcome to</h1>
-          <h1 className="text-54px font-semibold uppercase -mt-3">The Dynamics</h1>
-          
+          <div className="-mt-6 xs:-mt-14">
+            <h1 className="mxs:text-24px text-54px -rotate-6">Welcome to</h1>
+            <h1 className="mxs:text-26px text-54px font-semibold uppercase -mt-3">The Dynamics</h1>
           </div>
         </div>
-        <div className="fixed bottom-0 right-0 pb-3 pr-3 z-20">
-          {darkMode ? <Image src={robotDark} alt="" /> : <Image src={robotLight} alt="" />}
+        <div className=""></div>
+        <div className=""></div>
+        <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-3 z-20">
+          {darkMode ? (
+            <Image className="" src={robotDark} alt="" />
+          ) : (
+            <Image className="" src={robotLight} alt="" />
+          )}
         </div>
-        </div>
+      </div>
+      <div className="xs:hidden">
+        <DashNavMobile admin={admin} />
       </div>
     </div>
   );
