@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NotificationsLink({ unread }) {
+export default function NotificationsLink({ unread }: any) {
   return (
     <Link href="/app/notifications">
       <div className="inline relative">

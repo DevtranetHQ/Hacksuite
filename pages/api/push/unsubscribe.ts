@@ -8,7 +8,10 @@ import { pushService } from "../../../server/modules/notification/push/push.serv
 async function unsubscribeHandler(req: RequestWithUser, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
-      const res = await pushService.unsubscribeUser(req.$user.id, req.body.subscription.endpoint);
+      const res = await pushService.unsubscribeUser(
+        req.$user.uniqueId,
+        req.body.subscription.endpoint
+      );
       return new CustomResponse(200, `Unsubscribed to ${res.subscription.endpoint}`, res);
     } catch (error) {
       throw new CustomError(error.message, 500);
