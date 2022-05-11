@@ -224,7 +224,7 @@ export default function Project({ loggedIn, project }) {
           <div className="grid grid-cols-12 mx-14 mb-14">
             <div className="col-span-1" />
             <div className="col-span-10 px-3">
-              <div className="bg-[#f5f5f7] rounded-xl">
+              <div className="bg-[#f5f5f7] rounded-2xl">
                 {project.comments.map((comment, key) => (
                   <div className="border-b-4 px-7 py-5" key={key}>
                     <div className="grid grid-cols-12 items-center">
