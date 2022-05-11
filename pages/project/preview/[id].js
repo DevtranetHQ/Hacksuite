@@ -122,27 +122,27 @@ export default function Project({ loggedIn, project }) {
         />
         <aside className="flex flex-col gap-y-7">
           <div>
-            <h1 className="heading">Made With</h1>
-            <div className="flex gap-x-2">
+            <h1 className="heading">Made with</h1>
+            <div className="flex gap-x-8">
               {project.tags.map((tag, key) => (
                 <span
                   className={`${["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
-                    } px-3 py-2 subheadline text-white`}
+                    } px-3 py-2 subheadline text-white rounded`}
                   key={key}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-2">
             <div>
-              <h1 className="heading leading-loose">Check it out</h1>
+              <h1 className="heading leading-loose mb-3">Check it out</h1>
               <div className="flex flex-col gap-y-4">
                 {project.links.map((link, key) => {
                   switch (link.type) {
                     case "github":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <GithubIcon width={50} height={50} />
                           <a className="subheadline underline" href={link.link}>
                             on GitHub
@@ -151,7 +151,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "figma":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <FigmaIcon />
                           <a className="subheadline underline" href={link.link}>
                             on Figma
@@ -160,7 +160,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "adobe":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <AdobeIcon />
                           <a className="subheadline underline" href={link.link}>
                             on AdobeXD
@@ -169,10 +169,10 @@ export default function Project({ loggedIn, project }) {
                       );
                     default:
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <LinkIcon />
                           <a className="subheadline underline" href={link.link}>
-                            via link
+                            Via this Link
                           </a>
                         </div>
                       );
@@ -201,30 +201,30 @@ export default function Project({ loggedIn, project }) {
               </div>
             </div>
           </div>
-          <h1 className="heading leading-loose">Comments</h1>
+          <h1 className="text-30px font-bold mt-7">Comments</h1>
           <div className="grid grid-cols-12 mx-14 items-center">
             <div className="col-span-1">
               <Avatar
                 border="!border-[3px]"
-                className="relative w-[80px] h-[80px]"
+                className="relative w-[65px] h-[65px]"
                 image={project.owner.image}
               />
             </div>
             <div className="col-span-10 px-3">
               <h1>
-                <span className="headline">{project.owner.name}</span>{" "}
-                <span className="lead ml-1">Made this project - {project.date}</span>
+                <span className="text-24px font-semibold">{project.owner.name}</span>{" "}
+                <em className="ml-2 font-thin text-20px italic">Made this project —{project.date}</em>
               </h1>
-              <h1 className="subheadline italic text-[#515151]">Leave feedback in the comments!</h1>
+              <h1 className="text-18px italic text-[#515151] mt-2">leave feedback in the comments!</h1>
             </div>
             <div className="col-span-1">
-              <ArrowDownIcon />
+              <ArrowDownIcon width="18px" height="18px"/>
             </div>
           </div>
           <div className="grid grid-cols-12 mx-14 mb-14">
             <div className="col-span-1" />
             <div className="col-span-10 px-3">
-              <div className="bg-[#f5f5f7] rounded-md">
+              <div className="bg-[#f5f5f7] rounded-xl">
                 {project.comments.map((comment, key) => (
                   <div className="border-b-4 px-7 py-5" key={key}>
                     <div className="grid grid-cols-12 items-center">
