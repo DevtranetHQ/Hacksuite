@@ -17,6 +17,11 @@ class NotificationService {
     return notifs.map(notif => JSON.parse(JSON.stringify(notif)));
   }
 
+  async checkUnreadNotifications(userId: string): Promise<boolean> {
+    const notifications = await NotificationModel.count({ for: userId, read: false });
+    return notifications > 0;
+  }
+
   async getUnreadNotificationCountForUser(userId: string): Promise<number> {
     return NotificationModel.countDocuments({ for: userId, read: false });
   }
