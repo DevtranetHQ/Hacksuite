@@ -1,8 +1,4 @@
-<<<<<<< HEAD:components/icons/Arrow.tsx
 export default function ArrowIcon({ fill, width, height }: any) {
-=======
-export default function ArrowRightIcon({ fill, width, height }) {
->>>>>>> main:components/icons/ArrowRight.js
   return (
     <svg
       width={width ? width : 41}

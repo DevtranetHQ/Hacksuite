@@ -46,6 +46,7 @@
     "react-select": "^5.3.1",
     "showdown": "^2.0.3",
     "styled-components": "^5.3.5",
+    "styled-jsx": "^5.0.2",
     "web-push": "^3.5.0"
   },
   "devDependencies": {
