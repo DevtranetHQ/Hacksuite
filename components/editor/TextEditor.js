@@ -9,7 +9,7 @@ import ItalicIcon from "./icons/Italic";
 import BoldIcon from "./icons/Bold";
 import BulletListIcon from "./icons/BulletList";
 import OrderedListIcon from "./icons/OrderedList";
-import Left from "./icons/left";
+// import Left from "./icons/left";
 import Right from "./icons/Right";
 import Center from "./icons/Center";
 import Picture from "./icons/Picture";
@@ -98,13 +98,13 @@ export default function TextEditor({ onUpdate }) {
       >
         <Icon icon="fa-solid:underline" inline={true} width={43} height={33} className="border-r pr-3"/>
       </button>
-        <button
+        {/* <button
          type="button"
           className={editor.isActive({ textAlign: 'left' }) ? 'is-active border-r pr-3' : 'border-r pr-3'}
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           title="Align left">
           <Left />
-        </button>
+        </button> */}
         <button
          type="button"
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
