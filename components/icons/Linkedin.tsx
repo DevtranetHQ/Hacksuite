@@ -7,7 +7,7 @@
  * @param {Height} height - Icon height
  * @param {String | Object} className - styles
  */
-export default function LinkedinIcon({ fill, width, height, className }) {
+export default function LinkedinIcon({ fill, width, height, className }: any) {
   return (
     <svg
       width={width ? width : 47}

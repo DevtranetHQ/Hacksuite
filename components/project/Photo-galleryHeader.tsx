@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhotoGalleryHeader = ({ title, contentText, firstBtn, secondBtn, href }) => {
+const PhotoGalleryHeader = ({ title, contentText, firstBtn, secondBtn, href }: any) => {
     return (
         <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center">
             <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">{title}</h1>

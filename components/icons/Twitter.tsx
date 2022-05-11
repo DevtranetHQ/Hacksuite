@@ -8,7 +8,7 @@
  * @param {String | Object} className - styles
  */
 
-export default function TwitterIcon({ fill, width, height, className }) {
+export default function TwitterIcon({ fill, width, height, className }: any) {
   return (
     <svg
       width={width ? width : 52}

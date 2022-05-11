@@ -1,4 +1,4 @@
-export default function ExternalIcon({ fill, width, height }) {
+export default function ExternalIcon({ fill, width, height }: any) {
   return (
     <svg
       className={`${fill ? fill : "fill-#000000"}`}
