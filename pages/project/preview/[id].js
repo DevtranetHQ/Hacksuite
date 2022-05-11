@@ -20,6 +20,7 @@ import LinkIcon from "../../../components/icons/Link";
 import LinkedinIcon from "../../../components/icons/Linkedin";
 import TimeIcon from "../../../components/icons/Time";
 import TwitterIcon from "../../../components/icons/Twitter";
+import PhotoGalleryHeader from "../../../components/project/Photo-galleryHeader";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
@@ -64,36 +65,33 @@ export default function Project({ loggedIn, project }) {
           </Link>
         </div>
       </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-b-2xl text-center">
-        <h1 className="title text-deep-sky-blue">{project.name}</h1>
-        <h2 className="lead mb-2">{project.description}</h2>
-        <div className="inline-flex my-2">
-          <button className="button-medium button-fruit-salad inline-flex gap-x-2 items-end">
-            <span className="pt-1">
-              {project.likes} {project.likes === 1 ? "Like" : "Likes"}
-            </span>
-            <HeartIcon />
-          </button>
-          <a
-            className="button-medium button-deep-sky-blue inline-flex gap-x-2 items-end"
-            href="#comments">
-            <span className="pt-1">
+      <PhotoGalleryHeader
+        title={project.name}
+        contentText={project.description}
+        firstBtn={<>
+          <span>
+            {project.likes} {project.likes === 1 ? "Like" : "Likes"}
+          </span>
+          <HeartIcon />
+        </>}
+        secondBtn={<>
+          <span>
               {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
-            </span>
-            <CommentIcon />
-          </a>
-        </div>
-      </header>
+          </span>
+          <CommentIcon />
+        </>}
+        href="#comments"
+      />      
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
         <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
         </div>
-        <div className="absolute right-0 bottom-0 w-50 md:w-fit md:relative col-span-1 py-7">
-          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 rounded-l-md h-full">
+        <div className="absolute right-0 bottom-0 w-50 md:w-fit md:relative  py-7">
+          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 pl-12 pr-20 rounded-l-md h-full col-span-1">
             <div>
-              <h1 className="headline font-normal">Made By</h1>
+              <h1 className="headline font-normal mb-7">Made By</h1>
               {project.creators.map((creator, key) => (
-                <div className="inline-flex gap-2 items-center" key={key}>
+                <div className="flex items-center gap-x-4 mb-2" key={key}>
                   <Avatar
                     className="relative w-[45px] h-[45px]"
                     border="!border-[3px]"
@@ -110,7 +108,7 @@ export default function Project({ loggedIn, project }) {
                 </div>
               ))}
             </div>
-            <div className="inline-flex gap-2 items-center mt-1">
+            <div className="inline-flex gap-4 items-center mt-7 ml-3">
               <TimeIcon />
               <h2 className="caption">{project.date}</h2>
             </div>
@@ -124,28 +122,27 @@ export default function Project({ loggedIn, project }) {
         />
         <aside className="flex flex-col gap-y-7">
           <div>
-            <h1 className="heading">Made With</h1>
-            <div className="flex gap-x-2">
+            <h1 className="heading">Made with</h1>
+            <div className="flex gap-x-8">
               {project.tags.map((tag, key) => (
                 <span
-                  className={`${
-                    ["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
-                  } px-3 py-2 subheadline text-white`}
+                  className={`${["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
+                    } px-3 py-2 subheadline text-white rounded`}
                   key={key}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-2">
             <div>
-              <h1 className="heading leading-loose">Check it out</h1>
+              <h1 className="heading leading-loose mb-3">Check it out</h1>
               <div className="flex flex-col gap-y-4">
                 {project.links.map((link, key) => {
                   switch (link.type) {
                     case "github":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <GithubIcon width={50} height={50} />
                           <a className="subheadline underline" href={link.link}>
                             on GitHub
@@ -154,7 +151,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "figma":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <FigmaIcon />
                           <a className="subheadline underline" href={link.link}>
                             on Figma
@@ -163,7 +160,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "adobe":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <AdobeIcon />
                           <a className="subheadline underline" href={link.link}>
                             on AdobeXD
@@ -172,10 +169,10 @@ export default function Project({ loggedIn, project }) {
                       );
                     default:
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center" key={key}>
                           <LinkIcon />
                           <a className="subheadline underline" href={link.link}>
-                            via link
+                            Via this Link
                           </a>
                         </div>
                       );
@@ -204,30 +201,30 @@ export default function Project({ loggedIn, project }) {
               </div>
             </div>
           </div>
-          <h1 className="heading leading-loose">Comments</h1>
+          <h1 className="text-30px font-bold mt-7">Comments</h1>
           <div className="grid grid-cols-12 mx-14 items-center">
             <div className="col-span-1">
               <Avatar
                 border="!border-[3px]"
-                className="relative w-[80px] h-[80px]"
+                className="relative w-[65px] h-[65px]"
                 image={project.owner.image}
               />
             </div>
             <div className="col-span-10 px-3">
               <h1>
-                <span className="headline">{project.owner.name}</span>{" "}
-                <span className="lead ml-1">Made this project - {project.date}</span>
+                <span className="text-24px font-semibold">{project.owner.name}</span>{" "}
+                <em className="ml-2 font-thin text-20px italic">Made this project —{project.date}</em>
               </h1>
-              <h1 className="subheadline italic text-[#515151]">Leave feedback in the comments!</h1>
+              <h1 className="text-18px italic text-[#515151] mt-2">leave feedback in the comments!</h1>
             </div>
             <div className="col-span-1">
-              <ArrowDownIcon />
+              <ArrowDownIcon width="18px" height="18px"/>
             </div>
           </div>
           <div className="grid grid-cols-12 mx-14 mb-14">
             <div className="col-span-1" />
             <div className="col-span-10 px-3">
-              <div className="bg-[#f5f5f7] rounded-md">
+              <div className="bg-[#f5f5f7] rounded-2xl">
                 {project.comments.map((comment, key) => (
                   <div className="border-b-4 px-7 py-5" key={key}>
                     <div className="grid grid-cols-12 items-center">
@@ -240,15 +237,15 @@ export default function Project({ loggedIn, project }) {
                       </div>
                       <div className="col-span-11">
                         <h1>
-                          <span className="subheadline">{comment.name}</span>{" "}
-                          <span className="caption ml-1">{comment.date}</span>
+                          <span className="text-20px font-semibold">{comment.name}</span>{" "}
+                          <span className="caption text-16px ml-1">{comment.date}</span>
                         </h1>
                       </div>
                     </div>
                     <div className="grid grid-cols-12 items-center">
                       <div className="col-span-1" />
                       <div className="col-span-10">
-                        <p>{comment.comment}</p>
+                        <p className="text-20px">{comment.comment}</p>
                         <p className="caption inline-flex gap-x-1 items-center">
                           Like{" "}
                           <span className="cursor-pointer">
@@ -278,7 +275,7 @@ export default function Project({ loggedIn, project }) {
                             name="comment"
                             placeholder="Write a comment"
                           />
-                          <button className="button-small button-deep-sky-blue" onSubmit={comment}>
+                          <button className="button-small button-deep-sky-blue text-18px" onSubmit={comment}>
                             Post comment
                           </button>
                         </form>
