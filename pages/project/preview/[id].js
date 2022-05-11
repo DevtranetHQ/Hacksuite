@@ -237,15 +237,15 @@ export default function Project({ loggedIn, project }) {
                       </div>
                       <div className="col-span-11">
                         <h1>
-                          <span className="subheadline">{comment.name}</span>{" "}
-                          <span className="caption ml-1">{comment.date}</span>
+                          <span className="text-20px font-semibold">{comment.name}</span>{" "}
+                          <span className="caption text-16px ml-1">{comment.date}</span>
                         </h1>
                       </div>
                     </div>
                     <div className="grid grid-cols-12 items-center">
                       <div className="col-span-1" />
                       <div className="col-span-10">
-                        <p>{comment.comment}</p>
+                        <p className="text-20px">{comment.comment}</p>
                         <p className="caption inline-flex gap-x-1 items-center">
                           Like{" "}
                           <span className="cursor-pointer">
@@ -275,7 +275,7 @@ export default function Project({ loggedIn, project }) {
                             name="comment"
                             placeholder="Write a comment"
                           />
-                          <button className="button-small button-deep-sky-blue" onSubmit={comment}>
+                          <button className="button-small button-deep-sky-blue text-18px" onSubmit={comment}>
                             Post comment
                           </button>
                         </form>
