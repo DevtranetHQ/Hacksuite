@@ -145,7 +145,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
             </div>
           </div>
         </div>
-        <MenuMobile id="bars-active" menu={menu} />
+        <MenuMobile id="bars-active" menu={menu} onClick={handleBars} />
 
         <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
           Account Settings
