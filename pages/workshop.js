@@ -2,7 +2,8 @@ import Logo from "../components/Logo";
 import DarkModeToggle from "../components/DarkModeToggle";
 import GithubIcon from "../components/icons/Github";
 import Link from "next/link";
-import ArrowRightIcon from "../components/icons/ArrowRight";
+// import ArrowRightIcon from "../components/icons/ArrowRight";
+import ArrowIcon from "../components/icons/ArrowRight";
 import WorkshopProfileCard from "../components/WorkshopProfileCard";
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
@@ -17,12 +18,12 @@ export default function Workshop({ user, project }) {
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
         <Logo className="w-[80px] md:w-[120px] py-5" />
-        <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2">
+        <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2 dark:bg-transparent">
           <div className="relative rounded-md flex  items-center p-1 border-[#03A9F4] border-[3px]">
             <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-black flex items-center dark:text-black"
+                className="h-5 w-5 text-black flex items-center dark:text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -37,7 +38,7 @@ export default function Workshop({ user, project }) {
             <input
               type="search"
               placeholder="I’m looking for..."
-              className=" block w-full pl-10  dark:bg-transparent  rounded-lg form-input border-none p-0 m-0 py-2"
+              className=" block w-full pl-10  dark:bg-transparent  rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white"
             />
           </div>
         </form>
@@ -108,30 +109,104 @@ export default function Workshop({ user, project }) {
         </svg>
         <span className="font-bold text-[55px]">Design your adventure...</span>
       </p>
-      <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] md:px-[32px]">
-        {user &&
-          user.projects.map((project, index) => {
-            return (
-              <WorkshopProfileCard
-                key={index}
-                name={project.name}
-                tools={project.tools}
-                bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                bubbleNumber={project.bubbles.length}
-                date={project.date}
-                title="Web Scrapper"
-                image={project.image}
-                desc={project.desc}
-                className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-              />
-            );
-          })}
+      <hr className="mt-20 border-t-[1.4px] border-solid border-[#C9C9C9]"/>
+      <div className="mt-10">
+        <div className="mb-20">
+          {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
+            " "
+          ) : (
+            <span className="font-semibold text-30px pl-10">React Workshop</span>
+          )}
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+            {user &&
+              user.projects
+                .filter(tag => tag.tags.includes("React"))
+                .map((project, index) => {
+                  return (
+                    <div>
+                      <WorkshopProfileCard
+                        key={index}
+                        name={project.name}
+                        tools={project.tools}
+                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                        bubbleNumber={project.bubbles.length}
+                        date={project.date}
+                        title="Web Scrapper"
+                        image={project.image}
+                        desc={project.desc}
+                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
+                      />
+                    </div>
+                  );
+                })}
+          </div>
+        </div>
+        <div className="mb-20">
+          {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
+            " "
+          ) : (
+            <span className="font-semibold text-30px pl-10">Python Workshop</span>
+          )}
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+            {user &&
+              user.projects
+                .filter(tag => tag.tags.includes("Python"))
+                .map((project, index) => {
+                  return (
+                    <div>
+                      <WorkshopProfileCard
+                        key={index}
+                        name={project.name}
+                        tools={project.tools}
+                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                        bubbleNumber={project.bubbles.length}
+                        date={project.date}
+                        title="Web Scrapper"
+                        image={project.image}
+                        desc={project.desc}
+                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
+                      />
+                    </div>
+                  );
+                })}
+          </div>
+        </div>
+        <div className="mb-20">
+          {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
+            " "
+          ) : (
+            <span className="font-semibold text-30px pl-10">C++ Workshop</span>
+          )}
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+            {user &&
+              user.projects
+                .filter(tag => tag.tags.includes("C++"))
+                .map((project, index) => {
+                  return (
+                    <div>
+                      <WorkshopProfileCard
+                        key={index}
+                        name={project.name}
+                        tools={project.tools}
+                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                        bubbleNumber={project.bubbles.length}
+                        date={project.date}
+                        title="Web Scrapper"
+                        image={project.image}
+                        desc={project.desc}
+                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
+                      />
+                    </div>
+                  );
+                })}
+          </div>
+        </div>
       </div>
       <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
         <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
           <span>View more Workshops</span>
           <div className="lg:scale-[2] relative lg:top-1">
-            <ArrowRightIcon />
+            <ArrowIcon />
           </div>
         </button>
       </div>
@@ -176,7 +251,10 @@ export async function getServerSideProps(context) {
             date: "11:00 am, Today",
             title: "Web Scrapper",
             desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
-            image: "/assets/TEST/user_projects/img-1.png"
+            image: "/assets/TEST/user_projects/img-1.png",
+            comments: 22222,
+            likes: 33333333,
+            tags: ["NextJs", "Figma"]
           },
           {
             name: "Zach Latta",
@@ -200,7 +278,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-3.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["PHP", "Golang", "Adobe XD"]
+            tags: ["PHP", "C++", "Adobe XD"]
           },
           {
             name: "Zach Latta",
@@ -224,7 +302,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-5.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["HTML", "CSS", "JSON"]
+            tags: ["HTML", "CSS", "React"]
           },
           {
             name: "Zach Latta",
@@ -236,7 +314,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-6.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["Git", "Flask", "Django"]
+            tags: ["Python", "Flask", "Django"]
           },
           {
             name: "Zach Latta",
@@ -248,7 +326,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-6.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["Git", "Flask", "Django"]
+            tags: ["C++", "Flask", "Django"]
           },
           {
             name: "Zach Latta",
@@ -260,7 +338,7 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-6.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["Git", "Flask", "Django"]
+            tags: ["React", "Flask", "Django"]
           },
           {
             name: "Zach Latta",
@@ -272,7 +350,19 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-6.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["Git", "Flask", "Django"]
+            tags: ["Python", "Flask", "Django"]
+          },
+          {
+            name: "Zach Latta",
+            tools: ["adobexd", "github"],
+            bubbles: [1],
+            date: "February 28, 2020",
+            title: "Microsoft",
+            desc: "Coded Windows 7 a new OS from my dorm room, probably gonna dropout soon :(",
+            image: "/assets/TEST/user_projects/img-6.png",
+            comments: 22222,
+            likes: 33333333,
+            tags: ["C++", "Flask", "Django"]
           }
         ]
       }

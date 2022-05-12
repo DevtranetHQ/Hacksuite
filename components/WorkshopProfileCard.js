@@ -46,6 +46,7 @@ export default function WorkshopProfileCard({ ...props }) {
           ? className
           : "w-[370px] h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden p-3 shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] sm:w-3/4 md:w-1/1 lg:w-[520px] xl:w-[600px] 2xl-[700px]"
       }>
+          
       {/* ====== #TOP SECTION */}
       <div className="w-full flex items-center justify-between relative pl-4 pr-4 pt-[8px] pb-[20px]">
         <div className="flex justify-between items-center w-full">

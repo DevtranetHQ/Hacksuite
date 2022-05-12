@@ -64,6 +64,7 @@ export default function TextEditor({ onUpdate }) {
   if (!editor) {
     return null;
   }
+  
 
   return (
     <div className="form-input p-0">
