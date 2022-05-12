@@ -2,6 +2,7 @@ import Event from "../../models/event.model";
 import User from "../auth/user.model";
 import Registration from "./registration.model";
 import { CustomError } from "../../utils/customError";
+import { registrationNotificationService } from "./reg-notification.service";
 
 class RegistrationService {
   async registerWithUserId(userId, uniqueId) {
@@ -16,6 +17,8 @@ class RegistrationService {
 
     const registration = new Registration({ user: userId, event: uniqueId });
     await registration.save();
+
+    await registrationNotificationService.notifyNewRegistration(event, user);
 
     return registration;
   }
