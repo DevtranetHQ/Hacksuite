@@ -99,7 +99,7 @@ export default function Project({ loggedIn, project }) {
           </div>
         </div>
       </section>
-      <div className="mb-3 px-14">
+      <div className="px-14">
         <article
           className="prose prose-lg dark:prose-invert mb-7"
           dangerouslySetInnerHTML={projectInformation()}
@@ -126,7 +126,7 @@ export default function Project({ loggedIn, project }) {
                   switch (link.type) {
                     case "github":
                       return (
-                        <div className="inline-flex gap-x-5 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
                           <GithubIcon width={50} height={50} />
                           <a className="subheadline underline" href={link.link}>
                             on GitHub
@@ -135,7 +135,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "figma":
                       return (
-                        <div className="inline-flex gap-x-5 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
                           <FigmaIcon />
                           <a className="subheadline underline" href={link.link}>
                             on Figma
@@ -144,7 +144,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     case "adobe":
                       return (
-                        <div className="inline-flex gap-x-5 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
                           <AdobeIcon />
                           <a className="subheadline underline" href={link.link}>
                             on AdobeXD
@@ -153,7 +153,7 @@ export default function Project({ loggedIn, project }) {
                       );
                     default:
                       return (
-                        <div className="inline-flex gap-x-5 items-center" key={key}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
                           <LinkIcon />
                           <a className="subheadline underline" href={link.link}>
                             Via this Link
@@ -167,13 +167,13 @@ export default function Project({ loggedIn, project }) {
             <div>
               <h1 className="heading leading-loose">Share it</h1>
               <div className="flex gap-x-4 items-center">
-                <a href={`https://twitter.com/intent/tweet?url=${url}`}>
+                <a href={`https://twitter.com/intent/tweet?url=${url}`} className="hover:scale-[1.06] transition-all">
                   <TwitterIcon />
                 </a>
-                <a href={`https://www.facebook.com/sharer.php?u=${url}`}>
+                <a href={`https://www.facebook.com/sharer.php?u=${url}`} className="hover:scale-[1.06] transition-all">
                   <FacebookIcon />
                 </a>
-                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}>
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} className="hover:scale-[1.06] transition-all">
                   <LinkedinIcon />
                 </a>
                 <a
@@ -232,7 +232,7 @@ export default function Project({ loggedIn, project }) {
                       <div className="col-span-1" />
                       <div className="col-span-10">
                         <p className="text-20px">{comment.comment}</p>
-                        <p className="caption inline-flex gap-x-1 items-center">
+                        <p className="caption inline-flex gap-x-1 items-center hover:scale-[1.06] transition-all">
                           Like{" "}
                           <span className="cursor-pointer">
                             <HeartIcon fill="#C50000" width={20} height={20} />
@@ -255,7 +255,7 @@ export default function Project({ loggedIn, project }) {
                         />
                       </div>
                       <div className="col-span-11">
-                        <form className="!p-0">
+                        <form className="!p-0 dark:bg-transparent">
                           <textarea
                             className="form-input resize-none"
                             name="comment"
