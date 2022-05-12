@@ -49,7 +49,7 @@ export default function Notifications({ notifications }: Props) {
             </div>
           </div>
         </header>
-        <MenuMobile id="bars-active" menu={menu} onClick={handleBars} />
+        <MenuMobile menu={menu} onClick={handleBars} />
         <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
           Notifications
         </h1>
