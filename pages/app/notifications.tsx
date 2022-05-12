@@ -37,22 +37,29 @@ export default function Notifications({ notifications }: Props) {
       <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav admin={false} />
       </div>
-      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <header className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
-          <h1 className="mxs:hidden mx-auto font-semibold text-42px">Notifications</h1>
-          <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
-          <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-            <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
-            <NotificationsLink />
-            <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
-              <Image src={bars} alt="bars-solid" />
+      <div className="mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
+        <div className="flex flex-col">
+          <header className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
+            <h1 className="mxs:hidden mx-auto font-semibold text-42px">Notifications</h1>
+            <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
+            <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
+              <DarkModeToggle
+                className="h-[22px] xs:h-[30px]"
+                darkClassName="h-[22px] xs:h-[30px]"
+              />
+              <NotificationsLink />
+              <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
+                <Image src={bars} alt="bars-solid" />
+              </div>
             </div>
-          </div>
-        </header>
-        <MenuMobile menu={menu} onClick={handleBars} />
-        <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
+          </header>
+          <MenuMobile menu={menu} onClick={handleBars} />
+        </div>
+
+        <h1 className="xs:hidden mx-auto font-semibold text-36px mt-12 text-center">
           Notifications
         </h1>
+        <hr className="xs:hidden mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section>
           {notifs?.length ? (
             notifs.map((notif, key) => (
