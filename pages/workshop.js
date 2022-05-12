@@ -109,7 +109,7 @@ export default function Workshop({ user, project }) {
         </svg>
         <span className="font-bold text-[55px]">Design your adventure...</span>
       </p>
-      <hr className="mt-20 border-t-[1.4px] border-solid border-[#C9C9C9]"/>
+      <hr className="mt-20 border-t-[1.4px] border-solid border-[#C9C9C9]" />
       <div className="mt-10">
         <div className="mb-20">
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
