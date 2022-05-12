@@ -55,26 +55,28 @@ export default function Event({ loggedIn, event, isRegistered }) {
 
   return (
     <div className="dark:bg-[#202020] dark:text-white min-h-screen">
-      <nav className="flex items-center justify-between pl-8 pr-12">
-        <Logo className="w-[120px] py-5" />
-        <div className="flex gap-x-2">
+      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
+        <Logo className="w-[80px] md:w-[120px] py-5" />
+        <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="mx-0 w-[40px] h-[40px]"
-            darkClassName="mx-0 w-[40px] h-[42px]"
+            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
-          <a href="https://github.com/TheDynamics">
+          <a
+            href="https://github.com/TheDynamics"
+            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
-          <Link href="/">
-            <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
+          <Link href={`${loggedIn ? "/" : "/events"}`}>
+            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back home" : "All Events"}
               <ArrowRightIcon />
             </button>
           </Link>
         </div>
-      </nav>
+      </nav>      
       <div className="pb-14">
-        <div className="pt-14 relative">
+        <div classNam e="pt-14 relative">
           <Image
             layout="fill"
             objectFit="cover"
@@ -194,10 +196,11 @@ export default function Event({ loggedIn, event, isRegistered }) {
           </>
         )}
       </section>
-      <footer className="bg-[#f4f4f4] dark:bg-[#444444] px-14 py-3 text-center">
-        <p className="sm">
+      <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+        <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
           All events are hosted and maintained by The Dynamics, the official network of young
-          makers, developers, innovators, and founders using our{" "}
+          makers, <br className="hidden md:block"></br>developers, innovators, and founders using
+          our{" "}
           <Link href="/">
             <a>Code of Conduct</a>
           </Link>

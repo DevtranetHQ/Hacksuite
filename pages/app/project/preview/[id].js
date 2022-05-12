@@ -289,15 +289,16 @@ export default function Project({ loggedIn, project }) {
         </aside>
       </div>
       {!loggedIn && (
-        <footer className="bg-[#f4f4f4] dark:bg-[#444444] p-5 text-center">
-          <p className="sm">
-            You’ve reached the end, why not become a{" "}
-            <Link href="/signup">
-              <a>member</a>
-            </Link>{" "}
-            and show us all the cool things you’ve made?
-          </p>
-        </footer>
+        <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+        <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
+          All events are hosted and maintained by The Dynamics, the official network of young
+          makers, <br className="hidden md:block"></br>developers, innovators, and founders using
+          our{" "}
+          <Link href="/">
+            <a>Code of Conduct</a>
+          </Link>
+        </p>
+      </footer>
       )}
     </div>
   );

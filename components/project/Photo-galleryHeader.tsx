@@ -4,7 +4,7 @@ import DarkModeToggle from "../DarkModeToggle";
 import GithubIcon from "../icons/Github";
 import ArrowIcon from "../icons/Arrow";
 
-const PhotoGalleryHeader = ({ title, contentText, firstBtn, secondBtn, href, navHref, navText }: any) => {
+const PhotoGalleryHeader = ({ title, contentText, firstBtn, secondBtn, href, navHref, navText, children }: any) => {
     return (
         <>
         <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
@@ -41,6 +41,7 @@ const PhotoGalleryHeader = ({ title, contentText, firstBtn, secondBtn, href, nav
                 </a>
             </div>
         </header>
+        {children}
         </>
     );
 }
