@@ -245,7 +245,11 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             </section>
             <section className="mb-5">
               <div>
-                <h2 className="subheadline mb-5">Add Collaborators</h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="subheadline mb-5">Add Collaborators</h2>
+                  {showText ? <p className="text-16px  text-green-500 mr-16">Link copied!</p> : ""}
+                </div>
+
                 <div className="relative rounded-md flex  items-center mb-5">
                   <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
                     <svg
@@ -288,7 +292,6 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div
                     className="inline-flex absolute right-0 p-3 top-0 gap-x-2 items-center"
                     onClick={showMessage}>
-                    {showText ? <p className="text-16px  text-green-500 ">Link copied!</p> : ""}
                     <span className="dark:text-black cursor-pointer">or invite via link</span>
                     <LinkIcon fill="#FF9700" width={29.17} height={13.58} />
                   </div>
@@ -442,11 +445,11 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
               <label className="font-bold italic text-[#A5A5A5]">Max of 3 please.</label>
             </section>
             <section className="text-center mt-5">
-              <ReCAPTCHA
+              {/* <ReCAPTCHA
                 className="inline-block mb-3"
                 sitekey={recaptchaSitekey}
                 onChange={i => console.log(i)}
-              />
+              /> */}
               <div className="flex items-center justify-center gap-x-14 mt-5">
                 <button
                   className="button-big   px-20 w-[230px] text-22px  button-orange-peel"
@@ -471,7 +474,7 @@ export async function getServerSideProps(context) {
   // TODO: Update with technologies from database
   return {
     props: {
-      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      // recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
 
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],

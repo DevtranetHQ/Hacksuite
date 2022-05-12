@@ -35,29 +35,29 @@ export default function Discord() {
           </Link>
         </div>
       </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-5 rounded-b-2xl text-center">
+      <header className="bg-[#F8FBFF] container-gray-dark p-5 pt-8  text-center">
         <div className="grid grid-cols-2 gap-x-10">
-          <div className="flex-col items-center justify-center mx-auto">
+          <div className="flex-col items-center justify-center mx-auto my-auto">
             <Image src={foxImage} />
             <div className="flex items-center gap-x-10">
               <Image src={discordLogo} />
             </div>
           </div>
           <div>
-            <div className="flex-col w-3/4 ml-auto pr-2">
-              <h1 className="text-36px text-center font-bold xs:text-30px xs:mb-4">
+            <div className="flex-col w-[70%] ml-auto mr-20 ">
+              <h1 className="text-28px text-center font-bold xs:text-26px xs:mb-2">
                 JOIN OUR DISCORD
               </h1>
-              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-7 lg:pb-6 lg:px-12">
+              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-4 lg:pb-3 lg:px-12">
                 <div>
                   <div>
                     <label
-                      className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1 flex items-center justify-start"
+                      className="font-semibold xs:text-12px md:text-16px xs:font-bold xs:mb-1 flex items-center justify-start"
                       htmlFor="name">
                       First name
                     </label>
                     <input
-                      className="form-input "
+                      className="form-input p-1 mb-2 pl-3"
                       name="name"
                       id="name"
                       type="text"
@@ -69,12 +69,12 @@ export default function Discord() {
                   </div>
                   <div>
                     <label
-                      className="font-semibold xs:text-12px md:text-18px xs:font-bold xs:mb-1 flex items-center justify-start"
+                      className="font-semibold xs:text-12px md:text-16px xs:font-bold xs:mb-1 flex items-center justify-start"
                       htmlFor="email">
                       Email address
                     </label>
                     <input
-                      className="form-input"
+                      className="form-input p-1 mb-2 pl-3"
                       name="email"
                       id="email"
                       type="email"
@@ -86,18 +86,18 @@ export default function Discord() {
                   </div>
 
                   <button
-                    className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-5 h-8 py-0 xs:py-1 px-6 md:px-10"
+                    className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-4 h-8 py-0 xs:py-3 px-6 md:px-10"
                     type="submit">
                     Get invite
                   </button>
-                  <div className="flex justify-between -mx-10 my-6 lg:-mx-12 xs:my-8">
+                  <div className="flex justify-between -mx-10 my-1 lg:-mx-12 xs:my-3">
                     <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                     <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
                       Already a member?
                     </div>
                     <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                   </div>
-                  <button className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-5 h-8 py-0 xs:py-1 px-6 md:px-10 gap-x-2 w-2/4">
+                  <button className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-3 h-8 py-0 xs:py-1 px-6 md:px-10 gap-x-2 w-2/4 mb-3">
                     <svg
                       width="21"
                       height="21"
@@ -201,7 +201,7 @@ export default function Discord() {
           Stuck with something? Looking for constructive project feedbacks? Want to make friends
           with like-minded makers? You’ll find amazing people to chat with here!
         </p>
-        <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
+        <div className="w-full flex justify-center items-center my-10">
           <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
             <span>Join right now</span>
             <div className="lg:scale-[2] relative lg:top-1">
@@ -212,7 +212,7 @@ export default function Discord() {
       </section>
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
-          All members of The Dynamics Discord server must abide by our Code of Conduct{" "}
+          All members of The Dynamics Discord server must abide by our{" "}
           <Link href="/signup">
             <span className="text-[#3e4fe4]">Code of Conduct</span>
           </Link>
