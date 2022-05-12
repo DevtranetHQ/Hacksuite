@@ -18,13 +18,13 @@ export default function PersonalProjects({ name, projects, unread }) {
         <header className="flex items-center justify-center pb-10">
           <h1 className="mx-auto font-semibold text-42px">Projects</h1>
           <div className="text-right flex items-end justify-end  mt-3">
-            <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]"/>
+            <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
             <Link href="/app/notifications">
-            <NotificationsLink className="h-[25px]" unread={unread}/>
+              <NotificationsLink className="h-[25px]" unread={unread} />
             </Link>
           </div>
         </header>
-        <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]"/>
+        <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section className="pt-7 px-7">
           <p>
             Hey <span className="text-fruit-salad">{name}</span>, here are all the cool things
@@ -50,7 +50,7 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       name: user.firstName,
-      unread : true,
+
       projects: [
         {
           name: "Web scraper",

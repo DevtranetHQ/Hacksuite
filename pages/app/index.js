@@ -16,17 +16,20 @@ import { useState } from "react";
 
 export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
+
   const [menu, setMenu] = useState(true);
 
   const handleBars = () => {
     setMenu(r => !r);
   };
 
+
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
       <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav admin={admin} />
       </div>
+
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 mx-auto content-center min-w-full min-h-screen">
         <div className="flex flex-col">
           <div className="mxs:flex items-center justify-between mxs:px-5">
@@ -66,6 +69,7 @@ export default function Dash({ admin, name, unread }) {
             <Image className="" src={robotLight} alt="" />
           )}
         </div>
+
       </div>
       <div className="xs:hidden">
         <DashNavMobile />
@@ -81,8 +85,10 @@ export async function getServerSideProps({ req, res }) {
   return {
     props: {
       admin: false,
-      name: user.firstName,
-      unread
+
+      name: user.firstName
+
+
     }
   };
 }
