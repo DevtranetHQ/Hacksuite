@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import DashNav from "../../components/dash/DashNav";
 import DarkModeToggle from "../../components/DarkModeToggle";
@@ -17,15 +17,21 @@ import { Icon } from "@iconify/react";
 
 export default function CreateProject({ recaptchaSitekey, choices, unread }) {
   const handleSubmission = () => {};
-  
-  
+
+  const [showText, setShowText] = useState(false);
+  const showMessage = () => {
+    setShowText(true);
+    setTimeout(() => {
+      setShowText(false);
+    }, [2000]);
+  };
   // Multiple Select Functions
   // TODO: Work on adding colloborators
   const options = [
     { value: "Developer", label: "Elon Musk", image: "/assets/TEST/user_projects/img-6.png" },
-    { value: "Founder", label: "Melinda Gates" , image: "/assets/TEST/user_projects/img-6.png" },
-    { value: "Student", label: "Mark Zuckerberg" , image: "/assets/TEST/user_projects/img-6.png" },
-    { value: "Designer", label: "Zach Latta" , image: "/assets/TEST/user_projects/img-6.png"}
+    { value: "Founder", label: "Melinda Gates", image: "/assets/TEST/user_projects/img-6.png" },
+    { value: "Student", label: "Mark Zuckerberg", image: "/assets/TEST/user_projects/img-6.png" },
+    { value: "Designer", label: "Zach Latta", image: "/assets/TEST/user_projects/img-6.png" }
   ];
   const options2 = [
     { value: "TypeScripts", label: "Typescripts" },
@@ -41,16 +47,14 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
       outline: "none",
       boxShadow: "none"
     }),
-    menu: styles => ({ ...styles,                 
-      width: '500px',
-     }),  
+    menu: styles => ({ ...styles, width: "500px" }),
     option: (provided, state) => ({
       ...provided,
       "&:hover": {
         backgroundColor: "#03A9F4",
         color: "white"
       },
-      "padding": 3,
+      "padding": 3
     }),
     multiValueRemove: (styles, { data }) => ({
       ...styles,
@@ -180,9 +184,13 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
         </header>
         <hr className=" border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section className="pt-5 px-7">
-          <p className="text-center">
-            Here you can share all the cool things you’re making and launching with{" "}<br/>
-            <span className="font-bold">The Dynamics Community,</span> and beyond!
+
+          <p className="text-center  mx-auto">
+            Here you can share all the cool things you’re making and launching with{" "}
+            <p>
+              <span className="font-bold">The Dynamics Community,</span> and beyond!
+            </p>
+
           </p>
           <form className="bg-transparent dark:bg-transparent pl-0" onSubmit={handleSubmission}>
             <section className="mb-5">
@@ -227,7 +235,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   Description
                   <span className="text-[#ff0000]">*</span>
                 </label>
-                <TextEditor onUpdate={updateDescription} />          
+                <TextEditor onUpdate={updateDescription} />
                 <label className="font-bold italic text-[#A5A5A5]">
                   Tell us more about this project, a typical description talks about what it does,
                   how it works, how it was built, some challenges encountered during the process, or
@@ -246,7 +254,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      strokeWidth={2}>
+                      strokeWidth={3}>
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -260,23 +268,29 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                     className=" block w-full pl-10 form-input dark:bg-transparent  rounded-lg"
                   /> */}
                   <Select
-                  className="pl-7 form-input p-1 m-0 rounded-lg"
-                  styles={styles}
-                  components={{ DropdownIndicator : () => null, IndicatorSeparator:() => null }}
-                  isMulti
-                  options={options}
-                  formatOptionLabel={option => (
-                    <div className="flex items-center ">
-                      <img src={option.image} alt="image" className="w-7 h-7 rounded-full border-2 border-orange-peel object-cover " />
-                      <span className="ml-2">{option.label}</span>
-                    </div>
-                  )}
-                  isClearable={false}
-                />
-                  <div className="inline-flex absolute right-0 p-3 top-0 gap-x-2 items-center">
-                    <span className="dark:text-black">Or invite via link</span>
-                    <LinkIcon fill="#FF9700" width={39.17} height={19.58} />
-                    
+                    className="pl-7 form-input p-1 m-0 rounded-lg"
+                    styles={styles}
+                    components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
+                    isMulti
+                    options={options}
+                    formatOptionLabel={option => (
+                      <div className="flex items-center ">
+                        <img
+                          src={option.image}
+                          alt="image"
+                          className="w-7 h-7 rounded-full border-2 border-orange-peel object-cover "
+                        />
+                        <span className="ml-2">{option.label}</span>
+                      </div>
+                    )}
+                    isClearable={false}
+                  />
+                  <div
+                    className="inline-flex absolute right-0 p-3 top-0 gap-x-2 items-center"
+                    onClick={showMessage}>
+                    {showText ? <p className="text-16px  text-green-500 ">Link copied!</p> : ""}
+                    <span className="dark:text-black cursor-pointer">or invite via link</span>
+                    <LinkIcon fill="#FF9700" width={29.17} height={13.58} />
                   </div>
                 </div>
                 {/* <input
@@ -346,7 +360,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
               Project development stage<span className="text-[#ff0000]">*</span>
             </h2>
             <section className="mb-5">
-              <select className="form-input form-select mb-5" name="stage">
+              <select className="form-input form-select mb-5 rounded-lg" name="stage">
                 {choices.stages.map((value, key) => (
                   <option key={key} value={value}>
                     {value}
@@ -458,7 +472,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
-      unread: true,
+
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],
         stages: [
