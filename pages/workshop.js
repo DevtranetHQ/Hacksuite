@@ -37,7 +37,7 @@ export default function Workshop({ user, project }) {
             <input
               type="search"
               placeholder="I’m looking for..."
-              className=" block w-full pl-10  dark:bg-transparent  rounded-lg form-input border-none p-0 m-0"
+              className=" block w-full pl-10  dark:bg-transparent  rounded-lg form-input border-none p-0 m-0 py-2"
             />
           </div>
         </form>
@@ -120,7 +120,6 @@ export default function Workshop({ user, project }) {
                 bubbleNumber={project.bubbles.length}
                 date={project.date}
                 title="Web Scrapper"
-                likes={93}
                 image={project.image}
                 desc={project.desc}
                 className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
@@ -177,10 +176,7 @@ export async function getServerSideProps(context) {
             date: "11:00 am, Today",
             title: "Web Scrapper",
             desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
-            image: "/assets/TEST/user_projects/img-1.png",
-            comments: 22222,
-            likes: 33333333,
-            tags: ["NextJs", "Figma"]
+            image: "/assets/TEST/user_projects/img-1.png"
           },
           {
             name: "Zach Latta",

@@ -72,23 +72,6 @@ export default function WorkshopProfileCard({ ...props }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-[10px]">
-            {tools &&
-              tools.map(tool => {
-                switch (tool) {
-                  case "github":
-                    return (
-                      <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
-                    );
-                  case "figma":
-                    return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
-                  case "adobexd":
-                    return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
-                  default:
-                    break;
-                }
-              })}
-          </div>
         </div>
         <span></span>
       </div>
@@ -100,8 +83,8 @@ export default function WorkshopProfileCard({ ...props }) {
 
       {/* ====== #TEXT SECTION */}
       <div className="w-full mt-[5px]">
-        <h4 className=" text-[20.3px] font-semibold">{title}</h4>
-        <p className="text-[13.5px] mt-[10px]">{desc}</p>
+        <h4 className=" text-[22px] font-semibold">{title}</h4>
+        <p className="text-[18px] mt-[10px]">{desc}</p>
       </div>
     </div>
   );
