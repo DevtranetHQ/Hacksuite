@@ -12,11 +12,10 @@ import GithubIcon from "../../components/icons/Github";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import TwitterIcon from "../../components/icons/Twitter";
 import UploadIcon from "../../components/icons/Upload";
-import Select, { components } from 'react-select';
-import { Icon } from '@iconify/react';
+import Select, { components } from "react-select";
+import { Icon } from "@iconify/react";
 
 export default function Settings({ recaptchaSitekey, choices, profileImage, unread }) {
-
   // Clear file input
   const ref = useRef();
   const reset = () => {
@@ -25,20 +24,20 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
 
   // Multiple Select Functions
   const options = [
-    { value: 'Developer', label: 'Developer' },
-    { value: 'Founder', label: 'Founder' },
-    { value: 'Student', label: 'Student' },
-    { value: 'Designer', label: 'Designer' },
+    { value: "Developer", label: "Developer" },
+    { value: "Founder", label: "Founder" },
+    { value: "Student", label: "Student" },
+    { value: "Designer", label: "Designer" }
   ];
   const options2 = [
-    { value: 'TypeScripts', label: 'Typescripts' },
-    { value: 'Python', label: 'Python' },
-    { value: 'React', label: 'React' },
-    { value: 'Robotics', label: 'Robotics' },
-    { value: 'Angular', label: 'Angular' },
+    { value: "TypeScripts", label: "Typescripts" },
+    { value: "Python", label: "Python" },
+    { value: "React", label: "React" },
+    { value: "Robotics", label: "Robotics" },
+    { value: "Angular", label: "Angular" }
   ];
   const styles = {
-    control: (provided) => ({
+    control: provided => ({
       ...provided,
       border: 0,
       outline: "none",
@@ -46,25 +45,25 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
     }),
     option: (provided, state) => ({
       ...provided,
-      "&:hover" : {
-        backgroundColor : "#03A9F4",
-        color: "white",
+      "&:hover": {
+        backgroundColor: "#03A9F4",
+        color: "white"
       },
-      padding : 3
+      "padding": 3
     }),
     multiValueRemove: (styles, { data }) => ({
       ...styles,
-      color: data.color,
-      ':hover': {
-        backgroundColor:" #03A9F4",
-        color: 'white',
-      },
-    }),
-  }
+      "color": data.color,
+      ":hover": {
+        backgroundColor: " #03A9F4",
+        color: "white"
+      }
+    })
+  };
   const CaretDownIcon = () => {
     return <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />;
   };
-  
+
   const DropdownIndicator = props => {
     return (
       <components.DropdownIndicator {...props}>
@@ -129,18 +128,16 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
           <h1 className="mx-auto font-semibold text-42px">Account Settings</h1>
           <div className="text-right flex items-end justify-end  mt-3">
             <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
-            <NotificationsLink className="h-[25px]" unread={unread}/>
+            <NotificationsLink className="h-[25px]" unread={unread} />
           </div>
         </div>
-        <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]"/>
-        <Avatar image={profileImage}/>
-        <label
-          className="cursor-pointer flex mt-5"
-          htmlFor="profile-upload">
-            <div className="button-small button-deep-sky-blue gap-x-2">
-          <UploadIcon />
-          <span>Upload a picture</span>
-            </div>
+        <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
+        <Avatar image={profileImage} />
+        <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
+          <div className="button-small button-deep-sky-blue gap-x-2">
+            <UploadIcon />
+            <span>Upload a picture</span>
+          </div>
         </label>
         <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
         <div className="flex gap-5 items-center my-3">
@@ -154,7 +151,9 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
             <LinkedinIcon width={35} height={31} />
           </span>
         </div>
-        <form className="bg-transparent dark:bg-transparent pl-0 w-11/12" onSubmit={handleSubmission}>
+        <form
+          className="bg-transparent dark:bg-transparent pl-0 w-11/12"
+          onSubmit={handleSubmission}>
           <h2 className="mb-5 subheadline">Personal Information</h2>
           <section className="grid grid-cols-2 gap-x-10">
             <div>
@@ -224,7 +223,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                 Password confirmation
               </label>
               <input
-              autoComplete="password"
+                autoComplete="password"
                 className="form-input"
                 id="passwordConfirmation"
                 name="passwordConfirmation"
@@ -264,7 +263,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
               <label className="form-label font-normal" htmlFor="country">
                 Country of residence
               </label>
-              <CountryInput/>
+              <CountryInput />
             </div>
           </section>
           <h2 className="mb-5 subheadline">Work and Education</h2>
@@ -275,7 +274,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                   What describes you the best?
                 </label>
                 <Select
-                className="form-select p-0 m-0 rounded-lg"
+                  className="form-select p-0 m-0 rounded-lg"
                   styles={styles}
                   components={{ DropdownIndicator }}
                   isMulti
@@ -336,9 +335,9 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                   Skills and interests
                 </label>
                 <Select
-                className="form-select p-0 m- rounded-lg"
-                components={{ DropdownIndicator }}
-                styles={styles}
+                  className="form-select p-0 m- rounded-lg"
+                  components={{ DropdownIndicator }}
+                  styles={styles}
                   isMulti
                   options={options}
                 />
@@ -381,8 +380,22 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                   Upload Resume/CV
                 </label>
                 <div className="flex form-input items-center justify-between">
-                  <input className="text-18px text-blue-500" id="resume" name="resume" type="file" ref={ref}/>
-                    <span className="cursor-pointer"><Icon icon="iconoir:cancel" width={25} height={25} inline={true}  onClick={reset}/></span>
+                  <input
+                    className="text-18px text-blue-500"
+                    id="resume"
+                    name="resume"
+                    type="file"
+                    ref={ref}
+                  />
+                  <span className="cursor-pointer">
+                    <Icon
+                      icon="iconoir:cancel"
+                      width={25}
+                      height={25}
+                      inline={true}
+                      onClick={reset}
+                    />
+                  </span>
                 </div>
               </div>
             </div>
@@ -409,7 +422,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
-      unread: true,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [

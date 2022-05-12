@@ -17,37 +17,49 @@ import Fullscreen from "./icons/Fullscreen";
 import LinkIcon from "./icons/Link";
 import CodeIcon from "./icons/Code";
 import { useCallback } from "react";
-import TextAlign from '@tiptap/extension-text-align'
-import Italic from '@tiptap/extension-italic'
-import Bold from '@tiptap/extension-bold'
-import HorizontalRule from '@tiptap/extension-horizontal-rule'
-import { Icon } from '@iconify/react';
-import Underline from '@tiptap/extension-underline'
+import TextAlign from "@tiptap/extension-text-align";
+import Italic from "@tiptap/extension-italic";
+import Bold from "@tiptap/extension-bold";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import { Icon } from "@iconify/react";
+import Underline from "@tiptap/extension-underline";
+import Link from "@tiptap/extension-link";
 
 export default function TextEditor({ onUpdate }) {
   const editor = useEditor({
-    extensions: [CharacterCount.configure({ limit: 3000 }), EditorLink, Image, StarterKit, Italic, Bold,HorizontalRule,Underline, TextAlign.configure({
-      types: ['heading', 'paragraph'],
-    }),],
+    extensions: [
+      CharacterCount.configure({ limit: 3000 }),
+      EditorLink,
+      Image,
+      StarterKit,
+      Italic,
+      Bold,
+      HorizontalRule,
+      Underline,
+      Link.configure({
+        openOnClick: false
+      }),
+      ,
+      TextAlign.configure({
+        types: ["heading", "paragraph"]
+      })
+    ],
     onBlur({ editor, event }) {
       // Update when the editor isn't focused anymore
       onUpdate(editor.getHTML());
     }
   });
   const addImage = useCallback(() => {
-    const url = <input  type="file"/>
+    const url = <input type="file" />;
 
     if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+      editor.chain().focus().setImage({ src: url }).run();
     }
-  }, [editor])
+  }, [editor]);
 
   if (!editor) {
-    return null
+    return null;
   }
-
-  
-  
 
   return (
     <div className="form-input p-0">
@@ -67,99 +79,145 @@ export default function TextEditor({ onUpdate }) {
           font-size: 16px;
         }
       `}</style>
-      <div className="border-[#c9c9c9] border-b-2 flex gap-4 px-4 p-1">
-        <button type="button" className="border-r pr-3 pl-1 " onClick={() => editor.chain().focus().undo().run()} title="Undo">
+      <div className="border-[#c9c9c9] border-b-2 flex gap-4 px-4 p-1 justify-evenly">
+        <button
+          type="button"
+          className=" pr-1 pl-1 "
+          onClick={() => editor.chain().focus().undo().run()}
+          title="Undo">
           <UndoIcon />
         </button>
         <button
-         type="button"
-          className="border-r pr-3"
+          type="button"
+          className="border-r pr-1"
           onClick={() => editor.chain().focus().redo().run()}
           title="Redo">
           <RedoIcon />
         </button>
-        <button type="button" 
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className={editor.isActive('bold') ? 'is-active border-r pr-3' : 'border-r pr-3'}
-        title="Bold">
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          className={
+            editor.isActive("bold")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
+              : " pr-1 pl-1"
+          }
+          title="Bold">
           <BoldIcon />
         </button>
         <button
-         type="button"
-         onClick={() => editor.chain().focus().toggleItalic().run()}
-         className={editor.isActive('italic') ? 'is-active border-r pr-3' : 'border-r pr-3'}
+          type="button"
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          className={
+            editor.isActive("italic")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
+              : " pr-1 pl-1"
+          }
           title="Italic">
           <ItalicIcon />
         </button>
         <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleUnderline().run()}
-        className={editor.isActive('underline') ? 'is-active' : ''}
-      >
-        <Icon icon="fa-solid:underline" inline={true} width={43} height={33} className="border-r pr-3"/>
-      </button>
+          type="button"
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={
+            editor.isActive("underline")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
+              : " pr-1 pl-1"
+          }>
+          <Icon
+            icon="fa-solid:underline"
+            inline={true}
+            width={43}
+            height={33}
+            className="border-r pr-1"
+          />
+        </button>
         {/* <button
          type="button"
-          className={editor.isActive({ textAlign: 'left' }) ? 'is-active border-r pr-3' : 'border-r pr-3'}
+          className={editor.isActive({ textAlign: 'left' }) ? 'is-active border-r pr-1' : 'border-r pr-1'}
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           title="Align left">
           <Left />
         </button> */}
         <button
-         type="button"
-          onClick={() => editor.chain().focus().setTextAlign('center').run()}
-        className={editor.isActive({ textAlign: 'center' }) ? 'is-active border-r pr-3' : 'border-r pr-3'}
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign("center").run()}
+          className={
+            editor.isActive({ textAlign: "center" })
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
+              : " pr-1 pl-1"
+          }
           title="Align center">
-          <Center/>
+          <Center />
         </button>
         <button
-         type="button"
-          onClick={() => editor.chain().focus().setTextAlign('justify').run()}
-        className={editor.isActive({ textAlign: 'justify' }) ? 'is-active border-r pr-3' : 'border-r pr-3'}
+          type="button"
+          onClick={() => editor.chain().focus().setTextAlign("justify").run()}
+          className={
+            editor.isActive({ textAlign: "justify" })
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
+              : " pr-1 pl-1 border-r"
+          }
           title="Justify">
-          <Right/>
+          <Right />
         </button>
         <button
-         type="button"
-        className="border-r pr-3"
-        onClick={() => editor.chain().focus().toggleBulletList().run()} title="Bullet list">
+          type="button"
+          className={
+            editor.isActive("bulletList")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
+              : " pr-1 pl-1"
+          }
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          title="Bullet list">
           <BulletListIcon />
         </button>
         <button
-         type="button"
-          className="border-r pr-3"
+          type="button"
+          className={
+            editor.isActive("orderedList")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
+              : " pr-1 pl-1 border-r"
+          }
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           title="Ordered list">
           <OrderedListIcon />
         </button>
-        <button 
-         type="button"
-        className="border-r pr-3"
-         title="Insert image">
-          <input type="file" className="hidden"/>
+        <button type="button" className="border-r pr-1" title="Insert image">
+          <input type="file" className="hidden" />
           <Picture />
         </button>
-        <button 
-         type="button"
-        className="border-r pr-3"
-        onClick={() => editor.chain().focus().toggleLink().run()} title="Apply link">
+        <button
+          type="button"
+          className={
+            editor.isActive("link")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
+              : " pr-1 pl-1 border-r"
+          }
+          onClick={() => editor.chain().focus().toggleLink().run()}
+          title="Apply link">
           <LinkIcon />
         </button>
-        <button 
-         type="button"
-        className="border-r pr-3"
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()} title="Code block">
+        <button
+          type="button"
+          className={
+            editor.isActive("code")
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
+              : " pr-1 pl-1 border-r"
+          }
+          onClick={() => editor.chain().focus().toggleCode().run()}
+          title="Code block">
           <CodeIcon />
         </button>
-        <button 
-         type="button"
-        className=""
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()} title="Full screen">
+        <button
+          type="button"
+          className=""
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          title="Full screen">
           <Fullscreen />
         </button>
-        
       </div>
-      
+
       <EditorContent className="cursor-text prose prose-sm p-3 max-w-none w-full" editor={editor} />
     </div>
   );
