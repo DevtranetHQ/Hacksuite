@@ -108,49 +108,52 @@ export function DashNavMobile({}) {
   );
 }
 
-export function MenuMobile({ menu }) {
+export function MenuMobile({ menu, onClick }) {
   const router = useRouter();
   const { pathname } = router;
   const { darkMode } = useContext(DarkModeContext);
-  const [home, setHome] = useState(true);
-  const [settings, setSettings] = useState(true);
-  const [logout, setLogout] = useState(true);
 
   return (
-    <div
-      className={
-        menu
-          ? "hidden"
-          : "bg-white container-gray-dark z-20 w-full mt-8 -mb-32"
-      }>
-      <Link href="/app">
-        <div
-          className={`${
-            router.pathname === "/app" ? "text-orange-peel" : ""
-          } cursor-pointer hover:text-white hover:bg-deep-sky-blue transition flex items-center px-5 py-1 gap-2`}
-          onMouseEnter={() => setHome(r => !r)}
-          onMouseLeave={() => setHome(r => !r)}>
-          <svg
-            className={home ? "fill-[#03A9F4]" : "fill-white"}
-            width="25"
-            height="25"
-            viewBox="0 0 41 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.5001 6.14292L30.2917 14.9554V30.25H26.3751V18.5H14.6251V30.25H10.7084V14.9554L20.5001 6.14292ZM20.5001 0.875L0.916748 18.5H6.79175V34.1667H18.5417V22.4167H22.4584V34.1667H34.2084V18.5H40.0834L20.5001 0.875Z" />
-          </svg>
-          <span>Home</span>
-        </div>
-      </Link>
+    <div className={menu ? "hidden" : "bg-white container-gray-dark z-20 w-full mt-8 -mb-32"}>
+      <div
+        className={`${
+          router.pathname === "/app" ? "text-orange-peel" : ""
+        } cursor-pointer hover:text-orange-peel transition flex justify-between items-center px-5 py-1`}>
+        <Link href="/app">
+          <div className="flex flex-grow items-center gap-2">
+            <svg
+              className="fill-[#03A9F4]"
+              width="25"
+              height="25"
+              viewBox="0 0 41 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.5001 6.14292L30.2917 14.9554V30.25H26.3751V18.5H14.6251V30.25H10.7084V14.9554L20.5001 6.14292ZM20.5001 0.875L0.916748 18.5H6.79175V34.1667H18.5417V22.4167H22.4584V34.1667H34.2084V18.5H40.0834L20.5001 0.875Z" />
+            </svg>
+            <span>Home</span>
+          </div>
+        </Link>
+        <svg
+          onClick={onClick}
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M1.62405 0L0 1.62405L8.37595 10L0 18.376L1.62405 20L10 11.624L18.376 20L20 18.376L11.624 10L20 1.62405L18.376 0L10 8.37595L1.62405 0Z"
+            fill="#03A9F4"
+          />
+        </svg>
+      </div>
+
       <Link href="/app/settings">
         <div
           className={`${
             pathname === "/app/settings" ? "text-orange-peel" : ""
-          } cursor-pointer hover:text-white hover:bg-deep-sky-blue transition flex items-center px-5 py-1 gap-2`}
-          onMouseEnter={() => setSettings(r => !r)}
-          onMouseLeave={() => setSettings(r => !r)}>
+          } cursor-pointer hover:text-orange-peel transition flex items-center px-5 py-1 gap-2`}>
           <svg
-            className={settings ? "fill-[#03A9F4]" : "fill-white"}
+            className="fill-[#03A9F4]"
             width="25"
             height="25"
             viewBox="0 0 39 41"
@@ -162,12 +165,9 @@ export function MenuMobile({ menu }) {
         </div>
       </Link>
       <Link href="/logout">
-        <div
-          className="cursor-pointer hover:text-white hover:bg-deep-sky-blue transition flex items-center px-5 py-1 gap-2"
-          onMouseEnter={() => setLogout(r => !r)}
-          onMouseLeave={() => setLogout(r => !r)}>
+        <div className="cursor-pointer hover:text-orange-peel bg-deep-sky-blue transition flex items-center px-5 py-1 gap-2">
           <svg
-            className={logout ? "fill-[#03A9F4]" : "fill-white"}
+            className="fill-white"
             width="25"
             height="25"
             viewBox="0 0 37 41"
