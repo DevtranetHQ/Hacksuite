@@ -45,7 +45,7 @@ export default function Dash({ admin, name, unread }) {
               </div>
             </div>
           </div>
-          <MenuMobile id="bars-active" menu={menu} />
+          <MenuMobile id="bars-active" menu={menu} onClick={handleBars} />
         </div>
 
         <div className="text-center">

@@ -1,10 +1,13 @@
 // TODO: Set up for admin
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import CountryInput from "../../components/form/CountryInput";
 import TelInput from "../../components/form/TelInput";
 import DashNav from "../../components/dash/DashNav";
+import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
+import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import NotificationsLink from "../../components/dash/NotificationsLink";
 import Avatar from "../../components/Avatar";
@@ -14,8 +17,15 @@ import TwitterIcon from "../../components/icons/Twitter";
 import UploadIcon from "../../components/icons/Upload";
 import Select, { components } from "react-select";
 import { Icon } from "@iconify/react";
+import bars from "../../public/assets/dash/bars-solid.svg";
 
 export default function Settings({ recaptchaSitekey, choices, profileImage, unread }) {
+  const [menu, setMenu] = useState(true);
+
+  const handleBars = () => {
+    setMenu(r => !r);
+  };
+
   // Clear file input
   const ref = useRef();
   const reset = () => {
@@ -119,43 +129,54 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
   }
 
   return (
-    <div className="grid grid-cols-12 dark:bg-[#202020]">
-      <div className="col-span-1 mx-auto">
+    <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
+      <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <div className="flex items-center justify-center pb-10">
-          <h1 className="mx-auto font-semibold text-42px">Account Settings</h1>
-          <div className="text-right flex items-end justify-end  mt-3">
-            <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
-            <NotificationsLink className="h-[25px]" unread={unread} />
+      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
+        <div className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
+          <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
+          <h1 className="mxs:hidden mx-auto font-semibold text-42px">Account Settings</h1>
+          <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
+            <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
+            <NotificationsLink unread={unread} />
+            <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
+              <Image src={bars} alt="bars-solid" />
+            </div>
           </div>
         </div>
+        <MenuMobile id="bars-active" menu={menu} onClick={handleBars} />
+
+        <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
+          Account Settings
+        </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
-        <Avatar image={profileImage} />
-        <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
-          <div className="button-small button-deep-sky-blue gap-x-2">
-            <UploadIcon />
-            <span>Upload a picture</span>
+        <div className="mxs:pl-6">
+          <Avatar image={profileImage} />
+          <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
+            <div className="button-small button-deep-sky-blue gap-x-2">
+              <UploadIcon />
+              <span>Upload a picture</span>
+            </div>
+          </label>
+          <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
+          <div className="flex gap-5 items-center my-3">
+            <span className="cursor-pointer">
+              <GithubIcon width={32} />
+            </span>
+            <span className="cursor-pointer">
+              <TwitterIcon width={41} height={33} />
+            </span>
+            <span className="cursor-pointer">
+              <LinkedinIcon width={35} height={31} />
+            </span>
           </div>
-        </label>
-        <input className="hidden" id="profile-upload" onChange={uploadProfile} type="file" />
-        <div className="flex gap-5 items-center my-3">
-          <span className="cursor-pointer">
-            <GithubIcon width={32} />
-          </span>
-          <span className="cursor-pointer">
-            <TwitterIcon width={41} height={33} />
-          </span>
-          <span className="cursor-pointer">
-            <LinkedinIcon width={35} height={31} />
-          </span>
         </div>
         <form
-          className="bg-transparent dark:bg-transparent pl-0 w-11/12"
+          className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
           onSubmit={handleSubmission}>
           <h2 className="mb-5 subheadline">Personal Information</h2>
-          <section className="grid grid-cols-2 gap-x-10">
+          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10">
             <div>
               <label className="form-label font-normal" htmlFor="firstName">
                 First name
@@ -202,7 +223,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
             </label>
             <TelInput />
           </section>
-          <section className="grid grid-cols-2 gap-x-10 mb-5">
+          <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
             <div>
               <label className="form-label font-normal" htmlFor="password">
                 Password
@@ -237,7 +258,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
             <label htmlFor="checkbox">Notify me about upcoming news & events</label>
           </section>
           <h2 className="mb-5 subheadline">Demographic Information</h2>
-          <section className="grid grid-cols-2 gap-x-10 mb-10">
+          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
             <div>
               <label className="form-label font-normal" htmlFor="dob">
                 Date of birth
@@ -249,7 +270,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                 Gender
               </label>
               <select
-                className="form-select rounded-lg"
+                className="mxs:mb-3 form-select rounded-lg"
                 defaultValue="Prefer not to say"
                 id="gender"
                 name="gender">
@@ -267,20 +288,19 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
             </div>
           </section>
           <h2 className="mb-5 subheadline">Work and Education</h2>
-          <section className="grid grid-cols-2 gap-10 mb-5">
-            <div className="flex flex-col gap-y-3">
-              <div>
-                <label className="form-label font-normal" htmlFor="personalDescription">
-                  What describes you the best?
-                </label>
-                <Select
-                  className="form-select p-0 m-0 rounded-lg"
-                  styles={styles}
-                  components={{ DropdownIndicator }}
-                  isMulti
-                  options={options}
-                />
-                {/* <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
+          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
+            <div>
+              <label className="form-label font-normal" htmlFor="personalDescription">
+                What describes you the best?
+              </label>
+              <Select
+                className="form-select p-0 m-0 rounded-lg"
+                styles={styles}
+                components={{ DropdownIndicator }}
+                isMulti
+                options={options}
+              />
+              {/* <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
                   <div className="col-span-11 flex flex-wrap gap-2 z-[2]">
                     {Array.from(personalDescription).map((value, key) => (
                       <button
@@ -313,35 +333,19 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                     ))}
                   </select>
                 </div> */}
-              </div>
-              <div>
-                <label className="form-label font-normal" htmlFor="levelOfStudy">
-                  Level of study
-                </label>
-                <select
-                  className="form-select rounded-lg"
-                  defaultValue="High school"
-                  id="levelOfStudy"
-                  name="levelOfStudy">
-                  <option value="High school">High school</option>
-                  <option value="College">College</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
             </div>
-            <div className="flex flex-col gap-y-3">
-              <div>
-                <label className="form-label font-normal" htmlFor="skillsAndInterests">
-                  Skills and interests
-                </label>
-                <Select
-                  className="form-select p-0 m- rounded-lg"
-                  components={{ DropdownIndicator }}
-                  styles={styles}
-                  isMulti
-                  options={options}
-                />
-                {/* <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
+            <div>
+              <label className="form-label font-normal" htmlFor="skillsAndInterests">
+                Skills and interests
+              </label>
+              <Select
+                className="form-select p-0 m- rounded-lg"
+                components={{ DropdownIndicator }}
+                styles={styles}
+                isMulti
+                options={options}
+              />
+              {/* <div className="grid grid-cols-12 form-input items-start relative min-h-[47px]">
                   <div className="col-span-11 flex flex-wrap gap-2 z-[2]">
                     {Array.from(skillsAndInterests).map((value, key) => (
                       <button
@@ -374,29 +378,43 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
                     ))}
                   </select>
                 </div> */}
-              </div>
-              <div>
-                <label className="form-label font-normal" htmlFor="resume">
-                  Upload Resume/CV
-                </label>
-                <div className="flex form-input items-center justify-between">
-                  <input
-                    className="text-18px text-blue-500"
-                    id="resume"
-                    name="resume"
-                    type="file"
-                    ref={ref}
+            </div>
+
+            <div>
+              <label className="form-label font-normal" htmlFor="levelOfStudy">
+                Level of study
+              </label>
+              <select
+                className="form-select rounded-lg"
+                defaultValue="High school"
+                id="levelOfStudy"
+                name="levelOfStudy">
+                <option value="High school">High school</option>
+                <option value="College">College</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="form-label font-normal" htmlFor="resume">
+                Upload Resume/CV
+              </label>
+              <div className="flex form-input items-center justify-between">
+                <input
+                  className="text-18px text-blue-500"
+                  id="resume"
+                  name="resume"
+                  type="file"
+                  ref={ref}
+                />
+                <span className="cursor-pointer">
+                  <Icon
+                    icon="iconoir:cancel"
+                    width={25}
+                    height={25}
+                    inline={true}
+                    onClick={reset}
                   />
-                  <span className="cursor-pointer">
-                    <Icon
-                      icon="iconoir:cancel"
-                      width={25}
-                      height={25}
-                      inline={true}
-                      onClick={reset}
-                    />
-                  </span>
-                </div>
+                </span>
               </div>
             </div>
           </section>
@@ -414,6 +432,9 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
           </section>
         </form>
       </div>
+      <div className="xs:hidden">
+        <DashNavMobile />
+      </div>
     </div>
   );
 }
@@ -422,6 +443,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      unread: true,
       choices: {
         personalDescription: ["Developer", "Founder", "Student"],
         skillsAndInterests: [
