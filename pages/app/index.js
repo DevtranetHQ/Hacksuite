@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useContext } from "react";
 import DashNav from "../../components/dash/DashNav";
-import DashNavMobile from "../../components/dash/DashNavMobile";
+import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
 import DarkModeContext from "../../components/DarkModeContext";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
@@ -12,9 +12,15 @@ import robotDark from "../../public/assets/dash/robotDark.svg";
 import bars from "../../public/assets/dash/bars-solid.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { notificationService } from "../../server/modules/notification/notifications.service";
+import { useState } from "react";
 
 export default function Dash({ admin, name, unread }) {
   const { darkMode } = useContext(DarkModeContext);
+  const [menu, setMenu] = useState(true);
+
+  const handleBars = () => {
+    setMenu(r => !r);
+  };
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -22,15 +28,21 @@ export default function Dash({ admin, name, unread }) {
         <DashNav admin={admin} />
       </div>
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 mx-auto content-center min-w-full min-h-screen">
-        <div className="mxs:flex items-center justify-between mxs:px-5">
-          <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
-          <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-            <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
-            <NotificationsLink unread={unread} />
-            <div className="xs:hidden relative w-[22px] -mb-1 ml-1">
-              <Image src={bars} alt="bars-solid" />
+        <div className="flex flex-col">
+          <div className="mxs:flex items-center justify-between mxs:px-5">
+            <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
+            <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
+              <DarkModeToggle
+                className="h-[22px] xs:h-[30px]"
+                darkClassName="h-[22px] xs:h-[30px]"
+              />
+              <NotificationsLink unread={unread} />
+              <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
+                <Image src={bars} alt="bars-solid" />
+              </div>
             </div>
           </div>
+          <MenuMobile id="bars-active" menu={menu} />
         </div>
 
         <div className="text-center">
@@ -56,7 +68,7 @@ export default function Dash({ admin, name, unread }) {
         </div>
       </div>
       <div className="xs:hidden">
-        <DashNavMobile admin={admin} />
+        <DashNavMobile />
       </div>
     </div>
   );
