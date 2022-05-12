@@ -184,11 +184,13 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
         </header>
         <hr className=" border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section className="pt-5 px-7">
+
           <p className="text-center  mx-auto">
             Here you can share all the cool things you’re making and launching with{" "}
             <p>
               <span className="font-bold">The Dynamics Community,</span> and beyond!
             </p>
+
           </p>
           <form className="bg-transparent dark:bg-transparent pl-0" onSubmit={handleSubmission}>
             <section className="mb-5">

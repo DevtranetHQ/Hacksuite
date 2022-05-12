@@ -1,16 +1,16 @@
 import kebabCase from "lodash/kebabCase";
 
-export const generateUniqueIdFromName = async (
+export const generateUniqueIdFromName = async <T extends string = string>(
   name: string,
-  checkUnique: (id: string) => Promise<boolean>
+  checkExisting: (id: string) => Promise<boolean>
 ) => {
   let id = kebabCase(name);
 
   let i = 1;
-  while (await checkUnique(id)) {
+  while (await checkExisting(id)) {
     id = `${id}-${i}`;
     i++;
   }
 
-  return id;
+  return id as T;
 };

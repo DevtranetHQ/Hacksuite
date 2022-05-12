@@ -25,10 +25,7 @@ import Scrapbook from "./Scrapbook";
  */
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
-  // prettier-ignore
-  return bubbles && bubbles.length > end
-            ? bubbles.slice(start, end)
-            : bubbles
+  return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
 export default function Profile({ loggedIn, user }) {
