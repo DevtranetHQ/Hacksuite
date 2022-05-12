@@ -58,14 +58,14 @@ export default function Project({ loggedIn, project }) {
         </>}
         secondBtn={<>
           <span>
-              {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
+            {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
           </span>
           <CommentIcon />
-        </>}
+          </>}
         href="#comments"
         navText="Other projects"
         navHref="/project-gallery"
-      />      
+      />
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
         <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
@@ -85,7 +85,7 @@ export default function Project({ loggedIn, project }) {
                     {creator.name}
                     <Link href={`/profile/${creator.id}`}>
                       <a className="cursor-pointer">
-                        <FollowerIcon width="25px" height="25px"/>
+                        <FollowerIcon width="25px" height="25px" />
                       </a>
                     </Link>
                   </h2>
@@ -186,8 +186,8 @@ export default function Project({ loggedIn, project }) {
             </div>
           </div>
 
-          <span className="italic">leave feedback in the comments!</span>
-          <h1 className="heading font-bold mt-7">Comments</h1>
+          <section id="comments">
+            <h1 className="heading font-bold mt-7">Comments</h1>
           <div className="grid grid-cols-12 mx-14 items-center">
             <div className="col-span-1">
               <Avatar
@@ -196,23 +196,21 @@ export default function Project({ loggedIn, project }) {
                 image={project.owner.image}
               />
             </div>
-            <div className="col-span-10 px-3">
+            <div className="col-span-10 px-3" id="comment">
               <h1>
                 <span className="text-24px font-semibold">{project.owner.name}</span>{" "}
-                <em className="ml-2 font-thin text-20px italic">Made this project —{project.date}</em>
+                <em className="ml-2 font-thin text-18px italic">Made this project —{project.date}</em>
               </h1>
-              {/* <i className="text-18px italic sub text-[#515151] mt-2">leave feedback in the comments!</i> */}
-
-              
+              <h1 className="text-18px italic text-[#515151] mt-2 font-semibold dark:text-white">leave feedback in the comments!</h1>
             </div>
             <div className="col-span-1">
               <ArrowDownIcon width="18px" height="18px"/>
             </div>
           </div>
-          <div className="grid grid-cols-12 mx-14 mb-14">
+          <div className="grid grid-cols-12 mx-14 mt-7 mb-14">
             <div className="col-span-1" />
             <div className="col-span-10 px-3">
-              <div className="bg-[#f5f5f7] rounded-2xl">
+              <div className="bg-[#f5f5f7] dark:bg-[#2D2D2D] rounded-2xl">
                 {project.comments.map((comment, key) => (
                   <div className="border-b-4 px-7 py-5" key={key}>
                     <div className="grid grid-cols-12 items-center">
@@ -286,6 +284,8 @@ export default function Project({ loggedIn, project }) {
             </div>
             <div className="col-span-1" />
           </div>
+          </section>
+          
         </aside>
       </div>
       {!loggedIn && (
