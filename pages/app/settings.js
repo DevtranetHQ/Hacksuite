@@ -432,7 +432,7 @@ export default function Settings({ recaptchaSitekey, choices, profileImage, unre
           </section>
         </form>
       </div>
-      <div className="hidden xs:hidden">
+      <div className="xs:hidden">
         <DashNavMobile />
       </div>
     </div>
