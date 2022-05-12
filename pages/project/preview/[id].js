@@ -47,24 +47,6 @@ export default function Project({ loggedIn, project }) {
 
   return (
     <div className="dark:bg-[#202020] dark:text-white">
-      <nav className="flex items-center justify-between pl-8 pr-12">
-        <Logo className="w-[120px] py-5" />
-        <div className="flex gap-x-2">
-          <DarkModeToggle
-            className="mx-0 w-[40px] h-[40px]"
-            darkClassName="mx-0 w-[40px] h-[42px]"
-          />
-          <a href="https://github.com/TheDynamics">
-            <GithubIcon />
-          </a>
-          <Link href="/project-gallery">
-            <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
-              Other projects
-              <ArrowRightIcon />
-            </button>
-          </Link>
-        </div>
-      </nav>
       <PhotoGalleryHeader
         title={project.name}
         contentText={project.description}
@@ -81,6 +63,8 @@ export default function Project({ loggedIn, project }) {
           <CommentIcon />
         </>}
         href="#comments"
+        navText="Other projects"
+        navHref="/project-gallery"
       />      
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
         <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
@@ -97,11 +81,11 @@ export default function Project({ loggedIn, project }) {
                     border="!border-[3px]"
                     image={creator.image}
                   />
-                  <h2 className="inline-flex gap-2 items-center pt-3 subheadline">
+                  <h2 className="inline-flex gap-2 items-center self-center subheadline">
                     {creator.name}
                     <Link href={`/profile/${creator.id}`}>
                       <a className="cursor-pointer">
-                        <FollowerIcon />
+                        <FollowerIcon width="25px" height="25px"/>
                       </a>
                     </Link>
                   </h2>
@@ -201,7 +185,9 @@ export default function Project({ loggedIn, project }) {
               </div>
             </div>
           </div>
-          <h1 className="text-30px font-bold mt-7">Comments</h1>
+
+          <span className="italic">leave feedback in the comments!</span>
+          <h1 className="heading font-bold mt-7">Comments</h1>
           <div className="grid grid-cols-12 mx-14 items-center">
             <div className="col-span-1">
               <Avatar
@@ -215,7 +201,9 @@ export default function Project({ loggedIn, project }) {
                 <span className="text-24px font-semibold">{project.owner.name}</span>{" "}
                 <em className="ml-2 font-thin text-20px italic">Made this project —{project.date}</em>
               </h1>
-              <h1 className="text-18px italic text-[#515151] mt-2">leave feedback in the comments!</h1>
+              {/* <i className="text-18px italic sub text-[#515151] mt-2">leave feedback in the comments!</i> */}
+
+              
             </div>
             <div className="col-span-1">
               <ArrowDownIcon width="18px" height="18px"/>

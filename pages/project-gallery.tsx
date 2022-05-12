@@ -15,34 +15,14 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0): number[] => {
 
 export default function ProjectGallery({ projects }: { projects: IProject[] }) {
   return (
-    <div className="dark:bg-[#202020] dark:text-white">
-      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[80px] md:w-[120px] py-5" />
-        <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
-          <DarkModeToggle
-            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
-          />
-          <a
-            href="https://github.com/TheDynamics"
-            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
-            <GithubIcon />
-          </a>
-          <Link href="https://thedynamics.tech">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
-              Go back home
-              <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
-                <ArrowIcon />
-              </div>
-            </button>
-          </Link>
-        </div>
-      </nav>
+    <div className="dark:bg-[#202020] dark:text-white">      
       <PhotoGalleryHeader
         title="The Dynamics Projects"
         contentText="A gallery of all the awesome things the makers at The Dynamics are building and launching everyday."
         firstBtn="All Projects"
         secondBtn="Add your project"
+        navText="Go back home"
+        navHref="https://thedynamics.tech"
       />
       <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] lg:px-[32px]">
         {projects.map((project, index) => {
