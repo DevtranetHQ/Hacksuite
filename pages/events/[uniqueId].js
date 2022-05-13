@@ -81,7 +81,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
         <div className="pt-14 relative">
           <Image
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             src={event.image}
             alt={`image for event ${event.name}`}
           />
