@@ -17,8 +17,8 @@ export function DashNavMobile({}) {
           <div
             className={
               router.pathname === "/workshop"
-                ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center"
+                ? "text-orange-peel transition flex flex-col items-center space-y-2"
+                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center space-y-2"
             }>
             <svg
               className=""
@@ -40,8 +40,8 @@ export function DashNavMobile({}) {
           <div
             className={
               pathname === "/app/personal-projects"
-                ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center"
+                ? "text-orange-peel transition flex flex-col items-center space-y-2"
+                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center space-y-2"
             }>
             <svg
               className=""
@@ -62,8 +62,8 @@ export function DashNavMobile({}) {
           <div
             className={
               pathname === "/events"
-                ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center"
+                ? "text-orange-peel transition flex flex-col items-center space-y-2"
+                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center space-y-2"
             }>
             <svg
               className=""
@@ -85,8 +85,8 @@ export function DashNavMobile({}) {
           <div
             className={
               pathname === "/discord"
-                ? styles.active
-                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center"
+                ? "text-orange-peel transition flex flex-col items-center space-y-2"
+                : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center space-y-2"
             }>
             <svg
               className=""
