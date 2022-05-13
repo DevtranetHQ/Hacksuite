@@ -82,7 +82,7 @@ export async function getServerSideProps({ req, res }) {
       })
     );
 
-    return { props: { events: eventsWithRegistration, loggedIn: user  } };
+    return { props: { events: eventsWithRegistration, loggedIn: true } };
   }
 
   // TODO: Change page based on whether user is administrator or not
