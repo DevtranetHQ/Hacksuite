@@ -125,7 +125,7 @@ export default function Workshop({ user, project }) {
                   return (
                     <div>
                       <WorkshopProfileCard
-                        key={index}
+                        key={project.index}
                         name={project.name}
                         tools={project.tools}
                         bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
@@ -155,7 +155,7 @@ export default function Workshop({ user, project }) {
                   return (
                     <div>
                       <WorkshopProfileCard
-                        key={index}
+                        key={project.index}
                         name={project.name}
                         tools={project.tools}
                         bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
