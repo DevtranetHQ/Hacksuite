@@ -18,10 +18,6 @@ import LinkedInIcon from "../components/icons/Linkedin";
 import Share from "../components/icons/Share";
 import ExitIcon from "../components/icons/Upload";
 
-// TODO: image should be gotten from the server, not hardcoded
-// import Img from "../public/assets/TEST/user_projects/img-1.jpg";
-// const Img = require("../public/assets/TEST/user_projects/img-1.jpg");
-
 export default function ProjectDetails(props: any) {
   const { data } = props;
   return (
