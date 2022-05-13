@@ -21,13 +21,14 @@ import LinkedinIcon from "../../../components/icons/Linkedin";
 import TimeIcon from "../../../components/icons/Time";
 import TwitterIcon from "../../../components/icons/Twitter";
 import PhotoGalleryHeader from "../../../components/project/Photo-galleryHeader";
+import { withAuth } from "../../../server/middlewares/auth.middleware";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
 
-export default function Project({ loggedIn, project }) {
+export default function Project({ loggedIn, project, image }) {
   const router = useRouter();
-  loggedIn = router.query.ref === "dash" ? true : loggedIn;
+  // loggedIn = router.query.ref === "dash" ? true : loggedIn;
 
   // URL for sharing
   const url = `https://app.thedynamics.tech/project/preview/${project.id}`;
@@ -245,13 +246,13 @@ export default function Project({ loggedIn, project }) {
                     </div>
                   ))}
                   <div className="px-7 py-5">
-                    {/* {loggedIn ? (
+                    {loggedIn ? (
                     <div className="grid grid-cols-12">
                       <div className="col-span-1 py-3">
                         <Avatar
                           border="!border-[3px]"
                           className="relative w-[50px] h-[50px]"
-                          image={loggedIn.image}
+                          image={image}
                         />
                       </div>
                       <div className="col-span-11">
@@ -267,7 +268,7 @@ export default function Project({ loggedIn, project }) {
                         </form>
                       </div>
                     </div>
-                  ) : ( */}
+                  ) : (
                     <p className="text-center">
                       <Link href="/login">
                         <a>Log in</a>
@@ -278,7 +279,7 @@ export default function Project({ loggedIn, project }) {
                       </Link>{" "}
                       to add a comment to this project.
                     </p>
-                    {/* )} */}
+                    )}
                   </div>
                 </div>
               </div>
@@ -288,7 +289,7 @@ export default function Project({ loggedIn, project }) {
 
         </aside>
       </div>
-      {/* {!loggedIn && ( */}
+      {!loggedIn && (
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
           All events are hosted and maintained by The Dynamics, the official network of young
@@ -299,20 +300,23 @@ export default function Project({ loggedIn, project }) {
           </Link>
         </p>
       </footer>
-      {/* )} */}
+       )}
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   // TODO: Use id to get event info from database
+  const {req, res} = context;
+  const user = await withAuth(req => req.$user)(req, res);
+
   const { id } = context.query;
   return {
     props: {
-      loggedIn: {
+      loggedIn: !!user,
         image:
           "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-      },
+      ,
       project: {
         id: id,
         name: "Web scraper",
