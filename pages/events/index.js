@@ -47,15 +47,15 @@ export default function Events({ events, loggedIn }) {
       </nav>
       </PhotoGalleryHeader>
       <section>{events && events.map((event, key) => <EventCard key={key} {...event} />)}</section>
-      <section className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
+      <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
         <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
           <span>View past events</span>
           <div className="lg:scale-[2] relative lg:top-1">
             <ArrowRightIcon />
           </div>
         </button>
-      </section>
-      <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+      </div>
+       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
           All events are hosted and maintained by The Dynamics, the official network of young
           makers, <br className="hidden md:block"></br>developers, innovators, and founders using
