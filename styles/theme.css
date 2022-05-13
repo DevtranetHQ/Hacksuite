@@ -137,7 +137,7 @@
   .button-big,
   .button-medium,
   .button-small {
-    @apply leading-tight flex items-center justify-center font-bold px-5 py-2 mr-2 mb-2 rounded-md text-white transition-all;
+    @apply leading-tight flex items-center justify-center font-bold px-5 py-2 rounded-md text-white transition-all;
   }
 
   /*

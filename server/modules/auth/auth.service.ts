@@ -1,21 +1,23 @@
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { SignJWT, jwtVerify } from "jose";
 
-import User from "./user.model";
+import User, { IUser, UserId } from "./user.model";
 import Token from "../../models/token.model";
 import { CustomError } from "../../utils/customError";
 import MailService from "../../services/mail.service";
 import { config } from "../../config";
 import registrationService from "../registration/registration.service";
-import { decodeToken, signToken } from "../../utils/auth";
+import { signToken } from "../../utils/auth";
+import { generateUniqueIdFromName } from "./../../utils/generateUniqueIdFromName";
+import { authNotificationsService } from "./auth-notifications.service";
 
-const { JWT_SECRET, BCRYPT_SALT, url } = config;
+const { BCRYPT_SALT, url } = config;
 
 class AuthService {
-  async _getLoginToken(user) {
+  async _getLoginToken(user: IUser) {
     const token = await signToken({
       id: user._id,
+      uniqueId: user.uniqueId,
       role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -25,11 +27,17 @@ class AuthService {
     return token;
   }
 
-  async register(data) {
+  async register(data: Partial<IUser>) {
     let user = await User.findOne({ email: data.email });
     if (user) throw new CustomError("Email already exists");
 
     user = new User(data);
+
+    user.uniqueId = await generateUniqueIdFromName<UserId>(user.fullName, async uniqueId => {
+      const exists = await User.exists({ uniqueId });
+      return !!exists;
+    });
+
     await user.save();
     // Request email verification
     try {
@@ -40,15 +48,15 @@ class AuthService {
       throw new CustomError("Server error");
     }
 
-    return (data = {
+    return {
       uid: user._id,
       email: user.email,
       role: user.role,
       verified: user.isVerified
-    });
+    };
   }
 
-  async login(data) {
+  async login(data: { email: any; password?: any }) {
     if (!data.email) throw new CustomError("Email is required");
     if (!data.password) throw new CustomError("Password is required");
 
@@ -65,16 +73,16 @@ class AuthService {
 
     const token = await this._getLoginToken(user);
 
-    return (data = {
+    return {
       uid: user._id,
       email: user.email,
       role: user.role,
       verified: user.isVerified,
       token: token
-    });
+    };
   }
 
-  async verifyEmail(data) {
+  async verifyEmail(data: { userId: string; verifyToken: string; login?: boolean }) {
     const { userId, verifyToken, login } = data;
 
     const user = await User.findOne({ _id: userId });
@@ -93,6 +101,8 @@ class AuthService {
 
     await registrationService.updateRegistrationsToUser(user);
 
+    await authNotificationsService.joinDiscordNotification(user);
+
     if (login) {
       const loginToken = await this._getLoginToken(user);
 
@@ -102,7 +112,7 @@ class AuthService {
     return;
   }
 
-  async requestEmailVerification(email) {
+  async requestEmailVerification(email: string) {
     const user = await User.findOne({ email });
     if (!user) throw new CustomError("Email does not exist");
     if (user.isVerified) throw new CustomError("Email is already verified");
@@ -151,7 +161,7 @@ class AuthService {
     return;
   }
 
-  async resetPassword(data) {
+  async resetPassword(data: { userId: string; resetToken: string; password: string }) {
     const { userId, resetToken, password } = data;
 
     const RToken = await this.verifyResetToken({ userId, resetToken });
@@ -165,7 +175,7 @@ class AuthService {
     return;
   }
 
-  async verifyResetToken(data) {
+  async verifyResetToken(data: { userId: string; resetToken: string }) {
     const { userId, resetToken } = data;
 
     const RToken = await Token.findOne({ userId });
@@ -177,19 +187,17 @@ class AuthService {
     return RToken;
   }
 
-  async updatePassword(userId, data) {
+  async updatePassword(userId: string, data: { password: string }) {
     const user = await User.findOne({ _id: userId });
-    if (!user) throw new CustomError("User dose not exist");
+    if (!user) throw new CustomError("User does not exist");
 
     //Check if user password is correct
     const isCorrect = await bcrypt.compare(data.password, user.password);
     if (!isCorrect) throw new CustomError("Incorrect password");
 
-    const hash = await bcrypt.hash(password, BCRYPT_SALT);
+    const hash = await bcrypt.hash(data.password, BCRYPT_SALT);
 
     await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
-
-    return;
   }
 }
 

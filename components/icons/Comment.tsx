@@ -1,4 +1,6 @@
-export default function CommentIcon({ fill, width, height, className }) {
+import { FC } from "react"
+
+const Comment: FC<any> = ({ fill, width, height, className }) => {
   return (
     <svg
       width={width ? width : 24}
@@ -14,3 +16,6 @@ export default function CommentIcon({ fill, width, height, className }) {
     </svg>
   );
 }
+
+
+export default Comment

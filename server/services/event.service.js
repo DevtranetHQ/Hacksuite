@@ -8,7 +8,10 @@ class EventService {
 
   async getUpcomingEvents() {
     const now = new Date();
-    const events = await Event.find({ startDate: { $gt: now } }).withCreator();
+    const events = await Event.find({ startDate: { $gt: now } }).populate(
+      "creator",
+      "_id firstName lastName image"
+    );
 
     // TODO this is a hack-ish way to deal with objectid and date object, find a better way
     return events.map(event => JSON.parse(JSON.stringify(event)));
@@ -16,17 +19,20 @@ class EventService {
 
   async getPastEvents() {
     const now = new Date();
-    const events = await Event.find({ endDate: { $lt: now } }).withCreator();
+    const events = await Event.find({ endDate: { $lt: now } }).populate(
+      "creator",
+      "_id firstName lastName image"
+    );
 
     return events.map(event => JSON.parse(JSON.stringify(event)));
   }
 
   async getOngoingEvents() {
     const now = new Date();
-    const events = await Event.find({
-      startDate: { $lte: now },
-      endDate: { $gte: now }
-    }).withCreator();
+    const events = await Event.find({ startDate: { $lte: now }, endDate: { $gte: now } }).populate(
+      "creator",
+      "_id firstName lastName image"
+    );
 
     return events.map(event => JSON.parse(JSON.stringify(event)));
   }

@@ -15,6 +15,13 @@ export default function TelInput() {
       <style jsx global>{`
         .iti {
           margin-bottom: 1rem !important;
+          display: flex;
+          align-items: center
+        }
+        .iti__arrow{
+          border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid #8A8A8A;
         }
       `}</style>
       <input

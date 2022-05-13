@@ -1,14 +1,57 @@
 import mongoose from "../../database";
 import bcrypt from "bcryptjs";
+import dayjs from "dayjs";
 import { config } from "../../config";
 import { countryNames } from "../../utils/countryNames";
 
 const { BCRYPT_SALT } = config;
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const userSchema = new Schema(
+export type UserId = string & { __isUserId: true };
+
+export interface IUser {
+  _id: string;
+  uniqueId: UserId;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  levelOfStudy: string;
+  gender: string;
+  countryOfResidence: string;
+  describe: string;
+  skills: string;
+  dob: Date;
+  role: string;
+  isVerified: boolean;
+  isCompleted: boolean;
+  socialLinks: string;
+  image: string;
+  discordId: string;
+
+  password: string;
+}
+
+export interface IUserVirtuals {
+  age: number;
+  fullName: string;
+}
+
+export type IUserModel = mongoose.Model<IUser, {}, {}, IUserVirtuals>;
+
+const emailMatch: [RegExp, string] = [
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+  "{VALUE is not a valid email}"
+];
+
+const userSchema = new Schema<IUser, IUserModel>(
   {
+    uniqueId: {
+      type: String,
+      required: true,
+      unique: true
+    },
     firstName: {
       type: String,
       trim: true,
@@ -29,20 +72,17 @@ const userSchema = new Schema(
       unique: true,
       required: [true, "Email is required"],
       maxLength: [80, "Email can't be more than 80 characters"],
-      immutable: [true, "Email is immutable"],
+      immutable: true,
       lowerCase: true,
-      match: [
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-        "{VALUE is not a valid email}"
-      ]
+      match: emailMatch
     },
     password: {
       type: String,
       required: [true, "Password is required"],
       min: 6
     },
-    phoneNumer: {
-      type: Number,
+    phoneNumber: {
+      type: String,
       trim: true,
       match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "{VALUE} not a valid phone number"]
     },
@@ -66,10 +106,6 @@ const userSchema = new Schema(
     },
     describe: {
       type: String
-    },
-    phoneNumber: {
-      type: String,
-      trim: true
     },
     skills: {
       type: String
@@ -114,17 +150,17 @@ const userSchema = new Schema(
 
 /*virtual fields*/
 userSchema.virtual("age").get(function () {
-  return (Date.now() - this.birthdate).getYear();
+  return dayjs(this.dob).diff(dayjs(), "year");
 });
 
 userSchema
   .virtual("fullName")
   .get(function () {
     var fullname = "";
-    if (this.first_name && this.family_name) {
-      fullname = this.family_name + ", " + this.first_name;
+    if (this.firstName && this.lastName) {
+      fullname = this.lastName + ", " + this.firstName;
     }
-    if (!this.first_name || !this.family_name) {
+    if (!this.firstName || !this.lastName) {
       fullname = "";
     }
     return fullname;
@@ -143,6 +179,6 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-const User = mongoose.models.users || mongoose.model("users", userSchema);
+const User: IUserModel = mongoose.models.users || mongoose.model("users", userSchema);
 
 export default User;

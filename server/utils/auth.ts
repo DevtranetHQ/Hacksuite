@@ -1,15 +1,17 @@
-import { NextApiRequest } from 'next';
+import { NextApiRequest } from "next";
 import { JWTPayload, jwtVerify, SignJWT } from "jose";
 import { config } from "../config";
+import { UserId } from "../modules/auth/user.model";
 
 const { JWT_SECRET } = config;
 
 export interface IPayload {
-  id: string
-  role: string
-  firstName: string
-  lastName: string
-  isCompleted: boolean
+  id: string;
+  uniqueId: UserId;
+  role: string;
+  firstName: string;
+  lastName: string;
+  isCompleted: boolean;
 }
 
 /**
@@ -23,7 +25,7 @@ export async function handleAuth(req: NextApiRequest): Promise<IPayload> {
     const payload = await decodeToken(token);
     return payload;
   } catch (err) {
-    throw new Error("Invalid token");
+    throw new Error(`Invalid token: ${err.message}`);
   }
 }
 

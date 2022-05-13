@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Fade from "react-reveal/Fade";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import TelInput from "../../components/form/TelInput";
@@ -35,11 +34,9 @@ export default function Profile({ user }) {
       </div>
 
       {router.query.verified && (
-        <Fade top>
-          <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
-            Email Verification Successful!
-          </p>
-        </Fade>
+        <p className="font-body font-semibold text-20px text-white bg-[#4CB050] text-center w-screen mb-5">
+          Email Verification Successful!
+        </p>
       )}
 
       <form

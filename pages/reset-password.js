@@ -6,7 +6,6 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import authImage from "../public/assets/auth/auth-background.svg";
 import { useRouter } from "next/router";
-import Fade from "react-reveal/Fade";
 import { useAuth } from "../components/AuthContext";
 import authService from "../server/modules/auth/auth.service";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -60,18 +59,18 @@ export default function ResetPassword() {
       </div>
 
       {resetPassword.status === "success" && (
-        <Fade top>
-          <div className="bg-green-500 text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+        
+          <div className="bg-green-500 slide-bottom text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
             <p>Password Successfully Changed! Redirecting...</p>
           </div>
-        </Fade>
+        
       )}
       {resetPassword.status === "error" && (
-        <Fade top>
-          <div className="bg-[#D0342C] text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
+        
+          <div className="bg-[#D0342C] slide-bottom text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
             <p>{resetPassword.error.response?.data.message || resetPassword.error.message}</p>
           </div>
-        </Fade>
+        
       )}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">

@@ -6,7 +6,7 @@ import TrashIcon from "../icons/Trash";
 import ViewIcon from "../icons/View";
 
 export default function PersonalProjectCard({ name, description, image, published, date, id }) {
-  const previewRoute = `/project/preview/${id}`;
+  const previewRoute = `project/preview/${id}`;
 
   async function unpublishProject() {
     // TODO: Use id parameter
@@ -27,9 +27,9 @@ export default function PersonalProjectCard({ name, description, image, publishe
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       `}</style>
-      <article className="container-gray-dark my-14 px-5 pt-5 pb-2 rounded-md">
+      <article className="container-gray-dark my-14 px-5 pt-5 pb-2 rounded-lg">
         <div className="flex items-center justify-between">
-          <div className="inline-flex gap-x-2">
+          <div className="flex items-center gap-x-2">
             <svg
               width="20"
               height="20"
@@ -96,8 +96,8 @@ export default function PersonalProjectCard({ name, description, image, publishe
           <h1 className="heading">{name}</h1>
           <p className="font-bold italic">{description}</p>
         </div>
-        <div className="flex items-center justify-between">
-          <button className="inline-flex gap-x-1 text-18px" onClick={deleteProject}>
+        <div className="flex items-center justify-between mb-3">
+          <button className="flex gap-x-1 text-18px items-center" onClick={deleteProject}>
             <TrashIcon />
             <span className="pt-1">Delete</span>
           </button>
