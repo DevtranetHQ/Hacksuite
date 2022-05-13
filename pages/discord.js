@@ -48,7 +48,7 @@ export default function Discord() {
               <h1 className="text-28px text-center font-bold xs:text-26px xs:mb-2">
                 JOIN OUR DISCORD
               </h1>
-              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-4 lg:pb-3 lg:px-12">
+              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-4 lg:pb-4 lg:px-12">
                 <div>
                   <div>
                     <label

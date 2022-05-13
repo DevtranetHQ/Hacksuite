@@ -51,12 +51,25 @@ export default function TextEditor({ onUpdate }) {
       onUpdate(editor.getHTML());
     }
   });
-  const addImage = useCallback(() => {
-    const url = <input type="file" />;
 
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+  const setLink = useCallback(() => {
+    const previousUrl = editor.getAttributes("link").href;
+    const url = window.prompt("URL", previousUrl);
+
+    // cancelled
+    if (url === null) {
+      return;
     }
+
+    // empty
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+
+      return;
+    }
+
+    // update link
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
 
   if (!editor) {
@@ -135,13 +148,6 @@ export default function TextEditor({ onUpdate }) {
             className="border-r pr-1"
           />
         </button>
-        {/* <button
-         type="button"
-          className={editor.isActive({ textAlign: 'left' }) ? 'is-active border-r pr-1' : 'border-r pr-1'}
-          onClick={() => editor.chain().focus().setTextAlign('left').run()}
-          title="Align left">
-          <Left />
-        </button> */}
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
@@ -198,7 +204,7 @@ export default function TextEditor({ onUpdate }) {
               ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
               : " pr-1 pl-1 border-r"
           }
-          onClick={() => editor.chain().focus().toggleLink().run()}
+          onClick={setLink}
           title="Apply link">
           <LinkIcon />
         </button>
