@@ -24,7 +24,7 @@ export default function PersonalProjects({ name, projects, unread }) {
         <DashNav active="/personal-projects" />
       </div>
       <div className="mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <div className="">
+        <div className="flex flex-col">
           <header className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
             <h1 className="mxs:hidden mx-auto font-semibold text-42px">Projects</h1>
             <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
@@ -59,7 +59,7 @@ export default function PersonalProjects({ name, projects, unread }) {
           ))}
         </section>
       </div>
-      <div className="xs:hidden">
+      <div className="xs:hidden mt-40">
         <DashNavMobile />
       </div>
     </div>
