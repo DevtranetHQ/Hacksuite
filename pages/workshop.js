@@ -18,7 +18,7 @@ export default function Workshop({ user, project }) {
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
         <Logo className="w-[80px] md:w-[120px] py-5" />
-        <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2 dark:bg-transparent">
+        <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2 dark:bg-transparent text-white dark:bg-white">
           <div className="relative rounded-md flex  items-center p-1 border-[#03A9F4] border-[3px]">
             <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
               <svg
@@ -36,9 +36,9 @@ export default function Workshop({ user, project }) {
               </svg>
             </div>
             <input
-              type="search"
+              type="text"
               placeholder="I’m looking for..."
-              className=" block w-full pl-10  dark:bg-transparent  rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white"
+              className=" block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white "
             />
           </div>
         </form>
@@ -115,7 +115,7 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">React Workshop</span>
+            <span className="font-semibold text-30px pl-10">React workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
             {user &&
@@ -144,7 +144,7 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">Python Workshop</span>
+            <span className="font-semibold text-30px pl-10">Python workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
             {user &&
@@ -173,7 +173,7 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">C++ Workshop</span>
+            <span className="font-semibold text-30px pl-10">C++ workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
             {user &&
@@ -201,7 +201,7 @@ export default function Workshop({ user, project }) {
       </div>
       <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
         <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
-          <span>View more Workshops</span>
+          <span>View more workshops</span>
           <div className="lg:scale-[2] relative lg:top-1">
             <ArrowIcon />
           </div>
