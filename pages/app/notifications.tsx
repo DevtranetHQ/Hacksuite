@@ -11,8 +11,8 @@ import { withAuth } from "../../server/middlewares/auth.middleware";
 import { INotification } from "../../server/modules/notification/notification.model";
 import { notificationService } from "../../server/modules/notification/notifications.service";
 import NotificationsLink from "../../components/dash/NotificationsLink";
-import  Empty  from "../../components/Empty";
 import bars from "../../public/assets/dash/bars-solid.svg";
+import NotifEmpty from "../../components/NotifEmpty";
 
 interface Props {
   notifications: INotification[];
@@ -59,14 +59,14 @@ export default function Notifications({ notifications }: Props) {
         <h1 className="xs:hidden mx-auto font-semibold text-36px mt-12 text-center">
           Notifications
         </h1>
-        <hr className="xs:hidden mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
+        <hr className=" mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section>
           {notifs?.length ? (
             notifs.map((notif, key) => (
               <Notification key={key} notification={notif} handleRemove={handleRemove} />
             ))
           ) : (
-            <Empty />
+            <NotifEmpty />
           )}
         </section>
       </div>

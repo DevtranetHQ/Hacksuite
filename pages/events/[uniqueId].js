@@ -70,13 +70,15 @@ export default function Event({ loggedIn, event, isRegistered }) {
           <Link href={`${loggedIn ? "/" : "/events"}`}>
             <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back home" : "All Events"}
-              <ArrowRightIcon />
+              <div className="lg:scale-[1] relative flex items-center top-[2px]">
+                <ArrowRightIcon />
+              </div>
             </button>
           </Link>
         </div>
-      </nav>      
+      </nav>
       <div className="pb-14">
-        <div classNam e="pt-14 relative">
+        <div className="pt-14 relative">
           <Image
             layout="fill"
             objectFit="cover"
@@ -135,7 +137,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
             {!loggedIn && (
               <>
                 <form
-                  className="bg-transparent dark:bg-transparent mt-14 w-1/2"
+                  className="bg-transparent dark:bg-transparent mt-14 w-1/2 "
                   onSubmit={registerWithEmail}>
                   <div>
                     <label className="form-label font-normal" htmlFor="name">
@@ -158,12 +160,12 @@ export default function Event({ loggedIn, event, isRegistered }) {
                       className="form-input px-5 py-3"
                       id="email"
                       name="email"
-                      placeholder="Email"
+                      placeholder="Email address"
                       required
                       type="email"
                     />
                   </div>
-                  <div className="text-center">
+                  <div className="text-center mt-10 mb-10">
                     <ReCAPTCHA
                       className="inline-block mb-3"
                       sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
@@ -171,26 +173,28 @@ export default function Event({ loggedIn, event, isRegistered }) {
                     />
                     <br />
                     <button
-                      className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
+                      className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px mt-10 mx-auto items-center w-3/4"
                       type="submit">
                       <CalendarIcon width={32} height={32} />
-                      <span className="pt-2">Register for this event</span>
+                      <span className="">Register for this event</span>
                     </button>
                   </div>
                 </form>
                 <div className="flex justify-between caption w-screen">
                   <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                  <div className="text-12px md:text-18px">OR</div>
+                  <div className="text-12px md:text-18px">Or register using</div>
                   <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                 </div>
               </>
             )}
             <div className="my-10">
               <button
-                className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px"
+                className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px items-center"
                 onClick={registerWithAccount}>
-                {loggedIn ? "Register now" : "Register with The Dynamics account"}
-                <ArrowRightIcon />
+                {loggedIn ? "Register now" : "The Dynamics account"}
+                <div className="lg:scale-[1] relative flex items-center top-[2px]">
+                  <ArrowRightIcon />
+                </div>
               </button>
             </div>
           </>
