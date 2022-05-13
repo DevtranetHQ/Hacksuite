@@ -21,13 +21,14 @@ import LinkedinIcon from "../../../components/icons/Linkedin";
 import TimeIcon from "../../../components/icons/Time";
 import TwitterIcon from "../../../components/icons/Twitter";
 import PhotoGalleryHeader from "../../../components/project/Photo-galleryHeader";
+import { withAuth } from "../../../server/middlewares/auth.middleware";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
 
-export default function Project({ loggedIn, project }) {
+export default function Project({ loggedIn, project, image }) {
   const router = useRouter();
-  loggedIn = router.query.ref === "dash" ? true : loggedIn;
+  // loggedIn = router.query.ref === "dash" ? true : loggedIn;
 
   // URL for sharing
   const url = `https://app.thedynamics.tech/project/preview/${project.id}`;
@@ -54,81 +55,81 @@ export default function Project({ loggedIn, project }) {
           <span>
             {project.likes} {project.likes === 1 ? "Like" : "Likes"}
           </span>
-          <HeartIcon />
+          <HeartIcon className="w-[14px]" />
         </>}
         secondBtn={<>
           <span>
             {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
           </span>
-          <CommentIcon />
+          <CommentIcon className="w-[14px]" />
         </>}
         href="#comments"
         navText="Other projects"
         navHref="/project-gallery"
       />
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
-        <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
+        <div className="col-span-2 md:mx-14 my-7 relative min-h-[400px] border md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
         </div>
-        <div className="absolute right-0 bottom-0 w-50 md:w-fit md:relative  py-7">
-          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 pl-12 pr-20 rounded-l-md h-full col-span-1">
+        <div className="absolute right-0 top-[5.7rem] md:top-[0] md:bottom-0 w-50 md:w-fit md:relative py-7">
+          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between md:py-7 py-3 pl-8 md:pl-12 md:pr-20 pr-4 rounded-l-md h-full col-span-1">
             <div>
-              <h1 className="headline font-normal mb-7">Made By</h1>
+              <h1 className="md:headline text-[22px] font-normal mb-7">Made By</h1>
               {project.creators.map((creator, key) => (
                 <div className="flex items-center gap-x-4 mb-2" key={key}>
                   <Avatar
-                    className="relative w-[45px] h-[45px]"
+                    className="relative md:w-[45px] md:h-[45px] w-[32px] h-[32px]"
                     border="!border-[3px]"
                     image={creator.image}
                   />
-                  <h2 className="inline-flex gap-2 items-center self-center subheadline">
+                  <h2 className="inline-flex gap-2 items-center self-center md:subheadline text-[16px] font-semibold">
                     {creator.name}
                     <Link href={`/profile/${creator.id}`}>
                       <a className="cursor-pointer">
-                        <FollowerIcon width="25px" height="25px" className="hover:scale-[1.06] transition-all" />
+                        <FollowerIcon className="hover:scale-[1.06] md:w-[25px] md:h-[25px] w-[20px] h-[20px] transition-all" />
                       </a>
                     </Link>
                   </h2>
                 </div>
               ))}
             </div>
-            <div className="inline-flex gap-4 items-center mt-7 ml-3">
-              <TimeIcon />
-              <h2 className="caption">{project.date}</h2>
+            <div className="inline-flex gap-4 items-center mt-4 md:mt-7 md:ml-3 ml-1">
+              <TimeIcon className="md:w-[25px] md:h-[25px] w-[15px] h-[15px] transition-all" />
+              <h2 className="md:caption text-[15px]">{project.date}</h2>
             </div>
           </div>
         </div>
       </section>
-      <div className="px-14">
+      <div className="md:px-14 px-4">
         <article
           className="prose prose-lg dark:prose-invert mb-7"
           dangerouslySetInnerHTML={projectInformation()}
         />
         <aside className="flex flex-col gap-y-7">
-          <div>
-            <h1 className="heading">Made with</h1>
-            <div className="flex gap-x-8">
+          <div className="ml-5 md:ml-0">
+            <h1 className="md:heading text-[20px] font-semibold">Made with</h1>
+            <div className="flex flex-col md:flex-row gap-x-8">
               {project.tags.map((tag, key) => (
                 <span
                   className={`${["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
-                    } px-3 py-2 subheadline text-white rounded cursor-pointer hover:scale-[1.06] transition-all`}
+                    } px-3 py-2 md:subheadline text-white rounded cursor-pointer hover:scale-[1.06] transition-all w-[max-content] mt-3 md:mt-0`}
                   key={key}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex justify-between mt-2">
+          <div className="flex md:flex-row flex-col justify-between mt-2">
             <div>
-              <h1 className="heading leading-loose mb-3">Check it out</h1>
-              <div className="flex flex-col gap-y-4">
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-3">Check it out</h1>
+              <div className="flex flex-col gap-y-4 mb-5 md:mb-0">
                 {project.links.map((link, key) => {
                   switch (link.type) {
                     case "github":
                       return (
                         <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
-                          <GithubIcon width={50} height={50} />
-                          <a className="subheadline underline" href={link.link}>
+                          <GithubIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on GitHub
                           </a>
                         </div>
@@ -136,8 +137,8 @@ export default function Project({ loggedIn, project }) {
                     case "figma":
                       return (
                         <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
-                          <FigmaIcon />
-                          <a className="subheadline underline" href={link.link}>
+                          <FigmaIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on Figma
                           </a>
                         </div>
@@ -145,8 +146,8 @@ export default function Project({ loggedIn, project }) {
                     case "adobe":
                       return (
                         <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
-                          <AdobeIcon />
-                          <a className="subheadline underline" href={link.link}>
+                          <AdobeIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on AdobeXD
                           </a>
                         </div>
@@ -154,8 +155,8 @@ export default function Project({ loggedIn, project }) {
                     default:
                       return (
                         <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
-                          <LinkIcon />
-                          <a className="subheadline underline" href={link.link}>
+                          <LinkIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             via this Link
                           </a>
                         </div>
@@ -165,120 +166,120 @@ export default function Project({ loggedIn, project }) {
               </div>
             </div>
             <div>
-              <h1 className="heading leading-loose">Share it</h1>
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-2 md:mb-0">Share it</h1>
               <div className="flex gap-x-4 items-center">
                 <a href={`https://twitter.com/intent/tweet?url=${url}`} className="hover:scale-[1.06] transition-all">
-                  <TwitterIcon />
+                  <TwitterIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
                 <a href={`https://www.facebook.com/sharer.php?u=${url}`} className="hover:scale-[1.06] transition-all">
-                  <FacebookIcon />
+                  <FacebookIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
                 <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} className="hover:scale-[1.06] transition-all">
-                  <LinkedinIcon />
+                  <LinkedinIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
                 <a
                   className="cursor-pointer hover:scale-[1.06] transition-all"
                   onClick={() => navigator.clipboard.writeText(url)}
                   title="Copy link">
-                  <ShareIcon fill="fill-black dark:fill-white" />
+                  <ShareIcon fill="fill-black dark:fill-white md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
               </div>
             </div>
           </div>
 
           <section id="comments">
-            <h1 className="heading font-bold mt-7">Comments</h1>
-            <div className="grid grid-cols-12 mx-14 items-center">
-              <div className="col-span-1">
+            <h1 className="md:heading text-[20px] font-semibold font-bold mt-7 mb-4 md:mb-0">Comments</h1>
+            <div className="grid grid-cols-12 md:mx-14 items-center">
+              <div className="col-span-1 self-start md:self-center">
                 <Avatar
                   border="!border-[3px]"
-                  className="relative w-[65px] h-[65px]"
+                  className="relative md:w-[65px] md:h-[65px] w-[32px] h-[32px]"
                   image={project.owner.image}
                 />
               </div>
-              <div className="col-span-10 px-3" id="comment">
+              <div className="col-span-10 px-3 ml-3" id="comment">
                 <h1>
-                  <span className="text-24px font-semibold">{project.owner.name}</span>{" "}
-                  <em className="ml-2 font-thin text-18px italic">Made this project —{project.date}</em>
+                  <span className="md:text-24px text-[15px] font-semibold">{project.owner.name}</span>{" "}
+                  <em className="md:ml-2 ml-1 font-thin md:text-18px text-[13px]italic">Made this project —{project.date}</em>
                 </h1>
-                <h1 className="text-18px italic text-[#515151] mt-2 font-semibold dark:text-white">leave feedback in the comments!</h1>
+                <h1 className="md:text-18px text-[13px] italic text-[#515151] mt-2 font-semibold dark:text-white">leave feedback in the comments!</h1>
               </div>
-              <div className="col-span-1">
-                <ArrowDownIcon width="18px" height="18px" />
+              <div className="col-span-1 self-start md:self-center mt-3 md:mt-0">
+                <ArrowDownIcon className="md:w-[18px] md:h-[18px] w-[11px] h-[11px]" />
               </div>
             </div>
-            <div className="grid grid-cols-12 mx-14 mt-7 mb-14">
+            <div className="grid grid-cols-12 md:mx-14 mt-7 mb-14">
               <div className="col-span-1" />
-              <div className="col-span-10 px-3">
+              <div className="col-span-10 md:px-3">
                 <div className="bg-[#f5f5f7] dark:bg-[#2D2D2D] rounded-2xl">
                   {project.comments.map((comment, key) => (
-                    <div className="border-b-4 px-7 py-5" key={key}>
+                    <div className="border-b-4 md:px-7 px-3 py-5" key={key}>
                       <div className="grid grid-cols-12 items-center">
-                        <div className="col-span-1">
+                        <div className="col-span-1 self-start">
                           <Avatar
                             border="!border-[3px]"
-                            className="relative w-[50px] h-[50px]"
+                            className="relative md:w-[50px] md:h-[50px] w-[32px] h-[32px]"
                             image={comment.image}
                           />
                         </div>
-                        <div className="col-span-11">
-                          <h1>
-                            <span className="text-20px font-semibold">{comment.name}</span>{" "}
-                            <span className="caption text-16px ml-1">{comment.date}</span>
+                        <div className="col-span-11 ml-6 md:ml-0">
+                          <h1 className="flex md:flex-row flex-col md:items-center">
+                            <span className="md:text-20px text-[15px] font-semibold">{comment.name}</span>{" "}
+                            <span className="caption md:text-16px text-[14px] md:ml-1">{comment.date}</span>
                           </h1>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-12 items-center">
-                        <div className="col-span-1" />
-                        <div className="col-span-10">
-                          <p className="text-20px">{comment.comment}</p>
-                          <p className="caption inline-flex gap-x-1 items-center hover:scale-[1.06] transition-all">
-                            Like{" "}
-                            <span className="cursor-pointer">
-                              <HeartIcon fill="#C50000" width={20} height={20} />
-                            </span>{" "}
-                            {comment.likes}
-                          </p>
+                          <div className="flex flex-col mt-1 md:mt-0">
+                            <div className="">
+                              <p className="md:text-20px text-[16px]">{comment.comment}</p>
+                              <p className="caption inline-flex gap-x-1 items-center hover:scale-[1.06] text-[13px] md:text-[16px] transition-all">
+                                Like{" "}
+                                <span className="cursor-pointer">
+                                  <HeartIcon fill="#C50000" className="md:w-[20px] md:h-[20px] w-[13px] h-[13px]" />
+                                </span>{" "}
+                                {comment.likes}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                         <div className="col-span-1" />
                       </div>
                     </div>
                   ))}
-                  <div className="px-7 py-5">
-                    {/* {loggedIn ? (
-                    <div className="grid grid-cols-12">
-                      <div className="col-span-1 py-3">
-                        <Avatar
-                          border="!border-[3px]"
-                          className="relative w-[50px] h-[50px]"
-                          image={loggedIn.image}
-                        />
-                      </div>
-                      <div className="col-span-11">
-                        <form className="!p-0 dark:bg-transparent">
-                          <textarea
-                            className="form-input resize-none"
-                            name="comment"
-                            placeholder="Write a comment"
+                  <div className="md:px-7 px-2 py-5">
+                    {loggedIn ? (
+                      <div className="grid grid-cols-12 gap-x-5">
+                        <div className="col-span-1 py-3">
+                          <Avatar
+                            border="!border-[3px]"
+                            className="relative md:w-[50px] md:h-[50px] w-[32px] h-[32px]"
+                            image={image}
                           />
-                          <button className="button-small button-deep-sky-blue text-18px" onSubmit={comment}>
-                            Post comment
-                          </button>
-                        </form>
+                        </div>
+                        <div className="col-span-1 md:hidden" />
+                        <div className="md:col-span-11 col-span-10">
+                          <form className="!p-0 dark:bg-transparent">
+                            <textarea
+                              className="form-input resize-none text-[14px] md:text-18px"
+                              name="comment"
+                              placeholder="Write a comment"
+                            />
+                            <button className="button-small button-deep-sky-blue md:text-18px text-[14px]" onSubmit={comment}>
+                              Post comment
+                            </button>
+                          </form>
+                        </div>
                       </div>
-                    </div>
-                  ) : ( */}
-                    <p className="text-center">
-                      <Link href="/login">
-                        <a>Log in</a>
-                      </Link>{" "}
-                      or{" "}
-                      <Link href="/signup">
-                        <a>Sign up</a>
-                      </Link>{" "}
-                      to add a comment to this project.
-                    </p>
-                    {/* )} */}
+                    ) : (
+                      <p className="text-center">
+                        <Link href="/login">
+                          <a>Log in</a>
+                        </Link>{" "}
+                        or{" "}
+                        <Link href="/signup">
+                          <a>Sign up</a>
+                        </Link>{" "}
+                        to add a comment to this project.
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -288,31 +289,29 @@ export default function Project({ loggedIn, project }) {
 
         </aside>
       </div>
-      {/* {!loggedIn && ( */}
-      <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
-        <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
-          All events are hosted and maintained by The Dynamics, the official network of young
-          makers, <br className="hidden md:block"></br>developers, innovators, and founders using
-          our{" "}
-          <Link href="/">
-            <a>Code of Conduct</a>
-          </Link>
-        </p>
-      </footer>
-      {/* )} */}
+      {!loggedIn && (
+        <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+          <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
+            You’ve reached the end, why not <Link href="/signup"> become a member </Link> and show us all the cool things you’ve made?
+          </p>
+        </footer>
+      )}
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   // TODO: Use id to get event info from database
+  const { req, res } = context;
+  const user = await withAuth(req => req.$user)(req, res);
+
   const { id } = context.query;
   return {
     props: {
-      loggedIn: {
-        image:
-          "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-      },
+      loggedIn: !!user,
+      image:
+        "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      ,
       project: {
         id: id,
         name: "Web scraper",

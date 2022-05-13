@@ -1,11 +1,12 @@
-export default function FigmaIcon({ fill, width, height }) {
+export default function FigmaIcon({ fill, width, height, className }) {
   return (
     <svg
       width={width ? width : 50}
       height={height ? height : 50}
       viewBox="0 0 24 34"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+      className={className ? className : ""}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
