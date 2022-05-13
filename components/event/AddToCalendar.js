@@ -112,14 +112,14 @@ export function AddToCalendar({ event }) {
   return (
     <>
       <button
-        className="button-big button-deep-sky-blue inline-flex gap-2 rounded-[4.65px] text-24px h-[54px]"
+        className="button-big button-deep-sky-blue flex items-center gap-2 rounded-[4.65px] text-24px h-[60px] "
         ref={setReferenceElement}
         onClick={() => setShowPopper(v => !v)}>
         <CalendarIcon width={32} height={32} />
-        <span className="pt-2">Add to my calendar</span>
+        <span className="">Add to my calendar</span>
       </button>
       <div
-        className="popper bg-slate-50"
+        className="popper bg-slate-50 p-2 mx-auto rounded-lg"
         ref={setPopperElement}
         style={{
           ...styles.popper
@@ -130,7 +130,7 @@ export function AddToCalendar({ event }) {
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white  ml-2">
           <span>
             <Icon icon="mdi:apple" color="#03a9f4" inline={true} className="mr-4" />
           </span>
@@ -141,7 +141,7 @@ export function AddToCalendar({ event }) {
           href={gcalLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white ml-2">
           <span>
             <Icon icon="mdi:google" color="#03a9f4" inline={true} className="mr-4" />
           </span>
@@ -152,7 +152,7 @@ export function AddToCalendar({ event }) {
           href={outlookLink(event, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white ml-2">
           <span>
             <Icon icon="mdi:microsoft" color="#03a9f4" inline={true} className="mr-4" />
           </span>
@@ -163,9 +163,8 @@ export function AddToCalendar({ event }) {
           href={icsFile(event, url)}
           download={`${event.name}.ics`}
           rel="noopener noreferrer"
-          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white">
+          className="md:outline-button-medium outline-button-small  button-deep-sky-blue bg-white ml-2 flex items-center">
           <span>
-            <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4" />
           <Icon icon="mdi:calendar" color="#03a9f4" inline={true} className="mr-4"/>
           </span>
           Other Calendars

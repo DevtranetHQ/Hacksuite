@@ -26,7 +26,7 @@ export default function EventCard(event) {
           <p className="caption text-black dark:text-white">
             {description.substring(0, 200)}...
             <Link href={route}>
-              <a className="mx-1 italic underline">Read more</a>
+              <a className="mx-1 underline"><span className="font-semibold italic">Read more</span></a>
             </Link>
           </p>
           <p className="font-bold caption text-[#a5a5a5]">
