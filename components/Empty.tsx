@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Empty() {
+export default function Empty() {
   return (
     <div className="w-[300] h-[600] flex flex-col relative bg-transparent border-[10px] border-[#C4C4C4] rounded-lg items-center justify-center mx-auto md:h-[400px] md:w-[1200px] xs:w-[370px] xs:h-[271px]">
       <p className="text-[#A5A5A5] font-bold font-body md:text-[72px] text-[24px] mb-3 ">

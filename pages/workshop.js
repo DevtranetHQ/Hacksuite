@@ -123,9 +123,8 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("React"))
                 .map((project, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <WorkshopProfileCard
-                        key={project.index}
                         name={project.name}
                         tools={project.tools}
                         bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
@@ -153,9 +152,8 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("Python"))
                 .map((project, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <WorkshopProfileCard
-                        key={project.index}
                         name={project.name}
                         tools={project.tools}
                         bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
@@ -183,9 +181,8 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("C++"))
                 .map((project, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <WorkshopProfileCard
-                        key={project.index}
                         name={project.name}
                         tools={project.tools}
                         bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
