@@ -16,8 +16,7 @@ import TwitterIcon from "../components/icons/Twitter";
 import FacebookIcon from "../components/icons/Facebook";
 import LinkedInIcon from "../components/icons/Linkedin";
 import Share from "../components/icons/Share";
-import ExitIcon from "../components/icons/Exit";
-
+import ExitIcon from "../components/icons/Upload";
 
 // TODO: image should be gotten from the server, not hardcoded
 // import Img from "../public/assets/TEST/user_projects/img-1.jpg";
@@ -155,81 +154,79 @@ export default function ProjectDetails(props: any) {
         <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
           Comments
         </h2>
-        
+
         {/* Author name */}
         <div className="mx-7">
-               <span className="flex items-start gap-2">
-               <Avatar
-               image="/assets/TEST/img-8.jpg"
-               className="w-[60px] h-[60px] relative"
-               border="border-[3px]"
-               />
-               <div>
-                    <span>{data.doc.author}</span> Made this project-{data.doc.time}, {data.doc.day} 
-                    <h2>Leave feadback in the comment!</h2>
-
-                    {/* Container for all comments*/}
-                    <div className="bg-[#F4F4F4] dark:bg-[#444444] py-[6px] text-center rounded-md px-5 ">
-                        
-                        {/* Individual comments map all comments from server */}
-                         <div className="mt-4 mb-4">
-                              <span className="flex items-start gap-2">
-                                   <Avatar
-                                   image="/assets/TEST/img-8.jpg"
-                                   className="w-[40px] h-[40px] relative"
-                                   border="border-[3px]"
-                                   />
-                                   <div>
-                                        <span>{data.doc.author}</span>  {data.doc.time}, {data.doc.day} 
-                                        <span className="flex items-center gap-2 mt-2 mb-1">{"Comment Body"}</span>
-                                        <span className="flex items-center gap-2">Like <HeartIcon fill="red" width={"15px"} height={"15px"} /> {3}</span>
-                                   </div>
-                                   <span className="ml-auto">Reply</span>
-                              </span>
-                              <hr className=" h-[28px] " />
-                         </div>
-
-                         <div className="mt-4 mb-4">
-                              <span className="flex items-start gap-2">
-                                   <Avatar
-                                   image="/assets/TEST/img-8.jpg"
-                                   className="w-[40px] h-[40px] relative"
-                                   border="border-[3px]"
-                                   />
-                                   <div>
-                                        {/* Form to enter comment */}
-                                        <form className="pt-0 pl-0 my-0" onSubmit={(e) => e.preventDefault()} >
-                                             <div>
-                                             <input
-                                                  className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
-                                                  name="comment"
-                                                  id="comment"
-                                                  type="text"
-                                                  maxLength={80}
-                                                  placeholder="Write a comment"
-                                                  required
-                                                  />
-                                             </div>
-
-                                             <LoadingButton
-                                                  className="mx-0 py-0 button-small button-deep-sky-blue text-15px rounded h-8 xs:mt-8 xs:h-8 xs:py-1"
-                                                  type="submit"
-                                                  isLoading={"1" === 1}
-                                                  >
-                                                  Post comment
-                                             </LoadingButton>
-                                        </form>
-                                   </div>
-                              </span>
-                         </div>
+          <span className="flex items-start gap-2">
+            <Avatar
+              image="/assets/TEST/img-8.jpg"
+              className="w-[60px] h-[60px] relative"
+              border="border-[3px]"
+            />
+            <div>
+              <span>{data.doc.author}</span> Made this project-{data.doc.time}, {data.doc.day}
+              <h2>Leave feadback in the comment!</h2>
+              {/* Container for all comments*/}
+              <div className="bg-[#F4F4F4] dark:bg-[#444444] py-[6px] text-center rounded-md px-5 ">
+                {/* Individual comments map all comments from server */}
+                <div className="mt-4 mb-4">
+                  <span className="flex items-start gap-2">
+                    <Avatar
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-[40px] h-[40px] relative"
+                      border="border-[3px]"
+                    />
+                    <div>
+                      <span>{data.doc.author}</span> {data.doc.time}, {data.doc.day}
+                      <span className="flex items-center gap-2 mt-2 mb-1">{"Comment Body"}</span>
+                      <span className="flex items-center gap-2">
+                        Like <HeartIcon fill="red" width={"15px"} height={"15px"} /> {3}
+                      </span>
                     </div>
+                    <span className="ml-auto">Reply</span>
+                  </span>
+                  <hr className=" h-[28px] " />
+                </div>
 
-               </div>
-               <span className="ml-auto"><ExitIcon fill="black" width={"15px"} height={"15px"}/></span>
-             </span>
+                <div className="mt-4 mb-4">
+                  <span className="flex items-start gap-2">
+                    <Avatar
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-[40px] h-[40px] relative"
+                      border="border-[3px]"
+                    />
+                    <div>
+                      {/* Form to enter comment */}
+                      <form className="pt-0 pl-0 my-0" onSubmit={e => e.preventDefault()}>
+                        <div>
+                          <input
+                            className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                            name="comment"
+                            id="comment"
+                            type="text"
+                            maxLength={80}
+                            placeholder="Write a comment"
+                            required
+                          />
+                        </div>
+
+                        <LoadingButton
+                          className="mx-0 py-0 button-small button-deep-sky-blue text-15px rounded h-8 xs:mt-8 xs:h-8 xs:py-1"
+                          type="submit"
+                          isLoading={"1" === 1}>
+                          Post comment
+                        </LoadingButton>
+                      </form>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <span className="ml-auto">
+              <ExitIcon fill="black" width={"15px"} height={"15px"} />
+            </span>
+          </span>
         </div>
-        
-
       </div>
 
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px] mt-[20px]">
