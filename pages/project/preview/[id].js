@@ -68,11 +68,11 @@ export default function Project({ loggedIn, project, image }) {
         navHref="/project-gallery"
       />
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
-        <div className="col-span-2 md:mx-14 my-7 relative min-h-[400px] border md:min-h-[400px]">
+        <div className="col-span-2 md:col-span-3 lg:col-span-2 md:mx-14 my-7 relative min-h-[400px] border md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
         </div>
-        <div className="absolute right-0 top-[5.7rem] md:top-[0] md:bottom-0 w-50 md:w-fit md:relative py-7">
-          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between md:py-7 py-3 pl-8 md:pl-12 md:pr-20 pr-4 rounded-l-md h-full col-span-1">
+        <div className="absolute right-0 top-[5.7rem] md:top-[0] md:bottom-0 w-50 md:w-fit md:relative py-7 md:w-[430px] lg:w-50">
+          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between md:py-7 py-3 pl-8 md:pl-12 lg:pr-20 pr-4 rounded-l-md h-full col-span-1">
             <div>
               <h1 className="md:headline text-[22px] font-normal mb-7">Made By</h1>
               {project.creators.map((creator, key) => (
