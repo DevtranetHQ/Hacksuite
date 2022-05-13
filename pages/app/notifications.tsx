@@ -11,7 +11,7 @@ import { withAuth } from "../../server/middlewares/auth.middleware";
 import { INotification } from "../../server/modules/notification/notification.model";
 import { notificationService } from "../../server/modules/notification/notifications.service";
 import NotificationsLink from "../../components/dash/NotificationsLink";
-import { Empty } from "../../components/Empty";
+import  Empty  from "../../components/Empty";
 import bars from "../../public/assets/dash/bars-solid.svg";
 
 interface Props {
