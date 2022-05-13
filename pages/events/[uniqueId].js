@@ -74,7 +74,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
             </button>
           </Link>
         </div>
-      </nav>
+      </nav>      
       <div className="pb-14">
         <div classNam e="pt-14 relative">
           <Image
@@ -88,7 +88,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
           `}</style>
-          <header className="-bottom-14 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r w-1/2">
+          <header className="absolute -bottom-14 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r w-1/2">
             <h1 className="title text-deep-sky-blue">{event.name}</h1>
             <div className="flex gap-2 items-center">
               <Avatar
