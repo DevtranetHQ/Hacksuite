@@ -38,7 +38,7 @@ export default function Workshop({ user, project }) {
             <input
               type="text"
               placeholder="I’m looking for..."
-              className=" block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white "
+              className=" block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white text-black"
             />
           </div>
         </form>
