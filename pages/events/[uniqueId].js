@@ -74,12 +74,12 @@ export default function Event({ loggedIn, event, isRegistered }) {
             </button>
           </Link>
         </div>
-      </nav>      
+      </nav>
       <div className="pb-14">
         <div classNam e="pt-14 relative">
           <Image
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             src={event.image}
             alt={`image for event ${event.name}`}
           />
