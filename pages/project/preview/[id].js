@@ -29,7 +29,6 @@ import { useRouter } from "next/router";
 export default function Project({ loggedIn, project, image }) {
   const router = useRouter();
   // loggedIn = router.query.ref === "dash" ? true : loggedIn;
-  console.log(loggedIn)
 
   // URL for sharing
   const url = `https://app.thedynamics.tech/project/preview/${project.id}`;
