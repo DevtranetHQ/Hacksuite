@@ -193,7 +193,7 @@ export default function Project({ loggedIn, project, image }) {
               <div className="col-span-1 self-start md:self-center">
                 <Avatar
                   border="!border-[3px]"
-                  className="relative md:w-[65px] md:h-[65px] w-[32px] h-[32px]"
+                  className="relative lg:w-[65px] lg:h-[65px] md:w-[55px] md:h-[55px] w-[32px] h-[32px]"
                   image={project.owner.image}
                 />
               </div>
@@ -218,11 +218,11 @@ export default function Project({ loggedIn, project, image }) {
                         <div className="col-span-1 self-start">
                           <Avatar
                             border="!border-[3px]"
-                            className="relative md:w-[50px] md:h-[50px] w-[32px] h-[32px]"
+                            className="relative lg:w-[50px] lg:h-[50px] w-[32px] h-[32px]"
                             image={comment.image}
                           />
                         </div>
-                        <div className="col-span-11 ml-6 md:ml-0">
+                        <div className="col-span-11 ml-6 lg:ml-0 lg:ml-5">
                           <h1 className="flex md:flex-row flex-col md:items-center">
                             <span className="md:text-20px text-[15px] font-semibold">{comment.name}</span>{" "}
                             <span className="caption md:text-16px text-[14px] md:ml-1">{comment.date}</span>
@@ -250,12 +250,12 @@ export default function Project({ loggedIn, project, image }) {
                         <div className="col-span-1 py-3">
                           <Avatar
                             border="!border-[3px]"
-                            className="relative md:w-[50px] md:h-[50px] w-[32px] h-[32px]"
+                            className="relative lg:w-[50px] lg:h-[50px] w-[32px] h-[32px]"
                             image={image}
                           />
                         </div>
-                        <div className="col-span-1 md:hidden" />
-                        <div className="md:col-span-11 col-span-10">
+                        <div className="col-span-1 lg:hidden" />
+                        <div className="lg:col-span-11 lg:ml-5 col-span-10">
                           <form className="!p-0 dark:bg-transparent">
                             <textarea
                               className="form-input resize-none text-[14px] md:text-18px"
