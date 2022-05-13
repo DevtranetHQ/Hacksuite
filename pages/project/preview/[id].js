@@ -269,7 +269,7 @@ export default function Project({ loggedIn, project, image }) {
                         </div>
                       </div>
                     ) : (
-                      <p className="text-center">
+                      <p className="text-center text-[14px] px-3 md:px-0">
                         <Link href="/login">
                           <a>Log in</a>
                         </Link>{" "}
@@ -291,7 +291,7 @@ export default function Project({ loggedIn, project, image }) {
       </div>
       {!loggedIn && (
         <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
-          <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
+          <p className="text-[14px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
             You’ve reached the end, why not <Link href="/signup"> become a member </Link> and show us all the cool things you’ve made?
           </p>
         </footer>
