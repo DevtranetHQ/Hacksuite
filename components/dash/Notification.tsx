@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useMemo } from "react";
 import { INotification } from "../../server/modules/notification/notification.model";
-import showdownConverter from './../showdownConverter';
+import showdownConverter from "./../showdownConverter";
 
 interface Props {
   notification: INotification;
@@ -17,44 +17,47 @@ export default function Notification(props: Props) {
         return {
           buttonTheme: "button-fruit-salad",
           textTheme: "text-fruit-salad"
-        }
+        };
       case "Event":
         return {
           buttonTheme: "button-orange-peel",
           textTheme: "text-orange-peel"
-        }
+        };
       case "Feature update":
         return {
           buttonTheme: "button-link",
           textTheme: "text-link"
-        }
+        };
       default:
         return {
           buttonTheme: "button-deep-sky-blue",
           textTheme: "text-deep-sky-blue"
-        }
+        };
     }
   }, [type]);
 
   const notificationMessage = showdownConverter.makeHtml(message);
 
   return (
-    <div className="px-0 py-0">
+    <div className="mxs:px-4 px-0 py-0">
       <div className="grid grid-cols-2">
         <div>
-          <button className={`button-medium ${buttonTheme} relative`} disabled={true}>
+          <button className={`mxs:text-12px button-medium ${buttonTheme} relative`} disabled={true}>
             {type}
             {!read && (
               <span className="absolute bg-black dark:bg-white h-4 w-4 rounded-full -top-2 -right-2" />
             )}
           </button>
         </div>
-        <div className="flex flex-row-reverse gap-10 items-center">
-          <button onClick={() => props.handleRemove(_id)} className="cursor-pointer border-2 leading-none w-[30px] h-[30px] text-[26px] text-center border-black text-black  bg-[#F9F9F9] flex items-center justify-center dark:bg-black dark:text-white dark:border-white">
+        <div className="mxs:gap-2 flex flex-row-reverse gap-10 items-center">
+          <button
+            onClick={() => props.handleRemove(_id)}
+            className="mxs:w-[15px] mxs:h-[15px] mxs:border-0.5 mxs:text-[15px] cursor-pointer border-2 leading-none w-[30px] h-[30px] text-[26px] text-center border-black text-black  bg-[#F9F9F9] flex items-center justify-center dark:bg-black dark:text-white dark:border-white">
             &times;
           </button>
-          <div className="flex gap-2 items-center">
+          <div className="mxs:text-12px mxs:gap-1 flex gap-2 items-center">
             <svg
+              className="mxs:w-[12px] mxs:h-[12px]"
               width="18"
               height="18"
               viewBox="0 0 18 18"
@@ -69,11 +72,12 @@ export default function Notification(props: Props) {
           </div>
         </div>
       </div>
-      <div className="mb-2">
-        <h2 className="subheadline">{title}</h2>
-        <div className="sm" dangerouslySetInnerHTML={{ __html: notificationMessage }} />
+      <div className="mxs:pr-6 mb-2">
+        <h2 className="mxs:text-16px mxs:mt-4 mxs:mb-2 subheadline">{title}</h2>
+        <div className="mxs:hidden sm" dangerouslySetInnerHTML={{ __html: notificationMessage }} />
+        <p className="xs:hidden text-16px">{message}</p>
       </div>
-      <p className={`font-bold sm ${textTheme}`}>{by}</p>
+      <p className={`mxs:text-16px mxs:mt-2 font-bold text-18px ${textTheme}`}>{by}</p>
       <hr className="my-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
     </div>
   );

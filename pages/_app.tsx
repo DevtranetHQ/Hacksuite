@@ -1,28 +1,35 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
 import { DarkModeProvider } from "../components/DarkModeContext";
-import { AuthProvider } from "../components/AuthContext";
+import { AuthProvider, useAuth } from "../components/AuthContext";
 import { useNotifications } from "../hooks/useNotifications";
 import "../styles/theme.css";
 import "../styles/_app.css";
 
-export default function App({ Component, pageProps }) {
+const PushRequester: FC = ({ children }) => {
   const { requestPermission, subscribe } = useNotifications();
+  const { user } = useAuth();
 
   useEffect(() => {
-    SW().then(registration => console.log({ registration }));
-    requestPermission
-      .execute()
-      .then(() => subscribe.execute())
-      .then(res => console.log({ res }))
-      .catch(err => console.err({ err }));
-  }, []);
+    if (user) {
+      console.log("subscribing to push notifications");
+      SW()
+        .then(() => requestPermission.execute())
+        .then(() => subscribe.execute())
+    }
+  }, [user]);
 
+  return <>{children}</>;
+};
+
+export default function App({ Component, pageProps }) {
   return (
     <CookiesProvider>
       <DarkModeProvider>
         <AuthProvider>
-          <Component {...pageProps} />
+          <PushRequester>
+            <Component {...pageProps} />
+          </PushRequester>
         </AuthProvider>
       </DarkModeProvider>
     </CookiesProvider>
@@ -36,7 +43,7 @@ async function SW() {
         const registration = await navigator.serviceWorker.register("/sw.js");
         return registration;
       } catch (err) {
-        console.err("Service Worker registration failed: ", err);
+        console.error("Service Worker registration failed: ", err);
       }
     });
   }

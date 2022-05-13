@@ -10,7 +10,7 @@ const getSubscription = async () => {
   const registration = await navigator.serviceWorker.ready;
 
   const existing = await registration.pushManager.getSubscription();
-  if (existing) throw new Error(`Push subscription already exists`);
+  if (existing) return existing;
 
   return registration.pushManager.subscribe(subscribeOptions);
 };

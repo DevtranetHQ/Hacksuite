@@ -57,6 +57,7 @@
   "devDependencies": {
     "@iconify/react": "^3.2.1",
     "@types/bcryptjs": "^2.4.2",
+    "@types/debug": "^4.1.7",
     "@types/lodash": "^4.14.182",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "^17.0.44",
