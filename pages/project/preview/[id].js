@@ -6,7 +6,7 @@ import Avatar from "../../../components/Avatar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
 import Logo from "../../../components/Logo";
 import showdownConverter from "../../../components/showdownConverter";
-import AdobeIcon from "../../../components/icons/Adobe";
+import AdobeIcon from "../../../components/icons/Adobe.tsx";
 import ArrowRightIcon from "../../../components/icons/ArrowRight";
 import ArrowDownIcon from "../../../components/icons/ArrowDown";
 import CommentIcon from "../../../components/icons/Comment";
