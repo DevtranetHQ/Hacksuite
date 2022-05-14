@@ -1,12 +1,12 @@
 import mongoose from "../../database";
 import { EventId } from "../../models/event.model";
-import User from "../auth/user.model";
+import { UserId } from "../auth/user.model";
 
 const { Schema, model, models } = mongoose;
 
 export interface IRegistration {
   event: EventId;
-  user?: string;
+  user?: UserId;
   email?: string;
   name?: string;
 }
@@ -18,9 +18,8 @@ const registrationSchema = new Schema<IRegistration>(
       required: true
     },
     user: {
-      type: Schema.Types.ObjectId,
-      required: false,
-      ref: User
+      type: String,
+      required: false
     },
     email: {
       type: String,

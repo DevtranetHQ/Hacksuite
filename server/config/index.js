@@ -3,6 +3,7 @@ export const config = {
   JWT_SECRET: process.env.JWT_SECRET || "000-12345-000",
   MONGODB_URI: process.env.MONGODB_URI || process.env.MONGO_ATLAS_URI,
   BCRYPT_SALT: process.env.BCRYPT_SALT || 10,
+  apiKey: process.env.API_KEY,
   role: {
     USER: ["user", "admin"],
     ADMIN: ["admin"]
@@ -26,5 +27,14 @@ export const config = {
   vapid: {
     publicKey: process.env.VAPID_PUBLIC_KEY,
     privateKey: process.env.VAPID_PRIVATE_KEY
+  },
+  aws: {
+    region: process.env.AWS_REGION,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    bucket: process.env.AWS_BUCKET
+  },
+  agenda: {
+    apiUrl: process.env.AGENDA_API_URL
   }
 };

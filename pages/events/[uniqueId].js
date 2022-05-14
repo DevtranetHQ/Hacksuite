@@ -77,7 +77,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
       </nav>
       <div className="pb-14">
         <div classNam e="pt-14 relative">
-          <Image
+          <img
             layout="fill"
             objectFit="contain"
             src={event.image}
