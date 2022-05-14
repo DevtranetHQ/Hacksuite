@@ -49,10 +49,12 @@ class AuthService {
     }
 
     return {
-      uid: user._id,
-      email: user.email,
+      id: user._id,
+      uniqueId: user.uniqueId,
       role: user.role,
-      verified: user.isVerified
+      firstName: user.firstName,
+      lastName: user.lastName,
+      isCompleted: user.isCompleted
     };
   }
 

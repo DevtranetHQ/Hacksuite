@@ -78,8 +78,10 @@ export default function Event({ loggedIn, event, isRegistered }) {
         </div>
       </nav>
       <div className="pb-14">
+
         <div className="pt-14 relative">
           <Image
+
             layout="fill"
             objectFit="contain"
             src={event.image}
