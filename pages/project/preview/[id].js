@@ -55,13 +55,13 @@ export default function Project({ loggedIn, project, image }) {
           <span>
             {project.likes} {project.likes === 1 ? "Like" : "Likes"}
           </span>
-          <HeartIcon className="w-[14px]" />
+          <HeartIcon className="w-[14px] md:w-[25px]" />
         </>}
         secondBtn={<>
           <span>
             {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
           </span>
-          <CommentIcon className="w-[14px]" />
+          <CommentIcon className="w-[14px] md:w-[25px]" />
         </>}
         href="#comments"
         navText="Other projects"
