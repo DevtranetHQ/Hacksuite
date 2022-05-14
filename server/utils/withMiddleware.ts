@@ -1,6 +1,7 @@
 import { NextApiHandler } from "next";
 import { IncomingMessage, ServerResponse } from "http";
 import { middlewareLogger } from "./debug";
+import { HandlerWithResponse } from "../middlewares/response.middleware";
 
 export type ExpressMiddleware = (
   req: IncomingMessage,
@@ -16,8 +17,8 @@ export type ExpressMiddleware = (
  */
 export function withMiddleware(
   middleware: ExpressMiddleware,
-  handler: NextApiHandler
-): NextApiHandler {
+  handler: HandlerWithResponse
+): HandlerWithResponse {
   return function (req, res) {
     middlewareLogger(`withMiddleware(${middleware.name}, ${handler.name})`);
     return middleware(req, res, result => {

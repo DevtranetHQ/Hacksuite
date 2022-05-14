@@ -1,4 +1,4 @@
-export default function FigmaIcon({ fill, width, height, className }) {
+export default function FigmaIcon({ fill, width, height, className }: any) {
   return (
     <svg
       width={width ? width : 50}
