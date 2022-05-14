@@ -3,7 +3,13 @@ import { config } from "../../config";
 
 const { aws } = config;
 
-AWS.config.update({ region: aws.region });
+AWS.config.update({
+  region: aws.region,
+  credentials: {
+    accessKeyId: aws.accessKeyId,
+    secretAccessKey: aws.secretAccessKey
+  }
+});
 
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 

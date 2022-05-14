@@ -29,10 +29,10 @@ export const config = {
     privateKey: process.env.VAPID_PRIVATE_KEY
   },
   aws: {
-    region: process.env.AWS_REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    bucket: process.env.AWS_BUCKET
+    region: process.env.X_AWS_REGION,
+    accessKeyId: process.env.X_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.X_AWS_SECRET_ACCESS_KEY,
+    bucket: process.env.X_AWS_BUCKET
   },
   agenda: {
     apiUrl: process.env.AGENDA_API_URL
