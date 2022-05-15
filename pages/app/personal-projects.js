@@ -9,6 +9,7 @@ import NotificationsLink from "../../components/dash/NotificationsLink";
 import Logo from "../../components/Logo";
 import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
 import bars from "../../public/assets/dash/bars-solid.svg";
+import { Icon } from "@iconify/react";
 
 export default function PersonalProjects({ name, projects, unread }) {
   // NOTE: The project cards are inside /components/project/PersonalProjectCard, so the unpublish, publish, and delete functions will be there as well
@@ -49,11 +50,28 @@ export default function PersonalProjects({ name, projects, unread }) {
             you’ve built, launched, designed, and shared with The Dynamics Community. We’re proud of
             you!
           </p>
-          <Link href="/app/create-project">
-            <button className="mxs:mb-[26px] mxs:text-16px mxs:rounded button-small button-orange-peel ml-auto">
-              Add new
-            </button>
-          </Link>
+          <div className="flex justify-end items-center gap-x-5 ">
+            <Link href="/app/create-project">
+              <button className="mxs:mb-[26px] mxs:text-16px mxs:rounded button-small button-orange-peel ">
+                Add new
+              </button>
+            </Link>
+            <Link href="/project-gallery">
+              <button className="mxs:mb-[26px] mxs:text-16px mxs:rounded button-small button-deep-sky-blue flex items-center">
+                View gallery{" "}
+                <span className="ml-1">
+                  <Icon
+                    icon="ci:external-link"
+                    color="white"
+                    inline={true}
+                    width={26}
+                    height={26}
+                  />
+                </span>
+              </button>
+            </Link>
+          </div>
+
           {projects.map((project, key) => (
             <PersonalProjectCard key={key} {...project} />
           ))}

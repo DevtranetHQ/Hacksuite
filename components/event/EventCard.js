@@ -10,9 +10,14 @@ export default function EventCard(event) {
   const route = `/events/${uniqueId}`;
   return (
     <article className="border-b-2 grid grid-cols-3 items-center p-7">
-      <div className="col-span-1 relative">
+      <div className="col-span-1 relative h-full">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="rounded-md w-full" src={image} alt={`image for event ${name}`} />
+        <img
+          className="rounded-md w-full h-full"
+          style={{ height: "100%" }}
+          src={image}
+          alt={`image for event ${name}`}
+        />
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image}

@@ -114,7 +114,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
           </span>
         </h1>
         <div
-          className="prose prose-lg dark:prose-invert"
+          className="prose prose-lg dark:prose-invert mt-5"
           dangerouslySetInnerHTML={eventDescription()}
         />
 
@@ -141,7 +141,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                   onSubmit={registerWithEmail}>
                   <div>
                     <label className="form-label font-normal" htmlFor="name">
-                      Name *
+                      Name
                     </label>
                     <input
                       className="form-input px-5 py-3"
@@ -154,13 +154,13 @@ export default function Event({ loggedIn, event, isRegistered }) {
                   </div>
                   <div>
                     <label className="form-label font-normal" htmlFor="email">
-                      Email Address *
+                      Email Address
                     </label>
                     <input
                       className="form-input px-5 py-3"
                       id="email"
                       name="email"
-                      placeholder="Email address"
+                      placeholder="Email Address"
                       required
                       type="email"
                     />
