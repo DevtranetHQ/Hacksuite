@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import DashNav from "../../components/dash/DashNav";
 import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
 import DarkModeContext from "../../components/DarkModeContext";
@@ -11,10 +11,8 @@ import robotLight from "../../public/assets/dash/robotLight.svg";
 import robotDark from "../../public/assets/dash/robotDark.svg";
 import bars from "../../public/assets/dash/bars-solid.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
-import { notificationService } from "../../server/modules/notification/notifications.service";
-import { useState } from "react";
 
-export default function Dash({ admin, name, unread }) {
+export default function Dash({ admin, name }) {
   const { darkMode } = useContext(DarkModeContext);
 
   const [menu, setMenu] = useState(true);
@@ -22,7 +20,6 @@ export default function Dash({ admin, name, unread }) {
   const handleBars = () => {
     setMenu(r => !r);
   };
-
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -39,7 +36,7 @@ export default function Dash({ admin, name, unread }) {
                 className="h-[22px] xs:h-[30px]"
                 darkClassName="h-[22px] xs:h-[30px]"
               />
-              <NotificationsLink unread={unread} />
+              <NotificationsLink />
               <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
                 <Image src={bars} alt="bars-solid" />
               </div>
@@ -69,7 +66,6 @@ export default function Dash({ admin, name, unread }) {
             <Image className="" src={robotLight} alt="" />
           )}
         </div>
-
       </div>
       <div className="xs:hidden">
         <DashNavMobile />
@@ -80,15 +76,11 @@ export default function Dash({ admin, name, unread }) {
 
 export async function getServerSideProps({ req, res }) {
   const user = await withAuth(req => req.$user)(req, res);
-  const unread = await notificationService.checkUnreadNotifications(user.uniqueId);
 
   return {
     props: {
       admin: false,
-
       name: user.firstName
-
-
     }
   };
 }

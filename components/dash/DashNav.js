@@ -5,7 +5,7 @@ import styles from "./DashNav.module.css";
 import DarkModeContext from "../DarkModeContext";
 import Logo from "../Logo";
 
-export default function DashNav({ admin }) {
+export default function DashNav({ admin = false }) {
   const router = useRouter();
   const { pathname } = router;
   const { darkMode } = useContext(DarkModeContext);

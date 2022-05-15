@@ -1,4 +1,4 @@
-export default function FigmaIcon({ fill, width, height }) {
+export default function FigmaIcon({ fill = "", width = "", height = "" }) {
   return (
     <svg
       width={width ? width : 18}

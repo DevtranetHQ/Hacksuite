@@ -13,7 +13,16 @@ class NotificationService {
   }
 
   async getNotificationsForUser(userId: string): Promise<INotification[]> {
-    const notifs = await NotificationModel.find({ for: userId });
+    const notifs = await NotificationModel.find({ for: userId }, {}, { sort: { createdAt: -1 } });
+    return notifs.map(notif => JSON.parse(JSON.stringify(notif)));
+  }
+
+  async getUnreadNotificationsForUser(userId: string): Promise<INotification[]> {
+    const notifs = await NotificationModel.find(
+      { for: userId, read: false },
+      {},
+      { sort: { createdAt: -1 } }
+    );
     return notifs.map(notif => JSON.parse(JSON.stringify(notif)));
   }
 
@@ -24,6 +33,10 @@ class NotificationService {
 
   async getUnreadNotificationCountForUser(userId: string): Promise<number> {
     return NotificationModel.countDocuments({ for: userId, read: false });
+  }
+
+  async markAllNotificationsAsRead(userId: UserId): Promise<void> {
+    await NotificationModel.updateMany({ for: userId }, { read: true });
   }
 
   async markNotificationAsRead(notificationId: string): Promise<INotification> {
@@ -52,6 +65,7 @@ class NotificationService {
     type: NotificationTypeId;
     for: UserId;
     by: string;
+    link: string;
   }): Promise<INotification> {
     const notificationType = await NotificationTypeModel.findOne({ uniqueId: data.type });
     if (!notificationType) {

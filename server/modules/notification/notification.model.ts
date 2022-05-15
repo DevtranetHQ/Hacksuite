@@ -13,6 +13,7 @@ export interface INotification {
   by: string;
   createdAt: Date;
   read: boolean;
+  link: string;
 }
 
 const NotificationSchema = new Schema<INotification>(
@@ -40,6 +41,13 @@ const NotificationSchema = new Schema<INotification>(
     createdAt: {
       type: Date,
       default: Date.now
+    },
+    read: {
+      type: Boolean,
+      default: false
+    },
+    link: {
+      type: String
     }
   },
   { timestamps: true }

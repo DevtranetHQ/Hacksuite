@@ -1,5 +1,5 @@
 import mongoose from "../../database";
-import { EventId } from "../../models/event.model";
+import { EventId } from "../events/event.model";
 import { UserId } from "../auth/user.model";
 
 const { Schema, model, models } = mongoose;

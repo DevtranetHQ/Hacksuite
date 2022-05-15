@@ -3,7 +3,7 @@ import { NextApiRequest } from "next";
 import { registrationNotificationService } from "./../../../../../server/modules/registration/reg-notification.service";
 import { withApiKey } from "../../../../../server/middlewares/api-key.middleware";
 import { withGlobalMiddleware } from "../../../../../server/middlewares/global.middleware";
-import { EventId } from "../../../../../server/models/event.model";
+import { EventId } from "../../../../../server/modules/events/event.model";
 import { CustomResponse } from "../../../../../server/utils/customResponse";
 
 const handler = async (req: NextApiRequest) => {
