@@ -69,7 +69,6 @@ export default function ProjectDetails(props: any) {
         <div>
           <p className="font-bold text-[23.2px]">Made by</p>
           <span className="flex items-center gap-2">
-            {" "}
             <Avatar
               image="/assets/TEST/img-8.jpg"
               className="w-[40px] h-[40px] relative "
