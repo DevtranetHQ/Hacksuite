@@ -140,7 +140,7 @@ export default function ProjectDetails(props: any) {
           <p className="font-bold text-[23.2px]">Share it</p>
           <span className="flex items-center gap-3">
             <TwitterIcon width={25} height={25} /> <FacebookIcon width={25} height={25} />{" "}
-            <LinkedInIcon width={25} height={25} /> <Share width={25} height={25} />
+            <LinkedInIcon width={25} height={25} /> <Share width={25} height={25} fill="black"/>
           </span>
         </span>
       </span>
@@ -152,7 +152,7 @@ export default function ProjectDetails(props: any) {
         </h2>
 
         {/* Author name */}
-        <div className="mx-7">
+        <div className="mx-7 flex items-center justify-center">
           <span className="flex items-start gap-2">
             <Avatar
               image="/assets/TEST/img-8.jpg"
@@ -160,8 +160,8 @@ export default function ProjectDetails(props: any) {
               border="border-[3px]"
             />
             <div>
-              <span>{data.doc.author}</span> Made this project-{data.doc.time}, {data.doc.day}
-              <h2>Leave feadback in the comment!</h2>
+              <span className="font-bold text-30px">{data.doc.author}</span> <span className="text-16px text-body text-[#4d4d4d] dark:text-white">Made this project-{data.doc.time}, {data.doc.day}</span>
+              <h2 className="text-16px font-bold mb-3">Leave feadback in the comment!</h2>
               {/* Container for all comments*/}
               <div className="bg-[#F4F4F4] dark:bg-[#444444] py-[6px] text-center rounded-md px-5 ">
                 {/* Individual comments map all comments from server */}
@@ -173,15 +173,15 @@ export default function ProjectDetails(props: any) {
                       border="border-[3px]"
                     />
                     <div>
-                      <span>{data.doc.author}</span> {data.doc.time}, {data.doc.day}
-                      <span className="flex items-center gap-2 mt-2 mb-1">{"Comment Body"}</span>
-                      <span className="flex items-center gap-2">
+                      <span className="font-bold text-30px">{data.doc.author}</span> <span className="text-16px text-body text-[#4d4d4d] dark:text-white">{data.doc.time}, {data.doc.day}</span>
+                      <span className="flex items-center gap-5 mt-2 mb-3 text-24px">{"Comment Body"}</span>
+                      <span className="flex items-center gap-5 text-15px text-body text-[#6E7180] dark:text-white">
                         Like <HeartIcon fill="red" width={"15px"} height={"15px"} /> {3}
                       </span>
                     </div>
-                    <span className="ml-auto">Reply</span>
+                    <span className="ml-auto text-12px text-body text-[#6E7180] dark:text-white">Reply</span>
                   </span>
-                  <hr className=" h-[28px] " />
+                  <hr className="h-[28px]" />
                 </div>
 
                 <div className="mt-4 mb-4">
