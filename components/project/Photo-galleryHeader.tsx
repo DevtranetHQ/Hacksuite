@@ -20,12 +20,12 @@ const PhotoGalleryHeader = ({
         <Logo className="w-[50px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="!mx-0 w-[10px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="!mx-0 w-[15px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            className="!mx-0 w-[17px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="!mx-0 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
             href="https://github.com/TheDynamics"
-            className="scale-[.5] lg:scale-[1.4] md:scale-[1.15]">
+            className="scale-[.6] lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href={navHref}>
