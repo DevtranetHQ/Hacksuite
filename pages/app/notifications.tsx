@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import DashNav from "../../components/dash/DashNav";
 import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
@@ -20,7 +20,7 @@ interface Props {
 
 export default function Notifications({ notifications }: Props) {
   const [notifs, setNotifs] = useState(notifications);
-  const { removeNotification } = useNotifications();
+  const { markAsRead, removeNotification } = useNotifications();
   const [menu, setMenu] = useState(true);
 
   const handleBars = () => {
@@ -28,9 +28,14 @@ export default function Notifications({ notifications }: Props) {
   };
 
   const handleRemove = async (id: string) => {
-    setNotifs(notifications.filter(notif => notif._id !== id));
+    setNotifs(n => n.filter(notif => notif._id !== id));
     await removeNotification.execute(id);
   };
+
+  useEffect(() => {
+    markAsRead.execute();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">

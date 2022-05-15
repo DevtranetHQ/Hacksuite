@@ -1,9 +1,9 @@
-import User from "./user.model";
+import User, { IUser } from "./user.model";
 import { CustomError } from "../../utils/customError";
 import authService from "./auth.service";
 
 class UserService {
-  async create(data) {
+  async create(data: Partial<IUser>) {
     return await new User(data).save();
   }
 
@@ -11,25 +11,25 @@ class UserService {
     return await User.find({}, { password: 0, __v: 0 });
   }
 
-  async getOne(userId) {
+  async getOne(userId: string) {
     const user = await User.findOne({ _id: userId }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist");
 
-    return user;
+    return JSON.parse(JSON.stringify(user));
   }
 
-  async getOneByEmail(email) {
+  async getOneByEmail(email: string) {
     const user = await User.findOne({ email, isVerified: true }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist", 404);
 
     return user;
   }
 
-  async update(userId, data) {
+  async update(userId: string, data: Partial<IUser>) {
     console.log(userId, data);
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
-      { $set: { isCompleted: true, ...data } },
+      { $set: { isCompleted: true, ...data } }
     );
     if (!oldUser) throw new CustomError("User dosen't exist", 404);
 
@@ -45,7 +45,7 @@ class UserService {
     return { user: oldUser };
   }
 
-  async delete(userId) {
+  async delete(userId: string) {
     const user = await User.findOne({ _id: userId });
     user.remove();
     return user;

@@ -1,11 +1,9 @@
 import { IUser, UserId } from "./../auth/user.model";
-import { EventId } from "./../../models/event.model";
-import Event from "../../models/event.model";
+import Event, { EventId } from "./../events/event.model";
 import User from "../auth/user.model";
-import Registration, { IRegistration } from "./registration.model";
+import Registration from "./registration.model";
 import { CustomError } from "../../utils/customError";
 import { registrationNotificationService } from "./reg-notification.service";
-import { scheduleEventNotificationService } from "./schedule-notification.service";
 
 class RegistrationService {
   async registerWithUserId(userId: UserId, uniqueId: EventId) {
@@ -22,7 +20,6 @@ class RegistrationService {
     await registration.save();
 
     await registrationNotificationService.notifyNewRegistration(event, user);
-    await scheduleEventNotificationService.scheduleNotification(event);
 
     return registration;
   }

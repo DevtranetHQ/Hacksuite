@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
-import mongoose from "../database";
-import User from "../modules/auth/user.model";
+import mongoose from "../../database";
+import User from "../../modules/auth/user.model";
 const Schema = mongoose.Schema;
 
 export type EventId = string & { __isEventId: true };

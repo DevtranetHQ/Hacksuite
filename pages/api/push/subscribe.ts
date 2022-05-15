@@ -15,6 +15,8 @@ async function subscribeHandler(req: RequestWithUser, res: NextApiResponse) {
         throw new CustomError(error.message, 500);
       }
     }
+
+    throw new CustomError("Method not allowed", 405);
   }
   throw new CustomError("Unauthorized", 401);
 }

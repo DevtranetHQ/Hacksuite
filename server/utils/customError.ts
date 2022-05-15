@@ -32,6 +32,7 @@ export function handleError(req: NextApiRequest, res: NextApiResponse, error: Er
   }
 
   res.status(500).send({ message: error.message });
+  return;
 }
 
 const invalidRequestErrorNames = [

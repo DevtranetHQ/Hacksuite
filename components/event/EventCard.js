@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Avatar from "../Avatar";
-import avatarImage from "../../public/assets/avatar.webp";
 import EventTime from "./EventTime";
 import DisplayDate from "../DisplayDate";
 import { AddToCalendar } from "./AddToCalendar";
@@ -16,7 +15,7 @@ export default function EventCard(event) {
         <img className="rounded-md w-full" src={image} alt={`image for event ${name}`} />
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
-          image={creator.image || avatarImage}
+          image={creator.image}
           border="!border-[5px]"
         />
       </div>
@@ -26,7 +25,9 @@ export default function EventCard(event) {
           <p className="caption text-black dark:text-white">
             {description.substring(0, 200)}...
             <Link href={route}>
-              <a className="mx-1 underline"><span className="font-semibold italic">Read more</span></a>
+              <a className="mx-1 underline">
+                <span className="font-semibold italic">Read more</span>
+              </a>
             </Link>
           </p>
           <p className="font-bold caption text-[#a5a5a5]">

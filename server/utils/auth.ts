@@ -17,15 +17,16 @@ export interface IPayload {
 /**
  * Parses the token from the cookie and returns the payload.
  */
-export async function handleAuth(req: NextApiRequest): Promise<IPayload> {
+export async function handleAuth(req: NextApiRequest): Promise<undefined | IPayload> {
   const token = req.cookies.token;
-  if (!token) throw new Error("No token found");
+  if (!token) return;
 
   try {
     const payload = await decodeToken(token);
     return payload;
   } catch (err) {
-    throw new Error(`Invalid token: ${err.message}`);
+    console.error(err);
+    return;
   }
 }
 

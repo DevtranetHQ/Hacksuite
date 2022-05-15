@@ -2,7 +2,7 @@ import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import EventCard from "../../components/event/EventCard";
 import Logo from "../../components/Logo";
-import eventService from "../../server/services/event.service";
+import eventService from "../../server/modules/events/event.service";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
 import GithubIcon from "../../components/icons/Github";
 import ArrowRightIcon from "../../components/icons/ArrowRight";

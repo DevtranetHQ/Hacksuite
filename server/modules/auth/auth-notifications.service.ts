@@ -12,8 +12,9 @@ class AuthNotificationsService {
       for: user.uniqueId,
       by: `The Dynamics`,
       type: notificationType.uniqueId,
-      title: "Welcome to The Dynamics!",
-      message: "Join our discord server to stay up to date with the latest news and events!"
+      title: "The Dynamics Discord Server!",
+      message: "Join our discord server to stay up to date with the latest news and events!",
+      link: "https://discord.com"
     });
   }
 }

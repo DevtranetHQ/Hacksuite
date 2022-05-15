@@ -10,7 +10,7 @@ import CalendarIcon from "../../components/icons/Calendar";
 import GithubIcon from "../../components/icons/Github";
 import avatarImage from "../../public/assets/avatar.webp";
 import { withAuth } from "../../server/middlewares/auth.middleware";
-import eventService from "../../server/services/event.service";
+import eventService from "../../server/modules/events/event.service";
 import DisplayDate from "../../components/DisplayDate";
 import EventTime from "../../components/event/EventTime";
 import Image from "next/image";
@@ -78,10 +78,8 @@ export default function Event({ loggedIn, event, isRegistered }) {
         </div>
       </nav>
       <div className="pb-14">
-
         <div className="pt-14 relative">
           <Image
-
             layout="fill"
             objectFit="contain"
             src={event.image}
