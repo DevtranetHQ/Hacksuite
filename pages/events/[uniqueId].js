@@ -81,7 +81,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
         <div className="pt-14 relative">
           <Image
             layout="fill"
-            objectFit="contain"
+            objectFit="cover"
             src={event.image}
             alt={`image for event ${event.name}`}
           />
@@ -173,7 +173,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                     />
                     <br />
                     <button
-                      className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px mt-10 mx-auto items-center w-3/4"
+                      className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px mt-10 mx-auto items-center "
                       type="submit">
                       <CalendarIcon width={32} height={32} />
                       <span className="">Register for this event</span>
@@ -182,7 +182,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                 </form>
                 <div className="flex justify-between caption w-screen">
                   <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
-                  <div className="text-12px md:text-18px">Or register using</div>
+                  <div className="text-12px md:text-22px">Or register using</div>
                   <div className="w-1/4 h-4 border-gray-400 border-b-4"></div>
                 </div>
               </>
