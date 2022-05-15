@@ -21,18 +21,20 @@ import bars from "../../public/assets/dash/bars-solid.svg";
 import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller } from "react-hook-form";
 
-interface Props { user: IUser }
+interface Props {
+  user: IUser;
+}
 
-type FormData = Partial<IUser & { passwordConfirmation: string }>
+type FormData = Partial<IUser & { passwordConfirmation: string }>;
 
-type SelectOption = { value: string; label: string, color?: string }
+type SelectOption = { value: string; label: string; color?: string };
 
 export default function Settings({ user }: Props) {
   const [menu, setMenu] = useState(true);
-  const { register, control, handleSubmit, reset } = useForm<FormData>()
-  const [profilePhotoPreview, setProfilePhotoPreview] = useState<string | null>(null)
+  const { register, control, handleSubmit, reset } = useForm<FormData>();
+  const [profilePhotoPreview, setProfilePhotoPreview] = useState<string | null>(null);
 
   const handleBars = () => {
     setMenu(r => !r);
@@ -65,7 +67,7 @@ export default function Settings({ user }: Props) {
       outline: "none",
       boxShadow: "none"
     }),
-    option: (provided) => ({
+    option: provided => ({
       ...provided,
       "&:hover": {
         backgroundColor: "#03A9F4",
@@ -105,9 +107,7 @@ export default function Settings({ user }: Props) {
     setProfilePhotoPreview(tempUrl);
   }
 
-  async function handleSubmission(e: FormData) {
-
-  }
+  async function handleSubmission(e: FormData) {}
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -161,10 +161,10 @@ export default function Settings({ user }: Props) {
         </div>
         <form
           className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
-          onSubmit={handleSubmit(handleSubmission)} >
+          onSubmit={handleSubmit(handleSubmission)}>
           <h2 className="mb-5 subheadline">Personal Information</h2>
           <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="firstName">
                 First name
               </label>
@@ -178,7 +178,7 @@ export default function Settings({ user }: Props) {
                 {...register("firstName")}
               />
             </div>
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="lastName">
                 Last name
               </label>
@@ -193,7 +193,7 @@ export default function Settings({ user }: Props) {
               />
             </div>
           </section>
-          <section style={{width: "95%"}}>
+          <section style={{ width: "95%" }}>
             <label className="form-label font-normal" htmlFor="email">
               Email address
             </label>
@@ -207,14 +207,14 @@ export default function Settings({ user }: Props) {
               {...register("email")}
             />
           </section>
-          <section style={{width: "95%"}}>
+          <section style={{ width: "95%" }}>
             <label className="form-label font-normal" htmlFor="phoneNumber">
               Phone number
             </label>
             <TelInput {...register("phoneNumber")} />
           </section>
           <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="password">
                 Password
               </label>
@@ -230,7 +230,7 @@ export default function Settings({ user }: Props) {
                 Leave blank if you don't want to change your password
               </p>
             </div>
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="passwordConfirmation">
                 Password confirmation
               </label>
@@ -245,21 +245,19 @@ export default function Settings({ user }: Props) {
               />
             </div>
           </section>
-          <section className="form-checkbox mb-10" style={{width: "90%"}}>
+          <section className="form-checkbox mb-10" style={{ width: "90%" }}>
             <input id="checkbox" name="receiveEmails" type="checkbox" />
             <label htmlFor="checkbox">Notify me about upcoming news & events</label>
           </section>
           <h2 className="mb-5 subheadline">Demographic Information</h2>
           <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="dob">
                 Date of birth
               </label>
-              <input className="form-input" id="dob" name="dob" type="date"
-                {...register("dob")}
-              />
+              <input className="form-input" id="dob" name="dob" type="date" {...register("dob")} />
             </div>
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="gender">
                 Gender
               </label>
@@ -268,15 +266,14 @@ export default function Settings({ user }: Props) {
                 defaultValue="Prefer not to say"
                 id="gender"
                 name="gender"
-                {...register("gender")}
-              >
+                {...register("gender")}>
                 <option value="Prefer not to say">Prefer not to say</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="country">
                 Country of residence
               </label>
@@ -285,14 +282,14 @@ export default function Settings({ user }: Props) {
           </section>
           <h2 className="mb-5 subheadline">Work and Education</h2>
           <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="personalDescription">
                 What describes you the best?
               </label>
               <Controller
                 control={control}
                 name="describe"
-                render={({ field }) =>
+                render={({ field }) => (
                   <Select
                     isMulti
                     className="form-select p-0 m-0 rounded-lg"
@@ -300,33 +297,33 @@ export default function Settings({ user }: Props) {
                     components={{ DropdownIndicator }}
                     options={options}
                     value={options.filter(({ value }) => field.value?.includes(value))}
-                    onChange={(value) => field.onChange(value.map(({ value }) => value))}
+                    onChange={value => field.onChange(value.map(({ value }) => value))}
                   />
-                }
+                )}
               />
             </div>
-            <div style={{width: "90%"}}>
+            <div style={{ width: "90%" }}>
               <label className="form-label font-normal" htmlFor="skillsAndInterests">
                 Skills and interests
               </label>
               <Controller
                 control={control}
                 name="skills"
-                render={({ field }) =>
+                render={({ field }) => (
                   <Select
                     isMulti
                     className="form-select p-0 m-rounded-lg"
                     components={{ DropdownIndicator }}
                     styles={styles}
                     options={options2}
-                    value={options.filter(({ value }) => field.value?.includes(value))}
-                    onChange={(value) => field.onChange(value.map(({ value }) => value))}
+                    value={options2.filter(({ value }) => field.value?.includes(value))}
+                    onChange={value => field.onChange(value.map(({ value }) => value))}
                   />
-                }
+                )}
               />
             </div>
 
-            <div style={{width: "90%", marginTop: "1rem"}}>
+            <div style={{ width: "90%", marginTop: "1rem" }}>
               <label className="form-label font-normal" htmlFor="levelOfStudy">
                 Level of study
               </label>
@@ -335,18 +332,19 @@ export default function Settings({ user }: Props) {
                 defaultValue="High school"
                 id="levelOfStudy"
                 name="levelOfStudy"
-                {...register("levelOfStudy")}
-              >
+                {...register("levelOfStudy")}>
                 <option value="High school">High school</option>
                 <option value="College">College</option>
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div style={{width: "90%", marginTop: "1rem"}}>
+            <div style={{ width: "90%", marginTop: "1rem" }}>
               <label className="form-label font-normal" htmlFor="resume">
                 Upload Resume/CV
               </label>
-              <div style={{color: "#3B4FE4"}} className="flex form-input items-center justify-between">
+              <div
+                style={{ color: "#3B4FE4" }}
+                className="flex form-input items-center justify-between">
                 <input
                   className="text-18px text-blue-500"
                   id="resume"
@@ -374,8 +372,7 @@ export default function Settings({ user }: Props) {
             />
             <button
               className="button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
-              type="submit"
-            >
+              type="submit">
               Save
             </button>
             {/* <button
