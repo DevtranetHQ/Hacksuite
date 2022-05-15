@@ -147,7 +147,7 @@ export default function Settings({ user }: Props) {
             type="file"
             accept="image/*"
           />
-          <div className="flex gap-5 items-center my-3">
+          <div className="flex gap-5 items-center my-6">
             <span className="cursor-pointer">
               <GithubIcon width={32} />
             </span>
@@ -161,10 +161,10 @@ export default function Settings({ user }: Props) {
         </div>
         <form
           className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
-          onSubmit={handleSubmit(handleSubmission)}>
+          onSubmit={handleSubmit(handleSubmission)} >
           <h2 className="mb-5 subheadline">Personal Information</h2>
-          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10">
-            <div>
+          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="firstName">
                 First name
               </label>
@@ -178,7 +178,7 @@ export default function Settings({ user }: Props) {
                 {...register("firstName")}
               />
             </div>
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="lastName">
                 Last name
               </label>
@@ -193,7 +193,7 @@ export default function Settings({ user }: Props) {
               />
             </div>
           </section>
-          <section>
+          <section style={{width: "95%"}}>
             <label className="form-label font-normal" htmlFor="email">
               Email address
             </label>
@@ -207,14 +207,14 @@ export default function Settings({ user }: Props) {
               {...register("email")}
             />
           </section>
-          <section>
+          <section style={{width: "95%"}}>
             <label className="form-label font-normal" htmlFor="phoneNumber">
               Phone number
             </label>
             <TelInput {...register("phoneNumber")} />
           </section>
           <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="password">
                 Password
               </label>
@@ -230,7 +230,7 @@ export default function Settings({ user }: Props) {
                 Leave blank if you don't want to change your password
               </p>
             </div>
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="passwordConfirmation">
                 Password confirmation
               </label>
@@ -245,13 +245,13 @@ export default function Settings({ user }: Props) {
               />
             </div>
           </section>
-          <section className="form-checkbox mb-10">
+          <section className="form-checkbox mb-10" style={{width: "90%"}}>
             <input id="checkbox" name="receiveEmails" type="checkbox" />
             <label htmlFor="checkbox">Notify me about upcoming news & events</label>
           </section>
           <h2 className="mb-5 subheadline">Demographic Information</h2>
           <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="dob">
                 Date of birth
               </label>
@@ -259,7 +259,7 @@ export default function Settings({ user }: Props) {
                 {...register("dob")}
               />
             </div>
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="gender">
                 Gender
               </label>
@@ -276,7 +276,7 @@ export default function Settings({ user }: Props) {
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="country">
                 Country of residence
               </label>
@@ -285,7 +285,7 @@ export default function Settings({ user }: Props) {
           </section>
           <h2 className="mb-5 subheadline">Work and Education</h2>
           <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="personalDescription">
                 What describes you the best?
               </label>
@@ -305,7 +305,7 @@ export default function Settings({ user }: Props) {
                 }
               />
             </div>
-            <div>
+            <div style={{width: "90%"}}>
               <label className="form-label font-normal" htmlFor="skillsAndInterests">
                 Skills and interests
               </label>
@@ -326,7 +326,7 @@ export default function Settings({ user }: Props) {
               />
             </div>
 
-            <div>
+            <div style={{width: "90%", marginTop: "1rem"}}>
               <label className="form-label font-normal" htmlFor="levelOfStudy">
                 Level of study
               </label>
@@ -342,11 +342,11 @@ export default function Settings({ user }: Props) {
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div>
+            <div style={{width: "90%", marginTop: "1rem"}}>
               <label className="form-label font-normal" htmlFor="resume">
                 Upload Resume/CV
               </label>
-              <div className="flex form-input items-center justify-between">
+              <div style={{color: "#3B4FE4"}} className="flex form-input items-center justify-between">
                 <input
                   className="text-18px text-blue-500"
                   id="resume"
@@ -378,12 +378,12 @@ export default function Settings({ user }: Props) {
             >
               Save
             </button>
-            <button
+            {/* <button
               className="button-big button-fruit-salad mx-auto px-20 w-[230px] text-22px mt-3"
               type="reset"
             >
               Cancel
-            </button>
+            </button> */}
           </section>
         </form>
       </div>
