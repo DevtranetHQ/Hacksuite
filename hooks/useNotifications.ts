@@ -1,5 +1,6 @@
 import { useAsync } from "./useAsync";
 import { axios } from "../config/config";
+import { INotification } from "../server/modules/notification/notification.model";
 
 const subscribeOptions: PushSubscriptionOptionsInit = {
   userVisibleOnly: true,
@@ -44,10 +45,27 @@ export const useNotifications = () => {
     return res;
   });
 
+  const getNotifications = useAsync(async (unread: boolean = false) => {
+    const res = await axios.get<{ data: INotification[] }>(`/notifications?unread=${unread}`);
+    return res.data.data;
+  });
+
+  const markAsRead = useAsync(async () => {
+    const res = await axios.patch<void>("/notifications?markAsRead=true");
+    return res.data;
+  });
+
   const removeNotification = useAsync(async (id: string) => {
     const res = await axios.delete(`/notifications/${id}`);
     return res.data;
   });
 
-  return { subscribe, unsubscribe, requestPermission, removeNotification };
+  return {
+    subscribe,
+    unsubscribe,
+    requestPermission,
+    getNotifications,
+    markAsRead,
+    removeNotification
+  };
 };

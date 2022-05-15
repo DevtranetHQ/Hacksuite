@@ -33,7 +33,7 @@ export default function PersonalProjects({ name, projects, unread }) {
                 className="h-[22px] xs:h-[30px]"
                 darkClassName="h-[22px] xs:h-[30px]"
               />
-              <NotificationsLink unread={unread} />
+              <NotificationsLink />
               <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
                 <Image src={bars} alt="bars-solid" />
               </div>

@@ -178,7 +178,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
           <div className="text-right flex items-end justify-end  mt-3">
             <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
             <Link href="/app/notifications">
-              <NotificationsLink className="h-[25px]" unread={unread} />
+              <NotificationsLink className="h-[25px]" />
             </Link>
           </div>
         </header>
@@ -277,6 +277,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                     options={options}
                     formatOptionLabel={option => (
                       <div className="flex items-center ">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={option.image}
                           alt="image"
@@ -445,7 +446,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             <section className="text-center mt-5">
               <ReCAPTCHA
                 className="inline-block mb-3"
-                sitekey={recaptchaSitekey}
+                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                 onChange={i => console.log(i)}
               />
               <div className="flex items-center justify-center gap-x-14 mt-5">

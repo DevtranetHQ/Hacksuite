@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { agendaRestService } from "./../scheduler/agent-rest.service";
-import { IEvent } from "../../models/event.model";
 import { JobId } from "../scheduler/agent-rest.service";
 import { config } from "../../config";
+import { IEvent } from "../events/event.model";
 
 const {
   url: { CLIENT_URL },

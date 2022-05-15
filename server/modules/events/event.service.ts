@@ -1,5 +1,5 @@
-import Event from "./../models/event.model";
-import { CustomError } from "../utils/customError";
+import Event from "./event.model";
+import { CustomError } from "../../utils/customError";
 
 class EventService {
   async create(data) {
