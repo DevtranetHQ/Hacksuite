@@ -10,7 +10,7 @@ import FollowerIcon from "../../components/icons/Follower";
 import TimeIcon from "../../components/icons/Time";
 
 export default function SampleWorkshop({ loggedIn, user }) {
-  
+
   // Code to be written in the Page
   const code = `e.add({
             sprite: player,
@@ -62,9 +62,9 @@ export default function SampleWorkshop({ loggedIn, user }) {
             height="320"
             src="https://www.youtube.com/embed/Sklc_fQBmcs"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+            allowFullScreen></iframe>
         </div>
         <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] flex-col justify-between items-center px-5 relative w-3/12">
           <div className="">
