@@ -1,5 +1,6 @@
-import { Project, IProject, ProjectId } from './project.model';
-import { CustomError } from './../../utils/customError';
+import { Project, IProject, ProjectId } from "./project.model";
+import { CustomError } from "./../../utils/customError";
+import { UserId } from "../auth/user.model";
 
 interface IQueryProjects {
   limit?: number;
@@ -18,15 +19,15 @@ class ProjectService {
     return Project.find({}, query.fields, {
       skip: query.skip,
       limit: query.limit,
-      sort: query.sort,
-    })
+      sort: query.sort
+    });
   }
 
   async getPublishedProjects(query: IQueryProjects) {
     const projects = await Project.find({ published: true }, query.fields, {
       skip: query.skip,
       limit: query.limit,
-      sort: query.sort,
+      sort: query.sort
     });
 
     return projects.map(p => JSON.parse(JSON.stringify(p)));
@@ -40,7 +41,7 @@ class ProjectService {
     return Project.findOneAndUpdate({ uniqueId }, project, { new: true });
   }
 
-  async publishProject(uniqueId: ProjectId, userId: string) {
+  async publishProject(uniqueId: ProjectId, userId: UserId) {
     const project = await Project.findOne({ uniqueId, creator: userId, published: false });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -51,7 +52,7 @@ class ProjectService {
     return project.save();
   }
 
-  async unpublishProject(uniqueId: ProjectId, userId: string) {
+  async unpublishProject(uniqueId: ProjectId, userId: UserId) {
     const project = await Project.findOne({ uniqueId, creator: userId, published: true });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -61,7 +62,7 @@ class ProjectService {
     return project.save();
   }
 
-  async deleteProject(uniqueId: ProjectId, userId: string) {
+  async deleteProject(uniqueId: ProjectId, userId: UserId) {
     const project = await Project.findOne({ uniqueId, creator: userId });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -70,7 +71,7 @@ class ProjectService {
     return project.remove();
   }
 
-  async getProjectsByUser(userId: string) {
+  async getProjectsByUser(userId: UserId) {
     return Project.find({ user: userId, collaborators: userId });
   }
 }

@@ -156,14 +156,7 @@ userSchema.virtual("age").get(function () {
 userSchema
   .virtual("fullName")
   .get(function () {
-    var fullname = "";
-    if (this.firstName && this.lastName) {
-      fullname = this.lastName + ", " + this.firstName;
-    }
-    if (!this.firstName || !this.lastName) {
-      fullname = "";
-    }
-    return fullname;
+    return this.firstName + " " + this.lastName;
   })
   .set(function (v) {
     const firstName = v.substring(0, v.indexOf(" "));
