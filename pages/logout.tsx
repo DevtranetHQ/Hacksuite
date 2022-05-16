@@ -5,7 +5,7 @@ import { LoadingPage } from "../components/loading-page";
 export default function Logout() {
   const { logout } = useAuth();
 
-  useEffect(logout, [ logout ]);
+  useEffect(logout, [logout]);
 
   return <>
     <LoadingPage />

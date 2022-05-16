@@ -10,9 +10,8 @@ export class CustomResponse<T = any> {
    * @param {string} message Response message
    * @param {*} data Data to be returned
    */
-  constructor(public status: number, public message: string, public data: T) {
+  constructor(public status: number, public message: string, public data?: T) {
     this.message = formatMessage(message);
-    this.data = data || null;
   }
 }
 

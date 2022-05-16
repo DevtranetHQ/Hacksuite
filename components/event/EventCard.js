@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Avatar from "../Avatar";
-import avatarImage from "../../public/assets/avatar.webp";
 import EventTime from "./EventTime";
 import DisplayDate from "../DisplayDate";
 import { AddToCalendar } from "./AddToCalendar";
@@ -16,8 +15,8 @@ export default function EventCard(event) {
         <img className="rounded-md w-full" src={image} alt={`image for event ${name}`} />
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
-          image={creator.image || avatarImage}
-          border='!border-[5px]'
+          image={creator.image}
+          border="!border-[5px]"
         />
       </div>
       <div className="col-span-2 px-7">
@@ -26,7 +25,9 @@ export default function EventCard(event) {
           <p className="caption text-black dark:text-white">
             {description.substring(0, 200)}...
             <Link href={route}>
-              <a className="mx-1 italic underline">Read more</a>
+              <a className="mx-1 underline">
+                <span className="font-semibold italic">Read more</span>
+              </a>
             </Link>
           </p>
           <p className="font-bold caption text-[#a5a5a5]">
@@ -35,7 +36,7 @@ export default function EventCard(event) {
           </p>
         </section>
         <section className="flex justify-between">
-          <div className="inline-flex gap-8 py-2">
+          <div className="inline-flex gap-4 py-2 items-center">
             <svg
               width="33"
               height="38"
@@ -55,9 +56,7 @@ export default function EventCard(event) {
             <AddToCalendar event={event} />
           ) : (
             <Link href={route}>
-              <button className="button-small button-deep-sky-blue">
-                Register now
-              </button>
+              <button className="button-small button-deep-sky-blue">Register now</button>
             </Link>
           )}
         </section>

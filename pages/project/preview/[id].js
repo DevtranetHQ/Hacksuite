@@ -6,8 +6,9 @@ import Avatar from "../../../components/Avatar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
 import Logo from "../../../components/Logo";
 import showdownConverter from "../../../components/showdownConverter";
-import AdobeIcon from "../../../components/icons/Adobe";
-import ArrowIcon from "../../../components/icons/Arrow";
+import AdobeIcon from "../../../components/icons/Adobe.tsx";
+import ArrowRightIcon from "../../../components/icons/ArrowRight";
+import ArrowDownIcon from "../../../components/icons/ArrowDown";
 import CommentIcon from "../../../components/icons/Comment";
 import ShareIcon from "../../../components/icons/Share";
 import FacebookIcon from "../../../components/icons/Facebook";
@@ -19,13 +20,18 @@ import LinkIcon from "../../../components/icons/Link";
 import LinkedinIcon from "../../../components/icons/Linkedin";
 import TimeIcon from "../../../components/icons/Time";
 import TwitterIcon from "../../../components/icons/Twitter";
+import PhotoGalleryHeader from "../../../components/project/Photo-galleryHeader";
+import { withAuth } from "../../../server/middlewares/auth.middleware";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
 
-export default function Project({ loggedIn, project }) {
+export default function Project({ loggedIn, project, image }) {
   const router = useRouter();
-  loggedIn = router.query.ref === "dash" ? true : loggedIn;
+  // loggedIn = router.query.ref === "dash" ? true : loggedIn;
+
+  // URL for sharing
+  const url = `https://app.thedynamics.tech/project/preview/${project.id}`;
 
   const projectInformation = () => {
     return {
@@ -42,134 +48,116 @@ export default function Project({ loggedIn, project }) {
 
   return (
     <div className="dark:bg-[#202020] dark:text-white">
-      <nav className="flex items-center justify-between pl-8 pr-12">
-        <Logo className="w-[120px] py-5" />
-        <div className="flex gap-x-2">
-          <DarkModeToggle
-            className="mx-0 w-[40px] h-[40px]"
-            darkClassName="mx-0 w-[40px] h-[42px]"
-          />
-          <a href="https://github.com/TheDynamics">
-            <GithubIcon />
-          </a>
-          <Link href="/project-gallery">
-            <button className="button-medium button-deep-sky-blue inline-flex gap-x-3 items-center mx-2">
-              Other projects
-              <ArrowIcon />
-            </button>
-          </Link>
-        </div>
-      </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark p-14 rounded-b-2xl text-center">
-        <h1 className="title text-deep-sky-blue">{project.name}</h1>
-        <h2 className="lead mb-2">{project.description}</h2>
-        <div className="inline-flex my-2">
-          <button className="button-medium button-fruit-salad inline-flex gap-x-2">
-            <span className="pt-1">
-              {project.likes} {project.likes === 1 ? "Like" : "Likes"}
-            </span>
-            <HeartIcon />
-          </button>
-          <a className="button-medium button-deep-sky-blue inline-flex gap-x-2" href="#comments">
-            <span className="pt-1">
-              {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
-            </span>
-            <CommentIcon />
-          </a>
-        </div>
-      </header>
+      <PhotoGalleryHeader
+        title={project.name}
+        contentText={project.description}
+        firstBtn={<>
+          <span>
+            {project.likes} {project.likes === 1 ? "Like" : "Likes"}
+          </span>
+          <HeartIcon className="w-[14px] md:w-[25px]" />
+        </>}
+        secondBtn={<>
+          <span>
+            {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
+          </span>
+          <CommentIcon className="w-[14px] md:w-[25px]" />
+        </>}
+        href="#comments"
+        navText="Other projects"
+        navHref="/project-gallery"
+      />
       <section className="md:grid grid-cols-3 gap-x-2 py-7 relative">
-        <div className="col-span-2 md:mx-14 my-7 relative min-h-[800px] md:min-h-[400px]">
+        <div className="col-span-2 md:col-span-3 lg:col-span-2 md:mx-14 my-7 relative min-h-[400px] border md:min-h-[400px]">
           <Image layout="fill" objectFit="cover" src={project.image} />
         </div>
-        <div className="absolute right-0 bottom-0 w-50 md:w-fit md:relative col-span-1 py-7">
-          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between p-7 rounded-l-md h-full">
+        <div className="absolute right-0 top-[5.7rem] md:top-[0] md:bottom-0 w-50 md:w-fit md:relative py-7 md:w-[430px] lg:w-50">
+          <div className="bg-[#F8FBFF] container-gray-dark flex flex-col justify-between md:py-7 py-3 pl-8 md:pl-12 lg:pr-20 pr-4 rounded-l-md h-full col-span-1">
             <div>
-              <h1 className="headline font-normal">Made By</h1>
+              <h1 className="md:headline text-[22px] font-normal mb-7">Made By</h1>
               {project.creators.map((creator, key) => (
-                <div className="inline-flex gap-2 items-center" key={key}>
+                <div className="flex items-center gap-x-4 mb-2" key={key}>
                   <Avatar
-                    className="relative w-[45px] h-[45px]"
+                    className="relative md:w-[45px] md:h-[45px] w-[32px] h-[32px]"
                     border="!border-[3px]"
                     image={creator.image}
                   />
-                  <h2 className="inline-flex gap-2 items-center pt-3 subheadline">
+                  <h2 className="inline-flex gap-2 items-center self-center md:subheadline text-[16px] font-semibold">
                     {creator.name}
                     <Link href={`/profile/${creator.id}`}>
                       <a className="cursor-pointer">
-                        <FollowerIcon />
+                        <FollowerIcon className="hover:scale-[1.06] md:w-[25px] md:h-[25px] w-[20px] h-[20px] transition-all" />
                       </a>
                     </Link>
                   </h2>
                 </div>
               ))}
             </div>
-            <div className="inline-flex gap-2 items-center mt-1">
-              <TimeIcon />
-              <h2 className="caption">{project.date}</h2>
+            <div className="inline-flex gap-4 items-center mt-4 md:mt-7 md:ml-3 ml-1">
+              <TimeIcon className="md:w-[25px] md:h-[25px] w-[15px] h-[15px] transition-all" />
+              <h2 className="md:caption text-[15px]">{project.date}</h2>
             </div>
           </div>
         </div>
       </section>
-      <div className="mb-3 px-14">
+      <div className="md:px-14 px-4">
         <article
           className="prose prose-lg dark:prose-invert mb-7"
           dangerouslySetInnerHTML={projectInformation()}
         />
         <aside className="flex flex-col gap-y-7">
-          <div>
-            <h1 className="heading">Made With</h1>
-            <div className="flex gap-x-2">
+          <div className="ml-5 md:ml-0">
+            <h1 className="md:heading text-[20px] font-semibold">Made with</h1>
+            <div className="flex flex-col md:flex-row gap-x-8">
               {project.tags.map((tag, key) => (
                 <span
-                  className={`${
-                    ["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
-                  } px-3 py-2 subheadline text-white`}
+                  className={`${["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
+                    } px-3 py-2 md:subheadline text-white rounded cursor-pointer hover:scale-[1.06] transition-all w-[max-content] mt-3 md:mt-0`}
                   key={key}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex md:flex-row flex-col justify-between mt-2">
             <div>
-              <h1 className="heading leading-loose">Check it out</h1>
-              <div className="flex flex-col gap-y-4">
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-3">Check it out</h1>
+              <div className="flex flex-col gap-y-4 mb-5 md:mb-0">
                 {project.links.map((link, key) => {
                   switch (link.type) {
                     case "github":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
-                          <GithubIcon width={50} height={50} />
-                          <a className="subheadline underline" href={link.link}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                          <GithubIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on GitHub
                           </a>
                         </div>
                       );
                     case "figma":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
-                          <FigmaIcon />
-                          <a className="subheadline underline" href={link.link}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                          <FigmaIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on Figma
                           </a>
                         </div>
                       );
                     case "adobe":
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
-                          <AdobeIcon />
-                          <a className="subheadline underline" href={link.link}>
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                          <AdobeIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
                             on AdobeXD
                           </a>
                         </div>
                       );
                     default:
                       return (
-                        <div className="inline-flex gap-x-2 items-center" key={key}>
-                          <LinkIcon />
-                          <a className="subheadline underline" href={link.link}>
-                            via link
+                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                          <LinkIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
+                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
+                            via this Link
                           </a>
                         </div>
                       );
@@ -178,34 +166,133 @@ export default function Project({ loggedIn, project }) {
               </div>
             </div>
             <div>
-              <h1 className="heading leading-loose">Share it</h1>
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-2 md:mb-0">Share it</h1>
               <div className="flex gap-x-4 items-center">
-                <a href="https://twitter.com">
-                  <TwitterIcon />
+                <a href={`https://twitter.com/intent/tweet?url=${url}`} className="hover:scale-[1.06] transition-all">
+                  <TwitterIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
-                <a href="https://facebook.com">
-                  <FacebookIcon />
+                <a href={`https://www.facebook.com/sharer.php?u=${url}`} className="hover:scale-[1.06] transition-all">
+                  <FacebookIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
-                <a href="https://linkedin.com">
-                  <LinkedinIcon />
+                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} className="hover:scale-[1.06] transition-all">
+                  <LinkedinIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
-                <a onClick={() => console.log("pain")}>
-                  <ShareIcon fill="fill-black dark:fill-white" />
+                <a
+                  className="cursor-pointer hover:scale-[1.06] transition-all"
+                  onClick={() => navigator.clipboard.writeText(url)}
+                  title="Copy link">
+                  <ShareIcon fill="fill-black dark:fill-white md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
               </div>
             </div>
           </div>
-          <h1 className="heading leading-loose">Comments</h1>
+
+          <section id="comments">
+            <h1 className="md:heading text-[20px] font-semibold font-bold mt-7 mb-4 md:mb-0">Comments</h1>
+            <div className="grid grid-cols-12 md:mx-14 items-center">
+              <div className="col-span-1 self-start md:self-center">
+                <Avatar
+                  border="!border-[3px]"
+                  className="relative lg:w-[65px] lg:h-[65px] md:w-[55px] md:h-[55px] w-[32px] h-[32px]"
+                  image={project.owner.image}
+                />
+              </div>
+              <div className="col-span-10 px-3 ml-3" id="comment">
+                <h1>
+                  <span className="md:text-24px text-[15px] font-semibold">{project.owner.name}</span>{" "}
+                  <em className="md:ml-2 ml-1 font-thin md:text-18px text-[13px]italic">Made this project —{project.date}</em>
+                </h1>
+                <h1 className="md:text-18px text-[13px] italic text-[#515151] mt-2 font-semibold dark:text-white">leave feedback in the comments!</h1>
+              </div>
+              <div className="col-span-1 self-start md:self-center mt-3 md:mt-0">
+                <ArrowDownIcon className="md:w-[18px] md:h-[18px] w-[11px] h-[11px]" />
+              </div>
+            </div>
+            <div className="grid grid-cols-12 md:mx-14 mt-7 mb-14">
+              <div className="col-span-1" />
+              <div className="col-span-10 md:px-3">
+                <div className="bg-[#f5f5f7] dark:bg-[#2D2D2D] rounded-2xl">
+                  {project.comments.map((comment, key) => (
+                    <div className="border-b-4 md:px-7 px-3 py-5" key={key}>
+                      <div className="grid grid-cols-12 items-center">
+                        <div className="col-span-1 self-start">
+                          <Avatar
+                            border="!border-[3px]"
+                            className="relative lg:w-[50px] lg:h-[50px] w-[32px] h-[32px]"
+                            image={comment.image}
+                          />
+                        </div>
+                        <div className="col-span-11 ml-6 lg:ml-0 lg:ml-5">
+                          <h1 className="flex md:flex-row flex-col md:items-center">
+                            <span className="md:text-20px text-[15px] font-semibold">{comment.name}</span>{" "}
+                            <span className="caption md:text-16px text-[14px] md:ml-1">{comment.date}</span>
+                          </h1>
+                          <div className="flex flex-col mt-1 md:mt-0">
+                            <div className="">
+                              <p className="md:text-20px text-[16px]">{comment.comment}</p>
+                              <p className="caption inline-flex gap-x-1 items-center hover:scale-[1.06] text-[13px] md:text-[16px] transition-all">
+                                Like{" "}
+                                <span className="cursor-pointer">
+                                  <HeartIcon fill="#C50000" className="md:w-[20px] md:h-[20px] w-[13px] h-[13px]" />
+                                </span>{" "}
+                                {comment.likes}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-span-1" />
+                      </div>
+                    </div>
+                  ))}
+                  <div className="md:px-7 px-2 py-5">
+                    {loggedIn ? (
+                      <div className="grid grid-cols-12 gap-x-5">
+                        <div className="col-span-1 py-3">
+                          <Avatar
+                            border="!border-[3px]"
+                            className="relative lg:w-[50px] lg:h-[50px] w-[32px] h-[32px]"
+                            image={image}
+                          />
+                        </div>
+                        <div className="col-span-1 lg:hidden" />
+                        <div className="lg:col-span-11 lg:ml-5 col-span-10">
+                          <form className="!p-0 dark:bg-transparent">
+                            <textarea
+                              className="form-input resize-none text-[14px] md:text-18px"
+                              name="comment"
+                              placeholder="Write a comment"
+                            />
+                            <button className="button-small button-deep-sky-blue md:text-18px text-[14px]" onSubmit={comment}>
+                              Post comment
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-center text-[14px] px-3 md:px-0">
+                        <Link href="/login">
+                          <a>Log in</a>
+                        </Link>{" "}
+                        or{" "}
+                        <Link href="/signup">
+                          <a>Sign up</a>
+                        </Link>{" "}
+                        to add a comment to this project.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-1" />
+            </div>
+          </section>
+
         </aside>
       </div>
       {!loggedIn && (
-        <footer className="bg-[#f4f4f4] dark:bg-[#444444] p-5 text-center">
-          <p className="sm">
-            You’ve reached the end, why not become a{" "}
-            <Link href="/signup">
-              <a>member</a>
-            </Link>{" "}
-            and show us all the cool things you’ve made?
+        <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+          <p className="text-[14px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
+            You’ve reached the end, why not <Link href="/signup"> become a member </Link> and show us all the cool things you’ve made?
           </p>
         </footer>
       )}
@@ -215,11 +302,18 @@ export default function Project({ loggedIn, project }) {
 
 export async function getServerSideProps(context) {
   // TODO: Use id to get event info from database
+  const { req, res } = context;
+  const user = await withAuth(req => req.$user)(req, res);
+
   const { id } = context.query;
   return {
     props: {
-      loggedIn: false,
+      loggedIn: !!user,
+      image:
+        "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      ,
       project: {
+        id: id,
         name: "Web scraper",
         date: "11:00 am, Today",
         image:
@@ -259,6 +353,11 @@ Overall, I'm proud of what I was able to create during my first hackathon. I lea
 
 ## What's next for OfficeHours
 
+\`\`\`python
+def func():
+  print("Just testing")
+\`\`\`
+
 At this point, OfficeHours is simply an MVP. There are so many more features that could be added to it in order to make it more usable. By features, I don't mean making it more complicated. That only causes problems. Rather, here are some of the features I would consider adding:
 
 * Public announcements to everyone in a group
@@ -293,7 +392,7 @@ At this point, OfficeHours is simply an MVP. There are so many more features tha
           {
             name: "Dora Palfi",
             image:
-              "https://s3-alpha-sig.figma.com/img/8b67/0b55/e794d296ad1112b8c3d9a61cc83abe91?Expires=1648425600&Signature=Q8kNPcS7IrL5jEouDI0HPV3lbwAj30IYOFrN-CFMPy6mtZXs8VADSy8UGrzmksl~DSBXi-gUgVr5OIrugmbedWThA79WKvaTsN2HsnJmOl4ZR7Xhh~XKx2vPTqPTXvH3VKpyp3HYJv1qRw1ROWqdDHRlQ5wFiMLECmLLUNDFZOTxedOXxzh67BC6bwgJ~5WG~41evv7ZH0pYmQCWTOw72EdMA5mZykZhLUwbhcPsz7HPi5I4ZlqbI-xMRdHHYHqOELZYKbvdMPG0NLGcIt0IQnSKTqJNcAlycOYhlRXS3jZ0kGlq-u~dkVngc5u6TuOtGX-X9H9dOfzijJsE3yri1A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+              "https://s3-alpha-sig.figma.com/img/8b67/0b55/e794d296ad1112b8c3d9a61cc83abe91?Expires=1652054400&Signature=K-3h9l76-m0MrUpxeQKY2cQIy8FtGYgi~~eTXcWkSHophZD69tTPgH5SjrVtUKKaZ4X2KdwyeYwoeWb-p59GvoG6i7hvMEKXGAWawRCwOfq~KuIheoXcuT4io5VpqK-30cQH4HdpbpJhMBGNmO-El5sn9dvgigFy1JO6rxlpOeLOKbK3ADoBLLgWYJ4WpLdIJeyg-ybUjus7xIh6GVoNV3oYT0moADfTdF9AlAK2WPhtCDCmiGFd1UoL12BlwQDlPsdzAPsDrqpw~qdcdo4S-7eRGvWsJehuF~D49ROXBylLASPE-3fSonDFlVemubzMKFhvQxUYYah~bxttXbIIrg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
             date: "1:00 pm, Today",
             comment: "Great Project!",
             likes: 1
@@ -301,12 +400,18 @@ At this point, OfficeHours is simply an MVP. There are so many more features tha
           {
             name: "Bill Gates",
             image:
-              "https://s3-alpha-sig.figma.com/img/9c1a/b700/6fc120580122cc5c1443394d7cbd3883?Expires=1648425600&Signature=Z25Tpe97DPmMlDE0NoosTHwMoU~CS~WKfBi~aTS4Y6JMeseTUifDZ5A~Hfq7ue78zOxPVHKXIb3~J9ewChkxYt9ATzRjuccQVacZqGngIGZ7L186rJNxFMDqDbi4L66JL76vHpJ0tC01wQXRVU4eNkcFLBhyedrpiR4sLGGQLphPU~2R64inbhg~TARR6u5jrAwvHJDfG4VQNMWkszEsKE7oxfgVjUR5NFaWhAPS~VEW22sExY3tNX3ZCTuXvF4U9~51B3I39CxC72y5UQB8y2uSoUWJfJ-PH~xc2OYyWvp-NHrSV6wfAIQHC5p9xaVF2CEIW7YYmq40YjcxwB7v2w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+              "https://s3-alpha-sig.figma.com/img/9c1a/b700/6fc120580122cc5c1443394d7cbd3883?Expires=1652054400&Signature=To05JpnUL4VNdO~OgIUj-B15TGrsqawljpk7A3Xb0RuHBWH-HyPCdhHPXWIRNx6u2Jpvj3rPUxtEQi8hRpxxVWuCJbGkGyLuQ5xoH7w-pHAbDv1LjwP7E3~63-D8-jsXRyYdM~Ivy1QJOaXo8wFgyE0WPyaZZ11U-E-dOhaJqb9SI5OLkL2h8I1ddeKWCJw6AafTOGyI46b9p-lk8SB6ZIpof46yMZEymgeKAM7kdm8xgTlEhqHOuTXHb8FWtJNoVaxFw1fljmpsxbGr3Pkcmh11f41Rz-D4OeR2Iqq07J4f6c42B8udlU098KqSIt--j1N30YQa3m9~Dt8P0ZmG1g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
             date: "2:00 pm, Today",
             comment: "Amazing Project!",
             likes: 1
           }
         ],
+        owner: {
+          name: "Zach Latta",
+          image:
+            "https://s3-alpha-sig.figma.com/img/4d26/2767/d0b64dcacf31bfa508adcc47aea65677?Expires=1652054400&Signature=NfH3KTrkcZqbX21dkEqKT7VnO9svLoWnAgoC1mMjqHWmv1euOMfbm0IdLHjP-0nf9PqDL1SuRzRgPHDgRrzKyDetqGyaX0SzgGY6puHLfn519ibMQc37Ty1k1y2nAe0LQiDNSjcdyhq~U2h8kRoNitY-L19zgDEOdfqlAVT0M-dfVsb5JgzxlaioOaN3pSFxJT4H5CbMEv54FgEjWmOrPP0z9OBtzecdcnqsNFTR7AMJXOkUi78O311-GYFCV~GVZdMPKnMlbCyyHaVH7UTjippO0dv7fQafoueOlRAji-oeVrAU5wzjsha1nIKTasM7uMOUeGXKRLLsaXeBY-XtWg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+          id: "123"
+        },
         creators: [
           {
             name: "Zach Latta",

@@ -8,9 +8,8 @@ export class CustomError extends Error {
    * @param {string} message Error message for request response
    * @param {number} status HTTP status code. Default is 400
    */
-  constructor(public message: string, public status: number) {
+  constructor(public message: string, public status: number = 400) {
     super(message);
-    this.status = status || 400;
   }
 }
 
@@ -33,6 +32,7 @@ export function handleError(req: NextApiRequest, res: NextApiResponse, error: Er
   }
 
   res.status(500).send({ message: error.message });
+  return;
 }
 
 const invalidRequestErrorNames = [

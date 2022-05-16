@@ -10,7 +10,7 @@ class IntegrationService {
 
     if (!user.isVerified) throw new CustomError("User with email does not exist");
 
-    return user;
+    return true;
   }
 
   async discordResendVerificationEmail(data) {

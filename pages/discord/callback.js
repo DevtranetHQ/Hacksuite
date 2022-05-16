@@ -28,5 +28,7 @@ export const getServerSideProps = async ({ query, res }) => {
     const params = new URLSearchParams({ loginError: `Login error: ${err.message}` });
     res.writeHead(302, { Location: `/login?${params}` });
     res.end();
+
+    return { props: {} };
   }
 };
