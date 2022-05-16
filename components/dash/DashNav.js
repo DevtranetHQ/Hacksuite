@@ -35,7 +35,7 @@ export default function DashNav({ admin = false }) {
             <span>Home</span>
           </div>
         </Link>
-        <Link href="/workshop">
+        <Link href="/workshop/workshop">
           <div
             className={
               router.pathname === "/workshop"
