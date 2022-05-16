@@ -14,6 +14,7 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 };
 
 export default function Workshop({ user, project }) {
+  
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
@@ -63,7 +64,7 @@ export default function Workshop({ user, project }) {
           share what you’ve built or launch with us.
         </h2>
         <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
-          <Link href="/workshop/SampleWorkshop">
+          <Link href="/events">
             <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
               Attend a workshop
             </button>
@@ -102,19 +103,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("React"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/[id]">
+                      <div key={project.index}>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>
@@ -131,19 +134,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("Python"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/[id]">
+                      <div key={project.index}>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>
@@ -160,19 +165,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("C++"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/[id]">
+                      <div key={project.index}>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>

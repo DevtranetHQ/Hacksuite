@@ -8,8 +8,10 @@ import Avatar from "../../components/Avatar";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import FollowerIcon from "../../components/icons/Follower";
 import TimeIcon from "../../components/icons/Time";
+import { useRouter } from 'next/router'
 
 export default function SampleWorkshop({ loggedIn, user }) {
+  
 
   // Code to be written in the Page
   const code = `e.add({
@@ -46,7 +48,7 @@ export default function SampleWorkshop({ loggedIn, user }) {
           </Link>
         </div>
       </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-5 md:py-14 px-6 xs:p-14 rounded-b-2xl text-center mb-10">
+      <header className="bg-[#F8FBFF] container-gray-dark  py-5 md:py-14 px-6 xs:p-14 text-center mb-10">
         <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">
           Web Scrapper
         </h1>
@@ -59,7 +61,7 @@ export default function SampleWorkshop({ loggedIn, user }) {
         <div className="w-9/12">
           <iframe
             width="100%"
-            height="320"
+            height="400"
             src="https://www.youtube.com/embed/Sklc_fQBmcs"
             title="YouTube video player"
             frameBorder="0"
@@ -67,20 +69,30 @@ export default function SampleWorkshop({ loggedIn, user }) {
             allowFullScreen></iframe>
         </div>
         <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] flex-col justify-between items-center px-5 relative w-3/12">
-          <div className="">
-            <p className="mb-3 text-30px">Hosted by</p>
-            <div className="flex items-center gap-x-5">
-              <Avatar image={ProfileImg} className="relative h-14 w-14" />
-              <div className="flex items-center gap-x-3">
-                <span className="font-semibold text-28px">Zach Latta</span>
-                <FollowerIcon className="h-5" />
-              </div>
+        <div>
+              <h1 className="md:headline text-[22px] font-normal mb-7">Hosted By</h1>
+              
+                <div className="flex items-center gap-x-4 mb-2">
+                  <Avatar
+                    className="relative md:w-[45px] md:h-[45px] w-[32px] h-[32px]"
+                    border="!border-[3px]"
+                    image={ProfileImg}
+                  />
+                  <h2 className="inline-flex gap-2 items-center self-center md:subheadline text-[16px] font-semibold">
+                    Zach Latta
+                    
+                      <a className="cursor-pointer">
+                        <FollowerIcon className="hover:scale-[1.06] md:w-[25px] md:h-[25px] w-[20px] h-[20px] transition-all" />
+                      </a>
+                    
+                  </h2>
+                </div>
+                <div className="inline-flex gap-4 items-center my-4 md:mt-7 md:ml-3 ml-1 bottom-0 absolute">
+              <TimeIcon className="md:w-[25px] md:h-[25px] w-[15px] h-[15px] transition-all" />
+              <h2 className="md:caption text-[15px]">11:00 am, Today</h2>
             </div>
-          </div>
-          <div className="absolute bottom-0 pb-5 flex gap-x-3 items-center">
-            <TimeIcon />
-            <span className="text-28px text-[#7D7D7D]">11:00 am, Today</span>
-          </div>
+              
+            </div>
         </div>
       </section>
 
@@ -110,12 +122,12 @@ export default function SampleWorkshop({ loggedIn, user }) {
 
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] lg:text-[32px] px-[40px] text-center">
-          You’ve reached the end, why not <a href="">become a member</a> and show us all the cool
+          You’ve reached the end, why not <a href="">become a member</a> and show us all the cool <br />
           things you’ve made?
         </p>
       </footer>
     </div>
-  );
+  ); 
 }
 
 export async function getServerSideProps(context) {
