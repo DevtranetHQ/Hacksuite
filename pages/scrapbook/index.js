@@ -85,6 +85,7 @@ export default function Scrapbook({ loggedIn, user }) {
                     if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 0)
                       return (
                         <Scrapbookfile
+                          key={index}
                           username={scrapbookItem.username}
                           userimg={scrapbookItem.userimg}
                           time={scrapbookItem.time}
@@ -100,6 +101,7 @@ export default function Scrapbook({ loggedIn, user }) {
                   if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 1)
                     return (
                       <Scrapbookfile
+                        key={index}
                         username={scrapbookItem.username}
                         userimg={scrapbookItem.userimg}
                         time={scrapbookItem.time}
@@ -114,6 +116,7 @@ export default function Scrapbook({ loggedIn, user }) {
                   if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 2)
                     return (
                       <Scrapbookfile
+                        key={index}
                         username={scrapbookItem.username}
                         userimg={scrapbookItem.userimg}
                         time={scrapbookItem.time}
@@ -127,6 +130,16 @@ export default function Scrapbook({ loggedIn, user }) {
           )}
         </div>
       </section>
+
+      <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
+        <p className="text-[16px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
+          You’ve reached the end, why not{" "}
+          <Link href="/signup">
+            <span className="text-[#3e4fe4]">become a member</span>
+          </Link>{" "}
+          and show us all the <br className="hidden md:block"></br>cool things you’ve made?
+        </p>
+      </footer>
     </div>
   );
 }
