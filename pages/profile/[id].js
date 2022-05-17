@@ -12,7 +12,7 @@ import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import Empty from "../../components/Empty";
 
-import Scrapbook from "./Scrapbook";
+import ProfileScrapbook from "./Scrapbook";
 
 /**
  * takes initial array and returns trimmed array
@@ -169,7 +169,7 @@ export default function Profile({ loggedIn, user }) {
                     user.scrapbookItem.map((scrapbookItem, index) => {
                       if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 0)
                         return (
-                          <Scrapbook
+                          <ProfileScrapbook
                             time={scrapbookItem.time}
                             text={scrapbookItem.text}
                             image={scrapbookItem.image}
@@ -182,7 +182,7 @@ export default function Profile({ loggedIn, user }) {
                   {user.scrapbookItem.map((scrapbookItem, index) => {
                     if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 1)
                       return (
-                        <Scrapbook
+                        <ProfileScrapbook
                           time={scrapbookItem.time}
                           text={scrapbookItem.text}
                           image={scrapbookItem.image}
@@ -195,7 +195,7 @@ export default function Profile({ loggedIn, user }) {
                   {user.scrapbookItem.map((scrapbookItem, index) => {
                     if (user.scrapbookItem.indexOf(scrapbookItem) % 3 === 2)
                       return (
-                        <Scrapbook
+                        <ProfileScrapbook
                           time={scrapbookItem.time}
                           text={scrapbookItem.text}
                           image={scrapbookItem.image}
