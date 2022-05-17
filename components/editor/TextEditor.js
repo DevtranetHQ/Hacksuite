@@ -95,20 +95,20 @@ export default function TextEditor({ onUpdate }) {
         }
       `}</style>
 
-      <div className="border-[#c9c9c9] border-b-2 flex gap-4 px-4 p-1 justify-evenly">
+      <div className="mxs:px-0 mxs:gap-0 border-[#c9c9c9] border-b-2 flex gap-4 px-4 p-1 justify-evenly">
         <button
           type="button"
           className=" pr-1 pl-1 "
           onClick={() => editor.chain().focus().undo().run()}
           title="Undo">
-          <UndoIcon />
+          <UndoIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
           className="border-r pr-1"
           onClick={() => editor.chain().focus().redo().run()}
           title="Redo">
-          <RedoIcon />
+          <RedoIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -119,7 +119,7 @@ export default function TextEditor({ onUpdate }) {
               : " pr-1 pl-1"
           }
           title="Bold">
-          <BoldIcon />
+          <BoldIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -130,22 +130,22 @@ export default function TextEditor({ onUpdate }) {
               : " pr-1 pl-1"
           }
           title="Italic">
-          <ItalicIcon />
+          <ItalicIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={
             editor.isActive("underline")
-              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1"
-              : " pr-1 pl-1"
+              ? "is-active border-b border-b-[#03A9F4] pr-1 pl-1 border-r"
+              : "border-r pr-1 pl-1"
           }>
           <Icon
             icon="fa-solid:underline"
             inline={true}
             width={43}
             height={33}
-            className="border-r pr-1"
+            className="mxs:w-3 mxs:h-3"
           />
         </button>
         <button
@@ -157,7 +157,7 @@ export default function TextEditor({ onUpdate }) {
               : " pr-1 pl-1"
           }
           title="Align center">
-          <Center />
+          <Center className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -168,7 +168,7 @@ export default function TextEditor({ onUpdate }) {
               : " pr-1 pl-1 border-r"
           }
           title="Justify">
-          <Right />
+          <Right className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -179,7 +179,7 @@ export default function TextEditor({ onUpdate }) {
           }
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           title="Bullet list">
-          <BulletListIcon />
+          <BulletListIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -190,12 +190,12 @@ export default function TextEditor({ onUpdate }) {
           }
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           title="Ordered list">
-          <OrderedListIcon />
+          <OrderedListIcon className="mxs:w-3 mxs:h-3" />
         </button>
 
         <button type="button" className="border-r pr-1" title="Insert image">
           <input type="file" className="hidden" />
-          <Picture />
+          <Picture className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -206,7 +206,7 @@ export default function TextEditor({ onUpdate }) {
           }
           onClick={setLink}
           title="Apply link">
-          <LinkIcon />
+          <LinkIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
@@ -217,14 +217,14 @@ export default function TextEditor({ onUpdate }) {
           }
           onClick={() => editor.chain().focus().toggleCode().run()}
           title="Code block">
-          <CodeIcon />
+          <CodeIcon className="mxs:w-3 mxs:h-3" />
         </button>
         <button
           type="button"
           className=""
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
           title="Full screen">
-          <Fullscreen />
+          <Fullscreen className="mxs:w-3 mxs:h-3" />
         </button>
       </div>
 

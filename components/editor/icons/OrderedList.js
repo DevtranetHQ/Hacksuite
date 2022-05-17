@@ -1,6 +1,7 @@
-export default function OrderedListIcon() {
+export default function OrderedListIcon({ className }) {
   return (
     <svg
+      className={className}
       width="47.95"
       height="31.07"
       viewBox="0 0 49 32"
