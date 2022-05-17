@@ -11,7 +11,7 @@ class UserService {
     return await User.find({}, { password: 0, __v: 0 });
   }
 
-  async getOne(userId: string) {
+  async getOne(userId: string): Promise<IUser> {
     const user = await User.findOne({ _id: userId }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist");
 

@@ -26,9 +26,19 @@ export interface IUser {
   role: string;
   isVerified: boolean;
   isCompleted: boolean;
-  socialLinks: string;
+  links?: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+    facebook?: string;
+    instagram?: string;
+    reddit?: string;
+  };
   image: string;
+  resume: string;
   discordId: string;
+
+  notify: boolean;
 
   password: string;
 }
@@ -44,6 +54,15 @@ const emailMatch: [RegExp, string] = [
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
   "{VALUE is not a valid email}"
 ];
+
+const urlSchema: mongoose.SchemaDefinitionProperty<string> = {
+  type: String,
+  trim: true,
+  match: [
+    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
+    "{VALUE} is not a valid URL"
+  ]
+};
 
 const userSchema = new Schema<IUser, IUserModel>(
   {
@@ -128,20 +147,21 @@ const userSchema = new Schema<IUser, IUserModel>(
       type: Boolean,
       default: false
     },
-    socialLinks: [
-      {
-        siteName: { type: String },
-        link: { type: String }
-      }
-    ],
-    image: {
-      type: String,
-      match: [
-        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-        "{VALUE isnt a valid link}"
-      ]
+    links: {
+      github: urlSchema,
+      linkedin: urlSchema,
+      twitter: urlSchema,
+      facebook: urlSchema,
+      instagram: urlSchema,
+      reddit: urlSchema
     },
-    discordId: String
+    image: urlSchema,
+    resume: urlSchema,
+    discordId: String,
+    notify: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true

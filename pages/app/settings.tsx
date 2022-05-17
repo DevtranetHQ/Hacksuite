@@ -98,16 +98,13 @@ export default function Settings({ user }: Props) {
 
   async function uploadProfilePhoto(e: ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    // TODO: Update profile image in database (event is onChange from <input type="file"/>)
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const tempUrl = URL.createObjectURL(file);
-    console.log({ tempUrl });
-    setProfilePhotoPreview(tempUrl);
+    setProfilePhotoPreview(URL.createObjectURL(file));
   }
 
-  async function handleSubmission(e: FormData) {}
+  async function handleSubmission(e: FormData) { }
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -134,7 +131,7 @@ export default function Settings({ user }: Props) {
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
           <Avatar image={profilePhotoPreview || user.image} className="relative  w-[170px] h-[170px]"
-                    border="!border-[3px]" />
+            border="!border-[3px]" />
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
             <div className="button-small button-deep-sky-blue gap-x-2">
               <UploadIcon />

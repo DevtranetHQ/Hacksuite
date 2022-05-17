@@ -11,6 +11,7 @@ interface SignupDTO {
   lastName: string;
   password: string;
   email: string;
+  notify: boolean;
 }
 interface ResetDTO {
   userId: string;
@@ -34,7 +35,8 @@ interface IAuthContext {
   verifyEmail: UseAsync<[userId: string, verifyToken: string], void, AxiosError>;
   passwordEmailVerification: UseAsync<[email: string, dob: string], void, AxiosError>;
   resetPassword: UseAsync<[ResetDTO], void, AxiosError>;
-  completeProfile: UseAsync<[userId: string, profile: any], void, AxiosError>;
+  completeProfile: UseAsync<[userId: string, profile: Partial<IUser>], void, AxiosError>;
+  updateProfile: UseAsync<[userId: string, profile: FormData], void, AxiosError>;
 
   loginWithToken: (token: string) => void;
   logout: () => void;
@@ -154,6 +156,18 @@ export const AuthProvider = ({ children }) => {
       setToken(newToken);
 
       router.push("/app/optional-profile");
+    }),
+
+    updateProfile: useAsync(async (userId, data) => {
+      console.log({ e: data.entries() });
+      const res = await axios({
+        url: `/users/${userId}`,
+        method: "PUT",
+        data,
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+
+      return res.data;
     }),
 
     loginWithToken: token => {

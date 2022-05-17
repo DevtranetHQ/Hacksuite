@@ -123,7 +123,7 @@ export default function SignupPage({ handleSubmission, isLoading, signup }) {
             <div className="mxs:-mx-10 flex justify-between mt-12 mb-5 -mr-8 -ml-10">
               <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
               <div className="mxs:text-12px form-checkbox mt-1 2xl:ml-4 text-center">
-                <input className="mxs:ml-0.5 mxs:mr-1" id="checkbox" type="checkbox" />
+                <input className="mxs:ml-0.5 mxs:mr-1" id="notify" type="checkbox" name="notify" />
                 <label htmlFor="checkbox">Notify me about upcoming events & news</label>
               </div>
               <div className="mxs:w-12 w-20 xl:w-32 2xl:w-40 border-gray-400 h-4 border-b-4"></div>
