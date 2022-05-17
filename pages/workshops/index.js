@@ -14,7 +14,6 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
 };
 
 export default function Workshop({ user, project }) {
-  
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
@@ -103,10 +102,9 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("React"))
                 .map((project, index) => {
                   return (
-                    <Link href="/workshops/sampleworkshop">
-                      <div >
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
                         <WorkshopProfileCard
-                        key={index}
                           name={project.name}
                           tools={project.tools}
                           bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
@@ -135,10 +133,9 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("Python"))
                 .map((project, index) => {
                   return (
-                    <Link href="/workshops/sampleworkshop">
-                      <div >
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
                         <WorkshopProfileCard
-                        key={index}
                           name={project.name}
                           tools={project.tools}
                           bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
@@ -167,10 +164,9 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("C++"))
                 .map((project, index) => {
                   return (
-                    <Link href="/workshops/sampleworkshop">
-                      <div >
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
                         <WorkshopProfileCard
-                        key={index}
                           name={project.name}
                           tools={project.tools}
                           bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
