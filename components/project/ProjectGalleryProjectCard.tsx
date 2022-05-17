@@ -14,8 +14,12 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0): number[] => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
-export default function ProjectGalleryProjectCard({ project, ...props }: { project: IProject } & HTMLAttributes<any>) {
-  const { uniqueId, name, image, description, collaborators, creator, tools, publishedAt } = project;
+export default function ProjectGalleryProjectCard({
+  project,
+  ...props
+}: { project: IProject } & HTMLAttributes<any>) {
+  const { uniqueId, name, image, description, collaborators, creator, tools, publishedAt } =
+    project;
   const { darkMode } = useContext(DarkModeContext);
   const trimmed = bubbleTrimmer(collaborators, 0, 3);
 
@@ -40,37 +44,47 @@ export default function ProjectGalleryProjectCard({ project, ...props }: { proje
                 );
               })}
             <div>
-              {trimmed.length === 1 ? <p className="ml-4 font-semibold text-[23.2px]">{name}</p> : <p className="ml-4 font-semibold text-[23.2px]">{`+ ${collaborators.length - 3} more`}</p>}
-              <p className="ml-4 caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]"><TimeIcon width={10} height={10} /> <span>{publishedAt}</span></p>
+              {trimmed.length === 1 ? (
+                <p className="ml-4 font-semibold text-[23.2px]">{name}</p>
+              ) : (
+                <p className="ml-4 font-semibold text-[23.2px]">{`+ ${
+                  collaborators.length - 3
+                } more`}</p>
+              )}
+              <p className="ml-4 caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]">
+                <TimeIcon width={10} height={10} /> <span>{publishedAt}</span>
+              </p>
             </div>
           </div>
           <div className="flex gap-[10px]">
-            {tools && tools.map(tool => {
-              switch (tool) {
-                case 'github':
-                  return <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
-                case 'figma':
-                  return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
-                case 'adobexd':
-                  return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
-                default:
-                  break;
-              }
-            })
-            }
+            {tools &&
+              tools.map(tool => {
+                switch (tool) {
+                  case "github":
+                    return (
+                      <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                    );
+                  case "figma":
+                    return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  case "adobexd":
+                    return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  default:
+                    break;
+                }
+              })}
           </div>
         </div>
         <span></span>
       </div>
 
       {/* ====== #IMAGE */}
-      <div className="w-full h-[178px]  flex items-center justify-center relative">
+      <div className="w-full h-[178px] flex items-center justify-center relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt="" className="object-cover" />
+        <img src={image} alt="" className="object-cover h-[100%]" />
       </div>
 
       {/* ====== #TEXT SECTION */}
-      <div className="w-full mt-[5px]">
+      <div className="w-full mt-4">
         <h4 className=" text-[20.3px] font-semibold">{name}</h4>
         <p className="text-[13.5px] mt-[10px]">{description}</p>
       </div>
@@ -78,8 +92,6 @@ export default function ProjectGalleryProjectCard({ project, ...props }: { proje
       {/* ====== #BOTTOM SECTION */}
 
       <div className="flex w-full h-[7%] gap-2 items-center justify-between mt-5">
-
-
         <span className="flex items-center gap-2">
           <p className="caption dark:text-[#B4B4B4]">Tags:</p>
           {tools &&
@@ -90,7 +102,9 @@ export default function ProjectGalleryProjectCard({ project, ...props }: { proje
               if (index === 2) color = "bg-green-500";
               if (index === 3) color = "bg-cyan-400";
               return (
-                <p key={index} className={`pl-2  pr-2 pt-1 pb-1 text-[11px] rounded-sm text-white ${color} caption font-bold`}>
+                <p
+                  key={index}
+                  className={`pl-2  pr-2 pt-1 pb-1 text-[11px] rounded-sm text-white ${color} caption font-bold`}>
                   {tool}
                 </p>
               );
@@ -98,9 +112,19 @@ export default function ProjectGalleryProjectCard({ project, ...props }: { proje
         </span>
         <span>
           <span className="flex items-center justify-center gap-[8px]">
-            <Like width="20px" height="20px" fill="#C50000" className='transition-all hover:scale-[1.2]' />
+            <Like
+              width="20px"
+              height="20px"
+              fill="#C50000"
+              className="transition-all hover:scale-[1.2]"
+            />
             <p className="font-semibold text-[17px]">{likes}</p>
-            <CommentIcon width="20px" height="20px" fill={darkMode ? "white" : "black"} className='transition-all hover:scale-[1.2]' />
+            <CommentIcon
+              width="20px"
+              height="20px"
+              fill={darkMode ? "white" : "black"}
+              className="transition-all hover:scale-[1.2]"
+            />
             <p className="font-semibold text-[17px]">{comments}</p>
           </span>
         </span>
