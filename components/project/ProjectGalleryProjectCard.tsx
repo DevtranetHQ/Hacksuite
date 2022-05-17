@@ -80,7 +80,7 @@ export default function ProjectGalleryProjectCard({
       {/* ====== #IMAGE */}
       <div className="w-full h-[178px] flex items-center justify-center relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt="" className="object-cover h-[100%]" />
+        <img src={image} alt="" className="object-cover w-[100%] h-[100%]" />
       </div>
 
       {/* ====== #TEXT SECTION */}
