@@ -1,10 +1,10 @@
-import Logo from "../components/Logo";
-import DarkModeToggle from "../components/DarkModeToggle";
-import GithubIcon from "../components/icons/Github";
+import Logo from "../../components/Logo";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import GithubIcon from "../../components/icons/Github";
 import Link from "next/link";
 // import ArrowRightIcon from "../components/icons/ArrowRight";
-import ArrowIcon from "../components/icons/ArrowRight";
-import WorkshopProfileCard from "../components/WorkshopProfileCard";
+import ArrowIcon from "../../components/icons/ArrowRight";
+import WorkshopProfileCard from "../../components/WorkshopProfileCard";
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   // prettier-ignore
@@ -63,36 +63,15 @@ export default function Workshop({ user, project }) {
           share what you’ve built or launch with us.
         </h2>
         <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
-          <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
-            Attend a workshop
-          </button>
+          <Link href="/events">
+            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+              Attend a workshop
+            </button>
+          </Link>
+
           <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
             Add your workshop
           </a>
-          {/* <div className="flex-col justify-end ml-auto right-1">
-          <svg
-            width="74"
-            height="61"
-            viewBox="0 0 104 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M55.9302 100.206L48.4636 80.7791C56.4114 78.159 63.8949 74.5218 70.8518 70.2155L55.9302 100.206ZM20.2198 50.4597L1.3705 41.6365L32.3419 28.8755C27.5539 35.5101 23.396 42.7173 20.2198 50.4597ZM89.5826 10.3914C90.9817 10.441 92.2309 10.4852 93.2714 10.7723C93.8747 17.748 92.4188 32.0054 75.4482 47.8142C66.6506 56.0578 56.275 62.2441 44.7281 66.1876L34.3567 55.3134C39.363 43.9336 46.2684 34.022 55.0124 25.8766C69.2925 12.5741 81.6875 10.1116 89.5826 10.3914ZM89.9368 0.397655C80.043 0.0469907 64.9302 2.96351 48.1666 18.5795C36.8356 29.1348 29.8629 40.9452 25.2418 51.3381C23.7099 55.0361 24.5141 59.1672 27.1632 62.0629L37.431 73.0334C39.2625 74.9996 41.7702 76.2392 44.4185 76.333C45.5678 76.3738 46.7777 76.1165 47.9429 75.7075C60.6978 71.355 72.3871 64.3523 82.2422 55.1595C111.527 27.8796 101.81 2.76971 101.81 2.76971C101.81 2.76971 97.3321 0.659768 89.9368 0.397655ZM65.2303 36.8454C61.4709 32.8097 61.6958 26.4637 65.7315 22.7043C69.7672 18.9449 76.1132 19.1698 79.8726 23.2055C83.582 27.2394 83.4071 33.5872 79.3714 37.3466C75.3357 41.106 68.9897 40.8811 65.2303 36.8454ZM35.6959 71.1708L28.9 63.8755L35.6959 71.1708ZM21.5354 98.0361L40.3687 80.4922C38.6857 79.9823 37.0633 79.1743 35.6014 78.0718L14.4899 97.7864L21.5354 98.0361ZM0.348742 97.2852L7.39432 97.5349L32.0724 74.5946L25.2265 67.2976L0.598457 90.2396L0.348742 97.2852ZM0.849944 83.1441L22.0097 63.4812C21.0135 61.945 20.3206 60.3194 19.9329 58.5546L1.09966 76.0985L0.849944 83.1441Z"
-              fill="#03A9F4"
-            />
-          </svg>
-          <svg
-            width="44"
-            height="42"
-            viewBox="0 0 64 62"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M34.2111 61.0414L29.6574 49.1936C34.5046 47.5956 39.0686 45.3774 43.3114 42.7511L34.2111 61.0414ZM12.4322 30.7025L0.936473 25.3214L19.8252 17.5388C16.9051 21.5851 14.3693 25.9806 12.4322 30.7025ZM54.7348 6.26582C55.5881 6.29606 56.35 6.32307 56.9846 6.49812C57.3525 10.7525 56.4646 19.4477 46.1146 29.0891C40.7492 34.1166 34.4214 37.8895 27.3792 40.2946L21.054 33.6627C24.1071 26.7224 28.3186 20.6776 33.6513 15.7099C42.3605 7.59699 49.9199 6.09516 54.7348 6.26582ZM54.9509 0.170892C48.9169 -0.0429695 39.7 1.73575 29.4762 11.2596C22.5657 17.697 18.3133 24.8999 15.495 31.2382C14.5607 33.4936 15.0512 36.013 16.6668 37.779L22.9289 44.4697C24.0459 45.6688 25.5753 46.4248 27.1904 46.482C27.8913 46.5069 28.6292 46.3499 29.3398 46.1005C37.1187 43.4461 44.2477 39.1752 50.2582 33.5688C68.1182 16.9315 62.1922 1.61755 62.1922 1.61755C62.1922 1.61755 59.4611 0.330749 54.9509 0.170892ZM39.883 22.3995C37.5902 19.9382 37.7274 16.0679 40.1887 13.7752C42.6499 11.4824 46.5202 11.6196 48.813 14.0808C51.0753 16.541 50.9686 20.4124 48.5073 22.7052C46.046 24.9979 42.1758 24.8608 39.883 22.3995ZM21.8707 43.3337L17.7261 38.8845L21.8707 43.3337ZM13.2346 59.7182L24.7205 49.0186C23.6941 48.7076 22.7046 48.2148 21.8131 47.5424L8.93765 59.5659L13.2346 59.7182ZM0.313329 59.2602L4.61025 59.4125L19.6608 45.4218L15.4857 40.9715L0.465624 54.9633L0.313329 59.2602ZM0.619 50.6359L13.5238 38.644C12.9162 37.7071 12.4937 36.7157 12.2572 35.6394L0.771296 46.339L0.619 50.6359Z"
-              fill="#FF9700"
-            />
-          </svg>
-        </div> */}
         </div>
       </header>
       <p className="text-center flex items-center justify-center gap-x-5">
@@ -123,19 +102,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("React"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>
@@ -152,19 +133,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("Python"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>
@@ -181,19 +164,21 @@ export default function Workshop({ user, project }) {
                 .filter(tag => tag.tags.includes("C++"))
                 .map((project, index) => {
                   return (
-                    <div key={project.index}>
-                      <WorkshopProfileCard
-                        name={project.name}
-                        tools={project.tools}
-                        bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
-                        bubbleNumber={project.bubbles.length}
-                        date={project.date}
-                        title="Web Scrapper"
-                        image={project.image}
-                        desc={project.desc}
-                        className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
-                      />
-                    </div>
+                    <Link href="/workshops/sampleworkshop" key={index}>
+                      <div>
+                        <WorkshopProfileCard
+                          name={project.name}
+                          tools={project.tools}
+                          bubbles={bubbleTrimmer(project.bubbles, 0, 3)}
+                          bubbleNumber={project.bubbles.length}
+                          date={project.date}
+                          title="Web Scrapper"
+                          image={project.image}
+                          desc={project.desc}
+                          className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3 cursor-pointer"
+                        />
+                      </div>
+                    </Link>
                   );
                 })}
           </div>

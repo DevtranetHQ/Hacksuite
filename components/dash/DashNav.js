@@ -35,10 +35,10 @@ export default function DashNav({ admin = false }) {
             <span>Home</span>
           </div>
         </Link>
-        <Link href="/workshop">
+        <Link href="/workshops">
           <div
             className={
-              router.pathname === "/workshop"
+              router.pathname === "/workshops"
                 ? styles.active
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>

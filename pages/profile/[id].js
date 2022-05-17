@@ -213,10 +213,6 @@ export default function Profile({ loggedIn, user }) {
 }
 
 export async function getServerSideProps(context) {
-  // Code in the scrapbook
-  const code = `.nav-link-home::before {
-    content : "Javier's"
-}`;
   // TODO: Call API for User profile data
   return {
     props: {

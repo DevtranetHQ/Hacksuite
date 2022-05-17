@@ -133,7 +133,8 @@ export default function Settings({ user }: Props) {
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
-          <Avatar image={profilePhotoPreview || user.image} />
+          <Avatar image={profilePhotoPreview || user.image} className="relative  w-[170px] h-[170px]"
+                    border="!border-[3px]" />
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
             <div className="button-small button-deep-sky-blue gap-x-2">
               <UploadIcon />
@@ -312,7 +313,7 @@ export default function Settings({ user }: Props) {
                 render={({ field }) => (
                   <Select
                     isMulti
-                    className="form-select p-0 m-rounded-lg"
+                    className="form-select p-0 m-0 rounded-lg"
                     components={{ DropdownIndicator }}
                     styles={styles}
                     options={options2}
@@ -343,10 +344,10 @@ export default function Settings({ user }: Props) {
                 Upload Resume/CV
               </label>
               <div
-                style={{ color: "#3B4FE4" }}
+                style={{ color: "#3B4FE4", height: "45%", padding: 15, margin: 0 }}
                 className="flex form-input items-center justify-between">
                 <input
-                  className="text-18px text-blue-500"
+                  className="text-18px text-blue-500 p-0"
                   id="resume"
                   name="resume"
                   type="file"
