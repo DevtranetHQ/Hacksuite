@@ -15,7 +15,7 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0): number[] => {
 
 export default function ProjectGallery({ projects }: { projects: IProject[] }) {
   return (
-    <div className="dark:bg-[#202020] dark:text-white">      
+    <div className="dark:bg-[#202020] dark:text-white">
       <PhotoGalleryHeader
         title="The Dynamics Projects"
         contentText="A gallery of all the awesome things the makers at The Dynamics are building and launching everyday."
@@ -24,7 +24,7 @@ export default function ProjectGallery({ projects }: { projects: IProject[] }) {
         navText="Go back home"
         navHref="https://thedynamics.tech"
       />
-      <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-[90px] lg:px-[32px]">
+      <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center px-5 py-5 mt-20">
         {projects.map((project, index) => {
           return (
             <ProjectGalleryProjectCard
@@ -43,7 +43,8 @@ export default function ProjectGallery({ projects }: { projects: IProject[] }) {
       </div>
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
         <p className="text-[16px] lg:text-[32px] px-[40px] text-center">
-          You’ve reached the end, why not <a href="">become a member</a> and show us all the cool
+          You’ve reached the end, why not <a href="">become a member</a> and show us all the cool{" "}
+          <br />
           things you’ve made?
         </p>
       </footer>
