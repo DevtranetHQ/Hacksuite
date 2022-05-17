@@ -50,7 +50,7 @@ const Projects = ({ projects }: { projects: IProject[] }) => {
 
       <Link href="#projects">
         <span
-          className={`fixed bottom-0 right-0 flex items-center bg-deep-sky-blue z-[20] px-6 py-3 gap-x-4 rounded-md mb-7 font-semibold text-18px ${
+          className={`fixed bottom-0 right-0 flex items-center bg-deep-sky-blue z-[20] px-6 py-3 gap-x-4 rounded-md mb-7 font-semibold text-18px cursor-pointer ${
             scrollY > 100 ? null : "hidden"
           }`}
           style={{
