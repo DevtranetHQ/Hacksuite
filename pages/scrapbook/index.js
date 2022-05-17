@@ -12,7 +12,6 @@ import image2 from "../../public/assets/image2.svg";
 import image3 from "../../public/assets/image3.svg";
 import Vector3 from "../../public/assets/Vector3.svg";
 import Scrapbookfile from "./Scrapbookfile";
-import Empty from "../../components/Empty"
 
 export default function Scrapbook({ loggedIn, user }) {
   return (
