@@ -76,9 +76,7 @@ export default function Scrapbook({ loggedIn, user }) {
 
       <section>
         <div>
-          {user.scrapbookItem.length === 0 ? (
-            <Empty />
-          ) : (
+          
             <div className="grid grid-cols-3 space-x-5 p-5 dark:text-white">
               <div className="dark:text-white">
                 {user &&
@@ -128,7 +126,7 @@ export default function Scrapbook({ loggedIn, user }) {
                 })}
               </div>
             </div>
-          )}
+          
         </div>
       </section>
 
