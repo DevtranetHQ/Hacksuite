@@ -2,7 +2,6 @@ import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import GithubIcon from "../../components/icons/Github";
 import Link from "next/link";
-// import ArrowRightIcon from "../components/icons/ArrowRight";
 import ArrowIcon from "../../components/icons/ArrowRight";
 import WorkshopProfileCard from "../../components/WorkshopProfileCard";
 

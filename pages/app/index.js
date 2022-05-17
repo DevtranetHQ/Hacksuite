@@ -59,7 +59,7 @@ export default function Dash({ admin, name }) {
         </div>
         <div className=""></div>
         <div className=""></div>
-        <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-3 z-20">
+        <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-3 z-20 hover:scale-105 focus:scale-105 transition-all">
           {darkMode ? (
             <Image className="" src={robotDark} alt="" />
           ) : (
