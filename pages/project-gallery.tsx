@@ -36,9 +36,11 @@ export default function ProjectGallery({ projects }: { projects: IProject[] }) {
         })}
       </div>
       <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
-        <button className="button-medium lg:button-big button-deep-sky-blue inline-flex gap-x-3">
-          View more Projects
-          <ArrowIcon />
+        <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
+          <span>View more projects</span>
+          <div className="lg:scale-[2] relative lg:top-1">
+            <ArrowIcon />
+          </div>
         </button>
       </div>
       <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
