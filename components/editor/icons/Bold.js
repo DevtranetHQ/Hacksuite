@@ -1,6 +1,7 @@
-export default function BoldIcon() {
+export default function BoldIcon({ className }) {
   return (
     <svg
+      className={className}
       width="31.58"
       height="32"
       viewBox="0 0 33 32"

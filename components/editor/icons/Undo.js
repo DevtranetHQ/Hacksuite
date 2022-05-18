@@ -1,6 +1,7 @@
-export default function UndoIcon() {
+export default function UndoIcon({ className }) {
   return (
     <svg
+      className={className}
       width="37.23"
       height="20.47"
       viewBox="0 0 39 21"
