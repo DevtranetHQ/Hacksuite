@@ -17,30 +17,30 @@ export default function Scrapbook({ user }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[80px] md:w-[120px] py-5" />
+        <Logo className="w-[50px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            className="!mx-0 w-[27px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="!mx-0 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
             href="https://github.com/TheDynamics"
-            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+            className="scale-[.6] lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href="/app">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
+          <button className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none">
               Go back home
-              <span className="md:mt-1">
+              <div className="scale-50 md:scale-100 lg:relative lg:top-[2px] justify-self-start">
                 <ArrowIcon />
-              </span>
+              </div>
             </button>
           </Link>
         </div>
       </nav>
       <header className="bg-[#F8FBFF] container-gray-dark border-b-4 origin-center -rotate-2 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center mb-20  relative">
-        <div className="absolute left-5  flex gap-x-[300px] -top-[58px]">
-          <Image src={scrapbookpin} />
+        <div className="absolute left-5  flex lg:gap-x-[300px] md:gap-x-[100px] xs:gap-x-[50px] lg:-top-[40px] -top-[18px] z-10 h-10 lg:h-20">
+          <Image src={scrapbookpin}  />
           <Image src={Tape} />
           <Image src={Tape1} />
         </div>
@@ -76,7 +76,7 @@ export default function Scrapbook({ user }) {
       <section>
         <div>
           
-            <div className="grid grid-cols-3 space-x-5 p-5 dark:text-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:space-x-5 p-5 dark:text-white">
               <div className="dark:text-white">
                 {user &&
                   user.scrapbookItem.map((scrapbookItem, index) => {

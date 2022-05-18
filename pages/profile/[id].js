@@ -37,30 +37,30 @@ export default function Profile({ loggedIn, user }) {
     <div className="dark:bg-[#202020] dark:text-white">
       {/* ====== NavBar start */}
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[80px] md:w-[120px] py-5" />
+        <Logo className="w-[50px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            className="!mx-0 w-[27px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="!mx-0 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
             href="https://github.com/TheDynamics"
-            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+            className="scale-[.6] lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href="https://thedynamics.tech">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
+          <button className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back" : "All Events"}
-              <span className="md:mt-1">
+              <div className="scale-50 md:scale-100 lg:relative lg:top-[2px] justify-self-start">
                 <ArrowRightIcon />
-              </span>
+              </div>
             </button>
           </Link>
         </div>
       </nav>
 
       {/* ====== #PROFILE head start */}
-      <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
+      <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D] ">
         <Avatar image={ProfileImg} className="md:h-64 relative md:w-64 h-[170px] w-[170px] " />
         <div className=" h-60 flex p-2 flex-col justify-center  gap-0 items-start ">
           <h1 className="text-heading md:title subtitle dark:text-white">{user.name} </h1>
@@ -163,7 +163,7 @@ export default function Profile({ loggedIn, user }) {
             {user.projects.length === 0 ? (
               <Empty />
             ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 md:space-x-5 p-5 dark:text-white">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 md:space-x-5 md:p-5 p-1 dark:text-white">
                 <div className="dark:text-white">
                   {user &&
                     user.scrapbookItem.map((scrapbookItem, index) => {
