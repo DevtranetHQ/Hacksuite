@@ -14,8 +14,9 @@ export default function Signup() {
     const lastName = e.target.lastName.value;
     const password = e.target.password.value;
     const email = e.target.email.value;
+    const notify = e.target.notify.checked;
 
-    signup.execute({ firstName, lastName, password, email });
+    signup.execute({ firstName, lastName, password, email, notify });
 
     setEmail(email);
   }

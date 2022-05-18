@@ -1,8 +1,8 @@
-export default function InstagramIcon({ fill, width, height }) {
+export default function InstagramIcon({ fill = ``, width = 41, height = 41 }) {
   return (
     <svg
-      width={width ? width : 41}
-      height={height ? height : 41}
+      width={width}
+      height={height}
       viewBox="0 0 41 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

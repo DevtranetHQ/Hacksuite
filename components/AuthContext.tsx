@@ -5,12 +5,14 @@ import jwt_decode from "jwt-decode";
 import { AxiosError } from "axios";
 import { UseAsync, useAsync } from "../hooks/useAsync";
 import { axios } from "../config/config";
+import { IUser } from "../server/modules/auth/user.model";
 
 interface SignupDTO {
   firstName: string;
   lastName: string;
   password: string;
   email: string;
+  notify: boolean;
 }
 interface ResetDTO {
   userId: string;
@@ -18,7 +20,7 @@ interface ResetDTO {
   password: string;
   confirmPassword: string;
 }
-interface IUser {
+interface IToken {
   id: string;
   role: string;
   firstName: string;
@@ -27,14 +29,15 @@ interface IUser {
 }
 
 interface IAuthContext {
-  user: IUser | null;
+  user: IToken | null;
   login: UseAsync<[email: string, password: string], void, AxiosError>;
   signup: UseAsync<[SignupDTO], void, AxiosError>;
   resendEmailVerification: UseAsync<[email: string], void, AxiosError>;
   verifyEmail: UseAsync<[userId: string, verifyToken: string], void, AxiosError>;
   passwordEmailVerification: UseAsync<[email: string, dob: string], void, AxiosError>;
   resetPassword: UseAsync<[ResetDTO], void, AxiosError>;
-  completeProfile: UseAsync<[userId: string, profile: any], void, AxiosError>;
+  completeProfile: UseAsync<[profile: Partial<IUser>], void, AxiosError>;
+  updateProfile: UseAsync<[profile: Partial<IUser>, files?: { image?: File, resume?: File }], void, AxiosError>;
 
   loginWithToken: (token: string) => void;
   logout: () => void;
@@ -43,7 +46,7 @@ interface IAuthContext {
 const authContext = createContext<IAuthContext>(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState<IUser>(null);
+  const [user, setUser] = useState<IToken>(null);
   const [cookies, setCookie, removeCookie] = useCookies([`token`]);
   const router = useRouter();
 
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      const decoded = jwt_decode<IUser>(token);
+      const decoded = jwt_decode<IToken>(token);
       setUser(decoded);
     }
   }, [token]);
@@ -142,9 +145,9 @@ export const AuthProvider = ({ children }) => {
       return res.data;
     }),
 
-    completeProfile: useAsync(async (userId, data) => {
+    completeProfile: useAsync(async (data) => {
       const res = await axios({
-        url: `/users/${userId}`,
+        url: `/users/${user.id}`,
         method: "PUT",
         data
       });
@@ -154,6 +157,35 @@ export const AuthProvider = ({ children }) => {
       setToken(newToken);
 
       router.push("/app/optional-profile");
+    }),
+
+    updateProfile: useAsync(async (data, { image, resume }) => {
+      const updateJob = axios({
+        url: `/users/${user.id}`,
+        method: "PUT",
+        data,
+      });
+
+      if (image || resume) {
+        const formData = new FormData();
+        if (image) {
+          formData.append("image", image);
+        }
+        if (resume) {
+          formData.append("resume", resume);
+        }
+
+        const uploadJob = axios({
+          url: `/users/${user.id}/upload`,
+          method: "PUT",
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+
+        await Promise.all([updateJob, uploadJob]);
+      }
+
+      await updateJob;
     }),
 
     loginWithToken: token => {

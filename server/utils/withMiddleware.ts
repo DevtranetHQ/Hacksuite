@@ -22,10 +22,10 @@ export function withMiddleware(
   return function (req, res) {
     middlewareLogger(`withMiddleware(${middleware.name}, ${handler.name})`);
     return middleware(req, res, result => {
+      console.log(`running middleware(${middleware.name})`);
       if (result instanceof Error) {
         throw result;
       }
-
       return handler(req, res);
     });
   };

@@ -11,7 +11,7 @@ class UserService {
     return await User.find({}, { password: 0, __v: 0 });
   }
 
-  async getOne(userId: string) {
+  async getOne(userId: string): Promise<IUser> {
     const user = await User.findOne({ _id: userId }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist");
 
@@ -26,15 +26,16 @@ class UserService {
   }
 
   async update(userId: string, data: Partial<IUser>) {
-    console.log(userId, data);
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
-      { $set: { isCompleted: true, ...data } }
+      { $set: { ...data, isCompleted: true } },
+      { runValidators: true }
     );
     if (!oldUser) throw new CustomError("User dosen't exist", 404);
 
     if (!oldUser.isCompleted) {
       const newUser = await User.findById(userId);
+      console.log({ oldUser, newUser });
       const newToken = await authService._getLoginToken(newUser);
       return {
         newToken,
@@ -42,7 +43,7 @@ class UserService {
       };
     }
 
-    return { user: oldUser };
+    return User.findById(userId);
   }
 
   async delete(userId: string) {
