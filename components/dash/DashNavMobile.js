@@ -13,7 +13,7 @@ export function DashNavMobile({}) {
   return (
     <nav className="">
       <div className={`${styles.mobile_nav} bg-[#F8FBFF] container-gray-dark dark:text-white`}>
-        <Link href="/workshop">
+        <Link href="/workshops">
           <div
             className={
               router.pathname === "/workshops"

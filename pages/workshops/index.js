@@ -18,8 +18,8 @@ export default function Workshop({ user, project }) {
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
         <Logo className="w-[80px] md:w-[120px] py-5" />
         <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2 dark:bg-transparent text-white dark:bg-white">
-          <div className="relative rounded-md flex  items-center p-1 border-[#03A9F4] border-[3px]">
-            <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
+          <div className="relative rounded-md flex items-center p-1 border-[#03A9F4] border-[3px] md:w-full w-10/12 ml-auto">
+            <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none md:w-full w-2/4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-black flex items-center dark:text-white"
@@ -37,7 +37,7 @@ export default function Workshop({ user, project }) {
             <input
               type="text"
               placeholder="I’m looking for..."
-              className=" block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white text-black"
+              className=" block w-full md:pl-10 pl-8  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-2 dark:text-white text-black"
             />
           </div>
         </form>
@@ -53,11 +53,11 @@ export default function Workshop({ user, project }) {
           </a>
         </div>
       </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center mb-20">
+      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center md:mb-20 mb-10">
         <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">
           The Dynamics Workshops
         </h1>
-        <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
+        <h2 className="text-[18px] md:text-[28px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
           Makers supporting makers with unparalled learning resources from the community, learn and
           share what you’ve built or launch with us.
         </h2>
@@ -73,10 +73,11 @@ export default function Workshop({ user, project }) {
           </a>
         </div>
       </header>
-      <p className="text-center flex items-center justify-center gap-x-5">
+      <p className="text-center flex items-center justify-center md:gap-x-5 gap-x-3 px-3">
         <svg
           width="84"
           height="78"
+          className="md:h-20 md:w-20 h-9 w-9"
           viewBox="0 0 104 98"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -85,17 +86,17 @@ export default function Workshop({ user, project }) {
             fill="#03A9F4"
           />
         </svg>
-        <span className="font-bold text-[55px]">Design your adventure...</span>
+        <span className="font-bold md:text-[55px] text-[28px]">Design your adventure...</span>
       </p>
-      <hr className="mt-20 border-t-[1.4px] border-solid border-[#C9C9C9]" />
+      <hr className="md:mt-20 mt-10 border-t-[1.4px] border-solid border-[#C9C9C9]" />
       <div className="mt-10">
         <div className="mb-20">
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">React workshops</span>
+            <span className="font-semibold text-30px md:pl-10 pl-5">React workshops</span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("React"))
@@ -124,9 +125,9 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">Python workshops</span>
+            <span className="font-semibold text-30px md:pl-10 pl-5">Python workshops</span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("Python"))
@@ -155,9 +156,9 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px pl-10">C++ workshops</span>
+            <span className="font-semibold text-30px md:pl-10 pl-5">C++ workshops</span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px]">
+          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("C++"))
