@@ -36,14 +36,14 @@ export default function Events({ events, loggedIn }) {
             height="55"
             viewBox="0 0 61 70"
             fill="none"
-            className=""
+            className="w-9 h-9 md:w-14 md:h-14"
             xmlns="http://www.w3.org/2000/svg">
             <path
               d="M45.4113 35.2497L41.9221 31.5838L25.8588 48.4607L18.8804 41.1289L15.3912 44.7948L25.8588 55.7925L45.4113 35.2497ZM53.5417 7.37514H50.25V0.458385H43.6667V7.37514H17.3333V0.458385H10.75V7.37514H7.45833C3.80458 7.37514 0.907917 10.4877 0.907917 14.2919L0.875 62.7092C0.875 64.5437 1.5686 66.303 2.80321 67.6001C4.03783 68.8972 5.71232 69.626 7.45833 69.626H53.5417C57.1625 69.626 60.125 66.5134 60.125 62.7092V14.2919C60.125 10.4877 57.1625 7.37514 53.5417 7.37514ZM53.5417 62.7092H7.45833V24.667H53.5417V62.7092Z"
               fill="#03A9F4"
             />
           </svg>
-          <span className="sm:text-[36px] lg:text-[50px]">Upcoming Events</span>
+          <span className="text-[28px] md:text-[36px] lg:text-[50px]">Upcoming Events</span>
         </nav>
       </PhotoGalleryHeader>
       <section>{events && events.map((event, key) => <EventCard key={key} {...event} />)}</section>
