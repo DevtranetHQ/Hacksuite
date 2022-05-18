@@ -1,10 +1,11 @@
-import { useEffect, FC } from "react";
+import { useEffect, forwardRef } from "react";
 import intlTelInput from "intl-tel-input";
-import "intl-tel-input/build/js/utils.js";
-import "intl-tel-input/build/css/intlTelInput.css";
 import styles from "./TelInput.module.css";
 
-const TelInput: FC<JSX.IntrinsicElements["input"]> = (props) => {
+import "intl-tel-input/build/js/utils.js";
+import "intl-tel-input/build/css/intlTelInput.css";
+
+const TelInput = forwardRef<HTMLInputElement>(function TelInpuComponent(props: JSX.IntrinsicElements["input"], ref) {
   // TODO: Validate phone number
   useEffect(() => {
     intlTelInput(document.querySelector("#phoneNumber"), { customContainer: "!block" });
@@ -31,10 +32,11 @@ const TelInput: FC<JSX.IntrinsicElements["input"]> = (props) => {
         name="phoneNumber"
         type="tel"
         placeholder="Enter number"
+        ref={ref}
         {...props}
       />
     </div>
   );
-}
+});
 
 export default TelInput;

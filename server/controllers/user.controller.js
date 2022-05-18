@@ -18,8 +18,8 @@ class UserContoller {
   }
 
   async update(req) {
-    // const result = await UserService.update(req.query.userId, req.body);
-    return new CustomResponse(200, "user updated", {});
+    const result = await UserService.update(req.query.userId, req.body);
+    return new CustomResponse(200, "user updated", result);
   }
 
   async delete(req) {

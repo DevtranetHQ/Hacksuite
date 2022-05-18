@@ -26,15 +26,16 @@ class UserService {
   }
 
   async update(userId: string, data: Partial<IUser>) {
-    console.log(userId, data);
     const oldUser = await User.findByIdAndUpdate(
       { _id: userId },
-      { $set: { isCompleted: true, ...data } }
+      { $set: { ...data, isCompleted: true } },
+      { runValidators: true }
     );
     if (!oldUser) throw new CustomError("User dosen't exist", 404);
 
     if (!oldUser.isCompleted) {
       const newUser = await User.findById(userId);
+      console.log({ oldUser, newUser });
       const newToken = await authService._getLoginToken(newUser);
       return {
         newToken,
@@ -42,7 +43,7 @@ class UserService {
       };
     }
 
-    return { user: oldUser };
+    return User.findById(userId);
   }
 
   async delete(userId: string) {

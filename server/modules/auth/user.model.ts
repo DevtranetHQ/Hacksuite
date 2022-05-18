@@ -2,7 +2,13 @@ import mongoose from "../../database";
 import bcrypt from "bcryptjs";
 import dayjs from "dayjs";
 import { config } from "../../config";
-import { countryNames } from "../../utils/countryNames";
+import {
+  countryNames,
+  describes,
+  genders,
+  levelsOfStudy,
+  skillsAndInterests
+} from "../../../enums";
 
 const { BCRYPT_SALT } = config;
 
@@ -22,7 +28,7 @@ export interface IUser {
   countryOfResidence: string;
   describe: string;
   skills: string;
-  dob: Date;
+  dob: string;
   role: string;
   isVerified: boolean;
   isCompleted: boolean;
@@ -52,14 +58,14 @@ export type IUserModel = mongoose.Model<IUser, {}, {}, IUserVirtuals>;
 
 const emailMatch: [RegExp, string] = [
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-  "{VALUE is not a valid email}"
+  "{VALUE} is not a valid email}"
 ];
 
 const urlSchema: mongoose.SchemaDefinitionProperty<string> = {
   type: String,
   trim: true,
   match: [
-    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/,
+    /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
     "{VALUE} is not a valid URL"
   ]
 };
@@ -108,31 +114,43 @@ const userSchema = new Schema<IUser, IUserModel>(
     levelOfStudy: {
       type: String,
       enum: {
-        values: ["middle school", "high school", "bachelor's", "master's", "doctoral"],
+        values: levelsOfStudy,
         message: "{VALUE} is not a valid level of study"
       }
     },
     gender: {
       type: String,
-      enum: ["Female", "Male", "Non-binary", "Other"]
+      enum: {
+        values: genders,
+        message: "{VALUE} is not a valid gender"
+      }
     },
     countryOfResidence: {
       type: String,
       enum: {
         values: countryNames,
-        message: "{VALUE is not a valid country}"
+        message: "{VALUE} is not a valid country}"
       }
     },
-    describe: {
-      type: String
-    },
-    skills: {
-      type: String
-    },
-    dob: {
-      type: Date,
-      max: Date.now()
-    },
+    describe: [
+      {
+        type: String,
+        enum: {
+          values: describes,
+          message: "{VALUE} is not a valid value for describe"
+        }
+      }
+    ],
+    skills: [
+      {
+        type: String,
+        enum: {
+          values: skillsAndInterests,
+          message: "{VALUE} is not a valid value for skills and interests"
+        }
+      }
+    ],
+    dob: String,
     role: {
       type: String,
       trim: true,

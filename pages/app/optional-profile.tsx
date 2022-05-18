@@ -15,12 +15,16 @@ import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
 import { useAuth } from "../../components/AuthContext";
+import { useRouter } from "next/router";
 
 type FormData = IUser["links"];
-interface Props { user: IUser; }
+interface Props {
+  user: IUser;
+}
 
 export default function Optional({ user }: Props) {
-  const { register, control, handleSubmit, reset } = useForm<FormData>({ defaultValues: user.links });
+  const router = useRouter();
+  const { register, handleSubmit } = useForm<FormData>({ defaultValues: user.links });
 
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
@@ -33,27 +37,23 @@ export default function Optional({ user }: Props) {
     if (!file) return cb(null);
 
     cb(file);
-  }
+  };
 
-  function onSubmit(data: FormData) {
-    const links = Object.values(data).filter(Boolean);
-    if (links.length > 3) {
-      alert("You can only add 3 links");
+  const onSubmit = async (links: FormData) => {
+    const linksCount = Object.values(links).filter(Boolean);
+    if (linksCount.length > 3) {
+      updateProfile.throwErr(new Error(`You can only add up to 3 links`));
       return;
     }
 
-    const formData = new FormData();
-    if (profilePhoto) {
-      formData.append("image", profilePhoto);
-    }
-    if (resumeFile) {
-      formData.append("resume", resumeFile);
-    }
-    if (links.length) {
-      formData.append("links", JSON.stringify(data));
-    }
+    const changed = Object.keys(links).some(key => links[key] !== user.links?.[key]);
 
-    return updateProfile.execute(user._id, formData);
+    await updateProfile.execute(
+      changed ? { links } : {},
+      { image: profilePhoto, resume: resumeFile }
+    );
+
+    router.push("/app");
   }
 
   return (
@@ -67,7 +67,16 @@ export default function Optional({ user }: Props) {
           />
         </div>
       </div>
-
+      {updateProfile.status === "error" &&
+        <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+          Failed to save profile: {updateProfile.error?.response?.data?.message || updateProfile.error?.message}
+        </p>
+      }
+      {updateProfile.status === "success" &&
+        <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+          Profile saved successful!
+        </p>
+      }
       <div className="mxs:pt-7 mxs:pb-8 rounded-[20px] bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 mx-4 xs:pl-14 xs:pr-6 xs:mx-8 lg:mx-32 xl:p-11 xl:ml-[17rem] xl:mr-60 mt-16 mb-20">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex mxs:flex-col-reverse justify-start items-center">
@@ -87,7 +96,13 @@ export default function Optional({ user }: Props) {
               <span className="mxs:ml-3 text-18px">Upload a picture</span>
             </label>
           </div>
-          <input className="hidden" id="profile-upload" onChange={handleSelectFile(setProfilePhoto)} type="file" accept="image/*" />
+          <input
+            className="hidden"
+            id="profile-upload"
+            onChange={handleSelectFile(setProfilePhoto)}
+            type="file"
+            accept="image/*"
+          />
           <p className="text-18px xs:text-30px font-semibold mt-14 mb-8">
             Social and portfolio links
           </p>
@@ -193,11 +208,21 @@ export default function Optional({ user }: Props) {
               </svg>
               <p className="text-18px font-normal dark:text-black">Drag and drop</p>
               <p className="text-18px text-[#A5A5A5] font-light">
-                {resumeFile ? <span id="file" className="text-deep-sky-blue cursor-pointer">
-                  {resumeFile.name}
-                </span> : "your file here"}
+                {resumeFile ? (
+                  <span id="file" className="text-deep-sky-blue cursor-pointer">
+                    {resumeFile.name}
+                  </span>
+                ) : (
+                  "your file here"
+                )}
 
-                <input onChange={handleSelectFile(setResumeFile)} className="hidden" type="file" id="resume" name="resume" />
+                <input
+                  onChange={handleSelectFile(setResumeFile)}
+                  className="hidden"
+                  type="file"
+                  id="resume"
+                  name="resume"
+                />
               </p>
             </label>
           </div>
@@ -231,9 +256,7 @@ export default function Optional({ user }: Props) {
 export async function getServerSideProps({ req, res }) {
   const payload = await handleAuth(req);
 
-  const user = await userService.getOne(payload.id);
-
-  const props: Props = { user };
+  const props: Props = { user: await userService.getOne(payload.id) };
 
   return { props };
 }

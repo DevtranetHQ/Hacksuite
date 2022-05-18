@@ -1,9 +1,6 @@
-// TODO: Set up for admin
 import Image from "next/image";
-import Link from "next/link";
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import CountryInput from "../../components/form/CountryInput";
 import TelInput from "../../components/form/TelInput";
 import DashNav from "../../components/dash/DashNav";
 import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
@@ -15,96 +12,47 @@ import GithubIcon from "../../components/icons/Github";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import TwitterIcon from "../../components/icons/Twitter";
 import UploadIcon from "../../components/icons/Upload";
-import Select, { components, StylesConfig } from "react-select";
+import { components, StylesConfig } from "react-select";
 import { Icon } from "@iconify/react";
 import bars from "../../public/assets/dash/bars-solid.svg";
 import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
+import { useAuth } from "../../components/AuthContext";
+import { CountrySelect, DescribeSelect, GenderSelect, LevelOfStudySelect, SkillsAndInterestSelect } from "../../components/profile/inputs";
 
-interface Props {
-  user: IUser;
-}
+interface Props { user: IUser; }
 
 type FormData = Partial<IUser & { passwordConfirmation: string }>;
 
 type SelectOption = { value: string; label: string; color?: string };
 
 export default function Settings({ user }: Props) {
+  const hookFormMethods = useForm<FormData>({ defaultValues: user });
+  const { register, handleSubmit } = hookFormMethods;
+
+  const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+
+  const { updateProfile } = useAuth();
+
   const [menu, setMenu] = useState(true);
-  const { register, control, handleSubmit, reset } = useForm<FormData>();
-  const [profilePhotoPreview, setProfilePhotoPreview] = useState<string | null>(null);
 
-  const handleBars = () => {
-    setMenu(r => !r);
-  };
+  const handleBars = () => setMenu(r => !r);
 
-  // Clear file input
-  const fileInputRef = useRef<HTMLInputElement>();
-  const resetFileInput = () => {
-    fileInputRef.current.value = "";
-  };
+  const handleSelectFile =
+    (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      const file = e.target.files?.[0];
+      if (!file) return cb(null);
 
-  // Multiple Select Functions
-  const options = [
-    { value: "Developer", label: "Developer" },
-    { value: "Founder", label: "Founder" },
-    { value: "Student", label: "Student" },
-    { value: "Designer", label: "Designer" }
-  ];
-  const options2 = [
-    { value: "TypeScripts", label: "Typescripts" },
-    { value: "Python", label: "Python" },
-    { value: "React", label: "React" },
-    { value: "Robotics", label: "Robotics" },
-    { value: "Angular", label: "Angular" }
-  ];
-  const styles: StylesConfig<SelectOption, true> = {
-    control: provided => ({
-      ...provided,
-      border: 0,
-      outline: "none",
-      boxShadow: "none"
-    }),
-    option: provided => ({
-      ...provided,
-      "&:hover": {
-        backgroundColor: "#03A9F4",
-        color: "white"
-      },
-      "padding": 3
-    }),
-    multiValueRemove: (styles, { data }) => ({
-      ...styles,
-      "color": data.color,
-      ":hover": {
-        backgroundColor: " #03A9F4",
-        color: "white"
-      }
-    })
-  };
-  const CaretDownIcon = () => {
-    return <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />;
-  };
+      cb(file);
+    };
 
-  const DropdownIndicator = props => {
-    return (
-      <components.DropdownIndicator {...props}>
-        <CaretDownIcon />
-      </components.DropdownIndicator>
-    );
-  };
-
-  async function uploadProfilePhoto(e: ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setProfilePhotoPreview(URL.createObjectURL(file));
+  async function handleSubmission(data: FormData) {
+    await updateProfile.execute(data, { image: profilePhoto, resume: resumeFile });
   }
-
-  async function handleSubmission(e: FormData) { }
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -125,13 +73,28 @@ export default function Settings({ user }: Props) {
         </div>
         <MenuMobile menu={menu} onClick={handleBars} />
 
+        {updateProfile.status === "error" && (
+          <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+            Failed to save profile:{" "}
+            {updateProfile.error?.response?.data?.message || updateProfile.error?.message}
+          </p>
+        )}
+        {updateProfile.status === "success" && (
+          <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+            Profile saved successfully!
+          </p>
+        )}
+
         <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
           Account Settings
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
-          <Avatar image={profilePhotoPreview || user.image} className="relative  w-[170px] h-[170px]"
-            border="!border-[3px]" />
+          <Avatar
+            image={profilePhoto ? URL.createObjectURL(profilePhoto) : user.image}
+            className="relative  w-[170px] h-[170px]"
+            border="!border-[3px]"
+          />
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
             <div className="button-small button-deep-sky-blue gap-x-2">
               <UploadIcon />
@@ -141,7 +104,7 @@ export default function Settings({ user }: Props) {
           <input
             className="hidden"
             id="profile-upload"
-            onChange={uploadProfilePhoto}
+            onChange={handleSelectFile(setProfilePhoto)}
             type="file"
             accept="image/*"
           />
@@ -160,226 +123,175 @@ export default function Settings({ user }: Props) {
         <form
           className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
           onSubmit={handleSubmit(handleSubmission)}>
-          <h2 className="mb-5 subheadline">Personal Information</h2>
-          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="firstName">
-                First name
-              </label>
-              <input
-                autoComplete="off"
-                className="form-input"
-                id="firstName"
-                name="firstName"
-                placeholder="Zach"
-                type="text"
-                {...register("firstName")}
-              />
-            </div>
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="lastName">
-                Last name
-              </label>
-              <input
-                autoComplete="off"
-                className="form-input"
-                id="lastName"
-                name="lastName"
-                placeholder="Latta"
-                type="text"
-                {...register("lastName")}
-              />
-            </div>
-          </section>
-          <section style={{ width: "95%" }}>
-            <label className="form-label font-normal" htmlFor="email">
-              Email address
-            </label>
-            <input
-              autoComplete="off"
-              className="form-input"
-              id="email"
-              name="email"
-              placeholder="Zach@hackclub.com"
-              type="email"
-              {...register("email")}
-            />
-          </section>
-          <section style={{ width: "95%" }}>
-            <label className="form-label font-normal" htmlFor="phoneNumber">
-              Phone number
-            </label>
-            <TelInput {...register("phoneNumber")} />
-          </section>
-          <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="form-input"
-                id="password"
-                name="password"
-                placeholder="*********"
-                type="password"
-                {...register("password")}
-              />
-              <p className="caption xs mt-1.5">
-                Leave blank if you don't want to change your password
-              </p>
-            </div>
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="passwordConfirmation">
-                Password confirmation
-              </label>
-              <input
-                autoComplete="password"
-                className="form-input"
-                id="passwordConfirmation"
-                name="passwordConfirmation"
-                placeholder="*********"
-                type="password"
-                {...register("passwordConfirmation")}
-              />
-            </div>
-          </section>
-          <section className="form-checkbox mb-10" style={{ width: "90%" }}>
-            <input id="checkbox" name="receiveEmails" type="checkbox" />
-            <label htmlFor="checkbox">Notify me about upcoming news & events</label>
-          </section>
-          <h2 className="mb-5 subheadline">Demographic Information</h2>
-          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="dob">
-                Date of birth
-              </label>
-              <input className="form-input" id="dob" name="dob" type="date" {...register("dob")} />
-            </div>
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="gender">
-                Gender
-              </label>
-              <select
-                className="mxs:mb-3 form-select rounded-lg"
-                defaultValue="Prefer not to say"
-                id="gender"
-                name="gender"
-                {...register("gender")}>
-                <option value="Prefer not to say">Prefer not to say</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="country">
-                Country of residence
-              </label>
-              <CountryInput {...register("countryOfResidence")} />
-            </div>
-          </section>
-          <h2 className="mb-5 subheadline">Work and Education</h2>
-          <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="personalDescription">
-                What describes you the best?
-              </label>
-              <Controller
-                control={control}
-                name="describe"
-                render={({ field }) => (
-                  <Select
-                    isMulti
-                    className="form-select p-0 m-0 rounded-lg"
-                    styles={styles}
-                    components={{ DropdownIndicator }}
-                    options={options}
-                    value={options.filter(({ value }) => field.value?.includes(value))}
-                    onChange={value => field.onChange(value.map(({ value }) => value))}
-                  />
-                )}
-              />
-            </div>
-            <div style={{ width: "90%" }}>
-              <label className="form-label font-normal" htmlFor="skillsAndInterests">
-                Skills and interests
-              </label>
-              <Controller
-                control={control}
-                name="skills"
-                render={({ field }) => (
-                  <Select
-                    isMulti
-                    className="form-select p-0 m-0 rounded-lg"
-                    components={{ DropdownIndicator }}
-                    styles={styles}
-                    options={options2}
-                    value={options2.filter(({ value }) => field.value?.includes(value))}
-                    onChange={value => field.onChange(value.map(({ value }) => value))}
-                  />
-                )}
-              />
-            </div>
-
-            <div style={{ width: "90%", marginTop: "1rem" }}>
-              <label className="form-label font-normal" htmlFor="levelOfStudy">
-                Level of study
-              </label>
-              <select
-                className="form-select rounded-lg"
-                defaultValue="High school"
-                id="levelOfStudy"
-                name="levelOfStudy"
-                {...register("levelOfStudy")}>
-                <option value="High school">High school</option>
-                <option value="College">College</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div style={{ width: "90%", marginTop: "1rem" }}>
-              <label className="form-label font-normal" htmlFor="resume">
-                Upload Resume/CV
-              </label>
-              <div
-                style={{ color: "#3B4FE4", height: "45%", padding: 15, margin: 0 }}
-                className="flex form-input items-center justify-between">
+          <FormProvider {...hookFormMethods}>
+            <h2 className="mb-5 subheadline">Personal Information</h2>
+            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="firstName">
+                  First name
+                </label>
                 <input
-                  className="text-18px text-blue-500 p-0"
-                  id="resume"
-                  name="resume"
-                  type="file"
-                  ref={fileInputRef}
+                  autoComplete="off"
+                  className="form-input"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Zach"
+                  type="text"
+                  {...register("firstName", { required: true })}
                 />
-                <span className="cursor-pointer">
-                  <Icon
-                    icon="iconoir:cancel"
-                    width={25}
-                    height={25}
-                    inline={true}
-                    onClick={resetFileInput}
-                  />
-                </span>
               </div>
-            </div>
-          </section>
-          <section className="text-center mt-10">
-            <ReCAPTCHA
-              className="inline-block mb-3"
-              sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
-              onChange={i => console.log(i)}
-            />
-            <button
-              className="button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
-              type="submit">
-              Save
-            </button>
-            {/* <button
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="lastName">
+                  Last name
+                </label>
+                <input
+                  autoComplete="off"
+                  className="form-input"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Latta"
+                  type="text"
+                  {...register("lastName", { required: true })}
+                />
+              </div>
+            </section>
+            <section style={{ width: "95%" }}>
+              <label className="form-label font-normal" htmlFor="email">
+                Email address
+              </label>
+              <input
+                autoComplete="off"
+                className="form-input"
+                id="email"
+                name="email"
+                type="email"
+                value={user.email}
+                disabled
+              />
+            </section>
+            <section style={{ width: "95%" }}>
+              <label className="form-label font-normal" htmlFor="phoneNumber">
+                Phone number
+              </label>
+              <TelInput {...register("phoneNumber")} />
+            </section>
+            <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  className="form-input"
+                  id="password"
+                  name="password"
+                  placeholder="*********"
+                  type="password"
+                  {...register("password")}
+                />
+                <p className="caption xs mt-1.5">
+                  Leave blank if you don't want to change your password
+                </p>
+              </div>
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="passwordConfirmation">
+                  Password confirmation
+                </label>
+                <input
+                  autoComplete="password"
+                  className="form-input"
+                  id="passwordConfirmation"
+                  name="passwordConfirmation"
+                  placeholder="*********"
+                  type="password"
+                  {...register("passwordConfirmation")}
+                />
+              </div>
+            </section>
+            <section className="form-checkbox mb-10" style={{ width: "90%" }}>
+              <input id="checkbox" name="receiveEmails" type="checkbox" />
+              <label htmlFor="checkbox">Notify me about upcoming news & events</label>
+            </section>
+            <h2 className="mb-5 subheadline">Demographic Information</h2>
+            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="dob">
+                  Date of birth
+                </label>
+                <input className="form-input" id="dob" name="dob" type="date" {...register("dob")} />
+              </div>
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="gender">
+                  Gender
+                </label>
+                <GenderSelect />
+              </div>
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="country">
+                  Country of residence
+                </label>
+                <CountrySelect />
+              </div>
+            </section>
+            <h2 className="mb-5 subheadline">Work and Education</h2>
+            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="personalDescription">
+                  What describes you the best?
+                </label>
+                <DescribeSelect />
+              </div>
+              <div style={{ width: "90%" }}>
+                <label className="form-label font-normal" htmlFor="skillsAndInterests">
+                  Skills and interests
+                </label>
+                <SkillsAndInterestSelect />
+              </div>
+
+              <div style={{ width: "90%", marginTop: "1rem" }}>
+                <label className="form-label font-normal" htmlFor="levelOfStudy">
+                  Level of study
+                </label>
+                <LevelOfStudySelect />
+              </div>
+              <div style={{ width: "90%", marginTop: "1rem" }}>
+                <label className="form-label font-normal" htmlFor="resume">
+                  Upload Resume/CV
+                </label>
+                <div
+                  style={{ color: "#3B4FE4", height: "45%", padding: 15, margin: 0 }}
+                  className="flex form-input items-center justify-between">
+                  <input
+                    className="text-18px text-blue-500 p-0"
+                    id="resume"
+                    name="resume"
+                    type="file"
+                    onChange={handleSelectFile(setResumeFile)}
+                  />
+                  <label htmlFor="resume" className="cursor-pointer">
+                    <Icon icon="iconoir:cancel" width={25} height={25} inline={true} />
+                  </label>
+                </div>
+              </div>
+            </section>
+            <section className="text-center mt-10">
+              <ReCAPTCHA
+                className="inline-block mb-3"
+                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                onChange={i => console.log(i)}
+              />
+              <button
+                className="button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
+                type="submit">
+                Save
+              </button>
+              {/* <button
               className="button-big button-fruit-salad mx-auto px-20 w-[230px] text-22px mt-3"
               type="reset"
             >
               Cancel
             </button> */}
-          </section>
+            </section>
+          </FormProvider>
         </form>
       </div>
       <div className="xs:hidden">
@@ -389,6 +301,38 @@ export default function Settings({ user }: Props) {
   );
 }
 
+const styles: StylesConfig<SelectOption, true> = {
+  control: provided => ({
+    ...provided,
+    border: 0,
+    outline: "none",
+    boxShadow: "none"
+  }),
+  option: provided => ({
+    ...provided,
+    "&:hover": {
+      backgroundColor: "#03A9F4",
+      color: "white"
+    },
+    "padding": 3
+  }),
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    "color": data.color,
+    ":hover": {
+      backgroundColor: " #03A9F4",
+      color: "white"
+    }
+  })
+};
+
+const DropdownIndicator = props => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />
+    </components.DropdownIndicator>
+  );
+};
 export async function getServerSideProps({ req, res }) {
   const payload = await handleAuth(req);
   if (!payload) {
@@ -399,9 +343,7 @@ export async function getServerSideProps({ req, res }) {
     return { props: {} };
   }
 
-  const user = await userService.getOne(payload.id);
-  console.log(user);
-  const props: Props = { user };
+  const props: Props = { user: await userService.getOne(payload.id) };
 
   return { props };
 }
