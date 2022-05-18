@@ -18,7 +18,7 @@ import Select, { components } from "react-select";
 import { Icon } from "@iconify/react";
 
 export default function CreateProject({ recaptchaSitekey, choices, unread }) {
-  const handleSubmission = () => { };
+  const handleSubmission = () => {};
 
   const [showText, setShowText] = useState(false);
   const showMessage = () => {
@@ -491,7 +491,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
-
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],
         stages: [

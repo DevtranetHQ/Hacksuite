@@ -50,7 +50,7 @@ export default function PersonalProjects({ name, projects, unread }) {
             you’ve built, launched, designed, and shared with The Dynamics Community. We’re proud of
             you!
           </p>
-          <div className="flex justify-end items-center gap-x-5 ">
+          <div className="flex md:justify-end justify-center items-center gap-x-5 ">
             <Link href="/app/create-project">
               <button className="mxs:mb-[26px] mxs:text-16px mxs:rounded button-small button-orange-peel ">
                 Add new
