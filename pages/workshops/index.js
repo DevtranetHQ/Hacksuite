@@ -61,23 +61,23 @@ export default function Workshop({ user, project }) {
           Makers supporting makers with unparalled learning resources from the community, learn and
           share what you’ve built or launch with us.
         </h2>
-        <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
+        <div className="inline-flex my-2 gap-x-3  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
           <Link href="/events">
-            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[12px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
               Attend a workshop
             </button>
           </Link>
 
-          <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+          <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[12px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
             Add your workshop
           </a>
         </div>
       </header>
-      <p className="text-center flex items-center justify-center md:gap-x-5 gap-x-3 px-3">
+      <h1 className="text-center mx-auto flex md:gap-x-5 gap-x-5 items-center md:headline font-semibold text-22px justify-center">
         <svg
           width="84"
           height="78"
-          className="md:h-20 md:w-20 h-9 w-9"
+          className="md:h-14 md:w-14 h-7 w-7"
           viewBox="0 0 104 98"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -86,15 +86,15 @@ export default function Workshop({ user, project }) {
             fill="#03A9F4"
           />
         </svg>
-        <span className="font-bold md:text-[55px] text-[28px]">Design your adventure...</span>
-      </p>
+        Design your adventure...
+      </h1>
       <hr className="md:mt-20 mt-10 border-t-[1.4px] border-solid border-[#C9C9C9]" />
       <div className="mt-10">
         <div className="mb-20">
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px md:pl-10 pl-5">React workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">React workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
@@ -125,7 +125,7 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px md:pl-10 pl-5">Python workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">Python workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
@@ -156,7 +156,7 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold text-30px md:pl-10 pl-5">C++ workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">C++ workshops</span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
