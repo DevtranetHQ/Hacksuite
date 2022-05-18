@@ -56,21 +56,21 @@ export default function Event({ loggedIn, event, isRegistered }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white min-h-screen">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[80px] md:w-[120px] py-5" />
+        <Logo className="w-[50px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            className="!mx-0 w-[27px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="!mx-0 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
             href="https://github.com/TheDynamics"
-            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
+            className="scale-[.6] lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href={`${loggedIn ? "/" : "/events"}`}>
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
+            <button className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none">
               {loggedIn ? "Go back home" : "All Events"}
-              <div className="lg:scale-[1] relative flex items-center top-[2px]">
+              <div className="scale-50 md:scale-100 lg:relative lg:top-[2px] justify-self-start">
                 <ArrowRightIcon />
               </div>
             </button>
@@ -90,15 +90,15 @@ export default function Event({ loggedIn, event, isRegistered }) {
               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
           `}</style>
-          <header className="absolute -bottom-14 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r w-1/2">
-            <h1 className="title text-deep-sky-blue">{event.name}</h1>
-            <div className="flex gap-2 items-center">
+          <header className="absolute md:-bottom-14 -bottom-24 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r lg:w-1/2 w-11/12 ">
+            <h1 className="md:title font-bold text-28px text-deep-sky-blue mb-3">{event.name}</h1>
+            <div className="flex md:gap-2 gap-2 items-center">
               <Avatar
-                className="relative w-[50px] h-[50px]"
-                border="!border-[3px]"
+                className="relative md:w-[50px] md:h-[50px] h-[40px] w-[45px]"
+                border="md:!border-[3px] !border-[4px]"
                 image={event.creator.image || avatarImage}
               />
-              <p className="caption font-bold text-[#a5a5a5]">
+              <p className="md:caption text-16px font-bold text-[#a5a5a5]">
                 Posted by {event.creator.firstName} {event.creator.lastName} |{" "}
                 <DisplayDate date={new Date(event.posted)} show="date" />
               </p>
@@ -106,15 +106,15 @@ export default function Event({ loggedIn, event, isRegistered }) {
           </header>
         </div>
       </div>
-      <section className="flex flex-col gap-y-3 items-center px-24 py-10">
-        <h1 className="flex gap-x-2 items-center headline">
+      <section className="flex flex-col gap-y-3 items-center md:px-24 px-10 py-10 mt-5">
+        <h1 className="flex md:gap-x-2 gap-x-5 items-center md:headline font-semibold text-20px">
           <CalendarIcon fill="#FF9700" width={100} height={100} />
-          <span className="pt-3">
+          <span className="md:pt-3">
             <EventTime start={event.start} end={event.end} />
           </span>
         </h1>
         <div
-          className="prose prose-lg dark:prose-invert mt-5"
+          className="prose prose-lg dark:prose-invert mt-5 "
           dangerouslySetInnerHTML={eventDescription()}
         />
 
@@ -137,7 +137,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
             {!loggedIn && (
               <>
                 <form
-                  className="bg-transparent dark:bg-transparent mt-14 w-1/2 "
+                  className="bg-transparent dark:bg-transparent mt-14 md:w-1/2 "
                   onSubmit={registerWithEmail}>
                   <div>
                     <label className="form-label font-normal" htmlFor="name">
@@ -165,7 +165,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                       type="email"
                     />
                   </div>
-                  <div className="text-center mt-10 mb-10">
+                  <div className="text-center mx-auto mt-10 mb-10">
                     <ReCAPTCHA
                       className="inline-block mb-3"
                       sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
@@ -173,7 +173,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
                     />
                     <br />
                     <button
-                      className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px mt-10 mx-auto items-center "
+                      className="lg:button-big button-medium button-deep-sky-blue flex gap-2 rounded-[4.65px] lg:text-24px text-18px mt-10 mx-auto items-center "
                       type="submit">
                       <CalendarIcon width={32} height={32} />
                       <span className="">Register for this event</span>
@@ -189,7 +189,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
             )}
             <div className="my-10">
               <button
-                className="button-big button-deep-sky-blue flex gap-2 rounded-[4.65px] text-24px items-center"
+                className="lg:button-big button-medium  button-deep-sky-blue flex gap-2 rounded-[4.65px] lg:text-24px text-18px items-center"
                 onClick={registerWithAccount}>
                 {loggedIn ? "Register now" : "The Dynamics account"}
                 <div className="lg:scale-[1] relative flex items-center top-[2px]">
