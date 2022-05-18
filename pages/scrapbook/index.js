@@ -13,7 +13,7 @@ import image3 from "../../public/assets/image3.svg";
 import Vector3 from "../../public/assets/Vector3.svg";
 import Scrapbookfile from "./Scrapbookfile";
 
-export default function Scrapbook({ loggedIn, user }) {
+export default function Scrapbook({ user }) {
   return (
     <div className="dark:bg-[#202020] dark:text-white">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">

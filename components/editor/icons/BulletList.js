@@ -1,6 +1,7 @@
-export default function BulletListIcon() {
+export default function BulletListIcon({ className }) {
   return (
     <svg
+      className={className}
       width="47.95"
       height="31.07"
       viewBox="0 0 51 31"

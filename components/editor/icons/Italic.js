@@ -1,6 +1,7 @@
-export default function ItalicIcon() {
+export default function ItalicIcon({ className }) {
   return (
     <svg
+      className={className}
       width="35.08"
       height="31"
       viewBox="0 0 36 31"
