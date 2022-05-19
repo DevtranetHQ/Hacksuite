@@ -3,6 +3,7 @@ import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import GithubIcon from "../components/icons/Github";
 import Link from "next/link";
+import LoadingButton from "../components/LoadingButton";
 import { withAuth } from "../server/middlewares/auth.middleware";
 import { projectService } from "../server/modules/projects/project.service";
 import ArrowIcon from "../components/icons/Arrow";
@@ -15,6 +16,7 @@ import TwitterIcon from "../components/icons/Twitter";
 import FacebookIcon from "../components/icons/Facebook";
 import LinkedInIcon from "../components/icons/Linkedin";
 import Share from "../components/icons/Share";
+import ArrowDown from "../components/icons/ArrowDown";
 
 // TODO: image should be gotten from the server, not hardcoded
 // import Img from "../public/assets/TEST/user_projects/img-1.jpg";
@@ -124,8 +126,102 @@ export default function ProjectDetails(props: any) {
 
                {/* Comments */}
                <div className="mt-[50px]">
-                    <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Comments</h2>
+                    <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
+                         Comments
+                    </h2>
+
+                    {/* Author name */}
+        <div className="mx-7 flex items-center justify-center ">
+          <span className="flex items-start gap-2">
+            <Avatar
+              image="/assets/TEST/img-8.jpg"
+              className="w-[60px] h-[60px] relative"
+              border="border-[3px]"
+            />
+            <div>
+              <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+              <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
+                Made this project-{data.doc.time}, {data.doc.day}
+              </span>
+              <h2 className="text-16px mb-3">Leave feadback in the comment!</h2>
+              {/* Container for all comments*/}
+              <div className="bg-[#F4F4F4] dark:bg-[#444444] py-[6px] text-center rounded-md px-5 ">
+                {/* Individual comments map all comments from server */}
+                <div className="mt-4 mb-4">
+                  <span className="flex items-start gap-2">
+                    <Avatar
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-[40px] h-[40px] relative"
+                      border="border-[3px]"
+                    />
+                    <div>
+                      <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+                      <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
+                        {data.doc.time}, {data.doc.day}
+                      </span>
+                      <span className="flex items-center gap-5 mt-2 mb-3 text-24px">
+                        {"Comment Body"}
+                      </span>
+                      <span className="flex items-center gap-5 text-15px text-body text-[#6E7180] dark:text-white">
+                        Like <HeartIcon fill="red" width={"15px"} height={"15px"} /> {3}
+                      </span>
+                    </div>
+                    <span className="ml-auto text-12px text-body text-[#6E7180] dark:text-white">
+                      Reply
+                    </span>
+                  </span>
+                  <hr className="h-[28px]" />
+                </div>
+
+                <div className="mt-4 mb-4">
+                  <span className="flex items-start gap-2">
+                    <Avatar
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-[40px] h-[40px] relative"
+                      border="border-[3px]"
+                    />
+                    <div>
+                      {/* Form to enter comment */}
+                      <form className="pt-0 pl-0 my-0" onSubmit={e => e.preventDefault()}>
+                        <div>
+                          <input
+                            className="form-input text-12px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+                            name="comment"
+                            id="comment"
+                            type="text"
+                            maxLength={80}
+                            placeholder="Write a comment"
+                            required
+                          />
+                        </div>
+
+                        <LoadingButton
+                          className="mx-0 py-0 button-small button-deep-sky-blue text-15px rounded h-8 xs:mt-8 xs:h-8 xs:py-1"
+                          type="submit"
+                          isLoading={"1" === 1}>
+                          Post comment
+                        </LoadingButton>
+                                   </form>
+                                   </div>
+                              </span>
+                              </div>
+                         </div>
+                         </div>
+                         <span className="ml-auto">
+                         <ArrowDown fill="black" width={"15px"} height={"15px"} />
+                         </span>
+                         </span>
+                    </div>
+
                </div>
+
+
+               <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px] mt-[20px]">
+                    <p className="text-[16px] lg:text-[32px] px-[40px] text-center">
+                         You’ve reached the end, why not <a href="">become a member</a> and show us all the cool
+                         things you’ve made?
+                    </p>
+               </footer>
           </div>
      )
 }

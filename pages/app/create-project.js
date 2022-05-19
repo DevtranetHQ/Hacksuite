@@ -178,19 +178,17 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
           <div className="text-right flex items-end justify-end  mt-3">
             <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
             <Link href="/app/notifications">
-              <NotificationsLink className="h-[25px]" unread={unread} />
+              <NotificationsLink className="h-[25px]" />
             </Link>
           </div>
         </header>
         <hr className=" border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section className="pt-5 px-7">
-
           <p className="text-center  mx-auto">
             Here you can share all the cool things you’re making and launching with{" "}
             <p>
               <span className="font-bold">The Dynamics Community,</span> and beyond!
             </p>
-
           </p>
           <form className="bg-transparent dark:bg-transparent pl-0" onSubmit={handleSubmission}>
             <section className="mb-5">
@@ -279,6 +277,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                     options={options}
                     formatOptionLabel={option => (
                       <div className="flex items-center ">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={option.image}
                           alt="image"
@@ -445,11 +444,11 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
               <label className="font-bold italic text-[#A5A5A5]">Max of 3 please.</label>
             </section>
             <section className="text-center mt-5">
-              {/* <ReCAPTCHA
+              <ReCAPTCHA
                 className="inline-block mb-3"
-                sitekey={recaptchaSitekey}
+                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                 onChange={i => console.log(i)}
-              /> */}
+              />
               <div className="flex items-center justify-center gap-x-14 mt-5">
                 <button
                   className="button-big   px-20 w-[230px] text-22px  button-orange-peel"
@@ -474,7 +473,7 @@ export async function getServerSideProps(context) {
   // TODO: Update with technologies from database
   return {
     props: {
-      // recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
+      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
 
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],

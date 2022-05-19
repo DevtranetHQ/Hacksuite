@@ -1,5 +1,5 @@
 import { CustomResponse } from "./../utils/customResponse";
-import EventService from "./../services/event.service";
+import EventService from "./../modules/events/event.service";
 
 class EventController {
   async create(req) {

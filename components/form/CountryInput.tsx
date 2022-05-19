@@ -1,6 +1,13 @@
-export default function CountryInput() {
+import { FC } from "react";
+
+const CountryInput: FC<JSX.IntrinsicElements["select"]> = (props) => {
   return (
-    <select className="form-select rounded-lg" id="countryOfResidence" name="countryOfResidence" required>
+    <select
+      className="form-select rounded-lg"
+      id="countryOfResidence"
+      name="countryOfResidence"
+      {...props}
+    >
       <option value="" disabled selected>
         Select country
       </option>
@@ -253,3 +260,5 @@ export default function CountryInput() {
     </select>
   );
 }
+
+export default CountryInput;

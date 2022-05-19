@@ -36,19 +36,19 @@ export default function Discord() {
         </div>
       </nav>
       <header className="bg-[#F8FBFF] container-gray-dark p-5 pt-8  text-center">
-        <div className="grid grid-cols-2 gap-x-10">
+        <div className="grid grid-cols-2 ">
           <div className="flex-col items-center justify-center mx-auto my-auto">
             <Image src={foxImage} />
-            <div className="flex items-center gap-x-10">
+            <div className="flex items-center -mt-5">
               <Image src={discordLogo} />
             </div>
           </div>
           <div>
-            <div className="flex-col w-[70%] ml-auto mr-20 ">
+            <div className="flex-col w-[55%] ml-auto mr-20 ">
               <h1 className="text-28px text-center font-bold xs:text-26px xs:mb-2">
                 JOIN OUR DISCORD
               </h1>
-              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-4 lg:pb-3 lg:px-12">
+              <form className="rounded-3xl mxs:pb-5 mxs:mx-2 lg:pt-4 lg:pb-4 lg:px-12">
                 <div>
                   <div>
                     <label
@@ -86,21 +86,21 @@ export default function Discord() {
                   </div>
 
                   <button
-                    className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-4 h-8 py-0 xs:py-3 px-6 md:px-10"
+                    className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
                     type="submit">
                     Get invite
                   </button>
-                  <div className="flex justify-between -mx-10 my-1 lg:-mx-12 xs:my-3">
+                  <div className="flex justify-between -mx-10 my-1 lg:-mx-12 xs:my-4">
                     <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                     <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
                       Already a member?
                     </div>
                     <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
                   </div>
-                  <button className="rounded-md button-medium button-deep-sky-blue mx-auto text-15px md:text-16px mt-3 h-8 py-0 xs:py-1 px-6 md:px-10 gap-x-2 w-2/4 mb-3">
+                  <button className="w-52 xs:w-52 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded  h-8  xs:h-8 xs:py-1 gap-x-2 ">
                     <svg
-                      width="21"
-                      height="21"
+                      width="15"
+                      height="15"
                       viewBox="0 0 26 26"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg">

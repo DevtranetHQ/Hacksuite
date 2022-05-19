@@ -2,8 +2,11 @@
 const nextConfig = {
   images: {
     // TODO: Remove this test domain
-    domains: ["s3-alpha-sig.figma.com"]
+    domains: ["s3-alpha-sig.figma.com", "thedynamics-uploads.s3.amazonaws.com"]
   }
 };
 
 module.exports = nextConfig;
+
+const removeImports = require('next-remove-imports')();
+module.exports = removeImports({});

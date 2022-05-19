@@ -27,10 +27,11 @@ export default function PersonalProjectCard({ name, description, image, publishe
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       `}</style>
-      <article className="container-gray-dark my-14 px-5 pt-5 pb-2 rounded-lg">
+      <article className="mxs:mx-2 mxs:mb-8 mxs:mt-0 mxs:px-3 mxs:pb-3 mxs:rounded-[22px] container-gray-dark my-14 px-5 pt-5 pb-2 rounded-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-2">
             <svg
+              className="mxs:w-[12px] mxs:h-[12px]"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -41,11 +42,11 @@ export default function PersonalProjectCard({ name, description, image, publishe
                 fill="#03A9F4"
               />
             </svg>
-            <span className="caption">{date}</span>
+            <span className="mxs:text-12px caption">{date}</span>
           </div>
           <div className="inline-flex gap-x-2">
             <svg
-              className="cursor-pointer fill-black dark:fill-white"
+              className="cursor-pointer fill-black dark:fill-white mxs:w-[12px] mxs:h-[12px]"
               width="20"
               height="20"
               viewBox="0 0 29 29"
@@ -55,7 +56,7 @@ export default function PersonalProjectCard({ name, description, image, publishe
             </svg>
             <Link href={previewRoute}>
               <svg
-                className="cursor-pointer stroke-black dark:stroke-white"
+                className="cursor-pointer stroke-black dark:stroke-white mxs:w-[12px] mxs:h-[12px]"
                 width="25"
                 height="25"
                 viewBox="0 0 37 37"
@@ -84,31 +85,33 @@ export default function PersonalProjectCard({ name, description, image, publishe
             </Link>
           </div>
         </div>
-        <div className="py-4">
-          <div className="relative w-full h-[350px]">
+        <div className="mxs:py-3 py-4">
+          <div className="mxs:h-[128px] relative w-full h-[350px]">
             <Image layout="fill" objectFit="cover" src={image} />
             {!published && (
-              <div className="absolute top-5 right-5 bg-white container-gray-dark p-3 rounded-md headline leading-none">
+              <div className="mxs:rounded-xl mxs:text-24px mxs:p-1.5 mxs:top-2 mxs:right-2 absolute top-5 right-5 bg-white container-gray-dark p-3 rounded-md headline leading-none">
                 Draft
               </div>
             )}
           </div>
-          <h1 className="heading">{name}</h1>
-          <p className="font-bold italic">{description}</p>
+          <h1 className="mxs:mt-2 mxs:text-24px heading">{name}</h1>
+          <p className="mxs:text-12px font-bold italic">{description}</p>
         </div>
         <div className="flex items-center justify-between mb-3">
           <button className="flex gap-x-1 text-18px items-center" onClick={deleteProject}>
             <TrashIcon />
-            <span className="pt-1">Delete</span>
+            <span className="mxs:text-12px pt-1">Delete</span>
           </button>
           {published ? (
             <button
-              className="button-small button-heading dark:!bg-white dark:!text-heading"
+              className="mxs:text-12px button-small button-heading dark:!bg-white dark:!text-heading"
               onClick={unpublishProject}>
               Unpublish
             </button>
           ) : (
-            <button className="button-small button-orange-peel" onClick={publishProject}>
+            <button
+              className="mxs:text-12px button-small button-orange-peel"
+              onClick={publishProject}>
               Publish
             </button>
           )}
