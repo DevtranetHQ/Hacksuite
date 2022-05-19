@@ -1,13 +1,13 @@
 import Logo from "../../../../components/Logo";
-import DarkModeToggle from "../components/DarkModeToggle";
-import GithubIcon from "../components/icons/Github";
+import DarkModeToggle from "../../../../components/DarkModeToggle";
+import GithubIcon from "../../../../components/icons/Github";
 import Link from "next/link";
-import ArrowIcon from "../components/icons/Arrow";
-import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
-import { withAuth } from "../server/middlewares/auth.middleware";
-import { projectService } from "../server/modules/projects/project.service";
-import { IProject } from "../server/modules/projects/project.model";
-import PhotoGalleryHeader from "./../components/project/Photo-galleryHeader";
+import ArrowIcon from "../../../../components/icons/Arrow";
+import ProjectGalleryProjectCard from "../../../../components/project/ProjectGalleryProjectCard";
+import { withAuth } from "../../../../server/middlewares/auth.middleware";
+import { projectService } from "../../../../server/modules/projects/project.service";
+import { IProject } from "../../../../server/modules/projects/project.model";
+import PhotoGalleryHeader from "../../../../components/project/Photo-galleryHeader";
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0): number[] => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
