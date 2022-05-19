@@ -3,12 +3,11 @@ import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import GithubIcon from "../../components/icons/Github";
 import Link from "next/link";
-// import ArrowRightIcon from "../components/icons/ArrowRight";
 import ArrowIcon from "../../components/icons/ArrowRight";
 import WorkshopProfileCard from "../../components/WorkshopProfileCard";
 
 export const TopNav = () => (
-    <div className="dark:bg-[#202020] dark:text-white">
+    <div className="dark:text-white">
         <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
             <Logo className="w-[80px] md:w-[120px] py-5" />
             <form className="bg-transparent flex items-center ml-auto m-0 justify-center mt-1 pr-2 dark:bg-transparent text-white dark:bg-white">
@@ -53,7 +52,7 @@ export const TopNav = () => (
 const FullNav = () => {
     const { pathname } = useRouter();
     return (
-        <>
+        <div className="dark:bg-[#202020] dark:text-white">
             <TopNav />
             <nav className="w-[max-content] mx-auto mt-3">
                 <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
@@ -82,7 +81,7 @@ const FullNav = () => {
                     </Link>
                 </ul>
             </nav>
-        </>
+        </div>
     );
 }
 
