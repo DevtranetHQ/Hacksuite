@@ -13,10 +13,10 @@ export function DashNavMobile({}) {
   return (
     <nav className="">
       <div className={`${styles.mobile_nav} bg-[#F8FBFF] container-gray-dark dark:text-white`}>
-        <Link href="/workshop">
+        <Link href="/workshops">
           <div
             className={
-              router.pathname === "/workshop"
+              router.pathname === "/workshops"
                 ? "text-orange-peel transition flex flex-col items-center space-y-2"
                 : "cursor-pointer hover:text-orange-peel transition flex flex-col items-center space-y-2"
             }>

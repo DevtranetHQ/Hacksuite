@@ -1,8 +1,8 @@
-export default function FacebookIcon({ fill, width, height }) {
+export default function FacebookIcon({ fill = ``, width = 47, height = 47 }) {
   return (
     <svg
-      width={width ? width : 47}
-      height={height ? height : 47}
+      width={width}
+      height={height}
       viewBox="0 0 47 47"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

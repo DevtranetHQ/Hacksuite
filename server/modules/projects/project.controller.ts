@@ -1,7 +1,7 @@
-import { IProject, ProjectId } from './project.model';
-import { projectService } from './project.service';
-import { CustomResponse } from './../../utils/customResponse';
-import { RequestWithUser } from '../../middlewares/auth.middleware';
+import { IProject, ProjectId } from "./project.model";
+import { projectService } from "./project.service";
+import { CustomResponse } from "./../../utils/customResponse";
+import { RequestWithUser } from "../../middlewares/auth.middleware";
 
 class ProjectController {
   async draftProject(req: RequestWithUser) {
@@ -13,7 +13,7 @@ class ProjectController {
 
   async publishProject(req: RequestWithUser) {
     const projectId = req.query.uniqueId as ProjectId;
-    const userId = req.$user.id;
+    const userId = req.$user.uniqueId;
     const project = await projectService.publishProject(projectId, userId);
 
     return new CustomResponse<IProject>(200, `published project`, project);
@@ -21,7 +21,7 @@ class ProjectController {
 
   async unpublishProject(req: RequestWithUser) {
     const projectId = req.query.uniqueId as ProjectId;
-    const userId = req.$user.id;
+    const userId = req.$user.uniqueId;
     const project = await projectService.unpublishProject(projectId, userId);
 
     return new CustomResponse<IProject>(200, `unpublished project`, project);

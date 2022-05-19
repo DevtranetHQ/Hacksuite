@@ -24,7 +24,7 @@ export default function ProjectGallery({ projects }: { projects: IProject[] }) {
         navText="Go back home"
         navHref="https://thedynamics.tech"
       />
-      <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center px-5 py-5 mt-20">
+      <div className="grid md:gap-10 gap-5 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center md:px-5 px-3 md:py-5 py-3  md:mt-20 mt-5">
         {projects.map((project, index) => {
           return (
             <ProjectGalleryProjectCard

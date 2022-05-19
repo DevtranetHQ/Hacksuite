@@ -18,6 +18,11 @@ export default function Notification(props: Props) {
           buttonTheme: "button-fruit-salad",
           textTheme: "text-fruit-salad"
         };
+      case "Project":
+        return {
+          buttonTheme: "button-fruit-salad",
+          textTheme: "text-fruit-salad"
+        };
       case "Event":
         return {
           buttonTheme: "button-orange-peel",

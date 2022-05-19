@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import DashNav from "../../components/dash/DashNav";
+import DashHeader from "../../components/dash/DashHeader";
+import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import TextEditor from "../../components/editor/TextEditor";
 import showdownConverter from "../../components/showdownConverter";
@@ -168,57 +170,56 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
   }
 
   return (
-    <div className="grid grid-cols-12 dark:bg-[#202020]">
-      <div className="col-span-1 mx-auto">
+    <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
+      <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav active="/personal-projects" />
       </div>
-      <div className="dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <header className="flex items-center justify-center pb-10">
-          <h1 className="mx-auto font-semibold text-42px">Projects</h1>
-          <div className="text-right flex items-end justify-end  mt-3">
-            <DarkModeToggle className="h-[30px]" darkClassName="h-[30px]" />
-            <Link href="/app/notifications">
-              <NotificationsLink className="h-[25px]" />
-            </Link>
-          </div>
-        </header>
-        <hr className=" border-t-[1.4px] border-solid border-[#C9C9C9]" />
-        <section className="pt-5 px-7">
-          <p className="text-center  mx-auto">
+      <div className="mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
+        <DashHeader />
+        <h1 className="xs:hidden mx-auto font-semibold text-36px mt-12 text-center">Projects</h1>
+        <hr className="xs:mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
+        <section className="mxs:px-5 mxs:pt-4 pt-5 px-7">
+          <p className="mxs:mb-5 mxs:text-16px text-center mx-auto">
             Here you can share all the cool things you’re making and launching with{" "}
-            <p>
+            <p className="mxs:text-16px mxs:inline">
               <span className="font-bold">The Dynamics Community,</span> and beyond!
             </p>
           </p>
-          <form className="bg-transparent dark:bg-transparent pl-0" onSubmit={handleSubmission}>
+          <form
+            className="mxs:p-0 bg-transparent dark:bg-transparent pl-0"
+            onSubmit={handleSubmission}>
             <section className="mb-5">
               <div>
-                <label className="subheadline" htmlFor="name">
+                <label
+                  className="mxs:mt-4 mxs:text-18px mxs:font-semibold subheadline"
+                  htmlFor="name">
                   Project name
                   <span className="text-[#ff0000]">*</span>
                 </label>
                 <input
                   autoComplete="off"
-                  className="form-input mb-1"
+                  className="mxs:text-16px form-input mb-1"
                   id="name"
                   placeholder="Describe your project in one or two words"
                   onChange={updateName}
                   type="text"
                   value={name}
                 />
-                <label className="font-bold italic text-[#A5A5A5]">Max 3 words</label>
+                <label className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5]">
+                  Max 3 words
+                </label>
               </div>
             </section>
-            <section className="mb-14">
-              <label className="subheadline">
+            <section className="mxs:mb-5 mb-14">
+              <label className="mxs:text-18px mxs:font-semibold subheadline">
                 Project picture
                 <span className="text-[#ff0000]">*</span>
               </label>
-              <div className="border-orange-peel border-4 mx-14 my-4 p-28  text-center rounded-lg flex-col items-center justify-center">
+              <div className="mxs:mx-0 mxs:py-16 mxs:px-0 border-orange-peel border-4 mx-14 my-4 p-28 text-center rounded-lg flex-col items-center justify-center">
                 <label
-                  className="cursor-pointer button-small button-deep-sky-blue gap-x-2 mx-auto w-fit"
+                  className="mxs:text-[11px] mxs:font-bold cursor-pointer button-small button-deep-sky-blue xs:gap-x-2 mx-auto w-fit"
                   htmlFor="picture">
-                  <span className="mr-1">
+                  <span className="mxs:scale-67 mxs:mr-1.5 mr-1">
                     <UploadIcon width={20} height={20} />
                   </span>
                   Upload a picture
@@ -229,12 +230,12 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             </section>
             <section className="mb-5">
               <div>
-                <label className="subheadline" htmlFor="name">
+                <label className="mxs:text-18px mxs:font-semibold subheadline" htmlFor="name">
                   Description
                   <span className="text-[#ff0000]">*</span>
                 </label>
                 <TextEditor onUpdate={updateDescription} />
-                <label className="font-bold italic text-[#A5A5A5]">
+                <label className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5]">
                   Tell us more about this project, a typical description talks about what it does,
                   how it works, how it was built, some challenges encountered during the process, or
                   future plans for it, 3000 characters max.
@@ -244,7 +245,9 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             <section className="mb-5">
               <div>
                 <div className="flex items-center justify-between">
-                  <h2 className="subheadline mb-5">Add Collaborators</h2>
+                  <h2 className="mxs:text-18px mxs:font-semibold subheadline mb-5">
+                    Add Collaborators
+                  </h2>
                   {showText ? <p className="text-16px  text-green-500 mr-16">Link copied!</p> : ""}
                 </div>
 
@@ -252,7 +255,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 text-black flex items-center dark:text-black"
+                      className="mxs:h-3 mxs:w-3 h-5 w-5 text-black flex items-center dark:text-black"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -270,7 +273,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                     className=" block w-full pl-10 form-input dark:bg-transparent  rounded-lg"
                   /> */}
                   <Select
-                    className="pl-7 form-input p-1 m-0 rounded-lg"
+                    className="mxs:text-14px mxs:p-0 mxs:pl-5 pl-7 form-input p-1 m-0 rounded-lg"
                     styles={styles}
                     components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
                     isMulti
@@ -281,18 +284,25 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                         <img
                           src={option.image}
                           alt="image"
-                          className="w-7 h-7 rounded-full border-2 border-orange-peel object-cover "
+                          className="mxs:w-5 mxs:h-5 w-7 h-7 rounded-full border-2 border-orange-peel object-cover "
                         />
-                        <span className="ml-2">{option.label}</span>
+                        <span className="mxs:text-[14px] ml-2">{option.label}</span>
                       </div>
                     )}
                     isClearable={false}
                   />
                   <div
-                    className="inline-flex absolute right-0 p-3 top-0 gap-x-2 items-center"
+                    className="mxs:space-x-1 inline-flex absolute right-0 p-3 top-0 xs:gap-x-2 items-center"
                     onClick={showMessage}>
-                    <span className="dark:text-black cursor-pointer">or invite via link</span>
-                    <LinkIcon fill="#FF9700" width={29.17} height={13.58} />
+                    <span className="mxs:text-[11px] dark:text-black cursor-pointer">
+                      or invite via link
+                    </span>
+                    <LinkIcon
+                      className="mxs:w-5 mxs:h-[10px]"
+                      fill="#FF9700"
+                      width={29.17}
+                      height={13.58}
+                    />
                   </div>
                 </div>
                 {/* <input
@@ -305,20 +315,20 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   type="text"
                   value={name}
                 /> */}
-                <label className="font-bold italic text-[#A5A5A5]">
+                <label className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5]">
                   Tell us the team behind this amazing project, if it’s just you leave this section
                   blank.
                 </label>
               </div>
             </section>
-            <h2 className="mb-5 subheadline">
+            <h2 className="mxs:text-18px mxs:font-semibold mb-5 subheadline">
               Technology/tools used or project domain<span className="text-[#ff0000]">*</span>
             </h2>
 
             <section className="mb-5">
               <div className="mb-4">
                 <Select
-                  className="form-select p-1 m-0 rounded-lg"
+                  className="mxs:text-[14px] form-select p-1 m-0 rounded-lg"
                   styles={styles}
                   components={{ DropdownIndicator }}
                   isMulti
@@ -353,15 +363,15 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   ))}
                 </select>
               </div> */}
-              <label className="font-bold italic text-[#A5A5A5]">
+              <label className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5]">
                 Select in order of relevance, the first four will be displayed on the project
                 preview page.
               </label>
             </section>
-            <h2 className="mb-5 subheadline">
+            <h2 className="mxs:text-18px mxs:font-semibold mb-5 subheadline">
               Project development stage<span className="text-[#ff0000]">*</span>
             </h2>
-            <section className="mb-5">
+            <section className="mxs:text-[11px] mb-5">
               <select className="form-input form-select mb-5 rounded-lg" name="stage">
                 {choices.stages.map((value, key) => (
                   <option key={key} value={value}>
@@ -369,12 +379,14 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   </option>
                 ))}
               </select>
-              <label className="font-bold italic text-[#A5A5A5] " htmlFor="choices">
+              <label
+                className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5] "
+                htmlFor="choices">
                 Tell us about the current state of this project, e.g beta, feature update,
                 completed, bug fixes, etc.
               </label>
             </section>
-            <h2 className="mb-5 subheadline">
+            <h2 className="mxs:text-18px mxs:font-semibold mb-5 subheadline">
               Project links<span className="text-[#ff0000]">*</span>
             </h2>
             <section className="mb-5">
@@ -410,7 +422,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div className="inline-flex gap-x-2 items-center">
                     <GitHubIcon width={39.17} height={38.22} />
                     <input
-                      className="default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px h-fit"
+                      className="mxs:text-12px default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px h-fit"
                       placeholder="GitHub..."
                       type="text"
                     />
@@ -418,7 +430,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div className="flex items-center gap-x-5">
                     <FigmaIcon width={22.67} height={34} />
                     <input
-                      className="default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px "
+                      className="mxs:text-12px default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px "
                       placeholder="Figma..."
                       type="text"
                     />
@@ -426,7 +438,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div className="inline-flex gap-x-2 items-center">
                     <AdobeIcon width={39} height={38.03} />
                     <input
-                      className="default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px"
+                      className="mxs:text-12px default-input bg-[#E6E6E6] border border-[#442929] focus:outline-none m-0 px-2 py-0.5 rounded text-15px"
                       placeholder="AdobeXD..."
                       type="text"
                     />
@@ -434,29 +446,31 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
                   <div className="inline-flex gap-x-2 items-center">
                     <LinkIcon fill="#FF9700" width={39.17} height={19.58} />
                     <input
-                      className="focus:outline-none"
+                      className="mxs:text-12px mxs:px-2 mxs:py-0.5 focus:outline-none"
                       placeholder="Enter other links..."
                       type="text"
                     />
                   </div>
                 </div>
               </div>
-              <label className="font-bold italic text-[#A5A5A5]">Max of 3 please.</label>
+              <label className="mxs:text-16px mxs:font-semibold font-bold italic text-[#A5A5A5]">
+                Max of 3 please.
+              </label>
             </section>
-            <section className="text-center mt-5">
+            <section className="mxs:mb-5 text-center mt-5">
               <ReCAPTCHA
-                className="inline-block mb-3"
-                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                className="mxs:scale-75 inline-block mb-3"
+                sitekey={recaptchaSitekey}
                 onChange={i => console.log(i)}
               />
-              <div className="flex items-center justify-center gap-x-14 mt-5">
+              <div className="mxs:mb-28 mxs:space-x-7 flex items-center justify-center xs:gap-x-14 mt-5">
                 <button
-                  className="button-big   px-20 w-[230px] text-22px  button-orange-peel"
+                  className="mxs:text-16px mxs:font-bold mxs:px-5 mxs:py-2 mxs:rounded button-big   px-20 xs:w-[230px] text-22px  button-orange-peel"
                   type="submit">
                   Save for later
                 </button>
                 <button
-                  className="button-big button-deep-sky-blue  px-20 w-[230px] text-22px "
+                  className="mxs:text-16px mxs:font-bold mxs:px-5 mxs:py-2 mxs:rounded button-big button-deep-sky-blue  px-20 xs:w-[230px] text-22px "
                   type="submit">
                   Publish now
                 </button>
@@ -464,6 +478,9 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             </section>
           </form>
         </section>
+      </div>
+      <div className="xs:hidden">
+        <DashNavMobile />
       </div>
     </div>
   );
@@ -474,7 +491,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
-
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],
         stages: [

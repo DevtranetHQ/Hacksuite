@@ -17,10 +17,13 @@ class UploadService {
   async upload(key: string, filename: string, file: Express.Multer.File): Promise<string> {
     const { buffer } = file;
 
+    const fileExtension = file.originalname.split(".").pop();
+    const fileName = `${filename}.${fileExtension}`;
+
     const res = await s3
       .upload({
         Bucket: aws.bucket,
-        Key: `${key}/${filename}`,
+        Key: `${key}/${fileName}`,
         Body: buffer
       })
       .promise();

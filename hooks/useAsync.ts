@@ -7,6 +7,7 @@ export interface UseAsync<Args extends Array<unknown>, Return = any, Err = Error
   value: Return | null;
   error: Err | null;
   execute: (...args: Args) => Promise<Return>;
+  throwErr(error: any): void;
 }
 
 export function useAsync<Args extends Array<unknown>, Return = any, Err = Error>(
@@ -35,5 +36,10 @@ export function useAsync<Args extends Array<unknown>, Return = any, Err = Error>
     [asyncFunction]
   );
 
-  return { execute, status, value, error };
+  const throwErr = (error: any) => {
+    setError(error);
+    setStatus("error");
+  };
+
+  return { execute, status, value, error, throwErr };
 }

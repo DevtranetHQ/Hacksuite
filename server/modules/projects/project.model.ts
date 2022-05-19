@@ -1,5 +1,5 @@
 import mongoose from "../../database";
-import User from "../auth/user.model";
+import { UserId } from "../auth/user.model";
 
 const { Schema, model, models } = mongoose;
 
@@ -8,8 +8,8 @@ export interface IProject {
   name: string;
   description: string;
   image: string;
-  creator: string;
-  collaborators: string[];
+  creator: UserId;
+  collaborators: UserId[];
   tools: string[];
   stage: string;
   links: {
@@ -49,17 +49,8 @@ const projectSchema = new Schema<IProject>(
         "{VALUE isnt a valid link}"
       ]
     },
-    creator: {
-      type: Schema.Types.ObjectId,
-      ref: User,
-      // required: [true, "creator is required"]
-    },
-    collaborators: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: User
-      }
-    ],
+    creator: String,
+    collaborators: [String],
     tools: [
       {
         type: String,
@@ -67,7 +58,7 @@ const projectSchema = new Schema<IProject>(
       }
     ],
     stage: {
-      type: String,
+      type: String
       // required: true
     },
     links: [
