@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import DarkModeToggle from "../components/DarkModeToggle";
 import Logo from "../components/Logo";
 import GithubIcon from "../components/icons/Github";
@@ -16,34 +16,11 @@ import TwitterIcon from "../components/icons/Twitter";
 import FacebookIcon from "../components/icons/Facebook";
 import LinkedInIcon from "../components/icons/Linkedin";
 import Share from "../components/icons/Share";
-import ExitIcon from "../components/icons/Upload";
+import ArrowDown from "../components/icons/ArrowDown";
 
-export default function ProjectDetails(props: any) {
-  const { data } = props;
-  return (
-    <div className="dark:bg-[#202020] dark:text-white pl-3  pr-3 ">
-      <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[80px] md:w-[120px] py-5" />
-        <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
-          <DarkModeToggle
-            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
-          />
-          <a
-            href="https://github.com/TheDynamics"
-            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
-            <GithubIcon />
-          </a>
-          <Link href="/project-gallery">
-            <button className="px-[10px] py-[6px] md:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[12px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex gap-x-1 md:gap-x-3 items-center mx-2 my-0 md:my-0 focus:outline-none">
-              Other projects
-              <div className="scale-75 md:scale-100 lg:relative lg:top-[2px]">
-                <ArrowIcon />
-              </div>
-            </button>
-          </Link>
-        </div>
-      </nav>
+// TODO: image should be gotten from the server, not hardcoded
+// import Img from "../public/assets/TEST/user_projects/img-1.jpg";
+// const Img = require("../public/assets/TEST/user_projects/img-1.jpg");
 
 export default function ProjectDetails(props: any) {
      const { data } = props;
@@ -145,6 +122,53 @@ export default function ProjectDetails(props: any) {
                          <p className="font-bold text-[23.2px]">Share it</p>
                          <span className="flex items-center gap-3"><TwitterIcon width={25} height={25} /> <FacebookIcon width={25} height={25} /> <LinkedInIcon width={25} height={25} /> <Share width={25} height={25} /></span>
                     </span>
+               </span>
+
+               {/* Comments */}
+               <div className="mt-[50px]">
+                    <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
+                         Comments
+                    </h2>
+
+                    {/* Author name */}
+        <div className="mx-7 flex items-center justify-center ">
+          <span className="flex items-start gap-2">
+            <Avatar
+              image="/assets/TEST/img-8.jpg"
+              className="w-[60px] h-[60px] relative"
+              border="border-[3px]"
+            />
+            <div>
+              <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+              <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
+                Made this project-{data.doc.time}, {data.doc.day}
+              </span>
+              <h2 className="text-16px mb-3">Leave feadback in the comment!</h2>
+              {/* Container for all comments*/}
+              <div className="bg-[#F4F4F4] dark:bg-[#444444] py-[6px] text-center rounded-md px-5 ">
+                {/* Individual comments map all comments from server */}
+                <div className="mt-4 mb-4">
+                  <span className="flex items-start gap-2">
+                    <Avatar
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-[40px] h-[40px] relative"
+                      border="border-[3px]"
+                    />
+                    <div>
+                      <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+                      <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
+                        {data.doc.time}, {data.doc.day}
+                      </span>
+                      <span className="flex items-center gap-5 mt-2 mb-3 text-24px">
+                        {"Comment Body"}
+                      </span>
+                      <span className="flex items-center gap-5 text-15px text-body text-[#6E7180] dark:text-white">
+                        Like <HeartIcon fill="red" width={"15px"} height={"15px"} /> {3}
+                      </span>
+                    </div>
+                    <span className="ml-auto text-12px text-body text-[#6E7180] dark:text-white">
+                      Reply
+                    </span>
                   </span>
                   <hr className="h-[28px]" />
                 </div>
@@ -177,57 +201,59 @@ export default function ProjectDetails(props: any) {
                           isLoading={"1" === 1}>
                           Post comment
                         </LoadingButton>
-                      </form>
+                                   </form>
+                                   </div>
+                              </span>
+                              </div>
+                         </div>
+                         </div>
+                         <span className="ml-auto">
+                         <ArrowDown fill="black" width={"15px"} height={"15px"} />
+                         </span>
+                         </span>
                     </div>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <span className="ml-auto">
-              <ExitIcon fill="black" width={"15px"} height={"15px"} />
-            </span>
-          </span>
-        </div>
-      </div>
 
-      <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px] mt-[20px]">
-        <p className="text-[16px] lg:text-[32px] px-[40px] text-center">
-          You’ve reached the end, why not <a href="">become a member</a> and show us all the cool
-          things you’ve made?
-        </p>
-      </footer>
-    </div>
-  );
+               </div>
+
+
+               <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px] mt-[20px]">
+                    <p className="text-[16px] lg:text-[32px] px-[40px] text-center">
+                         You’ve reached the end, why not <a href="">become a member</a> and show us all the cool
+                         things you’ve made?
+                    </p>
+               </footer>
+          </div>
+     )
 }
 
 export async function getServerSideProps({ req, res }) {
-  return {
-    props: {
-      data: {
-        title: "Web Scraper",
-        tag: "A chrome extension that gathers vital information at the tap of a button, easy as ABC",
-        doc: {
-          author: "Zach Latte",
-          time: "11:00 am",
-          day: "Today"
-        },
-        link: "https://github.com/webScraper",
-        likes: 3,
-        comments: 2,
-        // image: projects[0],
-        image: "/assets/TEST/user_projects/img-1.png",
-        tools: ["NextJS", "JavaScript", "HTML", "Python"],
-        description: [
-          {
-            title: "Lorem Ipsum",
-            desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
-          },
-          {
-            title: "Lorem Ipsum",
-            desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
+     return {
+          props: {
+               data: {
+                    title: "Web Scraper",
+                    tag: "A chrome extension that gathers vital information at the tap of a button, easy as ABC",
+                    doc: {
+                         author: "Zach Latte",
+                         time: "11:00 am",
+                         day: "Today",
+                    },
+                    link: "https://github.com/webScraper",
+                    likes: 3,
+                    comments: 2,
+                    // image: projects[0],
+                    image: "/assets/TEST/user_projects/img-1.png",
+                    tools: ["NextJS", "JavaScript", "HTML", "Python"],
+                    description: [
+                         {
+                              title: "Lorem Ipsum",
+                              desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
+                         },
+                         {
+                              title: "Lorem Ipsum",
+                              desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
+                         },
+                    ]
+               }
           }
-        ]
-      }
-    }
-  };
+     };
 }

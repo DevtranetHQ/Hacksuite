@@ -9,11 +9,22 @@ import UploadIcon from "../components/icons/Upload";
 import FigmaIcon from "../components/icons/Figma";
 import AdobeIcon from "../components/icons/Adobe";
 import LinkIcon from "../components/icons/Link";
+import SearchIcon from "../components/icons/Search";
 import DarkModeContext from "../components/DarkModeContext";
 import Link from "next/link";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import dynamic from "next/dynamic";
+
+const MDEditor = dynamic(
+  () => import("@uiw/react-md-editor"),
+  { ssr: false }
+);
 
 export default function CreateProject() {
   const { darkMode } = useContext(DarkModeContext);
+
+  const [desc, setDesc] = React.useState(``);
   return (
     <div className="dark:bg-[#202020] dark:text-white pl-3  pr-3 ">
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
@@ -62,7 +73,7 @@ export default function CreateProject() {
             Project Picture <span className="text-[#f54242]">*</span>
           </label>
 
-          <div className="border-2 border-orange-peel pt-10 pb-10 my-5 text-center rounded-md">
+          <div className="border-2 border-orange-peel pt-10 pb-10 my-5 flex items-center justify-center rounded-md  ">
             <label
               className="mxs:mx-10 mxs:mt-5 button-small button-deep-sky-blue cursor-pointer inline-flex gap-x-2 mt-3.5 h-14 xs:w-52"
               htmlFor="profile-upload">
@@ -80,7 +91,12 @@ export default function CreateProject() {
             Description <span className="text-[#f54242]">*</span>
           </label>
 
-          <div className="border-2 h-[200px] pt-10 pb-10 my-5 text-center rounded-md"></div>
+          <div className="border-2 h-[400px]  my-5 text-center rounded-md">
+          <MDEditor
+            value={desc}
+            onChange={setDesc}
+          />
+          </div>
           <p className="font-bold text-[12px] font-italic">
             Tell us more about this project, a typical description talks about what it does, how it
             works, how it was built, some challenges encountered during the process, or future plans
@@ -95,15 +111,22 @@ export default function CreateProject() {
             Add Collaborators <span className="text-[#f54242]">*</span>
           </label>
 
+          <div className="border-2 h-[400px] flex items-center my-1 text-center rounded-md ">
+          <SearchIcon fill="black" height={"24px"} width={"24px"}/> 
+          
           <input
-            className="form-input text-24px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
+            className="form-input border-none text-24px rounded-lg dark:bg-[#E9E9E9] xs:py-1 md:text-16px"
             name="name"
             id="name"
             type="text"
-            maxLength={80}
+            maxLength={60}
             placeholder="Describe your project in one or two words"
             required
           />
+
+          <span>Or invite via Link  <LinkIcon fill="black" height={"18px"} width="18px" /></span>
+          </div>
+        
 
           <p className="font-bold text-[12px] font-italic">
             Tell us the team behind this amazing project, if it’s just you leave this section blank.
@@ -135,7 +158,7 @@ export default function CreateProject() {
           </label>
 
           <select className="appearance-none text-18px text-body bg-white border-[#c1c1c1] border-2 block w-full px-3 py-2 rounded">
-            <option></option>
+          <option value="" disabled selected>Select a stage for this project</option>
           </select>
 
           <p className="font-bold text-[12px] font-italic">
