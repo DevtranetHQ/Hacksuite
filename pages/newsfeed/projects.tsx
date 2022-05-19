@@ -33,9 +33,9 @@ const Projects = ({ projects }: { projects: IProject[] }) => {
 
   return (
     <>
-      <section id="projects">
+      <section id="projects" className="dark:bg-[#202020] dark:text-white">
         <FullNav />
-        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center px-5 py- mt-20 mb-10">
+        <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center px-5 py- mt-20 pb-10 ">
           {projects.map((project, index) => {
             return (
               <ProjectGalleryProjectCard
