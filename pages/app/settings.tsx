@@ -251,7 +251,7 @@ export default function Settings({ user }: Props) {
                   className="resize-none form-input box-border py-[6px]"
                   maxRows={6}
                   maxLength={120}
-                  placeholder="Skills and Interests"
+                  placeholder="Coding languages, frameworks, or soft skills..."
                 />
               </div>
               <div>
@@ -267,7 +267,7 @@ export default function Settings({ user }: Props) {
                 <input
                   autoComplete="off"
                   className="form-input py-[6px]"
-                  placeholder="Write something"
+                  placeholder="Write something.."
                   type="text"
                   maxLength={50}
                 />
@@ -319,7 +319,7 @@ export default function Settings({ user }: Props) {
           </FormProvider>
         </form>
       </div>
-      <div className="mb-20 xs:hidden">
+      <div className="mxs:mb-20 xs:hidden">
         <DashNavMobile />
       </div>
     </div>
