@@ -76,8 +76,7 @@ export default function Profile({ loggedIn, user }) {
                   <div>
                     <label className="form-label">Write Something</label>
                     <textarea
-                      style={{ height: "150px", resize: "none" }}
-                      className="form-input"
+                      className="form-input h-40 resize-none"
                       placeholder="Write something..."
                     />
                   </div>
@@ -259,7 +258,7 @@ export default function Profile({ loggedIn, user }) {
             <span
               onClick={availableFor}
               className="p-1 px-2 cursor-pointer rounded-md border-2 border-deep-sky-blue">
-              {showMore ? "+5" : "Show less"}
+              {showMore ? `${user.available.length < 5 ? " " :` +${user.available.length - 5}`}`  : "Show less"}
             </span>
           </div>
         </div>
