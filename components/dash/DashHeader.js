@@ -48,7 +48,10 @@ export default function DashHeader({}) {
         </h1>
         <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
         <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-          <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
+          <DarkModeToggle
+            className="mxs:mr-1 h-[22px] xs:h-[30px]"
+            darkClassName="mxs:mr-1 mxs:mb-[2px] h-[20px] xs:h-[30px]"
+          />
           <NotificationsLink />
           <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
             <Image src={bars} alt="bars-solid" />

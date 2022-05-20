@@ -118,9 +118,9 @@ export function MenuMobile({ menu, onClick }) {
       <div
         className={`${
           router.pathname === "/app" ? "text-orange-peel" : ""
-        } cursor-pointer hover:text-orange-peel transition flex justify-between items-center px-5 py-1`}>
+        } cursor-pointer hover:text-orange-peel transition flex justify-between items-center px-5 py-1.5`}>
         <Link href="/app">
-          <div className="flex flex-grow items-center gap-2">
+          <div className="flex flex-grow items-center space-x-3">
             <svg
               className="fill-[#03A9F4]"
               width="25"
@@ -151,11 +151,11 @@ export function MenuMobile({ menu, onClick }) {
         <div
           className={`${
             pathname === "/app/settings" ? "text-orange-peel" : ""
-          } cursor-pointer hover:text-orange-peel transition flex items-center px-5 py-1 gap-2`}>
+          } cursor-pointer hover:text-orange-peel transition flex items-center px-5 py-1.5 space-x-3`}>
           <svg
             className="fill-[#03A9F4]"
-            width="25"
-            height="25"
+            width="23"
+            height="23"
             viewBox="0 0 39 41"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -165,11 +165,11 @@ export function MenuMobile({ menu, onClick }) {
         </div>
       </Link>
       <Link href="/logout">
-        <div className="cursor-pointer hover:text-orange-peel bg-deep-sky-blue transition flex items-center px-5 py-1 gap-2">
+        <div className="cursor-pointer hover:text-orange-peel bg-deep-sky-blue transition flex items-center px-5 py-1.5 text-white space-x-3">
           <svg
             className="fill-white"
-            width="25"
-            height="25"
+            width="23"
+            height="23"
             viewBox="0 0 37 41"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
