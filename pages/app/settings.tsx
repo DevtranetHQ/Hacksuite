@@ -81,20 +81,20 @@ export default function Settings({ user }: Props) {
           </p>
         )}
 
-        <h1 className="xs:hidden mx-auto font-semibold text-36px xs:text-42px mt-12">
+        <h1 className="xs:hidden mx-auto font-semibold text-[30px] xs:text-42px mt-12">
           Account Settings
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
           <Avatar
             image={profilePhoto ? URL.createObjectURL(profilePhoto) : user.image}
-            className="relative  w-[170px] h-[170px]"
+            className="relative mxs:w-[150px] mxs:h-[150px] w-[170px] h-[170px]"
             border="!border-[3px]"
           />
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
-            <div className="button-small button-deep-sky-blue gap-x-2">
+            <div className="mxs:space-x-0 button-small button-deep-sky-blue gap-x-2">
               <UploadIcon />
-              <span>Upload a picture</span>
+              <span className="text-[16px]">Upload a picture</span>
             </div>
           </label>
           <input
@@ -104,14 +104,14 @@ export default function Settings({ user }: Props) {
             type="file"
             accept="image/*"
           />
-          <div className="flex gap-5 items-center my-6">
+          <div className="mxs:space-x-5 flex gap-5 items-center my-6">
             <span className="cursor-pointer">
-              <GithubIcon width={32} />
+              <GithubIcon className="mxs:w-[32px]" width={32} />
             </span>
-            <span className="cursor-pointer">
+            <span className="mxs:w-[32px] cursor-pointer">
               <TwitterIcon width={41} height={33} />
             </span>
-            <span className="cursor-pointer">
+            <span className="mxs:w-[30px] cursor-pointer">
               <LinkedinIcon width={35} height={31} />
             </span>
           </div>
@@ -120,7 +120,7 @@ export default function Settings({ user }: Props) {
           className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
           onSubmit={handleSubmit(handleSubmission)}>
           <FormProvider {...hookFormMethods}>
-            <h2 className="mb-5 subheadline">Personal Information</h2>
+            <h2 className="mxs:text-[22px] mb-5 subheadline">Personal Information</h2>
             <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
               <div>
                 <label className="form-label font-normal" htmlFor="firstName">
@@ -203,13 +203,13 @@ export default function Settings({ user }: Props) {
                 />
               </div>
             </section>
-            <section className="form-checkbox mb-10">
+            <section className="mxs:space-x-1 form-checkbox mb-10">
               <input id="checkbox" name="receiveEmails" type="checkbox" />
               <label htmlFor="checkbox">Notify me about upcoming news & events</label>
             </section>
-            <h2 className="mb-5 subheadline">Demographic Information</h2>
+            <h2 className="mxs:text-[22px] mb-5 subheadline">Demographic Information</h2>
             <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
-              <div style={{ width: "90%" }}>
+              <div className="mxs:w-full" style={{ width: "90%" }}>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                 </label>
@@ -234,7 +234,7 @@ export default function Settings({ user }: Props) {
                 <CountrySelect />
               </div>
             </section>
-            <h2 className="mb-5 subheadline">Work and Education</h2>
+            <h2 className="mxs:text-[22px] mb-5 subheadline">Work and Education</h2>
             <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-1 mb-5">
               <div>
                 <label className="form-label font-normal" htmlFor="personalDescription">
@@ -251,7 +251,7 @@ export default function Settings({ user }: Props) {
                   className="resize-none form-input box-border py-[6px]"
                   maxRows={6}
                   maxLength={120}
-                  placeholder="Coding languages, frameworks, or soft skills..."
+                  placeholder="Skills and Interests"
                 />
               </div>
               <div>
@@ -267,7 +267,7 @@ export default function Settings({ user }: Props) {
                 <input
                   autoComplete="off"
                   className="form-input py-[6px]"
-                  placeholder="Write something..."
+                  placeholder="Write something"
                   type="text"
                   maxLength={50}
                 />
@@ -298,14 +298,14 @@ export default function Settings({ user }: Props) {
                 </div>
               </div>
             </section>
-            <section className="text-center mt-10">
+            <section className="mxs:mt-4 text-center mt-10">
               <ReCAPTCHA
                 className="inline-block mb-3"
                 sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                 onChange={i => console.log(i)}
               />
               <button
-                className="button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
+                className="mxs:mt-6 button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
                 type="submit">
                 Save
               </button>
@@ -319,7 +319,7 @@ export default function Settings({ user }: Props) {
           </FormProvider>
         </form>
       </div>
-      <div className="xs:hidden">
+      <div className="mb-20 xs:hidden">
         <DashNavMobile />
       </div>
     </div>
