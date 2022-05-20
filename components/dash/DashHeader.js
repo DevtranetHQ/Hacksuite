@@ -20,10 +20,10 @@ export default function DashHeader({}) {
     setMenu(r => !r);
   };
 
-  let title = "Home";
+  let title = "";
 
   switch (pathname) {
-    case "app/notifications":
+    case "/app/notifications":
       title = "Notifications";
       break;
     case "/app/settings":
@@ -39,8 +39,13 @@ export default function DashHeader({}) {
 
   return (
     <div className="flex flex-col">
-      <header className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
-        <h1 className="mxs:hidden mx-auto font-semibold text-42px">{title}</h1>
+      <header className="flex items-center justify-end xs:pb-10 mxs:justify-between mxs:px-5">
+        <h1
+          className={`${
+            pathname === "/app" ? "hidden" : ""
+          } mxs:hidden mx-auto font-semibold text-42px`}>
+          {title}
+        </h1>
         <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
         <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
           <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />

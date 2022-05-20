@@ -1,25 +1,16 @@
 import Image from "next/image";
 import { useState, useContext } from "react";
 import DashNav from "../../components/dash/DashNav";
-import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
+import DashHeader from "../../components/dash/DashHeader";
+import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import DarkModeContext from "../../components/DarkModeContext";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import Logo from "../../components/Logo";
-import NotificationsLink from "../../components/dash/NotificationsLink";
 import placeholder from "../../public/assets/dash/placeholder.svg";
 import robotLight from "../../public/assets/dash/robotLight.svg";
 import robotDark from "../../public/assets/dash/robotDark.svg";
-import bars from "../../public/assets/dash/bars-solid.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 
 export default function Dash({ admin, name }) {
   const { darkMode } = useContext(DarkModeContext);
-
-  const [menu, setMenu] = useState(true);
-
-  const handleBars = () => {
-    setMenu(r => !r);
-  };
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -28,22 +19,7 @@ export default function Dash({ admin, name }) {
       </div>
 
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 mx-auto content-center min-w-full min-h-screen">
-        <div className="flex flex-col">
-          <div className="mxs:flex items-center justify-between mxs:px-5">
-            <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
-            <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-              <DarkModeToggle
-                className="h-[22px] xs:h-[30px]"
-                darkClassName="h-[22px] xs:h-[30px]"
-              />
-              <NotificationsLink />
-              <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
-                <Image src={bars} alt="bars-solid" />
-              </div>
-            </div>
-          </div>
-          <MenuMobile id="bars-active" menu={menu} onClick={handleBars} />
-        </div>
+        <DashHeader />
 
         <div className="text-center">
           <h1 className="mxs:text-24px font-semibold text-42px -mt-3">

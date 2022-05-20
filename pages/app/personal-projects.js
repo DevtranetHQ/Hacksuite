@@ -2,22 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import DashNav from "../../components/dash/DashNav";
-import DarkModeToggle from "../../components/DarkModeToggle";
 import PersonalProjectCard from "../../components/project/PersonalProjectCard";
 import { withAuth } from "./../../server/middlewares/auth.middleware";
-import NotificationsLink from "../../components/dash/NotificationsLink";
-import Logo from "../../components/Logo";
-import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
-import bars from "../../public/assets/dash/bars-solid.svg";
+import DashHeader from "../../components/dash/DashHeader";
+import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import { Icon } from "@iconify/react";
 
 export default function PersonalProjects({ name, projects, unread }) {
   // NOTE: The project cards are inside /components/project/PersonalProjectCard, so the unpublish, publish, and delete functions will be there as well
-  const [menu, setMenu] = useState(true);
-
-  const handleBars = () => {
-    setMenu(r => !r);
-  };
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -25,23 +17,7 @@ export default function PersonalProjects({ name, projects, unread }) {
         <DashNav active="/personal-projects" />
       </div>
       <div className="mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <div className="flex flex-col">
-          <header className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
-            <h1 className="mxs:hidden mx-auto font-semibold text-42px">Projects</h1>
-            <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
-            <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-              <DarkModeToggle
-                className="h-[22px] xs:h-[30px]"
-                darkClassName="h-[22px] xs:h-[30px]"
-              />
-              <NotificationsLink />
-              <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
-                <Image src={bars} alt="bars-solid" />
-              </div>
-            </div>
-          </header>
-          <MenuMobile menu={menu} onClick={handleBars} />
-        </div>
+        <DashHeader />
         <h1 className="xs:hidden mx-auto font-semibold text-36px mt-12 text-center">Projects</h1>
         <hr className="xs:mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <section className="mxs:px-4 mxs:pt-4 pt-7 px-7">

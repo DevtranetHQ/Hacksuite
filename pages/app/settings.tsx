@@ -3,10 +3,8 @@ import { useState, ChangeEvent, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import TelInput from "../../components/form/TelInput";
 import DashNav from "../../components/dash/DashNav";
-import { DashNavMobile, MenuMobile } from "../../components/dash/DashNavMobile";
-import Logo from "../../components/Logo";
-import DarkModeToggle from "../../components/DarkModeToggle";
-import NotificationsLink from "../../components/dash/NotificationsLink";
+import DashHeader from "../../components/dash/DashHeader";
+import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import Avatar from "../../components/Avatar";
 import GithubIcon from "../../components/icons/Github";
 import LinkedinIcon from "../../components/icons/Linkedin";
@@ -14,7 +12,6 @@ import TwitterIcon from "../../components/icons/Twitter";
 import UploadIcon from "../../components/icons/Upload";
 import { components, StylesConfig } from "react-select";
 import { Icon } from "@iconify/react";
-import bars from "../../public/assets/dash/bars-solid.svg";
 import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
@@ -51,10 +48,6 @@ export default function Settings({ user }: Props) {
 
   const { updateProfile } = useAuth();
 
-  const [menu, setMenu] = useState(true);
-
-  const handleBars = () => setMenu(r => !r);
-
   const handleSelectFile =
     (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
@@ -74,18 +67,7 @@ export default function Settings({ user }: Props) {
         <DashNav />
       </div>
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 pl-32 pt-10 pr-10 content-center min-w-full min-h-screen">
-        <div className="flex items-center justify-center xs:pb-10 mxs:justify-between mxs:px-5">
-          <Logo className="xs:hidden w-[80px] xs:w-[120px] pt-1" />
-          <h1 className="mxs:hidden mx-auto font-semibold text-42px">Account Settings</h1>
-          <div className="text-right flex items-end justify-end xs:mt-3 mxs:mb-0.5">
-            <DarkModeToggle className="h-[22px] xs:h-[30px]" darkClassName="h-[22px] xs:h-[30px]" />
-            <NotificationsLink />
-            <div onClick={handleBars} className="xs:hidden relative w-[22px] -mb-1 ml-1">
-              <Image src={bars} alt="bars-solid" />
-            </div>
-          </div>
-        </div>
-        <MenuMobile menu={menu} onClick={handleBars} />
+        <DashHeader />
 
         {updateProfile.status === "error" && (
           <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
