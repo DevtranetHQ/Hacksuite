@@ -81,6 +81,9 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
           options={describeOpts}
           value={describeOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
+          // only allow user to choose up to 5 options then disable, please replace the describeOpts with what you are using to store the user values
+
+          // isOptionDisabled={() => describeOpts.length >= 5}
           {...props}
         />
       )}
@@ -98,6 +101,7 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
       name="levelOfStudy"
       render={({ field }) => (
         <Select<SelectOption, true>
+          placeholder="Select what you’re open to"
           isMulti
           className="form-select p-0 m-0 rounded-lg"
           styles={styles}
@@ -105,6 +109,9 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
           options={levelOfStudyOpts}
           value={levelOfStudyOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
+          // only allow user to choose up to 5 options then disable, please replace the describeOpts with what you are using to store the user values
+
+          // isOptionDisabled={() => describeOpts.length >= 20}
           {...props}
         />
       )}

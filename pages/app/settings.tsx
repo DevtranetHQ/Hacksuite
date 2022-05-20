@@ -27,6 +27,7 @@ import {
   LevelOfStudySelect,
   SkillsAndInterestSelect
 } from "../../components/profile/inputs";
+import TextareaAutosize from "react-textarea-autosize";
 
 interface Props {
   user: IUser;
@@ -139,7 +140,7 @@ export default function Settings({ user }: Props) {
           <FormProvider {...hookFormMethods}>
             <h2 className="mb-5 subheadline">Personal Information</h2>
             <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="firstName">
                   First name
                 </label>
@@ -153,7 +154,7 @@ export default function Settings({ user }: Props) {
                   {...register("firstName", { required: true })}
                 />
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="lastName">
                   Last name
                 </label>
@@ -168,7 +169,7 @@ export default function Settings({ user }: Props) {
                 />
               </div>
             </section>
-            <section style={{ width: "95%" }}>
+            <section>
               <label className="form-label font-normal" htmlFor="email">
                 Email address
               </label>
@@ -182,14 +183,14 @@ export default function Settings({ user }: Props) {
                 disabled
               />
             </section>
-            <section style={{ width: "95%" }}>
+            <section>
               <label className="form-label font-normal" htmlFor="phoneNumber">
                 Phone number
               </label>
               <TelInput {...register("phoneNumber")} />
             </section>
             <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="password">
                   Password
                 </label>
@@ -205,7 +206,7 @@ export default function Settings({ user }: Props) {
                   Leave blank if you don't want to change your password
                 </p>
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="passwordConfirmation">
                   Password confirmation
                 </label>
@@ -220,7 +221,7 @@ export default function Settings({ user }: Props) {
                 />
               </div>
             </section>
-            <section className="form-checkbox mb-10" style={{ width: "90%" }}>
+            <section className="form-checkbox mb-10">
               <input id="checkbox" name="receiveEmails" type="checkbox" />
               <label htmlFor="checkbox">Notify me about upcoming news & events</label>
             </section>
@@ -238,13 +239,13 @@ export default function Settings({ user }: Props) {
                   {...register("dob")}
                 />
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="gender">
                   Gender
                 </label>
                 <GenderSelect />
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="country">
                   Country of residence
                 </label>
@@ -252,49 +253,50 @@ export default function Settings({ user }: Props) {
               </div>
             </section>
             <h2 className="mb-5 subheadline">Work and Education</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-5 mb-5">
-              <div style={{ width: "90%" }}>
+            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-1 mb-5">
+              <div>
                 <label className="form-label font-normal" htmlFor="personalDescription">
                   What describes you the best?
                 </label>
                 <DescribeSelect />
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="skillsAndInterests">
                   Skills and interests
                 </label>
-                <SkillsAndInterestSelect />
+                {/* <SkillsAndInterestSelect /> */}
+                <TextareaAutosize
+                  className="resize-none form-input box-border py-[6px]"
+                  maxRows={6}
+                  maxLength={120}
+                  placeholder="Skills and Interests"
+                />
               </div>
-
-              <div style={{ width: "90%", marginTop: "1rem" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
                   I’m available for
                 </label>
                 <LevelOfStudySelect />
               </div>
-              <div style={{ width: "90%", marginTop: "1rem" }}>
-                <label className="form-label font-normal" htmlFor="firstName">
+              <div>
+                <label className="form-label font-normal" htmlFor="">
                   Your headline
                 </label>
                 <input
                   autoComplete="off"
                   className="form-input py-[6px]"
-                  id="firstName"
-                  name="firstName"
                   placeholder="Write something"
                   type="text"
-                  {...register("firstName", { required: true })}
+                  maxLength={50}
                 />
               </div>
-              <div style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="resume">
                   Upload Resume/CV
                 </label>
-                <div
-                  style={{ color: "#3B4FE4", height: "45%", padding: 15, margin: 0 }}
-                  className="flex form-input items-center justify-between">
+                <div className="flex form-input items-center justify-between h-[41%]">
                   <input
-                    className="text-18px text-blue-500 p-0"
+                    className="text-18px text-[#3B4FE4]"
                     id="resume"
                     name="resume"
                     type="file"
