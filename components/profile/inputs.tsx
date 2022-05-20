@@ -4,6 +4,7 @@ import Select, { components, StylesConfig } from "react-select";
 import { Icon } from "@iconify/react";
 import { IUser } from "../../server/modules/auth/user.model";
 import { skillsAndInterests, describes, levelsOfStudy, countryNames, genders } from "../../enums";
+import { availableFor } from "../../enums/availableFor";
 
 type SelectOption = { value: string; label: string; color?: string };
 
@@ -34,7 +35,7 @@ const styles: StylesConfig<SelectOption> = {
     ...styles,
     "color": data.color,
     ":hover": {
-      backgroundColor: "#D0342C",
+      backgroundColor: "#03A9F4",
       color: "white"
     }
   })
@@ -75,6 +76,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
       render={({ field }) => (
         <Select<SelectOption, true>
           isMulti
+          placeholder="Tell us who you are"
           className="form-select p-0 m-0 rounded-lg"
           styles={styles}
           components={{ DropdownIndicator }}
@@ -91,7 +93,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
   );
 };
 
-const levelOfStudyOpts = levelsOfStudy.map(level => ({ value: level, label: level }));
+const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 export const LevelOfStudySelect: FC<{ className?: string }> = props => {
   const { control } = useFormContext<Partial<IUser>>();
 
@@ -106,8 +108,8 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
           className="form-select p-0 m-0 rounded-lg"
           styles={styles}
           components={{ DropdownIndicator }}
-          options={levelOfStudyOpts}
-          value={levelOfStudyOpts.filter(({ value }) => field.value?.includes(value))}
+          options={availableForOpts}
+          value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
           // only allow user to choose up to 5 options then disable, please replace the describeOpts with what you are using to store the user values
 
