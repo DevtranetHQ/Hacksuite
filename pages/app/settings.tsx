@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import TelInput from "../../components/form/TelInput";
 import DashNav from "../../components/dash/DashNav";
@@ -20,15 +20,28 @@ import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
 import { useForm, FormProvider } from "react-hook-form";
 import { useAuth } from "../../components/AuthContext";
-import { CountrySelect, DescribeSelect, GenderSelect, LevelOfStudySelect, SkillsAndInterestSelect } from "../../components/profile/inputs";
+import {
+  CountrySelect,
+  DescribeSelect,
+  GenderSelect,
+  LevelOfStudySelect,
+  SkillsAndInterestSelect
+} from "../../components/profile/inputs";
 
-interface Props { user: IUser; }
+interface Props {
+  user: IUser;
+}
 
 type FormData = Partial<IUser & { passwordConfirmation: string }>;
 
 type SelectOption = { value: string; label: string; color?: string };
 
 export default function Settings({ user }: Props) {
+  // Clear file input
+  const fileInputRef = useRef<HTMLInputElement>();
+  const resetFileInput = () => {
+    fileInputRef.current.value = "";
+  };
   const hookFormMethods = useForm<FormData>({ defaultValues: user });
   const { register, handleSubmit } = hookFormMethods;
 
@@ -217,7 +230,13 @@ export default function Settings({ user }: Props) {
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                 </label>
-                <input className="form-input" id="dob" name="dob" type="date" {...register("dob")} />
+                <input
+                  className="form-input"
+                  id="dob"
+                  name="dob"
+                  type="date"
+                  {...register("dob")}
+                />
               </div>
               <div style={{ width: "90%" }}>
                 <label className="form-label font-normal" htmlFor="gender">
@@ -249,11 +268,25 @@ export default function Settings({ user }: Props) {
 
               <div style={{ width: "90%", marginTop: "1rem" }}>
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
-                  Level of study
+                  I’m available for
                 </label>
                 <LevelOfStudySelect />
               </div>
               <div style={{ width: "90%", marginTop: "1rem" }}>
+                <label className="form-label font-normal" htmlFor="firstName">
+                  Your headline
+                </label>
+                <input
+                  autoComplete="off"
+                  className="form-input py-[6px]"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="Write something"
+                  type="text"
+                  {...register("firstName", { required: true })}
+                />
+              </div>
+              <div style={{ width: "90%" }}>
                 <label className="form-label font-normal" htmlFor="resume">
                   Upload Resume/CV
                 </label>
@@ -266,10 +299,18 @@ export default function Settings({ user }: Props) {
                     name="resume"
                     type="file"
                     onChange={handleSelectFile(setResumeFile)}
+                    ref={fileInputRef}
                   />
-                  <label htmlFor="resume" className="cursor-pointer">
-                    <Icon icon="iconoir:cancel" width={25} height={25} inline={true} />
-                  </label>
+                  <span className="cursor-pointer">
+                    <Icon
+                      icon="iconoir:cancel"
+                      color="black"
+                      width={25}
+                      height={25}
+                      inline={true}
+                      onClick={resetFileInput}
+                    />
+                  </span>
                 </div>
               </div>
             </section>
