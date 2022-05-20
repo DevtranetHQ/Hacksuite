@@ -31,12 +31,12 @@ export default function EventCard(event) {
             {description.substring(0, 200)}...
             <Link href={route}>
               <a className="mx-1 underline">
-                <span className="font-semibold italic">Read more</span>
+                <span className="font-regular italic">Read more</span>
               </a>
             </Link>
           </p>
           <p className="font-bold caption text-[#a5a5a5]">
-            Posted by {creator.firstName} {creator.lastName} |{" "}
+            Posted by {creator.firstName} {creator.lastName} I {" "}
             <DisplayDate date={new Date(posted)} show="date" />
           </p>
         </section>
