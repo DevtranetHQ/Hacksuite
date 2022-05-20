@@ -1,1 +1,1 @@
-export const describes = [`Developer`, `Founder`, `Student`, `Designer`];
+export const describes = [`Developer`, `Founder`, `Student`, `Designer`, `Angel Investor`, `Developer Evangelist`];
