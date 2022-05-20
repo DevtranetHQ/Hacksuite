@@ -83,9 +83,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
           options={describeOpts}
           value={describeOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
-          // only allow user to choose up to 5 options then disable, please replace the describeOpts with what you are using to store the user values
-
-          // isOptionDisabled={() => describeOpts.length >= 5}
+          isOptionDisabled={()=>field.value.length > 4 ? true : false}
           {...props}
         />
       )}
@@ -99,6 +97,7 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
 
   return (
     <Controller
+     rules={{max : 5, maxLength: 5}}
       control={control}
       name="levelOfStudy"
       render={({ field }) => (
@@ -110,10 +109,8 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
           components={{ DropdownIndicator }}
           options={availableForOpts}
           value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
-          onChange={value => field.onChange(value.map(({ value }) => value))}
-          // only allow user to choose up to 5 options then disable, please replace the describeOpts with what you are using to store the user values
-
-          // isOptionDisabled={() => describeOpts.length >= 20}
+          onChange={value => field.onChange(value.map(({ value }) => value))} 
+          isOptionDisabled={()=>field.value.length > 4 ? true : false}
           {...props}
         />
       )}
