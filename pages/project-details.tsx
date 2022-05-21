@@ -17,13 +17,12 @@ import FacebookIcon from "../components/icons/Facebook";
 import LinkedInIcon from "../components/icons/Linkedin";
 import Share from "../components/icons/Share";
 import ArrowDown from "../components/icons/ArrowDown";
+import { useRouter } from 'next/router'
 
-// TODO: image should be gotten from the server, not hardcoded
-// import Img from "../public/assets/TEST/user_projects/img-1.jpg";
-// const Img = require("../public/assets/TEST/user_projects/img-1.jpg");
 
 export default function ProjectDetails(props: any) {
-     const { data } = props;
+     const { uniqueId, name, description, image, creator, collaborators, tools, stage, links, publishedAt, timestamps } = props.project;
+     
      return (
           <div className="dark:bg-[#202020] dark:text-white pl-3  pr-3 ">
                <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
@@ -48,14 +47,14 @@ export default function ProjectDetails(props: any) {
                </nav>
 
                <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center">
-                    <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">{data.title}</h1>
-                    <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">{data.tag}</h2>
+                    <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">{name}</h1>
+                    <h2 className="text-[16px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">{"A chrome extension that gathers vital information at the tap of a button, easy as ABC"}</h2>
                     <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
                          <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
-                              {data.likes} Likes <HeartIcon fill="white" width={"30px"} height={"30px"} />
+                              {3} Likes <HeartIcon fill="white" width={"30px"} height={"30px"} />
                          </button>
                          <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[16px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
-                              {data.comments} Comments <CommentIcon fill="white" width={"30px"} height={"30px"} />
+                              {2} Comments <CommentIcon fill="white" width={"30px"} height={"30px"} />
                          </a>
                     </div>
                </header>
@@ -65,29 +64,25 @@ export default function ProjectDetails(props: any) {
 
                <div className="flex my-2 gap-x-2  lg:gap-x-[36px] mt-[10px] lg:mt-[10px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={data.image} alt="" width="100%" height="200px" className="object-cover mr-auto" />
+                    <img src={image} alt="" width="100%" height="200px" className="object-cover mr-auto" />
                     <div>
                          <p className="font-bold text-[23.2px]">Made by</p>
-                         <span className="flex items-center gap-2"> <Avatar image="/assets/TEST/img-8.jpg" className="w-[40px] h-[40px] relative " border="border-[3px]" /> <span>{data.doc.author}</span> <FollowerIcon /></span>
+                         <span className="flex items-center gap-2"> <Avatar image="/assets/TEST/img-8.jpg" className="w-[40px] h-[40px] relative " border="border-[3px]" /> <span>{creator}</span> <FollowerIcon /></span>
 
                          <p className="mt-[20px]">
-                              <span className="flex items-center gap-2"> <TimeIcon /> <span>{data.doc.time}, {data.doc.day}</span></span>
+                              <span className="flex items-center gap-2"> <TimeIcon /> <span>{publishedAt}</span></span>
                          </p>
                     </div>
                </div>
 
                {/* Description of projects */}
-               {data.description &&
-                    data.description.map((val: any, i: number) => {
-                         return (
-                              <div key={i}>
-                                   <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">{val.title}</h2>
-                                   <p>{val.desc}</p>
-                              </div>
-                         )
+               
+               <div>
+                    <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">{name}</h2>
+                    <p>{description}</p>
+               </div>
 
-                    })
-               }
+               
 
 
                {/* Technologies project made with */}
@@ -95,8 +90,8 @@ export default function ProjectDetails(props: any) {
                     <h2 className="text-[16px] font-bold lg:lead mb-1 w-full mt-[6px] md:mt-[36px] md:mb-[6px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">Made with</h2>
                     <span className="flex items-center gap-5">
 
-                         {data.tools &&
-                              data.tools.map((tool, index) => {
+                         {tools &&
+                              tools.map((tool, index) => {
                                    let color: string;
                                    if (index === 0) color = "bg-blue-600";
                                    if (index === 1) color = "bg-orange-400";
@@ -113,9 +108,10 @@ export default function ProjectDetails(props: any) {
 
                {/* Vieew Github and share */}
                <span className="mt-[20px] flex items-end gap-5">
+
                     <span>
                          <p className="font-bold text-[23.2px]">Check it out</p>
-                         <span className="flex items-center gap-1"><GithubIcon width={25} height={25} /> <a href={data.link}>On Github</a></span>
+                         <span className="flex items-center gap-1"><GithubIcon width={25} height={25} /> <a href={links[0] || "" }>On Github</a></span>
                     </span>
 
                     <span className="ml-auto">
@@ -139,9 +135,9 @@ export default function ProjectDetails(props: any) {
               border="border-[3px]"
             />
             <div>
-              <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+              <span className="font-bold text-24px">{creator}</span>{" "}
               <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
-                Made this project-{data.doc.time}, {data.doc.day}
+                Made this project-{publishedAt}
               </span>
               <h2 className="text-16px mb-3">Leave feadback in the comment!</h2>
               {/* Container for all comments*/}
@@ -155,9 +151,9 @@ export default function ProjectDetails(props: any) {
                       border="border-[3px]"
                     />
                     <div>
-                      <span className="font-bold text-24px">{data.doc.author}</span>{" "}
+                      <span className="font-bold text-24px">{creator}</span>{" "}
                       <span className="text-16px text-body text-[#4d4d4d] dark:text-white">
-                        {data.doc.time}, {data.doc.day}
+                        {publishedAt}
                       </span>
                       <span className="flex items-center gap-5 mt-2 mb-3 text-24px">
                         {"Comment Body"}
@@ -226,34 +222,43 @@ export default function ProjectDetails(props: any) {
      )
 }
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req, res , query}) {
+     const user = await withAuth(req => req.$user)(req, res);
+
+     const project = await projectService.getProject(query.id);
+     console.log(project);
+
      return {
           props: {
-               data: {
-                    title: "Web Scraper",
-                    tag: "A chrome extension that gathers vital information at the tap of a button, easy as ABC",
-                    doc: {
-                         author: "Zach Latte",
-                         time: "11:00 am",
-                         day: "Today",
-                    },
-                    link: "https://github.com/webScraper",
-                    likes: 3,
-                    comments: 2,
-                    // image: projects[0],
-                    image: "/assets/TEST/user_projects/img-1.png",
-                    tools: ["NextJS", "JavaScript", "HTML", "Python"],
-                    description: [
-                         {
-                              title: "Lorem Ipsum",
-                              desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
-                         },
-                         {
-                              title: "Lorem Ipsum",
-                              desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
-                         },
-                    ]
-               }
+               project: JSON.parse(JSON.stringify(project))
           }
      };
 }
+
+// data: {
+//      title: "Web Scraper",
+//      tag: "A chrome extension that gathers vital information at the tap of a button, easy as ABC",
+//      doc: {
+//           author: "Zach Latte",
+//           time: "11:00 am",
+//           day: "Today",
+//      },
+//      link: "https://github.com/webScraper",
+//      likes: 3,
+//      comments: 2,
+//      // image: projects[0],
+//      image: "/assets/TEST/user_projects/img-1.png",
+//      tools: ["NextJS", "JavaScript", "HTML", "Python"],
+//      description: [
+//           {
+//                title: "Lorem Ipsum",
+//                desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
+//           },
+//           {
+//                title: "Lorem Ipsum",
+//                desc: "LoremLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiaIpsum"
+//           },
+//      ]
+// }
+
+

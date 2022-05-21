@@ -9,6 +9,7 @@ import FigmaIcon from "../icons/Figma";
 import AdobeIcon from "../icons/Adobe";
 import { IProject } from "../../server/modules/projects/project.model";
 import DarkModeContext from "../DarkModeContext";
+import Link from 'next/link';
 
 export const bubbleTrimmer = (bubbles, start = 0, end = 0): number[] => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
@@ -43,6 +44,7 @@ export default function ProjectGalleryProjectCard({
                   />
                 );
               })}
+            
             <div>
               {trimmed.length === 1 ? (
                 <p className="ml-4 font-semibold text-[23.2px]">{name}</p>
@@ -53,7 +55,7 @@ export default function ProjectGalleryProjectCard({
               )}
               <p className="ml-4 caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]">
                 <TimeIcon width={10} height={10} /> <span>{publishedAt}</span>
-              </p>
+              </p> 
             </div>
           </div>
           <div className="flex gap-[10px]">
@@ -104,7 +106,9 @@ export default function ProjectGalleryProjectCard({
 
       {/* ====== #TEXT SECTION */}
       <div className="w-full mt-[5px]">
+      <Link href={`/project-details?id=${uniqueId}`}>
         <h4 className=" text-[20.3px] font-semibold">{name}</h4>
+      </Link>
         <p className="text-[13.5px] mt-[10px]">{description}</p>
       </div>
 
