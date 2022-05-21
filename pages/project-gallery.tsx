@@ -31,6 +31,7 @@ export default function ProjectGallery({ projects }: { projects: IProject[] }) {
               key={index}
               project={project}
               className="w-full h-[580px] flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3"
+              onClick={() => alert(project.uniqueId)}
             />
           );
         })}
