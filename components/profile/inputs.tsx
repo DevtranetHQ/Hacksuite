@@ -2,9 +2,9 @@ import { FC, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import Select, { components, StylesConfig } from "react-select";
 import { Icon } from "@iconify/react";
-import { IUser } from "../../server/modules/auth/user.model";
-import { skillsAndInterests, describes, levelsOfStudy, countryNames, genders } from "../../enums";
+import { skillsAndInterests, describes, countryNames, genders } from "../../enums";
 import { availableFor } from "../../enums/availableFor";
+import { IProfile } from "../../server/modules/social/profile.model";
 
 type SelectOption = { value: string; label: string; color?: string };
 
@@ -43,7 +43,7 @@ const styles: StylesConfig<SelectOption> = {
 
 const skillsAndInterestsOpts = skillsAndInterests.map(skill => ({ value: skill, label: skill }));
 export const SkillsAndInterestSelect: FC<{ className?: string }> = props => {
-  const { control } = useFormContext<Partial<IUser>>();
+  const { control } = useFormContext<Partial<IProfile>>();
 
   return (
     <Controller
@@ -67,7 +67,7 @@ export const SkillsAndInterestSelect: FC<{ className?: string }> = props => {
 
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 export const DescribeSelect: FC<{ className?: string }> = props => {
-  const { control } = useFormContext<Partial<IUser>>();
+  const { control } = useFormContext<Partial<IProfile>>();
 
   return (
     <Controller
@@ -83,7 +83,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
           options={describeOpts}
           value={describeOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
-          isOptionDisabled={()=>field.value.length > 4 ? true : false}
+          isOptionDisabled={() => field.value?.length > 4 ? true : false}
           {...props}
         />
       )}
@@ -91,50 +91,28 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
   );
 };
 
-const ValueContainer = ({ children, ...props }) => {
-  let [values, input] = children;
-
-  if (Array.isArray(values)) {
-    const plural = values.length === 1 ? "" : "s";
-    values = `${values.length} item${plural} selected`;
-  }
-
-  return (
-    <components.ValueContainer {...props}>
-      {values}
-      {input}
-    </components.ValueContainer>
-  );
-};
-
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
-export const LevelOfStudySelect: FC<{ className?: string }> = props => {
-  const { control } = useFormContext<Partial<IUser>>();
+export const AvailableForSelect: FC<{ className?: string }> = props => {
+  const { control } = useFormContext<Partial<IProfile>>();
 
   return (
     <Controller
-     rules={{max : 5, maxLength: 5}}
+      rules={{ max: 5, maxLength: 5 }}
       control={control}
-      name="levelOfStudy"
+      name="availableFor"
       render={({ field }) => (
-        <Select
+        <Select<SelectOption, true>
+          placeholder="Select what you’re open to"
           isMulti
-        className="text-[18px] mt-[1px] p-0 m-0"
-        placeholder="Select what you're open to"
-        classNamePrefix="react-select"
-        components={{ ValueContainer }}
-        options={availableForOpts}
-        hideSelectedOptions={false}
-        isClearable={true}
-        closeMenuOnSelect={false}
-        isSearchable={true}
-
+          className="form-select p-0 m-0 rounded-lg"
+          styles={styles}
+          components={{ DropdownIndicator }}
+          options={availableForOpts}
           value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
-          onChange={value => field.onChange(value.map(({ value }) => value))} 
-          isOptionDisabled={()=>field.value.length === 20 ? true : false}
+          onChange={value => field.onChange(value.map(({ value }) => value))}
+          isOptionDisabled={() => field.value?.length > 4 ? true : false}
           {...props}
         />
-        
       )}
     />
   );
@@ -142,7 +120,7 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
 
 const countryOpts = countryNames.map(level => ({ value: level, label: level }));
 export const CountrySelect: FC<{ className?: string }> = props => {
-  const { control } = useFormContext<Partial<IUser>>();
+  const { control } = useFormContext<Partial<IProfile>>();
 
   return (
     <Controller
@@ -165,7 +143,7 @@ export const CountrySelect: FC<{ className?: string }> = props => {
 
 const genderOpts = genders.map(level => ({ value: level, label: level }));
 export const GenderSelect: FC<{ className?: string }> = props => {
-  const { control } = useFormContext<Partial<IUser>>();
+  const { control } = useFormContext<Partial<IProfile>>();
 
   return (
     <Controller

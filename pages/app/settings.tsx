@@ -21,9 +21,9 @@ import {
   CountrySelect,
   DescribeSelect,
   GenderSelect,
-  LevelOfStudySelect,
   SkillsAndInterestSelect
 } from "../../components/profile/inputs";
+import { LevelOfStudySelect } from "../../components/profile/LevelOfStudy";
 import TextareaAutosize from "react-textarea-autosize";
 
 interface Props {
