@@ -91,6 +91,22 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
   );
 };
 
+const ValueContainer = ({ children, ...props }) => {
+  let [values, input] = children;
+
+  if (Array.isArray(values)) {
+    const plural = values.length === 1 ? "" : "s";
+    values = `${values.length} item${plural} selected`;
+  }
+
+  return (
+    <components.ValueContainer {...props}>
+      {values}
+      {input}
+    </components.ValueContainer>
+  );
+};
+
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 export const LevelOfStudySelect: FC<{ className?: string }> = props => {
   const { control } = useFormContext<Partial<IUser>>();
@@ -100,19 +116,50 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
      rules={{max : 5, maxLength: 5}}
       control={control}
       name="levelOfStudy"
-      render={({ field }) => (
-        <Select<SelectOption, true>
-          placeholder="Select what you’re open to"
+      render={({ field }) => (<>
+        <Select
           isMulti
-          className="form-select p-0 m-0 rounded-lg"
-          styles={styles}
-          components={{ DropdownIndicator }}
-          options={availableForOpts}
+        className="text-[18px] mt-[1px] p-0 m-0"
+        placeholder="Select what you're open to"
+        classNamePrefix="react-select"
+        components={{ ValueContainer }}
+        options={availableForOpts}
+        hideSelectedOptions={false}
+        isClearable={true}
+        closeMenuOnSelect={false}
+        isSearchable={true}
+
           value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))} 
-          isOptionDisabled={()=>field.value.length > 4 ? true : false}
+          isOptionDisabled={()=>field.value.length === 20 ? true : false}
           {...props}
         />
+        <style jsx global>{`
+        .react-select__placeholder {
+          color: #a5a5a5;
+        }
+
+        .react-select__control {
+          border: 2px solid #c9c9c9;
+          border-radius: 8px;
+        }
+
+        .react-select__indicator-separator {
+          display: none;
+        }
+
+        .react-select__dropdown-indicator {
+          background-image: url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4019 21.5542L0.267673 0.508415L24.5361 0.508415L12.4019 21.5542Z' fill='%238A8A8A'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100%;
+          margin-right: 12px;
+        }
+
+        .react-select__dropdown-indicator > svg {
+          display: none;
+        }
+      `}</style></>
       )}
     />
   );
