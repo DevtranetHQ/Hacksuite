@@ -116,7 +116,7 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
      rules={{max : 5, maxLength: 5}}
       control={control}
       name="levelOfStudy"
-      render={({ field }) => (<>
+      render={({ field }) => (
         <Select
           isMulti
         className="text-[18px] mt-[1px] p-0 m-0"
@@ -134,32 +134,7 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
           isOptionDisabled={()=>field.value.length === 20 ? true : false}
           {...props}
         />
-        <style jsx global>{`
-        .react-select__placeholder {
-          color: #a5a5a5;
-        }
-
-        .react-select__control {
-          border: 2px solid #c9c9c9;
-          border-radius: 8px;
-        }
-
-        .react-select__indicator-separator {
-          display: none;
-        }
-
-        .react-select__dropdown-indicator {
-          background-image: url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4019 21.5542L0.267673 0.508415L24.5361 0.508415L12.4019 21.5542Z' fill='%238A8A8A'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100%;
-          margin-right: 12px;
-        }
-
-        .react-select__dropdown-indicator > svg {
-          display: none;
-        }
-      `}</style></>
+        
       )}
     />
   );
