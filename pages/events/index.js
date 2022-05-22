@@ -77,7 +77,10 @@ export async function getServerSideProps({ req, res }) {
   if (user) {
     const eventsWithRegistration = await Promise.all(
       events.map(async event => {
-        const isRegistered = await registrationService.checkRegistration(user.id, event.uniqueId);
+        const isRegistered = await registrationService.checkRegistration(
+          user.uniqueId,
+          event.uniqueId
+        );
         return { ...event, isRegistered };
       })
     );

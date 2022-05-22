@@ -22,19 +22,11 @@ function serviceWorker(self) {
     const clickedNotification = event.notification;
     clickedNotification.close();
     console.log(`notification clicked`, event);
-    event.waitUntil(
-      self.clients.matchAll({ type: `window` }).then(clientList => {
-        for (let i = 0; i < clientList.length; i++) {
-          const client = clientList[i];
-          if (client.url === `/` && `focus` in client) {
-            return client.focus();
-          }
-        }
-        if (self.clients.openWindow) {
-          return self.clients.openWindow(`/app/notifications`);
-        }
-      })
-    );
+
+    if (self.clients.openWindow) {
+      const url = clickedNotification.data.link || `/app/notifications`;
+      return self.clients.openWindow(url);
+    }
   });
 
   /**
@@ -44,7 +36,10 @@ function serviceWorker(self) {
    */
   const showLocalNotification = (body, swRegistration) => {
     const notification = JSON.parse(body);
-    return swRegistration.showNotification(notification.title, { body: notification.message });
+    return swRegistration.showNotification(notification.title, {
+      body: notification.message,
+      data: notification
+    });
   };
 
   const refreshUnreadCount = () => {

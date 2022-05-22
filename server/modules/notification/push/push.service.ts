@@ -1,6 +1,8 @@
 import debug from "debug";
-import { INotification } from "../notification.model";
+import { Converter as MdToHtml } from "showdown";
+import { convert as HtmlToText } from "html-to-text";
 import webPush, { PushSubscription, WebPushError } from "web-push";
+import { INotification } from "../notification.model";
 import { config } from "../../../config";
 import { ISubscription, SubscriptionModel } from "./subscription.model";
 import { UserId } from "../../auth/user.model";
@@ -12,6 +14,14 @@ webPush.setVapidDetails("https://thedynamics.tech", vapid.publicKey, vapid.priva
 const logger = debug(`app:push`);
 
 class PushService {
+  private stringifyNotification(notification: INotification): string {
+    const { message } = notification;
+    const html = new MdToHtml().makeHtml(message);
+    const text = HtmlToText(html, { ignoreHref: true });
+    notification.message = text;
+    return JSON.stringify(notification);
+  }
+
   async sendPushNotification(notification: INotification) {
     const userId = notification.for;
 
@@ -23,7 +33,10 @@ class PushService {
     return Promise.all(
       subscriptions.map(async subscription => {
         try {
-          await webPush.sendNotification(subscription.subscription, JSON.stringify(notification));
+          await webPush.sendNotification(
+            subscription.subscription,
+            this.stringifyNotification(notification)
+          );
           logger(`Notification sent to ${userId} ${subscription.subscription.endpoint}`);
         } catch (error) {
           logger(`Notification failed to send to ${userId} ${subscription.subscription.endpoint}`);
