@@ -17,7 +17,7 @@ import NotificationsLink from "../../components/dash/NotificationsLink";
 import Select, { components } from "react-select";
 import { Icon } from "@iconify/react";
 
-export default function CreateProject({ recaptchaSitekey, choices, unread }) {
+export default function CreateProject({ choices, unread }) {
   const handleSubmission = () => {};
 
   const [showText, setShowText] = useState(false);
@@ -460,7 +460,7 @@ export default function CreateProject({ recaptchaSitekey, choices, unread }) {
             <section className="mxs:mb-5 text-center mt-5">
               <ReCAPTCHA
                 className="mxs:scale-75 inline-block mb-3"
-                sitekey={recaptchaSitekey}
+                sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                 onChange={i => console.log(i)}
               />
               <div className="mxs:mb-28 mxs:space-x-7 flex items-center justify-center xs:gap-x-14 mt-5">
@@ -490,7 +490,6 @@ export async function getServerSideProps(context) {
   // TODO: Update with technologies from database
   return {
     props: {
-      recaptchaSitekey: process.env.RECAPTCHA_SITEKEY,
       choices: {
         technologies: ["TypeScript", "Python", "Robotics"],
         stages: [
