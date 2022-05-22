@@ -9,8 +9,6 @@ export interface IPayload {
   id: string;
   uniqueId: UserId;
   role: string;
-  firstName: string;
-  lastName: string;
   isCompleted: boolean;
 }
 

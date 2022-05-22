@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState, ChangeEvent, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import TelInput from "../../components/form/TelInput";
@@ -10,43 +9,43 @@ import GithubIcon from "../../components/icons/Github";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import TwitterIcon from "../../components/icons/Twitter";
 import UploadIcon from "../../components/icons/Upload";
-import { components, StylesConfig } from "react-select";
 import { Icon } from "@iconify/react";
 import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
 import { useForm, FormProvider } from "react-hook-form";
-import { useAuth } from "../../components/AuthContext";
 import {
   CountrySelect,
   DescribeSelect,
   GenderSelect,
-  LevelOfStudySelect,
+  AvailableForSelect,
   SkillsAndInterestSelect
 } from "../../components/profile/inputs";
 import TextareaAutosize from "react-textarea-autosize";
+import { IProfile } from "../../server/modules/social/profile.model";
+import { profileService } from './../../server/modules/social/profile.service';
+import { useProfile } from './../../hooks/useProfile';
 
 interface Props {
   user: IUser;
+  profile: IProfile;
 }
 
-type FormData = Partial<IUser & { passwordConfirmation: string }>;
+type FormData = Partial<IProfile & { password: string, passwordConfirmation: string }>;
 
-type SelectOption = { value: string; label: string; color?: string };
-
-export default function Settings({ user }: Props) {
+export default function Settings({ user, profile }: Props) {
   // Clear file input
   const fileInputRef = useRef<HTMLInputElement>();
   const resetFileInput = () => {
     fileInputRef.current.value = "";
   };
-  const hookFormMethods = useForm<FormData>({ defaultValues: user });
+  const hookFormMethods = useForm<FormData>({ defaultValues: profile });
   const { register, handleSubmit } = hookFormMethods;
 
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
 
-  const { updateProfile } = useAuth();
+  const { updateProfile } = useProfile();
 
   const handleSelectFile =
     (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +86,7 @@ export default function Settings({ user }: Props) {
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
           <Avatar
-            image={profilePhoto ? URL.createObjectURL(profilePhoto) : user.image}
+            image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
             className="relative mxs:w-[150px] mxs:h-[150px] w-[170px] h-[170px]"
             border="!border-[3px]"
           />
@@ -246,7 +245,7 @@ export default function Settings({ user }: Props) {
                 <label className="form-label font-normal" htmlFor="skillsAndInterests">
                   Skills and interests
                 </label>
-                {/* <SkillsAndInterestSelect /> */}
+                <SkillsAndInterestSelect />
                 <TextareaAutosize
                   className="resize-none form-input box-border py-[6px]"
                   maxRows={6}
@@ -256,9 +255,9 @@ export default function Settings({ user }: Props) {
               </div>
               <div>
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
-                  I’m available for
+                  I'm available for
                 </label>
-                <LevelOfStudySelect />
+                <AvailableForSelect />
               </div>
               <div>
                 <label className="form-label font-normal" htmlFor="">
@@ -270,6 +269,7 @@ export default function Settings({ user }: Props) {
                   placeholder="Write something.."
                   type="text"
                   maxLength={50}
+                  {...register("headline")}
                 />
               </div>
               <div>
@@ -304,17 +304,12 @@ export default function Settings({ user }: Props) {
                 sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                 onChange={i => console.log(i)}
               />
+
               <button
                 className="mxs:mt-6 button-big button-deep-sky-blue mx-auto px-20 w-[230px] text-22px mt-3"
                 type="submit">
                 Save
               </button>
-              {/* <button
-              className="button-big button-fruit-salad mx-auto px-20 w-[230px] text-22px mt-3"
-              type="reset"
-            >
-              Cancel
-            </button> */}
             </section>
           </FormProvider>
         </form>
@@ -326,38 +321,6 @@ export default function Settings({ user }: Props) {
   );
 }
 
-const styles: StylesConfig<SelectOption, true> = {
-  control: provided => ({
-    ...provided,
-    border: 0,
-    outline: "none",
-    boxShadow: "none"
-  }),
-  option: provided => ({
-    ...provided,
-    "&:hover": {
-      backgroundColor: "#03A9F4",
-      color: "white"
-    },
-    "padding": 3
-  }),
-  multiValueRemove: (styles, { data }) => ({
-    ...styles,
-    "color": data.color,
-    ":hover": {
-      backgroundColor: " #03A9F4",
-      color: "white"
-    }
-  })
-};
-
-const DropdownIndicator = props => {
-  return (
-    <components.DropdownIndicator {...props}>
-      <Icon icon="bxs:down-arrow" color="#8a8a8a" width={15} height={20} inline={true} />
-    </components.DropdownIndicator>
-  );
-};
 export async function getServerSideProps({ req, res }) {
   const payload = await handleAuth(req);
   if (!payload) {
@@ -368,7 +331,10 @@ export async function getServerSideProps({ req, res }) {
     return { props: {} };
   }
 
-  const props: Props = { user: await userService.getOne(payload.id) };
+  const props: Props = {
+    user: await userService.getOne(payload.id),
+    profile: await profileService.getCompletedProfile(payload.uniqueId),
+  };
 
   return { props };
 }

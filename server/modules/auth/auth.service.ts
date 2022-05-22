@@ -10,6 +10,7 @@ import registrationService from "../registration/registration.service";
 import { signToken } from "../../utils/auth";
 import { generateUniqueIdFromName } from "./../../utils/generateUniqueIdFromName";
 import { authNotificationsService } from "./auth-notifications.service";
+import { Profile } from "../social/profile.model";
 
 const { BCRYPT_SALT, url } = config;
 
@@ -19,41 +20,47 @@ class AuthService {
       id: user._id,
       uniqueId: user.uniqueId,
       role: user.role,
-      firstName: user.firstName,
-      lastName: user.lastName,
       isCompleted: user.isCompleted
     });
 
     return token;
   }
 
-  async register(data: Partial<IUser>) {
+  async register(data: {
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+    notify: boolean;
+  }) {
+    const { firstName, lastName, password, email, notify } = data;
     let user = await User.findOne({ email: data.email });
     if (user) throw new CustomError("Email already exists");
 
-    user = new User(data);
+    user = new User({ email, password, notify });
 
-    user.uniqueId = await generateUniqueIdFromName<UserId>(user.fullName, async uniqueId => {
+    const fullName = `${firstName} ${lastName}`;
+
+    user.uniqueId = await generateUniqueIdFromName<UserId>(fullName, async uniqueId => {
       const exists = await User.exists({ uniqueId });
       return !!exists;
     });
 
     await user.save();
-    // Request email verification
+    const profile = await new Profile({ firstName, lastName, userId: user.uniqueId }).save();
+
     try {
       await this.requestEmailVerification(user.email);
     } catch (error) {
       console.error(error);
-      await user.remove();
-      throw new CustomError("Server error");
+      await Promise.all([user.remove(), profile.remove()]);
+      throw new CustomError("Server error", 500);
     }
 
     return {
       id: user._id,
       uniqueId: user.uniqueId,
       role: user.role,
-      firstName: user.firstName,
-      lastName: user.lastName,
       isCompleted: user.isCompleted
     };
   }
@@ -182,7 +189,7 @@ class AuthService {
 
     const RToken = await Token.findOne({ userId });
     if (!RToken) throw new CustomError("Invalid or expired password reset token");
-    console.log(resetToken, RToken);
+
     const isValid = await bcrypt.compare(resetToken, RToken.token);
     if (!isValid) throw new CustomError("Invalid or expired password reset token");
 

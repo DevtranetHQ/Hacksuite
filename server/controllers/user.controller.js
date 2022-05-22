@@ -17,11 +17,6 @@ class UserContoller {
     return new CustomResponse(200, "user data", result);
   }
 
-  async update(req) {
-    const result = await UserService.update(req.query.userId, req.body);
-    return new CustomResponse(200, "user updated", result);
-  }
-
   async delete(req) {
     const result = await UserService.delete(req.query.userId);
     return new CustomResponse(200, "user deleted", result);

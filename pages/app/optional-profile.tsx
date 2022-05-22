@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
 import Avatar from "../../components/Avatar";
@@ -12,24 +12,22 @@ import FacebookIcon from "../../components/icons/Facebook";
 import InstagramIcon from "../../components/icons/Instagram";
 import RedditIcon from "../../components/icons/Reddit";
 import { handleAuth } from "../../server/utils/auth";
-import userService from "../../server/modules/auth/user.service";
-import { IUser } from "../../server/modules/auth/user.model";
-import { useAuth } from "../../components/AuthContext";
 import { useRouter } from "next/router";
+import { IProfile } from "../../server/modules/social/profile.model";
+import { useProfile } from './../../hooks/useProfile';
+import { profileService } from './../../server/modules/social/profile.service';
 
-type FormData = IUser["links"];
-interface Props {
-  user: IUser;
-}
+type FormData = IProfile["links"];
+interface Props { profile: IProfile; }
 
-export default function Optional({ user }: Props) {
+export default function Optional({ profile }: Props) {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<FormData>({ defaultValues: user.links });
+  const { register, handleSubmit } = useForm<FormData>({ defaultValues: profile.links });
 
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
 
-  const { updateProfile } = useAuth();
+  const { updateProfile } = useProfile();
 
   const handleSelectFile = (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -46,7 +44,7 @@ export default function Optional({ user }: Props) {
       return;
     }
 
-    const changed = Object.keys(links).some(key => links[key] !== user.links?.[key]);
+    const changed = Object.keys(links).some(key => links[key] !== profile.links?.[key]);
 
     await updateProfile.execute(
       changed ? { links } : {},
@@ -82,10 +80,10 @@ export default function Optional({ user }: Props) {
           <div className="flex mxs:flex-col-reverse justify-start items-center">
             <Avatar
               className="relative mxs:h-[164px] w-[164px] h-[166px]"
-              image={profilePhoto ? URL.createObjectURL(profilePhoto) : user.image}
+              image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
             />
             <p className="mxs:mb-8 text-24px xs:text-36px font-bold text-center xs:pl-12">
-              <span className="text-[#4cb050]">{user.firstName},</span> can we know you better?
+              <span className="text-[#4cb050]">{profile.firstName},</span> can we know you better?
             </p>
           </div>
           <div className="mxs:w-full">
@@ -253,10 +251,12 @@ export default function Optional({ user }: Props) {
   );
 }
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req }) {
   const payload = await handleAuth(req);
 
-  const props: Props = { user: await userService.getOne(payload.id) };
+  const props: Props = {
+    profile: await profileService.getCompletedProfile(payload.uniqueId),
+  };
 
   return { props };
 }

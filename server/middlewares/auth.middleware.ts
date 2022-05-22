@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { handleAuth, IPayload } from "../utils/auth";
 import { middlewareLogger } from "../utils/debug";
+import { CustomError } from "./../utils/customError";
 
-export type RequestWithUser<Body = any, Params = any> = NextApiRequest & {
+export type RequestWithUser<B = any, P = any> = NextApiRequest & {
   $user?: IPayload;
-  body?: Body;
-  query?: Params;
+  body?: B;
+  query?: P;
 };
 type HandlerWithUser<T> = (req: RequestWithUser, res: NextApiResponse) => T | Promise<T>;
 
@@ -14,13 +15,16 @@ type HandlerWithUser<T> = (req: RequestWithUser, res: NextApiResponse) => T | Pr
  * @param {Function} handler Handler function
  * @returns Composed handler function
  */
-export function withAuth<T>(handler: HandlerWithUser<T>): HandlerWithUser<T> {
+export function withAuth<T>(handler: HandlerWithUser<T>, authRequired = false): HandlerWithUser<T> {
   return async (req, res) => {
     middlewareLogger(`withAuth(${handler.name})`);
     try {
       const decoded = await handleAuth(req);
       req.$user = decoded;
     } finally {
+      if (authRequired && !req.$user) {
+        throw new CustomError("Unauthorized", 401);
+      }
       return handler(req, res);
     }
   };

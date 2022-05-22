@@ -1,6 +1,8 @@
-import User, { IUser } from "./user.model";
+import User, { IUser, UserId } from "./user.model";
 import { CustomError } from "../../utils/customError";
 import authService from "./auth.service";
+import { IProfile } from "../social/profile.model";
+import { profileService } from "./../social/profile.service";
 
 class UserService {
   async create(data: Partial<IUser>) {
@@ -18,6 +20,13 @@ class UserService {
     return JSON.parse(JSON.stringify(user));
   }
 
+  async getByUniqueId(uniqueId: UserId): Promise<IUser> {
+    const user = await User.findOne({ uniqueId }, { password: 0, __v: 0 });
+    if (!user) throw new CustomError("User does not exist", 404);
+
+    return JSON.parse(JSON.stringify(user));
+  }
+
   async getOneByEmail(email: string) {
     const user = await User.findOne({ email, isVerified: true }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist", 404);
@@ -25,25 +34,15 @@ class UserService {
     return user;
   }
 
-  async update(userId: string, data: Partial<IUser>) {
-    const oldUser = await User.findByIdAndUpdate(
-      { _id: userId },
-      { $set: { ...data, isCompleted: true } },
-      { runValidators: true }
-    );
-    if (!oldUser) throw new CustomError("User dosen't exist", 404);
+  async completeProfile(userId: string, data: Partial<IProfile>) {
+    const user = await User.findOne({ _id: userId, isCompleted: false });
+    if (!user) throw new CustomError("User does not exist", 404);
 
-    if (!oldUser.isCompleted) {
-      const newUser = await User.findById(userId);
-      console.log({ oldUser, newUser });
-      const newToken = await authService._getLoginToken(newUser);
-      return {
-        newToken,
-        ...newUser
-      };
-    }
+    await profileService.update(user.uniqueId, { ...data, isCompleted: true });
 
-    return User.findById(userId);
+    const newToken = await authService._getLoginToken(user);
+
+    return newToken;
   }
 
   async delete(userId: string) {

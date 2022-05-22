@@ -12,7 +12,7 @@ import userService from "../../server/modules/auth/user.service";
 import {
   DescribeSelect,
   GenderSelect,
-  LevelOfStudySelect,
+  AvailableForSelect,
   SkillsAndInterestSelect
 } from "../../components/profile/inputs";
 
@@ -135,7 +135,7 @@ export default function Complete({ user }: Props) {
                     Level of study
                     <span className="text-red-500">*</span>
                   </label>
-                  <LevelOfStudySelect />
+                  <AvailableForSelect />
                 </div>
               </div>
             </section>

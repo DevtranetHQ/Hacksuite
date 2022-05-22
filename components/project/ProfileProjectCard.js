@@ -23,8 +23,8 @@ import { bubbleTrimmer } from "../../pages/profile/[id]";
  * @returns  Card Component
  */
 export default function ProfileProjectCard({ ...props }) {
-  const { date, image, title, desc, tags, likes, comments, bubbles, className, } = props;
-  
+  const { date, image, title, desc, tags, likes, comments, bubbles, className } = props;
+
   return (
     <div
       className={
@@ -42,41 +42,44 @@ export default function ProfileProjectCard({ ...props }) {
             </p>
           </span>
           <span className="flex items-center space-x-2">
-             <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <GithubIcon fill={"currentColor"} width={20} height={20} />
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <GithubIcon fill={"currentColor"} width={20} height={20} />
             </a>
-            
-            <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <AdobeIcon fill={"currentColor"} width={20} height={20} />
+
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <AdobeIcon fill={"currentColor"} width={20} height={20} />
             </a>
-            <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <FigmaIcon fill={"currentColor"} width={20} height={20} />
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <FigmaIcon fill={"currentColor"} width={20} height={20} />
             </a>
           </span>
         </div>
       ) : (
         <div className="w-full h-[20%]  flex items-center justify-between relative pl-4 pr-4 ">
           <span className="relative flex gap-4 items-center">
-            {bubbles && !bubbles.length > 3 ? 
-              bubbles.map((bubble, index) => {
-                return (
-                  <Avatar
-                    key={index}
-                    image="/assets/TEST/img-8.jpg"
-                    className="w-11 h-11 relative -m-3"
-                  />
-                );
-              }): bubbleTrimmer(bubbles, 0, 3).map((bubble, index) => {
-                return (
-                  <Avatar
-                    key={index}
-                    image="/assets/TEST/img-8.jpg"
-                    className="w-11 h-11 relative -m-4"
-                  />
-                );
-              })}
+            {bubbles && !bubbles.length > 3
+              ? bubbles.map((bubble, index) => {
+                  return (
+                    <Avatar
+                      key={index}
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-11 h-11 relative -m-3"
+                    />
+                  );
+                })
+              : bubbleTrimmer(bubbles, 0, 3).map((bubble, index) => {
+                  return (
+                    <Avatar
+                      key={index}
+                      image="/assets/TEST/img-8.jpg"
+                      className="w-11 h-11 relative -m-4"
+                    />
+                  );
+                })}
             <div className="flex-col items-center justify-start ml-4">
-              <p className="font-semibold lg:text-22px md:text-18px text-18px md:ml-1">{bubbles.length > 3 ? `+ ${bubbles.length} more` : ""}</p>
+              <p className="font-semibold lg:text-22px md:text-18px text-18px md:ml-1">
+                {bubbles.length > 3 ? `+ ${bubbles.length} more` : ""}
+              </p>
               <p className=" caption flex items-center gap-2 font-normal text-12px md:text-16px lg:text-18px md:mx-1">
                 <Icon icon="mdi:clock-time-four-outline" color="#03a9f4" inline={true} />
                 {date}
@@ -84,15 +87,14 @@ export default function ProfileProjectCard({ ...props }) {
             </div>
           </span>
           <span className="flex items-center space-x-2">
-            
-            <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <GithubIcon fill={"currentColor"} width={20} height={20} />
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <GithubIcon fill={"currentColor"} width={20} height={20} />
             </a>
-            <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <AdobeIcon fill={"currentColor"} width={20} height={20} />
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <AdobeIcon fill={"currentColor"} width={20} height={20} />
             </a>
-            <a href="https://github.com/TheDynamics" style={{color: "currentColor"}}>
-            <FigmaIcon fill={"currentColor"} width={20} height={20} />
+            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
+              <FigmaIcon fill={"currentColor"} width={20} height={20} />
             </a>
           </span>
         </div>
@@ -132,11 +134,11 @@ export default function ProfileProjectCard({ ...props }) {
         </span>
         <span className="flex items-center justify-between lg:space-x-5 md:space-x-2 space-x-2">
           <p className="flex items-center gap-2">
-            <HeartIcon  fill="#C50000" className ="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3"/>
+            <HeartIcon fill="#C50000" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
             <span className="lg:text-24px md:text-16px text-16px font-bold">{likes}</span>
           </p>
           <p className="flex items-center gap-2">
-            <CommentIcon  fill="#000000" className ="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
+            <CommentIcon fill="#000000" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
             <span className="lg:text-24px md:text-16px text-16px font-bold">{comments}</span>
           </p>
         </span>

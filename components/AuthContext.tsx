@@ -37,7 +37,6 @@ interface IAuthContext {
   passwordEmailVerification: UseAsync<[email: string, dob: string], void, AxiosError>;
   resetPassword: UseAsync<[ResetDTO], void, AxiosError>;
   completeProfile: UseAsync<[profile: Partial<IUser>], void, AxiosError>;
-  updateProfile: UseAsync<[profile: Partial<IUser>, files?: { image?: File, resume?: File }], void, AxiosError>;
 
   loginWithToken: (token: string) => void;
   logout: () => void;
@@ -147,7 +146,7 @@ export const AuthProvider = ({ children }) => {
 
     completeProfile: useAsync(async (data) => {
       const res = await axios({
-        url: `/users/${user.id}`,
+        url: `/users/complete`,
         method: "PUT",
         data
       });
@@ -157,35 +156,6 @@ export const AuthProvider = ({ children }) => {
       setToken(newToken);
 
       router.push("/app/optional-profile");
-    }),
-
-    updateProfile: useAsync(async (data, { image, resume }) => {
-      const updateJob = axios({
-        url: `/users/${user.id}`,
-        method: "PUT",
-        data,
-      });
-
-      if (image || resume) {
-        const formData = new FormData();
-        if (image) {
-          formData.append("image", image);
-        }
-        if (resume) {
-          formData.append("resume", resume);
-        }
-
-        const uploadJob = axios({
-          url: `/users/${user.id}/upload`,
-          method: "PUT",
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" }
-        });
-
-        await Promise.all([updateJob, uploadJob]);
-      }
-
-      await updateJob;
     }),
 
     loginWithToken: token => {

@@ -102,7 +102,6 @@ export default function CreateProject({ choices, unread }) {
           desc: "Image uploaded successfully.",
           image: reader.result
         });
-        console.log(reader.result);
       });
       reader.addEventListener("error", () =>
         setImage({
@@ -123,7 +122,6 @@ export default function CreateProject({ choices, unread }) {
   const [description, setDescription] = useState("");
   const updateDescription = val => {
     setDescription(showdownConverter.makeMarkdown(val));
-    console.log(showdownConverter.makeMarkdown(val));
   };
 
   const [technologies, setTechnologies] = useState(new Set());

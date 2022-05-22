@@ -1,13 +1,3 @@
-/**
- * Icon Component
- *
- * @name TwitterIcon
- * @param {String} fill - Icon fill color
- * @param {Number} width - Icon width
- * @param {Height} height - Icon height
- * @param {String | Object} className - styles
- */
-
 export default function TwitterIcon({ fill, width, height, className }: any) {
   return (
     <svg

@@ -8,6 +8,7 @@ import placeholder from "../../public/assets/dash/placeholder.svg";
 import robotLight from "../../public/assets/dash/robotLight.svg";
 import robotDark from "../../public/assets/dash/robotDark.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
+import { profileService } from "./../../server/modules/social/profile.service";
 
 export default function Dash({ admin, name }) {
   const { darkMode } = useContext(DarkModeContext);
@@ -52,11 +53,12 @@ export default function Dash({ admin, name }) {
 
 export async function getServerSideProps({ req, res }) {
   const user = await withAuth(req => req.$user)(req, res);
+  const profile = await profileService.getCompletedProfile(user.uniqueId);
 
   return {
     props: {
       admin: false,
-      name: user.firstName
+      name: profile.firstName
     }
   };
 }
