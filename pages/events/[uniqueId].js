@@ -218,7 +218,8 @@ export async function getServerSideProps({ req, res, query: { uniqueId } }) {
   const user = await withAuth(req => req.$user)(req, res);
   const event = await eventService.getOne(uniqueId);
 
-  const isRegistered = user && (await registrationService.checkRegistration(user.id, uniqueId));
+  const isRegistered =
+    user && (await registrationService.checkRegistration(user.uniqueId, uniqueId));
 
   return {
     props: {
