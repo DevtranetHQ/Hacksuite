@@ -92,7 +92,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
 };
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
-export const LevelOfStudySelectA: FC<{ className?: string }> = props => {
+export const LevelOfStudySelect: FC<{ className?: string }> = props => {
   const { control } = useFormContext<Partial<IUser>>();
 
   return (
@@ -163,7 +163,7 @@ export const GenderSelect: FC<{ className?: string }> = props => {
     />
   );
 };
-
+/*
 const ValueContainer = ({ children, ...props }) => {
   let [values, input] = children;
 
@@ -216,12 +216,12 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
 
         .react-select__indicator-separator {
           display: none;
-          /* align-self: stretch;
-        background-color: #C9C9C9;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        box-sizing: border-box;
-        width: 1px; */
+//         align-self: stretch;
+//         background-color: #C9C9C9;
+//         margin-bottom: 0px;
+//         margin-top: 0px;
+//         box-sizing: border-box;
+//         width: 1px;
         }
 
         .react-select__dropdown-indicator {
@@ -239,3 +239,4 @@ export const LevelOfStudySelect: FC<{ className?: string }> = props => {
     </>
   );
 };
+*/
