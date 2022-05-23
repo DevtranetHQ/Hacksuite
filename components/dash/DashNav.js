@@ -166,7 +166,7 @@ export default function DashNav({ admin = false }) {
             <span>Events</span>
           </div>
         </Link>
-        {!admin && (
+        {/* {!admin && (
           <Link href="/discord">
             <div
               className={
@@ -188,7 +188,7 @@ export default function DashNav({ admin = false }) {
               <span>Discord</span>
             </div>
           </Link>
-        )}
+        )} */}
         <Link href="/app/settings">
           <div
             className={
