@@ -75,7 +75,7 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
 
           <button
             className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none"
-            onClick={() => setShowMessage(true)}>
+            >
             {/* {loggedIn ? "Let's talk" : "All Events"} */}
             Let's talk
             <div className="scale-50 md:scale-100 lg:relative lg:top-[2px] justify-self-start">
