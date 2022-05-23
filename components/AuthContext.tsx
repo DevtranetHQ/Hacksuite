@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import { AxiosError } from "axios";
 import { UseAsync, useAsync } from "../hooks/useAsync";
 import { axios } from "../config/config";
-import { IUser } from "../server/modules/auth/user.model";
+import { IProfile } from "../server/modules/social/profile.model";
 
 interface SignupDTO {
   firstName: string;
@@ -36,7 +36,7 @@ interface IAuthContext {
   verifyEmail: UseAsync<[userId: string, verifyToken: string], void, AxiosError>;
   passwordEmailVerification: UseAsync<[email: string, dob: string], void, AxiosError>;
   resetPassword: UseAsync<[ResetDTO], void, AxiosError>;
-  completeProfile: UseAsync<[profile: Partial<IUser>], void, AxiosError>;
+  completeProfile: UseAsync<[profile: Partial<IProfile>], void, AxiosError>;
 
   loginWithToken: (token: string) => void;
   logout: () => void;
@@ -147,7 +147,7 @@ export const AuthProvider = ({ children }) => {
     completeProfile: useAsync(async (data) => {
       const res = await axios({
         url: `/users/complete`,
-        method: "PUT",
+        method: "POST",
         data
       });
 

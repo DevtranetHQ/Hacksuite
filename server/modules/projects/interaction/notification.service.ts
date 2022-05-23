@@ -1,3 +1,4 @@
+import { Profile } from "./../../social/profile.model";
 import User, { UserId } from "../../auth/user.model";
 import { NotificationTypeId } from "../../notification/notification-type.model";
 import { Project, ProjectId } from "../project.model";
@@ -13,7 +14,7 @@ const getProjectUrl = (uniqueId: ProjectId) => `${CLIENT_URL}/projects/${uniqueI
 
 class InteractionNotificationService {
   async notifyForLikeProject(projectId: ProjectId, userId: UserId) {
-    const userWhoLiked = await User.findOne({ uniqueId: userId });
+    const userWhoLiked = await Profile.findOne({ userId });
     if (!userWhoLiked) {
       return;
     }
@@ -24,7 +25,7 @@ class InteractionNotificationService {
     }
 
     const projectTeam = [project.creator, ...project.collaborators];
-    const usersToNotify = projectTeam.filter(user => user !== userWhoLiked.uniqueId);
+    const usersToNotify = projectTeam.filter(user => user !== userId);
 
     const jobs = usersToNotify.map(userId => {
       return notificationService.createNotification({
@@ -41,7 +42,7 @@ class InteractionNotificationService {
   }
 
   async notifyForCommentProject(projectId: ProjectId, userId: UserId, content: string) {
-    const userWhoCommented = await User.findOne({ uniqueId: userId });
+    const userWhoCommented = await Profile.findOne({ userId });
     if (!userWhoCommented) {
       return;
     }
@@ -52,7 +53,7 @@ class InteractionNotificationService {
     }
 
     const projectTeam = [project.creator, ...project.collaborators];
-    const usersToNotify = projectTeam.filter(user => user !== userWhoCommented.uniqueId);
+    const usersToNotify = projectTeam.filter(user => user !== userId);
 
     const jobs = usersToNotify.map(userId => {
       return notificationService.createNotification({
@@ -71,7 +72,7 @@ class InteractionNotificationService {
   }
 
   async notifyForLikeComment(commentId: CommentId, userId: UserId) {
-    const userWhoLiked = await User.findOne({ uniqueId: userId });
+    const userWhoLiked = await Profile.findOne({ userId });
     if (!userWhoLiked) {
       return;
     }
@@ -87,7 +88,7 @@ class InteractionNotificationService {
     }
 
     const projectTeam = [project.creator, ...project.collaborators];
-    const usersToNotify = projectTeam.filter(user => user !== userWhoLiked.uniqueId);
+    const usersToNotify = projectTeam.filter(user => user !== userId);
 
     const notifyProjectTeam = usersToNotify.map(userId => {
       return notificationService.createNotification({
@@ -116,7 +117,7 @@ class InteractionNotificationService {
   }
 
   async notifyForReplyComment(commentId: CommentId, userId: UserId, content: string) {
-    const userWhoReplied = await User.findOne({ uniqueId: userId });
+    const userWhoReplied = await Profile.findOne({ userId });
     if (!userWhoReplied) {
       return;
     }
@@ -132,7 +133,7 @@ class InteractionNotificationService {
     }
 
     const projectTeam = [project.creator, ...project.collaborators];
-    const usersToNotify = projectTeam.filter(user => user !== userWhoReplied.uniqueId);
+    const usersToNotify = projectTeam.filter(user => user !== userId);
 
     const notifyProjectTeam = usersToNotify.map(userId => {
       return notificationService.createNotification({

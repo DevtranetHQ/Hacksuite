@@ -1,42 +1,45 @@
-import { createContext, FC, useContext, useEffect, useState } from "react";
+import { createContext, FC, useCallback, useContext, useEffect, useState } from "react";
 import { useNotifications } from "../hooks/useNotifications";
 import { useAuth } from "./AuthContext";
 
-const unreadContext = createContext<number>(null);
+const unreadContext = createContext<{
+  unread: number;
+  refreshUnreadCount: () => void;
+}>(null);
 
 export const UnreadNotificationProvider: FC = ({ children }) => {
   const [unread, setUnread] = useState(0);
   const { getNotifications } = useNotifications();
-  const { user } = useAuth()
+  const { user } = useAuth();
 
-  useEffect(() => {
-    if (user) {
-      const handler = (event: MessageEvent<string>) => {
-        console.log("message from service worker: ", event);
-        if (event.data === "refreshUnreadCount") {
-          getNotifications.execute(true).then(notifications => {
-            setUnread(notifications.length);
-          });
-        }
-      };
-
-      navigator.serviceWorker.addEventListener("message", handler);
-
-      return () => navigator.serviceWorker.removeEventListener("message", handler);
-    }
-  }, [user, getNotifications]);
-
-  useEffect(() => {
+  const refreshUnreadCount = useCallback(async () => {
     if (user) {
       getNotifications.execute(true).then(notifications => {
         setUnread(notifications.length);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user])
+
+  useEffect(() => {
+    const handler = (event: MessageEvent<string>) => {
+      console.log("message from service worker: ", event);
+      if (event.data === "refreshUnreadCount") {
+        refreshUnreadCount();
+      }
+    };
+
+    navigator.serviceWorker.addEventListener("message", handler);
+
+    return () => navigator.serviceWorker.removeEventListener("message", handler);
+  }, [refreshUnreadCount]);
+
+  useEffect(() => {
+    refreshUnreadCount();
+  }, [refreshUnreadCount]);
 
   return (
-    <unreadContext.Provider value={unread}>
+    <unreadContext.Provider value={{ unread, refreshUnreadCount }}>
       {children}
     </unreadContext.Provider>
   );
