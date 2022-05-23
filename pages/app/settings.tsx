@@ -23,15 +23,15 @@ import {
 } from "../../components/profile/inputs";
 import TextareaAutosize from "react-textarea-autosize";
 import { IProfile } from "../../server/modules/social/profile.model";
-import { profileService } from './../../server/modules/social/profile.service';
-import { useProfile } from './../../hooks/useProfile';
+import { profileService } from "./../../server/modules/social/profile.service";
+import { useProfile } from "./../../hooks/useProfile";
 
 interface Props {
   user: IUser;
   profile: IProfile;
 }
 
-type FormData = Partial<IProfile & { password: string, passwordConfirmation: string }>;
+type FormData = Partial<IProfile & { password: string; passwordConfirmation: string }>;
 
 export default function Settings({ user, profile }: Props) {
   // Clear file input
@@ -85,11 +85,25 @@ export default function Settings({ user, profile }: Props) {
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
-          <Avatar
-            image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
-            className="relative mxs:w-[150px] mxs:h-[150px] w-[170px] h-[170px]"
-            border="!border-[3px]"
-          />
+          <div className="flex items-center justify-between w-[89%]">
+            <Avatar
+              image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
+              className="relative mxs:w-[150px] mxs:h-[150px] w-[170px] h-[170px]"
+              border="!border-[3px]"
+            />
+            <svg
+              width="27"
+              height="27"
+              viewBox="0 0 27 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.4167 0.375V3.29167H21.6521L7.31667 17.6271L9.37292 19.6833L23.7083 5.34792V10.5833H26.625V0.375H16.4167ZM23.7083 23.7083H3.29167V3.29167H13.5V0.375H3.29167C2.51812 0.375 1.77625 0.682291 1.22927 1.22927C0.682291 1.77625 0.375 2.51812 0.375 3.29167V23.7083C0.375 24.4819 0.682291 25.2237 1.22927 25.7707C1.77625 26.3177 2.51812 26.625 3.29167 26.625H23.7083C24.4819 26.625 25.2237 26.3177 25.7707 25.7707C26.3177 25.2237 26.625 24.4819 26.625 23.7083V13.5H23.7083V23.7083Z"
+                fill="#C9C9C9"
+              />
+            </svg>
+          </div>
+
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
             <div className="mxs:space-x-0 button-small button-deep-sky-blue gap-x-2">
               <UploadIcon />
@@ -103,15 +117,20 @@ export default function Settings({ user, profile }: Props) {
             type="file"
             accept="image/*"
           />
-          <div className="mxs:space-x-5 flex gap-5 items-center my-6">
-            <span className="cursor-pointer">
-              <GithubIcon className="mxs:w-[32px]" width={32} />
-            </span>
-            <span className="mxs:w-[32px] cursor-pointer">
-              <TwitterIcon width={41} height={33} />
-            </span>
-            <span className="mxs:w-[30px] cursor-pointer">
-              <LinkedinIcon width={35} height={31} />
+          <div className="flex items-center justify-between w-6/12">
+            <div className="mxs:space-x-5 flex gap-5 items-center my-6">
+              <span className="cursor-pointer">
+                <GithubIcon className="mxs:w-[32px]" width={32} />
+              </span>
+              <span className="mxs:w-[32px] cursor-pointer">
+                <TwitterIcon width={41} height={33} />
+              </span>
+              <span className="mxs:w-[30px] cursor-pointer">
+                <LinkedinIcon width={35} height={31} />
+              </span>
+            </div>
+            <span className="border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md ">
+              EDIT
             </span>
           </div>
         </div>
@@ -333,7 +352,7 @@ export async function getServerSideProps({ req, res }) {
 
   const props: Props = {
     user: await userService.getOne(payload.id),
-    profile: await profileService.getCompletedProfile(payload.uniqueId),
+    profile: await profileService.getCompletedProfile(payload.uniqueId)
   };
 
   return { props };
