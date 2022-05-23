@@ -68,7 +68,7 @@ export default function LevelOfStudySelect({}) {
           background-image: url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4019 21.5542L0.267673 0.508415L24.5361 0.508415L12.4019 21.5542Z' fill='%238A8A8A'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: center;
-          background-size: 100%;
+          background-size: 90%;
           margin-right: 12px;
         }
 
