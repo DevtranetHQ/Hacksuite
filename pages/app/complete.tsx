@@ -6,9 +6,7 @@ import TelInput from "../../components/form/TelInput";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { useAuth } from "../../components/AuthContext";
 import { useRouter } from "next/router";
-import { IUser } from "../../server/modules/auth/user.model";
 import { FormProvider, useForm } from "react-hook-form";
-import userService from "../../server/modules/auth/user.service";
 import {
   DescribeSelect,
   GenderSelect,
@@ -18,14 +16,14 @@ import {
 import { IProfile } from "../../server/modules/social/profile.model";
 import { profileService } from "../../server/modules/social/profile.service";
 
-interface Props { user: IUser; profile: IProfile; }
+interface Props { profile: IProfile; }
 
 type FormData = Pick<
   IProfile,
   "phoneNumber" | "gender" | "countryOfResidence" | "describe" | "skills" | "dob"
 >;
 
-export default function Complete({ user, profile }: Props) {
+export default function Complete({ profile }: Props) {
   const { completeProfile } = useAuth();
   const hookFormMethods = useForm<FormData>({ defaultValues: profile });
   const { register, handleSubmit } = hookFormMethods;
@@ -170,7 +168,6 @@ export const getServerSideProps = async ({ req, res }) => {
   const payload = await withAuth(req => req.$user)(req, res);
 
   const props: Props = {
-    user: await userService.getOne(payload.id),
     profile: await profileService.getProfile(payload.uniqueId),
   };
 
