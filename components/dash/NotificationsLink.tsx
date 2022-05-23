@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useUnreadNotifications } from "../UnreadNotificationContext";
 
 const NotificationsLink: FC = () => {
-  const unread = useUnreadNotifications();
+  const { unread } = useUnreadNotifications();
 
   return (
     <Link href="/app/notifications">

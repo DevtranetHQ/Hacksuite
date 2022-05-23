@@ -15,17 +15,19 @@ import {
   AvailableForSelect,
   SkillsAndInterestSelect
 } from "../../components/profile/inputs";
+import { IProfile } from "../../server/modules/social/profile.model";
+import { profileService } from "../../server/modules/social/profile.service";
 
-interface Props { user: IUser; }
+interface Props { user: IUser; profile: IProfile; }
 
 type FormData = Pick<
-  IUser,
-  "phoneNumber" | "levelOfStudy" | "gender" | "countryOfResidence" | "describe" | "skills" | "dob"
+  IProfile,
+  "phoneNumber" | "gender" | "countryOfResidence" | "describe" | "skills" | "dob"
 >;
 
-export default function Complete({ user }: Props) {
+export default function Complete({ user, profile }: Props) {
   const { completeProfile } = useAuth();
-  const hookFormMethods = useForm<FormData>({ defaultValues: user });
+  const hookFormMethods = useForm<FormData>({ defaultValues: profile });
   const { register, handleSubmit } = hookFormMethods;
   const router = useRouter();
 
@@ -66,7 +68,7 @@ export default function Complete({ user }: Props) {
           onSubmit={handleSubmit(onSubmit)}>
           <FormProvider {...hookFormMethods}>
             <h1 className="headline text-center">
-              Complete your profile <span className="text-fruit-salad">{user.firstName}</span>
+              Complete your profile <span className="text-fruit-salad">{profile.firstName}</span>
             </h1>
             <section className="">
               <h2 className="mxs:-mr-6 text-24px font-semibold xs:font-bold xs:text-center mt-16 mb-9">
@@ -82,7 +84,7 @@ export default function Complete({ user }: Props) {
                     className="form-input text-[#A5A5A5]"
                     id="dob"
                     name="dob"
-                    type="text"
+                    type="date"
                     placeholder="MM/DD/YYYY"
                     {...register("dob")}
                     required
@@ -167,7 +169,10 @@ export default function Complete({ user }: Props) {
 export const getServerSideProps = async ({ req, res }) => {
   const payload = await withAuth(req => req.$user)(req, res);
 
-  const props: Props = { user: await userService.getOne(payload.id) };
+  const props: Props = {
+    user: await userService.getOne(payload.id),
+    profile: await profileService.getProfile(payload.uniqueId),
+  };
 
   return { props };
 };
