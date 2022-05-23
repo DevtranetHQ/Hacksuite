@@ -40,6 +40,9 @@ class UserService {
 
     await profileService.update(user.uniqueId, { ...data, isCompleted: true });
 
+    user.isCompleted = true;
+    await user.save();
+
     const newToken = await authService._getLoginToken(user);
 
     return newToken;
