@@ -47,7 +47,7 @@ class AuthService {
     });
 
     await user.save();
-    const profile = await new Profile({ firstName, lastName, userId: user.uniqueId }).save();
+    const profile = await new Profile({ firstName, lastName, email, userId: user.uniqueId }).save();
 
     try {
       await this.requestEmailVerification(user.email);

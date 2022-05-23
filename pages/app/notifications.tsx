@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import DashNav from "../../components/dash/DashNav";
 import DashHeader from "../../components/dash/DashHeader";
@@ -9,8 +7,8 @@ import { useNotifications } from "../../hooks/useNotifications";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { INotification } from "../../server/modules/notification/notification.model";
 import { notificationService } from "../../server/modules/notification/notifications.service";
-import NotificationsLink from "../../components/dash/NotificationsLink";
 import NotifEmpty from "../../components/NotifEmpty";
+import { useUnreadNotifications } from "../../components/UnreadNotificationContext";
 
 interface Props {
   notifications: INotification[];
@@ -19,6 +17,7 @@ interface Props {
 export default function Notifications({ notifications }: Props) {
   const [notifs, setNotifs] = useState(notifications);
   const { markAsRead, removeNotification } = useNotifications();
+  const { refreshUnreadCount } = useUnreadNotifications();
 
   const handleRemove = async (id: string) => {
     setNotifs(n => n.filter(notif => notif._id !== id));
@@ -27,6 +26,7 @@ export default function Notifications({ notifications }: Props) {
 
   useEffect(() => {
     markAsRead.execute();
+    refreshUnreadCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

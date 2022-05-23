@@ -10,6 +10,7 @@ export interface IProfile {
   userId: UserId;
   firstName: string;
   lastName: string;
+  email: string;
   phoneNumber: string;
   gender: string;
   countryOfResidence: string;
@@ -73,6 +74,11 @@ const profileSchema = new Schema<IProfile, IProfileModel>(
       trim: true,
       maxLength: [50, "Last name can't be more than 50 characters"],
       required: [true, "Last name is required"],
+      lowerCase: true
+    },
+    email: {
+      type: String,
+      trim: true,
       lowerCase: true
     },
     phoneNumber: {

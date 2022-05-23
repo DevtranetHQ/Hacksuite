@@ -30,13 +30,12 @@ import Reddit from "../../components/icons/Reddit";
 import Instagram from "../../components/icons/Instagram";
 
 interface Props {
-  user: IUser;
   profile: IProfile;
 }
 
 type FormData = Partial<IProfile & { password: string; passwordConfirmation: string }>;
 
-export default function Settings({ user, profile }: Props) {
+export default function Settings({ profile }: Props) {
   // Clear file input
   const fileInputRef = useRef<HTMLInputElement>();
   const resetFileInput = () => {
@@ -371,7 +370,7 @@ export default function Settings({ user, profile }: Props) {
                 id="email"
                 name="email"
                 type="email"
-                value={user.email}
+                value={profile.email}
                 disabled
               />
             </section>
@@ -543,8 +542,7 @@ export async function getServerSideProps({ req, res }) {
   }
 
   const props: Props = {
-    user: await userService.getOne(payload.id),
-    profile: await profileService.getCompletedProfile(payload.uniqueId)
+    profile: await profileService.getCompletedProfile(payload.uniqueId),
   };
 
   return { props };
