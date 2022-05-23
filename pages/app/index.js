@@ -19,7 +19,7 @@ export default function Dash({ admin, name }) {
         <DashNav admin={admin} />
       </div>
 
-      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 mx-auto content-center min-w-full min-h-screen">
+      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10  mx-auto content-center min-w-full min-h-screen">
         <DashHeader />
 
         <div className="text-center">
@@ -36,7 +36,7 @@ export default function Dash({ admin, name }) {
         </div>
         <div className=""></div>
         <div className=""></div>
-        <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-3 z-20 hover:scale-105 focus:scale-105 transition-all">
+        <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-10 z-20 hover:scale-105 focus:scale-105 transition-all">
           {darkMode ? (
             <Image className="" src={robotDark} alt="" />
           ) : (
