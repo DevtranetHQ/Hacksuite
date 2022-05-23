@@ -59,7 +59,7 @@ export default function Dash({ admin, name }) {
               <input
                 type="text"
                 placeholder="I’m looking for..."
-                className=" block w-full md:pl-10 pl-8  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-1 dark:text-white text-black"
+                className=" block w-full md:pl-10 pl-8  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-1 dark:text-white text-black dark:placeholder:text-white"
               />
             </div>
           </form>
