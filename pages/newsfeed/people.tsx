@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import FullNav from "../../components/newsfeed/index";
 
 const SearchPeopleIcon = ({ className }) => (
@@ -32,23 +32,32 @@ const VerifiedIcon = ({ className }) => (
 );
 
 const ArrowRight = ({ className }) => (
-    <svg width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className}`}>
-        <path d="M64.562 36.5904V25.1299H-2.85547V12.0322H64.562V0.571777L91.7882 18.5811L64.562 36.5904Z" fill="white"/>
-    </svg>
-)
+  <svg
+    width="92"
+    height="37"
+    viewBox="0 0 92 37"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${className}`}>
+    <path
+      d="M64.562 36.5904V25.1299H-2.85547V12.0322H64.562V0.571777L91.7882 18.5811L64.562 36.5904Z"
+      fill="white"
+    />
+  </svg>
+);
 
 const People = ({ people }) => {
-    const verifiedPeopleObj = people.filter(person => person.verified === true);
-    
-    const reducedPeopleObj = verifiedPeopleObj.slice(0, 6);
-    const  [peopleObj, setPeopleObj] = useState(reducedPeopleObj)
-    
-    const unVerifiedPeopleObj = people.filter(person => person.verified !== true);
+  const verifiedPeopleObj = people.filter(person => person.verified === true);
 
-    const handleShowMore = () => {
-        setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj])
-    }
-    
+  const reducedPeopleObj = verifiedPeopleObj.slice(0, 6);
+  const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
+
+  const unVerifiedPeopleObj = people.filter(person => person.verified !== true);
+
+  const handleShowMore = () => {
+    setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
+  };
+
   return (
     <>
       <FullNav />
@@ -65,12 +74,12 @@ const People = ({ people }) => {
                 type="search"
                 name="search"
                 id="search"
-                className="border border-deep-sky-blue rounded-l w-[100%] h-[2.5rem] px-3"
+                className="border border-deep-sky-blue rounded-l w-[100%] h-[3rem] px-3"
                 placeholder="Developers, Angel Investors"
               />
             </div>
 
-            <span className="w-[.7rem] bg-orange-peel h-[2.5rem] self-end"></span>
+            <span className="w-[.7rem] bg-orange-peel h-[3rem] self-end"></span>
 
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
               <label htmlFor="search" className="ml-3 text-[1.3rem]">
@@ -80,12 +89,12 @@ const People = ({ people }) => {
                 type="search"
                 name="available"
                 id="available"
-                className="border border-deep-sky-blue w-[100%] h-[2.5rem] px-3"
+                className="border border-deep-sky-blue w-[100%] h-[3rem] px-3"
                 placeholder="Full-time Job, Investing"
               />
             </div>
 
-            <button className="bg-deep-sky-blue h-[2.5rem] self-end px-3 rounded-r">
+            <button className="bg-deep-sky-blue h-[3rem] self-end px-3 rounded-r">
               <SearchPeopleIcon className="w-[1.5rem] h-[1.5rem]" />
             </button>
           </div>
@@ -116,13 +125,14 @@ const People = ({ people }) => {
               );
             })}
           </div>
-          {
-            peopleObj.length <= 6 ? <button 
-            className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3" onClick={handleShowMore}>
-                View more 
-                <ArrowRight className="w-[2rem] h-[2rem]"/>
+          {peopleObj.length <= 6 ? (
+            <button
+              className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
+              onClick={handleShowMore}>
+              View more
+              <ArrowRight className="w-[2rem] h-[2rem]" />
             </button>
-             : null}
+          ) : null}
         </div>
       </section>
     </>
