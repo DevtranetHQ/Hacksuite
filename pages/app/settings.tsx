@@ -419,7 +419,7 @@ export default function Settings({ profile }: Props) {
             </section>
             <h2 className="mxs:text-[22px] mb-5 subheadline">Demographic Information</h2>
             <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
-              <div className="mxs:w-full" style={{ width: "90%" }}>
+              <div>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                 </label>
