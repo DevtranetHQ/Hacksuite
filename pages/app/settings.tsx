@@ -18,8 +18,7 @@ import {
   CountrySelect,
   DescribeSelect,
   GenderSelect,
-  AvailableForSelect,
-  SkillsAndInterestSelect
+  AvailableForSelect
 } from "../../components/profile/inputs";
 import TextareaAutosize from "react-textarea-autosize";
 import { IProfile } from "../../server/modules/social/profile.model";
@@ -92,24 +91,22 @@ export default function Settings({ profile }: Props) {
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
         <div className="mxs:pl-6">
-          <div className="flex items-center justify-between w-[89%]">
+          <div className="flex items-center justify-between w-[88%]">
             <Avatar
               image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
               className="relative mxs:w-[150px] mxs:h-[150px] w-[170px] h-[170px]"
               border="!border-[3px]"
             />
-            <svg
-              className="cursor-pointer"
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M16.4167 0.375V3.29167H21.6521L7.31667 17.6271L9.37292 19.6833L23.7083 5.34792V10.5833H26.625V0.375H16.4167ZM23.7083 23.7083H3.29167V3.29167H13.5V0.375H3.29167C2.51812 0.375 1.77625 0.682291 1.22927 1.22927C0.682291 1.77625 0.375 2.51812 0.375 3.29167V23.7083C0.375 24.4819 0.682291 25.2237 1.22927 25.7707C1.77625 26.3177 2.51812 26.625 3.29167 26.625H23.7083C24.4819 26.625 25.2237 26.3177 25.7707 25.7707C26.3177 25.2237 26.625 24.4819 26.625 23.7083V13.5H23.7083V23.7083Z"
-                fill="#C9C9C9"
-              />
-            </svg>
+            <div className="hover:text-black dark:hover:text-white text-[#C9C9C9]">
+              <svg
+                className="cursor-pointer fill-current"
+                width="27"
+                height="27"
+                viewBox="0 0 27 27"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.4167 0.375V3.29167H21.6521L7.31667 17.6271L9.37292 19.6833L23.7083 5.34792V10.5833H26.625V0.375H16.4167ZM23.7083 23.7083H3.29167V3.29167H13.5V0.375H3.29167C2.51812 0.375 1.77625 0.682291 1.22927 1.22927C0.682291 1.77625 0.375 2.51812 0.375 3.29167V23.7083C0.375 24.4819 0.682291 25.2237 1.22927 25.7707C1.77625 26.3177 2.51812 26.625 3.29167 26.625H23.7083C24.4819 26.625 25.2237 26.3177 25.7707 25.7707C26.3177 25.2237 26.625 24.4819 26.625 23.7083V13.5H23.7083V23.7083Z" />
+              </svg>
+            </div>
           </div>
 
           <label className="cursor-pointer flex mt-5" htmlFor="profile-upload">
@@ -139,19 +136,19 @@ export default function Settings({ profile }: Props) {
                 </span>
               </div>
               <span
-                className="border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black"
+                className="border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white"
                 onClick={() => setEditSocials(true)}>
                 EDIT
               </span>
               {editSocials ? (
-                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-max mx-auto slide-bottom">
-                  <div className="relative  my-6 mx-auto w-max bg-white rounded-lg px-10">
+                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
+                  <div className="relative  my-6 mx-auto w-max bg-white rounded-lg px-10 ">
                     <div
                       className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black transition-all"
                       onClick={() => setEditSocials(false)}>
                       x
                     </div>
-                    <form className=" bg-white">
+                    <form className=" bg-white dark:bg-white">
                       <div className="grid grid-cols-2 gap-x-10 gap-y-10">
                         <div className="flex gap-x-5 items-center">
                           <span className="cursor-pointer">
@@ -159,7 +156,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10 "
+                            className="form-input pl-3 p-1 m-0 pr-10 "
                             placeholder="Enter your linkedin url... "
                           />
                         </div>
@@ -169,8 +166,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your reddit url"
+                            className="form-input pl-3 p-1 m-0 pr-10"
+                            placeholder="Enter your reddit url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -179,8 +176,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your twitter url"
+                            className="form-input pl-3 p-1 m-0 pr-10"
+                            placeholder="Enter your twitter url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -189,8 +186,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your facebook url"
+                            className="form-input pl-3 p-1 m-0 pr-10"
+                            placeholder="Enter your facebook url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -199,8 +196,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your github url"
+                            className="form-input pl-3 p-1 m-0 pr-10"
+                            placeholder="Enter your github url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -209,8 +206,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your instagram url"
+                            className="form-input pl-3 p-1 m-0 pr-10"
+                            placeholder="Enter your instagram url..."
                           />
                         </div>
                       </div>
@@ -243,14 +240,14 @@ export default function Settings({ profile }: Props) {
                 ADD SOCIALS
               </span>
               {editSocials ? (
-                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-max mx-auto slide-bottom">
+                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-max mx-auto slide-bottom ">
                   <div className="relative  my-6 mx-auto w-max bg-white rounded-lg px-10">
                     <div
                       className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black transition-all"
                       onClick={() => setEditSocials(false)}>
                       x
                     </div>
-                    <form className=" bg-white">
+                    <form className=" bg-white dark:bg-white">
                       <div className="grid grid-cols-2 gap-x-10 gap-y-10">
                         <div className="flex gap-x-5 items-center">
                           <span className="cursor-pointer">
@@ -258,7 +255,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10 "
+                            className="form-input pl-2 p-1 m-0 pr-10 "
                             placeholder="Enter your linkedin url... "
                           />
                         </div>
@@ -268,8 +265,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your reddit url"
+                            className="form-input pl-2 p-1 m-0 pr-10"
+                            placeholder="Enter your reddit url.."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -278,8 +275,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your twitter url"
+                            className="form-input pl-2 p-1 m-0 pr-10"
+                            placeholder="Enter your twitter url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -288,8 +285,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your facebook url"
+                            className="form-input pl-2 p-1 m-0 pr-10"
+                            placeholder="Enter your facebook url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -298,8 +295,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your github url"
+                            className="form-input pl-2 p-1 m-0 pr-10"
+                            placeholder="Enter your github url..."
                           />
                         </div>
                         <div className="flex gap-x-5 items-center">
@@ -308,8 +305,8 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input p-1 m-0 pr-10"
-                            placeholder="Enter your instagram url"
+                            className="form-input pl-2 p-1 m-0 pr-10"
+                            placeholder="Enter your instagram url..."
                           />
                         </div>
                       </div>
@@ -371,7 +368,7 @@ export default function Settings({ profile }: Props) {
                 name="email"
                 type="email"
                 value={profile.email}
-                disabled
+                placeholder="zach@hackclub.com"
               />
             </section>
             <section>
@@ -455,7 +452,6 @@ export default function Settings({ profile }: Props) {
                 <label className="form-label font-normal" htmlFor="skillsAndInterests">
                   Skills and interests
                 </label>
-                <SkillsAndInterestSelect />
                 <TextareaAutosize
                   className="resize-none form-input box-border py-[6px]"
                   maxRows={6}
@@ -542,7 +538,7 @@ export async function getServerSideProps({ req, res }) {
   }
 
   const props: Props = {
-    profile: await profileService.getCompletedProfile(payload.uniqueId),
+    profile: await profileService.getCompletedProfile(payload.uniqueId)
   };
 
   return { props };

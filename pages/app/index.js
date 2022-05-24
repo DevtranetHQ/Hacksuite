@@ -20,9 +20,9 @@ export default function Dash({ admin, name }) {
         <DashNav admin={admin} />
       </div>
 
-      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10  mx-auto content-center min-w-full min-h-screen">
-        <div className="flex items-center pl-32 mb-10 fixed left-40 right-0  z-40 bg-white dark:bg-dark justify-center mx-auto top-0 pt-10">
-          <div className="flex mx-auto gap-20 items-center font-bold text-[#7D7D7D] text-24px ">
+      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10   content-center min-w-full min-h-screen">
+        <div className="flex items-center pl-32 mb-10 fixed   right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10">
+          <div className="flex mx-auto gap-16 items-center font-bold text-[#7D7D7D] text-24px mr-16">
             <p className=" transition-all cursor-pointer border-b-4 border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white">
               SCRAPBOOK
             </p>
@@ -39,7 +39,7 @@ export default function Dash({ admin, name }) {
               JOBS
             </p>
           </div>
-          <form className="bg-transparent flex items-center mx-auto justify-center pl-5 dark:bg-transparent text-white dark:bg-white p-0">
+          <form className="bg-transparent flex items-center mx-2  justify-end pl-5 dark:bg-transparent text-white dark:bg-white p-0">
             <div className="relative rounded-md flex items-center p-0 border-[#03A9F4] border-[3px] md:w-full ml-auto">
               <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none md:w-full w-2/4">
                 <svg
@@ -63,7 +63,7 @@ export default function Dash({ admin, name }) {
               />
             </div>
           </form>
-          <div className="mx-auto pr-5">
+          <div className=" pr-5">
             <DashHeader />
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function Dash({ admin, name }) {
           </div>
           <div className="-mt-6 xs:-mt-14">
             <h1 className="mxs:text-24px text-48px -rotate-6">Welcome to</h1>
-            <h1 className="mxs:text-26px text-54px font-semibold uppercase -mt-3">The Dynamics</h1>
+            <h1 className="mxs:text-26px text-48px font-semibold uppercase -mt-3">The Dynamics</h1>
           </div>
         </div>
         <div className=""></div>
