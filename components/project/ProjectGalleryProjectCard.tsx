@@ -37,20 +37,21 @@ export default function ProjectGalleryProjectCard({
                 return (
                   <Avatar
                     key={index}
-                    image="/assets/TEST/img-8.jpg"
+                    image="/assets/TEST/profile.jpg"
                     className="w-[50px] h-[50px] relative -m-4"
-                    border="border-[3px]"
+                    border="border-[3px] mr-4"
                   />
                 );
               })}
             <div>
               {trimmed.length === 1 ? (
-                <p className="ml-4 font-semibold text-[23.2px]">{name}</p>
+                <p className="font-semibold text-[23.2px]">{name}</p>
               ) : (
-                <p className="ml-4 font-semibold text-[23.2px]">{`+ ${collaborators.length - 3
-                  } more`}</p>
+                <p className="font-semibold text-[23.2px]">{`+ ${
+                  collaborators.length - 3
+                } more`}</p>
               )}
-              <p className="ml-4 caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]">
+              <p className="caption text-[11.6px] flex items-center gap-[6px] dark:text-[#7D7D7D]">
                 <TimeIcon width={10} height={10} /> <span>{publishedAt}</span>
               </p>
             </div>
