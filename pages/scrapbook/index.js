@@ -170,7 +170,7 @@ export async function getServerSideProps(context) {
             userimg: "/assets/TEST/profile.jpg",
             time: "12:00 pm",
             text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
-              Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit ame
+              Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes 
               
               `,
             image: "/assets/TEST/user_projects/img-6.png"
@@ -207,7 +207,17 @@ export async function getServerSideProps(context) {
             time: "7:00 pm",
             text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
   
-              Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit ame.
+              
+              `,
+            image: "/assets/TEST/user_projects/img-6.png"
+          },
+          {
+            username: "Elytgy",
+            userimg: "/assets/TEST/profile.jpg",
+            time: "7:00 pm",
+            text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+  
+              
               `,
             image: "/assets/TEST/user_projects/img-6.png"
           },
@@ -236,11 +246,10 @@ export async function getServerSideProps(context) {
             userimg: "/assets/TEST/profile.jpg",
             time: "8 :03pm",
             text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
-  
-              I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
               `,
             image: "/assets/TEST/user_projects/img-6.png"
           },
+
           {
             username: "Zach Latta",
             userimg: "/assets/TEST/profile.jpg",
