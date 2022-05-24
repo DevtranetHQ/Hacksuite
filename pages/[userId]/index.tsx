@@ -187,33 +187,33 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
           </div>
 
           <span className="flex gap-1 items-center h-16  -mt-1 justify-center">
-            {profile.links.github && (
-              <a href={profile.links.github}>
+            {profile.links?.github && (
+              <a href={profile.links?.github}>
                 <GithubIcon className="h-9 w-9 hover:scale-110" />
               </a>
             )}
-            {profile.links.linkedin && (
-              <a href={profile.links.linkedin}>
+            {profile.links?.linkedin && (
+              <a href={profile.links?.linkedin}>
                 <LinkedinIcon className="h-9 w-9 hover:scale-110" />
               </a>
             )}
-            {profile.links.twitter && (
-              <a href={profile.links.twitter}>
+            {profile.links?.twitter && (
+              <a href={profile.links?.twitter}>
                 <TwitterIcon className="h-9 w-16 hover:scale-110" />
               </a>
             )}
-            {profile.links.reddit && (
-              <a href={profile.links.reddit}>
+            {profile.links?.reddit && (
+              <a href={profile.links?.reddit}>
                 <RedditIcon className="h-9 w-9 hover:scale-110" />
               </a>
             )}
-            {profile.links.facebook && (
-              <a href={profile.links.facebook}>
+            {profile.links?.facebook && (
+              <a href={profile.links?.facebook}>
                 <FacebookIcon className="h-9 w-9 hover:scale-110" />
               </a>
             )}
-            {profile.links.instagram && (
-              <a href={profile.links.instagram}>
+            {profile.links?.instagram && (
+              <a href={profile.links?.instagram}>
                 <InstagramIcon className="h-9 w-9 hover:scale-110" />
               </a>
             )}
