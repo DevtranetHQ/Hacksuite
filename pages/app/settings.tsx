@@ -256,7 +256,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10 "
+                            className="form-input pl-3 p-1 m-0 pr-10 "
                             placeholder="Enter your linkedin url... "
                           />
                         </div>
@@ -266,7 +266,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10"
+                            className="form-input pl-3 p-1 m-0 pr-10"
                             placeholder="Enter your reddit url.."
                           />
                         </div>
@@ -276,7 +276,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10"
+                            className="form-input pl-3 p-1 m-0 pr-10"
                             placeholder="Enter your twitter url..."
                           />
                         </div>
@@ -286,7 +286,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10"
+                            className="form-input pl-3 p-1 m-0 pr-10"
                             placeholder="Enter your facebook url..."
                           />
                         </div>
@@ -296,7 +296,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10"
+                            className="form-input pl-3 p-1 m-0 pr-10"
                             placeholder="Enter your github url..."
                           />
                         </div>
@@ -306,7 +306,7 @@ export default function Settings({ profile }: Props) {
                           </span>
                           <input
                             type="text"
-                            className="form-input pl-2 p-1 m-0 pr-10"
+                            className="form-input pl-3 p-1 m-0 pr-10"
                             placeholder="Enter your instagram url..."
                           />
                         </div>
@@ -473,7 +473,7 @@ export default function Settings({ profile }: Props) {
                 <input
                   autoComplete="off"
                   className="form-input py-[6px]"
-                  placeholder="Write something.."
+                  placeholder="Write something..."
                   type="text"
                   maxLength={50}
                   {...register("headline")}
