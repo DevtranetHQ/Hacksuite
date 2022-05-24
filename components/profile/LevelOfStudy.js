@@ -31,7 +31,7 @@ export default function LevelOfStudySelect({}) {
     <>
       <Select
         isMulti
-        className="text-[18px] mt-[1px] p-0 m-0"
+        className="text-[18px] mt-[1px] p-0 m-0 form-select border-none"
         placeholder="Select what you're open to"
         classNamePrefix="react-select"
         components={{ ValueContainer }}
@@ -55,21 +55,21 @@ export default function LevelOfStudySelect({}) {
         }
 
         .react-select__indicator-separator {
-          display: none;
-          //         align-self: stretch;
-          //         background-color: #C9C9C9;
-          //         margin-bottom: 0px;
-          //         margin-top: 0px;
-          //         box-sizing: border-box;
-          //         width: 1px;
+          display: flex;
+          align-self: stretch;
+          background-color: #e5e7eb;
+          margin-left: 5px;
+          box-sizing: border-box;
+          width: 1px;
         }
 
         .react-select__dropdown-indicator {
-          background-image: url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4019 21.5542L0.267673 0.508415L24.5361 0.508415L12.4019 21.5542Z' fill='%238A8A8A'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4019 21.5542L0.267673 0.508415L24.5361 0.508415L12.4019 21.5542Z' fill='%238A8A8A'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: center;
-          background-size: 90%;
-          margin-right: 12px;
+          background-size: 80%;
+          margin-right: 7px;
+          margin-left: 7px;
         }
 
         .react-select__dropdown-indicator > svg {
