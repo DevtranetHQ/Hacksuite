@@ -11,7 +11,7 @@ export default function Index() {
     if (auth.user) {
       router.push("/app");
     } else {
-      router.push("/login");
+      router.push("/landing");
     }
   }, [auth.user, router]);
 
