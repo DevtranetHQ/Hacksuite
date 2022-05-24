@@ -1,11 +1,12 @@
-import FullNav from "../../components/newsfeed/index"
-
+import FullNav from "../../components/newsfeed/index";
 
 const Jobs = () => {
-    return <>
-        <FullNav />
-        <p>Jobs</p>
+  return (
+    <>
+      <FullNav />
+      <p>Jobs</p>
     </>
-}
+  );
+};
 
-export default Jobs
+export default Jobs;

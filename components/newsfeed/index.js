@@ -79,34 +79,6 @@ const FullNav = () => {
           </Link>
         </ul>
       </nav>
-
-      <nav className="flex justify-between items-center md:pb-12 md:pt-10 pb-10 pt-10 gap-20 transition-all">
-        <p
-          onClick={e => {
-            e.preventDefault();
-            setOpenTab(1);
-          }}
-          className={
-            openTab === 1
-              ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white transition-all duration-250"
-              : "md:headline font-bold cursor-pointer relative  text-[#6E7180] border-b-4 border-transparent transition-all duration-250"
-          }>
-          PROJECTS
-        </p>
-
-        <p
-          onClick={e => {
-            e.preventDefault();
-            setOpenTab(2);
-          }}
-          className={
-            openTab === 2
-              ? "md:headline font-bold cursor-pointer relative border-b-4 border-orange-peel text-[#1A1A1A] dark:text-white transition-all duration-250"
-              : "md:headline font-bold cursor-pointer relative  text-[#6E7180] border-b-4 border-transparent transition-all duration-250"
-          }>
-          SCRAPBOOK
-        </p>
-      </nav>
     </div>
   );
 }
