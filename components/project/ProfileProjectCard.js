@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react";
 import AdobeIcon from "../icons/Adobe";
 import GithubIcon from "../icons/Github";
 import FigmaIcon from "../icons/Figma";
-import { bubbleTrimmer } from "../../pages/profile/[id]";
+import { bubbleTrimmer } from "../../pages/app/profile/[id]";
 
 /**
  * User profile project Card component
