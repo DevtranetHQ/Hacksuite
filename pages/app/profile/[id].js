@@ -67,14 +67,13 @@ export default function Profile({ loggedIn, user }) {
           </button>
           {showMessage ? (
             <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
-              <div className="relative  my-6 mx-auto p-5 w-6/12">
-                <form className="form">
+              <div className="relative  my-6 mx-auto p-5 w-6/12 bg-white dark:bg-dark rounded-lg">
+                <form className="form bg-white dark:bg-dark">
                   <div>
-                    <label className="form-label">Enter Subject</label>
+                    <label className="form-label font-normal">Enter Subject</label>
                     <input type="text" className="form-input" />
                   </div>
                   <div>
-                    <label className="form-label">Write Something</label>
                     <textarea
                       style={{ height: "150px", resize: "none" }}
                       className="form-input"
@@ -110,7 +109,11 @@ export default function Profile({ loggedIn, user }) {
 
       {/* ====== #PROFILE head start */}
       <div className=" flex items-center justify-center w-1/1 h-[350px] md:gap-10 gap-4 relative bg-[#f8fbff] dark:bg-[#2D2D2D]">
-        <Avatar image={ProfileImg} className="md:h-64 relative md:w-64 h-[170px] w-[170px] " />
+        <Avatar
+          image={ProfileImg}
+          className="md:h-64 relative md:w-64 h-[170px] w-[170px] "
+          border="!border-[2.6px]"
+        />
         <div className=" h-60 flex p-2 flex-col justify-center  gap-0 items-start ">
           <h1 className="text-heading md:title subtitle dark:text-white">{user.name} </h1>
 
@@ -123,14 +126,16 @@ export default function Profile({ loggedIn, user }) {
             </p>
             {showSkills ? (
               <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
-                <div className="relative  my-6 mx-auto  bg-white dark:bg-dark p-5 rounded-lg w-2/4">
+                <div className="relative  my-6 mx-auto  bg-white dark:bg-dark p-5 rounded-lg w-[30%]">
                   <div>
-                    <h2 className="font-semibold text-30px text-center p-5">Skills and Interest</h2>
-                    <hr />
+                    <h2 className="font-semibold text-30px text-center p-5">
+                      SKILLS AND INTERESTS
+                    </h2>
+                    <hr className="mb-3" />
                     {user.skills.map((skill, index) => {
                       return (
-                        <span className="text-24px " key={index}>
-                          {skill},{" "}
+                        <span className="text-24px" key={index}>
+                          {(index ? ", " : "") + skill}
                         </span>
                       );
                     })}
@@ -154,7 +159,7 @@ export default function Profile({ loggedIn, user }) {
                     <Avatar
                       {...follower}
                       className="-m-3 relative h-9 w-9 p-0 hover:scale-110 "
-                      border="1px"
+                      border="0.5px"
                       key={index}
                     />
                   );
@@ -162,36 +167,37 @@ export default function Profile({ loggedIn, user }) {
               <FollowerIcon className="ml-4 hover:scale-110 hidden md:inline-flex" />
             </span>
           </div>
-
-          <span className="flex gap-1 items-center h-16  -mt-1 justify-center ">
-            <GithubIcon className=" h-9 w-9 hover:scale-110" />
-            <TwitterIcon className="  h-9 w-16 hover:scale-110" />
-            <LinkedinIcon className=" h-9 w-9 hover:scale-110" />
-          </span>
+          {user.socialAccount ? (
+            <span className="flex gap-1 items-center h-16  -mt-1 justify-center ">
+              <GithubIcon className=" h-9 w-9 hover:scale-110" />
+              <TwitterIcon className="  h-9 w-16 hover:scale-110" />
+              <LinkedinIcon className=" h-9 w-9 hover:scale-110" />
+            </span>
+          ) : null}
         </div>
       </div>
-      <div className=" p-10 pt-20 pl-32 w-[70%] mx-auto flex-col justify-center mb-5 ">
-        <section className=" flex items-center ">
-          <div className="gap-x-5 flex">
-            <span className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
-              Developer Evangelist
-            </span>
-            <span className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
-              Founder
-            </span>
-            <span className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
-              Software Engineer
-            </span>
-            <span className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
-              Angel Investor
-            </span>
-            <span className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
-              Back-end Developer
-            </span>
+      <div className=" px-10 py-5 pl-32 w-[80%] mx-auto flex-col justify-center mb-5 ">
+        {user.describe.length === 0 ? null : (
+          <section className=" flex items-center ">
+          <div className="gap-x-5 flex text-20px">
+            
+            {user.describe.map((des, index) => {
+                    return (
+                      <span
+                        className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue"
+                        key={index}>
+                        {des}
+                      </span>
+                    );
+                  })}
+            
           </div>
         </section>
-
-        <section className="   flex justify-center  items-center mt-10">
+        )}
+        
+          
+        {user.available.length === 0 ? null : (
+          <section className="  flex justify-center  items-center mt-10">
           <div className="w-full">
             <h1 className="mb-3 font-bold text-36px">I’M AVAILABLE FOR </h1>
             <div className="flex flex-wrap gap-5">
@@ -199,7 +205,7 @@ export default function Profile({ loggedIn, user }) {
                 ? user.available.slice(0, 5).map((work, index) => {
                     return (
                       <span
-                        className="p-1 px-2  rounded-md border-2 border-deep-sky-blue"
+                        className="p-1 px-2 text-20px  rounded-md border-2 border-deep-sky-blue"
                         key={index}>
                         {work}
                       </span>
@@ -208,7 +214,7 @@ export default function Profile({ loggedIn, user }) {
                 : user.available.map((work, index) => {
                     return (
                       <span
-                        className="p-1 px-2  rounded-md border-2 border-deep-sky-blue"
+                        className="p-1 px-2 text-18px  rounded-md border-2 border-deep-sky-blue"
                         key={index}>
                         {work}
                       </span>
@@ -216,12 +222,14 @@ export default function Profile({ loggedIn, user }) {
                   })}
               <span
                 onClick={availableFor}
-                className="p-1 px-2 cursor-pointer rounded-md border-2 border-deep-sky-blue">
+                className="p-1 px-2 cursor-pointer rounded-md border-2 border-deep-sky-blue items-center text-center">
                 {showMore ? "+5" : "Show less"}
               </span>
             </div>
           </div>
         </section>
+        )}
+        
       </div>
       {/* ====== #TAB section start */}
       <section className="flex itens-center flex-col  items-center dark:bg-[#202020] transition-all p-5">
@@ -341,6 +349,8 @@ export async function getServerSideProps(context) {
       user: {
         name: "Zach Latta",
         headLine: "Founder, Hack Club",
+        socialAccount: true,
+        describe: ["Developer Evangelist", "Founder", "Software Engineer", "Angel Investor", "Back-end Developer"],
         available: [
           "Building an MVP",
           "Co-founding a startup",
