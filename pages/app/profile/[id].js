@@ -280,6 +280,7 @@ export default function Profile({ loggedIn, user }) {
                         comments={27}
                         tags={bubbleTrimmer(project.tags, 0, 4)}
                         desc={project.desc}
+                        tools ={project.tools}
                       />
                     );
                   })}
@@ -396,7 +397,8 @@ export async function getServerSideProps(context) {
             image: "/assets/TEST/user_projects/img-1.png",
             comments: 22222,
             likes: 33333333,
-            tags: ["NextJs", "Figma"]
+            tags: ["NextJs", "Figma"],
+            tools: ['github'],
           },
           {
             bubbles: [1, 2, 3],
