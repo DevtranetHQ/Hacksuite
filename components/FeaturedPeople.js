@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "./Avatar";
 import ProfileImg from "../public/assets/TEST/profile.jpg";
+import ArrowIcon from "./icons/Arrow";
 
 export default function FeaturedPeople() {
   return (
@@ -70,7 +71,12 @@ export default function FeaturedPeople() {
           </p>
         </div>
         <hr />
-        <button className="button-deep-sky-blue button-small mx-auto mt-10 ">View more</button>
+        <button className="button-deep-sky-blue button-small mx-auto mt-10 items-center ">
+          View more{" "}
+          <div className="ml-2 pt-1">
+            <ArrowIcon />
+          </div>
+        </button>
       </div>
     </div>
   );

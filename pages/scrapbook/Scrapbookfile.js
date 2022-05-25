@@ -7,7 +7,7 @@ function Scrapbookfile({ ...props }) {
 
   return (
     <section className="shadow-lg rounded-lg">
-      <div className="p-5 bg-[#F8FBFF] dark:bg-[#2D2D2D] rounded-lg mb-5 shadow-md dark:text-white">
+      <div className="p-5 bg-[#F8FBFF] dark:bg-[#2D2D2D] rounded-lg mb-10 shadow-md dark:text-white">
         <div className="flex items-center gap-x-2 mb-5">
           <Avatar
             image={userimg}
@@ -26,7 +26,7 @@ function Scrapbookfile({ ...props }) {
                 return (
                     <Image src={image} key={index} />
             )})} */}
-          <img src={image} alt="" className=" rounded-lg mb-5" />
+          <img src={image} alt="" className=" rounded-lg mb-5 w-full" />
         </div>
       </div>
     </section>

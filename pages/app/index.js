@@ -17,11 +17,12 @@ import Avatar from "../../components/Avatar";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import FeaturedPeople from "../../components/FeaturedPeople";
 import ArrowIcon from "../../components/icons/Arrow";
+import Scrapbookfile from "../scrapbook/Scrapbookfile";
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
-export default function Dash({ admin, name, projects }) {
+export default function Dash({ admin, name, projects, scrapbookItem }) {
   const { darkMode } = useContext(DarkModeContext);
   // ======= Tab state -->
   // TODO: Set top nav state
@@ -135,6 +136,27 @@ export default function Dash({ admin, name, projects }) {
 
         <div className=""></div>
         <div className=""></div>
+        {openTab === 1 && (
+          <div className="mt-20 text-center grid grid-cols-3 pl-20 gap-5">
+            <div className="col-span-2 text-left">
+              {scrapbookItem.map((scrapbookItem, index) => {
+                return (
+                  <Scrapbookfile
+                    key={index}
+                    username={scrapbookItem.username}
+                    userimg={scrapbookItem.userimg}
+                    time={scrapbookItem.time}
+                    text={scrapbookItem.text}
+                    image={scrapbookItem.image}
+                  />
+                );
+              })}
+            </div>
+            <div className="h-screen fixed right-0 w-[27%] top-26">
+              <FeaturedPeople />
+            </div>
+          </div>
+        )}
         {openTab === 0 ? (
           <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-10 z-20 hover:scale-105 focus:scale-105 transition-all">
             {darkMode ? (
@@ -251,6 +273,123 @@ export async function getServerSideProps({ req, res }) {
           likes: 33333333,
           tags: ["NextJs", "Figma"],
           liked: true
+        }
+      ],
+      scrapbookItem: [
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "12:00 pm",
+          text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, https://fakwebsite.com/1234/lie discovered the undoubtable source. Lorem Ipsum comes 
+            
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "D'phenomnal",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "2:30pm",
+          text: `Earliert today @Elytgy, @Bonsai and I created this wordle game clone together in #game-dev 
+            we only changed this small code 
+            in the footer and we kinda duplicated this too
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Bill Gates",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "3:15pm",
+          text: `Can’t believe I just got into MIT btw, guess who has a date with Elon Musk later today.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Bella See",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "6:15pm",
+          text: `Can’t believe I just got into MIT btw, guess who has a date with Elon Musk later today.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Elytgy",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "7:00 pm",
+          text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+
+            
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Elytgy",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "7:00 pm",
+          text: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Thanks to @Eni4sure for the help in #coding-help today
+
+            
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
+        },
+        {
+          username: "Zach Latta",
+          userimg: "/assets/TEST/profile.jpg",
+          time: "8 :03pm",
+          text: `I replaced the extruded in my 3D printer today! The pre-assembled extruders were all out of stock, so I had to buy the parts for one (which got lost in the mail, so had to place a second order…), put it together, and then pull out the old clogged extruder in the printer and replace it with the new one I assembled.
+
+            I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
+            `,
+          image: "/assets/TEST/user_projects/img-6.png"
         }
       ]
     }
