@@ -2,12 +2,18 @@ import HeartIcon from "../icons/Heart";
 import CommentIcon from "../icons/Comment";
 import Image from "next/image";
 import Avatar from "../Avatar";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
 import AdobeIcon from "../icons/Adobe";
 import GithubIcon from "../icons/Github";
 import FigmaIcon from "../icons/Figma";
+import ShareIcon from "../icons/Share";
 import { bubbleTrimmer } from "../../pages/app/profile/[id]";
+import DarkModeContext from "../DarkModeContext";
+import TwitterIcon from "../../components/icons/Twitter";
+import Facebook from "../../components/icons/Facebook";
+import LinkedinIcon from "../../components/icons/Linkedin";
+import FacebookIcon from "../../components/icons/Facebook";
 
 /**
  * User profile project Card component
@@ -23,14 +29,16 @@ import { bubbleTrimmer } from "../../pages/app/profile/[id]";
  * @returns  Card Component
  */
 export default function ProfileProjectCard({ ...props }) {
-  const { date, image, title, desc, tags, likes, comments, bubbles, className } = props;
+  const { date, image, title, desc, tags, likes, comments, bubbles, className, tools } = props;
+  const { darkMode } = useContext(DarkModeContext);
+  const [share, setShare] = useState(false);
 
   return (
     <div
       className={
         className
           ? className
-          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] justify-between p-5"
+          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] justify-between p-5 mb-5"
       }>
       {/* ====== #TOP SECTION */}
       {bubbles.length === 0 ? (
@@ -42,16 +50,21 @@ export default function ProfileProjectCard({ ...props }) {
             </p>
           </span>
           <span className="flex items-center space-x-2">
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <GithubIcon fill={"currentColor"} width={20} height={20} />
-            </a>
-
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <AdobeIcon fill={"currentColor"} width={20} height={20} />
-            </a>
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <FigmaIcon fill={"currentColor"} width={20} height={20} />
-            </a>
+            {tools &&
+              tools.map(tool => {
+                switch (tool) {
+                  case "github":
+                    return (
+                      <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                    );
+                  case "figma":
+                    return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  case "adobexd":
+                    return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  default:
+                    break;
+                }
+              })}
           </span>
         </div>
       ) : (
@@ -77,7 +90,7 @@ export default function ProfileProjectCard({ ...props }) {
                   );
                 })}
             <div className="flex-col items-center justify-start ml-4">
-              <p className="font-semibold lg:text-22px md:text-18px text-18px md:ml-1">
+              <p className="font-semibold lg:text-22px md:text-18px text-18px md:ml-1 text-left">
                 {bubbles.length > 3 ? `+ ${bubbles.length} more` : ""}
               </p>
               <p className=" caption flex items-center gap-2 font-normal text-12px md:text-16px lg:text-18px md:mx-1">
@@ -87,15 +100,21 @@ export default function ProfileProjectCard({ ...props }) {
             </div>
           </span>
           <span className="flex items-center space-x-2">
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <GithubIcon fill={"currentColor"} width={20} height={20} />
-            </a>
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <AdobeIcon fill={"currentColor"} width={20} height={20} />
-            </a>
-            <a href="https://github.com/TheDynamics" style={{ color: "currentColor" }}>
-              <FigmaIcon fill={"currentColor"} width={20} height={20} />
-            </a>
+            {tools &&
+              tools.map(tool => {
+                switch (tool) {
+                  case "github":
+                    return (
+                      <GithubIcon fill={darkMode ? "white" : "black"} width={21} height={21} />
+                    );
+                  case "figma":
+                    return <FigmaIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  case "adobexd":
+                    return <AdobeIcon fill={darkMode ? "white" : "black"} width={21} height={21} />;
+                  default:
+                    break;
+                }
+              })}
           </span>
         </div>
       )}
@@ -138,8 +157,49 @@ export default function ProfileProjectCard({ ...props }) {
             <span className="lg:text-24px md:text-16px text-16px font-bold">{likes}</span>
           </p>
           <p className="flex items-center gap-2">
-            <CommentIcon fill="#000000" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
+            <CommentIcon fill="currentColor" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
             <span className="lg:text-24px md:text-16px text-16px font-bold">{comments}</span>
+          </p>
+          <p className="flex items-center gap-2">
+            <svg
+              onClick={() => setShare(true)}
+              width="40"
+              height="39"
+              viewBox="0 0 24 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14.5 0.25V5.25C5.75 6.5 2 12.75 0.75 19C3.875 14.625 8.25 12.625 14.5 12.625V17.75L23.25 9L14.5 0.25ZM17 6.2875L19.7125 9L17 11.7125V10.125H14.5C11.9125 10.125 9.5875 10.6 7.425 11.3125C9.175 9.575 11.425 8.2125 14.85 7.75L17 7.4125V6.2875Z"
+                fill="currentColor"
+              />
+            </svg>
+            {share ? (
+              <div
+                className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm"
+                onClick={() => setShare(false)}>
+                <div className="relative  my-6 mx-auto p-5 w-max px-10 bg-white dark:bg-dark rounded-lg cursor-pointer">
+                  <div>
+                    <h1 className="text-center font-semibold text-28px mb-5">Share it </h1>
+                    <div className="flex gap-x-10 items-center justify-center">
+                      <TwitterIcon />
+                      <FacebookIcon />
+                      <LinkedinIcon />
+                      <svg
+                        width="44"
+                        height="49"
+                        viewBox="0 0 44 49"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M36.5 34.8602C34.6633 34.8602 33.02 35.5852 31.7633 36.721L14.5325 26.6918C14.6533 26.136 14.75 25.5802 14.75 25.0002C14.75 24.4202 14.6533 23.8643 14.5325 23.3085L31.57 13.376C32.875 14.5843 34.5908 15.3335 36.5 15.3335C38.4228 15.3335 40.2669 14.5697 41.6265 13.21C42.9862 11.8504 43.75 10.0063 43.75 8.0835C43.75 6.16068 42.9862 4.31661 41.6265 2.95697C40.2669 1.59733 38.4228 0.833496 36.5 0.833496C34.5772 0.833496 32.7331 1.59733 31.3735 2.95697C30.0138 4.31661 29.25 6.16068 29.25 8.0835C29.25 8.6635 29.3467 9.21933 29.4675 9.77516L12.43 19.7077C11.125 18.4993 9.40917 17.7502 7.5 17.7502C5.57718 17.7502 3.73311 18.514 2.37348 19.8736C1.01384 21.2333 0.25 23.0773 0.25 25.0002C0.25 26.923 1.01384 28.767 2.37348 30.1267C3.73311 31.4863 5.57718 32.2502 7.5 32.2502C9.40917 32.2502 11.125 31.501 12.43 30.2927L29.6367 40.3218C29.5158 40.8293 29.4433 41.361 29.4433 41.9168C29.4433 45.8077 32.6092 48.9493 36.5 48.9493C40.3908 48.9493 43.5567 45.8077 43.5567 41.9168C43.5567 40.0453 42.8132 38.2504 41.4898 36.927C40.1664 35.6036 38.3715 34.8602 36.5 34.8602Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </p>
         </span>
       </div>
