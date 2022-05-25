@@ -63,8 +63,10 @@ export default function Landing({}) {
 
       <div className="mxs:mt-2 mxs:mx-1 mt-12 mx-5 flex grid grid-cols-2">
         <div className="mxs:ml-1 mxs:pt-2 ml-7 flex flex-col pt-12">
-          <p className="moving_background_gradient font-bold leading-[1.3] mxs:text-16px text-48px">
-            Where makers, developers, and technologists call home.
+          <p className="font-bold leading-[1.3] mxs:text-16px text-48px">
+            Where<span className="moving_background_gradient"> makers</span>,
+            <span className="moving_background_gradient"> developers</span>, and
+            <span className="moving_background_gradient"> technologists </span>call home.
             <style jsx>{`
               .moving_background_gradient {
                 background: url(https://media.giphy.com/media/l41lGIoEJCWnG7izS/giphy.gif);
