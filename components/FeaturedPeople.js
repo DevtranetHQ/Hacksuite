@@ -10,7 +10,7 @@ export default function FeaturedPeople() {
       <div className="bg-[#F8FBFF] h-screen rounded-md dark:bg-[#2D2D2D]">
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
             <div className="flex flex-col justify-start">
               <span className="text-left font-bold">Bella See</span>
               <span className="-mt-1">Founder, CommandTech</span>
@@ -21,7 +21,7 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
             <div className="flex flex-col justify-start ">
               <span className="text-left font-bold">Ibrahim Salami</span>
               <span className="-mt-1">Founder, CommandTech</span>
@@ -34,7 +34,7 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
             <div className="flex flex-col justify-start ">
               <span className="text-left font-bold">Dora Palfi</span>
               <span className="-mt-1">Founder, CommandTech</span>
@@ -47,7 +47,7 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
             <div className="flex flex-col justify-start ">
               <span className="text-left font-bold">Dev Agrawal</span>
               <span className="-mt-1">Founder, CommandTech</span>
@@ -60,7 +60,7 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
             <div className="flex flex-col justify-start ">
               <span className="text-left font-bold">Melinda Gates</span>
               <span className="-mt-1">Founder, CommandTech</span>
@@ -70,7 +70,6 @@ export default function FeaturedPeople() {
             Follow
           </p>
         </div>
-        <hr />
         <button className="button-deep-sky-blue button-small mx-auto mt-10 items-center ">
           View more{" "}
           <div className="ml-2 pt-1">
