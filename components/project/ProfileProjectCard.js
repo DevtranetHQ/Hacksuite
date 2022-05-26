@@ -38,11 +38,11 @@ export default function ProfileProjectCard({ ...props }) {
       className={
         className
           ? className
-          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] justify-between p-5 mb-5"
+          : "w-full h-[580px] flex bg-[#f8fbff] flex-col rounded-xl overflow-hidden shadow-xl hover:shadow-xxl dark:bg-[#2D2D2D] justify-between p-5 mb-10"
       }>
       {/* ====== #TOP SECTION */}
       {bubbles.length === 0 ? (
-        <div className="w-full h-[20%]  flex items-center justify-between relative ">
+        <div className="w-full h-max  flex items-center justify-between relative ">
           <span className="relative flex items-center">
             <p className="caption flex items-center gap-2 text-12px md:text-16px lg-text-18px">
               <Icon icon="mdi:clock-time-four-outline" color="#03a9f4" inline={true} />
@@ -68,12 +68,13 @@ export default function ProfileProjectCard({ ...props }) {
           </span>
         </div>
       ) : (
-        <div className="w-full h-[20%]  flex items-center justify-between relative pl-4 pr-4 ">
+        <div className="w-full h-max  flex items-center justify-between relative pl-4 pr-4 ">
           <span className="relative flex gap-4 items-center">
             {bubbles && !bubbles.length > 3
               ? bubbles.map((bubble, index) => {
                   return (
                     <Avatar
+                      border="1px"
                       key={index}
                       image="/assets/TEST/img-8.jpg"
                       className="w-11 h-11 relative -m-3"
@@ -83,6 +84,7 @@ export default function ProfileProjectCard({ ...props }) {
               : bubbleTrimmer(bubbles, 0, 3).map((bubble, index) => {
                   return (
                     <Avatar
+                      border="1px"
                       key={index}
                       image="/assets/TEST/img-8.jpg"
                       className="w-11 h-11 relative -m-4"
@@ -125,14 +127,14 @@ export default function ProfileProjectCard({ ...props }) {
       </div>
 
       {/* ====== #TEXT SECTION */}
-      <div className="">
+      <div className="-mt-10">
         <h4 className="subheadline font-semibold">{title}</h4>
         <p className="caption font-semibold italic">{desc}</p>
       </div>
 
       {/* ====== #BOTTOM SECTION */}
 
-      <div className="flex w-full h-[7%] gap-2 items-center justify-between mt-5 p-2">
+      <div className="flex w-full h-max gap-2 items-center justify-between  ">
         <span className="flex items-center md:gap-1 lg:gap-2 gap-1">
           <p className="caption text-18px md:text-24px font-semibold">Tags:</p>
           {tags &&

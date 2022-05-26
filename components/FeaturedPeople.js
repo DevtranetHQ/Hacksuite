@@ -8,7 +8,7 @@ export default function FeaturedPeople() {
     <div>
       <h1 className="font-semibold text-20px text-left mb-2">Featured People</h1>
       <div className="bg-[#F8FBFF] h-screen rounded-md dark:bg-[#2D2D2D]">
-        <div className="flex items-center justify-between p-3">
+        <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
             <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
             <div className="flex flex-col justify-start">
@@ -19,7 +19,7 @@ export default function FeaturedPeople() {
           <p className="bg-deep-sky-blue px-2 py-1 rounded-md text-white text-14px ">Unfollow</p>
         </div>
         <hr />
-        <div className="flex items-center justify-between p-3">
+        <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
             <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
             <div className="flex flex-col justify-start ">
@@ -27,12 +27,12 @@ export default function FeaturedPeople() {
               <span className="-mt-1">Founder, CommandTech</span>
             </div>
           </div>
-          <p className="bg-transparent border border-[#C9C9C9] px-2 py-1 rounded-md  text-14px ">
+          <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
             Follow
           </p>
         </div>
         <hr />
-        <div className="flex items-center justify-between p-3">
+        <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
             <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
             <div className="flex flex-col justify-start ">
@@ -40,12 +40,12 @@ export default function FeaturedPeople() {
               <span className="-mt-1">Founder, CommandTech</span>
             </div>
           </div>
-          <p className="bg-transparent border border-[#C9C9C9] px-2 py-1 rounded-md  text-14px ">
+          <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
             Follow
           </p>
         </div>
         <hr />
-        <div className="flex items-center justify-between p-3">
+        <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
             <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
             <div className="flex flex-col justify-start ">
@@ -53,12 +53,12 @@ export default function FeaturedPeople() {
               <span className="-mt-1">Founder, CommandTech</span>
             </div>
           </div>
-          <p className="bg-transparent border border-[#C9C9C9] px-2 py-1 rounded-md  text-14px ">
+          <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
             Follow
           </p>
         </div>
         <hr />
-        <div className="flex items-center justify-between p-3">
+        <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
             <Avatar image={ProfileImg} className="relative h-10 w-10" border="1px" />
             <div className="flex flex-col justify-start ">
@@ -66,7 +66,7 @@ export default function FeaturedPeople() {
               <span className="-mt-1">Founder, CommandTech</span>
             </div>
           </div>
-          <p className="bg-transparent border border-[#C9C9C9] px-2 py-1 rounded-md  text-14px ">
+          <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
             Follow
           </p>
         </div>
