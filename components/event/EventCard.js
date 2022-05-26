@@ -27,7 +27,7 @@ export default function EventCard(event) {
       <div className="md:col-span-2 col-span-3 md:px-7">
         <section className="mb-2">
           <h1 className="md:headline font-bold text-28px mb-3">{name}</h1>
-          <p className="md:caption font-semibold text-justify text-black dark:text-white">
+          <p className="md:caption font-semibold text-justify dark:text-white">
             {description.substring(0, 200)}...
             <Link href={route}>
               <a className="mx-1 underline">

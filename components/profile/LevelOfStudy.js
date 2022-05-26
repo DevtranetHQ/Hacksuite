@@ -31,7 +31,7 @@ export default function LevelOfStudySelect({}) {
     <>
       <Select
         isMulti
-        className="text-[18px] mt-[1px] p-0 m-0 form-select border-none"
+        className="text-[18px] mt-[1px] p-0 m-0 form-select border-0 rounded-lg"
         placeholder="Select what you're open to"
         classNamePrefix="react-select"
         components={{ ValueContainer }}
