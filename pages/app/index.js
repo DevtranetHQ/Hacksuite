@@ -35,7 +35,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
       </div>
 
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10   content-center min-w-full min-h-screen">
-        <div className="flex items-center pl-32 mb-10 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
+        <div className="flex items-center pl-32 pb-5 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
           <div className="flex mx-auto gap-16 items-center font-bold text-[#7D7D7D] text-24px mr-16">
             <p
               className={
@@ -137,7 +137,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
         <div className=""></div>
         <div className=""></div>
         {openTab === 1 && (
-          <div className="mt-20 text-center grid grid-cols-3 pl-20 gap-5">
+          <div className="mt-20 text-center grid grid-cols-3 pl-24">
             <div className="col-span-2 text-left">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
@@ -152,7 +152,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[27%] top-26">
+            <div className="h-screen fixed right-0 w-[24.5%] top-26">
               <FeaturedPeople />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
         ) : null}
 
         {openTab === 2 && (
-          <div className="mt-20 text-center grid grid-cols-3 pl-20 gap-5">
+          <div className="mt-20 text-center grid grid-cols-3 pl-24">
             <div className="col-span-2 text-left">
               {projects.map((project, index) => {
                 return (
@@ -187,7 +187,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[27%] top-26">
+            <div className="h-screen fixed right-0 w-[24.5%] top-26">
               <FeaturedPeople />
             </div>
           </div>
@@ -215,7 +215,7 @@ export async function getServerSideProps({ req, res }) {
           bubbles: [1, 2, 3, 4, 5],
           date: "11:00 am, Today",
           title: "Web Scrapper",
-          desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC",
+          desc: "A chrome extension that gathers vital information a the tap of a button, easy as ABC A chrome extension that gathers vital information a the tap of a button, easy as ABC",
           image: "/assets/TEST/user_projects/img-1.png",
           comments: 22222,
           likes: 33333333,
