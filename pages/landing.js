@@ -64,19 +64,9 @@ export default function Landing({}) {
       <div className="mxs:mt-2 mxs:mx-1 mt-12 mx-5 flex grid grid-cols-2">
         <div className="mxs:ml-1 mxs:pt-2 ml-7 flex flex-col pt-12">
           <p className="font-bold leading-[1.3] mxs:text-16px text-48px">
-            Where<span className="moving_background_gradient"> makers</span>,
-            <span className="moving_background_gradient"> developers</span>, and
-            <span className="moving_background_gradient"> technologists </span>call home.
-            <style jsx>{`
-              .moving_background_gradient {
-                background: url(https://media.giphy.com/media/l41lGIoEJCWnG7izS/giphy.gif);
-                background-size: cover;
-                background-position: 50%;
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              }
-            `}</style>
+            Where <span className="text-[#ff9700]">makers</span>,{" "}
+            <span className="text-[#03a9f4]">developers</span>, and{" "}
+            <span className="text-[#4cb050]">technologists</span> call home.
           </p>
           <p className="mxs:text-12px mxs:mt-1 text-24px mt-7">
             The Dynamics is a global network of makers, developers, and technologists where
@@ -101,6 +91,7 @@ export default function Landing({}) {
               <span className="text-[#3B4FE4] flex items-center cursor-pointer">
                 Login&nbsp;
                 <svg
+                  className="mxs:h-[6px] mxs:w-[12px] mt-0.5"
                   width="25"
                   height="12"
                   viewBox="0 0 25 12"
