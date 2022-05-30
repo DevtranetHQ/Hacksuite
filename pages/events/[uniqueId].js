@@ -114,7 +114,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
           </span>
         </h1>
         <div
-          className="prose prose-lg dark:prose-invert mt-5 "
+          className="prose prose-lg dark:prose-invert mt-5"
           dangerouslySetInnerHTML={eventDescription()}
         />
 
