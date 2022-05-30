@@ -22,42 +22,42 @@ export default function Landing({}) {
         <div className="relative mxs:w-[80px] w-[100px] xl:w-[120px] mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
-        <div className="flex items-center mxs:text-10px text-18px xl:text-24px">
+        <div className="flex items-center mxs:text-10px text-18px xl:text-22px">
           <div className="flex items-center mxs:space-x-2 mxs:mx-2 space-x-12 xl:space-x-16 mx-12 xl:mx-16">
             <Link href="/scrapbook">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
                 Scrapbook
               </p>
             </Link>
             <Link href="/project-gallery">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
             </Link>
             <Link href="/events">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
                 Events
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
             </Link>
           </div>
           <div className="flex items-center mxs:space-x-1 space-x-5">
             <Link href="#">
-              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-2 2xl:py-3.5 rounded-md border-[1.5px] border-[#4CB050] text-[#4CB050] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-1.5 2xl:py-3.5 rounded-md border-[1.5px] border-[#4CB050] text-[#4CB050] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Hire Talents
               </button>
             </Link>
             <Link href="#">
-              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-2 2xl:py-3.5 rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-1.5 2xl:py-3.5 rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Sponsor Events
               </button>
             </Link>
