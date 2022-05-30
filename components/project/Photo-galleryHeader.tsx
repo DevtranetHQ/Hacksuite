@@ -19,7 +19,7 @@ const PhotoGalleryHeader = ({
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
         <Logo className="w-[50px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
-          <DarkModeToggle
+        <DarkModeToggle
             className="!mx-2 w-[27px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
             darkClassName="!mx-2 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
