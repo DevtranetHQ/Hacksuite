@@ -66,7 +66,7 @@ export default function Landing({}) {
       </div>
 
       <div className="mxs:mt-2 mxs:mx-1 mt-3 xl:mt-4 mx-5 flex grid grid-cols-2">
-        <div className="mxs:ml-1 mxs:pt-2 ml-3 flex flex-col pt-11 xl:pt-14 2xl:pt-[4.5rem]">
+        <div className="mxs:ml-1 mxs:pt-2 ml-3 flex flex-col pt-11 lgm:pt-[4.5rem] xl:pt-14 2xl:pt-[4.5rem]">
           <p className="font-bold leading-[1.3] mxs:text-16px text-[36px] xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
@@ -115,7 +115,7 @@ export default function Landing({}) {
         </div>
       </div>
 
-      <div className="mxs:mt-1 mt-5 xl:mt-6 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
+      <div className="mxs:mt-1 mt-4 lgm:mt-8 xl:mt-6 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
         <p className="text-center mxs:text-[8px] text-[14px] xl:text-[18px] font-bold text-[#A5A5A5]">
           WORKED WITH
         </p>
