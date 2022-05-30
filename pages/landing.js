@@ -19,33 +19,33 @@ export default function Landing({}) {
   return (
     <div className="">
       <div className="flex items-center justify-between mxs:px-1 mxs:pt-2 px-8">
-        <div className="relative mxs:w-[80px] w-[120px] mt-6">
+        <div className="relative mxs:w-[80px] w-[100px] xl:w-[120px] mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
-        <div className="flex items-center mxs:text-10px text-20px xl:text-24px">
+        <div className="flex items-center mxs:text-10px text-18px xl:text-24px">
           <div className="flex items-center mxs:space-x-2 mxs:mx-2 space-x-12 xl:space-x-16 mx-12 xl:mx-16">
             <Link href="/scrapbook">
-              <p className="mxs:text-10px text-[#7D7D7D] text-20px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
                 Scrapbook
               </p>
             </Link>
             <Link href="/project-gallery">
-              <p className="mxs:text-10px text-[#7D7D7D] text-20px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
                 Projects
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-20px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
                 People
               </p>
             </Link>
             <Link href="/events">
-              <p className="mxs:text-10px text-[#7D7D7D] text-20px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
                 Events
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-20px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
                 Jobs
               </p>
             </Link>
@@ -65,37 +65,37 @@ export default function Landing({}) {
         </div>
       </div>
 
-      <div className="mxs:mt-2 mxs:mx-1 mt-4 mx-5 flex grid grid-cols-2">
-        <div className="mxs:ml-1 mxs:pt-2 ml-3 flex flex-col pt-14 2xl:pt-[4.5rem]">
-          <p className="font-bold leading-[1.3] mxs:text-16px text-[40px] xl:text-48px">
+      <div className="mxs:mt-2 mxs:mx-1 mt-3 xl:mt-4 mx-5 flex grid grid-cols-2">
+        <div className="mxs:ml-1 mxs:pt-2 ml-3 flex flex-col pt-11 xl:pt-14 2xl:pt-[4.5rem]">
+          <p className="font-bold leading-[1.3] mxs:text-16px text-[36px] xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
             <span className="text-[#4cb050]">technologists</span> call home.
           </p>
-          <p className="mxs:text-12px mxs:mt-1 text-20px xl:text-24px mt-5 2xl:mt-7">
+          <p className="mxs:text-12px mxs:mt-1 text-18px xl:text-24px mt-4 xl:mt-5 2xl:mt-7">
             The Dynamics is a global network of makers, developers, and technologists where
             enthusiastic minds connect, build, share, and launch.
           </p>
-          <div className="flex items-center mxs:space-x-1 mxs:mt-1 space-x-5 mxs:text-10px text-20px xl:text-24px mt-6 2xl:mt-8">
+          <div className="flex items-center mxs:space-x-1 mxs:mt-1 space-x-5 mxs:text-10px text-18px xl:text-24px mt-5 xl:mt-6 2xl:mt-8">
             <Link href="/signup">
-              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-2 2xl:py-3.5 rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm px-5 2xl:px-6 py-2.5 2xl:py-3.5 rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Become a Member
               </button>
             </Link>
             <Link href="#">
-              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm flex items-center px-5 2xl:px-6 py-2 2xl:py-3.5 rounded-md border-[1.5px] border-[#03A9F4] text-[#03A9F4] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="mxs:px-1 mxs:py-0.5 mxs:rounded-sm flex items-center px-5 2xl:px-6 py-2.5 2xl:py-3.5 rounded-md border-[1.5px] border-[#03A9F4] text-[#03A9F4] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Join our Discord&nbsp;&nbsp;
                 <Discord fill={"#03A9F4"} />
               </button>
             </Link>
           </div>
-          <p className="mxs:mt-1 flex items-center font-semibold mxs:text-[8px] text-[17px] xl:text-20px text-[#7D7D7D] mt-3.5 2xl:mt-5">
+          <p className="mxs:mt-1 flex items-center font-semibold mxs:text-[8px] text-[15.5px] xl:text-20px text-[#7D7D7D] mt-[0.7rem] xl:mt-3.5 2xl:mt-5">
             Already a member?&nbsp;
             <Link href="/login">
               <span className="text-[#3B4FE4] flex items-center cursor-pointer">
                 Login&nbsp;
                 <svg
-                  className="mxs:h-[6px] mxs:w-[12px] mt-0.5"
+                  className="mxs:h-[6px] mxs:w-[12px] mxl:h-[9.6px] mxl:w-[20px] mt-0.5"
                   width="25"
                   height="12"
                   viewBox="0 0 25 12"
@@ -115,11 +115,11 @@ export default function Landing({}) {
         </div>
       </div>
 
-      <div className="mxs:mt-1 mt-6 2xl:mt-8 mb-3 2xl:mb-4 flex flex-col">
-        <p className="text-center mxs:text-[8px] text-[15px] xl:text-18px font-bold text-[#A5A5A5]">
+      <div className="mxs:mt-1 mt-5 xl:mt-6 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
+        <p className="text-center mxs:text-[8px] text-[14px] xl:text-[18px] font-bold text-[#A5A5A5]">
           WORKED WITH
         </p>
-        <div className="mxs:mx-[10px] mx-[105px] xl:mx-[140px] flex items-center justify-between">
+        <div className="mxs:mx-[10px] mx-[60px] xl:mx-[140px] flex items-center justify-between">
           <Image src={aws} alt="aws" />
           <Image src={digitalocean} alt="digitalocean" />
           <Image src={jetbrains} alt="jetbrains" />
