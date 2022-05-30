@@ -25,27 +25,27 @@ export default function Landing({}) {
         <div className="flex items-center mxs:text-10px text-18px xl:text-24px">
           <div className="flex items-center mxs:space-x-2 mxs:mx-2 space-x-12 xl:space-x-16 mx-12 xl:mx-16">
             <Link href="/scrapbook">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Scrapbook
               </p>
             </Link>
             <Link href="/project-gallery">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
             </Link>
             <Link href="/events">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Events
               </p>
             </Link>
             <Link href="#">
-              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:opacity-80">
+              <p className="mxs:text-10px text-[#7D7D7D] text-18px xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
             </Link>
