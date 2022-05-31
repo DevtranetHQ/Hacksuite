@@ -13,11 +13,6 @@ class IntegrationController {
     const result = await discordAuthService.addDiscordUser(discordId, email);
     return new CustomResponse(201, "discord user added", result);
   }
-
-  async discordResendVerificationEmail(req) {
-    const result = await IntegrationService.discordResendVerificationEmail(req.body);
-    return new CustomResponse(201, "email verification sent", result);
-  }
 }
 
 const IntegrationCtrl = new IntegrationController();
