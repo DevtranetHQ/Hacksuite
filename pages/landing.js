@@ -19,7 +19,7 @@ export default function Landing({}) {
   return (
     <div className="">
       <div className="flex items-center justify-between px-1 md:px-8">
-        <div className="relative w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
+        <div className="relative w-[40px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
         <div className="flex items-center text-10px md:text-[14px] lg:text-[16.5px] xl:text-[20px]">
@@ -85,7 +85,7 @@ export default function Landing({}) {
             <Link href="#">
               <button className="px-1 py-0.5 rounded-sm flex items-center md:px-5 2xl:px-6 md:py-1.5 lg:py-2.5 2xl:py-3.5 md:rounded-md border-[1.5px] border-[#03A9F4] text-[#03A9F4] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Join our Discord&nbsp;&nbsp;
-                <Discord fill={"#03A9F4"} />
+                <Discord className="mmd:w-[15px] mmd:h-[12px]" fill={"#03A9F4"} />
               </button>
             </Link>
           </div>
@@ -95,7 +95,7 @@ export default function Landing({}) {
               <span className="text-[#3B4FE4] flex items-center cursor-pointer">
                 Login&nbsp;
                 <svg
-                  className="mxs:h-[6px] mxs:w-[12px] mxl:h-[9.6px] mxl:w-[20px] mt-0.5"
+                  className="mmd:h-[6px] mmd:w-[12px] mxl:h-[9.6px] mxl:w-[20px] mt-0.5"
                   width="25"
                   height="12"
                   viewBox="0 0 25 12"
@@ -111,7 +111,7 @@ export default function Landing({}) {
           </p>
         </div>
         <div className="">
-          <Image src={landing} alt="landing" />
+          <Image className="mmd:scale-[0.7]" src={landing} alt="landing" />
         </div>
       </div>
 
