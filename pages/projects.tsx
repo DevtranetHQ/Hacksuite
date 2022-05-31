@@ -1,9 +1,9 @@
 import Link from "next/link";
-import FullNav from "../../components/newsfeed/index";
-import ProjectGalleryProjectCard from "../../components/project/ProjectGalleryProjectCard";
-import { withAuth } from "../../server/middlewares/auth.middleware";
-import { projectService } from "../../server/modules/projects/project.service";
-import { IProject } from "../../server/modules/projects/project.model";
+import FullNav from "../components/newsfeed/index";
+import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
+import { withAuth } from "../server/middlewares/auth.middleware";
+import { projectService } from "../server/modules/projects/project.service";
+import { IProject } from "../server/modules/projects/project.model";
 import { useEffect, useState } from "react";
 
 const ArrowUp = () => (
