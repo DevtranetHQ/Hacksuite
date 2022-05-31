@@ -1,6 +1,57 @@
 import { useState } from "react";
 import FullNav from "../components/newsfeed/index";
 import ArrowIcon from "../components/icons/Arrow";
+import { availableFor} from "../enums/availableFor";
+import { describes} from "../enums";
+import Select, {components} from 'react-select';
+import LevelOfStudySelect from "../components/profile/LevelOfStudy";
+
+
+const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
+const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
+
+const searchingForStyles = {
+  control: styles => ({ 
+    ...styles, 
+    backgroundColor: 'white', 
+    paddingTop: 3.5, 
+    width: '256px', 
+    paddingBottom: 3.5, 
+    border: '3px solid #03A9F4', 
+    borderRadius: 0, 
+    borderTopLeftRadius: 5, 
+    borderBottomLeftRadius: 5, 
+    marginTop: 2, 
+    "&:hover": {
+      borderColor: "#03A9F4"
+    }
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles
+    };
+  },
+};
+
+const availableForStyles = {
+  control: styles => ({ 
+    ...styles, backgroundColor: 'white', 
+    paddingTop: 3.5, 
+    width: '256px', 
+    paddingBottom: 3.5, 
+    border: '3px solid #03A9F4', 
+    borderRadius: 0, 
+    marginTop: 2, 
+    "&:hover": {
+      borderColor: "#03A9F4"
+    }
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles
+    };
+  },
+};
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
@@ -58,7 +109,7 @@ const People = ({ people }) => {
   const handleShowMore = () => {
     setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
   };
-
+  console.log(availableForOpts)
   return (
     <>
       <FullNav />
@@ -71,40 +122,40 @@ const People = ({ people }) => {
               <label htmlFor="search" className="ml-3 text-[1.3rem] dark:text-white">
                 Searching for{" "}
               </label>
-              <input
-                type="search"
-                name="search"
-                id="search"
-                className="border-[3px] border-deep-sky-blue rounded-l w-[100%] h-[3rem] px-3"
+              <Select 
+                options={describeOpts} 
+                styles={searchingForStyles}
+                components={{ LoadingIndicator: null }}
+                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Developers, Angel Investors"
-              />
+                />
             </div>
 
-            <span className="w-[.7rem] bg-orange-peel h-[3rem] self-end"></span>
+            <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
 
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
               <label htmlFor="available" className="ml-3 text-[1.3rem] dark:text-white">
                 Available for
               </label>
-              <input
-                type="search"
-                name="available"
-                id="available"
-                className="border-[3px] border-deep-sky-blue w-[100%] h-[3rem] px-3"
+              <Select 
+                options={availableForOpts} 
+                styles={availableForStyles}
+                components={{ LoadingIndicator: null }}
+                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Full-time Job, Investing"
-              />
+                />
             </div>
 
-            <button className="bg-deep-sky-blue h-[3rem] self-end px-3 rounded-r">
+            <button className="bg-deep-sky-blue h-[49.47px] self-end px-3 rounded-r">
               <SearchPeopleIcon className="w-[1.5rem] h-[1.5rem]" />
             </button>
           </div>
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
-          <h1 className="text-center dark:text-white text-[48px] font-semibold">Featured people</h1>
+          <h1 className="text-center dark:text-white lg:text-[40px] xl:text-[48px] font-semibold">Featured people</h1>
 
-          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] gap-x-[80px]">
+          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] lg:gap-x-[60px] xl:gap-x-[80px]">
             {peopleObj.map(people => {
               return (
                 <div
@@ -113,7 +164,7 @@ const People = ({ people }) => {
                   <img src={people.image} className="w-[82px] h-[82px]" />
 
                   <div className="flex gap-x-2 items-center mt-1">
-                    <p className="font-semibold dark:text-white text-[24px] xl:text-[28px] text-ellipsis max-w-[200px] xl:max-w-[220px] whitespace-nowrap overflow-hidden ">{people.name}</p>
+                    <p className="font-semibold dark:text-white text-[22px]   ">{people.name}</p>
                     {people.verified ? <VerifiedIcon className="w-[1.2rem] h-[1.2rem]" /> : null}
                   </div>
 
