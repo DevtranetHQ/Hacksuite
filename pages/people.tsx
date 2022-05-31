@@ -125,7 +125,6 @@ const People = ({ people }) => {
               <Select 
                 options={describeOpts} 
                 styles={searchingForStyles}
-                components={{ LoadingIndicator: null }}
                 components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Developers, Angel Investors"
                 />
@@ -140,7 +139,6 @@ const People = ({ people }) => {
               <Select 
                 options={availableForOpts} 
                 styles={availableForStyles}
-                components={{ LoadingIndicator: null }}
                 components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Full-time Job, Investing"
                 />
