@@ -109,11 +109,11 @@ const People = ({ people }) => {
               return (
                 <div
                   key={people.id}
-                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] dark:bg-[#2D2D2D] px-4 py-8 pb-[35px] rounded-lg w-full">
-                  <img src={people.image} />
+                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] dark:bg-[#2D2D2D] px-4 py-8 pb-[35px] rounded-lg w-full max-w-[300px]">
+                  <img src={people.image} className="w-[82px] h-[82px]" />
 
                   <div className="flex gap-x-2 items-center mt-1">
-                    <p className="font-semibold dark:text-white text-[28px] text-ellipsis max-w-[2010px] whitespace-nowrap overflow-hidden ">{people.name}</p>
+                    <p className="font-semibold dark:text-white text-[24px] xl:text-[28px] text-ellipsis max-w-[200px] xl:max-w-[220px] whitespace-nowrap overflow-hidden ">{people.name}</p>
                     {people.verified ? <VerifiedIcon className="w-[1.2rem] h-[1.2rem]" /> : null}
                   </div>
 
