@@ -119,7 +119,7 @@ const People = ({ people }) => {
 
                   <p className="text-[1rem] mb-3 dark:text-white">{people.roles}</p>
 
-                  <button className="bg-white text-[18px] dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>
