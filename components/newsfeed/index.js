@@ -39,7 +39,7 @@ export const TopNav = () => (
           darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
         />
         <a
-          href="https://github.com/TheDynamics"
+          href="/"
           className="scale-[0.53] lg:scale-[1] md:scale-[0.82]">
           <HomeIcon />
         </a>
@@ -61,20 +61,20 @@ const FullNav = () => {
             </li>
           </Link>
 
-          <Link href="/newsfeed/projects">
-            <li className={`${pathname === "/newsfeed/projects" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+          <Link href="/projects">
+            <li className={`${pathname === "/projects" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               PROJECTS
             </li>
           </Link>
 
-          <Link href="/newsfeed/people">
-            <li className={`${pathname === "/newsfeed/people" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+          <Link href="/people">
+            <li className={`${pathname === "/people" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               PEOPLE
             </li>
           </Link>
 
-          <Link href="/newsfeed/jobs">
-            <li className={`${pathname === "/newsfeed/jobs" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+          <Link href="/jobs">
+            <li className={`${pathname === "/jobs" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               JOBS
             </li>
           </Link>

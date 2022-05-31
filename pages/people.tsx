@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FullNav from "../../components/newsfeed/index";
-import ArrowIcon from "../../components/icons/Arrow";
+import FullNav from "../components/newsfeed/index";
+import ArrowIcon from "../components/icons/Arrow";
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
