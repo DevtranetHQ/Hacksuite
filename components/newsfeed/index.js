@@ -3,6 +3,7 @@ import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import GithubIcon from "../../components/icons/Github";
 import Link from "next/link";
+import HomeIcon from '../icons/HomeIcon';
 
 export const TopNav = () => (
   <div className="dark:text-white">
@@ -13,7 +14,7 @@ export const TopNav = () => (
           <div className="absolute pl-3 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-black flex items-center dark:text-white"
+              className="h-5 w-5 text-[#A5A5A5] flex items-center dark:text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -28,7 +29,7 @@ export const TopNav = () => (
           <input
             type="text"
             placeholder="I’m looking for..."
-            className=" block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white text-black"
+            className="dark:placeholder:text-white block w-full pl-10  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 py-2 dark:text-white text-black"
           />
         </div>
       </form>
@@ -39,8 +40,8 @@ export const TopNav = () => (
         />
         <a
           href="https://github.com/TheDynamics"
-          className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
-          <GithubIcon />
+          className="scale-[0.53] lg:scale-[1] md:scale-[0.82]">
+          <HomeIcon />
         </a>
       </div>
     </nav>
