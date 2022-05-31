@@ -10,10 +10,10 @@ export default function FeaturedPeople() {
       <div className="bg-[#F8FBFF] h-screen rounded-md dark:bg-[#2D2D2D]">
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.1px" />
             <div className="flex flex-col justify-start">
-              <span className="text-left font-bold">Bella See</span>
-              <span className="-mt-1">Founder, CommandTech</span>
+              <span className="text-left font-bold text-16px">Bella See</span>
+              <span className="-mt-1 text-14px">Founder, CommandTech</span>
             </div>
           </div>
           <p className="bg-deep-sky-blue px-2 py-1 rounded-md text-white text-14px ">Unfollow</p>
@@ -21,10 +21,10 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.1px" />
             <div className="flex flex-col justify-start ">
-              <span className="text-left font-bold">Ibrahim Salami</span>
-              <span className="-mt-1">Founder, CommandTech</span>
+              <span className="text-left font-bold text-16px">Ibrahim Salami</span>
+              <span className="-mt-1 text-14px">Founder, CommandTech</span>
             </div>
           </div>
           <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
@@ -34,10 +34,10 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.1px" />
             <div className="flex flex-col justify-start ">
-              <span className="text-left font-bold">Dora Palfi</span>
-              <span className="-mt-1">Founder, CommandTech</span>
+              <span className="text-left font-bold text-16px">Dora Palfi</span>
+              <span className="-mt-1 text-14px">Founder, CommandTech</span>
             </div>
           </div>
           <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
@@ -47,10 +47,10 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.1px" />
             <div className="flex flex-col justify-start ">
-              <span className="text-left font-bold">Dev Agrawal</span>
-              <span className="-mt-1">Founder, CommandTech</span>
+              <span className="text-left font-bold text-16px">Dev Agrawal</span>
+              <span className="-mt-1 text-14px">Founder, CommandTech</span>
             </div>
           </div>
           <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
@@ -60,17 +60,17 @@ export default function FeaturedPeople() {
         <hr />
         <div className="flex items-center justify-between p-4">
           <div className="flex gap-2">
-            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.5px" />
+            <Avatar image={ProfileImg} className="relative h-10 w-10" border="0.1px" />
             <div className="flex flex-col justify-start ">
-              <span className="text-left font-bold">Melinda Gates</span>
-              <span className="-mt-1">Founder, CommandTech</span>
+              <span className="text-left font-bold text-16px">Melinda Gates</span>
+              <span className="-mt-1 text-14px">Founder, CommandTech</span>
             </div>
           </div>
           <p className="bg-white dark:bg-transparent border border-[#C9C9C9] px-[13px] py-1 rounded-md  text-14px ">
             Follow
           </p>
         </div>
-        <button className="button-deep-sky-blue button-small mx-auto mt-10 items-center ">
+        <button className="button-deep-sky-blue button-small mx-auto mt-8 items-center ">
           View more{" "}
           <div className="ml-2 pt-1">
             <ArrowIcon />
