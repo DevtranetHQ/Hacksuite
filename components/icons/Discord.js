@@ -1,6 +1,7 @@
-export default function Discord({ fill = "", width = "", height = "" }) {
+export default function Discord({ fill = "", width = "", height = "", className = "" }) {
   return (
     <svg
+      className={className ? className : ""}
       width={width ? width : 30}
       height={height ? height : 24}
       viewBox="0 0 30 24"
