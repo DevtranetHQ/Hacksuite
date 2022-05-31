@@ -62,7 +62,7 @@ const People = ({ people }) => {
     <>
       <FullNav />
       <section className="mt-10">
-        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px]">
+        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
 
           <div className="flex mt-10">
