@@ -62,10 +62,10 @@ const People = ({ people }) => {
     <>
       <FullNav />
       <section className="mt-10">
-        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center py-12">
-          <h2 className="text-[2.5rem] text-deep-sky-blue font-bold">Who are you looking for?</h2>
+        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px]">
+          <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
 
-          <div className="flex mt-8">
+          <div className="flex mt-10">
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
               <label htmlFor="search" className="ml-3 text-[1.3rem]">
                 Searching for{" "}
