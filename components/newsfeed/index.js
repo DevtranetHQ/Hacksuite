@@ -55,25 +55,25 @@ const FullNav = () => {
       <nav className="w-[max-content] mx-auto mt-3">
         <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
           <Link href="/newsfeed">
-            <li className={`${pathname === "/newsfeed" ? "font-bold border-b-[3px] border-b-orange-peel" : 'text-[#7D7D7D]'} cursor-pointer`}>
+            <li className={`${pathname === "/newsfeed" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               SCRAPBOOK
             </li>
           </Link>
 
           <Link href="/newsfeed/projects">
-            <li className={`${pathname === "/newsfeed/projects" ? "font-bold border-b-[3px] border-b-orange-peel" : 'text-[#7D7D7D]'} cursor-pointer`}>
+            <li className={`${pathname === "/newsfeed/projects" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               PROJECTS
             </li>
           </Link>
 
           <Link href="/newsfeed/people">
-            <li className={`${pathname === "/newsfeed/people" ? "font-bold border-b-[3px] border-b-orange-peel" : 'text-[#7D7D7D]'} cursor-pointer`}>
+            <li className={`${pathname === "/newsfeed/people" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               PEOPLE
             </li>
           </Link>
 
           <Link href="/newsfeed/jobs">
-            <li className={`${pathname === "/newsfeed/jobs" ? "font-bold border-b-[3px] border-b-orange-peel" : 'text-[#7D7D7D]'} cursor-pointer`}>
+            <li className={`${pathname === "/newsfeed/jobs" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
               JOBS
             </li>
           </Link>
