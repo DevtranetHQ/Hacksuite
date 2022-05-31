@@ -6,6 +6,9 @@ import CountryInput from "../../components/form/CountryInput";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { useAuth } from "../../components/AuthContext";
 import { useRouter } from "next/router";
+import TextareaAutosize from "react-textarea-autosize";
+import LevelOfStudySelect from "../../components/profile/LevelOfStudy";
+import ProfileDescribeInput from "../../components/profile/ProfileDescribeInput";
 
 export default function Profile({ user }) {
   const { completeProfile } = useAuth();
@@ -105,45 +108,43 @@ export default function Profile({ user }) {
           Work and education
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
           <div>
             <label className="form-label font-normal" htmlFor="describe">
               What describes you the best?
               <span className="text-[#ff0000]">*</span>
             </label>
-            <select className="form-select" defaultValue="N/A" id="describe" required>
-              <option disabled value="N/A">
-                Tell us who you are
-              </option>
-              <option value="Hacker">Hacker</option>
-              <option value="Organizer">Organizer</option>
-            </select>
+            <ProfileDescribeInput />
           </div>
           <div>
-            <label className="form-label font-normal" htmlFor="skills">
+            <label className="form-label font-normal" htmlFor="skillsAndInterests">
               Skills and interests
-              <span className="text-[#ff0000]">*</span>
             </label>
-            <select className="form-select" defaultValue="N/A" id="skills">
-              <option disabled value="N/A">
-                Select your skills and interests
-              </option>
-              <option value="Web development">Web development</option>
-              <option value="UI/UX">UI/UX</option>
-            </select>
+            <TextareaAutosize
+              className="resize-none form-input box-border py-[6px]"
+              maxRows={6}
+              maxLength={120}
+              placeholder="Coding languages, frameworks, or soft skills..."
+            />
           </div>
           <div>
             <label className="form-label font-normal" htmlFor="levelOfStudy">
-              Level of study?
-              <span className="text-[#ff0000]">*</span>
+              I'm available for
             </label>
-            <select className="form-select" defaultValue="N/A" id="levelOfStudy">
-              <option disabled value="N/A">
-                Select level
-              </option>
-              <option value="High school or equivalent">High school or equivalent</option>
-              <option value="Undergraduate degree">Undergraduate degree</option>
-            </select>
+            <LevelOfStudySelect />
+          </div>
+          <div>
+            <label className="form-label font-normal" htmlFor="">
+              Your headline
+            </label>
+            <input
+              autoComplete="off"
+              className="form-input py-[6px]"
+              placeholder="Write something..."
+              type="text"
+              maxLength={50}
+              // {...register("headline")}
+            />
           </div>
         </div>
 

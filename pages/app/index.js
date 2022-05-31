@@ -152,7 +152,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[24.5%] top-26 -mt-2">
+            <div className="h-screen fixed right-0 w-[25.6%] top-26 -mt-2">
               <FeaturedPeople />
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[24.5%] top-26 -mt-2">
+            <div className="h-screen fixed right-0 w-[25.6%] top-26 -mt-2">
               <FeaturedPeople />
             </div>
           </div>
