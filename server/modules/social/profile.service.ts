@@ -1,6 +1,8 @@
 import { CustomError } from "../../utils/customError";
 import { UserId } from "../auth/user.model";
 import { IProfile, Profile } from "./profile.model";
+import { NotificationTypeId } from "../../../server/modules/notification/notification-type.model";
+import { notificationService } from "../../../server/modules/notification/notifications.service";
 
 class ProfileService {
   async getCompletedProfile(userId: UserId): Promise<IProfile> {
@@ -42,6 +44,21 @@ class ProfileService {
     following.followers.push(userId);
 
     const updated = await following.save();
+
+    // Send notification to user, that you followed
+    const userWhoFollowed = await Profile.findOne({ userId });
+    if (!userWhoFollowed) {
+      return;
+    }
+    notificationService.createNotification({
+      for: followingId,
+      type: "Follow" as NotificationTypeId,
+      title: `${userWhoFollowed.fullName} started following you`,
+      message: `${userWhoFollowed.fullName} started following you now`,
+      link: "", //link to followed profile
+      by: userWhoFollowed.fullName
+    });
+
 
     return JSON.parse(JSON.stringify(updated.toObject({ virtuals: true })));
   }
