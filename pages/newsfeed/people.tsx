@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FullNav from "../../components/newsfeed/index";
+import ArrowIcon from "../../components/icons/Arrow";
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
@@ -101,24 +102,24 @@ const People = ({ people }) => {
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
-          <h1 className="text-center text-[2rem] font-semibold">Featured people</h1>
+          <h1 className="text-center text-[48px] font-semibold">Featured people</h1>
 
-          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-10">
+          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] gap-x-[80px]">
             {peopleObj.map(people => {
               return (
                 <div
                   key={people.id}
-                  className="flex flex-col items-center justify-center bg-[#F8FBFF] px-12 py-8 rounded-lg">
+                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] px-4 py-8 pb-[35px] rounded-lg w-full">
                   <img src={people.image} />
 
                   <div className="flex gap-x-2 items-center mt-1">
-                    <p className="font-semibold text-[1.3rem]">{people.name}</p>
+                    <p className="font-semibold text-[28px] text-ellipsis max-w-[260px] overflow-hidden">{people.name}</p>
                     {people.verified ? <VerifiedIcon className="w-[1.2rem] h-[1.2rem]" /> : null}
                   </div>
 
                   <p className="text-[1rem] mb-3">{people.roles}</p>
 
-                  <button className="text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button className="bg-white text-[18px] absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>
@@ -126,12 +127,20 @@ const People = ({ people }) => {
             })}
           </div>
           {peopleObj.length <= 6 ? (
-            <button
-              className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
-              onClick={handleShowMore}>
-              View more
-              <ArrowRight className="w-[2rem] h-[2rem]" />
-            </button>
+                  <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[160px] mb-[45px] lg:mb-[90px]">
+                  <button onClick={handleShowMore} className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
+                    <span>View more</span>
+                    <div className="lg:scale-[2] relative lg:top-1">
+                      <ArrowIcon />
+                    </div>
+                  </button>
+                </div>
+            // <button
+            //   className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
+            //   onClick={handleShowMore}>
+            //   View more
+            //   <ArrowRight className="w-[2rem] h-[2rem]" />
+            // </button>
           ) : null}
         </div>
       </section>
