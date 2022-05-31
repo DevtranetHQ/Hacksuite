@@ -43,8 +43,8 @@ export default function EventCard(event) {
         <section className="lg:flex md:flex justify-between items-center">
           <div className="inline-flex gap-4 py-2 items-center">
             <svg
-              width="33"
-              height="38"
+              width="30"
+              height="35"
               viewBox="0 0 34 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ export default function EventCard(event) {
                 fill="#FF9700"
               />
             </svg>
-            <p className="md:subheadline">
+            <p className="font-bold text-20px">
               <EventTime start={start} end={end} />
             </p>
           </div>
