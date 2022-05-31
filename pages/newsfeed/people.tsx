@@ -62,13 +62,13 @@ const People = ({ people }) => {
   return (
     <>
       <FullNav />
-      <section className="mt-10">
-        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+      <section className="dark:bg-black pb-6">
+        <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
 
           <div className="flex mt-10">
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="search" className="ml-3 text-[1.3rem]">
+              <label htmlFor="search" className="ml-3 text-[1.3rem] dark:text-white">
                 Searching for{" "}
               </label>
               <input
@@ -83,7 +83,7 @@ const People = ({ people }) => {
             <span className="w-[.7rem] bg-orange-peel h-[3rem] self-end"></span>
 
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="available" className="ml-3 text-[1.3rem]">
+              <label htmlFor="available" className="ml-3 text-[1.3rem] dark:text-white">
                 Available for
               </label>
               <input
@@ -102,24 +102,24 @@ const People = ({ people }) => {
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
-          <h1 className="text-center text-[48px] font-semibold">Featured people</h1>
+          <h1 className="text-center dark:text-white text-[48px] font-semibold">Featured people</h1>
 
           <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] gap-x-[80px]">
             {peopleObj.map(people => {
               return (
                 <div
                   key={people.id}
-                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] px-4 py-8 pb-[35px] rounded-lg w-full">
+                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] dark:bg-[#2D2D2D] px-4 py-8 pb-[35px] rounded-lg w-full">
                   <img src={people.image} />
 
                   <div className="flex gap-x-2 items-center mt-1">
-                    <p className="font-semibold text-[28px] text-ellipsis max-w-[260px] overflow-hidden">{people.name}</p>
+                    <p className="font-semibold dark:text-white text-[28px] text-ellipsis max-w-[2010px] whitespace-nowrap overflow-hidden ">{people.name}</p>
                     {people.verified ? <VerifiedIcon className="w-[1.2rem] h-[1.2rem]" /> : null}
                   </div>
 
-                  <p className="text-[1rem] mb-3">{people.roles}</p>
+                  <p className="text-[1rem] mb-3 dark:text-white">{people.roles}</p>
 
-                  <button className="bg-white text-[18px] absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button className="bg-white text-[18px] dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>

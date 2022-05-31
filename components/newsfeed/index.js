@@ -50,7 +50,7 @@ export const TopNav = () => (
 const FullNav = () => {
   const { pathname } = useRouter();
   return (
-    <div className="dark:bg-[#202020] dark:text-white">
+    <div className="dark:bg-[#202020] dark:text-white pb-10">
       <TopNav />
       <nav className="w-[max-content] mx-auto mt-3">
         <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
