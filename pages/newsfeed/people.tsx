@@ -74,7 +74,7 @@ const People = ({ people }) => {
                 type="search"
                 name="search"
                 id="search"
-                className="border border-deep-sky-blue rounded-l w-[100%] h-[3rem] px-3"
+                className="border-[3px] border-deep-sky-blue rounded-l w-[100%] h-[3rem] px-3"
                 placeholder="Developers, Angel Investors"
               />
             </div>
@@ -82,14 +82,14 @@ const People = ({ people }) => {
             <span className="w-[.7rem] bg-orange-peel h-[3rem] self-end"></span>
 
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="search" className="ml-3 text-[1.3rem]">
+              <label htmlFor="available" className="ml-3 text-[1.3rem]">
                 Available for
               </label>
               <input
                 type="search"
                 name="available"
                 id="available"
-                className="border border-deep-sky-blue w-[100%] h-[3rem] px-3"
+                className="border-[3px] border-deep-sky-blue w-[100%] h-[3rem] px-3"
                 placeholder="Full-time Job, Investing"
               />
             </div>
