@@ -4,7 +4,8 @@ import ArrowIcon from "../components/icons/Arrow";
 import { availableFor} from "../enums/availableFor";
 import { describes} from "../enums";
 import Select, {components} from 'react-select';
-import LevelOfStudySelect from "../components/profile/LevelOfStudy";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
@@ -105,6 +106,8 @@ const People = ({ people }) => {
   const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
 
   const unVerifiedPeopleObj = people.filter(person => person.verified !== true);
+  const [showMessage, setShowMessage] = useState(false);
+
 
   const handleShowMore = () => {
     setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
@@ -129,6 +132,45 @@ const People = ({ people }) => {
                 placeholder="Developers, Angel Investors"
                 />
             </div>
+            {showMessage ? (
+            <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
+              <div className="relative  my-6 mx-auto p-5 w-6/12 bg-white dark:bg-dark rounded-lg">
+                <form className="form bg-white dark:bg-dark">
+                  <div>
+                    <label className="form-label font-normal">Enter Subject</label>
+                    <input type="text" className="form-input" />
+                  </div>
+                  <div>
+                    <textarea
+                      style={{ height: "150px", resize: "none" }}
+                      className="form-input"
+                      placeholder="Write something..."
+                    />
+                  </div>
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      className="inline-block my-3"
+                      sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
+                      onChange={i => console.log(i)}
+                    />
+                  </div>
+
+                  <div className="flex justify-center gap-x-5 mt-5">
+                    <button
+                      className="button-big button-deep-sky-blue px-20 w-[150px] text-22px mt-3 "
+                      onClick={() => setShowMessage(false)}>
+                      Close
+                    </button>
+                    <button
+                      className="button-big button-orange-peel px-20 w-[150px] text-22px mt-3"
+                      onClick={() => {}}>
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          ) : null}
 
             <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
 
@@ -168,7 +210,7 @@ const People = ({ people }) => {
 
                   <p className="text-[1rem] mb-3 dark:text-white">{people.roles}</p>
 
-                  <button className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button onClick={() => setShowMessage(true)} className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>
@@ -184,12 +226,6 @@ const People = ({ people }) => {
                     </div>
                   </button>
                 </div>
-            // <button
-            //   className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
-            //   onClick={handleShowMore}>
-            //   View more
-            //   <ArrowRight className="w-[2rem] h-[2rem]" />
-            // </button>
           ) : null}
         </div>
       </section>
