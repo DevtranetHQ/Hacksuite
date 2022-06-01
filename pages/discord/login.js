@@ -1,4 +1,4 @@
-import discordAuthService from "../../server/modules/auth/discord.service";
+import { discordAuthService } from "../../server/modules/auth/discord.service";
 
 export default function DiscordLogin() {
   return <></>;

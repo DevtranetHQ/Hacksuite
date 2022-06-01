@@ -1,5 +1,5 @@
 import authService from "../../server/modules/auth/auth.service";
-import discordAuthService from "../../server/modules/auth/discord.service";
+import { discordAuthService } from "../../server/modules/auth/discord.service";
 
 export default function Callback() {
   return <></>;
