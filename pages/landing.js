@@ -21,11 +21,11 @@ import EventCard from "../components/event/EventCard";
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
     <div className="">
-      <div className="flex items-center justify-between px-1 md:px-8">
+      <div id="header" className="flex items-center justify-between px-1 md:px-8 2xl:px-12">
         <div className="relative w-[40px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
-        <div className="flex items-center text-10px md:text-[14px] lg:text-[16.5px] xl:text-[20px]">
+        <div className="flex items-center text-10px md:text-[14px] lg:text-[16.5px] xl:text-20px">
           <div className="flex items-center space-x-2 mx-2 md:space-x-8 lg:space-x-12 xl:space-x-16 md:mx-8 lg:mx-12 xl:mx-16">
             <Link href="/scrapbook">
               <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
@@ -68,9 +68,11 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div className="mt-1 mx-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 md:mx-5 flex grid grid-cols-2">
-        <div className="ml-1 pt-2 md:ml-3 flex flex-col md:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
-          <p className="font-bold leading-[1.3] text-16px md:text-[32px] lg:text-[36px] xl:text-[44px] 2xl:text-48px">
+      <div
+        id="main"
+        className="mt-1 mx-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 md:mx-5 2xl:mx-12 grid grid-cols-2">
+        <div className="ml-1 pt-2 md:ml-3 2xl:ml-0 flex flex-col md:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
+          <p className="font-bold leading-[1.3] text-16px md:text-28px lg:text-36px xl:text-44px 2xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
             <span className="text-[#4cb050]">technologists</span> call home.
@@ -118,8 +120,10 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div className="mt-1 md:mt-2.5 lg:mt-3.5 lgm:mt-8 xl:mt-[1.375rem] 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
-        <p className="text-center text-[8px] md:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-18px font-bold text-[#A5A5A5]">
+      <div
+        id="worked-with"
+        className="mt-1 md:mt-2.5 lg:mt-3.5 lgm:mt-8 xl:mt-[1.375rem] 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
+        <p className="text-center text-[8px] md:text-[12px] lg:text-[14px] xl:text-16px 2xl:text-18px font-bold text-[#A5A5A5]">
           WORKED WITH
         </p>
         <div className="mxl:-mt-2 m2xl:-mt-1 mx-[10px] md:mx-[30px] lg:mx-[60px] xl:mx-[140px] flex items-center justify-between">
@@ -134,17 +138,21 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="scrapbook" className="mx-12 mt-16">
-        <p className="text-[36px] text-[#A5A5A5]">LIVE FROM OUR SCRAPBOOK</p>
-        <p className="text-[48px]">Stay connected with like-minded people</p>
-        <p className="text-24px">
+      <div id="scrapbook" className="mx-8 2xl:mx-12 mt-16">
+        <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
+          LIVE FROM OUR SCRAPBOOK
+        </p>
+        <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
+          Stay connected with like-minded people
+        </p>
+        <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
           Made your first open-source contribution? Landed a job? Won a hackathon? Launched a
           startup? We'd love to know, tell us about it!
         </p>
         <section className="mt-12">
           <div className="grid grid-cols-1 md:grid-cols-4 md:space-x-5 dark:text-white">
             {user &&
-              user.scrapbookItem.map((scrapbookItem, index) => {
+              user.scrapbookItem?.map((scrapbookItem, index) => {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 0 || true)
                   return (
                     <div className="dark:text-white">
@@ -163,16 +171,20 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </section>
       </div>
 
-      <div id="project-gallery" className="mx-12 mt-16 text-center">
-        <p className="text-[36px] text-[#A5A5A5]">IMAGINE AN EVERYDAY DEVPOST</p>
-        <p className="text-[48px]">Share and take your projects globally.</p>
-        <p className="text-24px">
+      <div id="project-gallery" className="mx-8 2xl:mx-12 mt-16 text-center">
+        <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
+          IMAGINE AN EVERYDAY DEVPOST
+        </p>
+        <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
+          Share and take your projects globally.
+        </p>
+        <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
           After countless days of brainstorming, learning, and building, you've finally shipped
           something. Get constructive feedback and ideas to make it even better. In the future, you
           can get funding and support to scale it through Launchtivate CLOSED BETA
         </p>
         <div className="grid md:gap-10 gap-5 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center md:px-5 px-3 md:py-5 py-3  md:mt-12 mt-5">
-          {projects.map((project, index) => {
+          {projects?.map((project, index) => {
             if (index < 3) {
               return (
                 <ProjectGalleryProjectCard
@@ -187,10 +199,14 @@ export default function Landing({ user, projects, events, loggedIn }) {
       </div>
 
       <div id="networking" className="mt-16">
-        <div className="mx-12">
-          <p className="text-[36px] text-[#A5A5A5]">NETWORKING MADE AS EASY AS ABC</p>
-          <p className="text-[48px]">Find amazing people to bring your ideas to live.</p>
-          <p className="text-24px">
+        <div className="mx-8 2xl:mx-12">
+          <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
+            NETWORKING MADE AS EASY AS ABC
+          </p>
+          <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
+            Find amazing people to bring your ideas to live.
+          </p>
+          <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
             Stuck with something? Looking for a co-founder? Building a team for a hackathon?
             Searching for open-source contributors? Need a mentor? We got you covered!
           </p>
@@ -199,7 +215,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
           <p className="text-[90px] text-[#03A9F4] text-center mb-12">Who are you looking for?</p>
           <div className="flex justify-center items-end">
             <div>
-              <p className="text-[24px] pl-4 mb-3 font-semibold">Searching for</p>
+              <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px pl-4 mb-3 font-semibold">
+                Searching for
+              </p>
               <div className="flex">
                 <input
                   className="rounded-bl-[10px] rounded-tl-[10px] border-[3px] border-[#03A9F4] py-6 px-6"
@@ -210,7 +228,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
             </div>
 
             <div>
-              <p className="text-[24px] pl-4 mb-3 font-semibold">Available for</p>
+              <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px pl-4 mb-3 font-semibold">
+                Available for
+              </p>
               <div className="flex">
                 <input
                   className="border-[3px] border-[#03A9F4] py-6 px-6"
@@ -235,9 +255,11 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="featured-people" className="mt-20">
-        <p className="text-[48px] pb-[72px] text-center font-semibold">Featured people</p>
-        <div className="flex mx-[150px] space-x-[120px]">
+      <div id="featured-people" className="mx-8 2xl:mx-12 mt-20">
+        <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px pb-[72px] text-center font-semibold">
+          Featured people
+        </p>
+        <div className="flex justify-around">
           <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
@@ -246,7 +268,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
               />
             </div>
             <div className="flex items-center">
-              <p className="text-[36px] font-semibold">Belle See </p>
+              <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px font-semibold">
+                Belle See{" "}
+              </p>
               <svg
                 width="28"
                 height="27"
@@ -259,7 +283,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 />
               </svg>
             </div>
-            <p className="text-[24px] mb-9">Founder, CommandTech</p>
+            <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
+              Founder, CommandTech
+            </p>
             <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
@@ -273,7 +299,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
               />
             </div>
             <div className="flex items-center">
-              <p className="text-[36px] font-semibold">Belle See </p>
+              <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px font-semibold">
+                Belle See{" "}
+              </p>
               <svg
                 width="28"
                 height="27"
@@ -286,7 +314,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 />
               </svg>
             </div>
-            <p className="text-[24px] mb-9">Founder, CommandTech</p>
+            <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
+              Founder, CommandTech
+            </p>
             <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
@@ -300,7 +330,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
               />
             </div>
             <div className="flex items-center">
-              <p className="text-[36px] font-semibold">Belle See </p>
+              <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px font-semibold">
+                Belle See{" "}
+              </p>
               <svg
                 width="28"
                 height="27"
@@ -313,7 +345,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 />
               </svg>
             </div>
-            <p className="text-[24px] mb-9">Founder, CommandTech</p>
+            <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
+              Founder, CommandTech
+            </p>
             <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
@@ -335,10 +369,10 @@ export default function Landing({ user, projects, events, loggedIn }) {
               fill="#03A9F4"
             />
           </svg>
-          <span className="text-[28px] md:text-[36px] lg:text-[50px]">Upcoming Events</span>
+          <span className="text-[28px] md:text-36px lg:text-[50px]">Upcoming Events</span>
         </nav>
         <section>
-          {events && events.map((event, key) => <EventCard key={key} {...event} />)}
+          {events && events?.map((event, key) => <EventCard key={key} {...event} />)}
         </section>
       </div>
     </div>
