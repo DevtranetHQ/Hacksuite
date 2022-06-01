@@ -1,8 +1,16 @@
 import axios from "axios";
 import User from "./user.model";
+import { Profile } from "../social/profile.model";
 import { config } from "../../config";
 
 const { discord } = config;
+
+export interface DiscordUser {
+  id: string;
+  username: string;
+  discriminator: string;
+  avatar?: string;
+}
 
 class DiscordAuthService {
   getAuthUrl() {
@@ -16,7 +24,7 @@ class DiscordAuthService {
     return `https://discord.com/api/oauth2/authorize?${params.toString()}`;
   }
 
-  async exchangeCodeForToken(code) {
+  async exchangeCodeForToken(code: string) {
     const params = new URLSearchParams({
       client_id: discord.clientID,
       client_secret: discord.clientSecret,
@@ -34,7 +42,7 @@ class DiscordAuthService {
     return access_token;
   }
 
-  async getUser(accessToken) {
+  async getUser(accessToken: string) {
     const userResponse = await axios.get("https://discord.com/api/users/@me", {
       headers: { Authorization: `Bearer ${accessToken}` }
     });
@@ -42,29 +50,35 @@ class DiscordAuthService {
     return userResponse.data;
   }
 
-  async checkExistingUser(discordUser) {
+  async checkExistingUser(discordUser: DiscordUser) {
     const user = await User.findOne({ discordId: discordUser.id });
     if (!user) return null;
 
     return user;
   }
 
-  async handleCallback(code) {
+  async handleCallback(code: string) {
     const accessToken = await this.exchangeCodeForToken(code);
     const discordUser = await this.getUser(accessToken);
 
     return discordUser;
   }
 
-  async addDiscordUser(discordId, email) {
+  async addDiscordUser(discordId: string, discordUsername: string, email: string) {
     const user = await User.findOne({ email, isVerified: true });
     if (!user) throw new Error("User does not exist");
 
+    const profile = await Profile.findOne({ userId: user.uniqueId });
+    if (!profile) throw new Error("User does not have a profile");
+
     user.discordId = discordId;
     await user.save({ validateBeforeSave: false });
+
+    profile.discordUsername = discordUsername;
+    await profile.save({ validateBeforeSave: false });
 
     return true;
   }
 }
 
-export default new DiscordAuthService();
+export const discordAuthService = new DiscordAuthService();

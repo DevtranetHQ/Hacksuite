@@ -38,6 +38,8 @@ export interface IProfile {
   fullName?: string;
 
   isCompleted: boolean;
+
+  discordUsername?: string;
 }
 
 export interface IProfileVirtuals {
@@ -157,7 +159,8 @@ const profileSchema = new Schema<IProfile, IProfileModel>(
     isCompleted: {
       type: Boolean,
       default: false
-    }
+    },
+    discordUsername: String
   },
   { timestamps: true }
 );

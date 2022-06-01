@@ -1,4 +1,4 @@
-import FullNav from "../../components/newsfeed/index";
+import FullNav from "../components/newsfeed/index";
 
 const Jobs = () => {
   return (

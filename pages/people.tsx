@@ -1,5 +1,57 @@
 import { useState } from "react";
-import FullNav from "../../components/newsfeed/index";
+import FullNav from "../components/newsfeed/index";
+import ArrowIcon from "../components/icons/Arrow";
+import { availableFor} from "../enums/availableFor";
+import { describes} from "../enums";
+import Select, {components} from 'react-select';
+import LevelOfStudySelect from "../components/profile/LevelOfStudy";
+
+
+const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
+const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
+
+const searchingForStyles = {
+  control: styles => ({ 
+    ...styles, 
+    backgroundColor: 'white', 
+    paddingTop: 3.5, 
+    width: '256px', 
+    paddingBottom: 3.5, 
+    border: '3px solid #03A9F4', 
+    borderRadius: 0, 
+    borderTopLeftRadius: 5, 
+    borderBottomLeftRadius: 5, 
+    marginTop: 2, 
+    "&:hover": {
+      borderColor: "#03A9F4"
+    }
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles
+    };
+  },
+};
+
+const availableForStyles = {
+  control: styles => ({ 
+    ...styles, backgroundColor: 'white', 
+    paddingTop: 3.5, 
+    width: '256px', 
+    paddingBottom: 3.5, 
+    border: '3px solid #03A9F4', 
+    borderRadius: 0, 
+    marginTop: 2, 
+    "&:hover": {
+      borderColor: "#03A9F4"
+    }
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    return {
+      ...styles
+    };
+  },
+};
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
@@ -57,68 +109,66 @@ const People = ({ people }) => {
   const handleShowMore = () => {
     setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
   };
-
+  console.log(availableForOpts)
   return (
     <>
       <FullNav />
-      <section className="mt-10">
-        <div className="bg-[#F8FBFF] w-[100%] text-center flex flex-col items-center justify-center py-12">
-          <h2 className="text-[2.5rem] text-deep-sky-blue font-bold">Who are you looking for?</h2>
+      <section className="dark:bg-black pb-6">
+        <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+          <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
 
-          <div className="flex mt-8">
+          <div className="flex mt-10">
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="search" className="ml-3 text-[1.3rem]">
+              <label htmlFor="search" className="ml-3 text-[1.3rem] dark:text-white">
                 Searching for{" "}
               </label>
-              <input
-                type="search"
-                name="search"
-                id="search"
-                className="border border-deep-sky-blue rounded-l w-[100%] h-[3rem] px-3"
+              <Select 
+                options={describeOpts} 
+                styles={searchingForStyles}
+                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Developers, Angel Investors"
-              />
+                />
             </div>
 
-            <span className="w-[.7rem] bg-orange-peel h-[3rem] self-end"></span>
+            <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
 
             <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="search" className="ml-3 text-[1.3rem]">
+              <label htmlFor="available" className="ml-3 text-[1.3rem] dark:text-white">
                 Available for
               </label>
-              <input
-                type="search"
-                name="available"
-                id="available"
-                className="border border-deep-sky-blue w-[100%] h-[3rem] px-3"
+              <Select 
+                options={availableForOpts} 
+                styles={availableForStyles}
+                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
                 placeholder="Full-time Job, Investing"
-              />
+                />
             </div>
 
-            <button className="bg-deep-sky-blue h-[3rem] self-end px-3 rounded-r">
+            <button className="bg-deep-sky-blue h-[49.47px] self-end px-3 rounded-r">
               <SearchPeopleIcon className="w-[1.5rem] h-[1.5rem]" />
             </button>
           </div>
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
-          <h1 className="text-center text-[2rem] font-semibold">Featured people</h1>
+          <h1 className="text-center dark:text-white lg:text-[40px] xl:text-[48px] font-semibold">Featured people</h1>
 
-          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-10">
+          <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] lg:gap-x-[60px] xl:gap-x-[80px]">
             {peopleObj.map(people => {
               return (
                 <div
                   key={people.id}
-                  className="flex flex-col items-center justify-center bg-[#F8FBFF] px-12 py-8 rounded-lg">
-                  <img src={people.image} />
+                  className="relative flex flex-col items-center justify-center bg-[#F8FBFF] dark:bg-[#2D2D2D] px-4 py-8 pb-[35px] rounded-lg w-full max-w-[300px]">
+                  <img src={people.image} className="w-[82px] h-[82px]" />
 
                   <div className="flex gap-x-2 items-center mt-1">
-                    <p className="font-semibold text-[1.3rem]">{people.name}</p>
+                    <p className="font-semibold dark:text-white text-[22px]   ">{people.name}</p>
                     {people.verified ? <VerifiedIcon className="w-[1.2rem] h-[1.2rem]" /> : null}
                   </div>
 
-                  <p className="text-[1rem] mb-3">{people.roles}</p>
+                  <p className="text-[1rem] mb-3 dark:text-white">{people.roles}</p>
 
-                  <button className="text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>
@@ -126,12 +176,20 @@ const People = ({ people }) => {
             })}
           </div>
           {peopleObj.length <= 6 ? (
-            <button
-              className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
-              onClick={handleShowMore}>
-              View more
-              <ArrowRight className="w-[2rem] h-[2rem]" />
-            </button>
+                  <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[160px] mb-[45px] lg:mb-[90px]">
+                  <button onClick={handleShowMore} className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
+                    <span>View more</span>
+                    <div className="lg:scale-[2] relative lg:top-1">
+                      <ArrowIcon />
+                    </div>
+                  </button>
+                </div>
+            // <button
+            //   className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
+            //   onClick={handleShowMore}>
+            //   View more
+            //   <ArrowRight className="w-[2rem] h-[2rem]" />
+            // </button>
           ) : null}
         </div>
       </section>
