@@ -38,9 +38,8 @@ export const TopNav = () => (
           darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
         />
         <Link
-          href="/"
-          className="scale-[0.53] lg:scale-[1] md:scale-[0.82]">
-          <HomeIcon />
+          href="/">
+          <HomeIcon className="scale-[0.53] lg:scale-[1] md:scale-[0.82] cursor-pointer"/>
         </Link>
       </div>
     </nav>
