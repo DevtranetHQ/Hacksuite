@@ -21,7 +21,7 @@ import EventCard from "../components/event/EventCard";
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
     <div className="">
-      <div id="header" className="flex items-center justify-between px-1 md:px-8">
+      <div id="header" className="flex items-center justify-between px-1 md:px-8 2xl:px-12">
         <div className="relative w-[40px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
@@ -68,8 +68,8 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="main" className="mt-1 mx-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 md:mx-5 grid grid-cols-2">
-        <div className="ml-1 pt-2 md:ml-3 flex flex-col md:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
+      <div id="main" className="mt-1 mx-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 md:mx-5 2xl:mx-12 grid grid-cols-2">
+        <div className="ml-1 pt-2 md:ml-3 2xl:ml-0 flex flex-col md:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
           <p className="font-bold leading-[1.3] text-16px md:text-[32px] lg:text-[36px] xl:text-[44px] 2xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
