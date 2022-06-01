@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
-import GithubIcon from "../../components/icons/Github";
 import Link from "next/link";
 import HomeIcon from '../icons/HomeIcon';
 

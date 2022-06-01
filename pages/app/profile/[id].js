@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 import Avatar from "../../../components/Avatar";
 import DarkModeToggle from "../../../components/DarkModeToggle";
@@ -11,7 +10,6 @@ import TwitterIcon from "../../../components/icons/Twitter";
 import ProfileProjectCard from "../../../components/project/ProfileProjectCard";
 import LinkedinIcon from "../../../components/icons/Linkedin";
 import Empty from "../../../components/Empty";
-import ReCAPTCHA from "react-google-recaptcha";
 import ProfileScrapbook from "./ProfileScrapbook";
 import MessageForm from "../../../components/MessageForm";
 

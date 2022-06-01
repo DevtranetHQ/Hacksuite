@@ -3,8 +3,7 @@ import FullNav from "../components/newsfeed/index";
 import ArrowIcon from "../components/icons/Arrow";
 import { availableFor} from "../enums/availableFor";
 import { describes} from "../enums";
-import Select, {components} from 'react-select';
-import ReCAPTCHA from "react-google-recaptcha";
+import Select from 'react-select';
 import MessageForm from "../components/MessageForm";
 
 
