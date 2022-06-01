@@ -3,55 +3,15 @@ import FullNav from "../components/newsfeed/index";
 import ArrowIcon from "../components/icons/Arrow";
 import { availableFor} from "../enums/availableFor";
 import { describes} from "../enums";
-import Select, {components} from 'react-select';
-import LevelOfStudySelect from "../components/profile/LevelOfStudy";
+import Select from 'react-select';
+import MessageForm from "../components/MessageForm";
+import {searchingForStyles, availableForStyles} from '../styles/SelectStyles';
+
 
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 
-const searchingForStyles = {
-  control: styles => ({ 
-    ...styles, 
-    backgroundColor: 'white', 
-    paddingTop: 3.5, 
-    width: '256px', 
-    paddingBottom: 3.5, 
-    border: '3px solid #03A9F4', 
-    borderRadius: 0, 
-    borderTopLeftRadius: 5, 
-    borderBottomLeftRadius: 5, 
-    marginTop: 2, 
-    "&:hover": {
-      borderColor: "#03A9F4"
-    }
-  }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    return {
-      ...styles
-    };
-  },
-};
-
-const availableForStyles = {
-  control: styles => ({ 
-    ...styles, backgroundColor: 'white', 
-    paddingTop: 3.5, 
-    width: '256px', 
-    paddingBottom: 3.5, 
-    border: '3px solid #03A9F4', 
-    borderRadius: 0, 
-    marginTop: 2, 
-    "&:hover": {
-      borderColor: "#03A9F4"
-    }
-  }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    return {
-      ...styles
-    };
-  },
-};
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
@@ -105,11 +65,12 @@ const People = ({ people }) => {
   const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
 
   const unVerifiedPeopleObj = people.filter(person => person.verified !== true);
+  const [showMessage, setShowMessage] = useState(false);
+
 
   const handleShowMore = () => {
     setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
   };
-  console.log(availableForOpts)
   return (
     <>
       <FullNav />
@@ -129,6 +90,7 @@ const People = ({ people }) => {
                 placeholder="Developers, Angel Investors"
                 />
             </div>
+            {showMessage ? (<MessageForm setShowMessage={setShowMessage}/>) : null}
 
             <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
 
@@ -168,7 +130,7 @@ const People = ({ people }) => {
 
                   <p className="text-[1rem] mb-3 dark:text-white">{people.roles}</p>
 
-                  <button className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
+                  <button onClick={() => setShowMessage(true)} className="bg-white text-[18px] hover:scale-[1.08] transition-all dark:bg-black absolute -bottom-[20px] text-deep-sky-blue border border-deep-sky-blue px-4 py-[.4rem] rounded-lg place-self-center">
                     Reach out
                   </button>
                 </div>
@@ -184,12 +146,6 @@ const People = ({ people }) => {
                     </div>
                   </button>
                 </div>
-            // <button
-            //   className="w-[max-content] bg-deep-sky-blue mt-20 mx-auto px-6 py-2 rounded text-white text-[1.1rem] flex items-center gap-x-3"
-            //   onClick={handleShowMore}>
-            //   View more
-            //   <ArrowRight className="w-[2rem] h-[2rem]" />
-            // </button>
           ) : null}
         </div>
       </section>
