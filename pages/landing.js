@@ -212,7 +212,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
           </p>
         </div>
         <div className="mt-9 py-20 rounded-bl-[20px] rounded-br-[20px] bg-[#F8FBFF] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          <p className="text-[90px] text-[#03A9F4] text-center mb-12">Who are you looking for?</p>
+          <p className="text-[60px] lg:text-[66px] xl:text-[82px] 2xl:text-[90px] text-[#03A9F4] text-center mb-12">
+            Who are you looking for?
+          </p>
           <div className="flex justify-center items-end">
             <div>
               <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px pl-4 mb-3 font-semibold">
@@ -220,7 +222,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
               </p>
               <div className="flex">
                 <input
-                  className="rounded-bl-[10px] rounded-tl-[10px] border-[3px] border-[#03A9F4] py-6 px-6"
+                  className="text-14px lg:text-18px xl:text-22px 2xl:text-24px rounded-bl-[10px] rounded-tl-[10px] border-[3px] border-[#03A9F4] py-6 px-6"
                   placeholder="Developers, Angel Investors"
                 />
                 <div className="bg-[#FF9700] w-3 py-6"></div>
@@ -233,10 +235,10 @@ export default function Landing({ user, projects, events, loggedIn }) {
               </p>
               <div className="flex">
                 <input
-                  className="border-[3px] border-[#03A9F4] py-6 px-6"
+                  className="text-14px lg:text-18px xl:text-22px 2xl:text-24px border-[3px] border-[#03A9F4] py-6 px-6"
                   placeholder="Full-time Job, Investing"
                 />
-                <div className="p-[1.390rem] bg-[#03A9F4] rounded-br-[10px] rounded-tr-[10px]">
+                <div className="px-[1.39rem] flex items-center bg-[#03A9F4] rounded-br-[10px] rounded-tr-[10px]">
                   <svg
                     width="35"
                     height="33"
@@ -259,7 +261,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
         <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px pb-[72px] text-center font-semibold">
           Featured people
         </p>
-        <div className="flex justify-around">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[120px] xl:mx-[30px] 2xl:mx-[150px]">
           <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
@@ -286,7 +288,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
+            <button className="text-10px lg:text-[13px] xl:text-[16px] 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
           </div>
@@ -317,7 +319,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
+            <button className="text-10px lg:text-[13px] xl:text-[16px] 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
           </div>
@@ -348,7 +350,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
+            <button className="text-10px lg:text-[13px] xl:text-[16px] 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
               Reach out
             </button>
           </div>
