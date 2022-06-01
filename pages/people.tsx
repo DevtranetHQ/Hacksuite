@@ -5,54 +5,13 @@ import { availableFor} from "../enums/availableFor";
 import { describes} from "../enums";
 import Select from 'react-select';
 import MessageForm from "../components/MessageForm";
+import {searchingForStyles, availableForStyles} from '../styles/SelectStyles';
 
 
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 
-const searchingForStyles = {
-  control: styles => ({ 
-    ...styles, 
-    backgroundColor: 'white', 
-    paddingTop: 3.5, 
-    width: '256px', 
-    paddingBottom: 3.5, 
-    border: '3px solid #03A9F4', 
-    borderRadius: 0, 
-    borderTopLeftRadius: 5, 
-    borderBottomLeftRadius: 5, 
-    marginTop: 2, 
-    "&:hover": {
-      borderColor: "#03A9F4"
-    }
-  }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    return {
-      ...styles
-    };
-  },
-};
-
-const availableForStyles = {
-  control: styles => ({ 
-    ...styles, backgroundColor: 'white', 
-    paddingTop: 3.5, 
-    width: '256px', 
-    paddingBottom: 3.5, 
-    border: '3px solid #03A9F4', 
-    borderRadius: 0, 
-    marginTop: 2, 
-    "&:hover": {
-      borderColor: "#03A9F4"
-    }
-  }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    return {
-      ...styles
-    };
-  },
-};
 
 const SearchPeopleIcon = ({ className }) => (
   <svg
@@ -112,7 +71,6 @@ const People = ({ people }) => {
   const handleShowMore = () => {
     setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
   };
-  console.log(availableForOpts)
   return (
     <>
       <FullNav />
