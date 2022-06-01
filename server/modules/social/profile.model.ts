@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import mongoose from "../../database";
 import { UserId } from "../auth/user.model";
 import { genders, countryNames, describes, skillsAndInterests, availableFor } from "../../../enums";
-
+import { IProject } from "../projects/project.model";
 const { Schema, models, model } = mongoose;
 
 export interface IProfile {
@@ -32,6 +32,7 @@ export interface IProfile {
   resume: string;
 
   followers: UserId[];
+  projects: IProject[];
 
   age?: number;
   fullName?: string;
