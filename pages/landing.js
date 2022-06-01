@@ -134,7 +134,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="scrapbook" className="mx-12 mt-16">
+      <div id="scrapbook" className="mx-8 2xl:mx-12 mt-16">
         <p className="text-[36px] text-[#A5A5A5] font-bold">LIVE FROM OUR SCRAPBOOK</p>
         <p className="text-[48px] font-bold">Stay connected with like-minded people</p>
         <p className="text-24px">
@@ -163,7 +163,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </section>
       </div>
 
-      <div id="project-gallery" className="mx-12 mt-16 text-center">
+      <div id="project-gallery" className="mx-8 2xl:mx-12 mt-16 text-center">
         <p className="text-[36px] text-[#A5A5A5] font-bold">IMAGINE AN EVERYDAY DEVPOST</p>
         <p className="text-[48px] font-bold">Share and take your projects globally.</p>
         <p className="text-24px">
@@ -187,7 +187,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
       </div>
 
       <div id="networking" className="mt-16">
-        <div className="mx-12">
+        <div className="mx-8 2xl:mx-12">
           <p className="text-[36px] text-[#A5A5A5] font-bold">NETWORKING MADE AS EASY AS ABC</p>
           <p className="text-[48px] font-bold">Find amazing people to bring your ideas to live.</p>
           <p className="text-24px">
@@ -235,9 +235,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="featured-people" className="mt-20">
+      <div id="featured-people" className="mx-8 2xl:mx-12 mt-20">
         <p className="text-[48px] pb-[72px] text-center font-semibold">Featured people</p>
-        <div className="flex mx-[150px] space-x-[120px]">
+        <div className="flex justify-around">
           <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
