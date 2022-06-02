@@ -1,7 +1,7 @@
 import {Dispatch, SetStateAction} from 'react';
-import VerifiedIcon from './icons/VerifiedIcon';
+import VerifiedIcon from '../icons/VerifiedIcon';
 
-interface PeopleCardProps {
+interface PersonCardProps {
     setShowMessage: Dispatch<SetStateAction<boolean>>;
     id: number;
     image: string;
@@ -12,7 +12,7 @@ interface PeopleCardProps {
 
 
 
-const PersonCard : React.FC<PeopleCardProps> = ({id, image, name, verified, roles, setShowMessage}) => {
+const PersonCard : React.FC<PersonCardProps> = ({id, image, name, verified, roles, setShowMessage}) => {
   return (
     <div
     key={id}
