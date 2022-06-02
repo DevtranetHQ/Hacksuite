@@ -122,7 +122,7 @@ export default function ProjectGalleryProjectCard({
               liked={liked}
               setLiked={setLiked}
             />
-            <p className="font-semibold text-[17px]">{likes}</p>
+            <p className="font-semibold text-[17px]">{liked ? likes + 1 : likes}</p>
             <CommentIcon
               width="20px"
               height="20px"
