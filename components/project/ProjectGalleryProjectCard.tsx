@@ -2,7 +2,7 @@ import Like from "../../components/Like";
 import CommentIcon from "../icons/Comment";
 import Image from "next/image";
 import Avatar from "../Avatar";
-import React, { HTMLAttributes, useContext } from "react";
+import React, { HTMLAttributes, useContext, useState } from "react";
 import TimeIcon from "../icons/Time";
 import GithubIcon from "../icons/Github";
 import FigmaIcon from "../icons/Figma";
@@ -25,6 +25,8 @@ export default function ProjectGalleryProjectCard({
 
   const likes = Math.floor(Math.random() * 100);
   const comments = Math.floor(Math.random() * 100);
+
+  const [liked, setLiked] = useState(false);
 
   return (
     <div className="w-full flex flex-col bg-[#f8fbff] dark:bg-[#2D2D2D] rounded-xl overflow-hidden shadow-xl hover:shadow-xxl p-3">
@@ -117,6 +119,8 @@ export default function ProjectGalleryProjectCard({
               height="20px"
               fill="#C50000"
               className="transition-all hover:scale-[1.2]"
+              liked={liked}
+              setLiked={setLiked}
             />
             <p className="font-semibold text-[17px]">{likes}</p>
             <CommentIcon
