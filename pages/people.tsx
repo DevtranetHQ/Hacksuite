@@ -9,6 +9,7 @@ import {PeopleData} from "../components/People/PeopleInfo";
 import {searchingForStyles, availableForStyles} from '../styles/SelectStyles';
 import PersonCard from "../components/People/PersonCard";
 import SearchPeopleIcon from "../components/icons/SearchPeopleIcon";
+import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
 
 
 
@@ -32,42 +33,11 @@ const People = ({ people }) => {
   return (
     <>
       <FullNav />
+      {showMessage ? (<MessageForm setShowMessage={setShowMessage}/>) : null}
       <section className="dark:bg-black pb-[60px]">
         <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
-
-          <div className="flex mt-10">
-            <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="search" className="ml-3 text-[1.3rem] dark:text-white">
-                Searching for{" "}
-              </label>
-              <Select 
-                options={describeOpts} 
-                styles={searchingForStyles}
-                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-                placeholder="Developers, Angel Investors"
-                />
-            </div>
-            {showMessage ? (<MessageForm setShowMessage={setShowMessage}/>) : null}
-
-            <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
-
-            <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-              <label htmlFor="available" className="ml-3 text-[1.3rem] dark:text-white">
-                Available for
-              </label>
-              <Select 
-                options={availableForOpts} 
-                styles={availableForStyles}
-                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-                placeholder="Full-time Job, Investing"
-                />
-            </div>
-
-            <button className="bg-deep-sky-blue h-[49.47px] self-end px-3 rounded-r">
-              <SearchPeopleIcon className="w-[1.5rem] h-[1.5rem]" />
-            </button>
-          </div>
+          <LookingForSelectBoxes />
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
