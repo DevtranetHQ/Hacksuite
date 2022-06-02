@@ -4,6 +4,8 @@ import { IProfile, Profile } from "./profile.model";
 import { NotificationTypeId } from "../../../server/modules/notification/notification-type.model";
 import { notificationService } from "../../../server/modules/notification/notifications.service";
 import { projectService } from "../../../server/modules/projects/project.service";
+import { scrapbookService } from "../../../server/modules/scrapbook/scrapbook.service";
+
 class ProfileService {
   async getCompletedProfile(userId: UserId): Promise<IProfile> {
     var profile = await Profile.findOne({ userId, isCompleted: true });
@@ -13,8 +15,9 @@ class ProfileService {
 
     profile.projects = await projectService.getProjectsByUser(userId);
 
-    // TODO: Get scrapbook post of user
+    profile.scrapbook = await scrapbookService.getProjectsByUser(userId);
 
+    console.log(profile);
     return JSON.parse(JSON.stringify(profile));
   }
 

@@ -1,18 +1,7 @@
 import { CustomError } from "../../utils/customError";
-import User from "../auth/user.model";
+import User, { UserId } from "../auth/user.model";
 import { Profile } from "../social/profile.model";
-import Post, { IPost, PostId } from "./post";
-
-interface IPostWithUser {
-  _id: PostId;
-  content: string;
-  images: string[];
-  createdAt: Date;
-  author: {
-    username?: string;
-    image?: string;
-  };
-}
+import Post, { IPost, PostId, IPostWithUser } from "./post";
 
 class ScrapbookService {
   async getRecentPosts(): Promise<IPostWithUser[]> {
@@ -21,6 +10,26 @@ class ScrapbookService {
     const postsWithUser = await Promise.all(
       posts.map(async post => {
         const profile = await Profile.findOne({ userId: post.author });
+
+        return {
+          _id: post._id,
+          content: post.content,
+          images: post.images,
+          createdAt: post.createdAt,
+          author: { username: profile.discordUsername, image: profile.image }
+        };
+      })
+    );
+
+    return postsWithUser;
+  }
+  
+  async getProjectsByUser(userId: UserId): Promise<IPostWithUser[]> {
+    const posts = await Post.find({author: userId});
+    
+    const postsWithUser = await Promise.all(
+      posts.map(async post => {
+        const profile = await Profile.findOne({ userId: userId });
 
         return {
           _id: post._id,

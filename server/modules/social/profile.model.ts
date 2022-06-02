@@ -3,6 +3,8 @@ import mongoose from "../../database";
 import { UserId } from "../auth/user.model";
 import { genders, countryNames, describes, skillsAndInterests, availableFor } from "../../../enums";
 import { IProject } from "../projects/project.model";
+import { IPostWithUser } from "../scrapbook/post";
+
 const { Schema, models, model } = mongoose;
 
 export interface IProfile {
@@ -33,6 +35,7 @@ export interface IProfile {
 
   followers: UserId[];
   projects: IProject[];
+  scrapbook: IPostWithUser[];
 
   age?: number;
   fullName?: string;
