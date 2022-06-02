@@ -4,7 +4,7 @@ import logoLight from "../public/assets/logo.svg";
 import Discord from "../components/icons/Discord";
 import landing from "../public/assets/landing/landing.svg";
 
-import aws from "../public/assets/landing/aws.svg";
+import aws from "../public/assets/landing/aws.png";
 import digitalocean from "../public/assets/landing/digitalocean.svg";
 import jetbrains from "../public/assets/landing/jetbrains.svg";
 import sketch from "../public/assets/landing/sketch.svg";
@@ -25,30 +25,30 @@ export default function Landing({ user, projects, events, loggedIn }) {
         <div className="relative w-[40px] sm:w-[55px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
-        <div className="flex items-center text-[5.9px] sm:text-10px md:text-14px lg:text-[16px] xl:text-20px">
+        <div className="flex items-center text-[5.8px] sm:text-10px md:text-12px lg:text-[16px] xl:text-20px">
           <div className="flex items-center space-x-2 xs:space-x-4 sm:space-x-8 lg:space-x-12 xl:space-x-16 mx-2 xs:mx-4 sm:mx-8 lg:mx-12 xl:mx-16">
             <Link href="/scrapbook">
-              <p className="text-10px text-[#7D7D7D] text-[5.9px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Scrapbook
               </p>
             </Link>
             <Link href="/project-gallery">
-              <p className="text-10px text-[#7D7D7D] text-[5.9px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
             <Link href="#">
-              <p className="text-10px text-[#7D7D7D] text-[5.9px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
             </Link>
             <Link href="/events">
-              <p className="text-10px text-[#7D7D7D] text-[5.9px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Events
               </p>
             </Link>
             <Link href="#">
-              <p className="text-10px text-[#7D7D7D] text-[5.9px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
             </Link>
@@ -71,13 +71,13 @@ export default function Landing({ user, projects, events, loggedIn }) {
       <div
         id="main"
         className="mt-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 mx-4 md:mx-8 2xl:mx-12 grid grid-cols-2">
-        <div className="flex flex-col pt-2 sm:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
-          <p className="font-bold leading-[1.3] text-12px sm:text-20px md:text-28px lg:text-36px xl:text-44px 2xl:text-48px">
+        <div className="flex flex-col pt-2 sm:pt-8 lg:pt-10 lgm:pt-20 xl:pt-[4.5rem] 2xl:pt-[4.5rem]">
+          <p className="font-bold leading-[1.3] msm:leading-normal text-12px sm:text-20px md:text-24px mdm:text-28px lg:text-36px xl:text-44px 2xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
             <span className="text-[#4cb050]">technologists</span> call home.
           </p>
-          <p className="mt-1 text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px md:mt-2 lg:mt-3.5 xl:mt-[1.125rem] 2xl:mt-7">
+          <p className="mt-1 text-10px md:text-12px mdm:text-14px lg:text-18px xl:text-22px 2xl:text-24px md:mt-2 lg:mt-3.5 xl:mt-[1.125rem] 2xl:mt-7">
             The Dynamics is a global network of makers, developers, and technologists where
             enthusiastic minds connect, build, share, and launch.
           </p>
@@ -130,7 +130,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
           WORKED WITH
         </p>
         <div className="mxl:-mt-2 m2xl:-mt-1 mx-[10px] md:mx-[30px] lg:mx-[60px] xl:mx-[140px] flex items-center justify-between">
-          <Image src={aws} alt="aws" />
+          <div className="md:mb-1.5 self-end relative w-[120px]">
+            <Image src={aws} alt="aws" />
+          </div>
           <Image src={digitalocean} alt="digitalocean" />
           <Image src={jetbrains} alt="jetbrains" />
           <Image src={sketch} alt="sketch" />
