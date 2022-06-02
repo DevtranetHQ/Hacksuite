@@ -1,20 +1,10 @@
 import { useState } from "react";
 import FullNav from "../components/newsfeed/index";
 import ArrowIcon from "../components/icons/Arrow";
-import { availableFor} from "../enums/availableFor";
-import { describes} from "../enums";
-import Select from 'react-select';
 import MessageForm from "../components/MessageForm";
 import {PeopleData} from "../components/People/PeopleInfo";
-import {searchingForStyles, availableForStyles} from '../styles/SelectStyles';
 import PersonCard from "../components/People/PersonCard";
-import SearchPeopleIcon from "../components/icons/SearchPeopleIcon";
 import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
-
-
-
-const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
-const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 
 
 const People = ({ people }) => {
