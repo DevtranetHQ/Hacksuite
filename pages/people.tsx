@@ -36,7 +36,7 @@ const People = ({ people }) => {
           <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] lg:gap-x-[60px] xl:gap-x-[80px]">
             {peopleObj.map(person => {
               return (
-                <PersonCard id={person.id} image={person.image} name={person.name} verified={person.verified} roles={person.roles} setShowMessage={setShowMessage}/>
+                <PersonCard key={person.id} id={person.id} image={person.image} name={person.name} verified={person.verified} roles={person.roles} setShowMessage={setShowMessage}/>
               );
             })}
           </div>
