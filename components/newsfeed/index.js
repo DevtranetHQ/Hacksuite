@@ -39,7 +39,9 @@ export const TopNav = () => (
         />
         <Link
           href="/">
-          <HomeIcon className="scale-[0.53] lg:scale-[1] md:scale-[0.82] cursor-pointer"/>
+          <div>
+            <HomeIcon className="scale-[0.53] lg:scale-[1] md:scale-[0.82] cursor-pointer"/>
+          </div>
         </Link>
       </div>
     </nav>
