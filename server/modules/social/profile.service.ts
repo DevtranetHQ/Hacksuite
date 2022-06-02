@@ -3,13 +3,19 @@ import { UserId } from "../auth/user.model";
 import { IProfile, Profile } from "./profile.model";
 import { NotificationTypeId } from "../../../server/modules/notification/notification-type.model";
 import { notificationService } from "../../../server/modules/notification/notifications.service";
-
+import { projectService } from "../../../server/modules/projects/project.service";
 class ProfileService {
   async getCompletedProfile(userId: UserId): Promise<IProfile> {
-    const profile = await Profile.findOne({ userId, isCompleted: true });
+    var profile = await Profile.findOne({ userId, isCompleted: true });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
-    return JSON.parse(JSON.stringify(profile.toObject({ virtuals: true })));
+    profile = profile.toObject({ virtuals: true });
+
+    profile.projects = await projectService.getProjectsByUser(userId);
+
+    // TODO: Get scrapbook post of user
+
+    return JSON.parse(JSON.stringify(profile));
   }
 
   async getProfile(userId: UserId): Promise<IProfile> {
@@ -50,7 +56,7 @@ class ProfileService {
     if (!userWhoFollowed) {
       return;
     }
-    notificationService.createNotification({
+    await notificationService.createNotification({
       for: followingId,
       type: "Follow" as NotificationTypeId,
       title: `${userWhoFollowed.fullName} started following you`,
@@ -58,7 +64,6 @@ class ProfileService {
       link: "", //link to followed profile
       by: userWhoFollowed.fullName
     });
-
 
     return JSON.parse(JSON.stringify(updated.toObject({ virtuals: true })));
   }
