@@ -91,7 +91,7 @@ export default function Settings({ profile }: Props) {
           Account Settings
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
-        <div className="mxs:pl-6">
+        <div className="mmd:pl-6">
           <div className="flex items-center justify-between w-[88%]">
             <Avatar
               image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
@@ -324,12 +324,12 @@ export default function Settings({ profile }: Props) {
           )}
         </div>
         <form
-          className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
+          className="mmd:px-6 bg-transparent dark:bg-transparent pl-0 md:w-11/12"
           onSubmit={handleSubmit(handleSubmission)}>
           <FormProvider {...hookFormMethods}>
             <h2 className="mxs:text-[22px] mb-5 subheadline">Personal Information</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
-              <div>
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="firstName">
                   First name
                 </label>
@@ -343,7 +343,7 @@ export default function Settings({ profile }: Props) {
                   {...register("firstName", { required: true })}
                 />
               </div>
-              <div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="lastName">
                   Last name
                 </label>
@@ -357,34 +357,32 @@ export default function Settings({ profile }: Props) {
                   {...register("lastName", { required: true })}
                 />
               </div>
-            </section>
-            <section>
-              <label className="form-label font-normal" htmlFor="email">
-                Email address
-              </label>
-              <input
-                autoComplete="off"
-                className="form-input"
-                id="email"
-                name="email"
-                type="email"
-                value={profile.email}
-                placeholder="zach@hackclub.com"
-              />
-            </section>
-            <section>
-              <label className="form-label font-normal" htmlFor="phoneNumber">
-                Phone number
-              </label>
-              <TelInput {...register("phoneNumber")} />
-            </section>
-            <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-              <div>
+              <div className="col-span-1 sm:col-span-2">
+                <label className="form-label font-normal" htmlFor="email">
+                  Email address
+                </label>
+                <input
+                  autoComplete="off"
+                  className="form-input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={profile.email}
+                  placeholder="zach@hackclub.com"
+                />
+              </div>
+              <div className="col-span-1 sm:col-span-2">
+                <label className="form-label font-normal" htmlFor="phoneNumber">
+                  Phone number
+                </label>
+                <TelInput {...register("phoneNumber")} />
+              </div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="password">
                   Password
                 </label>
                 <input
-                  className="form-input"
+                  className="form-input mb-0"
                   id="password"
                   name="password"
                   placeholder="*********"
@@ -395,13 +393,13 @@ export default function Settings({ profile }: Props) {
                   Leave blank if you don't want to change your password
                 </p>
               </div>
-              <div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="passwordConfirmation">
                   Password confirmation
                 </label>
                 <input
                   autoComplete="password"
-                  className="form-input"
+                  className="form-input mb-0"
                   id="passwordConfirmation"
                   name="passwordConfirmation"
                   placeholder="*********"
@@ -410,18 +408,18 @@ export default function Settings({ profile }: Props) {
                 />
               </div>
             </section>
-            <section className="mxs:space-x-1 form-checkbox mb-10">
+            <section className="mxs:space-x-1 form-checkbox mb-10 mt-4">
               <input id="checkbox" name="receiveEmails" type="checkbox" />
               <label htmlFor="checkbox">Notify me about upcoming news & events</label>
             </section>
             <h2 className="mxs:text-[22px] mb-5 subheadline">Demographic Information</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 mb-10">
               <div>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                 </label>
                 <input
-                  className="form-input"
+                  className="form-input mb-0 py-1.5"
                   id="dob"
                   name="dob"
                   type="date"
@@ -442,25 +440,25 @@ export default function Settings({ profile }: Props) {
               </div>
             </section>
             <h2 className="mxs:text-[22px] mb-5 subheadline">Work and Education</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-1 mb-5">
-              <div>
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 mb-5">
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="personalDescription">
                   What describes you the best?
                 </label>
                 <DescribeSelect />
               </div>
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="skillsAndInterests">
                   Skills and interests
                 </label>
                 <TextareaAutosize
-                  className="resize-none form-input box-border py-[6px]"
+                  className="resize-none form-input box-border py-[6px] mb-0"
                   maxRows={6}
                   maxLength={120}
                   placeholder="Coding languages, frameworks, or soft skills..."
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
                   I'm available for
                 </label>
@@ -472,7 +470,7 @@ export default function Settings({ profile }: Props) {
                 </label>
                 <input
                   autoComplete="off"
-                  className="form-input py-[6px]"
+                  className="form-input py-[6px] mb-0"
                   placeholder="Write something..."
                   type="text"
                   maxLength={50}
@@ -483,7 +481,7 @@ export default function Settings({ profile }: Props) {
                 <label className="form-label font-normal" htmlFor="resume">
                   Upload Resume/CV
                 </label>
-                <div className="flex form-input items-center justify-between h-[41%]">
+                <div className="flex form-input items-center justify-between py-1">
                   <input
                     className="text-18px text-[#3B4FE4]"
                     id="resume"
