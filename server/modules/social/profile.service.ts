@@ -17,7 +17,6 @@ class ProfileService {
 
     profile.scrapbook = await scrapbookService.getProjectsByUser(userId);
 
-    console.log(profile);
     return JSON.parse(JSON.stringify(profile));
   }
 
