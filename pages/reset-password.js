@@ -59,18 +59,14 @@ export default function ResetPassword() {
       </div>
 
       {resetPassword.status === "success" && (
-        
-          <div className="bg-green-500 slide-bottom text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
-            <p>Password Successfully Changed! Redirecting...</p>
-          </div>
-        
+        <div className="bg-green-500 slide-bottom text-center text-white p-1 font-semibold md:text-24px text-[17px] mt-3 w-screen mb-5">
+          <p>Password Successfully Changed! Redirecting...</p>
+        </div>
       )}
       {resetPassword.status === "error" && (
-        
-          <div className="bg-[#D0342C] slide-bottom text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
-            <p>{resetPassword.error.response?.data.message || resetPassword.error.message}</p>
-          </div>
-        
+        <div className="bg-[#D0342C] slide-bottom text-center text-white p-1 font-semibold md:text-24px text-16px mt-3 w-screen mb-5">
+          <p>{resetPassword.error.response?.data.message || resetPassword.error.message}</p>
+        </div>
       )}
 
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">

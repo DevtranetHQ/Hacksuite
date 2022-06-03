@@ -10,11 +10,13 @@ interface Props {
 export default function Avatar({ className = ``, border = ``, image = `` }: Props) {
   return (
     <div
-      className={`${className ? className : "relative flex items-center justify-center mb-2 w-[158px] h-[158px]"
-        }`}>
+      className={`${
+        className ? className : "relative flex items-center justify-center mb-2 w-[158px] h-[158px]"
+      }`}>
       <Image
-        className={`!border-solid ${border ? border : "!border-[2.67px]"
-          } !border-orange-peel rounded-full p-0 m-0`}
+        className={`!border-solid ${
+          border ? border : "!border-[2.67px]"
+        } !border-orange-peel rounded-full p-0 m-0`}
         layout="fill"
         objectFit="cover"
         src={image || avatarImage}

@@ -21,6 +21,6 @@ const NotificationsLink: FC = () => {
       </div>
     </Link>
   );
-}
+};
 
 export default NotificationsLink;

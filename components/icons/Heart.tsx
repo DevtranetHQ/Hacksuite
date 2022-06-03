@@ -4,7 +4,7 @@ export default function HeartIcon({ fill, width, height, className }: any) {
       width={width ? width : 24}
       height={height ? height : 24}
       viewBox="0 0 43 39"
-      className={className ? className : ''}
+      className={className ? className : ""}
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path

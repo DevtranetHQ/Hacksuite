@@ -11,7 +11,7 @@ export const PushContext: FC = ({ children }) => {
       console.log("subscribing to push notifications");
       SW()
         .then(() => requestPermission.execute())
-        .then(() => subscribe.execute())
+        .then(() => subscribe.execute());
     }
   }, [user]);
 

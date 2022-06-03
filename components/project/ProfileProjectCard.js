@@ -14,6 +14,7 @@ import TwitterIcon from "../../components/icons/Twitter";
 import Facebook from "../../components/icons/Facebook";
 import LinkedinIcon from "../../components/icons/Linkedin";
 import FacebookIcon from "../../components/icons/Facebook";
+import Like from "../Like";
 
 /**
  * User profile project Card component
@@ -32,6 +33,7 @@ export default function ProfileProjectCard({ ...props }) {
   const { date, image, title, desc, tags, likes, comments, bubbles, className, tools } = props;
   const { darkMode } = useContext(DarkModeContext);
   const [share, setShare] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   return (
     <div
@@ -155,8 +157,18 @@ export default function ProfileProjectCard({ ...props }) {
         </span>
         <span className="flex items-center justify-between lg:space-x-5 md:space-x-2 space-x-2">
           <p className="flex items-center gap-2">
-            <HeartIcon fill="#C50000" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />
-            <span className="lg:text-24px md:text-16px text-16px font-bold">{likes}</span>
+            {/* <HeartIcon fill="#C50000" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" /> */}
+            <Like
+              width="32px"
+              height="32px"
+              fill="#C50000"
+              className="transition-all md:hover:scale-[0.45]  lg:hover:scale-[1.2] scale-[0.375] md:relative md:left-[11px] lg:left-0 md:scale-[0.375] lg:scale-100"
+              liked={liked}
+              setLiked={setLiked}
+            />
+            <span className="lg:text-24px md:text-16px text-16px font-bold">
+              {liked ? likes + 1 : likes}
+            </span>
           </p>
           <p className="flex items-center gap-2">
             <CommentIcon fill="currentColor" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />

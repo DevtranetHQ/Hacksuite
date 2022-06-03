@@ -15,14 +15,18 @@ import { profileService } from "../../../server/modules/social/profile.service";
 import { projectService } from "../../../server/modules/projects/project.service";
 import ProjectGalleryProjectCard from "../../../components/project/ProjectGalleryProjectCard";
 
-
 // Icons
 const ArrowRightIcon = ({ className }) => (
-  <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className}`}>
+  <svg
+    width="32"
+    height="12"
+    viewBox="0 0 32 12"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${className}`}>
     <path d="M22.4609 12V8.18182H0V3.81818H22.4609V0L31.5316 6L22.4609 12Z" fill="white" />
   </svg>
-)
-
+);
 
 // Components
 const ScrapBook = () => (
@@ -31,7 +35,7 @@ const ScrapBook = () => (
       <h1>ScrapBook</h1>
     </div>
   </div>
-)
+);
 
 const Projects = ({ projects }) => (
   <div className="grid grid-cols-1 gap-y-8 md:p-5 p-1 dark:text-white w-[70%] ml-7">
@@ -45,7 +49,7 @@ const Projects = ({ projects }) => (
       );
     })}
   </div>
-)
+);
 
 const People = () => (
   <div className="grid md:grid-cols-2 lg:grid-cols-3 md:space-x-5 md:p-5 p-1 dark:text-white">
@@ -53,7 +57,7 @@ const People = () => (
       <h1>People</h1>
     </div>
   </div>
-)
+);
 
 const Jobs = () => (
   <div className="grid md:grid-cols-2 lg:grid-cols-3 md:space-x-5 md:p-5 p-1 dark:text-white">
@@ -61,13 +65,22 @@ const Jobs = () => (
       <h1>Jobs</h1>
     </div>
   </div>
-)
+);
 
 const VerifiedIcon = ({ className }) => (
-  <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className}`}>
-    <path d="M24.25 12.3357L21.5882 9.30299L21.9591 5.28844L18.0209 4.3939L15.9591 0.924805L12.25 2.51753L8.54091 0.924805L6.47909 4.3939L2.54091 5.27753L2.91182 9.29208L0.25 12.3357L2.91182 15.3684L2.54091 19.3939L6.47909 20.2884L8.54091 23.7575L12.25 22.1539L15.9591 23.7466L18.0209 20.2775L21.9591 19.383L21.5882 15.3684L24.25 12.3357ZM10.0682 17.7903L5.70455 13.4266L7.24273 11.8884L10.0682 14.703L17.2573 7.5139L18.7955 9.06299L10.0682 17.7903Z" fill="#03A9F4" />
+  <svg
+    width="25"
+    height="24"
+    viewBox="0 0 25 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={`${className}`}>
+    <path
+      d="M24.25 12.3357L21.5882 9.30299L21.9591 5.28844L18.0209 4.3939L15.9591 0.924805L12.25 2.51753L8.54091 0.924805L6.47909 4.3939L2.54091 5.27753L2.91182 9.29208L0.25 12.3357L2.91182 15.3684L2.54091 19.3939L6.47909 20.2884L8.54091 23.7575L12.25 22.1539L15.9591 23.7466L18.0209 20.2775L21.9591 19.383L21.5882 15.3684L24.25 12.3357ZM10.0682 17.7903L5.70455 13.4266L7.24273 11.8884L10.0682 14.703L17.2573 7.5139L18.7955 9.06299L10.0682 17.7903Z"
+      fill="#03A9F4"
+    />
   </svg>
-)
+);
 
 const Newsfeed = ({ admin, projects, people }) => {
   const router = useRouter();
@@ -199,53 +212,50 @@ const Newsfeed = ({ admin, projects, people }) => {
           </p>
         </nav>
 
-        {openTab === 1 ? (
-          <ScrapBook />
-        ) : null}
+        {openTab === 1 ? <ScrapBook /> : null}
 
-        {openTab === 2 ? (
-          <Projects projects={reducedProjectObj} />
-        ) : null}
+        {openTab === 2 ? <Projects projects={reducedProjectObj} /> : null}
 
-        {openTab === 3 ? (
-          <People />
-        ) : null}
+        {openTab === 3 ? <People /> : null}
 
-        {openTab === 4 ? (
-          <Jobs />
-        ) : null}
-
+        {openTab === 4 ? <Jobs /> : null}
       </section>
 
       <section className="fixed right-0 top-[8rem]">
         <h3 className="mb-7 text-[23px] dark:text-white">Featured people</h3>
 
         <div className="bg-[#F8FBFF] rounded h-[max-content] dark:bg-[#202020]">
-          {
-            people.map(person => {
-              return (
-                <div className={`p-4 px-6 ${person.id !== people[people.length - 1].id ? "border-b border-b-[#A5A5A5]" : ""} grid grid-cols-3 gap-x-3 items-center`} key={person.id}>
-                  <div className="">
-                    <img src={person.image} />
-                  </div>
-
-                  <div className="ml-[-3.5rem]">
-                    <p className="flex gap-x-3 items-center text-[1.2rem]">
-                      {person.username} {person.verified === true ? <VerifiedIcon className="w-[1rem] h-[1rem]" /> : null}
-                    </p>
-
-                    <p className="text-[.9rem]">
-                      {person.roles}
-                    </p>
-                  </div>
-
-                  <button className={`justify-self-start py-1 px-3 ml-9 rounded ${person.following ? "bg-deep-sky-blue text-white" : "bg-white"}`}>
-                    {person.following ? "Unfollow" : "Follow"}
-                  </button>
+          {people.map(person => {
+            return (
+              <div
+                className={`p-4 px-6 ${
+                  person.id !== people[people.length - 1].id ? "border-b border-b-[#A5A5A5]" : ""
+                } grid grid-cols-3 gap-x-3 items-center`}
+                key={person.id}>
+                <div className="">
+                  <img src={person.image} />
                 </div>
-              )
-            })
-          }
+
+                <div className="ml-[-3.5rem]">
+                  <p className="flex gap-x-3 items-center text-[1.2rem]">
+                    {person.username}{" "}
+                    {person.verified === true ? (
+                      <VerifiedIcon className="w-[1rem] h-[1rem]" />
+                    ) : null}
+                  </p>
+
+                  <p className="text-[.9rem]">{person.roles}</p>
+                </div>
+
+                <button
+                  className={`justify-self-start py-1 px-3 ml-9 rounded ${
+                    person.following ? "bg-deep-sky-blue text-white" : "bg-white"
+                  }`}>
+                  {person.following ? "Unfollow" : "Follow"}
+                </button>
+              </div>
+            );
+          })}
 
           <div className="flex items-center justify-center mt-3">
             <button className="py-2 px-3 rounded bg-deep-sky-blue text-white flex items-center justify-center">
@@ -255,11 +265,10 @@ const Newsfeed = ({ admin, projects, people }) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Newsfeed
-
+export default Newsfeed;
 
 export async function getServerSideProps({ req, res }) {
   const user = await withAuth(req => req.$user)(req, res);
@@ -315,8 +324,8 @@ export async function getServerSideProps({ req, res }) {
       image: "/assets/TEST/people-4.png",
       verified: true,
       following: false
-    },
-  ]
+    }
+  ];
 
   return {
     props: {

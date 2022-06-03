@@ -144,7 +144,7 @@ export const AuthProvider = ({ children }) => {
       return res.data;
     }),
 
-    completeProfile: useAsync(async (data) => {
+    completeProfile: useAsync(async data => {
       const res = await axios({
         url: `/users/complete`,
         method: "POST",

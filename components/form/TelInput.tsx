@@ -5,7 +5,10 @@ import styles from "./TelInput.module.css";
 import "intl-tel-input/build/js/utils.js";
 import "intl-tel-input/build/css/intlTelInput.css";
 
-const TelInput = forwardRef<HTMLInputElement>(function TelInpuComponent(props: JSX.IntrinsicElements["input"], ref) {
+const TelInput = forwardRef<HTMLInputElement>(function TelInpuComponent(
+  props: JSX.IntrinsicElements["input"],
+  ref
+) {
   // TODO: Validate phone number
   useEffect(() => {
     intlTelInput(document.querySelector("#phoneNumber"), { customContainer: "!block" });
@@ -17,12 +20,12 @@ const TelInput = forwardRef<HTMLInputElement>(function TelInpuComponent(props: J
         .iti {
           margin-bottom: 1rem !important;
           display: flex;
-          align-items: center
+          align-items: center;
         }
-        .iti__arrow{
+        .iti__arrow {
           border-left: 4px solid transparent;
           border-right: 4px solid transparent;
-          border-top: 8px solid #8A8A8A;
+          border-top: 8px solid #8a8a8a;
         }
       `}</style>
       <input

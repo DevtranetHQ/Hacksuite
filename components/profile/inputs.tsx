@@ -83,7 +83,7 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
           options={describeOpts}
           value={describeOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
-          isOptionDisabled={() => field.value?.length > 4 ? true : false}
+          isOptionDisabled={() => (field.value?.length > 4 ? true : false)}
           {...props}
         />
       )}
@@ -110,7 +110,7 @@ export const AvailableForSelect: FC<{ className?: string }> = props => {
           options={availableForOpts}
           value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
-          isOptionDisabled={() => field.value?.length > 4 ? true : false}
+          isOptionDisabled={() => (field.value?.length > 4 ? true : false)}
           {...props}
         />
       )}
