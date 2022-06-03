@@ -7,12 +7,13 @@ import { withAuth } from "./../../server/middlewares/auth.middleware";
 import DashHeader from "../../components/dash/DashHeader";
 import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import { Icon } from "@iconify/react";
+import styles from "../../components/project/PersonalProject.module.css";
 
 export default function PersonalProjects({ name, projects, unread }) {
   // NOTE: The project cards are inside /components/project/PersonalProjectCard, so the unpublish, publish, and delete functions will be there as well
 
   return (
-    <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
+    <div className={`${styles.default_font} xs:grid xs:grid-cols-12 dark:bg-[#202020]`}>
       <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav active="/personal-projects" />
       </div>

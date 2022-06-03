@@ -1,0 +1,17 @@
+.default_font p,
+.default_font ul,
+.default_font ol {
+  @apply text-20px md:text-22px;
+}
+
+.default_font p.sm,
+.default_font ul.sm,
+.default_font ol.sm {
+  @apply text-18px;
+}
+
+.default_font p.xs,
+.default_font ul.xs,
+.default_font ol.sm {
+  @apply text-16px;
+}

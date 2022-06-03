@@ -16,6 +16,7 @@ import AdobeIcon from "../../components/icons/Adobe";
 import NotificationsLink from "../../components/dash/NotificationsLink";
 import Select, { components } from "react-select";
 import { Icon } from "@iconify/react";
+import styles1 from "../../components/project/PersonalProject.module.css";
 
 export default function CreateProject({ choices, unread }) {
   const handleSubmission = () => {};
@@ -168,7 +169,7 @@ export default function CreateProject({ choices, unread }) {
   }
 
   return (
-    <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
+    <div className={`${styles1.default_font} xs:grid xs:grid-cols-12 dark:bg-[#202020]`}>
       <div className="mxs:hidden col-span-1 mx-auto">
         <DashNav active="/personal-projects" />
       </div>
