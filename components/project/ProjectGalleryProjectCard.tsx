@@ -23,7 +23,6 @@ export default function ProjectGalleryProjectCard({
   const { darkMode } = useContext(DarkModeContext);
   const trimmed = bubbleTrimmer(collaborators, 0, 3);
 
-
   const [liked, setLiked] = useState<boolean>(false);
   const [likes, setLikes] = useState<number>(Math.floor(Math.random() * 100));
   const [comments, setComments] = useState<number>(Math.floor(Math.random() * 100));

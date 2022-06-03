@@ -19,7 +19,7 @@ export const UnreadNotificationProvider: FC = ({ children }) => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
     const handler = (event: MessageEvent<string>) => {
@@ -43,7 +43,7 @@ export const UnreadNotificationProvider: FC = ({ children }) => {
       {children}
     </unreadContext.Provider>
   );
-}
+};
 
 export const useUnreadNotifications = () => {
   const unread = useContext(unreadContext);
@@ -51,4 +51,4 @@ export const useUnreadNotifications = () => {
     throw new Error("useUnreadNotifications must be used within a UnreadNotificationProvider");
   }
   return unread;
-}
+};

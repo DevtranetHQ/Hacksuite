@@ -20,16 +20,16 @@ import ProfileScrapbook from "./Scrapbook";
 import { IProfile } from "../../server/modules/social/profile.model";
 import { IUser, UserId } from "../../server/modules/auth/user.model";
 import { IProject } from "../../server/modules/projects/project.model";
-import { handleAuth } from '../../server/utils/auth';
-import userService from '../../server/modules/auth/user.service';
-import { profileService } from '../../server/modules/social/profile.service';
-import { projectService } from './../../server/modules/projects/project.service';
+import { handleAuth } from "../../server/utils/auth";
+import userService from "../../server/modules/auth/user.service";
+import { profileService } from "../../server/modules/social/profile.service";
+import { projectService } from "./../../server/modules/projects/project.service";
 
-import NotFoundPage from '../404';
+import NotFoundPage from "../404";
 
 export function bubbleTrimmer<T = any>(bubbles: T[], start = 0, end = 0): T[] {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
-};
+}
 
 interface Props {
   loggedInUser: IUser | null;
@@ -50,7 +50,7 @@ export default function ProfileOrError({ error, ...props }: Props & { error?: bo
 
 function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbook }: Props) {
   // ======= Tab state -->
-  console.log(profile)
+  console.log(profile);
   // TODO: Set nav state for project and scrapbook
   const [openTab, setOpenTab] = useState(1);
 
@@ -73,9 +73,7 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
             <GithubIcon />
           </a>
 
-          <button
-            className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none"
-            >
+          <button className="md:px-[10px] px-2 py-[6px] lg:py-[2px] bg-[#03a9f4] text-white rounded-[6px] text-[11px] md:text-[23px] lg:text-[28px] lg:button-big button-deep-sky-blue inline-flex md:gap-x-3 items-center md:mx-2 md:mr-1 my-0 md:my-0 focus:outline-none">
             {/* {loggedIn ? "Let's talk" : "All Events"} */}
             Let's talk
             <div className="scale-50 md:scale-100 lg:relative lg:top-[2px] justify-self-start">
@@ -113,7 +111,7 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
                     </button>
                     <button
                       className="button-big button-orange-peel px-20 w-[150px] text-22px mt-3"
-                      onClick={() => { }}>
+                      onClick={() => {}}>
                       Send
                     </button>
                   </div>
@@ -141,9 +139,7 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
               <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-2/4 mx-auto slide-bottom">
                 <div className="relative  my-6 mx-auto  bg-white p-5">
                   <div>
-                    <h2 className="font-semibold text-30px text-center p-5">
-                      Skills and Interest
-                    </h2>
+                    <h2 className="font-semibold text-30px text-center p-5">Skills and Interest</h2>
                     <hr />
                     {profile.skills.map((skill, index) => {
                       return (
@@ -223,11 +219,13 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
 
       <section className="p-10 flex items-center justify-center">
         <div className="gap-x-5 flex">
-          {profile.describe.map((describe, index) =>
-            <span key={index} className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
+          {profile.describe.map((describe, index) => (
+            <span
+              key={index}
+              className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue">
               {describe}
             </span>
-          )}
+          ))}
         </div>
       </section>
 
@@ -235,13 +233,11 @@ function ProfilePage({ loggedInUser, user, profile, projects, followers, scrapbo
         <div className="w-[70%]">
           <h1 className="mb-3 font-bold text-36px">I'M AVAILABLE FOR </h1>
           <div className="flex flex-wrap gap-5">
-            {profile.availableFor.map((work, index) =>
-              <span
-                className="p-1 px-2 rounded-md border-2 border-deep-sky-blue"
-                key={index}>
+            {profile.availableFor.map((work, index) => (
+              <span className="p-1 px-2 rounded-md border-2 border-deep-sky-blue" key={index}>
                 {work}
               </span>
-            )}
+            ))}
           </div>
         </div>
       </section>
@@ -361,14 +357,19 @@ export const getServerSideProps = async ({ req, res, query }) => {
     const projects = await projectService.getProjectsByUser(userId);
 
     // TODO: get scrapbook
-    const scrapbook = []
+    const scrapbook = [];
 
     const props: Props = {
-      loggedInUser, user, profile, followers, projects, scrapbook
+      loggedInUser,
+      user,
+      profile,
+      followers,
+      projects,
+      scrapbook
     };
 
     return { props };
   } catch (error) {
     return { props: { error: true } };
   }
-}
+};

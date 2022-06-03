@@ -1,8 +1,8 @@
 import Link from "next/link";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Logo from "../../components/Logo";
-import { projectService } from './../../server/modules/projects/project.service';
-import { withAuth } from './../../server/middlewares/auth.middleware';
+import { projectService } from "./../../server/modules/projects/project.service";
+import { withAuth } from "./../../server/middlewares/auth.middleware";
 import { IPayload } from "../../server/utils/auth";
 
 export default function ProjectGallery({ projects, loggedIn }) {
@@ -70,4 +70,4 @@ export const getServerSideProps = async ({ req, res }) => {
       loggedIn: !!user
     }
   };
-}
+};

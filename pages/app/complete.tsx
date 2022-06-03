@@ -16,7 +16,9 @@ import {
 import { IProfile } from "../../server/modules/social/profile.model";
 import { profileService } from "../../server/modules/social/profile.service";
 
-interface Props { profile: IProfile; }
+interface Props {
+  profile: IProfile;
+}
 
 type FormData = Pick<
   IProfile,
@@ -168,7 +170,7 @@ export const getServerSideProps = async ({ req, res }) => {
   const payload = await withAuth(req => req.$user)(req, res);
 
   const props: Props = {
-    profile: await profileService.getProfile(payload.uniqueId),
+    profile: await profileService.getProfile(payload.uniqueId)
   };
 
   return { props };

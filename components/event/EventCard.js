@@ -36,7 +36,7 @@ export default function EventCard(event) {
             </Link>
           </p>
           <p className="font-bold caption text-[#a5a5a5]">
-            Posted by {creator.firstName} {creator.lastName} I {" "}
+            Posted by {creator.firstName} {creator.lastName} I{" "}
             <DisplayDate date={new Date(posted)} show="date" />
           </p>
         </section>
@@ -61,7 +61,9 @@ export default function EventCard(event) {
             <AddToCalendar event={event} />
           ) : (
             <Link href={route}>
-              <button className="button-small button-deep-sky-blue md:mx-0 mx-auto">Register now</button>
+              <button className="button-small button-deep-sky-blue md:mx-0 mx-auto">
+                Register now
+              </button>
             </Link>
           )}
         </section>

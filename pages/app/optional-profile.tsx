@@ -14,11 +14,13 @@ import RedditIcon from "../../components/icons/Reddit";
 import { handleAuth } from "../../server/utils/auth";
 import { useRouter } from "next/router";
 import { IProfile } from "../../server/modules/social/profile.model";
-import { useProfile } from './../../hooks/useProfile';
-import { profileService } from './../../server/modules/social/profile.service';
+import { useProfile } from "./../../hooks/useProfile";
+import { profileService } from "./../../server/modules/social/profile.service";
 
 type FormData = IProfile["links"];
-interface Props { profile: IProfile; }
+interface Props {
+  profile: IProfile;
+}
 
 export default function Optional({ profile }: Props) {
   const router = useRouter();
@@ -29,13 +31,14 @@ export default function Optional({ profile }: Props) {
 
   const { updateProfile } = useProfile();
 
-  const handleSelectFile = (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const file = e.target.files?.[0];
-    if (!file) return cb(null);
+  const handleSelectFile =
+    (cb: (file: File | null) => void) => (e: ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      const file = e.target.files?.[0];
+      if (!file) return cb(null);
 
-    cb(file);
-  };
+      cb(file);
+    };
 
   const onSubmit = async (links: FormData) => {
     const linksCount = Object.values(links).filter(Boolean);
@@ -46,13 +49,13 @@ export default function Optional({ profile }: Props) {
 
     const changed = Object.keys(links).some(key => links[key] !== profile.links?.[key]);
 
-    await updateProfile.execute(
-      changed ? { links } : {},
-      { image: profilePhoto, resume: resumeFile }
-    );
+    await updateProfile.execute(changed ? { links } : {}, {
+      image: profilePhoto,
+      resume: resumeFile
+    });
 
     router.push("/app");
-  }
+  };
 
   return (
     <div className="dark:bg-[#202020] dark:text-white relative">
@@ -65,16 +68,17 @@ export default function Optional({ profile }: Props) {
           />
         </div>
       </div>
-      {updateProfile.status === "error" &&
+      {updateProfile.status === "error" && (
         <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
-          Failed to save profile: {updateProfile.error?.response?.data?.message || updateProfile.error?.message}
+          Failed to save profile:{" "}
+          {updateProfile.error?.response?.data?.message || updateProfile.error?.message}
         </p>
-      }
-      {updateProfile.status === "success" &&
+      )}
+      {updateProfile.status === "success" && (
         <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
           Profile saved successful!
         </p>
-      }
+      )}
       <div className="mxs:pt-7 mxs:pb-8 rounded-[20px] bg-[#F4F4F4] dark:bg-[#444444] pt-12 pb-20 px-6 mx-4 xs:pl-14 xs:pr-6 xs:mx-8 lg:mx-32 xl:p-11 xl:ml-[17rem] xl:mr-60 mt-16 mb-20">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex mxs:flex-col-reverse justify-start items-center">
@@ -255,7 +259,7 @@ export async function getServerSideProps({ req }) {
   const payload = await handleAuth(req);
 
   const props: Props = {
-    profile: await profileService.getCompletedProfile(payload.uniqueId),
+    profile: await profileService.getCompletedProfile(payload.uniqueId)
   };
 
   return { props };

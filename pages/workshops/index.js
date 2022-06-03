@@ -94,7 +94,9 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">React workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+              React workshops
+            </span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
@@ -125,7 +127,9 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">Python workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+              Python workshops
+            </span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
@@ -156,7 +160,9 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">C++ workshops</span>
+            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+              C++ workshops
+            </span>
           )}
           <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&

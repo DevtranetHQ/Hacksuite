@@ -13,7 +13,6 @@ import Empty from "../../../components/Empty";
 import ProfileScrapbook from "./ProfileScrapbook";
 import MessageForm from "../../../components/MessageForm";
 
-
 /**
  * takes initial array and returns trimmed array
  * @function
@@ -65,7 +64,7 @@ export default function Profile({ loggedIn, user }) {
               <ArrowRightIcon />
             </div>
           </button>
-          {showMessage ? (<MessageForm setShowMessage={setShowMessage}/>) : null}
+          {showMessage ? <MessageForm setShowMessage={setShowMessage} /> : null}
         </div>
       </nav>
 
@@ -141,57 +140,53 @@ export default function Profile({ loggedIn, user }) {
       <div className=" px-10 py-5 pl-32 w-[80%] mx-auto flex-col justify-center mb-5 ">
         {user.describe.length === 0 ? null : (
           <section className=" flex items-center ">
-          <div className="gap-x-5 flex text-20px">
-            
-            {user.describe.map((des, index) => {
-                    return (
-                      <span
-                        className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue"
-                        key={index}>
-                        {des}
-                      </span>
-                    );
-                  })}
-            
-          </div>
-        </section>
+            <div className="gap-x-5 flex text-20px">
+              {user.describe.map((des, index) => {
+                return (
+                  <span
+                    className="p-1 px-2 text-deep-sky-blue rounded-md border-2 border-deep-sky-blue"
+                    key={index}>
+                    {des}
+                  </span>
+                );
+              })}
+            </div>
+          </section>
         )}
-        
-          
+
         {user.available.length === 0 ? null : (
           <section className="  flex justify-center  items-center mt-10">
-          <div className="w-full">
-            <h1 className="mb-3 font-bold text-36px">I’M AVAILABLE FOR </h1>
-            <div className="flex flex-wrap gap-5">
-              {showMore
-                ? user.available.slice(0, 5).map((work, index) => {
-                    return (
-                      <span
-                        className="p-1 px-2 text-20px  rounded-md border-2 border-deep-sky-blue"
-                        key={index}>
-                        {work}
-                      </span>
-                    );
-                  })
-                : user.available.map((work, index) => {
-                    return (
-                      <span
-                        className="p-1 px-2 text-18px  rounded-md border-2 border-deep-sky-blue"
-                        key={index}>
-                        {work}
-                      </span>
-                    );
-                  })}
-              <span
-                onClick={availableFor}
-                className="p-1 px-2 cursor-pointer rounded-md border-2 border-deep-sky-blue items-center text-center">
-                {showMore ? "+5" : "Show less"}
-              </span>
+            <div className="w-full">
+              <h1 className="mb-3 font-bold text-36px">I’M AVAILABLE FOR </h1>
+              <div className="flex flex-wrap gap-5">
+                {showMore
+                  ? user.available.slice(0, 5).map((work, index) => {
+                      return (
+                        <span
+                          className="p-1 px-2 text-20px  rounded-md border-2 border-deep-sky-blue"
+                          key={index}>
+                          {work}
+                        </span>
+                      );
+                    })
+                  : user.available.map((work, index) => {
+                      return (
+                        <span
+                          className="p-1 px-2 text-18px  rounded-md border-2 border-deep-sky-blue"
+                          key={index}>
+                          {work}
+                        </span>
+                      );
+                    })}
+                <span
+                  onClick={availableFor}
+                  className="p-1 px-2 cursor-pointer rounded-md border-2 border-deep-sky-blue items-center text-center">
+                  {showMore ? "+5" : "Show less"}
+                </span>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
         )}
-        
       </div>
       {/* ====== #TAB section start */}
       <section className="flex itens-center flex-col  items-center dark:bg-[#202020] transition-all p-5">
@@ -242,7 +237,7 @@ export default function Profile({ loggedIn, user }) {
                         comments={27}
                         tags={bubbleTrimmer(project.tags, 0, 4)}
                         desc={project.desc}
-                        tools ={project.tools}
+                        tools={project.tools}
                       />
                     );
                   })}
@@ -313,7 +308,13 @@ export async function getServerSideProps(context) {
         name: "Zach Latta",
         headLine: "Founder, Hack Club",
         socialAccount: true,
-        describe: ["Developer Evangelist", "Founder", "Software Engineer", "Angel Investor", "Back-end Developer"],
+        describe: [
+          "Developer Evangelist",
+          "Founder",
+          "Software Engineer",
+          "Angel Investor",
+          "Back-end Developer"
+        ],
         available: [
           "Building an MVP",
           "Co-founding a startup",
@@ -360,7 +361,7 @@ export async function getServerSideProps(context) {
             comments: 22222,
             likes: 33333333,
             tags: ["NextJs", "Figma"],
-            tools: ['github'],
+            tools: ["github"]
           },
           {
             bubbles: [1, 2, 3],

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 const Like: FC<any> = ({ fill, width, height, className, liked, setLiked }) => {
   return (
@@ -20,6 +20,6 @@ const Like: FC<any> = ({ fill, width, height, className, liked, setLiked }) => {
       />
     </svg>
   );
-}
+};
 
-export default Like
+export default Like;

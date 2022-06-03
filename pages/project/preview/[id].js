@@ -51,18 +51,22 @@ export default function Project({ loggedIn, project, image }) {
       <PhotoGalleryHeader
         title={project.name}
         contentText={project.description}
-        firstBtn={<>
-          <span>
-            {project.likes} {project.likes === 1 ? "Like" : "Likes"}
-          </span>
-          <HeartIcon className="w-[14px] md:w-[25px]" />
-        </>}
-        secondBtn={<>
-          <span>
-            {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
-          </span>
-          <CommentIcon className="w-[14px] md:w-[25px]" />
-        </>}
+        firstBtn={
+          <>
+            <span>
+              {project.likes} {project.likes === 1 ? "Like" : "Likes"}
+            </span>
+            <HeartIcon className="w-[14px] md:w-[25px]" />
+          </>
+        }
+        secondBtn={
+          <>
+            <span>
+              {project.comments.length} {project.comments.length === 1 ? "Comment" : "Comments"}
+            </span>
+            <CommentIcon className="w-[14px] md:w-[25px]" />
+          </>
+        }
         href="#comments"
         navText="Other projects"
         navHref="/project-gallery"
@@ -111,8 +115,9 @@ export default function Project({ loggedIn, project, image }) {
             <div className="flex flex-col md:flex-row gap-x-8">
               {project.tags.map((tag, key) => (
                 <span
-                  className={`${["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
-                    } px-3 py-2 md:subheadline text-white rounded cursor-pointer hover:scale-[1.06] transition-all w-[max-content] mt-3 md:mt-0`}
+                  className={`${
+                    ["bg-deep-sky-blue", "bg-fruit-salad", "bg-orange-peel", "bg-link"][key % 4]
+                  } px-3 py-2 md:subheadline text-white rounded cursor-pointer hover:scale-[1.06] transition-all w-[max-content] mt-3 md:mt-0`}
                   key={key}>
                   {tag}
                 </span>
@@ -121,42 +126,60 @@ export default function Project({ loggedIn, project, image }) {
           </div>
           <div className="flex md:flex-row flex-col justify-between mt-2">
             <div>
-              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-3">Check it out</h1>
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-3">
+                Check it out
+              </h1>
               <div className="flex flex-col gap-y-4 mb-5 md:mb-0">
                 {project.links.map((link, key) => {
                   switch (link.type) {
                     case "github":
                       return (
-                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                        <div
+                          className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all"
+                          key={key}>
                           <GithubIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
-                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
+                          <a
+                            className="md:subheadline text-[16px] font-semibold underline"
+                            href={link.link}>
                             on GitHub
                           </a>
                         </div>
                       );
                     case "figma":
                       return (
-                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                        <div
+                          className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all"
+                          key={key}>
                           <FigmaIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
-                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
+                          <a
+                            className="md:subheadline text-[16px] font-semibold underline"
+                            href={link.link}>
                             on Figma
                           </a>
                         </div>
                       );
                     case "adobe":
                       return (
-                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                        <div
+                          className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all"
+                          key={key}>
                           <AdobeIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
-                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
+                          <a
+                            className="md:subheadline text-[16px] font-semibold underline"
+                            href={link.link}>
                             on AdobeXD
                           </a>
                         </div>
                       );
                     default:
                       return (
-                        <div className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all" key={key}>
+                        <div
+                          className="inline-flex gap-x-5 items-center hover:scale-[1.06] transition-all"
+                          key={key}>
                           <LinkIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
-                          <a className="md:subheadline text-[16px] font-semibold underline" href={link.link}>
+                          <a
+                            className="md:subheadline text-[16px] font-semibold underline"
+                            href={link.link}>
                             via this Link
                           </a>
                         </div>
@@ -166,15 +189,23 @@ export default function Project({ loggedIn, project, image }) {
               </div>
             </div>
             <div>
-              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-2 md:mb-0">Share it</h1>
+              <h1 className="md:heading text-[20px] font-semibold leading-loose mb-2 md:mb-0">
+                Share it
+              </h1>
               <div className="flex gap-x-4 items-center">
-                <a href={`https://twitter.com/intent/tweet?url=${url}`} className="hover:scale-[1.06] transition-all">
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${url}`}
+                  className="hover:scale-[1.06] transition-all">
                   <TwitterIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
-                <a href={`https://www.facebook.com/sharer.php?u=${url}`} className="hover:scale-[1.06] transition-all">
+                <a
+                  href={`https://www.facebook.com/sharer.php?u=${url}`}
+                  className="hover:scale-[1.06] transition-all">
                   <FacebookIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
-                <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} className="hover:scale-[1.06] transition-all">
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+                  className="hover:scale-[1.06] transition-all">
                   <LinkedinIcon className="md:w-[50px] md:h-[50px] w-[30px] h-[30px]" />
                 </a>
                 <a
@@ -188,7 +219,9 @@ export default function Project({ loggedIn, project, image }) {
           </div>
 
           <section id="comments">
-            <h1 className="md:heading text-[20px] font-semibold font-bold mt-7 mb-4 md:mb-0">Comments</h1>
+            <h1 className="md:heading text-[20px] font-semibold font-bold mt-7 mb-4 md:mb-0">
+              Comments
+            </h1>
             <div className="grid grid-cols-12 md:mx-14 items-center">
               <div className="col-span-1 self-start md:self-center">
                 <Avatar
@@ -199,10 +232,16 @@ export default function Project({ loggedIn, project, image }) {
               </div>
               <div className="col-span-10 px-3 ml-3" id="comment">
                 <h1>
-                  <span className="md:text-24px text-[15px] font-semibold">{project.owner.name}</span>{" "}
-                  <em className="md:ml-2 ml-1 font-thin md:text-18px text-[13px]italic">Made this project —{project.date}</em>
+                  <span className="md:text-24px text-[15px] font-semibold">
+                    {project.owner.name}
+                  </span>{" "}
+                  <em className="md:ml-2 ml-1 font-thin md:text-18px text-[13px]italic">
+                    Made this project —{project.date}
+                  </em>
                 </h1>
-                <h1 className="md:text-18px text-[13px] italic text-[#515151] mt-2 font-semibold dark:text-white">leave feedback in the comments!</h1>
+                <h1 className="md:text-18px text-[13px] italic text-[#515151] mt-2 font-semibold dark:text-white">
+                  leave feedback in the comments!
+                </h1>
               </div>
               <div className="col-span-1 self-start md:self-center mt-3 md:mt-0">
                 <ArrowDownIcon className="md:w-[18px] md:h-[18px] w-[11px] h-[11px]" />
@@ -224,8 +263,12 @@ export default function Project({ loggedIn, project, image }) {
                         </div>
                         <div className="col-span-11 ml-6 lg:ml-0 lg:ml-5">
                           <h1 className="flex md:flex-row flex-col md:items-center">
-                            <span className="md:text-20px text-[15px] font-semibold">{comment.name}</span>{" "}
-                            <span className="caption md:text-16px text-[14px] md:ml-1">{comment.date}</span>
+                            <span className="md:text-20px text-[15px] font-semibold">
+                              {comment.name}
+                            </span>{" "}
+                            <span className="caption md:text-16px text-[14px] md:ml-1">
+                              {comment.date}
+                            </span>
                           </h1>
                           <div className="flex flex-col mt-1 md:mt-0">
                             <div className="">
@@ -233,7 +276,10 @@ export default function Project({ loggedIn, project, image }) {
                               <p className="caption inline-flex gap-x-1 items-center hover:scale-[1.06] text-[13px] md:text-[16px] transition-all">
                                 Like{" "}
                                 <span className="cursor-pointer">
-                                  <HeartIcon fill="#C50000" className="md:w-[20px] md:h-[20px] w-[13px] h-[13px]" />
+                                  <HeartIcon
+                                    fill="#C50000"
+                                    className="md:w-[20px] md:h-[20px] w-[13px] h-[13px]"
+                                  />
                                 </span>{" "}
                                 {comment.likes}
                               </p>
@@ -262,7 +308,9 @@ export default function Project({ loggedIn, project, image }) {
                               name="comment"
                               placeholder="Write a comment"
                             />
-                            <button className="button-small button-deep-sky-blue md:text-18px text-[14px]" onSubmit={comment}>
+                            <button
+                              className="button-small button-deep-sky-blue md:text-18px text-[14px]"
+                              onSubmit={comment}>
                               Post comment
                             </button>
                           </form>
@@ -286,13 +334,13 @@ export default function Project({ loggedIn, project, image }) {
               <div className="col-span-1" />
             </div>
           </section>
-
         </aside>
       </div>
       {!loggedIn && (
         <footer className="bg-[#F4F4F4] dark:bg-[#444444] py-[32px]">
           <p className="text-[14px] md:text-[24px] lg:text-[32px] px-[20px] lg:px-[40px] 2xl:px-[100px] text-center">
-            You’ve reached the end, why not <Link href="/signup"> become a member </Link> and show us all the cool things you’ve made?
+            You’ve reached the end, why not <Link href="/signup"> become a member </Link> and show
+            us all the cool things you’ve made?
           </p>
         </footer>
       )}
@@ -310,8 +358,7 @@ export async function getServerSideProps(context) {
     props: {
       loggedIn: !!user,
       image:
-        "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-      ,
+        "https://s3-alpha-sig.figma.com/img/0056/8ecc/0295dcc48feb18dca1fb9a8e7db00fba?Expires=1652054400&Signature=IJcsMCBtKaohWK7hdo8~SCrBNTZIt35mdr6U0yoEbegM-Vrm0Bqa-JkP-doqd6BlmmeD36ayZ-qGj-Piv7ACQvVqUTUUHTJP6EA68ud-rXdOSy3mRZDDVaF7UCds--tmG1Yeei2-5gf6XWMbiB5ej0dtb-aWycB0UB9J2N1g0N0qvThTH9io7ukwoWJmIFz8mQOXfoy23kmcfuh72cE2-11ARbBXeZRXiZI1m7Iy-MEDYzLXI4XgSRrKpBM7iwMSEAN0QtBWvoU0iC7RidDb6meJRL2lujQyZUou5KUsttKwA96BbuSxryYkS4sekD2sDAic4H1rdzl7sCTrFey5Fw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
       project: {
         id: id,
         name: "Web scraper",

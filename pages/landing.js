@@ -19,7 +19,6 @@ import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProje
 import EventCard from "../components/event/EventCard";
 import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
 
-
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
     <div className="">
@@ -226,7 +225,9 @@ export default function Landing({ user, projects, events, loggedIn }) {
           </p>
         </div>
         <div className="mt-9 py-20 rounded-bl-[20px] rounded-br-[20px] bg-[#F8FBFF] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          <p className="text-[90px] text-[#03A9F4] text-center font-bold">Who are you looking for?</p>
+          <p className="text-[90px] text-[#03A9F4] text-center font-bold">
+            Who are you looking for?
+          </p>
           <div className="flex justify-center items-end">
             <LookingForSelectBoxes />
           </div>

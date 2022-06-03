@@ -31,19 +31,15 @@ export default function ForgetPassword() {
         </div>
       </div>
       {passwordEmailVerification.status === "success" && (
-        
-          <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
-            Password Reset Email Sent!
-          </p>
-       
+        <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#4CB050] mx-auto mb-3 w-screen">
+          Password Reset Email Sent!
+        </p>
       )}
       {passwordEmailVerification.status === "error" && (
-        
-          <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
-            {passwordEmailVerification.error.response?.data.message ||
-              passwordEmailVerification.error.message}
-          </p>
-        
+        <p className="font-body slide-bottom font-semibold md:text-20px text-[18px]  text-white text-center bg-[#D0342C] mx-auto mb-3 w-screen">
+          {passwordEmailVerification.error.response?.data.message ||
+            passwordEmailVerification.error.message}
+        </p>
       )}
       <div className="flex mxs:bg-mobile-login dark:mxs:bg-mobile-login-dark mxs:-mb-0.5">
         <div className="xs:block xs:w-1/2 xs:-m-[1px] xs:p-0 xs:pt-9 xs:mx-auto lg:pl-4 xl:pl-20 2xl:pl-0 2xl:mx-0">

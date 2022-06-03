@@ -1,10 +1,10 @@
 interface SearchPeopleIconProps {
-    className: string;
-    width?: number;
-    height?: number;
+  className: string;
+  width?: number;
+  height?: number;
 }
-const SearchPeopleIcon : React.FC<SearchPeopleIconProps> = ({ className, width, height }) => (
-    <svg
+const SearchPeopleIcon: React.FC<SearchPeopleIconProps> = ({ className, width, height }) => (
+  <svg
     width={width ? width : 35}
     height={height ? height : 33}
     viewBox="0 0 35 33"
@@ -16,5 +16,5 @@ const SearchPeopleIcon : React.FC<SearchPeopleIconProps> = ({ className, width, 
       fill="white"
     />
   </svg>
-)
+);
 export default SearchPeopleIcon;

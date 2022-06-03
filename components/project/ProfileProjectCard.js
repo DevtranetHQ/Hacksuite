@@ -166,7 +166,9 @@ export default function ProfileProjectCard({ ...props }) {
               liked={liked}
               setLiked={setLiked}
             />
-            <span className="lg:text-24px md:text-16px text-16px font-bold">{liked ? likes + 1 : likes}</span>
+            <span className="lg:text-24px md:text-16px text-16px font-bold">
+              {liked ? likes + 1 : likes}
+            </span>
           </p>
           <p className="flex items-center gap-2">
             <CommentIcon fill="currentColor" className="lg:h-8 lg:w-8 md:w-3 md:h-3 h-3 w-3" />

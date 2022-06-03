@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Logo from "../../components/Logo";
 import DarkModeToggle from "../../components/DarkModeToggle";
 import Link from "next/link";
-import HomeIcon from '../icons/HomeIcon';
+import HomeIcon from "../icons/HomeIcon";
 
 export const TopNav = () => (
   <div className="dark:text-white">
@@ -37,16 +37,15 @@ export const TopNav = () => (
           className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
           darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
         />
-        <Link
-          href="/">
+        <Link href="/">
           <div>
-            <HomeIcon className="scale-[0.53] lg:scale-[1] md:scale-[0.82] cursor-pointer"/>
+            <HomeIcon className="scale-[0.53] lg:scale-[1] md:scale-[0.82] cursor-pointer" />
           </div>
         </Link>
       </div>
     </nav>
   </div>
-)
+);
 
 const FullNav = () => {
   const { pathname } = useRouter();
@@ -56,25 +55,45 @@ const FullNav = () => {
       <nav className="w-[max-content] mx-auto mt-3">
         <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
           <Link href="/newsfeed">
-            <li className={`${pathname === "/newsfeed" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+            <li
+              className={`${
+                pathname === "/newsfeed"
+                  ? "font-bold border-b-[3px] border-b-orange-peel"
+                  : "font-bold text-[#7D7D7D]"
+              } cursor-pointer`}>
               SCRAPBOOK
             </li>
           </Link>
 
           <Link href="/projects">
-            <li className={`${pathname === "/projects" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+            <li
+              className={`${
+                pathname === "/projects"
+                  ? "font-bold border-b-[3px] border-b-orange-peel"
+                  : "font-bold text-[#7D7D7D]"
+              } cursor-pointer`}>
               PROJECTS
             </li>
           </Link>
 
           <Link href="/people">
-            <li className={`${pathname === "/people" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+            <li
+              className={`${
+                pathname === "/people"
+                  ? "font-bold border-b-[3px] border-b-orange-peel"
+                  : "font-bold text-[#7D7D7D]"
+              } cursor-pointer`}>
               PEOPLE
             </li>
           </Link>
 
           <Link href="/jobs">
-            <li className={`${pathname === "/jobs" ? "font-bold border-b-[3px] border-b-orange-peel" : 'font-bold text-[#7D7D7D]'} cursor-pointer`}>
+            <li
+              className={`${
+                pathname === "/jobs"
+                  ? "font-bold border-b-[3px] border-b-orange-peel"
+                  : "font-bold text-[#7D7D7D]"
+              } cursor-pointer`}>
               JOBS
             </li>
           </Link>
@@ -82,6 +101,6 @@ const FullNav = () => {
       </nav>
     </div>
   );
-}
+};
 
 export default FullNav;
