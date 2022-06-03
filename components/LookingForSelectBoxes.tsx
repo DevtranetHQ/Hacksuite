@@ -1,7 +1,7 @@
 import Select from 'react-select';
 import MessageForm from "../components/MessageForm";
 import SearchPeopleIcon from "../components/icons/SearchPeopleIcon";
-import {searchingForStyles, availableForStyles} from '../styles/SelectStyles';
+import {searchingForStyles, availableForStyles} from '../pages/people/SelectStyles';
 import { availableFor} from "../enums/availableFor";
 import { describes} from "../enums";
 import { Dispatch, SetStateAction } from 'react';
