@@ -18,6 +18,7 @@ import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import FeaturedPeople from "../../components/FeaturedPeople";
 import ArrowIcon from "../../components/icons/Arrow";
 import Scrapbookfile from "../scrapbook/Scrapbookfile";
+import { scrapbookService } from "../../server/modules/scrapbook/scrapbook.service";
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
@@ -203,7 +204,20 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
 export async function getServerSideProps({ req, res }) {
   const user = await withAuth(req => req.$user)(req, res);
   const profile = await profileService.getCompletedProfile(user.uniqueId);
-
+  const scrapbook = await scrapbookService.getPostsByUser(user.uniqueId);
+  // TODO: For the frontend team, change the methods of the scrapbook
+  // A samle scrapbook post is shown below
+  // [
+  //   {
+  //     _id: new ObjectId("6298a7cfb902506b6b2bdf33"),
+  //     content: 'my profile picture design',
+  //     images: [
+  //       'https://cdn.discordapp.com/attachments/981880691543404565/981891597283258408/pdp.jpg'
+  //     ],
+  //     createdAt: 2022-06-02T12:06:39.424Z,
+  //     author: { username: 'Test', image: undefined }
+  //   }
+  // ]
   return {
     props: {
       admin: false,

@@ -15,7 +15,7 @@ class ProfileService {
 
     profile.projects = await projectService.getProjectsByUser(userId);
 
-    profile.scrapbook = await scrapbookService.getProjectsByUser(userId);
+    profile.scrapbook = await scrapbookService.getPostsByUser(userId);
 
     return JSON.parse(JSON.stringify(profile));
   }

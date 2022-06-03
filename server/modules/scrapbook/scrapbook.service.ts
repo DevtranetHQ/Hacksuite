@@ -24,7 +24,7 @@ class ScrapbookService {
     return postsWithUser;
   }
 
-  async getProjectsByUser(userId: UserId): Promise<IPostWithUser[]> {
+  async getPostsByUser(userId: UserId): Promise<IPostWithUser[]> {
     const posts = await Post.find({ author: userId });
 
     const postsWithUser = await Promise.all(
