@@ -61,9 +61,6 @@ export default function Settings({ profile }: Props) {
   }
 
 
-  // // To show if users uploaded his socials accounts
-  const [socials, setSocials] = useState(true);
-
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
       <div className="mxs:hidden col-span-1 mx-auto">
@@ -122,20 +119,9 @@ export default function Settings({ profile }: Props) {
             accept="image/*"
           />
 
-          <div className="flex items-center flex-wrap justify-between w-[89%] xs:w-[51%]">
-            <div className="mxs:space-x-5 flex gap-5 items-center my-6">
-              <span className="cursor-pointer">
-                <GithubIcon className="mxs:w-[32px]" width={32} fill={socials ? "" : "#C9C9C9"} />
-              </span>
-              <span className="mxs:w-[32px] cursor-pointer">
-                <TwitterIcon width={41} height={33} fill={socials ? "" : "#C9C9C9"} />
-              </span>
-              <span className="mxs:w-[30px] cursor-pointer">
-                <LinkedinIcon width={35} height={31} fill={socials ? "" : "#C9C9C9"} />
-              </span>
-            </div>
 
-            {/* Edit Section */}
+          {/* SOCIALS Section */}
+          <div className="flex items-center flex-wrap justify-between w-[89%] xs:w-[51%]">     
             <EditSocials />
           </div>
         </div>
