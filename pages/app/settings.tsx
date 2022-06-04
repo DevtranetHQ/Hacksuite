@@ -125,7 +125,7 @@ export default function Settings({ profile }: Props) {
             accept="image/*"
           />
 
-          <div className="flex items-center justify-between w-[51%]">
+          <div className="flex items-center flex-wrap justify-between w-[89%] xs:w-[51%]">
             <div className="mxs:space-x-5 flex gap-5 items-center my-6">
               <span className="cursor-pointer">
                 <GithubIcon className="mxs:w-[32px]" width={32} fill={socials ? "" : "#C9C9C9"} />
@@ -149,16 +149,16 @@ export default function Settings({ profile }: Props) {
             {editSocials ? (
               <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
                 <div
-                  className={`relative  my-6 mx-auto w-max bg-white rounded-lg px-10 ${
+                  className={`relative  my-6 mx-auto xs:w-max w-full bg-white rounded-lg xs:px-10  ${
                     socials ? "dark:bg-dark" : ""
                   }`}>
                   <div
-                    className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black dark:hover:text-white transition-all"
+                    className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black dark:hover:text-white transition-all px-5 xs:px-0"
                     onClick={() => setEditSocials(false)}>
                     x
                   </div>
-                  <form className=" bg-white dark:bg-dark">
-                    <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+                  <form className=" bg-white dark:bg-dark w-full">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-10">
                       <div className="flex gap-x-5 items-center">
                         <span className="cursor-pointer">
                           <LinkedinIcon width={35} height={31} />
