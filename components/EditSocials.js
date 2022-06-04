@@ -14,6 +14,17 @@ export default function EditSocials() {
   const [editSocials, setEditSocials] = useState(false);
   return (
     <>
+      <div className="mxs:space-x-5 flex gap-5 items-center my-6">
+        <span className="cursor-pointer">
+          <GithubIcon className="mxs:w-[32px]" width={32} fill={socials ? "" : "#C9C9C9"} />
+        </span>
+        <span className="mxs:w-[32px] cursor-pointer">
+          <TwitterIcon width={41} height={33} fill={socials ? "" : "#C9C9C9"} />
+        </span>
+        <span className="mxs:w-[30px] cursor-pointer">
+          <LinkedinIcon width={35} height={31} fill={socials ? "" : "#C9C9C9"} />
+        </span>
+      </div>
       <span
         className={`border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white ${
           socials ? "" : "dark:bg-dark dark:border-none"
