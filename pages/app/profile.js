@@ -7,8 +7,8 @@ import { withAuth } from "../../server/middlewares/auth.middleware";
 import { useAuth } from "../../components/AuthContext";
 import { useRouter } from "next/router";
 import TextareaAutosize from "react-textarea-autosize";
-import LevelOfStudySelect from "../../components/profile/LevelOfStudy";
-import ProfileDescribeInput from "../../components/profile/ProfileDescribeInput";
+import AvailableForSelect from "../../components/profile/LevelOfStudy";
+import DescribeSelect from "../../components/profile/ProfileDescribeInput";
 
 export default function Profile({ user }) {
   const { completeProfile } = useAuth();
@@ -79,7 +79,11 @@ export default function Profile({ user }) {
             <label className="form-label font-normal" htmlFor="gender">
               Gender
             </label>
-            <select className="form-select" defaultValue="Select gender" id="gender" name="gender">
+            <select
+              className="form-select rounded-lg"
+              defaultValue="Select gender"
+              id="gender"
+              name="gender">
               <option value="Select gender" disabled hidden>
                 Select gender
               </option>
@@ -114,24 +118,25 @@ export default function Profile({ user }) {
               What describes you the best?
               <span className="text-[#ff0000]">*</span>
             </label>
-            <ProfileDescribeInput />
+            <DescribeSelect />
           </div>
           <div>
             <label className="form-label font-normal" htmlFor="skillsAndInterests">
               Skills and interests
             </label>
             <TextareaAutosize
-              className="resize-none form-input box-border py-[6px]"
+              className="resize-none form-input box-border"
+              minRows={1}
               maxRows={6}
               maxLength={120}
-              placeholder="Coding languages, frameworks, or soft skills..."
+              placeholder="Coding languages, frameworks or soft skills..."
             />
           </div>
           <div>
             <label className="form-label font-normal" htmlFor="levelOfStudy">
               I'm available for
             </label>
-            <LevelOfStudySelect />
+            <AvailableForSelect />
           </div>
           <div>
             <label className="form-label font-normal" htmlFor="">
@@ -139,7 +144,7 @@ export default function Profile({ user }) {
             </label>
             <input
               autoComplete="off"
-              className="form-input py-[6px]"
+              className="form-input"
               placeholder="Write something..."
               type="text"
               maxLength={50}

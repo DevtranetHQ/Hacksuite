@@ -41,6 +41,52 @@ const styles: StylesConfig<SelectOption> = {
   })
 };
 
+export const styles1: StylesConfig<SelectOption> = {
+  control: provided => ({
+    ...provided,
+    appearance: "none",
+    fontSize: "1.125rem" /* 18px */,
+    lineHeight: "1.25rem" /* 20px */,
+    color: "#6E7180",
+    backgroundColor: "white",
+    border: "2px solid #C9C9C9",
+    width: "100%",
+    // padding: "0.5rem 0.75rem",
+    padding: "0.25rem 0.27rem",
+    marginTop: "0.25rem",
+    borderRadius: "0.5rem",
+    outline: "none !important"
+  }),
+  option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    ...styles,
+    "&:hover": {
+      backgroundColor: "#03A9F4",
+      color: "white"
+    }
+  }),
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    "color": data.color,
+    ":hover": {
+      backgroundColor: "#03A9F4",
+      color: "white"
+    }
+  }),
+  dropdownIndicator: (prevStyle, state) => ({
+    ...prevStyle,
+    "backgroundImage": `url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4027 21.5455L0.268433 0.499748L24.5369 0.499748L12.4027 21.5455Z' fill='%238A8A8A'/%3E%3C/svg%3E")`,
+    "backgroundRepeat": "no-repeat",
+    "backgroundPosition": "center",
+    "backgroundSize": "14.5px",
+    "width": "0",
+    "marginRight": "9px",
+    "color": "#8A8A8A",
+    "&:hover": {
+      color: "#8A8A8A"
+    }
+  })
+};
+
 const skillsAndInterestsOpts = skillsAndInterests.map(skill => ({ value: skill, label: skill }));
 export const SkillsAndInterestSelect: FC<{ className?: string }> = props => {
   const { control } = useFormContext<Partial<IProfile>>();
@@ -51,10 +97,10 @@ export const SkillsAndInterestSelect: FC<{ className?: string }> = props => {
       name="skills"
       render={({ field }) => (
         <Select<SelectOption, true>
+          placeholder="Select your skills and interests"
           isMulti
-          className="form-select p-0 m-0 rounded-lg"
-          components={{ DropdownIndicator }}
-          styles={styles}
+          components={{ IndicatorSeparator: () => null }}
+          styles={styles1}
           options={skillsAndInterestsOpts}
           value={skillsAndInterestsOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
@@ -77,9 +123,8 @@ export const DescribeSelect: FC<{ className?: string }> = props => {
         <Select<SelectOption, true>
           isMulti
           placeholder="Tell us who you are"
-          className="form-select p-0 m-0 rounded-lg"
-          styles={styles}
-          components={{ DropdownIndicator }}
+          styles={styles1}
+          components={{ IndicatorSeparator: () => null }}
           options={describeOpts}
           value={describeOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
@@ -104,9 +149,8 @@ export const AvailableForSelect: FC<{ className?: string }> = props => {
         <Select<SelectOption, true>
           placeholder="Select what you’re open to"
           isMulti
-          className="form-select p-0 m-0 rounded-lg"
-          styles={styles}
-          components={{ DropdownIndicator }}
+          styles={styles1}
+          components={{ IndicatorSeparator: () => null }}
           options={availableForOpts}
           value={availableForOpts.filter(({ value }) => field.value?.includes(value))}
           onChange={value => field.onChange(value.map(({ value }) => value))}
@@ -128,9 +172,9 @@ export const CountrySelect: FC<{ className?: string }> = props => {
       name="countryOfResidence"
       render={({ field }) => (
         <Select<SelectOption, false>
-          className="form-select p-0 m-0 rounded-lg"
-          styles={styles}
-          components={{ DropdownIndicator }}
+          placeholder="Select country"
+          styles={styles1}
+          components={{ IndicatorSeparator: () => null }}
           options={countryOpts}
           value={{ value: field.value, label: field.value }}
           onChange={({ value }) => field.onChange(value)}
@@ -151,9 +195,9 @@ export const GenderSelect: FC<{ className?: string }> = props => {
       name="gender"
       render={({ field }) => (
         <Select<SelectOption, false>
-          className="form-select p-0 m-0 rounded-lg"
-          styles={styles}
-          components={{ DropdownIndicator }}
+          placeholder="Select gender"
+          styles={styles1}
+          components={{ IndicatorSeparator: () => null }}
           options={genderOpts}
           value={{ value: field.value, label: field.value }}
           onChange={({ value }) => field.onChange(value)}

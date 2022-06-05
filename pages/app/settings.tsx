@@ -14,18 +14,13 @@ import { handleAuth } from "../../server/utils/auth";
 import userService from "../../server/modules/auth/user.service";
 import { IUser } from "../../server/modules/auth/user.model";
 import { useForm, FormProvider } from "react-hook-form";
-import {
-  CountrySelect,
-  DescribeSelect,
-  GenderSelect,
-  AvailableForSelect
-} from "../../components/profile/inputs";
+import { CountrySelect, DescribeSelect, GenderSelect } from "../../components/profile/inputs";
 import TextareaAutosize from "react-textarea-autosize";
 import { IProfile } from "../../server/modules/social/profile.model";
 import { profileService } from "./../../server/modules/social/profile.service";
 import { useProfile } from "./../../hooks/useProfile";
-import LevelOfStudySelect from "../../components/profile/LevelOfStudy";
-import EditSocials from "../../components/EditSocials"
+import AvailableForSelect from "../../components/profile/LevelOfStudy";
+import EditSocials from "../../components/EditSocials";
 
 interface Props {
   profile: IProfile;
@@ -38,12 +33,14 @@ export default function Settings({ profile }: Props) {
   const fileInputRef = useRef<HTMLInputElement>();
   const resetFileInput = () => {
     fileInputRef.current.value = "";
+    setResumeUpload(false);
   };
   const hookFormMethods = useForm<FormData>({ defaultValues: profile });
   const { register, handleSubmit } = hookFormMethods;
 
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeUpload, setResumeUpload] = useState<boolean>(false);
 
   const { updateProfile } = useProfile();
 
@@ -52,14 +49,13 @@ export default function Settings({ profile }: Props) {
       e.preventDefault();
       const file = e.target.files?.[0];
       if (!file) return cb(null);
-
+      if (fileInputRef.current.value) setResumeUpload(true);
       cb(file);
     };
 
   async function handleSubmission(data: FormData) {
     await updateProfile.execute(data, { image: profilePhoto, resume: resumeFile });
   }
-
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -119,9 +115,8 @@ export default function Settings({ profile }: Props) {
             accept="image/*"
           />
 
-
           {/* SOCIALS Section */}
-          <div className="flex items-center flex-wrap justify-between w-[89%] xs:w-[51%]">     
+          <div className="flex items-center flex-wrap justify-between w-[89%] xs:w-[51%]">
             <EditSocials />
           </div>
         </div>
@@ -224,7 +219,7 @@ export default function Settings({ profile }: Props) {
                   Date of birth
                 </label>
                 <input
-                  className="form-input mb-0 py-1.5"
+                  className="form-input"
                   id="dob"
                   name="dob"
                   type="date"
@@ -258,7 +253,7 @@ export default function Settings({ profile }: Props) {
                   Skills and interests
                 </label>
                 <TextareaAutosize
-                  className="resize-none form-input box-border py-[6px] mb-0"
+                  className="resize-none form-input box-border"
                   maxRows={6}
                   maxLength={120}
                   placeholder="Coding languages, frameworks, or soft skills..."
@@ -268,7 +263,7 @@ export default function Settings({ profile }: Props) {
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
                   I'm available for
                 </label>
-                <LevelOfStudySelect />
+                <AvailableForSelect />
               </div>
               <div>
                 <label className="form-label font-normal" htmlFor="">
@@ -276,7 +271,7 @@ export default function Settings({ profile }: Props) {
                 </label>
                 <input
                   autoComplete="off"
-                  className="form-input py-[6px] mb-0"
+                  className="form-input"
                   placeholder="Write something..."
                   type="text"
                   maxLength={50}
@@ -287,24 +282,25 @@ export default function Settings({ profile }: Props) {
                 <label className="form-label font-normal" htmlFor="resume">
                   Upload Resume/CV
                 </label>
-                <div className="flex form-input items-center justify-between py-1">
+                <div className="flex form-input items-center justify-between px-3.5 py-2 rounded-lg">
                   <input
-                    className="text-18px text-[#3B4FE4]"
+                    className="text-14px text-[#3B4FE4] w-full"
                     id="resume"
                     name="resume"
                     type="file"
                     onChange={handleSelectFile(setResumeFile)}
                     ref={fileInputRef}
                   />
-                  <span className="cursor-pointer">
-                    <Icon
-                      icon="iconoir:cancel"
-                      color="black"
-                      width={25}
-                      height={25}
-                      inline={true}
-                      onClick={resetFileInput}
-                    />
+                  <span
+                    className="cursor-pointer text-24px leading-[14px]"
+                    onClick={resetFileInput}>
+                    <svg
+                      className={`${resumeUpload ? "fill-[#ccc] hover:fill-[#999999]" : "hidden"}`}
+                      height="20"
+                      width="20"
+                      viewBox="0 0 20 20">
+                      <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
+                    </svg>
                   </span>
                 </div>
               </div>
