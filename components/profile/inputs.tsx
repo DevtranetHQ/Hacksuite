@@ -57,8 +57,7 @@ export const styles1: StylesConfig<SelectOption> = {
     "borderRadius": "0.5rem",
     "outline": "none !important",
     "@media only screen and (max-width: 428px)": {
-      ...provided["@media only screen and (max-width: 428px)"],
-      padding: "0.25rem 0.1rem"
+      padding: "0.25rem 0.1rem",
     }
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
