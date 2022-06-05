@@ -112,7 +112,7 @@ export default function Profile({ user }) {
           Work and education
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 mxs:gap-y-4 gap-y-2">
           <div>
             <label className="form-label font-normal" htmlFor="describe">
               What describes you the best?

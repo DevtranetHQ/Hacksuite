@@ -36,7 +36,10 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
       </div>
 
       <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10   content-center min-w-full min-h-screen">
-        <div className="flex items-center pl-32 pb-5 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
+        <div className="xs:hidden">
+          <DashHeader />
+        </div>
+        <div className="mxs:hidden flex items-center pl-32 pb-5 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
           <div className="flex mx-auto gap-16 items-center font-bold text-[#7D7D7D] text-24px mr-16">
             <p
               className={
@@ -119,7 +122,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
           </div>
         </div>
         {openTab === 0 && (
-          <div className="text-center mt-20">
+          <div className="text-center xs:mt-20">
             <h1 className="mxs:text-24px font-semibold text-42px -mt-3">
               Hey there, <span className="text-fruit-salad">{name}.</span>
             </h1>
@@ -158,15 +161,11 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
             </div>
           </div>
         )}
-        {openTab === 0 ? (
+        {openTab === 0 && (
           <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-10 z-20 hover:scale-105 focus:scale-105 transition-all">
-            {darkMode ? (
-              <Image className="" src={robotDark} alt="" />
-            ) : (
-              <Image className="" src={robotLight} alt="" />
-            )}
+            <Image className="" src={darkMode ? robotDark : robotLight} alt="" />
           </div>
-        ) : null}
+        )}
 
         {openTab === 2 && (
           <div className="mt-20 text-center grid grid-cols-3 pl-24">

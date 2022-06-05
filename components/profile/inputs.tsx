@@ -44,18 +44,22 @@ const styles: StylesConfig<SelectOption> = {
 export const styles1: StylesConfig<SelectOption> = {
   control: provided => ({
     ...provided,
-    appearance: "none",
-    fontSize: "1.125rem" /* 18px */,
-    lineHeight: "1.25rem" /* 20px */,
-    color: "#6E7180",
-    backgroundColor: "white",
-    border: "2px solid #C9C9C9",
-    width: "100%",
+    "appearance": "none",
+    "fontSize": "1.125rem" /* 18px */,
+    "lineHeight": "1.25rem" /* 20px */,
+    "color": "#6E7180",
+    "backgroundColor": "white",
+    "border": "2px solid #C9C9C9",
+    "width": "100%",
     // padding: "0.5rem 0.75rem",
-    padding: "0.25rem 0.27rem",
-    marginTop: "0.25rem",
-    borderRadius: "0.5rem",
-    outline: "none !important"
+    "padding": "0.25rem 0.27rem",
+    "marginTop": "0.25rem",
+    "borderRadius": "0.5rem",
+    "outline": "none !important",
+    "@media only screen and (max-width: 428px)": {
+      ...provided["@media only screen and (max-width: 428px)"],
+      padding: "0.25rem 0.1rem"
+    }
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
     ...styles,
@@ -74,7 +78,7 @@ export const styles1: StylesConfig<SelectOption> = {
   }),
   dropdownIndicator: (prevStyle, state) => ({
     ...prevStyle,
-    "backgroundImage": `url("data:image/svg+xml,%3Csvg width='25' height='22' viewBox='0 0 25 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.4027 21.5455L0.268433 0.499748L24.5369 0.499748L12.4027 21.5455Z' fill='%238A8A8A'/%3E%3C/svg%3E")`,
+    "backgroundImage": `url("data:image/svg+xml,%3Csvg width='21' height='25' viewBox='0 0 19 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.5 16L0.406734 0.25L18.5933 0.25L9.5 16Z' fill='%238A8A8A'/%3E%3C/svg%3E")`,
     "backgroundRepeat": "no-repeat",
     "backgroundPosition": "center",
     "backgroundSize": "14.5px",

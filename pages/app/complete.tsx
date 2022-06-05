@@ -62,9 +62,9 @@ export default function Complete({ profile }: Props) {
           Profile saved successfully!
         </p>
       )}
-      <div className="mx-4 xs:mx-8 lg:mx-32 xl:mx-64">
+      <div className="">
         <form
-          className="mxs:my-16 mxs:mx-4 mxs:px-8 mxs:pt-7 mxs:pb-14 xs:min-w-[60%] mb-14 pb-20"
+          className="mxs:my-16 mxs:mx-4 mx-4 xs:mx-8 lg:mx-32 xl:mx-64 mxs:px-8 mxs:pt-7 mxs:pb-14 xs:min-w-[60%] mb-14 pb-20"
           onSubmit={handleSubmit(onSubmit)}>
           <FormProvider {...hookFormMethods}>
             <h1 className="headline text-center">
