@@ -40,7 +40,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
           <DashHeader />
         </div>
         <div className="mxs:hidden flex items-center pl-32 pb-5 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
-          <div className="flex mx-auto gap-16 items-center font-bold text-[#7D7D7D] text-24px mr-16">
+          <div className="flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-8 lg:space-x-12 xl:space-x-16 text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 sm:mr-8 lg:mr-12 xl:mr-16">
             <p
               className={
                 openTab === 1
