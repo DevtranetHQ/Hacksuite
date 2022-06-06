@@ -11,7 +11,7 @@ import Tape1 from "../../public/assets/Tape1.svg";
 import image2 from "../../public/assets/image2.svg";
 import image3 from "../../public/assets/image3.svg";
 import Vector3 from "../../public/assets/Vector3.svg";
-import Scrapbookfile from "./Scrapbookfile";
+import ScrapbookCard from "../../components/scrapbook/ScrapbookCard";
 
 export default function Scrapbook({ user }) {
   return (
@@ -82,7 +82,7 @@ export default function Scrapbook({ user }) {
                 user.scrapbookItem.map((scrapbookItem, index) => {
                   if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 0)
                     return (
-                      <Scrapbookfile
+                      <ScrapbookCard
                         key={index}
                         username={scrapbookItem.username}
                         userimg={scrapbookItem.userimg}
@@ -98,7 +98,7 @@ export default function Scrapbook({ user }) {
               {user.scrapbookItem.map((scrapbookItem, index) => {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 1)
                   return (
-                    <Scrapbookfile
+                    <ScrapbookCard
                       key={index}
                       username={scrapbookItem.username}
                       userimg={scrapbookItem.userimg}
@@ -113,7 +113,7 @@ export default function Scrapbook({ user }) {
               {user.scrapbookItem.map((scrapbookItem, index) => {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 2)
                   return (
-                    <Scrapbookfile
+                    <ScrapbookCard
                       key={index}
                       username={scrapbookItem.username}
                       userimg={scrapbookItem.userimg}
@@ -128,7 +128,7 @@ export default function Scrapbook({ user }) {
               {user.scrapbookItem.map((scrapbookItem, index) => {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 3)
                   return (
-                    <Scrapbookfile
+                    <ScrapbookCard
                       key={index}
                       username={scrapbookItem.username}
                       userimg={scrapbookItem.userimg}

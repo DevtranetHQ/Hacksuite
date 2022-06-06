@@ -2,7 +2,8 @@ import Image from "next/image";
 import React from "react";
 import Avatar from "../../components/Avatar";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
-function Scrapbookfile({ ...props }) {
+
+function ScrapbookCard({ ...props }) {
   const { time, text, image, code, userimg, username } = props;
 
   return (
@@ -33,4 +34,4 @@ function Scrapbookfile({ ...props }) {
   );
 }
 
-export default Scrapbookfile;
+export default ScrapbookCard;
