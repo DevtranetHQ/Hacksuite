@@ -1,9 +1,9 @@
 import Select from "react-select";
-import MessageForm from "../components/MessageForm";
-import SearchPeopleIcon from "../components/icons/SearchPeopleIcon";
-import { searchingForStyles, availableForStyles } from "../styles/SelectStyles";
-import { availableFor } from "../enums/availableFor";
-import { describes } from "../enums";
+import MessageForm from "../MessageForm";
+import SearchPeopleIcon from "../icons/SearchPeopleIcon";
+import { searchingForStyles, availableForStyles } from "./SelectStyles";
+import { availableFor } from "../../enums/availableFor";
+import { describes } from "../../enums";
 import { Dispatch, SetStateAction } from "react";
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
