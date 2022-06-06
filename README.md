@@ -30,7 +30,7 @@ This is the full stack app for The Dynamics, built to host hackathons.
         │   ├── jobs.tsx
         │   ├── people.tsx
         │   └── projects.tsx
-        ├── app                                                 # user dashboard, other pages after signing in
+        ├── app                                                 # user dashboard, other pages after signed in
         │   ├── _middleware.js
         │   ├── complete.tsx
         │   ├── create-event.js
