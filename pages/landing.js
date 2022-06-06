@@ -17,7 +17,7 @@ import peopleImage from "../public/assets/TEST/people.png";
 import ScrapbookCard from "../components/scrapbook/ScrapbookCard";
 import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
 import EventCard from "../components/event/EventCard";
-import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
+import LookingForSelect from "../components/people/LookingFor";
 
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
@@ -229,7 +229,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
             Who are you looking for?
           </p>
           <div className="flex justify-center items-end">
-            <LookingForSelectBoxes />
+            <LookingForSelect />
           </div>
         </div>
       </div>
