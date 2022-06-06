@@ -4,7 +4,7 @@ import logoLight from "../public/assets/logo.svg";
 import Discord from "../components/icons/Discord";
 import landing from "../public/assets/landing/landing.svg";
 
-import aws from "../public/assets/landing/aws.svg";
+import aws from "../public/assets/landing/aws.png";
 import digitalocean from "../public/assets/landing/digitalocean.svg";
 import jetbrains from "../public/assets/landing/jetbrains.svg";
 import sketch from "../public/assets/landing/sketch.svg";
@@ -23,46 +23,46 @@ import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
     <div className="">
-      <div id="header" className="flex items-center justify-between px-1 md:px-8 2xl:px-12">
-        <div className="relative w-[40px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
+      <div id="header" className="flex items-center justify-between px-4 md:px-8 2xl:px-12">
+        <div className="relative w-[40px] sm:w-[55px] md:w-[70px] lg:w-[100px] xl:w-[120px] mt-2 md:mt-3 lg:mt-4 xl:mt-6">
           <Image src={logoLight} />
         </div>
-        <div className="flex items-center text-10px md:text-[14px] lg:text-[16.5px] xl:text-20px">
-          <div className="flex items-center space-x-2 mx-2 md:space-x-8 lg:space-x-12 xl:space-x-16 md:mx-8 lg:mx-12 xl:mx-16">
+        <div className="flex items-center text-[5.8px] sm:text-10px md:text-12px lg:text-[16px] xl:text-20px">
+          <div className="flex items-center space-x-2 xs:space-x-4 sm:space-x-8 lg:space-x-12 xl:space-x-16 mx-2 xs:mx-4 sm:mx-8 lg:mx-12 xl:mx-16">
             <Link href="/scrapbook">
-              <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Scrapbook
               </p>
             </Link>
             <Link href="/project-gallery">
-              <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
             <Link href="#">
-              <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
             </Link>
             <Link href="/events">
-              <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Events
               </p>
             </Link>
             <Link href="#">
-              <p className="text-10px text-[#7D7D7D] md:text-16px lg:text-18px xl:text-22px cursor-pointer hover:text-[#ff9700]">
+              <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
             </Link>
           </div>
           <div className="flex items-center space-x-1 md:space-x-5">
             <Link href="#">
-              <button className="px-1 py-0.5 rounded-sm md:px-5 2xl:px-6 md:py-1.5 xl:py-2 2xl:py-3.5 md:rounded-md border-[1.5px] border-[#4CB050] text-[#4CB050] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="px-2 py-1 rounded-sm md:px-5 2xl:px-6 md:py-1.5 xl:py-2 2xl:py-3.5 sm:rounded-md border md:border-[1.5px] border-[#4CB050] text-[#4CB050] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Hire Talents
               </button>
             </Link>
             <Link href="#">
-              <button className="px-1 py-0.5 rounded-sm md:px-5 2xl:px-6 md:py-1.5 xl:py-2 2xl:py-3.5 md:rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="px-2 py-1 rounded-sm md:px-5 2xl:px-6 md:py-1.5 xl:py-2 2xl:py-3.5 sm:rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Sponsor Events
               </button>
             </Link>
@@ -72,37 +72,40 @@ export default function Landing({ user, projects, events, loggedIn }) {
 
       <div
         id="main"
-        className="mt-1 mx-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 md:mx-5 2xl:mx-12 grid grid-cols-2">
-        <div className="ml-1 pt-2 md:ml-3 2xl:ml-0 flex flex-col md:pt-8 lg:pt-10 lgm:pt-[4.5rem] xl:pt-16 2xl:pt-[4.5rem]">
-          <p className="font-bold leading-[1.3] text-16px md:text-28px lg:text-36px xl:text-44px 2xl:text-48px">
+        className="mt-1 md:mt-1.5 lg:mt-2.5 xl:mt-3.5 mx-4 md:mx-8 2xl:mx-12 grid grid-cols-2">
+        <div className="flex flex-col pt-2 sm:pt-8 lg:pt-10 lgm:pt-20 xl:pt-[4.5rem] 2xl:pt-[4.5rem]">
+          <p className="font-bold leading-[1.3] msm:leading-normal text-12px sm:text-20px md:text-24px mdm:text-28px lg:text-36px xl:text-44px 2xl:text-48px">
             Where <span className="text-[#ff9700]">makers</span>,{" "}
             <span className="text-[#03a9f4]">developers</span>, and{" "}
             <span className="text-[#4cb050]">technologists</span> call home.
           </p>
-          <p className="text-12px mt-1 md:text-16px lg:text-18px xl:text-22px 2xl:text-24px md:mt-2 lg:mt-3.5 xl:mt-[1.125rem] 2xl:mt-7">
+          <p className="mt-1 text-10px md:text-12px mdm:text-14px lg:text-18px xl:text-22px 2xl:text-24px md:mt-2 lg:mt-3.5 xl:mt-[1.125rem] 2xl:mt-7">
             The Dynamics is a global network of makers, developers, and technologists where
             enthusiastic minds connect, build, share, and launch.
           </p>
-          <div className="flex items-center space-x-1 mt-1 md:space-x-5 text-10px md:text-16px lg:text-18px xl:text-22px 2xl:text-24px md:mt-3 lg:mt-[1.125rem] xl:mt-[1.375rem] 2xl:mt-8">
+          <div className="flex items-center space-x-1 mt-1 md:space-x-5 text-[6px] sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px md:mt-3 lg:mt-[1.125rem] xl:mt-[1.375rem] 2xl:mt-8">
             <Link href="/signup">
-              <button className="px-1 py-0.5 rounded-sm md:px-5 2xl:px-6 md:py-1.5 lg:py-2.5 2xl:py-3.5 md:rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="px-2 py-1 rounded-sm md:px-5 2xl:px-6 md:py-1.5 lg:py-2.5 2xl:py-3.5 sm:rounded-md bg-[#03A9F4] text-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Become a Member
               </button>
             </Link>
             <Link href="#">
-              <button className="px-1 py-0.5 rounded-sm flex items-center md:px-5 2xl:px-6 md:py-1.5 lg:py-2.5 2xl:py-3.5 md:rounded-md border-[1.5px] border-[#03A9F4] text-[#03A9F4] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
+              <button className="px-2 py-1 rounded-sm flex items-center md:px-5 2xl:px-6 md:py-1.5 lg:py-2.5 2xl:py-3.5 sm:rounded-md border md:border-[1.5px] border-[#03A9F4] text-[#03A9F4] bg-white font-bold transition-all hover:scale-105 focus:scale-105">
                 Join our Discord&nbsp;&nbsp;
-                <Discord className="mmd:w-[15px] mmd:h-[12px]" fill={"#03A9F4"} />
+                <Discord
+                  className="w-[8px] h-[6px] md:w-[20px] md:h-[16px] lg:w-[30px] lg:h-[24px]"
+                  fill={"#03A9F4"}
+                />
               </button>
             </Link>
           </div>
-          <p className="mt-1 flex items-center font-semibold text-[8px] md:text-[14px] lg:text-[15.5px] xl:text-18px 2xl:text-20px text-[#7D7D7D] md:mt-[0.3rem] lg:mt-[0.5rem] xl:mt-3 2xl:mt-5">
+          <p className="mt-1 flex items-center font-semibold text-[10px] lg:text-[14px] xl:text-18px 2xl:text-20px text-[#7D7D7D] md:mt-[0.3rem] lg:mt-[0.5rem] xl:mt-3 2xl:mt-5">
             Already a member?&nbsp;
             <Link href="/login">
               <span className="text-[#3B4FE4] flex items-center cursor-pointer">
                 Login&nbsp;
                 <svg
-                  className="mmd:h-[6px] mmd:w-[12px] mxl:h-[9.6px] mxl:w-[20px] mt-0.5"
+                  className="h-[6px] w-[12px] md:h-[9.6px] md:w-[20px] xl:w-[25px] xl:h-[12px] sm:mt-0.5"
                   width="25"
                   height="12"
                   viewBox="0 0 25 12"
@@ -118,18 +121,20 @@ export default function Landing({ user, projects, events, loggedIn }) {
           </p>
         </div>
         <div className="">
-          <Image className="mmd:scale-[0.7]" src={landing} alt="landing" />
+          <Image className="" src={landing} alt="landing" />
         </div>
       </div>
 
       <div
         id="worked-with"
         className="mt-1 md:mt-2.5 lg:mt-3.5 lgm:mt-8 xl:mt-[1.375rem] 2xl:mt-8 mb-0 2xl:mb-4 flex flex-col">
-        <p className="text-center text-[8px] md:text-[12px] lg:text-[14px] xl:text-16px 2xl:text-18px font-bold text-[#A5A5A5]">
+        <p className="text-center text-[6px] md:text-10px lg:text-[13px] xl:text-16px 2xl:text-18px font-bold text-[#A5A5A5]">
           WORKED WITH
         </p>
         <div className="mxl:-mt-2 m2xl:-mt-1 mx-[10px] md:mx-[30px] lg:mx-[60px] xl:mx-[140px] flex items-center justify-between">
-          <Image src={aws} alt="aws" />
+          <div className="md:mb-1.5 self-end relative w-[120px]">
+            <Image src={aws} alt="aws" />
+          </div>
           <Image src={digitalocean} alt="digitalocean" />
           <Image src={jetbrains} alt="jetbrains" />
           <Image src={sketch} alt="sketch" />
@@ -140,19 +145,20 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="scrapbook" className="mx-8 2xl:mx-12 mt-16">
+      <div id="scrapbook" className="mx-4 md:mx-8 2xl:mx-12 mt-16">
         <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
           LIVE FROM OUR SCRAPBOOK
         </p>
         <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
-          Stay connected with like-minded people
+          Stay <span className="bg-[#ff9700] text-white px-1 rounded-md">connected</span> with
+          like-minded people
         </p>
         <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
           Made your first open-source contribution? Landed a job? Won a hackathon? Launched a
           startup? We'd love to know, tell us about it!
         </p>
         <section className="mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 md:space-x-5 dark:text-white">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:space-x-5 dark:text-white">
             {user &&
               user.scrapbookItem?.map((scrapbookItem, index) => {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 0 || true)
@@ -173,17 +179,22 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </section>
       </div>
 
-      <div id="project-gallery" className="mx-8 2xl:mx-12 mt-16 text-center">
+      <div id="project-gallery" className="mx-4 md:mx-8 2xl:mx-12 mt-16 text-center">
         <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
           IMAGINE AN EVERYDAY DEVPOST
         </p>
         <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
-          Share and take your projects globally.
+          Share and take your projects{" "}
+          <span className="bg-[#4cb050] text-white px-1 rounded-md">globally</span>.
         </p>
         <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
-          After countless days of brainstorming, learning, and building, you've finally shipped
-          something. Get constructive feedback and ideas to make it even better. In the future, you
-          can get funding and support to scale it through Launchtivate CLOSED BETA
+          After countless days of brainstorming, learning, and building, you've finally{" "}
+          <span className="text-[#03a9f4] italic">shipped</span> something. Get constructive
+          feedback and ideas to make it even better. In the future, you can get funding and support
+          to scale it through Launchtivate{" "}
+          <sup className="text-white px-0.5 rounded-[2px] bg-[#3b4fe4] text-10px lg:text-[13px] xl:text-16px 2xl:text-18px">
+            CLOSED BETA
+          </sup>
         </p>
         <div className="grid md:gap-10 gap-5 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center md:px-5 px-3 md:py-5 py-3  md:mt-12 mt-5">
           {projects?.map((project, index) => {
@@ -201,12 +212,13 @@ export default function Landing({ user, projects, events, loggedIn }) {
       </div>
 
       <div id="networking" className="mt-16">
-        <div className="mx-8 2xl:mx-12">
+        <div className="mx-4 md:mx-8 2xl:mx-12">
           <p className="text-20px lg:text-26px xl:text-[33px] 2xl:text-36px text-[#A5A5A5] font-bold">
             NETWORKING MADE AS EASY AS ABC
           </p>
           <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px font-bold">
-            Find amazing people to bring your ideas to live.
+            Find <span className="bg-[#03a9f4] text-white px-1 rounded-md">amazing people</span> to
+            bring your ideas to live.
           </p>
           <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px">
             Stuck with something? Looking for a co-founder? Building a team for a hackathon?
@@ -221,12 +233,12 @@ export default function Landing({ user, projects, events, loggedIn }) {
         </div>
       </div>
 
-      <div id="featured-people" className="mx-8 2xl:mx-12 mt-20">
-        <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px pb-[72px] text-center font-semibold">
+      <div id="featured-people" className="mx-4 md:mx-8 2xl:mx-12 mt-20">
+        <p className="text-28px lg:text-36px xl:text-44px 2xl:text-48px text-center font-semibold">
           Featured people
         </p>
-        <div className="flex justify-around">
-          <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
+        <div className="mt-6 flex flex-wrap justify-around content-between">
+          <div className="my-8 px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
                 className="border-[2.19048px] border-[#FF9700] rounded-[56.0762px]"
@@ -252,12 +264,14 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
-              Reach out
-            </button>
+            <Link href="#">
+              <button className="text-10px lg:text-[13px] xl:text-16px 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white transition-all hover:scale-105 focus:scale-105">
+                Reach out
+              </button>
+            </Link>
           </div>
 
-          <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
+          <div className="my-8 px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
                 className="border-[2.19048px] border-[#FF9700] rounded-[56.0762px]"
@@ -283,12 +297,14 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
-              Reach out
-            </button>
+            <Link href="#">
+              <button className="text-10px lg:text-[13px] xl:text-16px 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white transition-all hover:scale-105 focus:scale-105">
+                Reach out
+              </button>
+            </Link>
           </div>
 
-          <div className="px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
+          <div className="my-8 px-12 flex flex-col items-center  rounded-[10px] bg-[#F8FBFF]">
             <div className="pt-6">
               <Image
                 className="border-[2.19048px] border-[#FF9700] rounded-[56.0762px]"
@@ -314,9 +330,11 @@ export default function Landing({ user, projects, events, loggedIn }) {
             <p className="text-14px lg:text-18px xl:text-22px 2xl:text-24px mb-9">
               Founder, CommandTech
             </p>
-            <button className="-mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white">
-              Reach out
-            </button>
+            <Link href="#">
+              <button className="text-10px lg:text-[13px] xl:text-16px 2xl:text-18px -mb-6 z-10 text-[#03A9F4] rounded-[10px] border border-[#03A9F4] py-4 px-6 bg-white transition-all hover:scale-105 focus:scale-105">
+                Reach out
+              </button>
+            </Link>
           </div>
         </div>
       </div>

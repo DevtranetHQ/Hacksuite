@@ -13,6 +13,17 @@ export interface IPost {
   createdAt: Date;
 }
 
+export interface IPostWithUser {
+  _id: PostId;
+  content: string;
+  images: string[];
+  createdAt: Date;
+  author: {
+    username?: string;
+    image?: string;
+  };
+}
+
 const postSchema = new Schema<IPost>(
   {
     author: {

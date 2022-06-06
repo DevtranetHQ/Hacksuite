@@ -91,7 +91,8 @@ export default function Settings({ profile }: Props) {
           Account Settings
         </h1>
         <hr className="mb-5 border-t-[1.4px] border-solid border-[#C9C9C9]" />
-        <div className="mxs:pl-6">
+        {/* Image, Upload button, Social media icons */}
+        <div className="mlg:pl-6">
           <div className="flex items-center justify-between w-[88%]">
             <Avatar
               image={profilePhoto ? URL.createObjectURL(profilePhoto) : profile.image}
@@ -123,213 +124,122 @@ export default function Settings({ profile }: Props) {
             type="file"
             accept="image/*"
           />
-          {socials ? (
-            <div className="flex items-center justify-between w-[51%]">
-              <div className="mxs:space-x-5 flex gap-5 items-center my-6">
-                <span className="cursor-pointer">
-                  <GithubIcon className="mxs:w-[32px]" width={32} />
-                </span>
-                <span className="mxs:w-[32px] cursor-pointer">
-                  <TwitterIcon width={41} height={33} />
-                </span>
-                <span className="mxs:w-[30px] cursor-pointer">
-                  <LinkedinIcon width={35} height={31} />
-                </span>
-              </div>
-              <span
-                className="border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white"
-                onClick={() => setEditSocials(true)}>
-                EDIT
+
+          <div className="flex items-center justify-between w-[51%]">
+            <div className="mxs:space-x-5 flex gap-5 items-center my-6">
+              <span className="cursor-pointer">
+                <GithubIcon className="mxs:w-[32px]" width={32} fill={socials ? "" : "#C9C9C9"} />
               </span>
-              {editSocials ? (
-                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
-                  <div className="relative  my-6 mx-auto w-max bg-white rounded-lg px-10 dark:bg-dark">
-                    <div
-                      className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black dark:hover:text-white transition-all"
-                      onClick={() => setEditSocials(false)}>
-                      x
-                    </div>
-                    <form className=" bg-white dark:bg-dark">
-                      <div className="grid grid-cols-2 gap-x-10 gap-y-10">
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <LinkedinIcon width={35} height={31} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10 "
-                            placeholder="Enter your linkedin url... "
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <Reddit className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your reddit url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <TwitterIcon width={35} height={30} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your twitter url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <Facebook className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your facebook url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <GithubIcon className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your github url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer flex items-center">
-                            <Instagram className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 w-11/12"
-                            placeholder="Enter your instagram url..."
-                          />
-                        </div>
-                      </div>
-                    </form>
-                    <button
-                      className="button-big button-deep-sky-blue mx-auto my-5 w-[230px] text-22px"
-                      onClick={() => {}}>
-                      Done
-                    </button>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          ) : (
-            <div className="flex items-center justify-between w-[51%]">
-              <div className="mxs:space-x-5 flex gap-5 items-center my-6">
-                <span className="cursor-pointer">
-                  <GithubIcon className="mxs:w-[32px]" width={32} fill="#C9C9C9" />
-                </span>
-                <span className="mxs:w-[32px] cursor-pointer">
-                  <TwitterIcon width={41} height={33} fill="#C9C9C9" />
-                </span>
-                <span className="mxs:w-[30px] cursor-pointer">
-                  <LinkedinIcon width={35} height={31} fill="#C9C9C9" />
-                </span>
-              </div>
-              <span
-                className="border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white dark:bg-dark dark:border-none"
-                onClick={() => setEditSocials(true)}>
-                ADD SOCIALS
+              <span className="mxs:w-[32px] cursor-pointer">
+                <TwitterIcon width={41} height={33} fill={socials ? "" : "#C9C9C9"} />
               </span>
-              {editSocials ? (
-                <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg  slide-bottom w-full mx-auto slide-bottom backdrop-blur-sm">
-                  <div className="relative  my-6 mx-auto w-max bg-white rounded-lg px-10">
-                    <div
-                      className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black transition-all"
-                      onClick={() => setEditSocials(false)}>
-                      x
-                    </div>
-                    <form className=" bg-white dark:bg-white">
-                      <div className="grid grid-cols-2 gap-x-10 gap-y-10">
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <LinkedinIcon width={35} height={31} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10 "
-                            placeholder="Enter your linkedin url... "
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <Reddit className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your reddit url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <TwitterIcon width={35} height={30} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your twitter url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <Facebook className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your facebook url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer">
-                            <GithubIcon className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0 pr-10"
-                            placeholder="Enter your github url..."
-                          />
-                        </div>
-                        <div className="flex gap-x-5 items-center">
-                          <span className="cursor-pointer flex items-center">
-                            <Instagram className="mxs:w-[32px]" width={32} />
-                          </span>
-                          <input
-                            type="text"
-                            className="form-input pl-3 p-1 m-0  w-11/12"
-                            placeholder="Enter your instagram url..."
-                          />
-                        </div>
-                      </div>
-                    </form>
-                    <button
-                      className="button-big button-deep-sky-blue mx-auto my-5 w-[230px] text-22px"
-                      onClick={() => {}}>
-                      Done
-                    </button>
-                  </div>
-                </div>
-              ) : null}
+              <span className="mxs:w-[30px] cursor-pointer">
+                <LinkedinIcon width={35} height={31} fill={socials ? "" : "#C9C9C9"} />
+              </span>
             </div>
-          )}
+
+            {/* Edit Section */}
+            <span
+              className={`border-2 font-semibold  border-[#C9C9C9] text-[#C9C9C9] px-3 py-1 rounded-md cursor-pointer hover:text-black hover:border-black dark:hover:text-white dark:hover:border-white ${
+                socials ? "" : "dark:bg-dark dark:border-none"
+              }`}
+              onClick={() => setEditSocials(true)}>
+              {socials ? "EDIT" : "ADD SOCIALS"}
+            </span>
+            {editSocials ? (
+              <div className="flex justify-center items-center  fixed inset-0 z-50 outline-none focus:outline-none rounded-lg w-full mx-auto slide-bottom backdrop-blur-sm">
+                <div
+                  className={`relative  my-6 mx-auto w-max bg-white rounded-lg px-10 ${
+                    socials ? "dark:bg-dark" : ""
+                  }`}>
+                  <div
+                    className="flex justify-end top-0 font-bold text-36px cursor-pointer text-[#C9C9C9] hover:text-black dark:hover:text-white transition-all"
+                    onClick={() => setEditSocials(false)}>
+                    x
+                  </div>
+                  <form className=" bg-white dark:bg-dark">
+                    <div className="grid grid-cols-2 gap-x-10 gap-y-10">
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer">
+                          <LinkedinIcon width={35} height={31} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 pr-10 "
+                          placeholder="Enter your linkedin url... "
+                        />
+                      </div>
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer">
+                          <Reddit className="mxs:w-[32px]" width={32} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 pr-10"
+                          placeholder="Enter your reddit url..."
+                        />
+                      </div>
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer">
+                          <TwitterIcon width={35} height={30} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 pr-10"
+                          placeholder="Enter your twitter url..."
+                        />
+                      </div>
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer">
+                          <Facebook className="mxs:w-[32px]" width={32} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 pr-10"
+                          placeholder="Enter your facebook url..."
+                        />
+                      </div>
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer">
+                          <GithubIcon className="mxs:w-[32px]" width={32} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 pr-10"
+                          placeholder="Enter your github url..."
+                        />
+                      </div>
+                      <div className="flex gap-x-5 items-center">
+                        <span className="cursor-pointer flex items-center">
+                          <Instagram className="mxs:w-[32px]" width={32} />
+                        </span>
+                        <input
+                          type="text"
+                          className="form-input pl-3 p-1 m-0 w-11/12"
+                          placeholder="Enter your instagram url..."
+                        />
+                      </div>
+                    </div>
+                  </form>
+                  <button
+                    className="button-big button-deep-sky-blue mx-auto my-5 w-[230px] text-22px"
+                    onClick={() => {}}>
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
+        {/* Input Form */}
         <form
-          className="mxs:px-6 bg-transparent dark:bg-transparent pl-0 xs:w-11/12"
+          className="mlg:px-6 bg-transparent dark:bg-transparent pl-0 lg:w-11/12"
           onSubmit={handleSubmit(handleSubmission)}>
           <FormProvider {...hookFormMethods}>
+            {/* Personal Information */}
             <h2 className="mxs:text-[22px] mb-5 subheadline">Personal Information</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 ">
-              <div>
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="firstName">
                   First name
                 </label>
@@ -343,7 +253,7 @@ export default function Settings({ profile }: Props) {
                   {...register("firstName", { required: true })}
                 />
               </div>
-              <div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="lastName">
                   Last name
                 </label>
@@ -357,34 +267,32 @@ export default function Settings({ profile }: Props) {
                   {...register("lastName", { required: true })}
                 />
               </div>
-            </section>
-            <section>
-              <label className="form-label font-normal" htmlFor="email">
-                Email address
-              </label>
-              <input
-                autoComplete="off"
-                className="form-input"
-                id="email"
-                name="email"
-                type="email"
-                value={profile.email}
-                placeholder="zach@hackclub.com"
-              />
-            </section>
-            <section>
-              <label className="form-label font-normal" htmlFor="phoneNumber">
-                Phone number
-              </label>
-              <TelInput {...register("phoneNumber")} />
-            </section>
-            <section className="grid gird-cols-1 xs:grid-cols-2 gap-x-10 mb-5">
-              <div>
+              <div className="col-span-1 sm:col-span-2">
+                <label className="form-label font-normal" htmlFor="email">
+                  Email address
+                </label>
+                <input
+                  autoComplete="off"
+                  className="form-input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={profile.email}
+                  placeholder="zach@hackclub.com"
+                />
+              </div>
+              <div className="col-span-1 sm:col-span-2">
+                <label className="form-label font-normal" htmlFor="phoneNumber">
+                  Phone number
+                </label>
+                <TelInput {...register("phoneNumber")} />
+              </div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="password">
                   Password
                 </label>
                 <input
-                  className="form-input"
+                  className="form-input mb-0"
                   id="password"
                   name="password"
                   placeholder="*********"
@@ -395,13 +303,13 @@ export default function Settings({ profile }: Props) {
                   Leave blank if you don't want to change your password
                 </p>
               </div>
-              <div>
+              <div className="col-span-1">
                 <label className="form-label font-normal" htmlFor="passwordConfirmation">
                   Password confirmation
                 </label>
                 <input
                   autoComplete="password"
-                  className="form-input"
+                  className="form-input mb-0"
                   id="passwordConfirmation"
                   name="passwordConfirmation"
                   placeholder="*********"
@@ -410,18 +318,19 @@ export default function Settings({ profile }: Props) {
                 />
               </div>
             </section>
-            <section className="mxs:space-x-1 form-checkbox mb-10">
+            <section className="mxs:space-x-1 form-checkbox mb-10 mt-4">
               <input id="checkbox" name="receiveEmails" type="checkbox" />
               <label htmlFor="checkbox">Notify me about upcoming news & events</label>
             </section>
+            {/* Demographic Information */}
             <h2 className="mxs:text-[22px] mb-5 subheadline">Demographic Information</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 mb-10">
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 mb-10">
               <div>
                 <label className="form-label font-normal" htmlFor="dob">
                   Date of birth
                 </label>
                 <input
-                  className="form-input"
+                  className="form-input mb-0 py-1.5"
                   id="dob"
                   name="dob"
                   type="date"
@@ -441,26 +350,27 @@ export default function Settings({ profile }: Props) {
                 <CountrySelect />
               </div>
             </section>
+            {/* Work and Education */}
             <h2 className="mxs:text-[22px] mb-5 subheadline">Work and Education</h2>
-            <section className="grid grid-cols-1 xs:grid-cols-2 gap-x-10 gap-y-1 mb-5">
-              <div>
+            <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4 mb-5">
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="personalDescription">
                   What describes you the best?
                 </label>
                 <DescribeSelect />
               </div>
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="skillsAndInterests">
                   Skills and interests
                 </label>
                 <TextareaAutosize
-                  className="resize-none form-input box-border py-[6px]"
+                  className="resize-none form-input box-border py-[6px] mb-0"
                   maxRows={6}
                   maxLength={120}
                   placeholder="Coding languages, frameworks, or soft skills..."
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <label className="form-label font-normal" htmlFor="levelOfStudy">
                   I'm available for
                 </label>
@@ -472,7 +382,7 @@ export default function Settings({ profile }: Props) {
                 </label>
                 <input
                   autoComplete="off"
-                  className="form-input py-[6px]"
+                  className="form-input py-[6px] mb-0"
                   placeholder="Write something..."
                   type="text"
                   maxLength={50}
@@ -483,7 +393,7 @@ export default function Settings({ profile }: Props) {
                 <label className="form-label font-normal" htmlFor="resume">
                   Upload Resume/CV
                 </label>
-                <div className="flex form-input items-center justify-between h-[41%]">
+                <div className="flex form-input items-center justify-between py-1">
                   <input
                     className="text-18px text-[#3B4FE4]"
                     id="resume"
@@ -505,6 +415,7 @@ export default function Settings({ profile }: Props) {
                 </div>
               </div>
             </section>
+            {/* Recaptcha and Save Button */}
             <section className="mxs:mt-4 text-center mt-10">
               <ReCAPTCHA
                 className="inline-block mb-3"
