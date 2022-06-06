@@ -1,10 +1,10 @@
 import { useState } from "react";
-import FullNav from "../components/newsfeed/index";
-import ArrowIcon from "../components/icons/Arrow";
-import MessageForm from "../components/MessageForm";
-import { PeopleData } from "../components/People/PeopleInfo";
-import PersonCard from "../components/People/PersonCard";
-import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
+import FullNav from "../../components/newsfeed/index";
+import ArrowIcon from "../../components/icons/Arrow";
+import MessageForm from "../../components/MessageForm";
+import { PeopleData } from "../../components/People/PeopleInfo";
+import PersonCard from "../../components/People/PersonCard";
+import LookingForSelectBoxes from "../../components/LookingForSelectBoxes";
 
 const People = ({ people }) => {
   const verifiedPeopleObj = people.filter(person => person.verified === true);
