@@ -17,7 +17,7 @@ import Avatar from "../../components/Avatar";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import FeaturedPeople from "../../components/FeaturedPeople";
 import ArrowIcon from "../../components/icons/Arrow";
-import Scrapbookfile from "../scrapbook/Scrapbookfile";
+import ScrapbookCard from "../../components/scrapbook/ScrapbookCard";
 import { scrapbookService } from "../../server/modules/scrapbook/scrapbook.service";
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
@@ -145,7 +145,7 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
             <div className="col-span-2 text-left">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
-                  <Scrapbookfile
+                  <ScrapbookCard
                     key={index}
                     username={scrapbookItem.username}
                     userimg={scrapbookItem.userimg}
