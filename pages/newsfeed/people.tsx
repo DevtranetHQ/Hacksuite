@@ -2,8 +2,8 @@ import { useState } from "react";
 import FullNav from "../../components/newsfeed/index";
 import ArrowIcon from "../../components/icons/Arrow";
 import MessageForm from "../../components/MessageForm";
-import { PeopleData } from "../../components/People/PeopleInfo";
-import PersonCard from "../../components/People/PersonCard";
+import { PeopleData } from "../../components/people/PeopleInfo";
+import PersonCard from "../../components/people/PersonCard";
 import LookingForSelectBoxes from "../../components/LookingForSelectBoxes";
 
 const People = ({ people }) => {
