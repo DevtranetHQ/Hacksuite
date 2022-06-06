@@ -10,22 +10,20 @@ This is the full stack app for The Dynamics, built to host hackathons.
     └── pages
         ├── api                                                 # api's
         ├── [userId]                                            # profile
-        │   ├── index.tsx
-        │   └── Scrapbook.js
-        ├─ projects                                             # projects
+        │   └── index.tsx
+        ├── scrapbook                                           # scrapbook
+        │   └── index.js
+        ├── projects                                            # projects
         │   ├── index.tsx
         │   └── preview
         │       └── [projectId].tsx
-        ├─ events                                               # events
+        ├── events                                              # events
         │   ├── index.js
         │   └── [eventId].js
-        ├─ scrapbook                                            # scrapbook
-        │   ├── index.js
-        │   └── [scrapbookId].js
-        ├─ workshop                                             # workshops
+        ├── workshop                                            # workshops
         │   ├── index.js
         │   └── [workshopId].js
-        ├─ newsfeed                                             # newsfeed
+        ├── newsfeed                                            # newsfeed
         │   ├── index.tsx
         │   ├── jobs.tsx
         │   ├── people.tsx
