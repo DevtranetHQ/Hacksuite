@@ -33,7 +33,7 @@ export default function PersonalProjects({ name, projects, unread }) {
                 Add new
               </button>
             </Link>
-            <Link href="/project-gallery">
+            <Link href="/projects">
               <button className="mxs:mb-[26px] mxs:text-16px mxs:rounded button-small button-deep-sky-blue flex items-center">
                 View gallery{" "}
                 <span className="ml-1">

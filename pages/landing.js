@@ -14,10 +14,10 @@ import replit from "../public/assets/landing/replit.svg";
 import stellar from "../public/assets/landing/stellar.svg";
 
 import peopleImage from "../public/assets/TEST/people.png";
-import Scrapbookfile from "./scrapbook/Scrapbookfile";
+import ScrapbookCard from "../components/scrapbook/ScrapbookCard";
 import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
 import EventCard from "../components/event/EventCard";
-import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
+import LookingForSelect from "../components/people/LookingFor";
 
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
@@ -163,7 +163,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 if (user.scrapbookItem.indexOf(scrapbookItem) % 4 === 0 || true)
                   return (
                     <div className="dark:text-white">
-                      <Scrapbookfile
+                      <ScrapbookCard
                         key={index}
                         username={scrapbookItem.username}
                         userimg={scrapbookItem.userimg}
@@ -229,7 +229,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
             Who are you looking for?
           </p>
           <div className="flex justify-center items-end">
-            <LookingForSelectBoxes />
+            <LookingForSelect />
           </div>
         </div>
       </div>

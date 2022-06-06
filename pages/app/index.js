@@ -10,14 +10,14 @@ import robotDark from "../../public/assets/dash/robotDark.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { profileService } from "./../../server/modules/social/profile.service";
 import Link from "next/link";
-import ProjectGllery from "../project-gallery";
+import ProjectGllery from "../projects";
 import ProjectGalleryProjectCard from "../../components/project/ProjectGalleryProjectCard";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import Avatar from "../../components/Avatar";
 import ProfileImg from "../../public/assets/TEST/profile.jpg";
 import FeaturedPeople from "../../components/FeaturedPeople";
 import ArrowIcon from "../../components/icons/Arrow";
-import Scrapbookfile from "../scrapbook/Scrapbookfile";
+import ScrapbookCard from "../../components/scrapbook/ScrapbookCard";
 import { scrapbookService } from "../../server/modules/scrapbook/scrapbook.service";
 import VerifiedIcon from "../../components/icons/VerifiedIcon";
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
@@ -143,7 +143,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
             <div className="col-span-2 text-left">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
-                  <Scrapbookfile
+                  <ScrapbookCard
                     key={index}
                     username={scrapbookItem.username}
                     userimg={scrapbookItem.userimg}

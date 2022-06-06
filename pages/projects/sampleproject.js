@@ -2,26 +2,26 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Avatar from "../../../components/Avatar";
-import DarkModeToggle from "../../../components/DarkModeToggle";
-import Logo from "../../../components/Logo";
-import showdownConverter from "../../../components/showdownConverter";
-import AdobeIcon from "../../../components/icons/Adobe.tsx";
-import ArrowRightIcon from "../../../components/icons/ArrowRight";
-import ArrowDownIcon from "../../../components/icons/ArrowDown";
-import CommentIcon from "../../../components/icons/Comment";
-import ShareIcon from "../../../components/icons/Share";
-import FacebookIcon from "../../../components/icons/Facebook";
-import FigmaIcon from "../../../components/icons/Figma";
-import FollowerIcon from "../../../components/icons/Follower";
-import GithubIcon from "../../../components/icons/Github";
-import HeartIcon from "../../../components/icons/Heart";
-import LinkIcon from "../../../components/icons/Link";
-import LinkedinIcon from "../../../components/icons/Linkedin";
-import TimeIcon from "../../../components/icons/Time";
-import TwitterIcon from "../../../components/icons/Twitter";
-import PhotoGalleryHeader from "../../../components/project/Photo-galleryHeader";
-import { withAuth } from "../../../server/middlewares/auth.middleware";
+import Avatar from "../../components/Avatar";
+import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../../components/Logo";
+import showdownConverter from "../../components/showdownConverter";
+import AdobeIcon from "../../components/icons/Adobe.tsx";
+import ArrowRightIcon from "../../components/icons/ArrowRight";
+import ArrowDownIcon from "../../components/icons/ArrowDown";
+import CommentIcon from "../../components/icons/Comment";
+import ShareIcon from "../../components/icons/Share";
+import FacebookIcon from "../../components/icons/Facebook";
+import FigmaIcon from "../../components/icons/Figma";
+import FollowerIcon from "../../components/icons/Follower";
+import GithubIcon from "../../components/icons/Github";
+import HeartIcon from "../../components/icons/Heart";
+import LinkIcon from "../../components/icons/Link";
+import LinkedinIcon from "../../components/icons/Linkedin";
+import TimeIcon from "../../components/icons/Time";
+import TwitterIcon from "../../components/icons/Twitter";
+import PhotoGalleryHeader from "../../components/project/Photo-galleryHeader";
+import { withAuth } from "../../server/middlewares/auth.middleware";
 
 // NOTE: TESTING
 import { useRouter } from "next/router";
@@ -350,10 +350,11 @@ export default function Project({ loggedIn, project, image }) {
 
 export async function getServerSideProps(context) {
   // TODO: Use id to get event info from database
-  const { req, res } = context;
+    const { req, res } = context;
   const user = await withAuth(req => req.$user)(req, res);
 
-  const { id } = context.query;
+  //const { id } = context.query;
+  const id = "newproject";
   return {
     props: {
       loggedIn: !!user,

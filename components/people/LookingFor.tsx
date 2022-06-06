@@ -1,15 +1,15 @@
 import Select from "react-select";
-import MessageForm from "../components/MessageForm";
-import SearchPeopleIcon from "../components/icons/SearchPeopleIcon";
-import { searchingForStyles, availableForStyles } from "../styles/SelectStyles";
-import { availableFor } from "../enums/availableFor";
-import { describes } from "../enums";
+import MessageForm from "../MessageForm";
+import SearchPeopleIcon from "../icons/SearchPeopleIcon";
+import { searchingForStyles, availableForStyles } from "./SelectStyles";
+import { availableFor } from "../../enums/availableFor";
+import { describes } from "../../enums";
 import { Dispatch, SetStateAction } from "react";
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 
-const LookingForSelectBoxes: React.FC = () => {
+const LookingForSelect: React.FC = () => {
   return (
     <div className="flex mt-10">
       <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
@@ -43,4 +43,4 @@ const LookingForSelectBoxes: React.FC = () => {
     </div>
   );
 };
-export default LookingForSelectBoxes;
+export default LookingForSelect;

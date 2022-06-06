@@ -65,10 +65,10 @@ const FullNav = () => {
             </li>
           </Link>
 
-          <Link href="/projects">
+          <Link href="/newsfeed/projects">
             <li
               className={`${
-                pathname === "/projects"
+                pathname === "/newsfeed/projects"
                   ? "font-bold border-b-[3px] border-b-orange-peel"
                   : "font-bold text-[#7D7D7D]"
               } cursor-pointer`}>
@@ -76,10 +76,10 @@ const FullNav = () => {
             </li>
           </Link>
 
-          <Link href="/people">
+          <Link href="/newsfeed/people">
             <li
               className={`${
-                pathname === "/people"
+                pathname === "/newsfeed/people"
                   ? "font-bold border-b-[3px] border-b-orange-peel"
                   : "font-bold text-[#7D7D7D]"
               } cursor-pointer`}>
@@ -87,10 +87,10 @@ const FullNav = () => {
             </li>
           </Link>
 
-          <Link href="/jobs">
+          <Link href="/newsfeed/jobs">
             <li
               className={`${
-                pathname === "/jobs"
+                pathname === "/newsfeed/jobs"
                   ? "font-bold border-b-[3px] border-b-orange-peel"
                   : "font-bold text-[#7D7D7D]"
               } cursor-pointer`}>

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import FullNav from "../components/newsfeed/index";
-import ArrowIcon from "../components/icons/Arrow";
-import MessageForm from "../components/MessageForm";
-import { PeopleData } from "../components/People/PeopleInfo";
-import PersonCard from "../components/People/PersonCard";
-import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
+import FullNav from "../../components/newsfeed/index";
+import ArrowIcon from "../../components/icons/Arrow";
+import MessageForm from "../../components/MessageForm";
+import { PeopleData } from "../../components/people/PeopleInfo";
+import PersonCard from "../../components/people/PersonCard";
+import LookingForSelect from "../../components/people/LookingFor";
 
 const People = ({ people }) => {
   const verifiedPeopleObj = people.filter(person => person.verified === true);
@@ -25,7 +25,7 @@ const People = ({ people }) => {
       <section className="dark:bg-black pb-[60px]">
         <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
-          <LookingForSelectBoxes />
+          <LookingForSelect />
         </div>
 
         <div className="mt-20 w-[70%] mx-auto grid mb-10">
