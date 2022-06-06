@@ -23,7 +23,7 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
-export default function Dash({ admin, name, projects, scrapbookItem }) {
+export default function Dash({ admin, name, projects, scrapbookItem, people }) {
   const { darkMode } = useContext(DarkModeContext);
   // ======= Tab state -->
   // TODO: Set top nav state
@@ -39,8 +39,8 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
         <div className="xs:hidden">
           <DashHeader />
         </div>
-        <div className="mxs:hidden flex items-center pl-32 pb-5 fixed  right-0  z-40 bg-white dark:bg-dark justify-center top-0 pt-10 w-full">
-          <div className="flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-8 lg:space-x-12 xl:space-x-16 text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 sm:mr-8 lg:mr-12 xl:mr-16">
+        <div className="mxs:hidden flex items-center pb-5 fixed right-0 z-40  justify-center top-0 pt-10 w-full bg-white dark:bg-dark mx-auto">
+          <div className="relative flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-8 lg:space-x-12 xl:space-x-16 xs:text-8px sm:text-10px text-12px md:text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 lg:mr-12 xl:mr-16">
             <p
               className={
                 openTab === 1
@@ -66,7 +66,6 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
               }}>
               PROJECTS
             </p>
-
             <p
               className={
                 openTab === 3
@@ -93,29 +92,27 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
               JOBS
             </p>
           </div>
-          <form className="bg-transparent flex items-center mx-2  justify-end pl-5 dark:bg-transparent text-white dark:bg-white p-0">
-            <div className="relative rounded-md flex items-center p-0 border-[#03A9F4] border-[3px] md:w-full ml-auto">
-              <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none md:w-full w-2/4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-[#7D7D7D] flex items-center dark:text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={3}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-              <input
-                type="text"
-                placeholder="I’m looking for..."
-                className=" block w-full md:pl-10 pl-8  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-1 dark:text-white text-black dark:placeholder:text-white"
-              />
+          <form className="bg-transparent flex items-center  dark:bg-transparent text-white dark:bg-white p-0 relative rounded-md  border-[#03A9F4] border-[3px] mx-2">
+            <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3 md:h-5 md:w-5 text-[#7D7D7D] flex items-center dark:text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={3}>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </div>
+            <input
+              type="text"
+              placeholder="I’m looking for..."
+              className="flex md:pl-10 pl-8 dark:bg-transparent rounded-lg  border-none p-0 m-0 py-1 text-8px sm:text-8px xs:text-8px  md:text-10px lg:text-14px xl:text-20px 2xl:text-24px dark:text-white text-black dark:placeholder:text-white outline-none "
+            />
           </form>
           <div className=" pr-5">
             <DashHeader />
@@ -156,8 +153,20 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[25.6%] top-26 -mt-2">
-              <FeaturedPeople />
+            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2">
+              <h1 className="font-semibold text-20px text-left mb-2">Featured People</h1>
+              {people.slice(0, 5).map((person, index) => {
+                return (
+                  <FeaturedPeople
+                    key={index}
+                    username={person.username}
+                    userimg={person.image}
+                    headline={person.roles}
+                    verified ={person.verified}
+                    following={person.following}
+                  />
+                );
+              })}
             </div>
           </div>
         )}
@@ -187,8 +196,20 @@ export default function Dash({ admin, name, projects, scrapbookItem }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[25.6%] top-26 -mt-2">
-              <FeaturedPeople />
+            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2">
+              <h1 className="font-semibold text-20px text-left mb-2">Featured People</h1>
+              {people.slice(0, 5).map((person, index) => {
+                return (
+                  <FeaturedPeople
+                    key={index}
+                    username={person.username}
+                    userimg={person.image}
+                    headline={person.roles}
+                    verified ={person.verified}
+                    following={person.following}
+                  />
+                );
+              })}
             </div>
           </div>
         )}
@@ -403,6 +424,56 @@ export async function getServerSideProps({ req, res }) {
             I've always been kind of intimidated by hardware and am really proud of myself for getting this done! + bonus sunset picture from tonight.
             `,
           image: "/assets/TEST/user_projects/img-6.png"
+        }
+      ],
+      people: [
+        {
+          id: 0,
+          username: "Belle See",
+          roles: "Founder, CommandTech",
+          image: "/assets/TEST/people-1.png",
+          verified: true,
+          following: true
+        },
+        {
+          id: 1,
+          username: "Ibrahim Salami",
+          roles: "Software Engineer, Meta",
+          image: "/assets/TEST/people-2.png",
+          verified: false,
+          following: false
+        },
+        {
+          id: 2,
+          username: "Dora Palfi",
+          roles: "Founder, ImagiLabs",
+          image: "/assets/TEST/people-3.png",
+          verified: false,
+          following: false
+        },
+        {
+          id: 3,
+          username: "Dev Agrawal",
+          roles: "Senior Software Engineer",
+          image: "/assets/TEST/people-4.png",
+          verified: true,
+          following: false
+        },
+        {
+          id: 4,
+          username: "Melinda Gates",
+          roles: "Jeff Bezos’s Ex-wife",
+          image: "/assets/TEST/people-1.png",
+          verified: false,
+          following: false
+        },
+        {
+          id: 5,
+          username: "Dev Agrawal",
+          roles: "Senior Software Engineer",
+          image: "/assets/TEST/people-4.png",
+          verified: true,
+          following: false
         }
       ]
     }
