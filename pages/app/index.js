@@ -19,6 +19,7 @@ import FeaturedPeople from "../../components/FeaturedPeople";
 import ArrowIcon from "../../components/icons/Arrow";
 import Scrapbookfile from "../scrapbook/Scrapbookfile";
 import { scrapbookService } from "../../server/modules/scrapbook/scrapbook.service";
+import VerifiedIcon from "../../components/icons/VerifiedIcon";
 export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
@@ -153,20 +154,10 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2">
-              <h1 className="font-semibold text-20px text-left mb-2">Featured People</h1>
-              {people.slice(0, 5).map((person, index) => {
-                return (
-                  <FeaturedPeople
-                    key={index}
-                    username={person.username}
-                    userimg={person.image}
-                    headline={person.roles}
-                    verified ={person.verified}
-                    following={person.following}
-                  />
-                );
-              })}
+            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2 ">
+              <h1 className="font-semibold text-20px text-left mb-2 ">Featured People</h1>
+              <FeaturedPeople people=
+              {people}/>
             </div>
           </div>
         )}
@@ -196,20 +187,10 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2">
-              <h1 className="font-semibold text-20px text-left mb-2">Featured People</h1>
-              {people.slice(0, 5).map((person, index) => {
-                return (
-                  <FeaturedPeople
-                    key={index}
-                    username={person.username}
-                    userimg={person.image}
-                    headline={person.roles}
-                    verified ={person.verified}
-                    following={person.following}
-                  />
-                );
-              })}
+            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2 ">
+              <h1 className="font-semibold text-20px text-left mb-2 ">Featured People</h1>
+              <FeaturedPeople people=
+              {people}/>
             </div>
           </div>
         )}
