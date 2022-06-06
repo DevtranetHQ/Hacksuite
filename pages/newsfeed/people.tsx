@@ -4,7 +4,7 @@ import ArrowIcon from "../../components/icons/Arrow";
 import MessageForm from "../../components/MessageForm";
 import { PeopleData } from "../../components/people/PeopleInfo";
 import PersonCard from "../../components/people/PersonCard";
-import LookingForSelectBoxes from "../../components/LookingForSelectBoxes";
+import LookingForSelectBoxes from "../../components/people/LookingFor";
 
 const People = ({ people }) => {
   const verifiedPeopleObj = people.filter(person => person.verified === true);
