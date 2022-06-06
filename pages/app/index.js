@@ -10,7 +10,7 @@ import robotDark from "../../public/assets/dash/robotDark.svg";
 import { withAuth } from "../../server/middlewares/auth.middleware";
 import { profileService } from "./../../server/modules/social/profile.service";
 import Link from "next/link";
-import ProjectGllery from "../project-gallery";
+import ProjectGllery from "../projects";
 import ProjectGalleryProjectCard from "../../components/project/ProjectGalleryProjectCard";
 import ProfileProjectCard from "../../components/project/ProfileProjectCard";
 import Avatar from "../../components/Avatar";
