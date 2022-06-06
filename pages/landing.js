@@ -17,7 +17,7 @@ import peopleImage from "../public/assets/TEST/people.png";
 import ScrapbookCard from "../components/scrapbook/ScrapbookCard";
 import ProjectGalleryProjectCard from "../components/project/ProjectGalleryProjectCard";
 import EventCard from "../components/event/EventCard";
-import LookingForSelectBoxes from "../components/LookingForSelectBoxes";
+import LookingForSelectBoxes from "../components/people/LookingFor";
 
 export default function Landing({ user, projects, events, loggedIn }) {
   return (
