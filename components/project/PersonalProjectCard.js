@@ -6,7 +6,7 @@ import TrashIcon from "../icons/Trash";
 import ViewIcon from "../icons/View";
 
 export default function PersonalProjectCard({ name, description, image, published, date, id }) {
-  const previewRoute = `project/preview/${id}`;
+  const previewRoute = `/project/preview/${id}`;
 
   async function unpublishProject() {
     // TODO: Use id parameter
