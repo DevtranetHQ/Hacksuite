@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FullNav from "../newsfeed/index";
 import ArrowIcon from "../icons/Arrow";
 import MessageForm from "../MessageForm";
@@ -8,29 +8,17 @@ import PeopleSearchPerson from "./PeopleSearchPerson";
 import NotifEmpty from "../NotifEmpty";
 import { SearchContext } from "../SearchContext";
 
-const PeopleSearch = ({people}) => {
+const PeopleSearch = ({people, searchValue}) => {
     const reducedPeopleObj = people.slice(0, 5);
     const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
-    const {searchValue, setSearchValue, setSearchPageIsShowing, searchPageIsShowing} = useContext(SearchContext);
 
-    const [searchResults, setSearchResults] = useState([
-        {
-            id: 1,
-            image: "/assets/TEST/people.png",
-            name: "Belle See",
-            verified: true,
-            roles: "Founder, CommandTech", 
-            followed: false
-          },
-        {
-            id: 2,
-            image: "/assets/TEST/people.png",
-            name: "Belle",
-            verified: true,
-            roles: "Founder, CommandTech", 
-            followed: false
-          },
-    ])
+    const [searchResults, setSearchResults] = useState([]);
+    console.log(people.filter(person => person.name.includes(searchValue)));
+
+    useEffect(() => {
+        const filtered = people.filter(person => person.name.toLowerCase().includes(searchValue.toLowerCase()));
+        setSearchResults(filtered);
+    }, [searchValue])
   
     const handleShowMore = () => {
         setPeopleObj([...peopleObj, ...people.slice(5)]);
@@ -38,7 +26,6 @@ const PeopleSearch = ({people}) => {
 
         return (
             <>
-                    { searchPageIsShowing &&
                         <div>
                         <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px] dark:text-white">{`Search result for "${searchValue}"`}</p>
                         {
@@ -90,7 +77,7 @@ const PeopleSearch = ({people}) => {
                                 </button>}
                             </div>
                         </div>
-                    </div>}
+                    </div>
             </>
         );
 
