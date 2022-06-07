@@ -1,11 +1,16 @@
 import { useState } from "react";
+import VerifiedIcon from "../icons/VerifiedIcon";
+
 
 interface PeopleSearchPersonProps {
     followed?: boolean;
     hasBottomBorder?: boolean;
+    name: string;
+    roles: string;
+    verified: boolean;
 }
 
-const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBottomBorder}) => {
+const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBottomBorder, name, roles, verified}) => {
     const [isFollowing, setIsFollowing] = useState(followed ? followed : false);
     return (
         <div style={{borderBottom : hasBottomBorder ? '1px solid #C9C9C9': '0'}} className="border-t border-[#C9C9C9] py-[28px]">
@@ -16,8 +21,11 @@ const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBo
                             <img className="w-full h-full object-cover" src="/assets/TEST/people.png" />
                         </figure>
                         <div className="flex flex-col">
-                            <p className="text-[36px] leading-[40px] font-semibold">Zach Latta</p>
-                            <p className="text-[#2D2D2D] text-[20px]">Software Engineer, Google</p>
+                            <div className="flex gap-x-2 items-center">
+                                <p className="text-[36px] leading-[40px] font-semibold">{name}</p>
+                                {verified ? <VerifiedIcon className="w-[27px] h-[27px]" /> : null}
+                            </div>
+                            <p className="text-[#2D2D2D] text-[20px]">{roles}</p>
                         </div>
                     </div>
                     {!isFollowing && 
