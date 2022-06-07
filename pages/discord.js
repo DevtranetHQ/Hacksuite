@@ -35,86 +35,84 @@ export default function Discord() {
           </Link>
         </div>
       </nav>
-      <header className="mxs:px-4 mxs:pt-6 mxs:pb-8 bg-[#F8FBFF] container-gray-dark p-5 pt-8  text-center">
-        <div className="mxs:flex mxs:flex-col xs:grid xs:grid-cols-2 ">
-          <div className="mxs:m-0 flex-col items-center justify-center mx-auto my-auto">
-            <Image className="mxs:scale-[0.7]" src={foxImage} />
-            <div className="mxs:-mt-10 flex items-center -mt-5">
-              <Image className="mxs:scale-[1.2]" src={discordLogo} />
-            </div>
-          </div>
-          <div>
-            <div className="mxs:mt-8 mxs:mx-0 flex-col xs:w-[55%] ml-auto xs:mr-20 ">
-              <h1 className="text-28px text-center font-bold xs:text-26px xs:mb-2">
-                JOIN OUR DISCORD
-              </h1>
-              <form className="rounded-3xl mxs:mt-6 mxs:pb-7 mxs:mx-0 lg:pt-4 lg:pb-4 lg:px-12">
-                <div>
-                  <div>
-                    <label
-                      className="font-semibold xs:text-12px md:text-16px xs:font-bold xs:mb-1 flex items-center justify-start"
-                      htmlFor="name">
-                      First name
-                    </label>
-                    <input
-                      className="form-input p-1 mb-2 pl-3"
-                      name="name"
-                      id="name"
-                      type="text"
-                      minLength="6"
-                      maxLength="100"
-                      placeholder="First name"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      className="font-semibold xs:text-12px md:text-16px xs:font-bold xs:mb-1 flex items-center justify-start"
-                      htmlFor="email">
-                      Email address
-                    </label>
-                    <input
-                      className="form-input p-1 mb-2 pl-3"
-                      name="email"
-                      id="email"
-                      type="email"
-                      minLength="6"
-                      maxLength="100"
-                      placeholder="Email address"
-                      required
-                    />
-                  </div>
 
-                  <button
-                    className="w-28 xs:w-36 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded mt-6 h-8 xs:mt-8 xs:h-8 xs:py-1"
-                    type="submit">
-                    Get invite
-                  </button>
-                  <div className="flex justify-between -mx-10 my-1 lg:-mx-12 xs:my-4">
-                    <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
-                    <div className="text-[#595959] dark:text-[#FFFFFF] text-15px md:text-18px mxs:pt-1">
-                      Already a member?
-                    </div>
-                    <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
-                  </div>
-                  <button className="w-52 xs:w-52 py-0 button-small button-deep-sky-blue mx-auto text-15px md:text-16px rounded  h-8  xs:h-8 xs:py-1 gap-x-2 ">
-                    <svg
-                      width="15"
-                      height="15"
-                      viewBox="0 0 26 26"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M11.75 5.91667L10 7.9L13.25 11.5833H0.5V14.4167H13.25L10 18.1L11.75 20.0833L18 13L11.75 5.91667ZM23 22.9167H13V25.75H23C24.375 25.75 25.5 24.475 25.5 22.9167V3.08333C25.5 1.525 24.375 0.25 23 0.25H13V3.08333H23V22.9167Z"
-                        fill="white"
-                      />
-                    </svg>
-                    <span>Sign back in</span>
-                  </button>
-                </div>
-              </form>
-            </div>
+      <header className="flex mxs:flex-col mxs:px-4 mxs:pt-6 mxs:pb-8 pt-10 pb-12 px-0 bg-[#F8FBFF] container-gray-dark text-center">
+        <div className="basis-[40%] lg:basis-[50%] mxs:m-0 flex flex-col items-center justify-center mt-10">
+          <div className="w-full lg:w-[60%] 2xl:w-[40%]">
+            <Image className="mxs:scale-[0.7]" layout="responsive" src={foxImage} />
           </div>
+          <div className="w-full 2xl:w-[60%] mxs:-mt-10">
+            <Image className="mxs:scale-[1.2]" layout="responsive" src={discordLogo} />
+          </div>
+        </div>
+
+        <div className="basis-[60%] lg:basis-[50%] flex flex-col mxs:mt-11">
+          <h1 className="text-28px xs:text-[32px] xs:mb-5 text-center font-bold">
+            JOIN OUR DISCORD
+          </h1>
+          <form className="mx-[10%] xl:mx-[15%] basis-[80%] xl:basis-[70%] text-16px lg:text-[24px] grid grid-cols-1 gap-y-3 xs:gap-y-1 lg:gap-y-3 rounded-3xl mxs:mt-6 mxs:pb-7 mxs:mx-0 p-10 lg:p-12 pb-8">
+            <div>
+              <label
+                className="font-semibold xs:font-bold xs:mb-1 flex items-center justify-start"
+                htmlFor="name">
+                First name
+              </label>
+              <input
+                className="form-input py-2 px-4 mlg:text-16px"
+                name="name"
+                id="name"
+                type="text"
+                minLength="6"
+                maxLength="100"
+                placeholder="First name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                className="font-semibold xs:font-bold xs:mb-1 flex items-center justify-start"
+                htmlFor="email">
+                Email address
+              </label>
+              <input
+                className="form-input py-2 px-4 mlg:text-16px"
+                name="email"
+                id="email"
+                type="email"
+                minLength="6"
+                maxLength="100"
+                placeholder="Email address"
+                required
+              />
+            </div>
+
+            <button
+              className="py-0 px-3 xs:px-6 xs:py-2 button-small button-deep-sky-blue mx-auto text-15px md:text-16px xl:text-20px rounded"
+              type="submit">
+              Get invite
+            </button>
+            <div className="flex justify-between my-1 -mx-10 lg:-mx-12 xs:my-4">
+              <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
+              <div className="text-[#595959] dark:text-[#FFFFFF] text-16px md:text-18px xl:text-[22px] mxs:pt-1">
+                Already a member?
+              </div>
+              <div className="w-1/4 h-4 border-[#A0A0A0] border-b-4"></div>
+            </div>
+            <button className="px-6 py-3 button-small button-deep-sky-blue mx-auto text-15px md:text-16px xl:text-20px rounded gap-x-2">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 26 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11.75 5.91667L10 7.9L13.25 11.5833H0.5V14.4167H13.25L10 18.1L11.75 20.0833L18 13L11.75 5.91667ZM23 22.9167H13V25.75H23C24.375 25.75 25.5 24.475 25.5 22.9167V3.08333C25.5 1.525 24.375 0.25 23 0.25H13V3.08333H23V22.9167Z"
+                  fill="white"
+                />
+              </svg>
+              <span>Sign back in</span>
+            </button>
+          </form>
         </div>
       </header>
       <section className="mxs:px-0 mxs:py-12 flex flex-col p-7 py-14 text-center">
