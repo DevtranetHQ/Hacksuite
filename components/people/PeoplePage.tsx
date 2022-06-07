@@ -2,7 +2,6 @@ import ArrowIcon from "../icons/Arrow";
 import PersonCard from "./PersonCard";
 
 import { useContext, useState } from 'react';
-import { SearchContext } from "../SearchContext";
 
 const PeoplePage = ({people, setShowMessage}) => {
     const verifiedPeopleObj = people.filter(person => person.verified === true);
