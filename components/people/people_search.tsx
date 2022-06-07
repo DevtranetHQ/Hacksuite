@@ -1,12 +1,12 @@
 import { useState } from "react";
-import FullNav from "../../components/newsfeed/index";
-import ArrowIcon from "../../components/icons/Arrow";
-import MessageForm from "../../components/MessageForm";
-import { PeopleData } from "../../components/people/PeopleInfo";
-import PersonCard from "../../components/people/PersonCard";
-import LookingForSelect from "../../components/people/LookingFor";
-import PeopleSearchPerson from "../../components/people/PeopleSearchPerson";
-import NotifEmpty from "../../components/NotifEmpty";
+import FullNav from "../newsfeed/index";
+import ArrowIcon from "../icons/Arrow";
+import MessageForm from "../MessageForm";
+import { PeopleData } from "./PeopleInfo";
+import PersonCard from "./PersonCard";
+import LookingForSelect from "./LookingFor";
+import PeopleSearchPerson from "./PeopleSearchPerson";
+import NotifEmpty from "../NotifEmpty";
 
 const PeopleSearch : React.FC = () => {
     const reducedPeopleObj = PeopleData.slice(0, 5);
@@ -37,12 +37,6 @@ const PeopleSearch : React.FC = () => {
 
     return (
         <>
-            <FullNav />
-            <section className="dark:bg-black pb-[60px]">
-                <div className="bg-[#F8FBFF] dark:bg-[#2D2D2D] w-[100%] text-center flex flex-col items-center justify-center pt-[71px] pb-[83px] rounded-b-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-                <h2 className="text-[90px] text-deep-sky-blue font-bold">Who are you looking for?</h2>
-                <LookingForSelect />
-                </div>
                 <div>
                     <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px] dark:text-white">Search result for "Zach Latta"</p>
                     {
@@ -95,7 +89,6 @@ const PeopleSearch : React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section>
         </>
     );
 }
