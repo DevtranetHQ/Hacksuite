@@ -14,7 +14,7 @@ const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBo
     const [isFollowing, setIsFollowing] = useState(followed ? followed : false);
     return (
         <div style={{borderBottom : hasBottomBorder ? '1px solid #C9C9C9': '0'}} className="border-t border-[#C9C9C9] py-[28px]">
-            <div className="max-w-[950px] mx-auto">
+            <div className="max-w-[980px] mx-auto px-[30px]">
                 <div className="flex justify-between items-center">
                     <div className="flex gap-[18px] items-center">
                         <figure className="w-[80px] h-[83px]">
