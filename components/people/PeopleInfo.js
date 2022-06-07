@@ -13,7 +13,7 @@ export const PeopleData = [
     name: "Agnes M. Reilly",
     verified: false,
     roles: "Founder, CommandTech", 
-    followed: true
+    followed: true,
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const PeopleData = [
     name: "Megan A. Lear",
     verified: false,
     roles: "Founder, CommandTech", 
-    followed: true
+    followed: false,
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ export const PeopleData = [
     name: "Lucas A. Garrison",
     verified: true,
     roles: "Founder, CommandTech", 
-    followed: false
+    followed: true
   },
   {
     id: 9,
