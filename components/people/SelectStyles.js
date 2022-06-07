@@ -26,7 +26,6 @@ export const searchingForStyles = {
     },
     "@media only screen and (max-width: 428px)": {
       padding: "8px 4px",
-      // borderWidth: "2px",
       borderTopLeftRadius: "6px",
       borderBottomLeftRadius: "6px"
     }
