@@ -8,6 +8,13 @@ import LookingForSelect from "../../components/people/LookingFor";
 import PeopleSearchPerson from "../../components/people/PeopleSearchPerson";
 
 const PeopleSearch : React.FC = () => {
+    const reducedPeopleObj = PeopleData.slice(0, 5);
+    const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
+  
+    const handleShowMore = () => {
+        setPeopleObj([...peopleObj, ...PeopleData.slice(5)]);
+      };
+
     return (
         <>
             <FullNav />
@@ -23,7 +30,7 @@ const PeopleSearch : React.FC = () => {
                     <div className="pt-[111px]">
                         <p className="text-[48px] font-semibold text-center mb-[40px] dark:text-white">Featured people</p>
                         {
-                            PeopleData.map(person => (
+                            peopleObj.map(person => (
                                 <PeopleSearchPerson 
                                 key={person.id} 
                                 name={person.name} 
@@ -35,13 +42,15 @@ const PeopleSearch : React.FC = () => {
                             ))
                         }
                         <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[80px] mb-[45px] lg:mb-[64px]">
-                            <button
+                            {peopleObj.length <= 6 &&
+                                <button
+                                onClick={handleShowMore}
                                 className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
                                 <span>View more</span>
                                 <div className="lg:scale-[2] relative lg:top-1">
                                 <ArrowIcon />
                                 </div>
-                            </button>
+                            </button>}
                         </div>
                     </div>
                 </div>
