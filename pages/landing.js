@@ -225,12 +225,11 @@ export default function Landing({ user, projects, events, loggedIn }) {
           </p>
         </div>
         <div className="mt-9 py-20 rounded-bl-[20px] rounded-br-[20px] bg-[#F8FBFF] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          <p className="text-[90px] text-[#03A9F4] text-center font-bold">
+          <p className="text-[36px] sm:text-[48px] md:text-[58px] lg:text-[80px] xl:text-[90px] text-[#03A9F4] text-center font-bold mb-12">
             Who are you looking for?
           </p>
-          <div className="flex justify-center items-end">
-            <LookingForSelect />
-          </div>
+
+          <LookingForSelect />
         </div>
       </div>
 
