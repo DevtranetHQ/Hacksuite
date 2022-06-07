@@ -17,11 +17,11 @@ const PeopleSearch : React.FC = () => {
                 <LookingForSelect />
                 </div>
                 <div>
-                    <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px]">Search result for "Zach Latta"</p>
+                    <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px] dark:text-white">Search result for "Zach Latta"</p>
                     <p className="text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">1 result</p>
                     <PeopleSearchPerson verified={true} name="Belle See" followed={false} roles="Senior Software engineer" hasBottomBorder={true}/>
                     <div className="pt-[111px]">
-                        <p className="text-[48px] font-semibold text-center mb-[40px]">Featured people</p>
+                        <p className="text-[48px] font-semibold text-center mb-[40px] dark:text-white">Featured people</p>
                         {
                             PeopleData.map(person => (
                                 <PeopleSearchPerson 

@@ -22,14 +22,14 @@ const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBo
                         </figure>
                         <div className="flex flex-col">
                             <div className="flex gap-x-2 items-center">
-                                <p className="text-[36px] leading-[40px] font-semibold">{name}</p>
+                                <p className="text-[36px] dark:text-white leading-[40px] font-semibold">{name}</p>
                                 {verified ? <VerifiedIcon className="w-[27px] h-[27px]" /> : null}
                             </div>
-                            <p className="text-[#2D2D2D] text-[20px]">{roles}</p>
+                            <p className="text-[#2D2D2D] dark:text-[#A5A5A5] text-[20px]">{roles}</p>
                         </div>
                     </div>
                     {!isFollowing && 
-                    <button onClick={() => setIsFollowing(!isFollowing)} className="h-[52px] px-[30px] text-[24px] border border-[#C9C9C9] rounded-[10px]">
+                    <button onClick={() => setIsFollowing(!isFollowing)} className="dark:text-white h-[52px] px-[30px] text-[24px] border border-[#C9C9C9] rounded-[10px]">
                         Follow
                     </button>}
                     {
