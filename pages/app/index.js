@@ -41,7 +41,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
           <DashHeader />
         </div>
         <div className="mxs:hidden flex items-center pb-5 fixed right-0 z-40  justify-center top-0 pt-10 w-full bg-white dark:bg-dark mx-auto">
-          <div className="relative flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-8 lg:space-x-12 xl:space-x-16 xs:text-8px sm:text-10px text-12px md:text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 lg:mr-12 xl:mr-16">
+          <div className="relative flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-6 lg:space-x-12 xl:space-x-16 xs:text-8px sm:text-10px text-12px md:text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 lg:mr-12 xl:mr-16">
             <p
               className={
                 openTab === 1
@@ -94,10 +94,10 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
             </p>
           </div>
           <form className="bg-transparent flex items-center  dark:bg-transparent text-white dark:bg-white p-0 relative rounded-md  border-[#03A9F4] border-[3px] mx-2">
-            <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
+            <div className="absolute md:pl-2 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-3 w-3 md:h-5 md:w-5 text-[#7D7D7D] flex items-center dark:text-white"
+                className="h-3 w-3 md:h-4 md:w-4 text-[#7D7D7D] flex items-center dark:text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -112,7 +112,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
             <input
               type="text"
               placeholder="I’m looking for..."
-              className="flex md:pl-10 pl-8 dark:bg-transparent rounded-lg  border-none p-0 m-0 py-1 text-8px sm:text-8px xs:text-8px  md:text-10px lg:text-14px xl:text-20px 2xl:text-24px dark:text-white text-black dark:placeholder:text-white outline-none "
+              className="flex  pl-8 md:pl-8 dark:bg-transparent rounded-lg  border-none p-0 m-0 py-1 text-8px sm:text-8px xs:text-8px  md:text-12px lg:text-14px xl:text-20px 2xl:text-24px dark:text-white text-black dark:placeholder:text-white outline-none "
             />
           </form>
           <div className=" pr-5">
@@ -139,8 +139,8 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
         <div className=""></div>
         <div className=""></div>
         {openTab === 1 && (
-          <div className="mt-20 text-center grid grid-cols-3 pl-24">
-            <div className="col-span-2 text-left">
+          <div className="mt-20 text-center grid md:grid-cols-2 lg:grid-cols-3 pl-20">
+            <div className="lg:col-span-2 text-left">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
                   <ScrapbookCard
@@ -154,10 +154,11 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2 ">
-              <h1 className="font-semibold text-20px text-left mb-2 ">Featured People</h1>
-              <FeaturedPeople people=
-              {people}/>
+            <div className="h-screen fixed right-0 lg:w-[27.6%] top-26 -mt-2 lg:col-span-1">
+              <h1 className="font-semibold text-20px lg:text-16px xl:text-20px 2xl:text-22px text-left mb-2 ">
+                Featured People
+              </h1>
+              <FeaturedPeople people={people} />
             </div>
           </div>
         )}
@@ -169,7 +170,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
 
         {openTab === 2 && (
           <div className="mt-20 text-center grid grid-cols-3 pl-24">
-            <div className="col-span-2 text-left">
+            <div className="lg:col-span-2 text-left">
               {projects.map((project, index) => {
                 return (
                   <ProfileProjectCard
@@ -187,10 +188,11 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 w-[26.6%] dark:w-[27%] top-26 -mt-2 ">
-              <h1 className="font-semibold text-20px text-left mb-2 ">Featured People</h1>
-              <FeaturedPeople people=
-              {people}/>
+            <div className="h-screen fixed right-0 lg:w-[27.6%] top-26 -mt-2 lg:col-span-1">
+              <h1 className="font-semibold text-20px lg:text-16px xl:text-20px 2xl:text-22px text-left mb-2 ">
+                Featured People
+              </h1>
+              <FeaturedPeople people={people} />
             </div>
           </div>
         )}
