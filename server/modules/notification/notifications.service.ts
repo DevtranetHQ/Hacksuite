@@ -6,6 +6,8 @@ import {
   NotificationTypeModel
 } from "./notification-type.model";
 import { UserId } from "../auth/user.model";
+import { emailService } from "./email/email.service";
+import { profileService } from "../social/profile.service";
 
 class NotificationService {
   async getNotificationTypes(): Promise<INotificationType[]> {
@@ -77,6 +79,11 @@ class NotificationService {
       read: false,
       createdAt: new Date()
     });
+
+    // TODO: Implement a function to check is user wants email notification
+    const profile = await profileService.getCompletedProfile(data.for);
+
+    await emailService.sendEmailNotification(profile.email, newNotification);
 
     await pushService.sendPushNotification(newNotification);
 

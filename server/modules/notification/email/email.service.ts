@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-export class EmailService {
+class EmailService {
   async sendEmailNotification(email: string, notification: INotification) {
     const mailOptions = {
       from: `${APP_NAME} <${mailer.USER}>`,
@@ -25,3 +25,5 @@ export class EmailService {
     return transporter.sendMail(mailOptions);
   }
 }
+
+export const emailService = new EmailService();
