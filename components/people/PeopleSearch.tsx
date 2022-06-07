@@ -6,7 +6,6 @@ import PersonCard from "./PersonCard";
 import LookingForSelect from "./LookingFor";
 import PeopleSearchPerson from "./PeopleSearchPerson";
 import NotifEmpty from "../NotifEmpty";
-import { SearchContext } from "../SearchContext";
 
 const PeopleSearch = ({people, searchValue}) => {
     const reducedPeopleObj = people.slice(0, 5);
