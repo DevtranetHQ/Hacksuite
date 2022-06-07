@@ -12,7 +12,7 @@ export default function Events({ events, loggedIn }) {
     <div className="dark:bg-[#202020] dark:text-white">
       <PhotoGalleryHeader
         title="The Dynamics Events"
-        navText={<>{loggedIn ? "Go back home" : "Join us"}</>}
+        navText={loggedIn ? "Go back home" : "Join us"}
         contentText={
           <>
             <p className="text-[16px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
