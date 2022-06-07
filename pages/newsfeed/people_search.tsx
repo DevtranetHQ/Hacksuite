@@ -6,10 +6,30 @@ import { PeopleData } from "../../components/people/PeopleInfo";
 import PersonCard from "../../components/people/PersonCard";
 import LookingForSelect from "../../components/people/LookingFor";
 import PeopleSearchPerson from "../../components/people/PeopleSearchPerson";
+import NotifEmpty from "../../components/NotifEmpty";
 
 const PeopleSearch : React.FC = () => {
     const reducedPeopleObj = PeopleData.slice(0, 5);
     const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
+
+    const [searchResults, setSearchResults] = useState([
+        {
+            id: 1,
+            image: "/assets/TEST/people.png",
+            name: "Belle See",
+            verified: true,
+            roles: "Founder, CommandTech", 
+            followed: false
+          },
+        {
+            id: 1,
+            image: "/assets/TEST/people.png",
+            name: "Belle",
+            verified: true,
+            roles: "Founder, CommandTech", 
+            followed: false
+          },
+    ])
   
     const handleShowMore = () => {
         setPeopleObj([...peopleObj, ...PeopleData.slice(5)]);
@@ -25,8 +45,27 @@ const PeopleSearch : React.FC = () => {
                 </div>
                 <div>
                     <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px] dark:text-white">Search result for "Zach Latta"</p>
-                    <p className="text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">1 result</p>
-                    <PeopleSearchPerson verified={true} name="Belle See" followed={false} roles="Senior Software engineer" hasBottomBorder={true}/>
+                    {
+                        searchResults.length && 
+                        <>
+                            <p className="text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">{`${searchResults.length} result${searchResults.length > 0 ? 's' : ''}`}</p>
+                            {   searchResults.map(personResult => (
+                                <PeopleSearchPerson 
+                                key={personResult.id}
+                                verified={personResult.verified} 
+                                name={personResult.name} 
+                                followed={personResult.followed} 
+                                roles={personResult.roles} 
+                                hasBottomBorder={searchResults.indexOf(personResult) + 1 == searchResults.length}
+                                />
+                            ))
+                            }
+                        </>
+                    }
+                    {
+                        !searchResults.length &&
+                            <NotifEmpty />
+                    }
                     <div className="pt-[111px]">
                         <p className="text-[48px] font-semibold text-center mb-[40px] dark:text-white">Featured people</p>
                         {
