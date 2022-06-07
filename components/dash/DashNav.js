@@ -11,9 +11,9 @@ export default function DashNav({ admin = false }) {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-    <nav className="border-r-2 min-h-screen container-gray-dark dark:text-white dark:border-r-0 pr-10 pl-10 z-20  flex-col justify-center fixed top-0 left-0 mx-auto right-auto">
+    <nav className="border-r-[1px] md:border-r-[1.5px] lg:border-r-2 dark:text-white dark:border-r-0 min-h-screen container-gray-dark  flex-col justify-center px-4 sm:px-5 md:px-7 lg:px-10 z-20 fixed top-0 left-0 mx-auto right-auto ">
       <Logo
-        className="mx-auto pt-2 md:pt-5 w-[50px] sm:w-[80px] md:w-[100px]"
+        className="mx-auto pt-5 w-[50px] xs:w-[40px] sm:w-[56px] md:w-[72px] lg:w-[100px]"
         darkMode={darkMode}
       />
       <div className={styles.nav}>
@@ -25,9 +25,9 @@ export default function DashNav({ admin = false }) {
                 : "cursor-pointer hover:text-orange-peel transition flex items-end"
             }>
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
-              height="40"
+              height="25"
               viewBox="0 0 41 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +47,7 @@ export default function DashNav({ admin = false }) {
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
               height="25"
               viewBox="0 0 39 37"
@@ -72,7 +72,7 @@ export default function DashNav({ admin = false }) {
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  className="w-[8px] sm:w-[12px] md:w-[25px]"
+                  className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
                   width="25"
                   height="25"
                   viewBox="0 0 35 38"
@@ -94,7 +94,7 @@ export default function DashNav({ admin = false }) {
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  className="w-[8px] sm:w-[12px] md:w-[25px]"
+                  className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
                   width="25"
                   height="25"
                   viewBox="0 0 42 34"
@@ -116,7 +116,7 @@ export default function DashNav({ admin = false }) {
                     : "cursor-pointer hover:text-orange-peel transition flex items-center"
                 }>
                 <svg
-                  className="w-[8px] sm:w-[12px] md:w-[25px]"
+                  className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
                   width="25"
                   height="25"
                   viewBox="0 0 43 40"
@@ -140,7 +140,7 @@ export default function DashNav({ admin = false }) {
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
               height="25"
               viewBox="0 0 40 43"
@@ -162,7 +162,7 @@ export default function DashNav({ admin = false }) {
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
               height="25"
               viewBox="0 0 37 41"
@@ -185,7 +185,7 @@ export default function DashNav({ admin = false }) {
                   : "cursor-pointer hover:text-orange-peel transition flex items-center"
               }>
               <svg
-                className="w-[8px] sm:w-[12px] md:w-[25px]"
+                className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
                 width="25"
                 height="25"
                 viewBox="0 0 41 46"
@@ -208,7 +208,7 @@ export default function DashNav({ admin = false }) {
                 : "cursor-pointer hover:text-orange-peel transition flex items-center"
             }>
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
               height="25"
               viewBox="0 0 39 41"
@@ -225,7 +225,7 @@ export default function DashNav({ admin = false }) {
         <Link href="/logout">
           <div className="cursor-pointer hover:text-orange-peel transition flex items-center">
             <svg
-              className="w-[8px] sm:w-[12px] md:w-[25px]"
+              className="w-[8px] sm:w-[12px] md:w-[16px] lg:w-[25px]"
               width="25"
               height="25"
               viewBox="0 0 37 41"
