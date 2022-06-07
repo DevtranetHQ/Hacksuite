@@ -51,6 +51,7 @@ const PeopleSearch : React.FC = () => {
                             <p className="text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">{`${searchResults.length} result${searchResults.length > 0 ? 's' : ''}`}</p>
                             {   searchResults.map(personResult => (
                                 <PeopleSearchPerson 
+                                image={personResult.image}
                                 key={personResult.id}
                                 verified={personResult.verified} 
                                 name={personResult.name} 
@@ -71,6 +72,7 @@ const PeopleSearch : React.FC = () => {
                         {
                             peopleObj.map(person => (
                                 <PeopleSearchPerson 
+                                image={person.image}
                                 key={person.id} 
                                 name={person.name} 
                                 verified={person.verified} 

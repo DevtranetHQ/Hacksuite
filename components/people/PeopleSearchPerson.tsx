@@ -8,9 +8,10 @@ interface PeopleSearchPersonProps {
     name: string;
     roles: string;
     verified: boolean;
+    image: string;
 }
 
-const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBottomBorder, name, roles, verified}) => {
+const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBottomBorder, name, roles, verified, image}) => {
     const [isFollowing, setIsFollowing] = useState(followed ? followed : false);
     return (
         <div style={{borderBottom : hasBottomBorder ? '1px solid #C9C9C9': '0'}} className="border-t border-[#C9C9C9] py-[28px]">
@@ -18,7 +19,7 @@ const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBo
                 <div className="flex justify-between items-center">
                     <div className="flex gap-[18px] items-center">
                         <figure className="w-[80px] h-[83px]">
-                            <img className="w-full h-full object-cover" src="/assets/TEST/people.png" />
+                            <img className="w-full h-full object-cover" src={image} />
                         </figure>
                         <div className="flex flex-col">
                             <div className="flex gap-x-2 items-center">
