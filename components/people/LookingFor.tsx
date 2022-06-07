@@ -37,7 +37,7 @@ const LookingForSelect: React.FC = () => {
             components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
             placeholder="Full-time Job, Investing"
           />
-          <Link href="">
+          <Link href="#">
             <div className="cursor-pointer flex items-center px-2 xs:px-4 xl:px-6 bg-[#03A9F4] rounded-br-[6px] xs:rounded-br-[8px] xl:rounded-br-[10px] rounded-tr-[6px] xs:rounded-tr-[8px] xl:rounded-tr-[10px]">
               <SearchPeopleIcon />
             </div>
