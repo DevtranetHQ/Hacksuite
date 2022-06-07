@@ -22,7 +22,7 @@ export default function Workshop({ user, project }) {
             <div className="absolute md:pl-3 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none md:w-full w-2/4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-black flex items-center dark:text-white"
+                className="h-3 w-3 xs:h-4 xs:w-4 md:h-7 md:w-7 text-black flex items-center dark:text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -37,7 +37,7 @@ export default function Workshop({ user, project }) {
             <input
               type="text"
               placeholder="I’m looking for..."
-              className=" block w-full md:pl-10 pl-8  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-2 dark:text-white text-black"
+              className=" block w-full md:pl-12 pl-5 xs:pl-7  dark:bg-transparent rounded-lg form-input border-none p-0 m-0 md:py-2 dark:text-white text-black text-12px xs:text-16px md:text-22px"
             />
           </div>
         </form>
@@ -53,8 +53,8 @@ export default function Workshop({ user, project }) {
           </a>
         </div>
       </nav>
-      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center md:mb-20 mb-10">
-        <h1 className="text-[30px] font-bold lg:title md:text-[65px] lg:text-[90px] text-deep-sky-blue">
+      <header className="bg-[#F8FBFF] container-gray-dark border-b-4 dark:border-gray-dark py-14 px-6 xs:p-14 rounded-b-2xl text-center md:mb-10 lg:mb-16 mb-10">
+        <h1 className="text-[30px] font-bold lg:title xs:text-24px sm:text-42px md:text-[50px] lg:text-[90px] text-deep-sky-blue">
           The Dynamics Workshops
         </h1>
         <h2 className="text-[18px] md:text-[28px] lg:lead mb-2 w-full mt-[16px] md:mt-[36px] md:mb-[28px] lg:text-[21px] xl:text-[26px] 2xl:text-[30px]">
@@ -63,21 +63,21 @@ export default function Workshop({ user, project }) {
         </h2>
         <div className="inline-flex my-2 gap-x-3  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
           <Link href="/events">
-            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[12px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+            <button className="text-white font-bold rounded-md bg-[#4CB050] py-[15px] text-[12px] xs:text-14px md:text-22px sm:text-18px px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px] inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
               Attend a workshop
             </button>
           </Link>
 
-          <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[12px] px-[15px] lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
+          <a className="text-white font-bold rounded-md bg-[#03A9F4] py-[15px] text-[12px] px-[15px] xs:text-14px md:text-22px sm:text-18px lg:px-[70px] lg:py-[10px] lg:text-[30px]  inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none">
             Add your workshop
           </a>
         </div>
       </header>
-      <h1 className="text-center mx-auto flex md:gap-x-5 gap-x-5 items-center md:headline font-semibold text-22px justify-center">
+      <h1 className="text-center mx-auto flex md:gap-x-5 gap-x-5 items-center  font-semibold text-22px xs:text-28px md:text-36px lg:text-48px justify-center">
         <svg
           width="84"
           height="78"
-          className="md:h-14 md:w-14 h-7 w-7"
+          className="md:h-14 md:w-14 h-7 w-7 xs:h-10 xs:w-10"
           viewBox="0 0 104 98"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -88,17 +88,17 @@ export default function Workshop({ user, project }) {
         </svg>
         Design your adventure...
       </h1>
-      <hr className="md:mt-20 mt-10 border-t-[1.4px] border-solid border-[#C9C9C9]" />
+      <hr className="md:mt-10 lg:mt-16 mt-10 border-t-[1.4px] border-solid border-[#C9C9C9]" />
       <div className="mt-10">
         <div className="mb-20">
           {user.projects.filter(tag => tag.tags.includes("React")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+            <span className="font-semibold xs:text-28px md:text-30px text-20px md:pl-10 pl-5">
               React workshops
             </span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
+          <div className="grid md:gap-10 gap-5 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("React"))
@@ -127,11 +127,11 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("Python")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+            <span className="font-semibold xs:text-28px md:text-30px text-20px md:pl-10 pl-5">
               Python workshops
             </span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
+          <div className="grid md:gap-10 gap-5 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("Python"))
@@ -160,11 +160,11 @@ export default function Workshop({ user, project }) {
           {user.projects.filter(tag => tag.tags.includes("C++")).length === 0 ? (
             " "
           ) : (
-            <span className="font-semibold md:text-30px text-20px md:pl-10 pl-5">
+            <span className="font-semibold xs:text-28px md:text-30px text-20px md:pl-10 pl-5">
               C++ workshops
             </span>
           )}
-          <div className="grid gap-10 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
+          <div className="grid md:gap-10 gap-5 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 content-center justify-center mt-5  md:px-[32px] px-5">
             {user &&
               user.projects
                 .filter(tag => tag.tags.includes("C++"))
@@ -191,9 +191,9 @@ export default function Workshop({ user, project }) {
         </div>
       </div>
       <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[167px] mb-[45px] lg:mb-[90px]">
-        <button className="text-white text-[16px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
+        <button className="text-white text-[20px] lg:text-[48px] py-[13px] lg:py-[48px] px-[17px] lg:px-[44px] font-bold rounded-lg lg:rounded-[15px] bg-[#03a9f4] lg:button-big button-deep-sky-blue inline-flex items-center gap-x-3 lg:gap-x-[48px]">
           <span>View more workshops</span>
-          <div className="lg:scale-[2] relative lg:top-1">
+          <div className="lg:scale-[2] relative md:pt-1 lg:pt-0 lg:top-1">
             <ArrowIcon />
           </div>
         </button>
