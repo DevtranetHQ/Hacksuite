@@ -33,12 +33,12 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 Scrapbook
               </p>
             </Link>
-            <Link href="/project-gallery">
+            <Link href="/projects">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/newsfeed/people">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
@@ -48,7 +48,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 Events
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/newsfeed/jobs">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
@@ -225,12 +225,11 @@ export default function Landing({ user, projects, events, loggedIn }) {
           </p>
         </div>
         <div className="mt-9 py-20 rounded-bl-[20px] rounded-br-[20px] bg-[#F8FBFF] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          <p className="text-[90px] text-[#03A9F4] text-center font-bold">
+          <p className="text-[36px] sm:text-[48px] md:text-[58px] lg:text-[80px] xl:text-[90px] text-[#03A9F4] text-center font-bold mb-12">
             Who are you looking for?
           </p>
-          <div className="flex justify-center items-end">
-            <LookingForSelect />
-          </div>
+
+          <LookingForSelect />
         </div>
       </div>
 
