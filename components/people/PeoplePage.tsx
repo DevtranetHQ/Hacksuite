@@ -16,12 +16,8 @@ const PeoplePage = ({people, setShowMessage}) => {
         setPeopleObj([...verifiedPeopleObj, ...unVerifiedPeopleObj]);
       };
 
-    const {searchValue, setSearchValue, setSearchPageIsShowing, searchPageIsShowing} = useContext(SearchContext);
-
     return (
         <>
-            {
-                !searchPageIsShowing &&
                 <div className="mt-20 w-[70%] mx-auto grid mb-10">
                 <h1 className="text-center dark:text-white lg:text-[40px] xl:text-[48px] font-semibold">
                 Featured people
@@ -54,7 +50,7 @@ const PeoplePage = ({people, setShowMessage}) => {
                     </button>
                 </div>
                 ) : null}
-            </div>}
+            </div>
         </>
         );
 
