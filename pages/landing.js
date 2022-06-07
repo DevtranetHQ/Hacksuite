@@ -33,12 +33,12 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 Scrapbook
               </p>
             </Link>
-            <Link href="/project-gallery">
+            <Link href="/projects">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Projects
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/newsfeed/people">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 People
               </p>
@@ -48,7 +48,7 @@ export default function Landing({ user, projects, events, loggedIn }) {
                 Events
               </p>
             </Link>
-            <Link href="#">
+            <Link href="/newsfeed/jobs">
               <p className="text-10px text-[#7D7D7D] text-[5.8px] sm:text-10px md:text-12px lg:text-18px xl:text-22px 2xl:text-24px cursor-pointer hover:text-[#ff9700]">
                 Jobs
               </p>
