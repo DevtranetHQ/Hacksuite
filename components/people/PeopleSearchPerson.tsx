@@ -1,9 +1,14 @@
 import { useState } from "react";
 
-const PeopleSearchPerson : React.FC = () => {
-    const [isFollowing, setIsFollowing] = useState(false);
+interface PeopleSearchPersonProps {
+    followed?: boolean;
+    hasBottomBorder?: boolean;
+}
+
+const PeopleSearchPerson : React.FC<PeopleSearchPersonProps> = ({followed, hasBottomBorder}) => {
+    const [isFollowing, setIsFollowing] = useState(followed ? followed : false);
     return (
-        <div className="border-t border-b border-[#C9C9C9] py-[28px]">
+        <div style={{borderBottom : hasBottomBorder ? '1px solid #C9C9C9': '0'}} className="border-t border-[#C9C9C9] py-[28px]">
             <div className="max-w-[950px] mx-auto">
                 <div className="flex justify-between items-center">
                     <div className="flex gap-[18px] items-center">
