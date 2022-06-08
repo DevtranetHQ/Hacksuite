@@ -1,11 +1,8 @@
 import Select from "react-select";
-import Link from "next/link";
-import MessageForm from "../MessageForm";
 import SearchPeopleIcon from "../icons/SearchPeopleIcon";
 import { searchingForStyles, availableForStyles } from "./SelectStyles";
 import { availableFor } from "../../enums/availableFor";
 import { describes } from "../../enums";
-import { Dispatch, SetStateAction } from "react";
 
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
