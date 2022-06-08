@@ -19,7 +19,7 @@ const PeopleSearch = ({people, searchValue}) => {
     }, [searchValue])
   
     const handleShowMore = () => {
-        setPeopleObj([...peopleObj, ...people.slice(5)]);
+        setPeopleObj(people);
       };
 
         return (
