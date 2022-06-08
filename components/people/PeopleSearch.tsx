@@ -1,9 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import FullNav from "../newsfeed/index";
+import { useEffect, useState } from "react";
 import ArrowIcon from "../icons/Arrow";
-import MessageForm from "../MessageForm";
-import PersonCard from "./PersonCard";
-import LookingForSelect from "./LookingFor";
 import PeopleSearchPerson from "./PeopleSearchPerson";
 import NotifEmpty from "../NotifEmpty";
 

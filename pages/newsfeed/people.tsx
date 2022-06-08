@@ -1,9 +1,7 @@
 import { useState } from "react";
 import FullNav from "../../components/newsfeed/index";
-import ArrowIcon from "../../components/icons/Arrow";
 import MessageForm from "../../components/MessageForm";
 import { PeopleData } from "../../components/people/PeopleInfo";
-import PersonCard from "../../components/people/PersonCard";
 import LookingForSelect from "../../components/people/LookingFor";
 import PeoplePage from "../../components/people/PeoplePage";
 import PeopleSearch from "../../components/people/PeopleSearch";
