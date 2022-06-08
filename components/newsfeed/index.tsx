@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Logo from "../../components/Logo";
-import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../Logo";
+import DarkModeToggle from "../DarkModeToggle";
 import Link from "next/link";
 import HomeIcon from "../icons/HomeIcon";
 import { useState } from "react";
@@ -63,7 +63,11 @@ export const TopNav = ({ setSearchValue, setSearchPageIsShowing }) => {
   );
 };
 
-const FullNav = ({ setSearchValue, setSearchPageIsShowing }) => {
+interface FullNavProps {
+  setSearchValue?: any;
+  setSearchPageIsShowing?: any;
+}
+const FullNav : React.FC<FullNavProps> = ({ setSearchValue, setSearchPageIsShowing }) => {
   const { pathname } = useRouter();
   return (
     <div className="dark:bg-[#202020] dark:text-white pb-10">
