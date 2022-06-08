@@ -9,35 +9,38 @@ const describeOpts = describes.map(describe => ({ value: describe, label: descri
 
 const LookingForSelect: React.FC = () => {
   return (
-    <div className="flex mt-10">
-      <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-        <label htmlFor="search" className="ml-3 text-[1.3rem] dark:text-white">
-          Searching for{" "}
-        </label>
-        <Select
-          options={describeOpts}
-          styles={searchingForStyles}
-          components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
-          placeholder="Developers, Angel Investors"
-        />
-      </div>
-      <span className="w-[.7rem] bg-orange-peel h-[49.4px] self-end"></span>
-
-      <div className="flex flex-col items-start gap-y-[.2rem] w-[16rem]">
-        <label htmlFor="available" className="ml-3 text-[1.3rem] dark:text-white">
-          Available for
-        </label>
-        <Select
-          options={availableForOpts}
-          styles={availableForStyles}
-          components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
-          placeholder="Full-time Job, Investing"
-        />
+    <div className="flex justify-center items-end w-full ml-[1%] text-16px lg:text-18px xl:text-22px 2xl:text-24px">
+      <div className="basis-[42%] md:basis-[28%] lg:basis-[23%] 2xl:basis-[18%]">
+        <p className=" pl-4 mb-3 font-semibold">Searching for</p>
+        <div className="flex">
+          <Select
+            className="basis-full "
+            options={describeOpts}
+            styles={searchingForStyles}
+            components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
+            placeholder="Developers, Angel Investors"
+          />
+          <div className="bg-[#FF9700] w-2 xs:w-3"></div>
+        </div>
       </div>
 
-      <button className="bg-deep-sky-blue h-[49.47px] self-end px-3 rounded-r">
-        <SearchPeopleIcon className="w-[1.5rem] h-[1.5rem]" />
-      </button>
+      <div className="basis-[54%] md:basis-[34%] lg:basis-[28%] 2xl:basis-[22%]">
+        <p className=" pl-4 mb-3 font-semibold">Available for</p>
+        <div className="flex">
+          <Select
+            className="basis-full "
+            options={availableForOpts}
+            styles={availableForStyles}
+            components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
+            placeholder="Full-time Job, Investing"
+          />
+          <Link href="#">
+            <div className="cursor-pointer flex items-center px-2 xs:px-4 xl:px-6 bg-[#03A9F4] rounded-br-[6px] xs:rounded-br-[8px] xl:rounded-br-[10px] rounded-tr-[6px] xs:rounded-tr-[8px] xl:rounded-tr-[10px]">
+              <SearchPeopleIcon />
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
