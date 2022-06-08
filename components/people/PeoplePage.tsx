@@ -17,12 +17,12 @@ const PeoplePage = ({ people, setShowMessage }) => {
 
   return (
     <>
-      <div className="mt-20 w-[70%] mx-auto grid mb-10">
+      <div className="mt-20 max-w-[980px] mx-auto grid mb-[25px] md:mb-10">
         <h1 className="text-center dark:text-white text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold">
           Featured people
         </h1>
 
-        <div className="grid grid-cols-3 justify-items-center mt-12 gap-y-[111px] lg:gap-x-[60px] xl:gap-x-[80px]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 justify-items-center mt-12 gap-y-[50px] sm:gap-y-[111px] md:gap-x-[60px] xl:gap-x-[80px]">
           {peopleObj.map(person => {
             return (
               <PersonCard
