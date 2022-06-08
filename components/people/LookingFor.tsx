@@ -1,5 +1,6 @@
 import Select from "react-select";
 import SearchPeopleIcon from "../icons/SearchPeopleIcon";
+import Link from 'next/link';
 import { searchingForStyles, availableForStyles } from "./SelectStyles";
 import { availableFor } from "../../enums/availableFor";
 import { describes } from "../../enums";
