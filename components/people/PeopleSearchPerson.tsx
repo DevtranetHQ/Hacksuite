@@ -47,7 +47,7 @@ const PeopleSearchPerson: React.FC<PeopleSearchPersonProps> = ({
           {isFollowing && (
             <button
               onClick={() => setIsFollowing(!isFollowing)}
-              className="relative left-[24px] h-[40px] sm:h-[52px] bg-[#03A9F4] text-white px-[16px] sm:px-[30px] text-[16px] xs:text-[18px] sm:text-[24px] border-[#C9C9C9] rounded-[10px]">
+              className="relative left-[16px] xs:left-[19px] sm:left-[24px] h-[40px] sm:h-[52px] bg-[#03A9F4] text-white px-[16px] sm:px-[30px] text-[16px] xs:text-[18px] sm:text-[24px] border-[#C9C9C9] rounded-[10px]">
               Unfollow
             </button>
           )}

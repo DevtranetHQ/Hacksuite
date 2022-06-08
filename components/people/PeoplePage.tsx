@@ -17,7 +17,7 @@ const PeoplePage = ({ people, setShowMessage }) => {
 
   return (
     <>
-      <div className="mt-20 max-w-[980px] mx-auto grid mb-[25px] md:mb-10">
+      <div className="pt-[40px] xs:pt-[50px] sm:pt-[80px] md:max-w-[700px] lg:max-w-[980px] mx-auto grid mb-[25px] md:mb-10">
         <h1 className="text-center dark:text-white text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold">
           Featured people
         </h1>

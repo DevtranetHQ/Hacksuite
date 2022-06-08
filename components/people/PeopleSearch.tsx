@@ -23,10 +23,10 @@ const PeopleSearch = ({ people, searchValue }) => {
   return (
     <>
       <div>
-        <p className="text-[48px] font-semibold text-center mt-[92px] mb-[31px] dark:text-white">{`Search result for "${searchValue}"`}</p>
+        <p className="text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold text-center mt-[40px] xs:mt-[50px] sm:mt-[80px] md:mt-[92px] mb-[15px] xs:mb-[20px] md:mb-[31px] dark:text-white">{`Search results for "${searchValue}"`}</p>
         {searchResults.length && (
           <>
-            <p className="text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">{`${
+            <p className="text-[20px] xs:text-[26px] sm:text-[36px] text-[#A5A5A5] font-normal text-center mb-[30px]">{`${
               searchResults.length
             } result${searchResults.length > 0 ? "s" : ""}`}</p>
             {searchResults.map(personResult => (
@@ -43,8 +43,8 @@ const PeopleSearch = ({ people, searchValue }) => {
           </>
         )}
         {!searchResults.length && <NotifEmpty />}
-        <div className="pt-[111px]">
-          <p className="text-center dark:text-white text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold">
+        <div className="pt-[40px] xs:pt-[50px] sm:pt-[80px] md:pt-[111px]">
+          <p className="text-center mb-[31px] dark:text-white text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold">
             Featured people
           </p>
           {peopleObj.map(person => (
@@ -55,7 +55,7 @@ const PeopleSearch = ({ people, searchValue }) => {
               verified={person.verified}
               roles={person.roles}
               followed={person.followed}
-              hasBottomBorder={people.indexOf(person) + 1 == people.length}
+              hasBottomBorder={peopleObj.indexOf(person) + 1 == peopleObj.length}
             />
           ))}
           <div className="w-full flex justify-center items-center mt-[70px] lg:mt-[80px] mb-[45px] lg:mb-[64px]">
