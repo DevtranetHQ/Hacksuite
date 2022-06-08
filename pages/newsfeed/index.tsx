@@ -3,7 +3,7 @@ import FullNav from "../../components/newsfeed/index";
 const Scrapbook = () => {
   return (
     <>
-      <FullNav />
+      <FullNav setSearchPageIsShowing={null} setSearchValue={null} />
       <p>Scrapbook</p>
     </>
   );
