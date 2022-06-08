@@ -43,7 +43,6 @@ export interface IProfile {
   isCompleted: boolean;
 
   discordUsername?: string;
-  emailNotification?: boolean; //If the user wants email notification
 }
 
 export interface IProfileVirtuals {
