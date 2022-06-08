@@ -112,7 +112,7 @@ export function AddToCalendar({ event }) {
   return (
     <>
       <button
-        className="md:button-big xs:button-medium button-small button-deep-sky-blue flex items-center gap-2 rounded-[4.65px] md:text-20px text-16px mx-auto sm:mx-0"
+        className="md:button-big xs:button-medium button-small button-deep-sky-blue flex items-center gap-2 rounded-[3px] md:text-20px text-16px mx-auto sm:mx-0"
         ref={setReferenceElement}
         onClick={() => setShowPopper(v => !v)}>
         <CalendarIcon className="md:w-8 md:h-8 w-7 h-7" />
