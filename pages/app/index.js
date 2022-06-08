@@ -24,11 +24,32 @@ export const bubbleTrimmer = (bubbles, start = 0, end = 0) => {
   return bubbles && bubbles.length > end ? bubbles.slice(start, end) : bubbles;
 };
 
+function HeaderItem({ index, name, tab, handleClick }) {
+  return (
+    <p
+      className={`${
+        tab === index
+          ? "border-orange-peel text-black dark:text-white"
+          : "border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white"
+      } transition-all cursor-pointer border-b-4`}
+      onClick={e => {
+        e.preventDefault();
+        handleClick(index);
+      }}>
+      {name}
+    </p>
+  );
+}
+
 export default function Dash({ admin, name, projects, scrapbookItem, people }) {
   const { darkMode } = useContext(DarkModeContext);
   // ======= Tab state -->
   // TODO: Set top nav state
   const [openTab, setOpenTab] = useState(0);
+
+  function handleClick(tab) {
+    setOpenTab(tab);
+  }
 
   return (
     <div className="xs:grid xs:grid-cols-12 dark:bg-[#202020]">
@@ -36,89 +57,39 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
         <DashNav admin={admin} />
       </div>
 
-      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10   content-center min-w-full min-h-screen">
+      <div className="mxs:flex mxs:flex-col mxs:justify-between mxs:px-0 mxs:pt-4 dark:bg-[#202020] dark:text-white col-span-11 p-10 content-center min-w-full min-h-screen">
         <div className="xs:hidden">
           <DashHeader />
         </div>
-        <div className="mxs:hidden flex items-center pb-5 fixed right-0 z-40  justify-center top-0 pt-10 w-full bg-white dark:bg-dark mx-auto">
-          <div className="relative flex mx-auto items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-6 lg:space-x-12 xl:space-x-16 xs:text-8px sm:text-10px text-12px md:text-14px lg:text-18px xl:text-24px 2xl:text-24px mr-2 xs:mr-4 lg:mr-12 xl:mr-16">
-            <p
-              className={
-                openTab === 1
-                  ? "transition-all cursor-pointer border-b-4 border-orange-peel text-black dark:text-white"
-                  : " transition-all cursor-pointer border-b-4 border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white"
-              }
-              onClick={e => {
-                e.preventDefault();
-                setOpenTab(1);
-              }}>
-              SCRAPBOOK
-            </p>
-
-            <p
-              className={
-                openTab === 2
-                  ? "transition-all cursor-pointer border-b-4 border-orange-peel text-black dark:text-white"
-                  : " transition-all cursor-pointer border-b-4 border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white"
-              }
-              onClick={e => {
-                e.preventDefault();
-                setOpenTab(2);
-              }}>
-              PROJECTS
-            </p>
-            <p
-              className={
-                openTab === 3
-                  ? "transition-all cursor-pointer border-b-4 border-orange-peel text-black dark:text-white"
-                  : " transition-all cursor-pointer border-b-4 border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white"
-              }
-              onClick={e => {
-                e.preventDefault();
-                setOpenTab(3);
-              }}>
-              PEOPLE
-            </p>
-
-            <p
-              className={
-                openTab === 4
-                  ? "transition-all cursor-pointer border-b-4 border-orange-peel text-black dark:text-white"
-                  : " transition-all cursor-pointer border-b-4 border-transparent hover:border-orange-peel hover:text-black hover:dark:text-white"
-              }
-              onClick={e => {
-                e.preventDefault();
-                setOpenTab(4);
-              }}>
-              JOBS
-            </p>
+        <div className="mxs:hidden w-full pt-6 lg:pt-8 xl:pt-10 pb-3 xl:pb-5 fixed top-0 right-0 z-40 bg-white dark:bg-dark flex items-center justify-end">
+          <div className="mr-2 xs:mr-4 lg:mr-12 xl:mr-16 flex items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-6 lg:space-x-12 xl:space-x-16  xs:text-8px sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px">
+            <HeaderItem index={1} name="SCRAPBOOK" tab={openTab} handleClick={handleClick} />
+            <HeaderItem index={2} name="PROJECTS" tab={openTab} handleClick={handleClick} />
+            <HeaderItem index={3} name="PEOPLE" tab={openTab} handleClick={handleClick} />
+            <HeaderItem index={4} name="JOBS" tab={openTab} handleClick={handleClick} />
           </div>
-          <form className="bg-transparent flex items-center  dark:bg-transparent text-white dark:bg-white p-0 relative rounded-md  border-[#03A9F4] border-[3px] mx-2">
-            <div className="absolute md:pl-2 pl-1 z-10 top-0 inset-y-0  flex items-center pointer-events-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3 w-3 md:h-4 md:w-4 text-[#7D7D7D] flex items-center dark:text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={3}>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
+          <form className="mr-4 p-0 flex bg-transparent dark:bg-transparent items-center rounded-[6px]  border-[#03A9F4] border-[3px]">
+            <svg
+              className="mx-3 my-2 fill-[#A5A5A5] dark:fill-white h-4 w-4"
+              width="23"
+              height="23"
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.92143 0.929688C11.0886 0.929688 13.1671 1.79047 14.6995 3.32268C16.2319 4.85489 17.0929 6.93301 17.0929 9.09989C17.0929 11.1236 16.3511 12.9839 15.1317 14.4168L15.4711 14.7562H16.4643L22.75 21.0409L20.8643 22.9264L14.5786 16.6416V15.6486L14.2391 15.3092C12.7564 16.5747 10.8709 17.27 8.92143 17.2701C6.75423 17.2701 4.6758 16.4093 3.14336 14.8771C1.61092 13.3449 0.75 11.2668 0.75 9.09989C0.75 6.93301 1.61092 4.85489 3.14336 3.32268C4.6758 1.79047 6.75423 0.929688 8.92143 0.929688ZM8.92143 3.44359C5.77857 3.44359 3.26429 5.9575 3.26429 9.09989C3.26429 12.2423 5.77857 14.7562 8.92143 14.7562C12.0643 14.7562 14.5786 12.2423 14.5786 9.09989C14.5786 5.9575 12.0643 3.44359 8.92143 3.44359Z" />
+            </svg>
+
             <input
               type="text"
               placeholder="I’m looking for..."
-              className="flex  pl-8 md:pl-8 dark:bg-transparent rounded-lg  border-none p-0 m-0 py-1 text-8px sm:text-8px xs:text-8px  md:text-12px lg:text-14px xl:text-20px 2xl:text-24px dark:text-white text-black dark:placeholder:text-white outline-none "
+              className="mr-1 py-1 dark:bg-transparent placeholder:text-[#A5A5A5] dark:placeholder:text-white outline-none border-none xs:text-8px sm:text-10px md:text-14px lg:text-18px xl:text-20px 2xl:text-24px"
             />
           </form>
-          <div className=" pr-5">
+          <div className="mr-2 xs:mr-4 lg:mr-8 xl:mr-16">
             <DashHeader />
           </div>
         </div>
+
         {openTab === 0 && (
           <div className="text-center xs:mt-20">
             <h1 className="mxs:text-24px font-semibold text-42px -mt-3">
@@ -135,12 +106,17 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
             </div>
           </div>
         )}
+        <div className=""></div>
+        <div className=""></div>
+        {openTab === 0 && (
+          <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-10 z-20 hover:scale-105 focus:scale-105 transition-all">
+            <Image className="" src={darkMode ? robotDark : robotLight} alt="" />
+          </div>
+        )}
 
-        <div className=""></div>
-        <div className=""></div>
         {openTab === 1 && (
-          <div className="mt-20 text-center grid md:grid-cols-2 lg:grid-cols-3 pl-20">
-            <div className="lg:col-span-2 text-left">
+          <div className="px-6 md:mt-12 lg:mt-20 md:mr-[32.7%] md:ml-6 lg:ml-12 xl:ml-8 2xl:ml-0">
+            <div className="">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
                   <ScrapbookCard
@@ -154,23 +130,12 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 lg:w-[27.6%] top-26 -mt-2 lg:col-span-1">
-              <h1 className="font-semibold text-20px lg:text-16px xl:text-20px 2xl:text-22px text-left mb-2 ">
-                Featured People
-              </h1>
-              <FeaturedPeople people={people} />
-            </div>
-          </div>
-        )}
-        {openTab === 0 && (
-          <div className="mxs:w-[150px] fixed mxs:bottom-20 bottom-0 right-0 xs:pb-3 xs:pr-10 z-20 hover:scale-105 focus:scale-105 transition-all">
-            <Image className="" src={darkMode ? robotDark : robotLight} alt="" />
           </div>
         )}
 
         {openTab === 2 && (
-          <div className="mt-20 text-center grid grid-cols-3 pl-24">
-            <div className="lg:col-span-2 text-left">
+          <div className="px-6 md:mt-12 lg:mt-20 md:mr-[32.7%] md:ml-6 lg:ml-12 xl:ml-8 2xl:ml-0">
+            <div className="">
               {projects.map((project, index) => {
                 return (
                   <ProfileProjectCard
@@ -188,12 +153,15 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
                 );
               })}
             </div>
-            <div className="h-screen fixed right-0 lg:w-[27.6%] top-26 -mt-2 lg:col-span-1">
-              <h1 className="font-semibold text-20px lg:text-16px xl:text-20px 2xl:text-22px text-left mb-2 ">
-                Featured People
-              </h1>
-              <FeaturedPeople people={people} />
-            </div>
+          </div>
+        )}
+
+        {openTab > 0 && (
+          <div className="mmd:hidden fixed right-0 md:w-[30%] top-[4.5rem] lg:top-28">
+            <h1 className="font-semibold text-14px lg:text-18px xl:text-20px 2xl:text-22px mb-2">
+              Featured People
+            </h1>
+            <FeaturedPeople people={people} />
           </div>
         )}
       </div>

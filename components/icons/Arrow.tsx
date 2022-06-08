@@ -1,6 +1,7 @@
-export default function ArrowIcon({ fill, width, height }: any) {
+export default function ArrowIcon({ className, fill, width, height }: any) {
   return (
     <svg
+      className={className? className: ""}
       width={width ? width : 41}
       height={height ? height : 16}
       viewBox="0 0 41 16"
