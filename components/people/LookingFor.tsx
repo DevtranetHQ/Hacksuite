@@ -12,7 +12,7 @@ const LookingForSelect: React.FC = () => {
   return (
     <div className="flex justify-center items-end w-full ml-[1%] text-16px lg:text-18px xl:text-22px 2xl:text-24px">
       <div className="basis-[42%] md:basis-[28%] lg:basis-[23%] 2xl:basis-[18%]">
-        <p className=" pl-4 mb-3 font-semibold">Searching for</p>
+        <p className=" pl-4 mb-3 font-semibold dark:text-white">Searching for</p>
         <div className="flex">
           <Select
             className="basis-full "
@@ -26,7 +26,7 @@ const LookingForSelect: React.FC = () => {
       </div>
 
       <div className="basis-[54%] md:basis-[34%] lg:basis-[28%] 2xl:basis-[22%]">
-        <p className=" pl-4 mb-3 font-semibold">Available for</p>
+        <p className=" pl-4 mb-3 font-semibold dark:text-white">Available for</p>
         <div className="flex">
           <Select
             className="basis-full "
