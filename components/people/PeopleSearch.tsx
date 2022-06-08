@@ -8,7 +8,6 @@ const PeopleSearch = ({people, searchValue}) => {
     const [peopleObj, setPeopleObj] = useState(reducedPeopleObj);
 
     const [searchResults, setSearchResults] = useState([]);
-    console.log(people.filter(person => person.name.includes(searchValue)));
 
     useEffect(() => {
         const filtered = people.filter(person => person.name.toLowerCase().includes(searchValue.toLowerCase()));
@@ -16,7 +15,7 @@ const PeopleSearch = ({people, searchValue}) => {
     }, [searchValue])
   
     const handleShowMore = () => {
-        setPeopleObj([...peopleObj, ...people.slice(5)]);
+        setPeopleObj(people);
       };
 
         return (
