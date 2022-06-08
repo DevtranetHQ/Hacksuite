@@ -73,7 +73,7 @@ const FullNav : React.FC<FullNavProps> = ({ setSearchValue, setSearchPageIsShowi
     <div className="dark:bg-[#202020] dark:text-white pb-10">
       <TopNav setSearchValue={setSearchValue} setSearchPageIsShowing={setSearchPageIsShowing} />
       <nav className="w-[max-content] mx-auto mt-3">
-        <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
+        <ul className="flex gap-x-[15px] xs:gap-x-[20px] md:gap-x-[3rem] w-[max-content] text-[16px] xs:text-20px">
           <Link href="/newsfeed">
             <li
               className={`${
