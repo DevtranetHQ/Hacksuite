@@ -17,15 +17,15 @@ const PhotoGalleryHeader = ({
   return (
     <>
       <nav className="flex items-center justify-between pl-[10px] lg:pl-8 pr-[12px] lg:pr-12">
-        <Logo className="w-[50px] md:w-[120px] py-5" />
+      <Logo className="w-[80px] md:w-[120px] py-5" />
         <div className="flex gap-x-[0px] md:gap-x-3 lg:gap-x-5 items-center">
           <DarkModeToggle
-            className="!mx-2 w-[27px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
-            darkClassName="!mx-2 w-[17px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
+            className="mx-0 w-[25px] md:w-[44px] lg:scale-[1.24] lg:mr-[10px]"
+            darkClassName="mx-0 w-[25px] md:w-[33px] lg:w-[40px] h-[25px] md:h-[48px] lg:h-[60px]"
           />
           <a
             href="https://github.com/TheDynamics"
-            className="scale-[.6] lg:scale-[1.4] md:scale-[1.15]">
+            className="scale-75 lg:scale-[1.4] md:scale-[1.15]">
             <GithubIcon />
           </a>
           <Link href={navHref}>
@@ -46,11 +46,11 @@ const PhotoGalleryHeader = ({
           {contentText}
         </h2>
         <div className="inline-flex my-2 gap-x-4  lg:gap-x-[36px] mt-[20px] lg:mt-[30px]">
-          <button className="text-white font-bold rounded-md bg-[#4CB050] py-2 md:py-[15px] text-[16px] px-3 md:px-[25px] lg:px-[70px] lg:py-[10px] md:text-[25px] lg:text-[30px] h-[max-content] inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none items-center">
+          <button className="text-white font-bold rounded bg-[#4CB050] py-4 md:py-[22px] text-[16px] px-3 md:px-[25px] lg:px-[70px] lg:py-[18px] md:text-[25px] lg:text-[30px] h-[max-content] inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none items-center">
             {firstBtn}
           </button>
           <a
-            className="text-white font-bold rounded-md bg-[#03A9F4] py-2 md:py-[15px] text-[16px] md:px-[25px] lg:px-[70px] px-3 lg:py-[10px] md:text-[25px] lg:text-[30px] inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none h-[max-content] items-center cursor-pointer"
+            className="text-white font-bold rounded bg-[#03A9F4] py-4 md:py-[22px] text-[16px] md:px-[25px] lg:px-[70px] px-3 lg:py-[18px] md:text-[25px] lg:text-[30px] inline-flex gap-x-2 transition-all hover:scale-[1.06] focus:outline-none h-[max-content] items-center cursor-pointer"
             href={href}>
             {secondBtn}
           </a>

@@ -1,5 +1,5 @@
 .nav {
-  @apply flex flex-col gap-0 sm:gap-0.5 lg:gap-5 xl:gap-7 mx-auto xs:mt-6 sm:mt-10 xl:mt-7 absolute m-0 -translate-y-2/4 top-2/4;
+  @apply flex flex-col gap-0 sm:gap-1 md:gap-3 lg:gap-5 xl:gap-7 mx-auto xs:mt-6 sm:mt-6 xl:mt-7 absolute m-0 -translate-y-2/4 top-2/4;
 }
 
 .nav div {
@@ -7,7 +7,7 @@
 }
 
 .nav div span {
-  @apply p-2 text-[8px] sm:text-12px md:text-16px;
+  @apply p-1 sm:p-2 text-[6px] sm:text-[9px] md:text-[10px] lg:text-16px;
 }
 
 .nav .active {

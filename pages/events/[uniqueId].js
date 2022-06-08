@@ -90,15 +90,15 @@ export default function Event({ loggedIn, event, isRegistered }) {
               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
           `}</style>
-          <header className="absolute md:-bottom-14 -bottom-24 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r lg:w-1/2 w-11/12 ">
-            <h1 className="md:title font-bold text-28px text-deep-sky-blue mb-3">{event.name}</h1>
+          <header className="lg:-bottom-14 xl:-bottom-28 -bottom-28 left-0 bg-[#f8fbff] container-gray-dark p-5 relative rounded-r lg:w-1/2 xs:w-3/4 w-10/12">
+            <h1 className="lg:title xs:headline text-24px font-bold  text-deep-sky-blue mb-3">{event.name}</h1>
             <div className="flex md:gap-2 gap-2 items-center">
               <Avatar
-                className="relative md:w-[50px] md:h-[50px] h-[40px] w-[45px]"
-                border="md:!border-[3px] !border-[4px]"
+                className="relative md:w-[50px] md:h-[50px] xs:h-[40px] xs:w-[40px] w-[40px] h-[40px]"
+                border="1px"
                 image={event.creator.image || avatarImage}
               />
-              <p className="md:caption text-16px font-bold text-[#a5a5a5]">
+              <p className="md:caption xs:text-15px text-14px font-bold text-[#a5a5a5]">
                 Posted by {event.creator.firstName} {event.creator.lastName} |{" "}
                 <DisplayDate date={new Date(event.posted)} show="date" />
               </p>
@@ -106,9 +106,9 @@ export default function Event({ loggedIn, event, isRegistered }) {
           </header>
         </div>
       </div>
-      <section className="flex flex-col gap-y-3 items-center md:px-24 px-10 py-10 mt-5">
-        <h1 className="flex md:gap-x-2 gap-x-5 items-center md:headline font-semibold text-20px">
-          <CalendarIcon fill="#FF9700" width={100} height={100} />
+      <section className="flex flex-col gap-y-3 items-center md:px-24 px-10 py-10 mt-14">
+        <h1 className="flex md:gap-x-2 gap-x-5 items-center lg:headline text-24px font-semibold ">
+          <CalendarIcon fill="#FF9700" className="lg:h-24 lg:w-24 h-20 w-20"/>
           <span className="md:pt-3">
             <EventTime start={event.start} end={event.end} />
           </span>
@@ -120,7 +120,7 @@ export default function Event({ loggedIn, event, isRegistered }) {
 
         {isRegistered ? (
           <>
-            <h2 className="heading text-fruit-salad">You are registered for this event.</h2>
+            <h2 className="heading text-fruit-salad text-center">You are registered for this event.</h2>
             <AddToCalendar event={event} />
             <JoinHere event={event} />
           </>
@@ -167,15 +167,15 @@ export default function Event({ loggedIn, event, isRegistered }) {
                   </div>
                   <div className="text-center mx-auto mt-10 mb-10">
                     <ReCAPTCHA
-                      className="inline-block mb-3"
+                      className="inline-flex mb-3"
                       sitekey="6LexReUeAAAAAF5a0KmF1tz26MWEFUwnhQ7crZAL"
                       onChange={i => console.log(i)}
                     />
                     <br />
                     <button
-                      className="lg:button-big button-medium button-deep-sky-blue flex gap-2 rounded-[4.65px] lg:text-24px text-18px mt-10 mx-auto items-center "
+                      className="lg:button-big button-medium button-deep-sky-blue flex gap-2 rounded-[4.65px] lg:text-24px md:text-20px text-18px mt-10 items-center mx-auto"
                       type="submit">
-                      <CalendarIcon width={32} height={32} />
+                      <CalendarIcon  className="md:h-8 md:w-8 xs:h-6 xs:w-6" />
                       <span className="">Register for this event</span>
                     </button>
                   </div>

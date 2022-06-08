@@ -9,8 +9,8 @@ export default function EventCard(event) {
 
   const route = `/events/${uniqueId}`;
   return (
-    <article className="border-b-2 grid grid-cols-3 items-center p-7">
-      <div className="md:col-span-1 col-span-3 relative h-full">
+    <article className="border-b-2 grid grid-cols-3 items-center p-7 gap-x-6">
+      <div className="xs:col-span-3 col-span-3 lg:col-span-1  relative h-full">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="rounded-md w-full h-full"
@@ -21,13 +21,13 @@ export default function EventCard(event) {
         <Avatar
           className="absolute -top-5 -left-5 w-[90px] h-[90px]"
           image={creator.image}
-          border="!border-[5px]"
+          border="1px"
         />
       </div>
-      <div className="md:col-span-2 col-span-3 md:px-7">
+      <div className="xs:col-span-3 col-span-3 lg:col-span-2">
         <section className="mb-2">
           <h1 className="md:headline font-bold text-28px mb-3">{name}</h1>
-          <p className="md:caption text-justify text-[#a5a5a5] dark:text-[#a5a5a5]">
+          <p className="caption xl:text-20px text-justify text-black dark:text-white mb-1">
             {description.substring(0, 200)}...
             <Link href={route}>
               <a className="mx-1 underline">
@@ -35,12 +35,12 @@ export default function EventCard(event) {
               </a>
             </Link>
           </p>
-          <p className="font-bold caption text-[#a5a5a5]">
+          <p className="font-bold caption xl:text-20px text-[#a5a5a5]">
             Posted by {creator.firstName} {creator.lastName} I{" "}
             <DisplayDate date={new Date(posted)} show="date" />
           </p>
         </section>
-        <section className="lg:flex md:flex justify-between items-center">
+        <section className="flex flex-wrap xs:flex-nowrap justify-between items-center">
           <div className="inline-flex gap-4 py-2 items-center">
             <svg
               width="30"
@@ -53,7 +53,7 @@ export default function EventCard(event) {
                 fill="#FF9700"
               />
             </svg>
-            <p className="font-bold text-20px">
+            <p className="font-bold md:text-20px xs:text-18px ">
               <EventTime start={start} end={end} />
             </p>
           </div>
