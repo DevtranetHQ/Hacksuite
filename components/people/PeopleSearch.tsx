@@ -44,7 +44,7 @@ const PeopleSearch = ({ people, searchValue }) => {
         )}
         {!searchResults.length && <NotifEmpty />}
         <div className="pt-[111px]">
-          <p className="text-[48px] font-semibold text-center mb-[40px] dark:text-white">
+          <p className="text-center dark:text-white text-[24px] xs:text-[30px] sm:text-[36px] md:text-[40px] xl:text-[48px] font-semibold">
             Featured people
           </p>
           {peopleObj.map(person => (
