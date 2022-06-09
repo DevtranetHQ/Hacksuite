@@ -62,7 +62,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
           <DashHeader />
         </div>
         <div className="mxs:hidden w-full pt-6 lg:pt-8 xl:pt-10 pb-3 xl:pb-5 fixed top-0 right-0 z-40 bg-white dark:bg-dark flex items-center justify-end">
-          <div className="mr-2 xs:mr-4 lg:mr-12 xl:mr-16 flex items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-6 lg:space-x-12 xl:space-x-16  xs:text-8px sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px">
+          <div className="mr-2 xs:mr-4 lg:mr-12 xl:mr-16 2xl:mr-24px flex items-center font-bold text-[#7D7D7D] space-x-2 xs:space-x-4 sm:space-x-4 md:space-x-6 lg:space-x-12 xl:space-x-16 2xl:space-x-24px xs:text-8px sm:text-10px md:text-14px lg:text-18px xl:text-22px 2xl:text-24px">
             <HeaderItem index={1} name="SCRAPBOOK" tab={openTab} handleClick={handleClick} />
             <HeaderItem index={2} name="PROJECTS" tab={openTab} handleClick={handleClick} />
             <HeaderItem index={3} name="PEOPLE" tab={openTab} handleClick={handleClick} />
@@ -85,7 +85,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
               className="mr-1 py-1 dark:bg-transparent placeholder:text-[#A5A5A5] dark:placeholder:text-white outline-none border-none xs:text-8px sm:text-10px md:text-14px lg:text-18px xl:text-20px 2xl:text-24px"
             />
           </form>
-          <div className="mr-2 xs:mr-4 lg:mr-8 xl:mr-16">
+          <div className="mr-2 xs:mr-4 lg:mr-8 xl:mr-16 2xl:mr-24px">
             <DashHeader />
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
         )}
 
         {openTab === 1 && (
-          <div className="px-6 md:mt-12 lg:mt-20 md:mr-[32.7%] md:ml-6 lg:ml-12 xl:ml-8 2xl:ml-0">
+          <div className="px-8 lg:px-10 xl:px-12 mt-16 lg:mt-20 xl:mt-[5.5rem] md:mr-[32.7%] md:ml-7 lg:ml-14 xl:ml-8 2xl:ml-0">
             <div className="">
               {scrapbookItem.map((scrapbookItem, index) => {
                 return (
@@ -134,7 +134,7 @@ export default function Dash({ admin, name, projects, scrapbookItem, people }) {
         )}
 
         {openTab === 2 && (
-          <div className="px-6 md:mt-12 lg:mt-20 md:mr-[32.7%] md:ml-6 lg:ml-12 xl:ml-8 2xl:ml-0">
+          <div className="px-8 lg:px-10 xl:px-12 mt-16 lg:mt-20 xl:mt-[5.5rem] md:mr-[32.7%] md:ml-7 lg:ml-14 xl:ml-8 2xl:ml-0">
             <div className="">
               {projects.map((project, index) => {
                 return (
