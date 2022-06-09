@@ -9,7 +9,11 @@ import { useState } from 'react';
 const availableForOpts = availableFor.map(level => ({ value: level, label: level }));
 const describeOpts = describes.map(describe => ({ value: describe, label: describe }));
 
-const LookingForSelect: React.FC = () => {
+interface LookingForSelectProps {
+  setCurrentPage?: any;
+  setSearchValue?: any;
+}
+const LookingForSelect: React.FC<LookingForSelectProps> = ({setCurrentPage, setSearchValue}) => {
   const [searchingFor, setSearchingFor] = useState<string>("");
   const [availableFor, setAvailableFor] = useState<string>("");
   return (
@@ -41,7 +45,10 @@ const LookingForSelect: React.FC = () => {
             onChange={({value}) => setAvailableFor(value)}
           />
           <Link href="#">
-            <div className="cursor-pointer flex items-center px-2 xs:px-4 xl:px-6 bg-[#03A9F4] rounded-br-[6px] xs:rounded-br-[8px] xl:rounded-br-[10px] rounded-tr-[6px] xs:rounded-tr-[8px] xl:rounded-tr-[10px]">
+            <div onClick={setCurrentPage && setSearchValue ? () => {
+              setCurrentPage("lookingFor_search");
+              setSearchValue({availableFor, occupation: searchingFor});
+            } : () => null} className="cursor-pointer flex items-center px-2 xs:px-4 xl:px-6 bg-[#03A9F4] rounded-br-[6px] xs:rounded-br-[8px] xl:rounded-br-[10px] rounded-tr-[6px] xs:rounded-tr-[8px] xl:rounded-tr-[10px]">
               <SearchPeopleIcon />
             </div>
           </Link>
