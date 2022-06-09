@@ -5,7 +5,7 @@ import Link from "next/link";
 import HomeIcon from "../icons/HomeIcon";
 import { useState } from "react";
 
-export const TopNav = ({ setSearchValue, setSearchPageIsShowing }) => {
+export const TopNav = ({ setSearchValue, setCurrentPage }) => {
   const [input, setInput] = useState("");
 
   return (
@@ -16,10 +16,10 @@ export const TopNav = ({ setSearchValue, setSearchPageIsShowing }) => {
           <div className="relative rounded-md flex  items-center p-1 border-[#03A9F4] border-[3px]">
             <div
               onClick={
-                setSearchValue && setSearchPageIsShowing
+                setSearchValue && setCurrentPage
                   ? () => {
                       setSearchValue(input);
-                      setSearchPageIsShowing(true);
+                      setCurrentPage("people_search");
                     }
                   : () => null
               }
@@ -65,13 +65,13 @@ export const TopNav = ({ setSearchValue, setSearchPageIsShowing }) => {
 
 interface FullNavProps {
   setSearchValue?: any;
-  setSearchPageIsShowing?: any;
+  setCurrentPage?: any;
 }
-const FullNav : React.FC<FullNavProps> = ({ setSearchValue, setSearchPageIsShowing }) => {
+const FullNav : React.FC<FullNavProps> = ({ setSearchValue, setCurrentPage }) => {
   const { pathname } = useRouter();
   return (
     <div className="dark:bg-[#202020] dark:text-white pb-10">
-      <TopNav setSearchValue={setSearchValue} setSearchPageIsShowing={setSearchPageIsShowing} />
+      <TopNav setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
       <nav className="w-[max-content] mx-auto mt-3">
         <ul className="flex gap-x-[15px] xs:gap-x-[20px] md:gap-x-[3rem] w-[max-content] text-[16px] xs:text-20px">
           <Link href="/newsfeed">
