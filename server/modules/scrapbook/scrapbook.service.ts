@@ -1,7 +1,12 @@
+import { config } from "../../config";
 import { CustomError } from "../../utils/customError";
 import User, { UserId } from "../auth/user.model";
 import { Profile } from "../social/profile.model";
-import Post, { IPost, PostId, IPostWithUser } from "./post";
+import Post, { IPost, IPostWithUser } from "./post";
+
+const {
+  url: { CLIENT_URL }
+} = config;
 
 class ScrapbookService {
   async getRecentPosts(): Promise<IPostWithUser[]> {
@@ -49,18 +54,19 @@ class ScrapbookService {
     content: string;
     images: string[];
     createdAt: Date;
-  }): Promise<IPost> {
+  }): Promise<string> {
     const { discordId, ...postData } = data;
 
     const user = await User.findOne({ discordId });
     if (!user) throw new CustomError("User not found", 404);
 
-    const post = await Post.create({
+    await Post.create({
       ...postData,
       author: user.uniqueId
     });
 
-    return post;
+    const authorProfileUrl = `${CLIENT_URL}/${user.uniqueId}`;
+    return authorProfileUrl;
   }
 }
 

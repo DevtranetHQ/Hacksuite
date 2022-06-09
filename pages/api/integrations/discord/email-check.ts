@@ -6,8 +6,8 @@ import { CustomResponse } from "../../../../server/utils/customResponse";
 
 async function handler(req: NextApiRequest) {
   if (req.method === "POST") {
-    const result = await integrationService.discordEmailCheck(req.body.email);
-    return new CustomResponse(200, "user exists", result);
+    const userRoles = await integrationService.discordEmailCheck(req.body.email);
+    return new CustomResponse(200, "user exists", { userRoles });
   }
 }
 

@@ -15,8 +15,9 @@ async function handler(req: NextApiRequest) {
       createdAt: Date;
     };
 
-    const result = await scrapbookService.createPost(data);
-    return new CustomResponse(201, "scrapbook post added", result);
+    const authorProfileUrl = await scrapbookService.createPost(data);
+
+    return new CustomResponse(201, "scrapbook post added", { authorProfileUrl });
   }
 
   throw new CustomError("Method not allowed", 405);
