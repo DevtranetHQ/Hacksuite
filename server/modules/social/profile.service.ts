@@ -6,7 +6,7 @@ import { notificationService } from "../../../server/modules/notification/notifi
 import { projectService } from "../../../server/modules/projects/project.service";
 import { scrapbookService } from "../../../server/modules/scrapbook/scrapbook.service";
 
-interface IQueryProfile{
+interface IQueryProfile {
   limit?: number;
   skip?: number;
 }
@@ -35,19 +35,19 @@ class ProfileService {
     return await new Profile(data).save();
   }
 
-  async search(query: IQueryProfile, data: Partial<IProfile>){
-    const profileMatch = await Profile.find({data}).skip(query.skip).limit(query.limit);
+  async search(query: IQueryProfile, data: Partial<IProfile>) {
+    const profileMatch = await Profile.find({ data }).skip(query.skip).limit(query.limit);
 
     return profileMatch.map(f => JSON.parse(JSON.stringify(f.toObject({ virtuals: true }))));
   }
 
-  async searchParams(query: IQueryProfile, availableFor: string, describe: string){
+  async searchParams(query: IQueryProfile, availableFor: string, describe: string) {
     const profileMatch = await Profile.find({
-      availableFor: { $all : [availableFor]},
-      describe: { $all : [describe]}
-    
-    }).skip(query.skip)
-      .limit(query.limit)
+      availableFor: { $all: [availableFor] },
+      describe: { $all: [describe] }
+    })
+      .skip(query.skip)
+      .limit(query.limit);
 
     return profileMatch;
   }
