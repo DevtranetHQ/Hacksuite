@@ -8,6 +8,7 @@ import {
 import { UserId } from "../auth/user.model";
 import { emailService } from "./email/email.service";
 import { profileService } from "../social/profile.service";
+import UserService from "../../../server/modules/auth/user.service";
 
 class NotificationService {
   async getNotificationTypes(): Promise<INotificationType[]> {
@@ -82,12 +83,23 @@ class NotificationService {
 
     // TODO: Implement a function to check is user wants email notification
     const profile = await profileService.getCompletedProfile(data.for);
+    const user = await UserService.getByUniqueId(data.for);
 
-    await emailService.sendEmailNotification(profile.email, newNotification);
+    if ("notify" in user && user.notify == true) {
+      await emailService.sendEmailNotification(profile.email, newNotification);
+    }
 
     await pushService.sendPushNotification(newNotification);
 
     return newNotification;
+  }
+
+  async updatePreference(userId: UserId, notify: boolean) {
+    let user = await UserService.update(userId, {
+      notify: notify
+    });
+
+    return user;
   }
 }
 

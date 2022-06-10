@@ -34,6 +34,15 @@ class UserService {
     return user;
   }
 
+  async update(uniqueId: UserId, data: Partial<IUser>) {
+    const user = await User.findOne({ uniqueId: uniqueId });
+    if (!user) throw new CustomError("User does not exist", 404);
+
+    await User.updateOne({ uniqueId }, { $set: data });
+
+    return await User.findOne({ uniqueId });
+  }
+
   async completeProfile(userId: string, data: Partial<IProfile>) {
     const user = await User.findOne({ _id: userId, isCompleted: false });
     if (!user) throw new CustomError("User does not exist", 404);
