@@ -5,6 +5,7 @@ import { PeopleData } from "../../components/people/PeopleInfo";
 import LookingForSelect from "../../components/people/LookingFor";
 import PeoplePage from "../../components/people/PeoplePage";
 import PeopleSearch from "../../components/people/PeopleSearch";
+import { profileService } from "../../server/modules/social/profile.service";
 
 const People = ({ people }) => {
   const [showMessage, setShowMessage] = useState(false);
@@ -33,9 +34,14 @@ export default People;
 
 export const getServerSideProps = async () => {
   const people = PeopleData;
+
+  // const people = await profileService.search({
+  //   limit: 6
+  // }, {})
+
   return {
     props: {
-      people
+        people
     }
   };
 };
