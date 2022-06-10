@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Logo from "../../components/Logo";
-import DarkModeToggle from "../../components/DarkModeToggle";
+import Logo from "../Logo";
+import DarkModeToggle from "../DarkModeToggle";
 import Link from "next/link";
 import HomeIcon from "../icons/HomeIcon";
 import { useState } from "react";
@@ -63,13 +63,17 @@ export const TopNav = ({ setSearchValue, setSearchPageIsShowing }) => {
   );
 };
 
-const FullNav = ({ setSearchValue, setSearchPageIsShowing }) => {
+interface FullNavProps {
+  setSearchValue?: any;
+  setSearchPageIsShowing?: any;
+}
+const FullNav : React.FC<FullNavProps> = ({ setSearchValue, setSearchPageIsShowing }) => {
   const { pathname } = useRouter();
   return (
     <div className="dark:bg-[#202020] dark:text-white pb-10">
       <TopNav setSearchValue={setSearchValue} setSearchPageIsShowing={setSearchPageIsShowing} />
       <nav className="w-[max-content] mx-auto mt-3">
-        <ul className="flex gap-x-[3rem] w-[max-content] text-20px">
+        <ul className="flex gap-x-[15px] xs:gap-x-[20px] md:gap-x-[3rem] w-[max-content] text-[16px] xs:text-20px">
           <Link href="/newsfeed">
             <li
               className={`${

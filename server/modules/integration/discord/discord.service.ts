@@ -1,6 +1,7 @@
 import userService from "../../auth/user.service";
 import authService from "../../auth/auth.service";
 import { CustomError } from "../../../utils/customError";
+import { profileService } from "../../social/profile.service";
 
 class IntegrationService {
   async discordEmailCheck(email: string) {
@@ -8,9 +9,13 @@ class IntegrationService {
 
     const user = await userService.getOneByEmail(email);
 
-    if (!user.isVerified) throw new CustomError("User with email does not exist");
+    if (!user.isVerified) throw new CustomError("User with email does not exist", 404);
 
-    return true;
+    const profile = await profileService.getProfile(user.uniqueId);
+
+    if (!profile) throw new CustomError("User with email does not exist", 404);
+
+    return profile.describe;
   }
 
   async discordResendVerificationEmail(email: string) {
