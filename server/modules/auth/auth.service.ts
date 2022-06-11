@@ -14,6 +14,9 @@ import { Profile } from "../social/profile.model";
 
 const { BCRYPT_SALT, url } = config;
 
+const randomNumber = Math.floor(Math.random() * 1000);
+console.log(`server/modules/auth/auth.service`, { randomNumber });
+
 class AuthService {
   async _getLoginToken(user: IUser) {
     const token = await signToken({
@@ -23,6 +26,7 @@ class AuthService {
       isCompleted: user.isCompleted
     });
 
+    console.log(`server/modules/auth/auth.service`, { randomNumber });
     return token;
   }
 
@@ -56,6 +60,7 @@ class AuthService {
       await Promise.all([user.remove(), profile.remove()]);
       throw new CustomError("Server error", 500);
     }
+    console.log(`server/modules/auth/auth.service`, { randomNumber });
 
     return {
       id: user._id,
@@ -82,6 +87,7 @@ class AuthService {
 
     const token = await this._getLoginToken(user);
 
+    console.log(`server/modules/auth/auth.service`, { randomNumber });
     return {
       uid: user._id,
       email: user.email,
