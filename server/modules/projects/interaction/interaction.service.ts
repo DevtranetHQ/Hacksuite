@@ -1,3 +1,4 @@
+import { dbConnect } from "../../../database";
 import { UserId } from "../../auth/user.model";
 import { ProjectId } from "../project.model";
 import { CommentId, Comment, IComment } from "./comment.model";
@@ -17,6 +18,7 @@ export interface AllProjectInteractions {
 
 class InteractionService {
   async toggleLikeProject(projectId: ProjectId, userId: UserId) {
+    await dbConnect();
     const alreadyLiked = await Like.findOne({ userId, targetId: projectId });
     if (alreadyLiked) {
       return alreadyLiked.remove();
@@ -30,6 +32,7 @@ class InteractionService {
   }
 
   async toggleLikeComment(commentId: CommentId, userId: UserId) {
+    await dbConnect();
     const alreadyLiked = await Like.findOne({ userId, targetId: commentId });
     if (alreadyLiked) {
       return alreadyLiked.remove();
@@ -43,6 +46,7 @@ class InteractionService {
   }
 
   async commentOnProject(projectId: ProjectId, userId: UserId, content: string) {
+    await dbConnect();
     const newComment = new Comment({ userId, targetId: projectId, projectId, content }).save();
 
     await interactionNotificationService.notifyForCommentProject(projectId, userId, content);
@@ -56,6 +60,7 @@ class InteractionService {
     userId: UserId,
     content: string
   ) {
+    await dbConnect();
     const newComment = new Comment({ userId, targetId: commentId, projectId, content }).save();
 
     await interactionNotificationService.notifyForReplyComment(commentId, userId, content);
@@ -64,6 +69,7 @@ class InteractionService {
   }
 
   async getAllProjectInteractions(projectId: ProjectId) {
+    await dbConnect();
     const likes = await Like.find({ targetId: projectId });
     const comments = await Comment.find({ targetId: projectId });
 
@@ -85,6 +91,7 @@ class InteractionService {
   }
 
   private async getCommentsRecursiveWithLikes(commentId: CommentId) {
+    await dbConnect();
     const comment = await Comment.findById(commentId);
     if (!comment) {
       return [];

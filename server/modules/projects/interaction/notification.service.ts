@@ -1,10 +1,11 @@
 import { Profile } from "./../../social/profile.model";
-import User, { UserId } from "../../auth/user.model";
+import { UserId } from "../../auth/user.model";
 import { NotificationTypeId } from "../../notification/notification-type.model";
 import { Project, ProjectId } from "../project.model";
 import { notificationService } from "./../../notification/notifications.service";
 import { config } from "../../../config";
 import { CommentId, Comment } from "./comment.model";
+import { dbConnect } from "../../../database";
 
 const {
   url: { CLIENT_URL }
@@ -14,6 +15,7 @@ const getProjectUrl = (uniqueId: ProjectId) => `${CLIENT_URL}/projects/${uniqueI
 
 class InteractionNotificationService {
   async notifyForLikeProject(projectId: ProjectId, userId: UserId) {
+    await dbConnect();
     const userWhoLiked = await Profile.findOne({ userId });
     if (!userWhoLiked) {
       return;
@@ -42,6 +44,7 @@ class InteractionNotificationService {
   }
 
   async notifyForCommentProject(projectId: ProjectId, userId: UserId, content: string) {
+    await dbConnect();
     const userWhoCommented = await Profile.findOne({ userId });
     if (!userWhoCommented) {
       return;
@@ -72,6 +75,7 @@ class InteractionNotificationService {
   }
 
   async notifyForLikeComment(commentId: CommentId, userId: UserId) {
+    await dbConnect();
     const userWhoLiked = await Profile.findOne({ userId });
     if (!userWhoLiked) {
       return;
@@ -117,6 +121,7 @@ class InteractionNotificationService {
   }
 
   async notifyForReplyComment(commentId: CommentId, userId: UserId, content: string) {
+    await dbConnect();
     const userWhoReplied = await Profile.findOne({ userId });
     if (!userWhoReplied) {
       return;

@@ -8,6 +8,7 @@ import DashHeader from "../../components/dash/DashHeader";
 import { DashNavMobile } from "../../components/dash/DashNavMobile";
 import { Icon } from "@iconify/react";
 import styles from "../../components/project/PersonalProject.module.css";
+import { profileService } from "../../server/modules/social/profile.service";
 
 export default function PersonalProjects({ name, projects, unread }) {
   // NOTE: The project cards are inside /components/project/PersonalProjectCard, so the unpublish, publish, and delete functions will be there as well
@@ -63,11 +64,11 @@ export default function PersonalProjects({ name, projects, unread }) {
 
 export async function getServerSideProps({ req, res }) {
   // TODO: Alter to work with backend
-  const user = await withAuth(req => req.$user)(req, res);
-
+  const { uniqueId } = await withAuth(req => req.$user)(req, res);
+  const profile = await profileService.getProfile(uniqueId);
   return {
     props: {
-      name: user.firstName,
+      name: profile.firstName,
 
       projects: [
         {

@@ -1,4 +1,4 @@
-import mongoose from "../../database";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import { config } from "../../config";
 

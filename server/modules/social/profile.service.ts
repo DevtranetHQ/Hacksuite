@@ -5,6 +5,7 @@ import { NotificationTypeId } from "../../../server/modules/notification/notific
 import { notificationService } from "../../../server/modules/notification/notifications.service";
 import { projectService } from "../../../server/modules/projects/project.service";
 import { scrapbookService } from "../../../server/modules/scrapbook/scrapbook.service";
+import { dbConnect } from "../../database";
 
 interface IQueryProfile {
   limit?: number;
@@ -12,6 +13,7 @@ interface IQueryProfile {
 }
 class ProfileService {
   async getCompletedProfile(userId: UserId): Promise<IProfile> {
+    await dbConnect();
     var profile = await Profile.findOne({ userId, isCompleted: true });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -25,6 +27,7 @@ class ProfileService {
   }
 
   async getProfile(userId: UserId): Promise<IProfile> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -32,16 +35,19 @@ class ProfileService {
   }
 
   async create(data: Partial<IProfile>): Promise<IProfile> {
+    await dbConnect();
     return await new Profile(data).save();
   }
 
   async search(query: IQueryProfile, data: Partial<IProfile>) {
+    await dbConnect();
     const profileMatch = await Profile.find({ data }).skip(query.skip).limit(query.limit);
 
     return profileMatch.map(f => JSON.parse(JSON.stringify(f.toObject({ virtuals: true }))));
   }
 
   async searchParams(query: IQueryProfile, availableFor: string, describe: string) {
+    await dbConnect();
     const profileMatch = await Profile.find({
       availableFor: { $all: [availableFor] },
       describe: { $all: [describe] }
@@ -53,6 +59,7 @@ class ProfileService {
   }
 
   async update(userId: UserId, data: Partial<IProfile>): Promise<IProfile> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -62,6 +69,7 @@ class ProfileService {
   }
 
   async follow(userId: UserId, followingId: UserId): Promise<IProfile> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId, isCompleted: true });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -91,6 +99,7 @@ class ProfileService {
   }
 
   async unfollow(userId: UserId, followingId: UserId): Promise<IProfile> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -108,6 +117,7 @@ class ProfileService {
   }
 
   async getFollowers(userId: UserId): Promise<IProfile[]> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId, isCompleted: true });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 
@@ -125,6 +135,7 @@ class ProfileService {
   }
 
   async getFollowing(userId: UserId): Promise<IProfile[]> {
+    await dbConnect();
     const profile = await Profile.findOne({ userId, isCompleted: true });
     if (!profile) throw new CustomError("Profile does not exist", 404);
 

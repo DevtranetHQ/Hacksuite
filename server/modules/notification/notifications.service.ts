@@ -9,18 +9,22 @@ import { UserId } from "../auth/user.model";
 import { emailService } from "./email/email.service";
 import { profileService } from "../social/profile.service";
 import UserService from "../../../server/modules/auth/user.service";
+import { dbConnect } from "../../database";
 
 class NotificationService {
   async getNotificationTypes(): Promise<INotificationType[]> {
+    await dbConnect();
     return NotificationTypeModel.find();
   }
 
   async getNotificationsForUser(userId: string): Promise<INotification[]> {
+    await dbConnect();
     const notifs = await NotificationModel.find({ for: userId }, {}, { sort: { createdAt: -1 } });
     return notifs.map(notif => JSON.parse(JSON.stringify(notif)));
   }
 
   async getUnreadNotificationsForUser(userId: string): Promise<INotification[]> {
+    await dbConnect();
     const notifs = await NotificationModel.find(
       { for: userId, read: false },
       {},
@@ -30,19 +34,23 @@ class NotificationService {
   }
 
   async checkUnreadNotifications(userId: string): Promise<boolean> {
+    await dbConnect();
     const notifications = await NotificationModel.count({ for: userId, read: false });
     return notifications > 0;
   }
 
   async getUnreadNotificationCountForUser(userId: string): Promise<number> {
+    await dbConnect();
     return NotificationModel.countDocuments({ for: userId, read: false });
   }
 
   async markAllNotificationsAsRead(userId: UserId): Promise<void> {
+    await dbConnect();
     await NotificationModel.updateMany({ for: userId }, { read: true });
   }
 
   async markNotificationAsRead(notificationId: string): Promise<INotification> {
+    await dbConnect();
     const notification = await NotificationModel.findById(notificationId);
     if (!notification) {
       throw new Error("Notification not found");
@@ -52,6 +60,7 @@ class NotificationService {
   }
 
   async removeNotification(notificationId: string, userId: UserId): Promise<INotification> {
+    await dbConnect();
     const notification = await NotificationModel.findOne({
       _id: notificationId,
       for: userId
@@ -70,6 +79,7 @@ class NotificationService {
     by: string;
     link: string;
   }): Promise<INotification> {
+    await dbConnect();
     const notificationType = await NotificationTypeModel.findOne({ uniqueId: data.type });
     if (!notificationType) {
       throw new Error("Notification type not found");

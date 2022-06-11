@@ -1,4 +1,4 @@
-import multer, { Field } from "multer";
+import multer from "multer";
 import { NextApiRequest, NextApiResponse, NextApiHandler } from "next";
 import { middlewareLogger } from "../utils/debug";
 import { withMiddleware } from "../utils/withMiddleware";

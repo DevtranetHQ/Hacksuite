@@ -1,12 +1,15 @@
 import Event from "./event.model";
 import { CustomError } from "../../utils/customError";
+import { dbConnect } from "../../database";
 
 class EventService {
   async create(data) {
+    await dbConnect();
     return await new Event(data).save();
   }
 
   async getUpcomingEvents() {
+    await dbConnect();
     const now = new Date();
     const events = await Event.find({ startDate: { $gt: now } }).populate(
       "creator",
@@ -18,6 +21,7 @@ class EventService {
   }
 
   async getPastEvents() {
+    await dbConnect();
     const now = new Date();
     const events = await Event.find({ endDate: { $lt: now } }).populate(
       "creator",
@@ -28,6 +32,7 @@ class EventService {
   }
 
   async getOngoingEvents() {
+    await dbConnect();
     const now = new Date();
     const events = await Event.find({ startDate: { $lte: now }, endDate: { $gte: now } }).populate(
       "creator",
@@ -38,6 +43,7 @@ class EventService {
   }
 
   async getOne(uniqueId) {
+    await dbConnect();
     const event = await Event.findOne({ uniqueId }).populate(
       "creator",
       "_id firstName lastName image"
@@ -48,6 +54,7 @@ class EventService {
   }
 
   async update(uniqueId, data) {
+    await dbConnect();
     const event = await Event.findByIdAndUpdate({ uniqueId }, { $set: data }, { new: true });
 
     if (!event) throw new CustomError("Event dosen't exist", 404);
@@ -56,6 +63,7 @@ class EventService {
   }
 
   async delete(uniqueId) {
+    await dbConnect();
     const event = await Event.findOne({ uniqueId });
     event.remove();
     return event;

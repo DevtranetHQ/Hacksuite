@@ -1,4 +1,4 @@
-import mongoose from "../../database";
+import mongoose from "mongoose";
 import { EventId } from "../events/event.model";
 import { UserId } from "../auth/user.model";
 

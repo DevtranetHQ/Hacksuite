@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
-import { CustomError } from "../utils/customError";
-import { config } from "./../config";
+import { CustomError } from "../../utils/customError";
+import { config } from "../../config";
 
 const { mailer, APP_NAME } = config;
 

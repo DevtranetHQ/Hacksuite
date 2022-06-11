@@ -2,6 +2,7 @@ import axios from "axios";
 import User from "./user.model";
 import { Profile } from "../social/profile.model";
 import { config } from "../../config";
+import { dbConnect } from "../../database";
 
 const { discord } = config;
 
@@ -51,6 +52,7 @@ class DiscordAuthService {
   }
 
   async checkExistingUser(discordUser: DiscordUser) {
+    await dbConnect();
     const user = await User.findOne({ discordId: discordUser.id });
     if (!user) return null;
 
@@ -65,6 +67,7 @@ class DiscordAuthService {
   }
 
   async addDiscordUser(discordId: string, discordUsername: string, email: string) {
+    await dbConnect();
     const user = await User.findOne({ email, isVerified: true });
     if (!user) throw new Error("User does not exist");
 

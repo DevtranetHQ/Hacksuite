@@ -1,4 +1,4 @@
-import mongoose from "../../database";
+import mongoose from "mongoose";
 import { UserId } from "../auth/user.model";
 import { NotificationTypeId } from "./notification-type.model";
 

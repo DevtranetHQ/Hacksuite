@@ -6,6 +6,7 @@ import { INotification } from "../notification.model";
 import { config } from "../../../config";
 import { ISubscription, SubscriptionModel } from "./subscription.model";
 import { UserId } from "../../auth/user.model";
+import { dbConnect } from "../../../database";
 
 const { vapid } = config;
 
@@ -25,6 +26,7 @@ class PushService {
   async sendPushNotification(notification: INotification) {
     const userId = notification.for;
 
+    await dbConnect();
     const subscriptions = await SubscriptionModel.find({ userId });
     if (!subscriptions) {
       throw new Error(`Subscriptions not found for user ${userId}`);
@@ -55,6 +57,7 @@ class PushService {
   }
 
   async subscribeUser(userId: UserId, subscription: PushSubscription) {
+    await dbConnect();
     const existingSubscription = await SubscriptionModel.findOne({
       userId,
       "subscription.endpoint": subscription.endpoint
@@ -69,6 +72,7 @@ class PushService {
   }
 
   async unsubscribeUser(userId: UserId, endpoint: string) {
+    await dbConnect();
     const subscription = await SubscriptionModel.findOne({
       userId,
       subscription: { endpoint }

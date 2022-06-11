@@ -6,6 +6,7 @@ import { IUser } from "../auth/user.model";
 import { NotificationTypeId } from "../notification/notification-type.model";
 import { notificationService } from "../notification/notifications.service";
 import Registration from "./registration.model";
+import { dbConnect } from "../../database";
 
 const {
   url: { CLIENT_URL }
@@ -50,6 +51,7 @@ class RegistrationNotificationService {
   }
 
   async notify15MinutesBeforeEvent(eventId: EventId) {
+    await dbConnect();
     const event = await Event.findOne({ uniqueId: eventId });
 
     if (!event) {

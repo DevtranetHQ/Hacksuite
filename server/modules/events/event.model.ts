@@ -1,5 +1,4 @@
-import { ObjectId } from "mongoose";
-import mongoose from "../../database";
+import mongoose, { ObjectId } from "mongoose";
 import User from "../../modules/auth/user.model";
 const Schema = mongoose.Schema;
 

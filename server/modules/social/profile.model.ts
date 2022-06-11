@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import mongoose from "../../database";
+import mongoose from "mongoose";
 import { UserId } from "../auth/user.model";
 import { genders, countryNames, describes, skillsAndInterests, availableFor } from "../../../enums";
 import { IProject } from "../projects/project.model";

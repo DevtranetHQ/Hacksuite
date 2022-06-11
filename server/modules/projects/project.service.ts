@@ -1,6 +1,7 @@
 import { Project, IProject, ProjectId } from "./project.model";
 import { CustomError } from "./../../utils/customError";
 import { UserId } from "../auth/user.model";
+import { dbConnect } from "../../database";
 
 interface IQueryProjects {
   limit?: number;
@@ -11,11 +12,13 @@ interface IQueryProjects {
 
 class ProjectService {
   async draftProject(project: Partial<IProject>) {
+    await dbConnect();
     const newProject = new Project(project);
     return newProject.save({ validateBeforeSave: false });
   }
 
   async getProjects(query: IQueryProjects) {
+    await dbConnect();
     return Project.find({}, query.fields, {
       skip: query.skip,
       limit: query.limit,
@@ -24,6 +27,7 @@ class ProjectService {
   }
 
   async getPublishedProjects(query: IQueryProjects) {
+    await dbConnect();
     const projects = await Project.find({ published: true }, query.fields, {
       skip: query.skip,
       limit: query.limit,
@@ -34,14 +38,17 @@ class ProjectService {
   }
 
   async getProject(uniqueId: ProjectId) {
+    await dbConnect();
     return Project.findOne({ uniqueId });
   }
 
   async updateProject(uniqueId: ProjectId, project: IProject) {
+    await dbConnect();
     return Project.findOneAndUpdate({ uniqueId }, project, { new: true });
   }
 
   async publishProject(uniqueId: ProjectId, userId: UserId) {
+    await dbConnect();
     const project = await Project.findOne({ uniqueId, creator: userId, published: false });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -53,6 +60,7 @@ class ProjectService {
   }
 
   async unpublishProject(uniqueId: ProjectId, userId: UserId) {
+    await dbConnect();
     const project = await Project.findOne({ uniqueId, creator: userId, published: true });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -63,6 +71,7 @@ class ProjectService {
   }
 
   async deleteProject(uniqueId: ProjectId, userId: UserId) {
+    await dbConnect();
     const project = await Project.findOne({ uniqueId, creator: userId });
     if (!project) {
       throw new CustomError(`Project not found`, 404);
@@ -72,6 +81,7 @@ class ProjectService {
   }
 
   async getProjectsByUser(userId: UserId) {
+    await dbConnect();
     return Project.find({ user: userId, collaborators: userId });
   }
 }

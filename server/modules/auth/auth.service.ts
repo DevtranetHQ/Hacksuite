@@ -2,20 +2,18 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 
 import User, { IUser, UserId } from "./user.model";
-import Token from "../../models/token.model";
 import { CustomError } from "../../utils/customError";
-import MailService from "../../services/mail.service";
 import { config } from "../../config";
 import registrationService from "../registration/registration.service";
 import { signToken } from "../../utils/auth";
 import { generateUniqueIdFromName } from "./../../utils/generateUniqueIdFromName";
 import { authNotificationsService } from "./auth-notifications.service";
 import { Profile } from "../social/profile.model";
+import Token from "./token.model";
+import MailService from "./mail.service";
+import { dbConnect } from "../../database";
 
 const { BCRYPT_SALT, url } = config;
-
-const randomNumber = Math.floor(Math.random() * 1000);
-console.log(`server/modules/auth/auth.service`, { randomNumber });
 
 class AuthService {
   async _getLoginToken(user: IUser) {
@@ -26,7 +24,6 @@ class AuthService {
       isCompleted: user.isCompleted
     });
 
-    console.log(`server/modules/auth/auth.service`, { randomNumber });
     return token;
   }
 
@@ -37,6 +34,7 @@ class AuthService {
     email: string;
     notify: boolean;
   }) {
+    await dbConnect();
     const { firstName, lastName, password, email, notify } = data;
     let user = await User.findOne({ email: data.email });
     if (user) throw new CustomError("Email already exists");
@@ -60,7 +58,6 @@ class AuthService {
       await Promise.all([user.remove(), profile.remove()]);
       throw new CustomError("Server error", 500);
     }
-    console.log(`server/modules/auth/auth.service`, { randomNumber });
 
     return {
       id: user._id,
@@ -74,6 +71,7 @@ class AuthService {
     if (!data.email) throw new CustomError("Email is required");
     if (!data.password) throw new CustomError("Password is required");
 
+    await dbConnect();
     // Check if user exist
     const user = await User.findOne({ email: data.email });
     if (!user) throw new CustomError("Incorrect email or password");
@@ -87,7 +85,6 @@ class AuthService {
 
     const token = await this._getLoginToken(user);
 
-    console.log(`server/modules/auth/auth.service`, { randomNumber });
     return {
       uid: user._id,
       email: user.email,
@@ -100,6 +97,7 @@ class AuthService {
   async verifyEmail(data: { userId: string; verifyToken: string; login?: boolean }) {
     const { userId, verifyToken, login } = data;
 
+    await dbConnect();
     const user = await User.findOne({ _id: userId });
     if (!user) throw new CustomError("User does not exist");
     if (user.isVerified) throw new CustomError("Email is already verified");
@@ -128,6 +126,7 @@ class AuthService {
   }
 
   async requestEmailVerification(email: string) {
+    await dbConnect();
     const user = await User.findOne({ email });
     if (!user) throw new CustomError("Email does not exist");
     if (user.isVerified) throw new CustomError("Email is already verified");
@@ -153,6 +152,7 @@ class AuthService {
   }
 
   async requestPasswordReset({ email, dob }) {
+    await dbConnect();
     const user = await User.findOne({ email, dob });
     if (!user) throw new CustomError("User does not exist");
 
@@ -179,6 +179,7 @@ class AuthService {
   async resetPassword(data: { userId: string; resetToken: string; password: string }) {
     const { userId, resetToken, password } = data;
 
+    await dbConnect();
     const RToken = await this.verifyResetToken({ userId, resetToken });
 
     const hash = await bcrypt.hash(password, BCRYPT_SALT);
@@ -193,6 +194,7 @@ class AuthService {
   async verifyResetToken(data: { userId: string; resetToken: string }) {
     const { userId, resetToken } = data;
 
+    await dbConnect();
     const RToken = await Token.findOne({ userId });
     if (!RToken) throw new CustomError("Invalid or expired password reset token");
 
@@ -203,6 +205,7 @@ class AuthService {
   }
 
   async updatePassword(userId: string, data: { password: string }) {
+    await dbConnect();
     const user = await User.findOne({ _id: userId });
     if (!user) throw new CustomError("User does not exist");
 

@@ -4,9 +4,11 @@ import User from "../auth/user.model";
 import Registration from "./registration.model";
 import { CustomError } from "../../utils/customError";
 import { registrationNotificationService } from "./reg-notification.service";
+import { dbConnect } from "../../database";
 
 class RegistrationService {
   async registerWithUserId(userId: UserId, uniqueId: EventId) {
+    await dbConnect();
     const event = await Event.findOne({ uniqueId });
     if (!event) throw new CustomError("Event does not exist", 404);
 
@@ -25,6 +27,7 @@ class RegistrationService {
   }
 
   async registerWithEmail(email: string, name: string, uniqueId: EventId) {
+    await dbConnect();
     const event = await Event.findOne({ uniqueId });
     if (!event) throw new CustomError("Event does not exist", 404);
 
@@ -51,12 +54,14 @@ class RegistrationService {
   }
 
   async checkRegistration(userId: UserId, uniqueId: EventId) {
+    await dbConnect();
     const registration = await Registration.findOne({ user: userId, event: uniqueId });
 
     return !!registration;
   }
 
   async updateRegistrationsToUser(user: IUser) {
+    await dbConnect();
     const registrations = await Registration.find({ email: user.email });
 
     const jobs = registrations.map(async registration => {

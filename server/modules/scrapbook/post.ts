@@ -1,4 +1,4 @@
-import mongoose from "../../database";
+import mongoose from "mongoose";
 import { UserId } from "../../modules/auth/user.model";
 
 const { Schema, models, model } = mongoose;

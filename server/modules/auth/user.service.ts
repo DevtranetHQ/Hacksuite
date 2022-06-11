@@ -3,17 +3,21 @@ import { CustomError } from "../../utils/customError";
 import authService from "./auth.service";
 import { IProfile } from "../social/profile.model";
 import { profileService } from "./../social/profile.service";
+import { dbConnect } from "../../database";
 
 class UserService {
   async create(data: Partial<IUser>) {
+    await dbConnect();
     return await new User(data).save();
   }
 
   async getAll() {
+    await dbConnect();
     return await User.find({}, { password: 0, __v: 0 });
   }
 
   async getOne(userId: string): Promise<IUser> {
+    await dbConnect();
     const user = await User.findOne({ _id: userId }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist");
 
@@ -21,6 +25,7 @@ class UserService {
   }
 
   async getByUniqueId(uniqueId: UserId): Promise<IUser> {
+    await dbConnect();
     const user = await User.findOne({ uniqueId }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist", 404);
 
@@ -28,6 +33,7 @@ class UserService {
   }
 
   async getOneByEmail(email: string) {
+    await dbConnect();
     const user = await User.findOne({ email, isVerified: true }, { password: 0, __v: 0 });
     if (!user) throw new CustomError("User does not exist", 404);
 
@@ -35,6 +41,7 @@ class UserService {
   }
 
   async update(uniqueId: UserId, data: Partial<IUser>) {
+    await dbConnect();
     const user = await User.findOne({ uniqueId: uniqueId });
     if (!user) throw new CustomError("User does not exist", 404);
 
@@ -44,6 +51,7 @@ class UserService {
   }
 
   async completeProfile(userId: string, data: Partial<IProfile>) {
+    await dbConnect();
     const user = await User.findOne({ _id: userId, isCompleted: false });
     if (!user) throw new CustomError("User does not exist", 404);
 
@@ -58,6 +66,7 @@ class UserService {
   }
 
   async delete(userId: string) {
+    await dbConnect();
     const user = await User.findOne({ _id: userId });
     user.remove();
     return user;
