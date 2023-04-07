@@ -1,9 +1,9 @@
 ## What's this?
 
-This is the full stack app for The Dynamics, built to host hackathons.
+A fullstack suite of Apps for hosting hackathons
 
 
-### The Dynamics App structure
+### App structure
 
     .
     ├── ...
